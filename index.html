@@ -11,6 +11,7 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icon-192.png" />
   <title>Japan 2026 – Group Trip</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root{
       --bg:#f5f7fb; --card:#ffffff; --ink:#172033; --muted:#6b7280;
@@ -80,6 +81,21 @@
     .poll-option{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;margin-bottom:9px}
     .bar{height:8px;background:#e8edf5;border-radius:999px;overflow:hidden;margin-top:8px}
     .bar span{display:block;height:100%;background:var(--primary)}
+    .upload-panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;margin-top:14px;box-shadow:var(--shadow)}
+    .upload-row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+    .upload-hint{font-size:12px;color:var(--muted);margin-top:6px}
+    .file-list{display:grid;gap:10px;margin-top:12px}
+    .file-card{background:#f8fafc;border:1px solid var(--line);border-radius:18px;padding:12px}
+    .file-meta{font-size:12px;color:var(--muted);margin-top:4px}
+    .file-empty{font-size:13px;color:var(--muted);padding:12px 4px}
+    .auth-card{margin:16px 14px 0;background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+    .auth-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .input{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;background:#fff;color:var(--ink)}
+    .auth-status{font-size:13px;color:var(--muted);margin-top:8px}
+    .warning{background:#fff7ed;color:#9a3412;border:1px solid #fdba74;border-radius:16px;padding:12px 14px;margin-top:10px;font-size:13px}
+    .success{background:#ecfdf3;color:#166534;border:1px solid #86efac;border-radius:16px;padding:12px 14px;margin-top:10px;font-size:13px}
+    .hidden{display:none !important}
+    .btn:disabled{opacity:.55;cursor:not-allowed}
     @media (min-width:700px){body{padding:25px}.phone{border-radius:32px;overflow:hidden;min-height:900px}}
   </style>
 </head>
@@ -100,6 +116,22 @@
       <div class="small">כל הקבוצה מחוברת</div>
     </div>
   </header>
+
+  <section class="auth-card" id="authCard">
+    <div class="section-title" style="margin:0;font-size:21px">גישה לחברי הקבוצה</div>
+    <div class="auth-status" id="authSummary">מתחבר למערכת הקבצים המשותפת...</div>
+    <div id="setupWarning" class="warning hidden">
+      כדי להפעיל העלאות משותפות צריך להכניס כאן את פרטי ה-Supabase החינמיים: `supabaseUrl` ו-`supabaseAnonKey`.
+    </div>
+    <div id="authSuccess" class="success hidden"></div>
+    <form id="loginForm" class="auth-form hidden">
+      <input id="emailInput" class="input" type="email" placeholder="כתובת אימייל של חבר קבוצה" autocomplete="email" />
+      <button class="btn primary" type="submit">שליחת קישור כניסה</button>
+    </form>
+    <div class="auth-form hidden" id="sessionControls">
+      <button class="btn ghost" type="button" onclick="signOutUser()">התנתקות</button>
+    </div>
+  </section>
 
   <main id="route" class="screen active">
     <div class="tabs">
@@ -153,6 +185,17 @@
       <div class="section-title">הצבעה קבוצתית</div>
       <div class="poll-option">🥩 Wagyu Dinner Osaka <b>4 קולות</b><div class="bar"><span style="width:67%"></span></div></div>
       <div class="poll-option">🍣 Sushi in Ginza <b>2 קולות</b><div class="bar"><span style="width:33%"></span></div></div>
+      <div class="upload-panel">
+        <div class="upload-row">
+          <div>
+            <div class="section-title" style="margin:0;font-size:18px">קבצי קבוצה</div>
+            <div class="upload-hint">קבצים משותפים לכל חברי הקבוצה המחוברים.</div>
+          </div>
+          <button class="btn primary" data-upload-button onclick="pickFiles('group')">הוספת קובץ</button>
+          <input id="file-input-group" type="file" hidden onchange="handleFileUpload('group', event)">
+        </div>
+        <div class="file-list" id="file-list-group"></div>
+      </div>
     </div>
   </main>
 
@@ -163,6 +206,17 @@
       <div class="expense"><span>🥩 ארוחת Wagyu</span><span class="sum">¥42,600</span></div>
       <div class="expense"><span>🚕 מונית למלון</span><span class="sum">¥7,800</span></div>
       <div class="notice">סה״כ לאדם: ¥22,400</div>
+      <div class="upload-panel">
+        <div class="upload-row">
+          <div>
+            <div class="section-title" style="margin:0;font-size:18px">קבצי הוצאות</div>
+            <div class="upload-hint">למשל קבלות, צילומי מסך או דוחות משותפים.</div>
+          </div>
+          <button class="btn primary" data-upload-button onclick="pickFiles('expenses')">הוספת קובץ</button>
+          <input id="file-input-expenses" type="file" hidden onchange="handleFileUpload('expenses', event)">
+        </div>
+        <div class="file-list" id="file-list-expenses"></div>
+      </div>
     </div>
   </main>
 
@@ -172,6 +226,17 @@
       <div class="event"><h3>✈️ כרטיסי טיסה</h3><p>תל אביב → טוקיו</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
       <div class="event" style="margin-top:10px"><h3>🏨 הזמנות מלונות</h3><p>טוקיו, האקונה, נגויה, קיוטו ואוסקה</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
       <div class="event" style="margin-top:10px"><h3>🚄 כרטיסי רכבות</h3><p>Shinkansen ומעברים בין הערים</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
+      <div class="upload-panel">
+        <div class="upload-row">
+          <div>
+            <div class="section-title" style="margin:0;font-size:18px">העלאת מסמכים</div>
+            <div class="upload-hint">למשל PDF, כרטיסים, אישורים וקבצי נסיעה.</div>
+          </div>
+          <button class="btn primary" data-upload-button onclick="pickFiles('docs')">הוספת קובץ</button>
+          <input id="file-input-docs" type="file" hidden onchange="handleFileUpload('docs', event)">
+        </div>
+        <div class="file-list" id="file-list-docs"></div>
+      </div>
     </div>
   </main>
 
@@ -184,6 +249,18 @@
 </div>
 
 <script>
+const supabaseUrl = 'https://ciabjdoqgedpszxngozu.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpYWJqZG9xZ2VkcHN6eG5nb3p1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjQ3NTAsImV4cCI6MjA5OTI0MDc1MH0.0GrJuNk1G5IpDjwsThe87yP20EzdYrmULX6xWBEt_Vg';
+const storageBucket = 'trip-files';
+const sectionTitles = {
+  route: 'מסלול',
+  group: 'קבוצה',
+  expenses: 'הוצאות',
+  docs: 'מסמכים'
+};
+let supabaseClient = null;
+let currentSession = null;
+
 const data = {
 '14': {title:"טוקיו → האקונה",route:"שינג'וקו → Hakone-Yumoto → המלון",events:[
 ["09:00","Tokyo Metropolitan Government Building","תצפית חינמית על טוקיו","https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80","Tokyo Metropolitan Government Building"],
@@ -212,6 +289,191 @@ const data = {
 ]}
 };
 
+function isSupabaseConfigured(){
+  return Boolean(supabaseUrl && supabaseAnonKey);
+}
+
+function initSupabase(){
+  if (!isSupabaseConfigured()) return null;
+  if (!supabaseClient) {
+    supabaseClient = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+  }
+  return supabaseClient;
+}
+
+function setMessage(elementId, text, visible){
+  const node = document.getElementById(elementId);
+  if (!node) return;
+  node.textContent = text || '';
+  node.classList.toggle('hidden', !visible);
+}
+
+function pickFiles(section){
+  if (!currentSession) {
+    alert('צריך להתחבר קודם כדי להעלות קבצים.');
+    return;
+  }
+  document.getElementById(`file-input-${section}`).click();
+}
+
+function toggleUploadButtons(disabled){
+  document.querySelectorAll('[data-upload-button]').forEach(button => {
+    button.disabled = disabled;
+  });
+}
+
+function sanitizeFileName(fileName){
+  return fileName.replace(/[^a-zA-Z0-9._-]/g, '_');
+}
+
+async function handleFileUpload(section, event){
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+  if (!currentSession) {
+    alert('צריך להתחבר קודם כדי להעלות קבצים.');
+    event.target.value = '';
+    return;
+  }
+  const client = initSupabase();
+  const objectName = `${Date.now()}-${sanitizeFileName(file.name)}`;
+  const objectPath = `${section}/${objectName}`;
+  toggleUploadButtons(true);
+  setMessage('authSuccess', 'מעלה קובץ...', true);
+  const { error } = await client.storage.from(storageBucket).upload(objectPath, file, {
+    cacheControl: '3600',
+    upsert: false
+  });
+  toggleUploadButtons(false);
+  if (error) {
+    setMessage('authSuccess', '', false);
+    alert(`העלאת הקובץ נכשלה: ${error.message}`);
+    event.target.value = '';
+    return;
+  }
+  setMessage('authSuccess', 'הקובץ הועלה בהצלחה.', true);
+  event.target.value = '';
+  await renderUploads();
+}
+
+function formatBytes(bytes){
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function formatDate(value){
+  return new Date(value).toLocaleString('he-IL', { dateStyle: 'short', timeStyle: 'short' });
+}
+
+async function openFile(section, objectName){
+  const client = initSupabase();
+  const { data, error } = await client.storage.from(storageBucket).createSignedUrl(`${section}/${objectName}`, 3600);
+  if (error) {
+    alert(`פתיחת הקובץ נכשלה: ${error.message}`);
+    return;
+  }
+  window.open(data.signedUrl, '_blank', 'noopener');
+}
+
+async function renderUploads(){
+  const client = initSupabase();
+  const loggedIn = Boolean(currentSession);
+  ['route', 'group', 'expenses', 'docs'].forEach(section => {
+    const holder = document.getElementById(`file-list-${section}`);
+    if (!holder) return;
+    if (!isSupabaseConfigured()) {
+      holder.innerHTML = '<div class="file-empty">יש להגדיר Supabase כדי להציג קבצים משותפים.</div>';
+      return;
+    }
+    if (!loggedIn) {
+      holder.innerHTML = '<div class="file-empty">התחברו כדי לראות את הקבצים המשותפים של הקבוצה.</div>';
+      return;
+    }
+    holder.innerHTML = '<div class="file-empty">טוען קבצים...</div>';
+  });
+
+  if (!isSupabaseConfigured() || !loggedIn) return;
+
+  for (const section of ['route', 'group', 'expenses', 'docs']) {
+    const holder = document.getElementById(`file-list-${section}`);
+    const { data, error } = await client.storage.from(storageBucket).list(section, {
+      limit: 100,
+      sortBy: { column: 'created_at', order: 'desc' }
+    });
+    if (error) {
+      holder.innerHTML = `<div class="file-empty">שגיאה בטעינת קבצים: ${error.message}</div>`;
+      continue;
+    }
+    const items = (data || []).filter(item => item.name && !item.id?.endsWith('/'));
+    if (!items.length) {
+      holder.innerHTML = `<div class="file-empty">עדיין לא הועלו קבצים ל${sectionTitles[section]}.</div>`;
+      continue;
+    }
+    holder.innerHTML = items.map(item => `
+      <div class="file-card">
+        <div><strong>${item.name.replace(/^\d+-/, '')}</strong></div>
+        <div class="file-meta">${formatBytes(item.metadata?.size || 0)} · ${formatDate(item.created_at || item.updated_at || new Date().toISOString())}</div>
+        <div class="actions">
+          <button class="btn primary" onclick="openFile('${section}','${item.name}')">פתיחה</button>
+          <button class="btn ghost" onclick="removeFile('${section}','${item.name}')">מחיקה</button>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+async function removeFile(section, objectName){
+  if (!currentSession) return;
+  const client = initSupabase();
+  const { error } = await client.storage.from(storageBucket).remove([`${section}/${objectName}`]);
+  if (error) {
+    alert(`מחיקת הקובץ נכשלה: ${error.message}`);
+    return;
+  }
+  await renderUploads();
+}
+
+async function signOutUser(){
+  const client = initSupabase();
+  await client.auth.signOut();
+}
+
+function updateAuthUI(){
+  const configured = isSupabaseConfigured();
+  const loggedIn = Boolean(currentSession);
+  document.getElementById('setupWarning').classList.toggle('hidden', configured);
+  document.getElementById('loginForm').classList.toggle('hidden', !configured || loggedIn);
+  document.getElementById('sessionControls').classList.toggle('hidden', !configured || !loggedIn);
+  toggleUploadButtons(!configured || !loggedIn);
+  if (!configured) {
+    document.getElementById('authSummary').textContent = 'צריך לחבר Supabase כדי לתת גישה רק לחברי הקבוצה ולהעלות קבצים משותפים.';
+    return;
+  }
+  if (!loggedIn) {
+    document.getElementById('authSummary').textContent = 'התחברו עם קישור חד-פעמי שיישלח למייל של חבר הקבוצה.';
+    return;
+  }
+  document.getElementById('authSummary').textContent = `מחובר כעת: ${currentSession.user.email}`;
+}
+
+async function initAuth(){
+  if (!isSupabaseConfigured()) {
+    updateAuthUI();
+    await renderUploads();
+    return;
+  }
+  const client = initSupabase();
+  const { data } = await client.auth.getSession();
+  currentSession = data.session;
+  updateAuthUI();
+  await renderUploads();
+  client.auth.onAuthStateChange(async (_event, session) => {
+    currentSession = session;
+    updateAuthUI();
+    await renderUploads();
+  });
+}
+
 function render(day){
   document.getElementById('dayTitle').innerText=data[day].title;
   document.getElementById('routeText').innerText=data[day].route;
@@ -223,10 +485,48 @@ function render(day){
       <div class="actions"><a class="btn primary" target="_blank" href="${link}">📍 נווט עכשיו</a>
       <button class="btn ghost" onclick="alert('סומן כבוצע ✓')">✓ סיימנו</button></div></div></div>`;
   });
+  const routeUploads = document.getElementById('route-upload-panel');
+  if (routeUploads) routeUploads.remove();
+  tl.insertAdjacentHTML('beforebegin', `
+    <div class="upload-panel" id="route-upload-panel">
+      <div class="upload-row">
+        <div>
+          <div class="section-title" style="margin:0;font-size:18px">קבצי מסלול</div>
+          <div class="upload-hint">אפשר להוסיף קבצי PDF, תמונות או סיכומי יום לכל חברי הקבוצה.</div>
+        </div>
+        <button class="btn primary" data-upload-button onclick="pickFiles('route')">הוספת קובץ</button>
+        <input id="file-input-route" type="file" hidden onchange="handleFileUpload('route', event)">
+      </div>
+      <div class="file-list" id="file-list-route"></div>
+    </div>
+  `);
+  renderUploads();
 }
 function switchDay(el,day){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');render(day)}
 function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
 render('14');
+
+document.getElementById('loginForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  const client = initSupabase();
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email) return;
+  setMessage('authSuccess', 'שולח קישור כניסה למייל...', true);
+  const { error } = await client.auth.signInWithOtp({
+    email,
+    options: {
+      emailRedirectTo: window.location.origin + window.location.pathname
+    }
+  });
+  if (error) {
+    setMessage('authSuccess', '', false);
+    alert(`שליחת קישור נכשלה: ${error.message}`);
+    return;
+  }
+  setMessage('authSuccess', 'נשלח קישור כניסה למייל. פתחו אותו באותו מכשיר כדי להיכנס.', true);
+});
+
+initAuth();
 
 // Register service worker for offline support
 if ('serviceWorker' in navigator) {

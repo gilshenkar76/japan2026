@@ -3,7 +3,7 @@
 
 const CACHE_NAME = 'japan2026-v1';
 const ASSETS = [
-  './index-3.html',
+  './index.html',
   './manifest.json'
 ];
 
