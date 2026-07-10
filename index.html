@@ -255,12 +255,18 @@
 <script>
 const supabaseUrl = 'https://ciabjdoqgedpszxngozu.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpYWJqZG9xZ2VkcHN6eG5nb3p1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjQ3NTAsImV4cCI6MjA5OTI0MDc1MH0.0GrJuNk1G5IpDjwsThe87yP20EzdYrmULX6xWBEt_Vg';
-const storageBucket = 'trip-files';
+const storageBucket = 'japan_trip_files';
 const sectionTitles = {
   route: 'מסלול',
   group: 'קבוצה',
   expenses: 'הוצאות',
   docs: 'מסמכים'
+};
+const sectionFolders = {
+  route: 'maps',
+  group: 'group',
+  expenses: 'expenses',
+  docs: 'documents'
 };
 let supabaseClient = null;
 let currentSession = null;
@@ -340,7 +346,7 @@ async function handleFileUpload(section, event){
   }
   const client = initSupabase();
   const objectName = `${Date.now()}-${sanitizeFileName(file.name)}`;
-  const objectPath = `${section}/${objectName}`;
+  const objectPath = `${sectionFolders[section]}/${objectName}`;
   toggleUploadButtons(true);
   setMessage('authSuccess', 'מעלה קובץ...', true);
   const { error } = await client.storage.from(storageBucket).upload(objectPath, file, {
@@ -371,7 +377,7 @@ function formatDate(value){
 
 async function openFile(section, objectName){
   const client = initSupabase();
-  const { data, error } = await client.storage.from(storageBucket).createSignedUrl(`${section}/${objectName}`, 3600);
+  const { data, error } = await client.storage.from(storageBucket).createSignedUrl(`${sectionFolders[section]}/${objectName}`, 3600);
   if (error) {
     alert(`פתיחת הקובץ נכשלה: ${error.message}`);
     return;
@@ -400,7 +406,7 @@ async function renderUploads(){
 
   for (const section of ['route', 'group', 'expenses', 'docs']) {
     const holder = document.getElementById(`file-list-${section}`);
-    const { data, error } = await client.storage.from(storageBucket).list(section, {
+    const { data, error } = await client.storage.from(storageBucket).list(sectionFolders[section], {
       limit: 100,
       sortBy: { column: 'created_at', order: 'desc' }
     });
@@ -429,7 +435,7 @@ async function renderUploads(){
 async function removeFile(section, objectName){
   if (!currentSession) return;
   const client = initSupabase();
-  const { error } = await client.storage.from(storageBucket).remove([`${section}/${objectName}`]);
+  const { error } = await client.storage.from(storageBucket).remove([`${sectionFolders[section]}/${objectName}`]);
   if (error) {
     alert(`מחיקת הקובץ נכשלה: ${error.message}`);
     return;
