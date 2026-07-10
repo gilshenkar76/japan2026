@@ -125,8 +125,12 @@
     </div>
     <div id="authSuccess" class="success hidden"></div>
     <form id="loginForm" class="auth-form hidden">
-      <input id="emailInput" class="input" type="email" placeholder="כתובת אימייל של חבר קבוצה" autocomplete="email" />
-      <button class="btn primary" type="submit">שליחת קישור כניסה</button>
+      <input id="emailInput" class="input" type="email" placeholder="כתובת אימייל" autocomplete="email" />
+      <input id="passwordInput" class="input" type="password" placeholder="סיסמה (אופציונלי – רק אם הוגדרה)" autocomplete="current-password" />
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn primary" type="submit">כניסה עם סיסמה</button>
+        <button class="btn ghost" type="button" id="magicLinkBtn">שליחת קישור למייל</button>
+      </div>
     </form>
     <div class="auth-form hidden" id="sessionControls">
       <button class="btn ghost" type="button" onclick="signOutUser()">התנתקות</button>
@@ -510,20 +514,47 @@ document.getElementById('loginForm').addEventListener('submit', async event => {
   event.preventDefault();
   const client = initSupabase();
   const email = document.getElementById('emailInput').value.trim();
+  const password = document.getElementById('passwordInput').value;
   if (!email) return;
+  if (password) {
+    setMessage('authSuccess', 'מתחבר...', true);
+    const { error } = await client.auth.signInWithPassword({ email, password });
+    if (error) {
+      setMessage('authSuccess', '', false);
+      alert(`כניסה נכשלה: ${error.message}`);
+      return;
+    }
+    setMessage('authSuccess', 'התחברת בהצלחה!', true);
+  } else {
+    setMessage('authSuccess', 'שולח קישור כניסה למייל...', true);
+    const { error } = await client.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: window.location.origin + window.location.pathname }
+    });
+    if (error) {
+      setMessage('authSuccess', '', false);
+      alert(`שליחת קישור נכשלה: ${error.message}`);
+      return;
+    }
+    setMessage('authSuccess', 'נשלח קישור כניסה למייל. פתחו אותו באותו מכשיר כדי להיכנס.', true);
+  }
+});
+
+document.getElementById('magicLinkBtn').addEventListener('click', async () => {
+  const client = initSupabase();
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email) { alert('הכניסו כתובת מייל קודם.'); return; }
   setMessage('authSuccess', 'שולח קישור כניסה למייל...', true);
   const { error } = await client.auth.signInWithOtp({
     email,
-    options: {
-      emailRedirectTo: window.location.origin + window.location.pathname
-    }
+    options: { emailRedirectTo: window.location.origin + window.location.pathname }
   });
   if (error) {
     setMessage('authSuccess', '', false);
     alert(`שליחת קישור נכשלה: ${error.message}`);
     return;
   }
-  setMessage('authSuccess', 'נשלח קישור כניסה למייל. פתחו אותו באותו מכשיר כדי להיכנס.', true);
+  setMessage('authSuccess', 'נשלח קישור כניסה למייל.', true);
 });
 
 initAuth();
