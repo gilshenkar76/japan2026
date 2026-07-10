@@ -216,8 +216,11 @@
     <div class="content">
       <div class="section-title" style="font-size:24px">הוצאות משותפות</div>
       <div class="upload-panel">
-        <div class="section-title" style="margin:0;font-size:18px">הוספת הוצאה חדשה</div>
-        <form id="expenseForm" class="expense-grid" style="margin-top:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+          <div class="section-title" style="margin:0;font-size:18px">ניהול הוצאות</div>
+          <button id="expenseAddToggleBtn" class="btn primary" type="button">Add New</button>
+        </div>
+        <form id="expenseForm" class="expense-grid hidden" style="margin-top:10px">
           <div class="expense-row">
             <input id="expenseDate" class="input" type="date" required />
             <input id="expensePerson" class="input" type="text" placeholder="שם האדם" required />
@@ -225,7 +228,11 @@
           <input id="expenseReason" class="input" type="text" placeholder="סיבה / תיאור ההוצאה" required />
           <div class="expense-row">
             <input id="expenseValue" class="input" type="number" step="0.01" min="0" placeholder="סכום" required />
-            <input id="expenseCurrency" class="input" type="text" value="JPY" maxlength="6" placeholder="מטבע (למשל JPY)" required />
+            <select id="expenseCurrency" class="input" required>
+              <option value="JPY">JPY</option>
+              <option value="DOLLAR">DOLLAR</option>
+              <option value="SHEKEL">SHEKEL</option>
+            </select>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button id="expenseSubmitBtn" class="btn primary" type="submit">שמירת הוצאה</button>
@@ -513,10 +520,14 @@ function resetExpenseForm(){
   document.getElementById('expenseCurrency').value = 'JPY';
   document.getElementById('expenseSubmitBtn').textContent = 'שמירת הוצאה';
   document.getElementById('expenseCancelBtn').classList.add('hidden');
+  document.getElementById('expenseForm').classList.add('hidden');
+  document.getElementById('expenseAddToggleBtn').textContent = 'Add New';
 }
 
 function fillExpenseForm(row){
   expensesEditingId = row.id;
+  document.getElementById('expenseForm').classList.remove('hidden');
+  document.getElementById('expenseAddToggleBtn').textContent = 'Close';
   document.getElementById('expenseDate').value = row.expense_date;
   document.getElementById('expensePerson').value = row.person_name;
   document.getElementById('expenseReason').value = row.reason;
@@ -708,6 +719,18 @@ document.getElementById('expenseForm').addEventListener('submit', async event =>
 document.getElementById('expenseCancelBtn').addEventListener('click', () => {
   resetExpenseForm();
 });
+
+document.getElementById('expenseAddToggleBtn').addEventListener('click', () => {
+  const form = document.getElementById('expenseForm');
+  const isHidden = form.classList.contains('hidden');
+  if (isHidden) {
+    form.classList.remove('hidden');
+    document.getElementById('expenseAddToggleBtn').textContent = 'Close';
+  } else {
+    resetExpenseForm();
+  }
+});
+
 resetExpenseForm();
 
 document.getElementById('loginForm').addEventListener('submit', async event => {
