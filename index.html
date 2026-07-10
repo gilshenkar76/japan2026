@@ -97,6 +97,7 @@
     .expense-table tr:last-child td{border-bottom:0}
     .expense-total{margin-top:10px;font-weight:800;color:#1f2937}
     .expense-actions{display:flex;gap:6px;justify-content:flex-end}
+    .file-picker-inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .auth-card{margin:16px 14px 0;background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
     .auth-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     .input{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;background:#fff;color:var(--ink)}
@@ -239,7 +240,11 @@
             </select>
           </div>
           <div class="expense-row">
-            <input id="expenseReceipt" class="input" type="file" accept="image/*,.pdf" capture="environment" />
+            <div class="file-picker-inline">
+              <button class="btn ghost" type="button" onclick="document.getElementById('expenseReceipt').click()">בחירת קובץ</button>
+              <span id="expenseReceiptName" class="small">לא נבחר קובץ</span>
+              <input id="expenseReceipt" type="file" accept="image/*,.pdf" capture="environment" hidden />
+            </div>
             <div class="small" style="align-self:center">אפשר לצרף קבלה או לצלם קבלה מהטלפון</div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -544,6 +549,7 @@ function currencyLabel(currency){
 function resetExpenseForm(){
   expensesEditingId = null;
   document.getElementById('expenseForm').reset();
+  document.getElementById('expenseReceiptName').textContent = 'לא נבחר קובץ';
   document.getElementById('expenseDate').valueAsDate = new Date();
   document.getElementById('expenseFamily').value = 'שנקר';
   document.getElementById('expenseCurrency').value = 'JPY';
@@ -739,6 +745,10 @@ function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.cl
 render('14');
 
 document.getElementById('expenseDate').valueAsDate = new Date();
+document.getElementById('expenseReceipt').addEventListener('change', event => {
+  const file = event.target.files && event.target.files[0];
+  document.getElementById('expenseReceiptName').textContent = file ? file.name : 'לא נבחר קובץ';
+});
 document.getElementById('expenseForm').addEventListener('submit', async event => {
   event.preventDefault();
   if (!currentSession) {
