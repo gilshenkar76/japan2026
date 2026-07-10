@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Japan 2026" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <title>Japan 2026 – Group Trip</title>
+  <style>
+    :root{
+      --bg:#f5f7fb; --card:#ffffff; --ink:#172033; --muted:#6b7280;
+      --primary:#e53935; --primary2:#ff6b6b; --line:#e7eaf0; --ok:#18a957;
+      --blue:#2f6fed; --shadow:0 10px 30px rgba(21,29,46,.09);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#eef2f7 0,#f8fafc 35%,#f5f7fb 100%);
+      font-family:Arial,Helvetica,sans-serif;color:var(--ink);}
+    .phone{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;
+      box-shadow:0 0 40px rgba(0,0,0,.12);padding-bottom:90px}
+    .hero{background:linear-gradient(135deg,#111827,#26334d);color:#fff;padding:22px 18px 18px;
+      border-radius:0 0 28px 28px;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;
+      background:rgba(255,255,255,.06);left:-50px;top:-65px}
+    .top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+    .logo{font-weight:800;font-size:20px}.small{font-size:12px;opacity:.8}
+    .trip-title{margin-top:22px;font-size:29px;font-weight:900;line-height:1.1}
+    .trip-sub{margin-top:7px;font-size:14px;opacity:.85}
+    .people{display:flex;align-items:center;margin-top:18px;gap:8px}
+    .avatars{display:flex;direction:ltr}
+    .avatar{width:34px;height:34px;border-radius:50%;border:2px solid #fff;margin-left:-8px;
+      display:grid;place-items:center;font-size:13px;font-weight:700;background:#fff;color:#111827}
+    .a1{background:#ffd6d6}.a2{background:#d9e8ff}.a3{background:#e8dbff}.a4{background:#d8f6df}.a5{background:#ffe9bd}.a6{background:#f5d9ff}
+    .tabs{display:flex;gap:9px;overflow:auto;padding:15px 14px 8px;scrollbar-width:none}
+    .tab{flex:0 0 auto;border:0;background:#fff;color:#455066;border-radius:18px;padding:10px 14px;
+      box-shadow:0 4px 14px rgba(15,23,42,.07);font-weight:700;cursor:pointer}
+    .tab.active{background:var(--primary);color:white}
+    .content{padding:6px 14px 0}
+    .day-head{display:flex;justify-content:space-between;align-items:flex-end;margin:10px 2px 12px}
+    .day-title{font-size:22px;font-weight:900}.weather{font-size:13px;color:var(--muted)}
+    .map-card{height:170px;border-radius:24px;background:
+      linear-gradient(rgba(17,24,39,.08),rgba(17,24,39,.08)),
+      url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=900&q=80') center/cover;
+      position:relative;overflow:hidden;box-shadow:var(--shadow)}
+    .map-chip{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.94);padding:8px 11px;
+      border-radius:14px;font-size:12px;font-weight:800}
+    .route-line{position:absolute;bottom:14px;right:14px;left:14px;background:rgba(17,24,39,.85);color:#fff;
+      border-radius:16px;padding:11px 13px;font-size:13px}
+    .section-title{font-size:17px;font-weight:900;margin:20px 2px 10px}
+    .timeline{display:grid;gap:10px}
+    .item{display:grid;grid-template-columns:58px 1fr;gap:10px;align-items:stretch}
+    .time{font-size:13px;color:var(--muted);font-weight:800;padding-top:14px;text-align:center}
+    .event{background:var(--card);border-radius:20px;padding:13px;box-shadow:var(--shadow);
+      border:1px solid var(--line)}
+    .event-row{display:flex;gap:12px;align-items:center}
+    .thumb{width:64px;height:64px;border-radius:16px;object-fit:cover;background:#e8edf5}
+    .event h3{margin:0 0 5px;font-size:16px}.event p{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
+    .actions{display:flex;gap:7px;margin-top:11px}
+    .btn{border:0;border-radius:12px;padding:9px 11px;font-weight:800;font-size:12px;text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+    .primary{background:var(--blue);color:white}.ghost{background:#f0f4fa;color:#344054}
+    .hotel{background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa}
+    .notice{margin-top:12px;border-radius:18px;padding:13px;background:#eaf8f0;color:#156b3b;font-size:13px;
+      border:1px solid #c9edd7}
+    .group-card{background:#fff;border-radius:22px;padding:14px;box-shadow:var(--shadow);border:1px solid var(--line)}
+    .member{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line)}
+    .member:last-child{border-bottom:0}.status{font-size:12px;color:var(--ok);font-weight:800}
+    .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);
+      background:rgba(255,255,255,.97);backdrop-filter:blur(12px);display:grid;grid-template-columns:repeat(4,1fr);
+      padding:10px 8px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--line);z-index:30}
+    .nav button{border:0;background:transparent;color:#667085;font-size:11px;font-weight:800}
+    .nav .active{color:var(--primary)} .ico{display:block;font-size:21px;margin-bottom:4px}
+    .screen{display:none}.screen.active{display:block}
+    .expense{display:flex;justify-content:space-between;background:#fff;padding:14px;border-radius:18px;margin-bottom:9px;
+      border:1px solid var(--line)} .sum{font-weight:900}
+    .poll-option{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;margin-bottom:9px}
+    .bar{height:8px;background:#e8edf5;border-radius:999px;overflow:hidden;margin-top:8px}
+    .bar span{display:block;height:100%;background:var(--primary)}
+    @media (min-width:700px){body{padding:25px}.phone{border-radius:32px;overflow:hidden;min-height:900px}}
+  </style>
+</head>
+<body>
+<div class="phone">
+  <header class="hero">
+    <div class="top">
+      <div class="logo">🇯🇵 Japan 2026</div>
+      <div class="small">מסלול משותף</div>
+    </div>
+    <div class="trip-title">הטיול שלנו ליפן</div>
+    <div class="trip-sub">14–28 בנובמבר 2026 · 6 מטיילים</div>
+    <div class="people">
+      <div class="avatars">
+        <div class="avatar a1">S</div><div class="avatar a2">A</div><div class="avatar a3">M</div>
+        <div class="avatar a4">L</div><div class="avatar a5">D</div><div class="avatar a6">N</div>
+      </div>
+      <div class="small">כל הקבוצה מחוברת</div>
+    </div>
+  </header>
+
+  <main id="route" class="screen active">
+    <div class="tabs">
+      <button class="tab active" onclick="switchDay(this,'14')">14.11</button>
+      <button class="tab" onclick="switchDay(this,'15')">15.11</button>
+      <button class="tab" onclick="switchDay(this,'16')">16.11</button>
+      <button class="tab" onclick="switchDay(this,'18')">18.11</button>
+      <button class="tab" onclick="switchDay(this,'25')">25.11</button>
+    </div>
+    <div class="content">
+      <div class="day-head">
+        <div>
+          <div class="small" style="color:#e53935;font-weight:800">היום הראשון</div>
+          <div class="day-title" id="dayTitle">טוקיו → האקונה</div>
+        </div>
+        <div class="weather">☀️ 17°</div>
+      </div>
+
+      <div class="map-card">
+        <div class="map-chip">מסלול היום</div>
+        <div class="route-line" id="routeText">שינג'וקו → Hakone-Yumoto → המלון</div>
+      </div>
+
+      <div class="notice">📢 הודעה לקבוצה: נפגשים בלובי בשעה 08:45 עם כל המזוודות.</div>
+
+      <div class="section-title">המסלול שלנו</div>
+      <div class="timeline" id="timeline"></div>
+
+      <div class="section-title">המלון הערב</div>
+      <div class="event hotel">
+        <div class="event-row">
+          <img class="thumb" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80">
+          <div><h3>Aura Tachibana</h3><p>Hakone Yumoto · ספא ואונסן</p></div>
+        </div>
+        <div class="actions">
+          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Aura+Tachibana+Hakone">📍 ניווט למלון</a>
+          <button class="btn ghost" onclick="alert('כתובת המלון הועתקה')">העתקת כתובת</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <main id="group" class="screen">
+    <div class="content">
+      <div class="section-title" style="font-size:24px">הקבוצה שלנו</div>
+      <div class="group-card">
+        <div class="member"><span>סרגיי ואביבה</span><span class="status">מחוברים</span></div>
+        <div class="member"><span>מיכאל ולנה</span><span class="status">מחוברים</span></div>
+        <div class="member"><span>דניס ונטליה</span><span class="status">מחוברים</span></div>
+      </div>
+      <div class="section-title">הצבעה קבוצתית</div>
+      <div class="poll-option">🥩 Wagyu Dinner Osaka <b>4 קולות</b><div class="bar"><span style="width:67%"></span></div></div>
+      <div class="poll-option">🍣 Sushi in Ginza <b>2 קולות</b><div class="bar"><span style="width:33%"></span></div></div>
+    </div>
+  </main>
+
+  <main id="expenses" class="screen">
+    <div class="content">
+      <div class="section-title" style="font-size:24px">הוצאות משותפות</div>
+      <div class="expense"><span>🚄 רכבת לטוקיו</span><span class="sum">¥84,000</span></div>
+      <div class="expense"><span>🥩 ארוחת Wagyu</span><span class="sum">¥42,600</span></div>
+      <div class="expense"><span>🚕 מונית למלון</span><span class="sum">¥7,800</span></div>
+      <div class="notice">סה״כ לאדם: ¥22,400</div>
+    </div>
+  </main>
+
+  <main id="docs" class="screen">
+    <div class="content">
+      <div class="section-title" style="font-size:24px">מסמכים חשובים</div>
+      <div class="event"><h3>✈️ כרטיסי טיסה</h3><p>תל אביב → טוקיו</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
+      <div class="event" style="margin-top:10px"><h3>🏨 הזמנות מלונות</h3><p>טוקיו, האקונה, נגויה, קיוטו ואוסקה</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
+      <div class="event" style="margin-top:10px"><h3>🚄 כרטיסי רכבות</h3><p>Shinkansen ומעברים בין הערים</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
+    </div>
+  </main>
+
+  <nav class="nav">
+    <button class="active" onclick="showScreen('route',this)"><span class="ico">🗺️</span>מסלול</button>
+    <button onclick="showScreen('group',this)"><span class="ico">👥</span>קבוצה</button>
+    <button onclick="showScreen('expenses',this)"><span class="ico">💴</span>הוצאות</button>
+    <button onclick="showScreen('docs',this)"><span class="ico">📄</span>מסמכים</button>
+  </nav>
+</div>
+
+<script>
+const data = {
+'14': {title:"טוקיו → האקונה",route:"שינג'וקו → Hakone-Yumoto → המלון",events:[
+["09:00","Tokyo Metropolitan Government Building","תצפית חינמית על טוקיו","https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80","Tokyo Metropolitan Government Building"],
+["10:00","Shinjuku Gyoen","גן יפני וטיול בוקר רגוע","https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=300&q=80","Shinjuku Gyoen"],
+["12:00","נסיעה להאקונה","רכבת משינג'וקו ל-Hakone-Yumoto","https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=300&q=80","Hakone Yumoto Station"]
+]},
+'15': {title:"יום האקונה",route:"Lake Ashi → Pirate Ship → Ropeway → Owakudani",events:[
+["09:00","Lake Ashi","אגם אשי ונוף להר פוג'י","https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=300&q=80","Lake Ashi"],
+["10:00","Hakone Pirate Ship","שייט באגם","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=300&q=80","Hakone Sightseeing Cruise"],
+["11:30","Owakudani","עמק געשי וביצים שחורות","https://images.unsplash.com/photo-1558862107-d49ef2a04d72?auto=format&fit=crop&w=300&q=80","Owakudani"]
+]},
+'16': {title:"פוג'י → נגויה",route:"Chureito → Oshino Hakkai → Kawaguchiko → Nagoya",events:[
+["09:00","Chureito Pagoda","הנוף האייקוני של הר פוג'י","https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?auto=format&fit=crop&w=300&q=80","Chureito Pagoda"],
+["11:30","Oshino Hakkai","כפר מסורתי ובריכות צלולות","https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=300&q=80","Oshino Hakkai"],
+["16:30","נסיעה לנגויה","אוטובוס למישימה ושינקנסן לנגויה","https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80","Nagoya Station"]
+]},
+'18': {title:"קיוטו עם מדריך",route:"Fushimi Inari → Kiyomizu-dera → Gion",events:[
+["09:00","Fushimi Inari Taisha","אלפי שערי טוריאי אדומים","https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?auto=format&fit=crop&w=300&q=80","Fushimi Inari Taisha"],
+["11:30","Kiyomizu-dera","מקדש ונוף מעל קיוטו","https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=300&q=80","Kiyomizu-dera"],
+["16:00","Gion","רובע מסורתי וערב בקיוטו","https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=300&q=80","Gion Kyoto"]
+]},
+'25': {title:"טוקיו – שיבויה",route:"Meiji Shrine → Harajuku → Omotesando → Shibuya",events:[
+["09:00","Meiji Shrine","מקדש בלב יער עירוני","https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=300&q=80","Meiji Shrine"],
+["12:30","Omotesando","אדריכלות, קניות ובתי קפה","https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=300&q=80","Omotesando"],
+["17:00","Shibuya Sky","שקיעה ותצפית מעל העיר","https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=300&q=80","Shibuya Sky"]
+]}
+};
+
+function render(day){
+  document.getElementById('dayTitle').innerText=data[day].title;
+  document.getElementById('routeText').innerText=data[day].route;
+  const tl=document.getElementById('timeline'); tl.innerHTML='';
+  data[day].events.forEach(e=>{
+    const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
+    tl.innerHTML += `<div class="item"><div class="time">${e[0]}</div><div class="event">
+      <div class="event-row"><img class="thumb" src="${e[3]}"><div><h3>${e[1]}</h3><p>${e[2]}</p></div></div>
+      <div class="actions"><a class="btn primary" target="_blank" href="${link}">📍 נווט עכשיו</a>
+      <button class="btn ghost" onclick="alert('סומן כבוצע ✓')">✓ סיימנו</button></div></div></div>`;
+  });
+}
+function switchDay(el,day){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');render(day)}
+function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+render('14');
+
+// Register service worker for offline support
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered:', reg.scope))
+      .catch(err => console.warn('SW registration failed:', err));
+  });
+}
+</script>
+</body>
+</html>
