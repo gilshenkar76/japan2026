@@ -88,6 +88,15 @@
     .file-card{background:#f8fafc;border:1px solid var(--line);border-radius:18px;padding:12px}
     .file-meta{font-size:12px;color:var(--muted);margin-top:4px}
     .file-empty{font-size:13px;color:var(--muted);padding:12px 4px}
+    .expense-grid{display:grid;gap:10px}
+    .expense-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .expense-table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:#fff;margin-top:12px}
+    .expense-table{width:100%;border-collapse:collapse;min-width:620px}
+    .expense-table th,.expense-table td{padding:10px;border-bottom:1px solid var(--line);text-align:right;font-size:13px}
+    .expense-table th{background:#f8fafc;font-weight:800}
+    .expense-table tr:last-child td{border-bottom:0}
+    .expense-total{margin-top:10px;font-weight:800;color:#1f2937}
+    .expense-actions{display:flex;gap:6px;justify-content:flex-end}
     .auth-card{margin:16px 14px 0;background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
     .auth-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     .input{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;background:#fff;color:var(--ink)}
@@ -206,10 +215,47 @@
   <main id="expenses" class="screen">
     <div class="content">
       <div class="section-title" style="font-size:24px">הוצאות משותפות</div>
-      <div class="expense"><span>🚄 רכבת לטוקיו</span><span class="sum">¥84,000</span></div>
-      <div class="expense"><span>🥩 ארוחת Wagyu</span><span class="sum">¥42,600</span></div>
-      <div class="expense"><span>🚕 מונית למלון</span><span class="sum">¥7,800</span></div>
-      <div class="notice">סה״כ לאדם: ¥22,400</div>
+      <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">הוספת הוצאה חדשה</div>
+        <form id="expenseForm" class="expense-grid" style="margin-top:10px">
+          <div class="expense-row">
+            <input id="expenseDate" class="input" type="date" required />
+            <input id="expensePerson" class="input" type="text" placeholder="שם האדם" required />
+          </div>
+          <input id="expenseReason" class="input" type="text" placeholder="סיבה / תיאור ההוצאה" required />
+          <div class="expense-row">
+            <input id="expenseValue" class="input" type="number" step="0.01" min="0" placeholder="סכום" required />
+            <input id="expenseCurrency" class="input" type="text" value="JPY" maxlength="6" placeholder="מטבע (למשל JPY)" required />
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button id="expenseSubmitBtn" class="btn primary" type="submit">שמירת הוצאה</button>
+            <button id="expenseCancelBtn" class="btn ghost hidden" type="button">ביטול עריכה</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">טבלת הוצאות</div>
+        <div class="expense-table-wrap">
+          <table class="expense-table">
+            <thead>
+              <tr>
+                <th>תאריך</th>
+                <th>אדם</th>
+                <th>סיבה</th>
+                <th>סכום</th>
+                <th>מטבע</th>
+                <th>ניהול</th>
+              </tr>
+            </thead>
+            <tbody id="expensesTableBody">
+              <tr><td colspan="6" class="file-empty">יש להתחבר כדי לראות הוצאות.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="expense-total" id="expensesTotal">סה"כ: 0</div>
+      </div>
+
       <div class="upload-panel">
         <div class="upload-row">
           <div>
@@ -268,8 +314,10 @@ const sectionFolders = {
   expenses: 'expenses',
   docs: 'documents'
 };
+const ADMIN_EMAILS = ['gil.shenkar76@gmail.com', 'gil.shenkar@intel.com'];
 let supabaseClient = null;
 let currentSession = null;
+let expensesEditingId = null;
 
 const data = {
 '14': {title:"טוקיו → האקונה",route:"שינג'וקו → Hakone-Yumoto → המלון",events:[
@@ -448,6 +496,108 @@ async function signOutUser(){
   await client.auth.signOut();
 }
 
+function isAdminUser(){
+  const email = (currentSession?.user?.email || '').toLowerCase();
+  return ADMIN_EMAILS.includes(email);
+}
+
+function formatExpenseValue(value){
+  const n = Number(value || 0);
+  return Number.isFinite(n) ? n.toFixed(2) : '0.00';
+}
+
+function resetExpenseForm(){
+  expensesEditingId = null;
+  document.getElementById('expenseForm').reset();
+  document.getElementById('expenseDate').valueAsDate = new Date();
+  document.getElementById('expenseCurrency').value = 'JPY';
+  document.getElementById('expenseSubmitBtn').textContent = 'שמירת הוצאה';
+  document.getElementById('expenseCancelBtn').classList.add('hidden');
+}
+
+function fillExpenseForm(row){
+  expensesEditingId = row.id;
+  document.getElementById('expenseDate').value = row.expense_date;
+  document.getElementById('expensePerson').value = row.person_name;
+  document.getElementById('expenseReason').value = row.reason;
+  document.getElementById('expenseValue').value = row.amount;
+  document.getElementById('expenseCurrency').value = row.currency;
+  document.getElementById('expenseSubmitBtn').textContent = 'עדכון הוצאה';
+  document.getElementById('expenseCancelBtn').classList.remove('hidden');
+}
+
+async function renderExpenses(){
+  const tableBody = document.getElementById('expensesTableBody');
+  const totalNode = document.getElementById('expensesTotal');
+  if (!isSupabaseConfigured() || !currentSession) {
+    tableBody.innerHTML = '<tr><td colspan="6" class="file-empty">יש להתחבר כדי לראות הוצאות.</td></tr>';
+    totalNode.textContent = 'סה"כ: 0';
+    return;
+  }
+  const client = initSupabase();
+  const { data, error } = await client
+    .from('expenses')
+    .select('id, expense_date, person_name, reason, amount, currency')
+    .order('expense_date', { ascending: false })
+    .order('id', { ascending: false });
+
+  if (error) {
+    tableBody.innerHTML = `<tr><td colspan="6" class="file-empty">שגיאה בטעינת הוצאות: ${error.message}</td></tr>`;
+    totalNode.textContent = 'סה"כ: 0';
+    return;
+  }
+
+  const rows = data || [];
+  if (!rows.length) {
+    tableBody.innerHTML = '<tr><td colspan="6" class="file-empty">אין הוצאות עדיין.</td></tr>';
+    totalNode.textContent = 'סה"כ: 0';
+    return;
+  }
+
+  const canManage = isAdminUser();
+  let total = 0;
+  tableBody.innerHTML = rows.map(row => {
+    total += Number(row.amount || 0);
+    return `
+      <tr>
+        <td>${row.expense_date || ''}</td>
+        <td>${row.person_name || ''}</td>
+        <td>${row.reason || ''}</td>
+        <td>${formatExpenseValue(row.amount)}</td>
+        <td>${row.currency || ''}</td>
+        <td>
+          ${canManage ? `<div class="expense-actions"><button class="btn ghost" onclick="startEditExpense(${row.id})">עריכה</button><button class="btn ghost" onclick="deleteExpense(${row.id})">מחיקה</button></div>` : '<span class="small">לצפיה</span>'}
+        </td>
+      </tr>
+    `;
+  }).join('');
+  totalNode.textContent = `סה"כ: ${formatExpenseValue(total)}`;
+}
+
+async function startEditExpense(id){
+  if (!isAdminUser()) return;
+  const client = initSupabase();
+  const { data, error } = await client.from('expenses').select('id, expense_date, person_name, reason, amount, currency').eq('id', id).single();
+  if (error || !data) {
+    alert('לא ניתן לטעון את ההוצאה לעריכה.');
+    return;
+  }
+  fillExpenseForm(data);
+  showScreen('expenses', document.querySelector('.nav button:nth-child(3)'));
+}
+
+async function deleteExpense(id){
+  if (!isAdminUser()) return;
+  if (!confirm('למחוק את ההוצאה הזו?')) return;
+  const client = initSupabase();
+  const { error } = await client.from('expenses').delete().eq('id', id);
+  if (error) {
+    alert(`מחיקה נכשלה: ${error.message}`);
+    return;
+  }
+  await renderExpenses();
+}
+
 function updateAuthUI(){
   const configured = isSupabaseConfigured();
   const loggedIn = Boolean(currentSession);
@@ -470,6 +620,7 @@ async function initAuth(){
   if (!isSupabaseConfigured()) {
     updateAuthUI();
     await renderUploads();
+    await renderExpenses();
     return;
   }
   const client = initSupabase();
@@ -477,10 +628,12 @@ async function initAuth(){
   currentSession = data.session;
   updateAuthUI();
   await renderUploads();
+  await renderExpenses();
   client.auth.onAuthStateChange(async (_event, session) => {
     currentSession = session;
     updateAuthUI();
     await renderUploads();
+    await renderExpenses();
   });
 }
 
@@ -515,6 +668,47 @@ function render(day){
 function switchDay(el,day){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');render(day)}
 function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
 render('14');
+
+document.getElementById('expenseDate').valueAsDate = new Date();
+document.getElementById('expenseForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  if (!currentSession) {
+    alert('יש להתחבר לפני הוספת הוצאה.');
+    return;
+  }
+  if (expensesEditingId && !isAdminUser()) {
+    alert('רק אדמין יכול לערוך הוצאה.');
+    return;
+  }
+  const client = initSupabase();
+  const payload = {
+    expense_date: document.getElementById('expenseDate').value,
+    person_name: document.getElementById('expensePerson').value.trim(),
+    reason: document.getElementById('expenseReason').value.trim(),
+    amount: Number(document.getElementById('expenseValue').value),
+    currency: document.getElementById('expenseCurrency').value.trim().toUpperCase(),
+    created_by: currentSession.user.id
+  };
+
+  let error;
+  if (expensesEditingId) {
+    ({ error } = await client.from('expenses').update(payload).eq('id', expensesEditingId));
+  } else {
+    ({ error } = await client.from('expenses').insert(payload));
+  }
+
+  if (error) {
+    alert(`שמירת הוצאה נכשלה: ${error.message}`);
+    return;
+  }
+  resetExpenseForm();
+  await renderExpenses();
+});
+
+document.getElementById('expenseCancelBtn').addEventListener('click', () => {
+  resetExpenseForm();
+});
+resetExpenseForm();
 
 document.getElementById('loginForm').addEventListener('submit', async event => {
   event.preventDefault();
