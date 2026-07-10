@@ -218,7 +218,7 @@
       <div class="upload-panel">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
           <div class="section-title" style="margin:0;font-size:18px">ניהול הוצאות</div>
-          <button id="expenseAddToggleBtn" class="btn primary" type="button">Add New</button>
+          <button id="expenseAddToggleBtn" class="btn primary" type="button">הוספת הוצאה</button>
         </div>
         <form id="expenseForm" class="expense-grid hidden" style="margin-top:10px">
           <div class="expense-row">
@@ -233,6 +233,10 @@
               <option value="DOLLAR">DOLLAR</option>
               <option value="SHEKEL">SHEKEL</option>
             </select>
+          </div>
+          <div class="expense-row">
+            <input id="expenseReceipt" class="input" type="file" accept="image/*,.pdf" capture="environment" />
+            <div class="small" style="align-self:center">אפשר לצרף קבלה או לצלם קבלה מהטלפון</div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button id="expenseSubmitBtn" class="btn primary" type="submit">שמירת הוצאה</button>
@@ -321,6 +325,7 @@ const sectionFolders = {
   expenses: 'expenses',
   docs: 'documents'
 };
+const expenseReceiptsFolder = 'expenses/receipts';
 const ADMIN_EMAILS = ['gil.shenkar76@gmail.com', 'gil.shenkar@intel.com'];
 let supabaseClient = null;
 let currentSession = null;
@@ -521,13 +526,13 @@ function resetExpenseForm(){
   document.getElementById('expenseSubmitBtn').textContent = 'שמירת הוצאה';
   document.getElementById('expenseCancelBtn').classList.add('hidden');
   document.getElementById('expenseForm').classList.add('hidden');
-  document.getElementById('expenseAddToggleBtn').textContent = 'Add New';
+  document.getElementById('expenseAddToggleBtn').textContent = 'הוספת הוצאה';
 }
 
 function fillExpenseForm(row){
   expensesEditingId = row.id;
   document.getElementById('expenseForm').classList.remove('hidden');
-  document.getElementById('expenseAddToggleBtn').textContent = 'Close';
+  document.getElementById('expenseAddToggleBtn').textContent = 'סגירה';
   document.getElementById('expenseDate').value = row.expense_date;
   document.getElementById('expensePerson').value = row.person_name;
   document.getElementById('expenseReason').value = row.reason;
@@ -548,7 +553,7 @@ async function renderExpenses(){
   const client = initSupabase();
   const { data, error } = await client
     .from('expenses')
-    .select('id, expense_date, person_name, reason, amount, currency')
+    .select('id, expense_date, person_name, reason, amount, currency, receipt_path')
     .order('expense_date', { ascending: false })
     .order('id', { ascending: false });
 
@@ -577,7 +582,11 @@ async function renderExpenses(){
         <td>${formatExpenseValue(row.amount)}</td>
         <td>${row.currency || ''}</td>
         <td>
-          ${canManage ? `<div class="expense-actions"><button class="btn ghost" onclick="startEditExpense(${row.id})">עריכה</button><button class="btn ghost" onclick="deleteExpense(${row.id})">מחיקה</button></div>` : '<span class="small">לצפיה</span>'}
+          <div class="expense-actions">
+            ${row.receipt_path ? `<button class="btn ghost" onclick="openReceipt('${row.receipt_path}')">קבלה</button>` : ''}
+            ${canManage ? `<button class="btn ghost" onclick="startEditExpense(${row.id})">עריכה</button><button class="btn ghost" onclick="deleteExpense(${row.id})">מחיקה</button>` : ''}
+            ${!canManage && !row.receipt_path ? '<span class="small">לצפיה</span>' : ''}
+          </div>
         </td>
       </tr>
     `;
@@ -588,7 +597,7 @@ async function renderExpenses(){
 async function startEditExpense(id){
   if (!isAdminUser()) return;
   const client = initSupabase();
-  const { data, error } = await client.from('expenses').select('id, expense_date, person_name, reason, amount, currency').eq('id', id).single();
+  const { data, error } = await client.from('expenses').select('id, expense_date, person_name, reason, amount, currency, receipt_path').eq('id', id).single();
   if (error || !data) {
     alert('לא ניתן לטעון את ההוצאה לעריכה.');
     return;
@@ -607,6 +616,29 @@ async function deleteExpense(id){
     return;
   }
   await renderExpenses();
+}
+
+async function openReceipt(receiptPath){
+  const client = initSupabase();
+  const { data, error } = await client.storage.from(storageBucket).createSignedUrl(receiptPath, 3600);
+  if (error) {
+    alert(`פתיחת קבלה נכשלה: ${error.message}`);
+    return;
+  }
+  window.open(data.signedUrl, '_blank', 'noopener');
+}
+
+async function uploadExpenseReceipt(file){
+  if (!file) return null;
+  const client = initSupabase();
+  const fileName = `${Date.now()}-${sanitizeFileName(file.name)}`;
+  const fullPath = `${expenseReceiptsFolder}/${fileName}`;
+  const { error } = await client.storage.from(storageBucket).upload(fullPath, file, {
+    cacheControl: '3600',
+    upsert: false
+  });
+  if (error) throw error;
+  return fullPath;
 }
 
 function updateAuthUI(){
@@ -692,6 +724,17 @@ document.getElementById('expenseForm').addEventListener('submit', async event =>
     return;
   }
   const client = initSupabase();
+  const receiptFile = document.getElementById('expenseReceipt').files[0];
+  let receiptPath = null;
+  if (receiptFile) {
+    try {
+      receiptPath = await uploadExpenseReceipt(receiptFile);
+    } catch (receiptError) {
+      alert(`העלאת קבלה נכשלה: ${receiptError.message}`);
+      return;
+    }
+  }
+
   const payload = {
     expense_date: document.getElementById('expenseDate').value,
     person_name: document.getElementById('expensePerson').value.trim(),
@@ -700,6 +743,7 @@ document.getElementById('expenseForm').addEventListener('submit', async event =>
     currency: document.getElementById('expenseCurrency').value.trim().toUpperCase(),
     created_by: currentSession.user.id
   };
+  if (receiptPath) payload.receipt_path = receiptPath;
 
   let error;
   if (expensesEditingId) {
@@ -725,7 +769,7 @@ document.getElementById('expenseAddToggleBtn').addEventListener('click', () => {
   const isHidden = form.classList.contains('hidden');
   if (isHidden) {
     form.classList.remove('hidden');
-    document.getElementById('expenseAddToggleBtn').textContent = 'Close';
+    document.getElementById('expenseAddToggleBtn').textContent = 'סגירה';
   } else {
     resetExpenseForm();
   }
