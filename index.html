@@ -223,15 +223,19 @@
         <form id="expenseForm" class="expense-grid hidden" style="margin-top:10px">
           <div class="expense-row">
             <input id="expenseDate" class="input" type="date" required />
-            <input id="expensePerson" class="input" type="text" placeholder="שם האדם" required />
+            <select id="expenseFamily" class="input" required>
+              <option value="שנקר">שנקר</option>
+              <option value="בסידסקי">בסידסקי</option>
+              <option value="חלנסקי">חלנסקי</option>
+            </select>
           </div>
           <input id="expenseReason" class="input" type="text" placeholder="סיבה / תיאור ההוצאה" required />
           <div class="expense-row">
             <input id="expenseValue" class="input" type="number" step="0.01" min="0" placeholder="סכום" required />
             <select id="expenseCurrency" class="input" required>
-              <option value="JPY">JPY</option>
-              <option value="DOLLAR">DOLLAR</option>
-              <option value="SHEKEL">SHEKEL</option>
+              <option value="JPY">ין</option>
+              <option value="DOLLAR">דולר</option>
+              <option value="SHEKEL">שקל</option>
             </select>
           </div>
           <div class="expense-row">
@@ -252,15 +256,16 @@
             <thead>
               <tr>
                 <th>תאריך</th>
-                <th>אדם</th>
+                <th>משפחה</th>
                 <th>סיבה</th>
                 <th>סכום</th>
                 <th>מטבע</th>
+                <th>בשקלים</th>
                 <th>ניהול</th>
               </tr>
             </thead>
             <tbody id="expensesTableBody">
-              <tr><td colspan="6" class="file-empty">יש להתחבר כדי לראות הוצאות.</td></tr>
+              <tr><td colspan="7" class="file-empty">יש להתחבר כדי לראות הוצאות.</td></tr>
             </tbody>
           </table>
         </div>
@@ -327,6 +332,11 @@ const sectionFolders = {
 };
 const expenseReceiptsFolder = 'expenses/receipts';
 const ADMIN_EMAILS = ['gil.shenkar76@gmail.com', 'gil.shenkar@intel.com'];
+const FX_TO_ILS = {
+  JPY: 0.024,
+  DOLLAR: 3.6,
+  SHEKEL: 1
+};
 let supabaseClient = null;
 let currentSession = null;
 let expensesEditingId = null;
@@ -518,10 +528,24 @@ function formatExpenseValue(value){
   return Number.isFinite(n) ? n.toFixed(2) : '0.00';
 }
 
+function toIls(amount, currency){
+  const n = Number(amount || 0);
+  const rate = FX_TO_ILS[currency] || 1;
+  return n * rate;
+}
+
+function currencyLabel(currency){
+  if (currency === 'JPY') return 'ין';
+  if (currency === 'DOLLAR') return 'דולר';
+  if (currency === 'SHEKEL') return 'שקל';
+  return currency || '';
+}
+
 function resetExpenseForm(){
   expensesEditingId = null;
   document.getElementById('expenseForm').reset();
   document.getElementById('expenseDate').valueAsDate = new Date();
+  document.getElementById('expenseFamily').value = 'שנקר';
   document.getElementById('expenseCurrency').value = 'JPY';
   document.getElementById('expenseSubmitBtn').textContent = 'שמירת הוצאה';
   document.getElementById('expenseCancelBtn').classList.add('hidden');
@@ -534,7 +558,7 @@ function fillExpenseForm(row){
   document.getElementById('expenseForm').classList.remove('hidden');
   document.getElementById('expenseAddToggleBtn').textContent = 'סגירה';
   document.getElementById('expenseDate').value = row.expense_date;
-  document.getElementById('expensePerson').value = row.person_name;
+  document.getElementById('expenseFamily').value = row.person_name;
   document.getElementById('expenseReason').value = row.reason;
   document.getElementById('expenseValue').value = row.amount;
   document.getElementById('expenseCurrency').value = row.currency;
@@ -546,7 +570,7 @@ async function renderExpenses(){
   const tableBody = document.getElementById('expensesTableBody');
   const totalNode = document.getElementById('expensesTotal');
   if (!isSupabaseConfigured() || !currentSession) {
-    tableBody.innerHTML = '<tr><td colspan="6" class="file-empty">יש להתחבר כדי לראות הוצאות.</td></tr>';
+    tableBody.innerHTML = '<tr><td colspan="7" class="file-empty">יש להתחבר כדי לראות הוצאות.</td></tr>';
     totalNode.textContent = 'סה"כ: 0';
     return;
   }
@@ -558,29 +582,31 @@ async function renderExpenses(){
     .order('id', { ascending: false });
 
   if (error) {
-    tableBody.innerHTML = `<tr><td colspan="6" class="file-empty">שגיאה בטעינת הוצאות: ${error.message}</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="7" class="file-empty">שגיאה בטעינת הוצאות: ${error.message}</td></tr>`;
     totalNode.textContent = 'סה"כ: 0';
     return;
   }
 
   const rows = data || [];
   if (!rows.length) {
-    tableBody.innerHTML = '<tr><td colspan="6" class="file-empty">אין הוצאות עדיין.</td></tr>';
+    tableBody.innerHTML = '<tr><td colspan="7" class="file-empty">אין הוצאות עדיין.</td></tr>';
     totalNode.textContent = 'סה"כ: 0';
     return;
   }
 
   const canManage = isAdminUser();
-  let total = 0;
+  let totalIls = 0;
   tableBody.innerHTML = rows.map(row => {
-    total += Number(row.amount || 0);
+    const rowIls = toIls(row.amount, row.currency);
+    totalIls += rowIls;
     return `
       <tr>
         <td>${row.expense_date || ''}</td>
         <td>${row.person_name || ''}</td>
         <td>${row.reason || ''}</td>
         <td>${formatExpenseValue(row.amount)}</td>
-        <td>${row.currency || ''}</td>
+        <td>${currencyLabel(row.currency)}</td>
+        <td>${formatExpenseValue(rowIls)} ₪</td>
         <td>
           <div class="expense-actions">
             ${row.receipt_path ? `<button class="btn ghost" onclick="openReceipt('${row.receipt_path}')">קבלה</button>` : ''}
@@ -591,7 +617,7 @@ async function renderExpenses(){
       </tr>
     `;
   }).join('');
-  totalNode.textContent = `סה"כ: ${formatExpenseValue(total)}`;
+  totalNode.textContent = `סה"כ בשקלים: ${formatExpenseValue(totalIls)} ₪`;
 }
 
 async function startEditExpense(id){
@@ -737,7 +763,7 @@ document.getElementById('expenseForm').addEventListener('submit', async event =>
 
   const payload = {
     expense_date: document.getElementById('expenseDate').value,
-    person_name: document.getElementById('expensePerson').value.trim(),
+    person_name: document.getElementById('expenseFamily').value.trim(),
     reason: document.getElementById('expenseReason').value.trim(),
     amount: Number(document.getElementById('expenseValue').value),
     currency: document.getElementById('expenseCurrency').value.trim().toUpperCase(),
