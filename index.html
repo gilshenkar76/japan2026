@@ -8,6 +8,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Japan 2026" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icon-192.png" />
   <title>Japan 2026 – Group Trip</title>
@@ -15,34 +18,37 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
   <style>
     :root{
-      --bg:#f5f7fb; --card:#ffffff; --ink:#172033; --muted:#6b7280;
-      --primary:#e53935; --primary2:#ff6b6b; --line:#e7eaf0; --ok:#18a957;
-      --blue:#2f6fed; --shadow:0 10px 30px rgba(21,29,46,.09);
+      --bg:#eef3f9; --card:#ffffff; --ink:#142033; --muted:#5f687a;
+      --primary:#e85d30; --primary2:#ff8a50; --line:#dde5f0; --ok:#18a957;
+      --blue:#2f6fed; --shadow:0 14px 34px rgba(21,29,46,.10);
+      --hero-start:#042f4f; --hero-mid:#0c4a6e; --hero-end:#226f9d;
+      --chip-bg:rgba(255,255,255,.14);
     }
     *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#eef2f7 0,#f8fafc 35%,#f5f7fb 100%);
-      font-family:Arial,Helvetica,sans-serif;color:var(--ink);}
+    body{margin:0;background:
+      radial-gradient(circle at 15% 12%,rgba(255,255,255,.82),transparent 45%),
+      radial-gradient(circle at 88% 0,rgba(56,189,248,.17),transparent 40%),
+      linear-gradient(180deg,#e8eff8 0,#f6f9fd 40%,#edf3fb 100%);
+      font-family:'Heebo','Segoe UI',Tahoma,sans-serif;color:var(--ink);}
     .phone{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;
       box-shadow:0 0 40px rgba(0,0,0,.12);padding-bottom:150px}
-    .hero{background:linear-gradient(135deg,#111827,#26334d);color:#fff;padding:8px 18px 6px;
-      border-radius:0 0 20px 20px;position:relative;overflow:hidden}
-    .hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;
-      background:rgba(255,255,255,.06);left:-50px;top:-65px}
+    .hero{background:linear-gradient(140deg,var(--hero-start),var(--hero-mid) 55%,var(--hero-end));color:#fff;padding:12px 18px 14px;
+      border-radius:0 0 24px 24px;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;
+      background:rgba(255,255,255,.11);left:-60px;top:-72px}
+    .hero:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;
+      background:rgba(14,165,233,.18);right:-86px;top:-92px}
     .top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
     .logo{font-weight:800;font-size:20px}.small{font-size:12px;opacity:.8}
-    .trip-title{margin-top:8px;font-size:24px;font-weight:900;line-height:1.1}
-    .trip-sub{margin-top:3px;font-size:12px;opacity:.85}
+    .trip-title{margin-top:10px;font-size:28px;font-weight:900;line-height:1.08;letter-spacing:.2px}
+    .trip-sub{margin-top:5px;font-size:13px;opacity:.9}
+    .hero-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;position:relative;z-index:2}
+    .stat-chip{background:var(--chip-bg);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(4px);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700}
     .people{display:none}
     .avatars{display:flex;direction:ltr}
     .avatar{width:34px;height:34px;border-radius:50%;border:2px solid #fff;margin-left:-8px;
       display:grid;place-items:center;font-size:13px;font-weight:700;background:#fff;color:#111827}
     .a1{background:#ffd6d6}.a2{background:#d9e8ff}.a3{background:#e8dbff}.a4{background:#d8f6df}.a5{background:#ffe9bd}.a6{background:#f5d9ff}
-    .tabs{display:flex;gap:8px;padding:15px 14px 8px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
-    .tabs::-webkit-scrollbar{height:6px}
-    .tabs::-webkit-scrollbar-thumb{background:#cfd8e3;border-radius:999px}
-    .tab{flex:0 0 auto;min-width:74px;border:0;background:#fff;color:#455066;border-radius:18px;padding:10px 8px;
-      box-shadow:0 4px 14px rgba(15,23,42,.07);font-weight:700;cursor:pointer}
-    .tab.active{background:var(--primary);color:white}
     .content{padding:6px 14px 0}
     .day-head{display:flex;justify-content:space-between;align-items:flex-end;margin:10px 2px 12px}
     .day-title{font-size:22px;font-weight:900}.weather{font-size:13px;color:var(--muted)}
@@ -81,10 +87,10 @@
     .member{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line)}
     .member:last-child{border-bottom:0}.status{font-size:12px;color:var(--ok);font-weight:800}
     .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);
-      background:rgba(255,255,255,.97);backdrop-filter:blur(12px);display:grid;grid-template-columns:repeat(5,1fr);
+      background:rgba(255,255,255,.97);backdrop-filter:blur(12px);display:grid;grid-template-columns:repeat(6,1fr);
       padding:10px 8px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--line);z-index:9999;
       pointer-events:auto}
-    .nav button{border:0;background:transparent;color:#667085;font-size:11px;font-weight:800;pointer-events:auto}
+    .nav button{border:0;background:transparent;color:#667085;font-size:10px;font-weight:800;pointer-events:auto}
     .nav .active{color:var(--primary)} .ico{display:block;font-size:21px;margin-bottom:4px}
     .screen{display:none}.screen.active{display:block}
     #main{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
@@ -164,6 +170,11 @@
     </div>
     <div class="trip-title">הטיול שלנו ליפן</div>
     <div class="trip-sub">14–28 בנובמבר 2026 · 6 מטיילים</div>
+    <div class="hero-stats">
+      <div class="stat-chip">15 ימים</div>
+      <div class="stat-chip">8 ערים</div>
+      <div class="stat-chip" id="countdownChip">טוען ספירה לאחור...</div>
+    </div>
     <div class="people">
       <div class="avatars">
         <div class="avatar a1">S</div><div class="avatar a2">A</div><div class="avatar a3">M</div>
@@ -194,48 +205,11 @@
     </div>
   </div>
 
-  <section class="auth-card" id="authCard">
-    <div class="section-title" style="margin:0;font-size:21px">גישה לחברי הקבוצה</div>
-    <div class="auth-status" id="authSummary">מתחבר למערכת הקבצים המשותפת...</div>
-    <div id="setupWarning" class="warning hidden">
-      כדי להפעיל העלאות משותפות צריך להכניס כאן את פרטי ה-Supabase החינמיים: `supabaseUrl` ו-`supabaseAnonKey`.
-    </div>
-    <div id="authSuccess" class="success hidden"></div>
-    <form id="loginForm" class="auth-form hidden">
-      <input id="emailInput" class="input" type="email" placeholder="כתובת אימייל" autocomplete="email" />
-      <input id="passwordInput" class="input" type="password" placeholder="סיסמה (אופציונלי – רק אם הוגדרה)" autocomplete="current-password" />
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn primary" type="submit">כניסה עם סיסמה</button>
-        <button class="btn ghost" type="button" id="magicLinkBtn">שליחת קישור למייל</button>
-      </div>
-    </form>
-    <div class="auth-form hidden" id="sessionControls">
-      <button class="btn ghost" type="button" onclick="signOutUser()">התנתקות</button>
-    </div>
-  </section>
-
   <main id="main" class="screen active">
     <div class="main-grid" id="mainGrid"></div>
   </main>
 
   <main id="route" class="screen">
-    <div class="tabs">
-      <button class="tab active" type="button" data-day="14" onclick="switchDay(this,'14')">14.11</button>
-      <button class="tab" type="button" data-day="15" onclick="switchDay(this,'15')">15.11</button>
-      <button class="tab" type="button" data-day="16" onclick="switchDay(this,'16')">16.11</button>
-      <button class="tab" type="button" data-day="17" onclick="switchDay(this,'17')">17.11</button>
-      <button class="tab" type="button" data-day="18" onclick="switchDay(this,'18')">18.11</button>
-      <button class="tab" type="button" data-day="19" onclick="switchDay(this,'19')">19.11</button>
-      <button class="tab" type="button" data-day="20" onclick="switchDay(this,'20')">20.11</button>
-      <button class="tab" type="button" data-day="21" onclick="switchDay(this,'21')">21.11</button>
-      <button class="tab" type="button" data-day="22" onclick="switchDay(this,'22')">22.11</button>
-      <button class="tab" type="button" data-day="23" onclick="switchDay(this,'23')">23.11</button>
-      <button class="tab" type="button" data-day="24" onclick="switchDay(this,'24')">24.11</button>
-      <button class="tab" type="button" data-day="25" onclick="switchDay(this,'25')">25.11</button>
-      <button class="tab" type="button" data-day="26" onclick="switchDay(this,'26')">26.11</button>
-      <button class="tab" type="button" data-day="27" onclick="switchDay(this,'27')">27.11</button>
-      <button class="tab" type="button" data-day="28" onclick="switchDay(this,'28')">28.11</button>
-    </div>
     <div class="content">
       <div class="day-head">
         <div>
@@ -606,6 +580,28 @@ function showDayPlanFromMain(day){
   showScreen('route', document.querySelector('.nav button[data-screen="route"]'));
 }
 
+function renderCountdownChip(){
+  const chip = document.getElementById('countdownChip');
+  if (!chip) return;
+  const startDate = new Date('2026-11-14T00:00:00');
+  const today = new Date();
+  const diffMs = startDate - today;
+  const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+  if (days > 1) {
+    chip.textContent = `${days} ימים ליציאה`;
+    return;
+  }
+  if (days === 1) {
+    chip.textContent = 'מחר יוצאים!';
+    return;
+  }
+  if (days === 0) {
+    chip.textContent = 'היום טסים!';
+    return;
+  }
+  chip.textContent = 'הטיול כבר התחיל';
+}
+
 const data = {
   '14': { title:"טוקיו → האקונה", route:"שינג'וקו → Hakone-Yumoto → המלון", events:[
     ["09:00","Tokyo Metropolitan Government Building","תצפית חינמית על טוקיו","https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80","Tokyo Metropolitan Government Building"],
@@ -946,14 +942,20 @@ async function renderExpenses(){
 }
 
 async function renderFamilyPieChart(){
-  const client = initSupabase();
   if (!isSupabaseConfigured() || !currentSession) return;
-  const { data, error } = await client
-    .from('expenses')
-    .select('person_name, amount, currency')
-    .order('person_name', { ascending: true });
-  
-  if (error || !data || !data.length) return;
+
+  let data = [];
+  if (filteredExpensesData.length) {
+    data = filteredExpensesData;
+  } else {
+    const client = initSupabase();
+    const response = await client
+      .from('expenses')
+      .select('person_name, amount, currency')
+      .order('person_name', { ascending: true });
+    if (response.error || !response.data || !response.data.length) return;
+    data = response.data;
+  }
   
   const familyTotals = {};
   data.forEach(row => {
@@ -1245,7 +1247,7 @@ async function startEditExpense(id){
     return;
   }
   fillExpenseForm(data);
-  showScreen('expenses', document.querySelector('.nav button:nth-child(3)'));
+  showScreen('expenses', document.querySelector('.nav button[data-screen="expenses"]'));
 }
 
 async function deleteExpense(id){
@@ -1364,7 +1366,6 @@ function render(day){
   `);
   renderUploads();
 }
-function switchDay(el,day){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');render(day)}
 function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
 
 function goBackToMain(){
@@ -1421,6 +1422,7 @@ function swapTransportPoints(){
   toNode.value = temp;
 }
 renderMainPage();
+renderCountdownChip();
 render('14');
 initNavigation();
 
@@ -1564,7 +1566,6 @@ document.getElementById('magicLinkBtn').addEventListener('click', async () => {
 });
 
 initAuth();
-renderMainPage();
 console.log('Main page initialized with', Object.keys(citiesByDay).length, 'days');
 
 // Disable stale PWA shell caching so refresh always uses the current app
