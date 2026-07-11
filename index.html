@@ -867,67 +867,15 @@ async function renderFamilyPieChart(){
       plugins: {
         legend: {
           position: 'bottom',
-    ["18:00","נסיעה לנגויה","מעבר ברכבת מהירה לנגויה","https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80","Nagoya Station"]
-    ]},
-    '17': {title:"נגויה → קיוטו",route:"Toyota Kaikan → שינקנסן → Gion",events:[
-    ["09:00","Toyota Kaikan Museum","מוזיאון טויוטה והיסטוריית רכב","https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=300&q=80","Toyota Kaikan Museum"],
-    ["13:00","נסיעה לקיוטו","שינקנסן מנגויה לקיוטו","https://images.unsplash.com/photo-1568747578869-3fa0f8ca3f4f?auto=format&fit=crop&w=300&q=80","Kyoto Station"],
-    ["16:30","גיון ופונטוצ'ו","טיול ערב ברובע ההיסטורי","https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=300&q=80","Gion Kyoto"]
-    ]},
           labels: { padding: 15, font: { size: 13, weight: 'bold' } }
         },
         tooltip: {
           callbacks: {
             label: function(context) {
-    '19': {title:"אראשיאמה וצפון קיוטו",route:"Arashiyama → Ryoan-ji → Kinkaku-ji",events:[
-    ["08:30","Arashiyama Bamboo Grove","הליכה ביער הבמבוק","https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=300&q=80","Arashiyama Bamboo Grove"],
-    ["09:35","Tenryu-ji","מקדש טנריו-ג'י וגנים יפניים","https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=300&q=80","Tenryu-ji"],
-    ["14:30","Ryoan-ji + Kinkaku-ji","גינת הסלעים והביתן המוזהב","https://images.unsplash.com/photo-1549693578-d683be217e58?auto=format&fit=crop&w=300&q=80","Kinkaku-ji"]
-    ]},
-    '20': {title:"נארה יום מלא",route:"Kyoto → Nara → Kyoto",events:[
-    ["09:00","נסיעה לנארה","JR Nara Line מקיוטו","https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=300&q=80","Nara"],
-    ["10:00","Todai-ji + Nara Park","מקדש טודאי-ג'י ופארק האיילים","https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=300&q=80","Todai-ji"],
-    ["14:00","Kasuga Taisha + Kofuku-ji","מקדשים מרכזיים בנארה","https://images.unsplash.com/photo-1530554764233-e79e16c91d08?auto=format&fit=crop&w=300&q=80","Kasuga Taisha"]
-    ]},
-    '21': {title:"קיוטו → אוסקה",route:"Ginkaku-ji → Nishiki → Umeda",events:[
-    ["09:00","Ginkaku-ji","הביתן הכסוף ודרך הפילוסופים","https://images.unsplash.com/photo-1492571350019-22de08371fd3?auto=format&fit=crop&w=300&q=80","Ginkaku-ji"],
-    ["12:15","Nishiki Market","שוק אוכל וקניות במרכז קיוטו","https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=300&q=80","Nishiki Market"],
-    ["17:00","נסיעה לאוסקה + Umeda Sky","מעבר ערב לאוסקה ותצפית","https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=300&q=80","Umeda Sky Building"]
-    ]},
-    '22': {title:"אוסקה - היסטוריה ואורות",route:"Osaka Castle → Dotonbori → River Cruise",events:[
-    ["09:00","Osaka Castle","ביקור במבצר אוסקה","https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=300&q=80","Osaka Castle"],
-    ["12:00","Shinsekai + Kuromon","שווקים ורובע מקומי","https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=300&q=80","Kuromon Market"],
-    ["17:00","Dotonbori + Tombori Cruise","שייט ערב וניאונים","https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80","Dotonbori"]
-    ]},
-    '23': {title:"אוסקה - קניות ומנוחה",route:"Sumiyoshi → Abeno Harukas → teamLab Osaka",events:[
-    ["09:30","Sumiyoshi Taisha","מקדש שקט לפתיחת היום","https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=300&q=80","Sumiyoshi Taisha"],
-    ["11:30","Abeno Harukas 300","תצפית גבוהה על העיר","https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=300&q=80","Abeno Harukas"],
-    ["14:30","Shinsaibashi + Namba Parks + teamLab","קניות והופעת אור בערב","https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=300&q=80","Shinsaibashi"]
-    ]},
-    '24': {title:"אוסקה → טוקיו",route:"Shinkansen → Shinjuku Night",events:[
-    ["09:00","נסיעה לטוקיו","שינקנסן מאוסקה לטוקיו","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Tokyo Station"],
-    ["11:30","צ'ק-אין ומנוחה","התארגנות במלון","https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80","Tokyo Hotel"],
-    ["15:00","3D Cat + Kabukicho","Omoide Yokocho ו-Golden Gai בלילה","https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=300&q=80","Kabukicho"]
-    ]},
               const label = context.label || '';
               const value = formatExpenseValue(context.parsed);
-    ["10:30","Takeshita Street + Omotesando","קניות ותרבות רחוב בהרנג'וקו","https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=300&q=80","Omotesando"],
+              return label + ': ' + value + ' ₪';
             }
-    ]},
-    '26': {title:"טוקיו - מדע וחדשנות",route:"Tsukiji → teamLab → Miraikan → Ginza",events:[
-    ["09:00","Tsukiji Outer Market","שוק אוכל וטעימות בוקר","https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=300&q=80","Tsukiji Market"],
-    ["11:00","teamLab Borderless","מוזיאון דיגיטלי אינטראקטיבי","https://images.unsplash.com/photo-1577083552431-6e5fd01988f1?auto=format&fit=crop&w=300&q=80","teamLab Borderless"],
-    ["14:30","Miraikan + Ginza","מוזיאון מדע וערב אלגנטי בגינזה","https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=300&q=80","Miraikan"]
-    ]},
-    '27': {title:"טוקיו - מסורת ואנימה",route:"Asakusa → Akihabara → Tokyo Skytree",events:[
-    ["09:00","Senso-ji + Nakamise-dori","מקדש אסאקוסה ושוק מסורתי","https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=300&q=80","Senso-ji"],
-    ["12:00","Akihabara","רובע האנימה והאלקטרוניקה","https://images.unsplash.com/photo-1542931287-023b922fa89b?auto=format&fit=crop&w=300&q=80","Akihabara"],
-    ["16:30","Tokyo Skytree","תצפית פנורמית בשעת שקיעה","https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=300&q=80","Tokyo Skytree"]
-    ]},
-    '28': {title:"טוקיו - קניות ויציאה לשדה",route:"Ginza / Shinjuku / Shibuya → Airport",events:[
-    ["09:00","Shopping Tokyo","קניות אחרונות בגינזה, שיבויה או שינג'וקו","https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=300&q=80","Ginza"],
-    ["15:00","צ'ק-אאוט והכנת מזוודות","בדיקת מסמכים ו-Tax Free","https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=300&q=80","Hotel"],
-    ["17:00","נסיעה לשדה תעופה","Narita או Haneda לפי הטיסה","https://images.unsplash.com/photo-1540339832862-fde94ed5d7de?auto=format&fit=crop&w=300&q=80","Narita Airport"]
           }
         }
       }
