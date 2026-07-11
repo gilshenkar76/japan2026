@@ -1142,6 +1142,36 @@ function setFlightGate(id, gate){
   saveFlightStatuses(statuses);
 }
 
+function findRelevantFlightStatus(day, description){
+  const relevantByDay = {
+    '12-13': ['ek2168_fz1842', 'ek312'],
+    '28': ['ek319', 'ek2268_fz1635']
+  };
+  const relevantIds = relevantByDay[day] || [];
+  if (!relevantIds.length) return null;
+  const statuses = loadFlightStatuses();
+  const text = String(description || '').toUpperCase();
+  for (const id of relevantIds) {
+    const item = statuses.find(status => status.id === id);
+    if (!item) continue;
+    const tokens = String(item.flight || '')
+      .split('/')
+      .map(token => token.trim().toUpperCase())
+      .filter(Boolean);
+    const match = tokens.some(token => text.includes(token));
+    if (match) return item;
+  }
+  return null;
+}
+
+function appendLiveFlightInfo(day, description){
+  const item = findRelevantFlightStatus(day, description);
+  if (!item) return description;
+  const gate = item.gate ? item.gate : 'טרם פורסם';
+  const updated = item.updatedAt ? formatDate(item.updatedAt) : 'טרם עודכן';
+  return `${description}\nLive Status: ${statusLabel(item.status)} | Gate: ${gate}\nUpdated: ${updated}`;
+}
+
 function isSupabaseConfigured(){
   return Boolean(supabaseUrl && supabaseAnonKey);
 }
@@ -1869,9 +1899,10 @@ function render(day){
   setRouteNotesEditMode(false);
   const tl=document.getElementById('timeline'); tl.innerHTML='';
   data[day].events.forEach(e=>{
+    const eventDescription = appendLiveFlightInfo(day, e[2]);
     const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
     tl.innerHTML += `<div class="item"><div class="time">${e[0]}</div><div class="event">
-      <div class="event-row"><img class="thumb" src="${e[3]}"><div><h3>${e[1]}</h3><p>${e[2]}</p></div></div>
+      <div class="event-row"><img class="thumb" src="${e[3]}"><div><h3>${e[1]}</h3><p>${eventDescription}</p></div></div>
       <div class="actions"><a class="btn primary" target="_blank" href="${link}">📍 נווט עכשיו</a>
       <button class="btn ghost" onclick="alert('סומן כבוצע ✓')">✓ סיימנו</button></div></div></div>`;
   });
