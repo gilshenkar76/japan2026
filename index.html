@@ -270,11 +270,15 @@
       <div class="event hotel">
         <div class="event-row">
           <img class="thumb" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80">
-          <div><h3>Aura Tachibana</h3><p>Hakone Yumoto · ספא ואונסן</p></div>
+          <div>
+            <h3 id="hotelName">Aura Tachibana</h3>
+            <p id="hotelMeta">Hakone Yumoto · ספא ואונסן</p>
+            <p id="hotelExtra" class="small" style="color:#374151;margin-top:6px;opacity:1"></p>
+          </div>
         </div>
         <div class="actions">
-          <a class="btn primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Aura+Tachibana+Hakone">📍 ניווט למלון</a>
-          <button class="btn ghost" onclick="alert('כתובת המלון הועתקה')">העתקת כתובת</button>
+          <a class="btn primary" id="hotelNavLink" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Aura+Tachibana+Hakone">📍 ניווט למלון</a>
+          <button class="btn ghost" onclick="copyHotelDetails()">העתקת פרטי מלון</button>
         </div>
       </div>
     </div>
@@ -764,6 +768,21 @@ const data = {
     ["15:00","צ'ק-אאוט והכנת מזוודות","בדיקת מסמכים ו-Tax Free","https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=300&q=80","Hotel"],
     ["17:00","נסיעה לשדה תעופה","Narita או Haneda לפי הטיסה","https://images.unsplash.com/photo-1540339832862-fde94ed5d7de?auto=format&fit=crop&w=300&q=80","Narita Airport"]
   ]}
+};
+
+const hotelsByDay = {
+  '12-13': {
+    name: 'Hotel Gracery Shinjuku',
+    meta: "טוקיו · שינג'וקו",
+    mapQuery: 'Hotel Gracery Shinjuku Tokyo',
+    extra: 'Confirmation number: 6297195681 | PIN code: 6226'
+  },
+  '14': {
+    name: 'Aura Tachibana',
+    meta: 'Hakone Yumoto · ספא ואונסן',
+    mapQuery: 'Aura Tachibana Hakone',
+    extra: ''
+  }
 };
 
 function isSupabaseConfigured(){
@@ -1468,6 +1487,15 @@ function render(day){
   document.getElementById('routeText').innerText=data[day].route;
   const overviewNode = document.getElementById('routeOverview');
   const tipsNode = document.getElementById('routeTips');
+  const hotel = hotelsByDay[day] || { name: 'מלון טרם עודכן', meta: 'עדכנו כאן את פרטי הלינה ליום זה', mapQuery: 'Tokyo hotels', extra: '' };
+  const hotelNameNode = document.getElementById('hotelName');
+  const hotelMetaNode = document.getElementById('hotelMeta');
+  const hotelExtraNode = document.getElementById('hotelExtra');
+  const hotelNavNode = document.getElementById('hotelNavLink');
+  if (hotelNameNode) hotelNameNode.textContent = hotel.name;
+  if (hotelMetaNode) hotelMetaNode.textContent = hotel.meta;
+  if (hotelExtraNode) hotelExtraNode.textContent = hotel.extra || '';
+  if (hotelNavNode) hotelNavNode.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel.mapQuery)}`;
   if (overviewNode) overviewNode.value = routeDayNotes[day].overview;
   if (tipsNode) tipsNode.value = routeDayNotes[day].tips;
   setRouteNotesEditMode(false);
@@ -1495,6 +1523,19 @@ function render(day){
     </div>
   `);
   renderUploads();
+}
+
+function copyHotelDetails(){
+  const hotelName = document.getElementById('hotelName')?.textContent || '';
+  const hotelMeta = document.getElementById('hotelMeta')?.textContent || '';
+  const hotelExtra = document.getElementById('hotelExtra')?.textContent || '';
+  const text = [hotelName, hotelMeta, hotelExtra].filter(Boolean).join('\n');
+  if (!text) return;
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(text).then(() => alert('פרטי המלון הועתקו')).catch(() => alert(text));
+    return;
+  }
+  alert(text);
 }
 function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
 
