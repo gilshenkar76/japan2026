@@ -87,11 +87,17 @@
     .member{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line)}
     .member:last-child{border-bottom:0}.status{font-size:12px;color:var(--ok);font-weight:800}
     .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);
-      background:rgba(255,255,255,.97);backdrop-filter:blur(12px);display:grid;grid-template-columns:repeat(6,1fr);
-      padding:10px 8px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--line);z-index:9999;
-      pointer-events:auto}
-    .nav button{border:0;background:transparent;color:#667085;font-size:10px;font-weight:800;pointer-events:auto}
-    .nav .active{color:var(--primary)} .ico{display:block;font-size:21px;margin-bottom:4px}
+      background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(245,248,252,.98));backdrop-filter:blur(12px);display:grid;grid-template-columns:repeat(7,1fr);
+      gap:7px;padding:10px 8px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--line);z-index:9999;
+      pointer-events:auto;box-shadow:0 -14px 30px rgba(16,24,40,.10)}
+    .nav button{border:1px solid rgba(255,255,255,.8);background:linear-gradient(180deg,#ffffff,#eef3f9);color:#596579;font-size:10px;font-weight:900;pointer-events:auto;
+      border-radius:16px;padding:8px 4px 7px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:58px;
+      box-shadow:0 4px 0 #d6dde8,0 10px 18px rgba(16,24,40,.10);transition:transform .16s ease,box-shadow .16s ease,filter .16s ease,color .16s ease,background .16s ease}
+    .nav button:hover{transform:translateY(-2px);filter:brightness(1.02);box-shadow:0 6px 0 #d6dde8,0 14px 22px rgba(16,24,40,.14)}
+    .nav button:active{transform:translateY(2px);box-shadow:0 1px 0 #d6dde8,0 4px 12px rgba(16,24,40,.12)}
+    .nav button.active{color:var(--primary);background:linear-gradient(180deg,#fff7f2,#ffe6d8);box-shadow:0 4px 0 #e3b59c,0 10px 18px rgba(232,93,48,.16)}
+    .ico{display:block;font-size:21px;margin-bottom:4px;transition:transform .16s ease}
+    .nav button:hover .ico{transform:translateY(-1px) scale(1.06)}
     .screen{display:none}.screen.active{display:block}
     #main{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
     #route{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
@@ -99,12 +105,14 @@
     #expenses{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
     #docs{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
     #transportation{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
+    #photos{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
     #main{overflow-y:auto;padding-bottom:180px}
     #route{overflow-y:auto;padding-bottom:180px}
     #group{overflow-y:auto;padding-bottom:180px}
     #expenses{overflow-y:auto;padding-bottom:180px}
     #docs{overflow-y:auto;padding-bottom:180px}
     #transportation{overflow-y:auto;padding-bottom:180px}
+    #photos{overflow-y:auto;padding-bottom:180px}
     .expense{display:flex;justify-content:space-between;background:#fff;padding:14px;border-radius:18px;margin-bottom:9px;
       border:1px solid var(--line)} .sum{font-weight:900}
     .poll-option{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;margin-bottom:9px}
@@ -115,6 +123,15 @@
     .upload-hint{font-size:12px;color:var(--muted);margin-top:6px}
     .file-list{display:grid;gap:10px;margin-top:12px}
     .file-card{background:#f8fafc;border:1px solid var(--line);border-radius:18px;padding:12px}
+    .photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+    .photo-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+    .photo-thumb{width:100%;height:124px;object-fit:cover;display:block;background:#e8edf5}
+    .photo-body{padding:10px}
+    .photo-title{font-size:13px;font-weight:800;line-height:1.35;margin:0 0 4px}
+    .photo-meta{font-size:11px;color:var(--muted)}
+    .album-hero{background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa;border-radius:20px;padding:14px;box-shadow:var(--shadow)}
+    .album-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .album-stat{background:#fff;border:1px solid #ffd7b3;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:800;color:#9a3412}
     .file-meta{font-size:12px;color:var(--muted);margin-top:4px}
     .file-empty{font-size:13px;color:var(--muted);padding:12px 4px}
     .expense-grid{display:grid;gap:10px}
@@ -502,6 +519,32 @@
     </div>
   </main>
 
+  <main id="photos" class="screen">
+    <div class="content">
+      <div class="section-title" style="font-size:24px">תמונות</div>
+      <div class="album-hero">
+        <div class="section-title" style="margin:0;font-size:18px">אלבום הטיול העתידי</div>
+        <div class="upload-hint">כאן נאסוף את כל התמונות מהטיול כדי לבנות אחר כך אלבום יפה ומסודר.</div>
+        <div class="album-stats">
+          <div class="album-stat">📸 תמונות מהדרך</div>
+          <div class="album-stat">🖼️ אלבום עתידי</div>
+          <div class="album-stat">✨ זיכרונות משותפים</div>
+        </div>
+      </div>
+      <div class="upload-panel">
+        <div class="upload-row">
+          <div>
+            <div class="section-title" style="margin:0;font-size:18px">העלאת תמונות</div>
+            <div class="upload-hint">העלו כאן תמונות מהטיול בלבד, ואנחנו נשתמש בהן אחר כך לבניית אלבום יפה.</div>
+          </div>
+          <button class="btn primary" data-upload-button onclick="pickFiles('photos')">הוספת תמונה</button>
+          <input id="file-input-photos" type="file" accept="image/*" capture="environment" hidden onchange="handleFileUpload('photos', event)">
+        </div>
+        <div class="photo-grid" id="file-list-photos"></div>
+      </div>
+    </div>
+  </main>
+
   <nav class="nav">
     <button class="active" type="button" data-screen="main"><span class="ico">🏠</span>ראשי</button>
     <button type="button" data-screen="route"><span class="ico">🗺️</span>מסלול</button>
@@ -509,6 +552,7 @@
     <button type="button" data-screen="expenses"><span class="ico">💴</span>הוצאות</button>
     <button type="button" data-screen="docs"><span class="ico">📄</span>מסמכים</button>
     <button type="button" data-screen="transportation"><span class="ico">🚆</span>תחבורה</button>
+    <button type="button" data-screen="photos"><span class="ico">🖼️</span>תמונות</button>
   </nav>
 </div>
 
@@ -521,14 +565,16 @@ const sectionTitles = {
   group: 'קבוצה',
   expenses: 'הוצאות',
   docs: 'מסמכים',
-  transportation: 'תחבורה'
+  transportation: 'תחבורה',
+  photos: 'תמונות'
 };
 const sectionFolders = {
   route: 'maps',
   group: 'group',
   expenses: 'expenses',
   docs: 'documents',
-  transportation: 'transportation'
+  transportation: 'transportation',
+  photos: 'photos'
 };
 const expenseReceiptsFolder = 'expenses/receipts';
 const ADMIN_EMAILS = ['gil.shenkar76@gmail.com', 'gil.shenkar@intel.com'];
@@ -718,6 +764,17 @@ function sanitizeFileName(fileName){
   return fileName.replace(/[^a-zA-Z0-9._-]/g, '_');
 }
 
+function isImageFile(fileName){
+  return /\.(png|jpe?g|gif|webp|avif)$/i.test(fileName || '');
+}
+
+async function getSignedUrl(section, objectName){
+  const client = initSupabase();
+  const { data, error } = await client.storage.from(storageBucket).createSignedUrl(`${sectionFolders[section]}/${objectName}`, 3600);
+  if (error) throw error;
+  return data.signedUrl;
+}
+
 async function handleFileUpload(section, event){
   const file = event.target.files && event.target.files[0];
   if (!file) return;
@@ -758,19 +815,18 @@ function formatDate(value){
 }
 
 async function openFile(section, objectName){
-  const client = initSupabase();
-  const { data, error } = await client.storage.from(storageBucket).createSignedUrl(`${sectionFolders[section]}/${objectName}`, 3600);
-  if (error) {
+  try {
+    const signedUrl = await getSignedUrl(section, objectName);
+    window.open(signedUrl, '_blank', 'noopener');
+  } catch (error) {
     alert(`פתיחת הקובץ נכשלה: ${error.message}`);
-    return;
   }
-  window.open(data.signedUrl, '_blank', 'noopener');
 }
 
 async function renderUploads(){
   const client = initSupabase();
   const loggedIn = Boolean(currentSession);
-  ['route', 'group', 'expenses', 'docs', 'transportation'].forEach(section => {
+  ['route', 'group', 'expenses', 'docs', 'transportation', 'photos'].forEach(section => {
     const holder = document.getElementById(`file-list-${section}`);
     if (!holder) return;
     if (!isSupabaseConfigured()) {
@@ -786,8 +842,9 @@ async function renderUploads(){
 
   if (!isSupabaseConfigured() || !loggedIn) return;
 
-  for (const section of ['route', 'group', 'expenses', 'docs', 'transportation']) {
+  for (const section of ['route', 'group', 'expenses', 'docs', 'transportation', 'photos']) {
     const holder = document.getElementById(`file-list-${section}`);
+    if (!holder) continue;
     const { data, error } = await client.storage.from(storageBucket).list(sectionFolders[section], {
       limit: 100,
       sortBy: { column: 'created_at', order: 'desc' }
@@ -801,9 +858,43 @@ async function renderUploads(){
       holder.innerHTML = `<div class="file-empty">עדיין לא הועלו קבצים ל${sectionTitles[section]}.</div>`;
       continue;
     }
+    if (section === 'photos') {
+      holder.className = 'photo-grid';
+      const photoCards = await Promise.all(items.map(async item => {
+        try {
+          const signedUrl = await getSignedUrl(section, item.name);
+          return `
+            <div class="photo-card">
+              <img class="photo-thumb" src="${signedUrl}" alt="${item.name.replace(/^\\d+-/, '')}">
+              <div class="photo-body">
+                <div class="photo-title">${item.name.replace(/^\\d+-/, '')}</div>
+                <div class="photo-meta">${formatBytes(item.metadata?.size || 0)} · ${formatDate(item.created_at || item.updated_at || new Date().toISOString())}</div>
+                <div class="actions" style="margin-top:10px">
+                  <button class="btn primary" onclick="openFile('${section}','${item.name}')">פתיחה</button>
+                  <button class="btn ghost" onclick="removeFile('${section}','${item.name}')">מחיקה</button>
+                </div>
+              </div>
+            </div>
+          `;
+        } catch (error) {
+          return `
+            <div class="photo-card">
+              <div class="photo-body">
+                <div class="photo-title">${item.name.replace(/^\\d+-/, '')}</div>
+                <div class="photo-meta">${formatBytes(item.metadata?.size || 0)} · ${formatDate(item.created_at || item.updated_at || new Date().toISOString())}</div>
+                <div class="file-empty">${error.message}</div>
+              </div>
+            </div>
+          `;
+        }
+      }));
+      holder.innerHTML = photoCards.join('');
+      continue;
+    }
+    holder.className = 'file-list';
     holder.innerHTML = items.map(item => `
       <div class="file-card">
-        <div><strong>${item.name.replace(/^\d+-/, '')}</strong></div>
+        <div><strong>${item.name.replace(/^\\d+-/, '')}</strong></div>
         <div class="file-meta">${formatBytes(item.metadata?.size || 0)} · ${formatDate(item.created_at || item.updated_at || new Date().toISOString())}</div>
         <div class="actions">
           <button class="btn primary" onclick="openFile('${section}','${item.name}')">פתיחה</button>
