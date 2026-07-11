@@ -68,10 +68,12 @@
     .hotel{background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa}
     .notice{margin-top:12px;border-radius:18px;padding:13px;background:#eaf8f0;color:#156b3b;font-size:13px;
       border:1px solid #c9edd7}
-    .route-notes{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:var(--shadow)}
+    .route-notes{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:var(--shadow);position:relative}
     .route-notes-grid{display:grid;gap:10px;margin-top:8px}
     .route-notes label{font-size:13px;font-weight:800;color:#374151}
     .route-textarea{width:100%;min-height:86px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;color:var(--ink);background:#f8fafc}
+    .route-textarea[readonly]{background:#eef2f7;cursor:default}
+    .route-notes-actions{position:absolute;left:12px;top:12px;display:flex;gap:8px}
     .route-notes-help{font-size:12px;color:var(--muted);margin-top:8px}
     .group-card{background:#fff;border-radius:22px;padding:14px;box-shadow:var(--shadow);border:1px solid var(--line)}
     .member{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line)}
@@ -196,15 +198,19 @@
       <div class="notice">📢 הודעה לקבוצה: נפגשים בלובי בשעה 08:45 עם כל המזוודות.</div>
 
       <div class="route-notes">
+        <div class="route-notes-actions">
+          <button id="routeEditBtn" class="btn ghost" type="button">עריכה</button>
+          <button id="routeSaveBtn" class="btn primary hidden" type="button">שמירה</button>
+        </div>
         <div class="section-title" style="margin:0;font-size:18px">הערות ליום</div>
         <div class="route-notes-grid">
           <div>
             <label for="routeOverview">סקירה כללית</label>
-            <textarea id="routeOverview" class="route-textarea" placeholder="הוסיפו כאן סקירה כללית ליום..."></textarea>
+            <textarea id="routeOverview" class="route-textarea" placeholder="הוסיפו כאן סקירה כללית ליום..." readonly></textarea>
           </div>
           <div>
             <label for="routeTips">טיפים חשובים</label>
-            <textarea id="routeTips" class="route-textarea" placeholder="הוסיפו כאן טיפים חשובים ליום..."></textarea>
+            <textarea id="routeTips" class="route-textarea" placeholder="הוסיפו כאן טיפים חשובים ליום..." readonly></textarea>
           </div>
         </div>
         <div class="route-notes-help">אפשר לערוך חופשי. התוכן נשמר לכל יום כל עוד הדף פתוח.</div>
@@ -502,6 +508,7 @@ let supabaseClient = null;
 let currentSession = null;
 let expensesEditingId = null;
 let currentRouteDay = '14';
+let isRouteNotesEditing = false;
 const routeDayNotes = {};
 
 const data = {
@@ -1222,6 +1229,7 @@ async function initAuth(){
 
 function render(day){
   if (!data[day]) return;
+  if (isRouteNotesEditing) saveCurrentRouteNotes();
   currentRouteDay = day;
   if (!routeDayNotes[day]) {
     routeDayNotes[day] = {
@@ -1235,6 +1243,7 @@ function render(day){
   const tipsNode = document.getElementById('routeTips');
   if (overviewNode) overviewNode.value = routeDayNotes[day].overview;
   if (tipsNode) tipsNode.value = routeDayNotes[day].tips;
+  setRouteNotesEditMode(false);
   const tl=document.getElementById('timeline'); tl.innerHTML='';
   data[day].events.forEach(e=>{
     const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
@@ -1262,6 +1271,26 @@ function render(day){
 }
 function switchDay(el,day){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');render(day)}
 function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+
+function setRouteNotesEditMode(editing){
+  isRouteNotesEditing = editing;
+  const overviewNode = document.getElementById('routeOverview');
+  const tipsNode = document.getElementById('routeTips');
+  const editBtn = document.getElementById('routeEditBtn');
+  const saveBtn = document.getElementById('routeSaveBtn');
+  if (overviewNode) overviewNode.readOnly = !editing;
+  if (tipsNode) tipsNode.readOnly = !editing;
+  if (editBtn) editBtn.classList.toggle('hidden', editing);
+  if (saveBtn) saveBtn.classList.toggle('hidden', !editing);
+}
+
+function saveCurrentRouteNotes(){
+  if (!routeDayNotes[currentRouteDay]) routeDayNotes[currentRouteDay] = { overview: '', tips: '' };
+  const overviewNode = document.getElementById('routeOverview');
+  const tipsNode = document.getElementById('routeTips');
+  routeDayNotes[currentRouteDay].overview = overviewNode ? overviewNode.value : '';
+  routeDayNotes[currentRouteDay].tips = tipsNode ? tipsNode.value : '';
+}
 
 function initNavigation(){
   document.querySelectorAll('.nav button[data-screen]').forEach(button => {
@@ -1363,14 +1392,13 @@ document.getElementById('expenseAddToggleBtn').addEventListener('click', () => {
 
 resetExpenseForm();
 
-document.getElementById('routeOverview').addEventListener('input', event => {
-  if (!routeDayNotes[currentRouteDay]) routeDayNotes[currentRouteDay] = { overview: '', tips: '' };
-  routeDayNotes[currentRouteDay].overview = event.target.value;
+document.getElementById('routeEditBtn').addEventListener('click', () => {
+  setRouteNotesEditMode(true);
 });
 
-document.getElementById('routeTips').addEventListener('input', event => {
-  if (!routeDayNotes[currentRouteDay]) routeDayNotes[currentRouteDay] = { overview: '', tips: '' };
-  routeDayNotes[currentRouteDay].tips = event.target.value;
+document.getElementById('routeSaveBtn').addEventListener('click', () => {
+  saveCurrentRouteNotes();
+  setRouteNotesEditMode(false);
 });
 
 document.getElementById('loginForm').addEventListener('submit', async event => {
