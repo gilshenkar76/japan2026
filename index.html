@@ -32,18 +32,18 @@
       font-family:'Heebo','Segoe UI',Tahoma,sans-serif;color:var(--ink);}
     .phone{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;
       box-shadow:0 0 40px rgba(0,0,0,.12);padding-bottom:150px}
-    .hero{background:linear-gradient(140deg,var(--hero-start),var(--hero-mid) 55%,var(--hero-end));color:#fff;padding:12px 18px 14px;
-      border-radius:0 0 24px 24px;position:relative;overflow:hidden}
+    .hero{background:linear-gradient(140deg,var(--hero-start),var(--hero-mid) 55%,var(--hero-end));color:#fff;padding:8px 14px 10px;
+      border-radius:0 0 20px 20px;position:relative;overflow:hidden}
     .hero:after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;
       background:rgba(255,255,255,.11);left:-60px;top:-72px}
     .hero:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;
       background:rgba(14,165,233,.18);right:-86px;top:-92px}
     .top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
     .logo{font-weight:800;font-size:20px}.small{font-size:12px;opacity:.8}
-    .trip-title{margin-top:10px;font-size:28px;font-weight:900;line-height:1.08;letter-spacing:.2px}
-    .trip-sub{margin-top:5px;font-size:13px;opacity:.9}
-    .hero-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;position:relative;z-index:2}
-    .stat-chip{background:var(--chip-bg);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(4px);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    .trip-title{margin:0;font-size:22px;font-weight:900;line-height:1.08;letter-spacing:.2px}
+    .trip-sub{margin-top:4px;font-size:12px;opacity:.9}
+    .hero-stats{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;position:relative;z-index:2}
+    .stat-chip{background:var(--chip-bg);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(4px);padding:6px 9px;border-radius:999px;font-size:11px;font-weight:700}
     .people{display:none}
     .avatars{display:flex;direction:ltr}
     .avatar{width:34px;height:34px;border-radius:50%;border:2px solid #fff;margin-left:-8px;
@@ -128,7 +128,7 @@
     .expense-actions{display:flex;gap:6px;justify-content:flex-end}
     .file-picker-inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .auth-card{display:none}
-    .header-login-btn{background:#fff;color:#111827;border:0;border-radius:12px;padding:8px 14px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+    .header-login-btn{background:#fff;color:#111827;border:0;border-radius:11px;padding:6px 12px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.1)}
     .auth-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);display:none;z-index:10000;place-items:center;padding:20px}
     .auth-modal.active{display:grid}
     .auth-modal-content{background:#fff;border-radius:24px;padding:20px;max-width:380px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,.2)}
@@ -165,10 +165,10 @@
 <body>
 <div class="phone">
   <header class="hero">
-    <div class="top" style="justify-content:flex-end">
+    <div class="top">
       <button class="header-login-btn" id="headerLoginBtn" type="button">כניסה</button>
+      <div class="trip-title">הטיול שלנו ליפן</div>
     </div>
-    <div class="trip-title">הטיול שלנו ליפן</div>
     <div class="trip-sub">14–28 בנובמבר 2026 · 6 מטיילים</div>
     <div class="hero-stats">
       <div class="stat-chip">15 ימים</div>
@@ -545,8 +545,8 @@ let isRouteNotesEditing = false;
 const routeDayNotes = {};
 
 const citiesByDay = {
-  '14': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80' },
-  '15': { city: 'האקונה', image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?w=600&q=80' },
+  '14': { city: 'טוקיו - האקונה', image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80' },
+  '15': { city: 'האקונה', image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600&q=80' },
   '16': { city: 'הר פוג\'י', image: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?w=600&q=80' },
   '17': { city: 'נגויה', image: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=600&q=80' },
   '18': { city: 'קיוטו', image: 'https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=600&q=80' },
