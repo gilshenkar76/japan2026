@@ -473,12 +473,9 @@
       <div class="section-title" style="font-size:24px">תחבורה - בחרו יום</div>
       <div class="upload-panel">
         <div class="section-title" style="margin:0;font-size:18px">סטטוס טיסות חי</div>
-        <div class="upload-hint">עובד אוטומטית דרך API. אפשר גם לעדכן ידנית אם צריך.</div>
+        <div class="upload-hint">מתעדכן אוטומטית לכולם דרך שרת משותף. אפשר גם לעדכן ידנית אם צריך.</div>
         <div class="flight-sync-panel">
           <div class="flight-sync-row">
-            <input id="flightApiKey" class="input" type="password" placeholder="Aviationstack API key" style="flex:1;min-width:170px" />
-            <button class="btn ghost" type="button" onclick="saveFlightApiKey()">שמירת מפתח</button>
-            <button class="btn ghost" type="button" onclick="testFlightApiKey()">בדיקת מפתח</button>
             <button class="btn primary" type="button" onclick="syncFlightStatusesFromApi(false)">סנכרון עכשיו</button>
           </div>
           <div class="flight-sync-row" style="margin-top:8px">
@@ -656,6 +653,7 @@ const flightStatusDefaults = [
 const FLIGHT_STATUS_STORAGE_KEY = 'japan2026.flightStatus';
 const FLIGHT_SYNC_CONFIG_KEY = 'japan2026.flightSyncConfig';
 const FLIGHT_SYNC_INTERVAL_MS = 5 * 60 * 1000;
+const FLIGHT_PROXY_URL = `${supabaseUrl}/functions/v1/flight-status-proxy`;
 let supabaseClient = null;
 let currentSession = null;
 let expensesEditingId = null;
@@ -970,13 +968,12 @@ function loadFlightSyncConfig(){
     const raw = localStorage.getItem(FLIGHT_SYNC_CONFIG_KEY);
     const parsed = raw ? JSON.parse(raw) : {};
     return {
-      apiKey: parsed.apiKey || '',
       autoSync: Boolean(parsed.autoSync),
       lastSyncAt: parsed.lastSyncAt || '',
       lastError: parsed.lastError || ''
     };
   } catch (_error) {
-    return { apiKey: '', autoSync: false, lastSyncAt: '', lastError: '' };
+    return { autoSync: false, lastSyncAt: '', lastError: '' };
   }
 }
 
@@ -1038,31 +1035,35 @@ function pickApiGate(flightData){
 }
 
 async function fetchFlightLiveStatus(queryFlight, apiKey){
-  const url = `https://api.aviationstack.com/v1/flights?access_key=${encodeURIComponent(apiKey)}&flight_iata=${encodeURIComponent(queryFlight)}&limit=1`;
-  const response = await fetch(url, { method: 'GET' });
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const response = await fetch(FLIGHT_PROXY_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      apikey: supabaseAnonKey,
+      Authorization: `Bearer ${supabaseAnonKey}`
+    },
+    body: JSON.stringify({ flight: queryFlight })
+  });
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.error || `HTTP ${response.status}`);
+  }
   const payload = await response.json();
-  const flightData = payload?.data && payload.data[0];
-  if (!flightData) throw new Error(`לא נמצאו נתונים ל-${queryFlight}`);
+  if (!payload) throw new Error(`לא נמצאו נתונים ל-${queryFlight}`);
   return {
-    status: apiStatusToLocal(flightData.flight_status),
-    gate: pickApiGate(flightData),
-    sourceStatus: flightData.flight_status || ''
+    status: apiStatusToLocal(payload.status),
+    gate: payload.gate || '',
+    sourceStatus: payload.sourceStatus || ''
   };
 }
 
 async function syncFlightStatusesFromApi(silent = false){
   const config = loadFlightSyncConfig();
-  if (!config.apiKey) {
-    if (!silent) alert('צריך לשמור Aviationstack API key כדי לסנכרן אוטומטית.');
-    updateFlightSyncStatus('לא הוגדר API key');
-    return;
-  }
   if (!silent) updateFlightSyncStatus('מסנכרן נתוני טיסות...');
   const statuses = loadFlightStatuses();
   try {
     for (const item of statuses) {
-      const live = await fetchFlightLiveStatus(item.queryFlight || item.flight, config.apiKey);
+      const live = await fetchFlightLiveStatus(item.queryFlight || item.flight);
       item.status = live.status;
       if (live.gate) item.gate = String(live.gate).trim();
       item.updatedAt = new Date().toISOString();
@@ -1086,36 +1087,10 @@ function startFlightAutoSync(){
     flightAutoSyncTimer = null;
   }
   const config = loadFlightSyncConfig();
-  if (!config.autoSync || !config.apiKey) return;
+  if (!config.autoSync) return;
   flightAutoSyncTimer = setInterval(() => {
     syncFlightStatusesFromApi(true);
   }, FLIGHT_SYNC_INTERVAL_MS);
-}
-
-function saveFlightApiKey(){
-  const keyNode = document.getElementById('flightApiKey');
-  const apiKey = keyNode ? keyNode.value.trim() : '';
-  const config = loadFlightSyncConfig();
-  const nextConfig = { ...config, apiKey };
-  saveFlightSyncConfig(nextConfig);
-  updateFlightSyncStatus(apiKey ? 'מפתח API נשמר מקומית בדפדפן זה' : 'API key הוסר');
-  startFlightAutoSync();
-}
-
-async function testFlightApiKey(){
-  const keyNode = document.getElementById('flightApiKey');
-  const apiKey = keyNode ? keyNode.value.trim() : '';
-  if (!apiKey) {
-    updateFlightSyncStatus('נא להזין API key לבדיקה');
-    return;
-  }
-  updateFlightSyncStatus('בודק מפתח API...');
-  try {
-    await fetchFlightLiveStatus('EK312', apiKey);
-    updateFlightSyncStatus('API key תקין ומחזיר נתונים');
-  } catch (error) {
-    updateFlightSyncStatus(`API key לא תקין או חסום: ${error.message || 'unknown error'}`);
-  }
 }
 
 function toggleFlightAutoSync(enabled){
@@ -1133,19 +1108,17 @@ function toggleFlightAutoSync(enabled){
 
 function initFlightSyncUi(){
   const config = loadFlightSyncConfig();
-  const keyNode = document.getElementById('flightApiKey');
   const autoNode = document.getElementById('flightAutoSync');
-  if (keyNode) keyNode.value = config.apiKey || '';
   if (autoNode) autoNode.checked = Boolean(config.autoSync);
   if (config.lastSyncAt) {
     updateFlightSyncStatus(`סנכרון אחרון: ${formatDate(config.lastSyncAt)}`);
   } else if (config.lastError) {
     updateFlightSyncStatus(`שגיאה אחרונה: ${config.lastError}`);
   } else {
-    updateFlightSyncStatus(config.apiKey ? 'API key מוגדר. אפשר לסנכרן עכשיו.' : 'הזינו API key כדי להפעיל עדכון אוטומטי.');
+    updateFlightSyncStatus('המערכת מוכנה לסנכרון מהשרת המשותף');
   }
   startFlightAutoSync();
-  if (config.autoSync && config.apiKey) {
+  if (config.autoSync) {
     syncFlightStatusesFromApi(true);
   }
 }
