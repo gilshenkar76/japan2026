@@ -647,10 +647,10 @@ const quickLinksConfig = [
   }
 ];
 const flightStatusDefaults = [
-  { id: 'ek2168_fz1842', label: '12.11 TLV → DXB', flight: 'EK2168 / FZ1842', queryFlight: 'EK2168', status: 'unknown', gate: '' },
-  { id: 'ek312', label: '13.11 DXB → HND', flight: 'EK312', queryFlight: 'EK312', status: 'unknown', gate: '' },
-  { id: 'ek319', label: '28.11 NRT → DXB', flight: 'EK319', queryFlight: 'EK319', status: 'unknown', gate: '' },
-  { id: 'ek2268_fz1635', label: '29.11 DXB → TLV', flight: 'EK2268 / FZ1635', queryFlight: 'EK2268', status: 'unknown', gate: '' }
+  { id: 'ek2168_fz1842', label: '12.11 TLV → DXB', flight: 'EK2168 / FZ1842', queryFlight: 'EK2168', status: 'unknown', gate: '', originalDepartureTime: '12.11 22:20', originalArrivalTime: '13.11 03:25', originalDepartureTerminal: 'TLV T3', originalArrivalTerminal: 'DXB T3' },
+  { id: 'ek312', label: '13.11 DXB → HND', flight: 'EK312', queryFlight: 'EK312', status: 'unknown', gate: '', originalDepartureTime: '13.11 08:20', originalArrivalTime: '13.11 22:30', originalDepartureTerminal: 'DXB T3', originalArrivalTerminal: 'HND T3' },
+  { id: 'ek319', label: '28.11 NRT → DXB', flight: 'EK319', queryFlight: 'EK319', status: 'unknown', gate: '', originalDepartureTime: '28.11 22:20', originalArrivalTime: '29.11 05:30', originalDepartureTerminal: 'NRT T2', originalArrivalTerminal: 'DXB T3' },
+  { id: 'ek2268_fz1635', label: '29.11 DXB → TLV', flight: 'EK2268 / FZ1635', queryFlight: 'EK2268', status: 'unknown', gate: '', originalDepartureTime: '29.11 10:55', originalArrivalTime: '29.11 12:45', originalDepartureTerminal: 'DXB T3', originalArrivalTerminal: 'TLV T3' }
 ];
 const FLIGHT_STATUS_STORAGE_KEY = 'japan2026.flightStatus';
 const FLIGHT_SYNC_CONFIG_KEY = 'japan2026.flightSyncConfig';
@@ -758,7 +758,7 @@ function renderCountdownChip(){
 }
 
 const data = {
-  '12-13': { title:"טיסה ליפן", route:"TLV 22:20 (T3) → DXB 03:25+1 (T3) [EK2168/FZ1842] · Connection 4:55h · DXB 08:20 → HND 22:30 (T3) [EK312]", events:[
+  '12-13': { title:"טיסה ליפן", route:"טיסה ארוכה ליפן, נסיעה וצ'ק אין למלון", events:[
     ["22:20","TLV → DXB","Flight: EK2168 / FZ1842\nתל אביב T3 בינלאומי → דובאי T3\nמשך טיסה: 3:05\nClass/Fare: Economy Saver\nStatus: Confirmed\nOperated by flydubai\nAircraft: Boeing 737 MAX 8","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
     ["03:25 +1","Connection in DXB","Connection: Dubai (DXB)\nמשך קונקשן: 4:55\nמעבר בין שערים וטרמינל 3","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Dubai International Airport"],
     ["08:20","DXB → HND","Flight: EK312\nדובאי T3 → טוקיו האנדה T3\nמשך טיסה: 9:10\nClass/Fare: Economy Saver\nStatus: Confirmed\nAircraft: Boeing 777-300ER","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Haneda Airport"],
@@ -954,6 +954,10 @@ function loadFlightStatuses(){
       arrivalScheduled: parsed[item.id]?.arrivalScheduled || '',
       departureTerminal: parsed[item.id]?.departureTerminal || '',
       arrivalTerminal: parsed[item.id]?.arrivalTerminal || '',
+      originalDepartureTime: item.originalDepartureTime || '',
+      originalArrivalTime: item.originalArrivalTime || '',
+      originalDepartureTerminal: item.originalDepartureTerminal || '',
+      originalArrivalTerminal: item.originalArrivalTerminal || '',
       updatedAt: parsed[item.id]?.updatedAt || ''
     }));
   } catch (_error) {
@@ -1035,6 +1039,8 @@ function renderFlightStatusBoard(){
         <button class="status-chip ${item.status === 'on-time' ? 'active on-time' : ''}" type="button" onclick="setFlightStatus('${item.id}','on-time')">On Time</button>
         <button class="status-chip ${item.status === 'delayed' ? 'active delayed' : ''}" type="button" onclick="setFlightStatus('${item.id}','delayed')">Delayed</button>
       </div>
+      <div class="flight-status-sub">Original Departure: ${flightField(item.originalDepartureTime)} · Terminal: ${flightField(item.originalDepartureTerminal)}</div>
+      <div class="flight-status-sub">Original Arrival: ${flightField(item.originalArrivalTime)} · Terminal: ${flightField(item.originalArrivalTerminal)}</div>
       <div class="flight-status-sub">Departure: ${scheduleField(item.departureScheduled)} · Terminal: ${flightField(item.departureTerminal)}</div>
       <div class="flight-status-sub">Arrival: ${scheduleField(item.arrivalScheduled)} · Terminal: ${flightField(item.arrivalTerminal)}</div>
       <div class="flight-updated">עודכן לאחרונה: ${item.updatedAt ? formatDate(item.updatedAt) : 'טרם עודכן'}</div>
@@ -1201,11 +1207,15 @@ function appendLiveFlightInfo(day, description){
   if (!item) return description;
   const gate = item.gate ? item.gate : 'טרם פורסם';
   const updated = item.updatedAt ? formatDate(item.updatedAt) : 'טרם עודכן';
+  const originalDepTime = item.originalDepartureTime || 'טרם פורסם';
+  const originalArrTime = item.originalArrivalTime || 'טרם פורסם';
+  const originalDepTerminal = item.originalDepartureTerminal || 'טרם פורסם';
+  const originalArrTerminal = item.originalArrivalTerminal || 'טרם פורסם';
   const depTime = item.departureScheduled ? formatDate(item.departureScheduled) : 'טרם פורסם';
   const arrTime = item.arrivalScheduled ? formatDate(item.arrivalScheduled) : 'טרם פורסם';
   const depTerminal = item.departureTerminal || 'טרם פורסם';
   const arrTerminal = item.arrivalTerminal || 'טרם פורסם';
-  return `${description}\nLive Status: ${statusLabel(item.status)} | Gate: ${gate}\nDeparture: ${depTime} | T: ${depTerminal}\nArrival: ${arrTime} | T: ${arrTerminal}\nUpdated: ${updated}`;
+  return `${description}\nOriginal Departure: ${originalDepTime} | T: ${originalDepTerminal}\nOriginal Arrival: ${originalArrTime} | T: ${originalArrTerminal}\nLive Status: ${statusLabel(item.status)} | Gate: ${gate}\nDeparture: ${depTime} | T: ${depTerminal}\nArrival: ${arrTime} | T: ${arrTerminal}\nUpdated: ${updated}`;
 }
 
 function renderRouteFlightStatus(day){
@@ -1228,6 +1238,10 @@ function renderRouteFlightStatus(day){
     .map(item => {
       const gate = item.gate ? item.gate : 'טרם פורסם';
       const updated = item.updatedAt ? formatDate(item.updatedAt) : 'טרם עודכן';
+      const originalDepTime = item.originalDepartureTime || 'טרם פורסם';
+      const originalArrTime = item.originalArrivalTime || 'טרם פורסם';
+      const originalDepTerminal = item.originalDepartureTerminal || 'טרם פורסם';
+      const originalArrTerminal = item.originalArrivalTerminal || 'טרם פורסם';
       const depTime = item.departureScheduled ? formatDate(item.departureScheduled) : 'טרם פורסם';
       const arrTime = item.arrivalScheduled ? formatDate(item.arrivalScheduled) : 'טרם פורסם';
       const depTerminal = item.departureTerminal || 'טרם פורסם';
@@ -1236,6 +1250,8 @@ function renderRouteFlightStatus(day){
         <div class="flight-status-card">
           <div class="flight-status-title">${item.label} · ${item.flight}</div>
           <div class="flight-status-sub">Status: ${statusLabel(item.status)} | Gate: ${gate}</div>
+          <div class="flight-status-sub">Original Departure: ${escapeHtml(originalDepTime)} · Terminal: ${escapeHtml(originalDepTerminal)}</div>
+          <div class="flight-status-sub">Original Arrival: ${escapeHtml(originalArrTime)} · Terminal: ${escapeHtml(originalArrTerminal)}</div>
           <div class="flight-status-sub">Departure: ${depTime} · Terminal: ${escapeHtml(depTerminal)}</div>
           <div class="flight-status-sub">Arrival: ${arrTime} · Terminal: ${escapeHtml(arrTerminal)}</div>
           <div class="flight-updated">Updated: ${updated}</div>
