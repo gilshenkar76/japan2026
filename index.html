@@ -1419,12 +1419,28 @@ document.getElementById('magicLinkBtn').addEventListener('click', async () => {
 
 initAuth();
 
-// Register service worker for offline support
+// Disable stale PWA shell caching so refresh always uses the current app
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js?v=20260711', { updateViaCache: 'none' })
-      .then(reg => console.log('SW registered:', reg.scope))
-      .catch(err => console.warn('SW registration failed:', err));
+  window.addEventListener('load', async () => {
+    try {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      for (const registration of registrations) {
+        await registration.unregister();
+      }
+    } catch (error) {
+      console.warn('SW unregister failed:', error);
+    }
+  });
+}
+
+if ('caches' in window) {
+  window.addEventListener('load', async () => {
+    try {
+      const keys = await caches.keys();
+      await Promise.all(keys.map(key => caches.delete(key)));
+    } catch (error) {
+      console.warn('Cache cleanup failed:', error);
+    }
   });
 }
 </script>
