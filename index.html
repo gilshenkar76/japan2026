@@ -444,11 +444,32 @@
 
   <main id="transportation" class="screen">
     <div class="content">
-      <div class="section-title" style="font-size:24px">תחבורה</div>
+      <div class="section-title" style="font-size:24px">תחבורה - בחרו יום</div>
+      <div class="main-grid" id="transportationGrid" style="margin-bottom:20px"></div>
+    </div>
+  </main>
+
+  <main id="transportation-details" class="screen">
+    <div class="content">
+      <div class="day-head">
+        <div>
+          <button class="btn primary" type="button" onclick="backToTransportation()" style="padding:8px 14px;font-size:12px;margin-bottom:10px;font-weight:900;border-radius:12px">⬅️ חזור</button>
+          <div>
+            <div class="small" style="color:#e53935;font-weight:800">תחבורה ביום</div>
+            <div class="day-title" id="transportationDayTitle">ביום 14.11</div>
+          </div>
+        </div>
+      </div>
 
       <div class="upload-panel">
-        <div class="section-title" style="margin:0;font-size:18px">מחשבון מסלול מהיר</div>
-        <div class="upload-hint">בחרו נקודת יציאה ויעד, ותקבלו ניווט תחבורה ציבורית ב-Google Maps.</div>
+        <div class="section-title" style="margin:0;font-size:18px">מסלול היום</div>
+        <div class="map-card" style="height:140px;margin-top:10px">
+          <div class="route-line" id="transportationRoute" style="position:relative;height:100%;display:flex;align-items:center;justify-content:center">לא זמין</div>
+        </div>
+      </div>
+
+      <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">אפשרויות ניווט</div>
         <div style="display:grid;gap:10px;margin-top:10px">
           <select id="transportFrom" class="input">
             <option value="Tokyo Station">Tokyo Station</option>
@@ -476,32 +497,12 @@
       </div>
 
       <div class="upload-panel">
-        <div class="section-title" style="margin:0;font-size:18px">הנחיות תחבורה חשובות</div>
-        <div class="file-list" style="margin-top:10px">
-          <div class="file-card">העדיפו יציאה 10 דקות מוקדם לתחנות Shinkansen.</div>
-          <div class="file-card">הטעינו כרטיס IC (Suica/PASMO) לתנועות עירוניות מהירות.</div>
-          <div class="file-card">בדקו רציף ומספר קרון מראש כדי לחסוך החלפות בלחץ.</div>
-          <div class="file-card">שמרו צילום מסך של מסלול למקרה של קליטה חלשה.</div>
-        </div>
-      </div>
-
-      <div class="upload-panel">
         <div class="section-title" style="margin:0;font-size:18px">קישורים שימושיים</div>
         <div class="actions" style="flex-wrap:wrap">
           <a class="btn primary" target="_blank" href="https://maps.google.com">Google Maps</a>
           <a class="btn ghost" target="_blank" href="https://japantravel.navitime.com/en/area/jp/route/">Navitime</a>
           <a class="btn ghost" target="_blank" href="https://world.jorudan.co.jp/mln/en/">Jorudan</a>
           <a class="btn ghost" target="_blank" href="https://www.jreast.co.jp/e/">JR East</a>
-        </div>
-      </div>
-
-      <div class="upload-panel">
-        <div class="section-title" style="margin:0;font-size:18px">כרטיסים שכבר נקנו</div>
-        <div class="file-list" style="margin-top:10px">
-          <label class="file-card"><input type="checkbox" /> טיסה בינלאומית</label>
-          <label class="file-card"><input type="checkbox" /> Shinkansen Tokyo → Kyoto</label>
-          <label class="file-card"><input type="checkbox" /> Shinkansen Kyoto → Osaka</label>
-          <label class="file-card"><input type="checkbox" /> העברה לשדה תעופה חזור</label>
         </div>
       </div>
 
@@ -624,6 +625,30 @@ function renderMainPage(){
 function showDayPlanFromMain(day){
   render(day);
   showScreen('route', document.querySelector('.nav button[data-screen="route"]'));
+}
+
+function renderTransportationDays(){
+  const grid = document.getElementById('transportationGrid');
+  grid.innerHTML = Object.entries(citiesByDay).map(([day, info]) => `
+    <button class="day-card" type="button" onclick="showTransportationDetails('${day}')">
+      <div class="day-card-bg" style="background-image:url('${info.image}')"></div>
+      <div class="day-card-content">
+        <div class="day-card-city">${info.city}</div>
+        <div class="day-card-date">${day}.11</div>
+      </div>
+    </button>
+  `).join('');
+}
+
+function showTransportationDetails(day){
+  if (!data[day]) return;
+  document.getElementById('transportationDayTitle').textContent = `${data[day].title}`;
+  document.getElementById('transportationRoute').textContent = data[day].route;
+  showScreen('transportation-details', document.querySelector('.nav button[data-screen="transportation"]'));
+}
+
+function backToTransportation(){
+  showScreen('transportation', document.querySelector('.nav button[data-screen="transportation"]'));
 }
 
 function renderCountdownChip(){
@@ -1514,6 +1539,7 @@ function swapTransportPoints(){
 }
 renderMainPage();
 renderCountdownChip();
+renderTransportationDays();
 render('14');
 initNavigation();
 
