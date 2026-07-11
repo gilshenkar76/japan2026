@@ -158,21 +158,21 @@
 
   <main id="route" class="screen active">
     <div class="tabs">
-      <button class="tab active" type="button" data-day="14">14.11</button>
-      <button class="tab" type="button" data-day="15">15.11</button>
-      <button class="tab" type="button" data-day="16">16.11</button>
-      <button class="tab" type="button" data-day="17">17.11</button>
-      <button class="tab" type="button" data-day="18">18.11</button>
-      <button class="tab" type="button" data-day="19">19.11</button>
-      <button class="tab" type="button" data-day="20">20.11</button>
-      <button class="tab" type="button" data-day="21">21.11</button>
-      <button class="tab" type="button" data-day="22">22.11</button>
-      <button class="tab" type="button" data-day="23">23.11</button>
-      <button class="tab" type="button" data-day="24">24.11</button>
-      <button class="tab" type="button" data-day="25">25.11</button>
-      <button class="tab" type="button" data-day="26">26.11</button>
-      <button class="tab" type="button" data-day="27">27.11</button>
-      <button class="tab" type="button" data-day="28">28.11</button>
+      <button class="tab active" type="button" data-day="14" onclick="switchDay(this,'14')">14.11</button>
+      <button class="tab" type="button" data-day="15" onclick="switchDay(this,'15')">15.11</button>
+      <button class="tab" type="button" data-day="16" onclick="switchDay(this,'16')">16.11</button>
+      <button class="tab" type="button" data-day="17" onclick="switchDay(this,'17')">17.11</button>
+      <button class="tab" type="button" data-day="18" onclick="switchDay(this,'18')">18.11</button>
+      <button class="tab" type="button" data-day="19" onclick="switchDay(this,'19')">19.11</button>
+      <button class="tab" type="button" data-day="20" onclick="switchDay(this,'20')">20.11</button>
+      <button class="tab" type="button" data-day="21" onclick="switchDay(this,'21')">21.11</button>
+      <button class="tab" type="button" data-day="22" onclick="switchDay(this,'22')">22.11</button>
+      <button class="tab" type="button" data-day="23" onclick="switchDay(this,'23')">23.11</button>
+      <button class="tab" type="button" data-day="24" onclick="switchDay(this,'24')">24.11</button>
+      <button class="tab" type="button" data-day="25" onclick="switchDay(this,'25')">25.11</button>
+      <button class="tab" type="button" data-day="26" onclick="switchDay(this,'26')">26.11</button>
+      <button class="tab" type="button" data-day="27" onclick="switchDay(this,'27')">27.11</button>
+      <button class="tab" type="button" data-day="28" onclick="switchDay(this,'28')">28.11</button>
     </div>
     <div class="content">
       <div class="day-head">
@@ -1199,6 +1199,7 @@ async function initAuth(){
 }
 
 function render(day){
+  if (!data[day]) return;
   document.getElementById('dayTitle').innerText=data[day].title;
   document.getElementById('routeText').innerText=data[day].route;
   const tl=document.getElementById('timeline'); tl.innerHTML='';
@@ -1234,12 +1235,6 @@ function initNavigation(){
     button.addEventListener('click', event => {
       event.preventDefault();
       showScreen(button.dataset.screen, button);
-    });
-  });
-  document.querySelectorAll('.tabs .tab[data-day]').forEach(button => {
-    button.addEventListener('click', event => {
-      event.preventDefault();
-      switchDay(button, button.dataset.day);
     });
   });
 }
