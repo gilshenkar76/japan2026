@@ -158,21 +158,21 @@
 
   <main id="route" class="screen active">
     <div class="tabs">
-      <button class="tab active" onclick="switchDay(this,'14')">14.11</button>
-      <button class="tab" onclick="switchDay(this,'15')">15.11</button>
-      <button class="tab" onclick="switchDay(this,'16')">16.11</button>
-      <button class="tab" onclick="switchDay(this,'17')">17.11</button>
-      <button class="tab" onclick="switchDay(this,'18')">18.11</button>
-      <button class="tab" onclick="switchDay(this,'19')">19.11</button>
-      <button class="tab" onclick="switchDay(this,'20')">20.11</button>
-      <button class="tab" onclick="switchDay(this,'21')">21.11</button>
-      <button class="tab" onclick="switchDay(this,'22')">22.11</button>
-      <button class="tab" onclick="switchDay(this,'23')">23.11</button>
-      <button class="tab" onclick="switchDay(this,'24')">24.11</button>
-      <button class="tab" onclick="switchDay(this,'25')">25.11</button>
-      <button class="tab" onclick="switchDay(this,'26')">26.11</button>
-      <button class="tab" onclick="switchDay(this,'27')">27.11</button>
-      <button class="tab" onclick="switchDay(this,'28')">28.11</button>
+      <button class="tab active" type="button" data-day="14">14.11</button>
+      <button class="tab" type="button" data-day="15">15.11</button>
+      <button class="tab" type="button" data-day="16">16.11</button>
+      <button class="tab" type="button" data-day="17">17.11</button>
+      <button class="tab" type="button" data-day="18">18.11</button>
+      <button class="tab" type="button" data-day="19">19.11</button>
+      <button class="tab" type="button" data-day="20">20.11</button>
+      <button class="tab" type="button" data-day="21">21.11</button>
+      <button class="tab" type="button" data-day="22">22.11</button>
+      <button class="tab" type="button" data-day="23">23.11</button>
+      <button class="tab" type="button" data-day="24">24.11</button>
+      <button class="tab" type="button" data-day="25">25.11</button>
+      <button class="tab" type="button" data-day="26">26.11</button>
+      <button class="tab" type="button" data-day="27">27.11</button>
+      <button class="tab" type="button" data-day="28">28.11</button>
     </div>
     <div class="content">
       <div class="day-head">
@@ -445,11 +445,11 @@
   </main>
 
   <nav class="nav">
-    <button class="active" onclick="showScreen('route',this)"><span class="ico">🗺️</span>מסלול</button>
-    <button onclick="showScreen('group',this)"><span class="ico">👥</span>קבוצה</button>
-    <button onclick="showScreen('expenses',this)"><span class="ico">💴</span>הוצאות</button>
-    <button onclick="showScreen('docs',this)"><span class="ico">📄</span>מסמכים</button>
-    <button onclick="showScreen('transportation',this)"><span class="ico">🚆</span>תחבורה</button>
+    <button class="active" type="button" data-screen="route"><span class="ico">🗺️</span>מסלול</button>
+    <button type="button" data-screen="group"><span class="ico">👥</span>קבוצה</button>
+    <button type="button" data-screen="expenses"><span class="ico">💴</span>הוצאות</button>
+    <button type="button" data-screen="docs"><span class="ico">📄</span>מסמכים</button>
+    <button type="button" data-screen="transportation"><span class="ico">🚆</span>תחבורה</button>
   </nav>
 </div>
 
@@ -1281,6 +1281,21 @@ function render(day){
 function switchDay(el,day){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');render(day)}
 function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
 
+function initNavigation(){
+  document.querySelectorAll('.nav button[data-screen]').forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      showScreen(button.dataset.screen, button);
+    });
+  });
+  document.querySelectorAll('.tabs .tab[data-day]').forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      switchDay(button, button.dataset.day);
+    });
+  });
+}
+
 function openTransitRoute(){
   const from = document.getElementById('transportFrom')?.value;
   const to = document.getElementById('transportTo')?.value;
@@ -1301,6 +1316,7 @@ function swapTransportPoints(){
   toNode.value = temp;
 }
 render('14');
+initNavigation();
 
 document.getElementById('expenseDate').valueAsDate = new Date();
 document.getElementById('expenseReceipt').addEventListener('change', event => {
