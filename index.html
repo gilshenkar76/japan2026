@@ -227,7 +227,22 @@
       <div class="upload-panel">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
           <div class="section-title" style="margin:0;font-size:18px">ניהול הוצאות</div>
-          <button id="expenseAddToggleBtn" class="btn primary" type="button">הוספת הוצאה</button>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button id="expenseAddToggleBtn" class="btn primary" type="button">הוספת הוצאה</button>
+            <button class="btn ghost" onclick="exportExpensesToCSV()">📥 ייצוא CSV</button>
+            <button class="btn ghost" onclick="printExpenses()">🖨️ הדפסה</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+          <select id="expenseFilterFamily" class="input" style="flex:1;min-width:120px" onchange="filterAndRenderExpenses()">
+            <option value="">כל המשפחות</option>
+            <option value="שנקר">שנקר</option>
+            <option value="בסידסקי">בסידסקי</option>
+            <option value="חלנסקי">חלנסקי</option>
+          </select>
+          <input id="expenseFilterDateFrom" class="input" type="date" style="flex:1;min-width:120px" onchange="filterAndRenderExpenses()" />
+          <input id="expenseFilterDateTo" class="input" type="date" style="flex:1;min-width:120px" onchange="filterAndRenderExpenses()" />
+          <button class="btn ghost" onclick="resetExpenseFilters()">ניקוי סינון</button>
         </div>
         <form id="expenseForm" class="expense-grid hidden" style="margin-top:10px">
           <div class="expense-row">
@@ -283,13 +298,25 @@
           </table>
         </div>
         <div class="expense-total" id="expensesTotal">סה"כ: 0</div>
-        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-          <button class="btn primary" onclick="exportExpensesToCSV()">ייצוא ל־CSV</button>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+          <div style="background:#f0f4fa;border-radius:12px;padding:10px;text-align:center">
+            <div class="small" style="color:#667085;margin-bottom:4px">ממוצע יומי בשקלים</div>
+            <div style="font-size:18px;font-weight:900" id="expensesAvgDaily">0 ₪</div>
+          </div>
+          <div style="background:#ecfdf3;border-radius:12px;padding:10px;text-align:center">
+            <div class="small" style="color:#156b3b;margin-bottom:4px">מספר הוצאות</div>
+            <div style="font-size:18px;font-weight:900" id="expensesCount">0</div>
+          </div>
         </div>
       </div>
 
       <div class="upload-panel">
-        <div class="section-title" style="margin:0;font-size:18px">ההוצאות לפי משפחה</div>
+        <div class="section-title" style="margin:0;font-size:18px">הוצאות לפי סיבה</div>
+        <div class="file-list" id="reasonBreakdown" style="margin-top:10px"></div>
+      </div>
+
+      <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">הוצאות לפי משפחה</div>
         <div style="display:flex;justify-content:center;align-items:center;min-height:200px;margin-top:12px">
           <canvas id="familyPieChart" style="max-width:300px"></canvas>
         </div>
@@ -642,6 +669,13 @@ async function renderExpenses(){
     `;
   }).join('');
   totalNode.textContent = `סה"כ בשקלים: ${formatExpenseValue(totalIls)} ₪`;
+  
+  document.getElementById('expensesCount').textContent = rows.length;
+  const tripDays = Math.ceil((new Date('2026-11-28') - new Date('2026-11-14')) / (1000 * 60 * 60 * 24)) + 1;
+  const avgDaily = totalIls / tripDays;
+  document.getElementById('expensesAvgDaily').textContent = formatExpenseValue(avgDaily) + ' ₪';
+  
+  await renderReasonBreakdown();
   await renderFamilyPieChart();
 }
 
@@ -748,6 +782,192 @@ async function exportExpensesToCSV(){
   link.download = 'expenses_' + new Date().toISOString().slice(0,10) + '.csv';
   link.click();
   URL.revokeObjectURL(link.href);
+}
+
+let filteredExpensesData = [];
+
+async function filterAndRenderExpenses(){
+  if (!currentSession) return;
+  const client = initSupabase();
+  const { data, error } = await client
+    .from('expenses')
+    .select('id, expense_date, person_name, reason, amount, currency, receipt_path')
+    .order('expense_date', { ascending: false });
+  
+  if (error || !data) {
+    await renderExpenses();
+    return;
+  }
+  
+  const familyFilter = document.getElementById('expenseFilterFamily').value;
+  const dateFrom = document.getElementById('expenseFilterDateFrom').value;
+  const dateTo = document.getElementById('expenseFilterDateTo').value;
+  
+  filteredExpensesData = data.filter(row => {
+    if (familyFilter && row.person_name !== familyFilter) return false;
+    if (dateFrom && row.expense_date < dateFrom) return false;
+    if (dateTo && row.expense_date > dateTo) return false;
+    return true;
+  });
+  
+  renderFilteredExpenses();
+}
+
+function resetExpenseFilters(){
+  document.getElementById('expenseFilterFamily').value = '';
+  document.getElementById('expenseFilterDateFrom').value = '';
+  document.getElementById('expenseFilterDateTo').value = '';
+  filteredExpensesData = [];
+  renderExpenses();
+}
+
+async function renderFilteredExpenses(){
+  const tableBody = document.getElementById('expensesTableBody');
+  const totalNode = document.getElementById('expensesTotal');
+  const rows = filteredExpensesData;
+  
+  if (!rows.length) {
+    tableBody.innerHTML = '<tr><td colspan="7" class="file-empty">אין הוצאות מותאמות לסינון.</td></tr>';
+    totalNode.textContent = 'סה"כ בשקלים: 0 ₪';
+    document.getElementById('expensesCount').textContent = '0';
+    document.getElementById('expensesAvgDaily').textContent = '0 ₪';
+    await renderReasonBreakdown();
+    return;
+  }
+  
+  const canManage = isAdminUser();
+  let totalIls = 0;
+  tableBody.innerHTML = rows.map(row => {
+    const rowIls = toIls(row.amount, row.currency);
+    totalIls += rowIls;
+    return `
+      <tr>
+        <td>${row.expense_date || ''}</td>
+        <td>${row.person_name || ''}</td>
+        <td>${row.reason || ''}</td>
+        <td>${formatExpenseValue(row.amount)}</td>
+        <td>${currencyLabel(row.currency)}</td>
+        <td>${formatExpenseValue(rowIls)} ₪</td>
+        <td>
+          <div class="expense-actions">
+            ${row.receipt_path ? `<button class="btn ghost" onclick="openReceipt('${row.receipt_path}')">קבלה</button>` : ''}
+            ${canManage ? `<button class="btn ghost" onclick="startEditExpense(${row.id})">עריכה</button><button class="btn ghost" onclick="deleteExpense(${row.id})">מחיקה</button>` : ''}
+            ${!canManage && !row.receipt_path ? '<span class="small">לצפיה</span>' : ''}
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+  
+  totalNode.textContent = `סה"כ בשקלים: ${formatExpenseValue(totalIls)} ₪`;
+  document.getElementById('expensesCount').textContent = rows.length;
+  
+  const dateFrom = new Date(document.getElementById('expenseFilterDateFrom').value || rows[rows.length-1].expense_date);
+  const dateTo = new Date(document.getElementById('expenseFilterDateTo').value || rows[0].expense_date);
+  const daysDiff = Math.max(1, Math.ceil((dateTo - dateFrom) / (1000 * 60 * 60 * 24)) + 1);
+  const avgDaily = totalIls / daysDiff;
+  document.getElementById('expensesAvgDaily').textContent = formatExpenseValue(avgDaily) + ' ₪';
+  
+  await renderReasonBreakdown();
+  await renderFamilyPieChart();
+}
+
+async function renderReasonBreakdown(){
+  const container = document.getElementById('reasonBreakdown');
+  const rows = filteredExpensesData.length ? filteredExpensesData : (currentSession ? await getAllExpenses() : []);
+  
+  if (!rows.length) {
+    container.innerHTML = '<div class="file-empty">אין הוצאות להצגה.</div>';
+    return;
+  }
+  
+  const reasonTotals = {};
+  rows.forEach(row => {
+    const reason = row.reason || 'ללא סיבה';
+    const ils = toIls(row.amount, row.currency);
+    reasonTotals[reason] = (reasonTotals[reason] || 0) + ils;
+  });
+  
+  const sorted = Object.entries(reasonTotals)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
+  
+  container.innerHTML = sorted.map(([reason, total]) => `
+    <div class="file-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong>${reason}</strong>
+        <span style="font-weight:900;color:#e53935">${formatExpenseValue(total)} ₪</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function getAllExpenses(){
+  if (!currentSession) return [];
+  const client = initSupabase();
+  const { data } = await client.from('expenses').select('expense_date, person_name, reason, amount, currency, receipt_path').order('expense_date', { ascending: false });
+  return data || [];
+}
+
+async function printExpenses(){
+  if (!currentSession) {
+    alert('יש להתחבר קודם כדי להדפיס הוצאות.');
+    return;
+  }
+  
+  const rows = filteredExpensesData.length ? filteredExpensesData : await getAllExpenses();
+  if (!rows.length) {
+    alert('אין הוצאות להדפסה.');
+    return;
+  }
+  
+  let html = `
+    <html dir="rtl">
+    <head>
+      <title>דוח הוצאות</title>
+      <style>
+        body { font-family: Arial; margin: 20px; direction: rtl; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: right; }
+        th { background: #f0f4fa; font-weight: bold; }
+        .total { font-weight: bold; font-size: 18px; margin-top: 20px; }
+        .date { font-size: 12px; color: #666; margin-bottom: 10px; }
+      </style>
+    </head>
+    <body>
+      <h1>דוח הוצאות</h1>
+      <div class="date">מודפס: ${new Date().toLocaleString('he-IL')}</div>
+      <table>
+        <tr>
+          <th>תאריך</th>
+          <th>משפחה</th>
+          <th>סיבה</th>
+          <th>סכום</th>
+          <th>מטבע</th>
+          <th>בשקלים</th>
+        </tr>
+  `;
+  
+  let totalIls = 0;
+  rows.forEach(row => {
+    const ils = toIls(row.amount, row.currency);
+    totalIls += ils;
+    html += `<tr>
+      <td>${row.expense_date || ''}</td>
+      <td>${row.person_name || ''}</td>
+      <td>${row.reason || ''}</td>
+      <td>${formatExpenseValue(row.amount)}</td>
+      <td>${currencyLabel(row.currency)}</td>
+      <td>${formatExpenseValue(ils)} ₪</td>
+    </tr>`;
+  });
+  
+  html += `</table><div class="total">סה"כ בשקלים: ${formatExpenseValue(totalIls)} ₪</div></body></html>`;
+  
+  const win = window.open('', '', 'width=800,height=600');
+  win.document.write(html);
+  win.document.close();
+  win.print();
 }
 
 async function startEditExpense(id){
