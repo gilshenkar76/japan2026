@@ -134,6 +134,17 @@
     .album-stat{background:#fff;border:1px solid #ffd7b3;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:800;color:#9a3412}
     .quick-links{display:grid;gap:10px;margin-top:10px}
     .quick-link{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+    .flight-status-board{display:grid;gap:10px;margin-top:10px}
+    .flight-status-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+    .flight-status-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .flight-status-title{font-weight:900;font-size:13px}
+    .flight-status-sub{font-size:11px;color:var(--muted);margin-top:2px}
+    .flight-status-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .status-chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:800;cursor:pointer}
+    .status-chip.active.on-time{background:#ecfdf3;border-color:#86efac;color:#166534}
+    .status-chip.active.delayed{background:#fff7ed;border-color:#fdba74;color:#9a3412}
+    .gate-input{width:92px;border:1px solid var(--line);border-radius:10px;padding:6px 8px;font:inherit;font-size:12px;background:#fff}
+    .flight-updated{font-size:11px;color:var(--muted);margin-top:6px}
     .file-meta{font-size:12px;color:var(--muted);margin-top:4px}
     .file-empty{font-size:13px;color:var(--muted);padding:12px 4px}
     .expense-grid{display:grid;gap:10px}
@@ -431,6 +442,11 @@
     <div class="content">
       <div class="section-title" style="font-size:24px">מסמכים חשובים</div>
       <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">סטטוס טיסות חי</div>
+        <div class="upload-hint">כאן אפשר לעדכן ידנית On Time / Delayed ושער (Gate) מיד כשמתפרסם באפליקציית Emirates.</div>
+        <div id="flightStatusBoard" class="flight-status-board"></div>
+      </div>
+      <div class="upload-panel">
         <div class="section-title" style="margin:0;font-size:18px">קישורים מהירים</div>
         <div class="upload-hint">אפשר לעדכן בקלות את קישורי הטיסות והמלונות בבלוק ההגדרות בקוד.</div>
         <div class="quick-links" id="quickLinks"></div>
@@ -614,6 +630,13 @@ const quickLinksConfig = [
     ]
   }
 ];
+const flightStatusDefaults = [
+  { id: 'ek2168_fz1842', label: '12.11 TLV → DXB', flight: 'EK2168 / FZ1842', status: 'unknown', gate: '' },
+  { id: 'ek312', label: '13.11 DXB → HND', flight: 'EK312', status: 'unknown', gate: '' },
+  { id: 'ek319', label: '28.11 NRT → DXB', flight: 'EK319', status: 'unknown', gate: '' },
+  { id: 'ek2268_fz1635', label: '29.11 DXB → TLV', flight: 'EK2268 / FZ1635', status: 'unknown', gate: '' }
+];
+const FLIGHT_STATUS_STORAGE_KEY = 'japan2026.flightStatus';
 let supabaseClient = null;
 let currentSession = null;
 let expensesEditingId = null;
@@ -897,6 +920,76 @@ function renderQuickLinks(){
       <button class="btn primary" type="button" onclick="openQuickLink(${index})">פתיחה</button>
     </div>
   `).join('');
+}
+
+function loadFlightStatuses(){
+  try {
+    const raw = localStorage.getItem(FLIGHT_STATUS_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : {};
+    return flightStatusDefaults.map(item => ({
+      ...item,
+      status: parsed[item.id]?.status || item.status,
+      gate: parsed[item.id]?.gate || item.gate,
+      updatedAt: parsed[item.id]?.updatedAt || ''
+    }));
+  } catch (_error) {
+    return flightStatusDefaults.map(item => ({ ...item }));
+  }
+}
+
+function saveFlightStatuses(statuses){
+  const map = statuses.reduce((acc, item) => {
+    acc[item.id] = { status: item.status, gate: item.gate, updatedAt: item.updatedAt || '' };
+    return acc;
+  }, {});
+  localStorage.setItem(FLIGHT_STATUS_STORAGE_KEY, JSON.stringify(map));
+}
+
+function statusLabel(status){
+  if (status === 'on-time') return 'On Time';
+  if (status === 'delayed') return 'Delayed';
+  return 'טרם עודכן';
+}
+
+function renderFlightStatusBoard(){
+  const holder = document.getElementById('flightStatusBoard');
+  if (!holder) return;
+  const statuses = loadFlightStatuses();
+  holder.innerHTML = statuses.map(item => `
+    <div class="flight-status-card">
+      <div class="flight-status-head">
+        <div>
+          <div class="flight-status-title">${item.label} · ${item.flight}</div>
+          <div class="flight-status-sub">Status: ${statusLabel(item.status)}</div>
+        </div>
+        <input class="gate-input" placeholder="Gate" value="${item.gate || ''}" oninput="setFlightGate('${item.id}', this.value)" />
+      </div>
+      <div class="flight-status-actions">
+        <button class="status-chip ${item.status === 'on-time' ? 'active on-time' : ''}" type="button" onclick="setFlightStatus('${item.id}','on-time')">On Time</button>
+        <button class="status-chip ${item.status === 'delayed' ? 'active delayed' : ''}" type="button" onclick="setFlightStatus('${item.id}','delayed')">Delayed</button>
+      </div>
+      <div class="flight-updated">עודכן לאחרונה: ${item.updatedAt ? formatDate(item.updatedAt) : 'טרם עודכן'}</div>
+    </div>
+  `).join('');
+}
+
+function setFlightStatus(id, status){
+  const statuses = loadFlightStatuses();
+  const target = statuses.find(item => item.id === id);
+  if (!target) return;
+  target.status = status;
+  target.updatedAt = new Date().toISOString();
+  saveFlightStatuses(statuses);
+  renderFlightStatusBoard();
+}
+
+function setFlightGate(id, gate){
+  const statuses = loadFlightStatuses();
+  const target = statuses.find(item => item.id === id);
+  if (!target) return;
+  target.gate = gate.trim();
+  target.updatedAt = new Date().toISOString();
+  saveFlightStatuses(statuses);
 }
 
 function isSupabaseConfigured(){
@@ -1721,6 +1814,7 @@ renderMainPage();
 renderCountdownChip();
 renderTransportationDays();
 renderQuickLinks();
+renderFlightStatusBoard();
 render('14');
 initNavigation();
 
