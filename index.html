@@ -262,6 +262,8 @@
         <div class="route-line" id="routeText">שינג'וקו → Hakone-Yumoto → המלון</div>
       </div>
 
+      <div id="routeFlightStatusPanel" class="upload-panel hidden"></div>
+
       <div class="route-notes">
         <div class="route-notes-actions">
           <button id="routeEditBtn" class="btn ghost" type="button">עריכה</button>
@@ -1172,6 +1174,42 @@ function appendLiveFlightInfo(day, description){
   return `${description}\nLive Status: ${statusLabel(item.status)} | Gate: ${gate}\nUpdated: ${updated}`;
 }
 
+function renderRouteFlightStatus(day){
+  const panel = document.getElementById('routeFlightStatusPanel');
+  if (!panel) return;
+  const relevantByDay = {
+    '12-13': ['ek2168_fz1842', 'ek312'],
+    '28': ['ek319', 'ek2268_fz1635']
+  };
+  const ids = relevantByDay[day] || [];
+  if (!ids.length) {
+    panel.classList.add('hidden');
+    panel.innerHTML = '';
+    return;
+  }
+  const statuses = loadFlightStatuses();
+  const cards = ids
+    .map(id => statuses.find(item => item.id === id))
+    .filter(Boolean)
+    .map(item => {
+      const gate = item.gate ? item.gate : 'טרם פורסם';
+      const updated = item.updatedAt ? formatDate(item.updatedAt) : 'טרם עודכן';
+      return `
+        <div class="flight-status-card">
+          <div class="flight-status-title">${item.label} · ${item.flight}</div>
+          <div class="flight-status-sub">Status: ${statusLabel(item.status)} | Gate: ${gate}</div>
+          <div class="flight-updated">Updated: ${updated}</div>
+        </div>
+      `;
+    })
+    .join('');
+  panel.innerHTML = `
+    <div class="section-title" style="margin:0 0 8px;font-size:18px">סטטוס טיסות ליום זה</div>
+    <div class="flight-status-board">${cards}</div>
+  `;
+  panel.classList.remove('hidden');
+}
+
 function isSupabaseConfigured(){
   return Boolean(supabaseUrl && supabaseAnonKey);
 }
@@ -1897,6 +1935,7 @@ function render(day){
   if (overviewNode) overviewNode.value = routeDayNotes[day].overview;
   if (tipsNode) tipsNode.value = routeDayNotes[day].tips;
   setRouteNotesEditMode(false);
+  renderRouteFlightStatus(day);
   const tl=document.getElementById('timeline'); tl.innerHTML='';
   data[day].events.forEach(e=>{
     const eventDescription = appendLiveFlightInfo(day, e[2]);
