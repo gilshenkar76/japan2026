@@ -1,7 +1,7 @@
 // Japan 2026 PWA – Service Worker
 // Caches the app shell so it works offline after the first visit
 
-const CACHE_NAME = 'japan2026-v1';
+const CACHE_NAME = 'japan2026-v2';
 const ASSETS = [
   './index.html',
   './manifest.json'
@@ -27,10 +27,25 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// Fetch: serve from cache first, fall back to network
+// Fetch: network-first for navigations so refresh gets the latest app shell
 self.addEventListener('fetch', event => {
   // Skip cross-origin requests (images from Unsplash, etc.)
   if (!event.request.url.startsWith(self.location.origin)) return;
+
+  const isNavigation = event.request.mode === 'navigate' || event.request.destination === 'document';
+
+  if (isNavigation) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put('./index.html', clone));
+          return response;
+        })
+        .catch(() => caches.match('./index.html'))
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request).then(cached => {
