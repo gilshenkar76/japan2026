@@ -32,7 +32,7 @@
     .logo{font-weight:800;font-size:20px}.small{font-size:12px;opacity:.8}
     .trip-title{margin-top:22px;font-size:29px;font-weight:900;line-height:1.1}
     .trip-sub{margin-top:7px;font-size:14px;opacity:.85}
-    .people{display:flex;align-items:center;margin-top:18px;gap:8px}
+    .people{display:none}
     .avatars{display:flex;direction:ltr}
     .avatar{width:34px;height:34px;border-radius:50%;border:2px solid #fff;margin-left:-8px;
       display:grid;place-items:center;font-size:13px;font-weight:700;background:#fff;color:#111827}
@@ -109,7 +109,17 @@
     .expense-total{margin-top:10px;font-weight:800;color:#1f2937}
     .expense-actions{display:flex;gap:6px;justify-content:flex-end}
     .file-picker-inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-    .auth-card{margin:16px 14px 0;background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+    .auth-card{display:none}
+    .header-login-btn{background:#fff;color:#111827;border:0;border-radius:12px;padding:8px 14px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+    .auth-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);display:none;z-index:10000;place-items:center;padding:20px}
+    .auth-modal.active{display:grid}
+    .auth-modal-content{background:#fff;border-radius:24px;padding:20px;max-width:380px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,.2)}
+    .auth-modal-close{position:absolute;top:14px;right:14px;background:transparent;border:0;font-size:24px;cursor:pointer;color:#667085}
+    .auth-modal-title{font-size:20px;font-weight:900;margin:0 0 10px;color:#111827}
+    .auth-modal .auth-status{margin-top:12px;font-size:13px;color:#6b7280}
+    .auth-modal .input{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:10px;font:inherit}
+    .auth-modal .auth-form{display:grid;gap:10px;margin-top:12px}
+    .auth-modal .btn{width:100%;border-radius:12px;padding:10px}
     .auth-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     .input{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;background:#fff;color:var(--ink)}
     .auth-status{font-size:13px;color:var(--muted);margin-top:8px}
@@ -132,7 +142,10 @@
   <header class="hero">
     <div class="top">
       <div class="logo">🇯🇵 Japan 2026</div>
-      <div class="small">מסלול משותף</div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <div class="small">מסלול משותף</div>
+        <button class="header-login-btn" id="headerLoginBtn" type="button">כניסה</button>
+      </div>
     </div>
     <div class="trip-title">הטיול שלנו ליפן</div>
     <div class="trip-sub">14–28 בנובמבר 2026 · 6 מטיילים</div>
@@ -144,6 +157,27 @@
       <div class="small">כל הקבוצה מחוברת</div>
     </div>
   </header>
+
+  <div class="auth-modal" id="authModal">
+    <div class="auth-modal-content">
+      <button class="auth-modal-close" id="authModalClose" type="button">✕</button>
+      <div class="auth-modal-title">התחברות</div>
+      <div class="auth-status" id="authSummary">מתחבר למערכת הקבצים המשותפת...</div>
+      <div id="setupWarning" class="warning hidden">
+        כדי להפעיל העלאות משותפות צריך להכניס כאן את פרטי ה-Supabase החינמיים: `supabaseUrl` ו-`supabaseAnonKey`.
+      </div>
+      <div id="authSuccess" class="success hidden"></div>
+      <form id="loginForm" class="auth-form hidden">
+        <input id="emailInput" class="input" type="email" placeholder="כתובת אימייל" autocomplete="email" />
+        <input id="passwordInput" class="input" type="password" placeholder="סיסמה (אופציונלי – רק אם הוגדרה)" autocomplete="current-password" />
+        <button class="btn primary" type="submit">כניסה עם סיסמה</button>
+        <button class="btn ghost" type="button" id="magicLinkBtn">שליחת קישור למייל</button>
+      </form>
+      <div class="auth-form hidden" id="sessionControls">
+        <button class="btn ghost" type="button" onclick="signOutUser()">התנתקות</button>
+      </div>
+    </div>
+  </div>
 
   <section class="auth-card" id="authCard">
     <div class="section-title" style="margin:0;font-size:21px">גישה לחברי הקבוצה</div>
@@ -1430,6 +1464,20 @@ document.getElementById('loginForm').addEventListener('submit', async event => {
       return;
     }
     setMessage('authSuccess', 'נשלח קישור כניסה למייל. פתחו אותו באותו מכשיר כדי להיכנס.', true);
+  }
+});
+
+document.getElementById('headerLoginBtn').addEventListener('click', () => {
+  document.getElementById('authModal').classList.add('active');
+});
+
+document.getElementById('authModalClose').addEventListener('click', () => {
+  document.getElementById('authModal').classList.remove('active');
+});
+
+document.getElementById('authModal').addEventListener('click', event => {
+  if (event.target === document.getElementById('authModal')) {
+    document.getElementById('authModal').classList.remove('active');
   }
 });
 
