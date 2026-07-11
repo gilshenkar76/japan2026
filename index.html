@@ -72,7 +72,7 @@
     .member{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line)}
     .member:last-child{border-bottom:0}.status{font-size:12px;color:var(--ok);font-weight:800}
     .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);
-      background:rgba(255,255,255,.97);backdrop-filter:blur(12px);display:grid;grid-template-columns:repeat(4,1fr);
+      background:rgba(255,255,255,.97);backdrop-filter:blur(12px);display:grid;grid-template-columns:repeat(5,1fr);
       padding:10px 8px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--line);z-index:30}
     .nav button{border:0;background:transparent;color:#667085;font-size:11px;font-weight:800}
     .nav .active{color:var(--primary)} .ico{display:block;font-size:21px;margin-bottom:4px}
@@ -356,11 +356,89 @@
     </div>
   </main>
 
+  <main id="transportation" class="screen">
+    <div class="content">
+      <div class="section-title" style="font-size:24px">תחבורה</div>
+
+      <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">מחשבון מסלול מהיר</div>
+        <div class="upload-hint">בחרו נקודת יציאה ויעד, ותקבלו ניווט תחבורה ציבורית ב-Google Maps.</div>
+        <div style="display:grid;gap:10px;margin-top:10px">
+          <select id="transportFrom" class="input">
+            <option value="Tokyo Station">Tokyo Station</option>
+            <option value="Shinjuku Station">Shinjuku Station</option>
+            <option value="Shibuya Station">Shibuya Station</option>
+            <option value="Kyoto Station">Kyoto Station</option>
+            <option value="Osaka Station">Osaka Station</option>
+            <option value="Narita Airport">Narita Airport</option>
+            <option value="Haneda Airport">Haneda Airport</option>
+          </select>
+          <select id="transportTo" class="input">
+            <option value="Kyoto Station">Kyoto Station</option>
+            <option value="Tokyo Station">Tokyo Station</option>
+            <option value="Shinjuku Station">Shinjuku Station</option>
+            <option value="Shibuya Station">Shibuya Station</option>
+            <option value="Osaka Station">Osaka Station</option>
+            <option value="Narita Airport">Narita Airport</option>
+            <option value="Haneda Airport">Haneda Airport</option>
+          </select>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn primary" type="button" onclick="openTransitRoute()">🚆 חיפוש מסלול</button>
+            <button class="btn ghost" type="button" onclick="swapTransportPoints()">החלפת כיוון</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">הנחיות תחבורה חשובות</div>
+        <div class="file-list" style="margin-top:10px">
+          <div class="file-card">העדיפו יציאה 10 דקות מוקדם לתחנות Shinkansen.</div>
+          <div class="file-card">הטעינו כרטיס IC (Suica/PASMO) לתנועות עירוניות מהירות.</div>
+          <div class="file-card">בדקו רציף ומספר קרון מראש כדי לחסוך החלפות בלחץ.</div>
+          <div class="file-card">שמרו צילום מסך של מסלול למקרה של קליטה חלשה.</div>
+        </div>
+      </div>
+
+      <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">קישורים שימושיים</div>
+        <div class="actions" style="flex-wrap:wrap">
+          <a class="btn primary" target="_blank" href="https://maps.google.com">Google Maps</a>
+          <a class="btn ghost" target="_blank" href="https://japantravel.navitime.com/en/area/jp/route/">Navitime</a>
+          <a class="btn ghost" target="_blank" href="https://world.jorudan.co.jp/mln/en/">Jorudan</a>
+          <a class="btn ghost" target="_blank" href="https://www.jreast.co.jp/e/">JR East</a>
+        </div>
+      </div>
+
+      <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">כרטיסים שכבר נקנו</div>
+        <div class="file-list" style="margin-top:10px">
+          <label class="file-card"><input type="checkbox" /> טיסה בינלאומית</label>
+          <label class="file-card"><input type="checkbox" /> Shinkansen Tokyo → Kyoto</label>
+          <label class="file-card"><input type="checkbox" /> Shinkansen Kyoto → Osaka</label>
+          <label class="file-card"><input type="checkbox" /> העברה לשדה תעופה חזור</label>
+        </div>
+      </div>
+
+      <div class="upload-panel">
+        <div class="upload-row">
+          <div>
+            <div class="section-title" style="margin:0;font-size:18px">קבצי תחבורה</div>
+            <div class="upload-hint">כרטיסים, אישורי רכבת, מסלולים, וצילומי מפות לשיתוף הקבוצה.</div>
+          </div>
+          <button class="btn primary" data-upload-button onclick="pickFiles('transportation')">הוספת קובץ</button>
+          <input id="file-input-transportation" type="file" hidden onchange="handleFileUpload('transportation', event)">
+        </div>
+        <div class="file-list" id="file-list-transportation"></div>
+      </div>
+    </div>
+  </main>
+
   <nav class="nav">
     <button class="active" onclick="showScreen('route',this)"><span class="ico">🗺️</span>מסלול</button>
     <button onclick="showScreen('group',this)"><span class="ico">👥</span>קבוצה</button>
     <button onclick="showScreen('expenses',this)"><span class="ico">💴</span>הוצאות</button>
     <button onclick="showScreen('docs',this)"><span class="ico">📄</span>מסמכים</button>
+    <button onclick="showScreen('transportation',this)"><span class="ico">🚆</span>תחבורה</button>
   </nav>
 </div>
 
@@ -372,13 +450,15 @@ const sectionTitles = {
   route: 'מסלול',
   group: 'קבוצה',
   expenses: 'הוצאות',
-  docs: 'מסמכים'
+  docs: 'מסמכים',
+  transportation: 'תחבורה'
 };
 const sectionFolders = {
   route: 'maps',
   group: 'group',
   expenses: 'expenses',
-  docs: 'documents'
+  docs: 'documents',
+  transportation: 'transportation'
 };
 const expenseReceiptsFolder = 'expenses/receipts';
 const ADMIN_EMAILS = ['gil.shenkar76@gmail.com', 'gil.shenkar@intel.com'];
@@ -508,7 +588,7 @@ async function openFile(section, objectName){
 async function renderUploads(){
   const client = initSupabase();
   const loggedIn = Boolean(currentSession);
-  ['route', 'group', 'expenses', 'docs'].forEach(section => {
+  ['route', 'group', 'expenses', 'docs', 'transportation'].forEach(section => {
     const holder = document.getElementById(`file-list-${section}`);
     if (!holder) return;
     if (!isSupabaseConfigured()) {
@@ -524,7 +604,7 @@ async function renderUploads(){
 
   if (!isSupabaseConfigured() || !loggedIn) return;
 
-  for (const section of ['route', 'group', 'expenses', 'docs']) {
+  for (const section of ['route', 'group', 'expenses', 'docs', 'transportation']) {
     const holder = document.getElementById(`file-list-${section}`);
     const { data, error } = await client.storage.from(storageBucket).list(sectionFolders[section], {
       limit: 100,
@@ -1086,6 +1166,26 @@ function render(day){
 }
 function switchDay(el,day){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');render(day)}
 function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+
+function openTransitRoute(){
+  const from = document.getElementById('transportFrom')?.value;
+  const to = document.getElementById('transportTo')?.value;
+  if (!from || !to) {
+    alert('בחרו נקודת יציאה ויעד.');
+    return;
+  }
+  const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(from)}&destination=${encodeURIComponent(to)}&travelmode=transit`;
+  window.open(url, '_blank', 'noopener');
+}
+
+function swapTransportPoints(){
+  const fromNode = document.getElementById('transportFrom');
+  const toNode = document.getElementById('transportTo');
+  if (!fromNode || !toNode) return;
+  const temp = fromNode.value;
+  fromNode.value = toNode.value;
+  toNode.value = temp;
+}
 render('14');
 
 document.getElementById('expenseDate').valueAsDate = new Date();
