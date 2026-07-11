@@ -308,6 +308,18 @@
           <button class="btn ghost" onclick="copyHotelDetails()">העתקת פרטי מלון</button>
         </div>
       </div>
+
+      <div class="upload-panel" id="route-upload-panel">
+        <div class="upload-row">
+          <div>
+            <div class="section-title" style="margin:0;font-size:18px">קבצי מסלול</div>
+            <div class="upload-hint">אפשר להוסיף קבצי PDF, תמונות או סיכומי יום לכל חברי הקבוצה.</div>
+          </div>
+          <button class="btn primary" data-upload-button onclick="pickFiles('route')">הוספת קובץ</button>
+          <input id="file-input-route" type="file" hidden onchange="handleFileUpload('route', event)">
+        </div>
+        <div class="file-list" id="file-list-route"></div>
+      </div>
     </div>
   </main>
 
@@ -2009,21 +2021,6 @@ function render(day){
       <div class="actions"><a class="btn primary" target="_blank" href="${link}">📍 נווט עכשיו</a>
       <button class="btn ghost" onclick="alert('סומן כבוצע ✓')">✓ סיימנו</button></div></div></div>`;
   });
-  const routeUploads = document.getElementById('route-upload-panel');
-  if (routeUploads) routeUploads.remove();
-  tl.insertAdjacentHTML('beforebegin', `
-    <div class="upload-panel" id="route-upload-panel">
-      <div class="upload-row">
-        <div>
-          <div class="section-title" style="margin:0;font-size:18px">קבצי מסלול</div>
-          <div class="upload-hint">אפשר להוסיף קבצי PDF, תמונות או סיכומי יום לכל חברי הקבוצה.</div>
-        </div>
-        <button class="btn primary" data-upload-button onclick="pickFiles('route')">הוספת קובץ</button>
-        <input id="file-input-route" type="file" hidden onchange="handleFileUpload('route', event)">
-      </div>
-      <div class="file-list" id="file-list-route"></div>
-    </div>
-  `);
   renderUploads();
 }
 
