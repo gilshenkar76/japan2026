@@ -132,6 +132,8 @@
     .album-hero{background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa;border-radius:20px;padding:14px;box-shadow:var(--shadow)}
     .album-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
     .album-stat{background:#fff;border:1px solid #ffd7b3;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:800;color:#9a3412}
+    .quick-links{display:grid;gap:10px;margin-top:10px}
+    .quick-link{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:10px 12px}
     .file-meta{font-size:12px;color:var(--muted);margin-top:4px}
     .file-empty{font-size:13px;color:var(--muted);padding:12px 4px}
     .expense-grid{display:grid;gap:10px}
@@ -278,6 +280,7 @@
         </div>
         <div class="actions">
           <a class="btn primary" id="hotelNavLink" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Aura+Tachibana+Hakone">📍 ניווט למלון</a>
+          <a class="btn ghost" id="hotelBookingLink" target="_blank" href="#">Booking</a>
           <button class="btn ghost" onclick="copyHotelDetails()">העתקת פרטי מלון</button>
         </div>
       </div>
@@ -427,6 +430,11 @@
   <main id="docs" class="screen">
     <div class="content">
       <div class="section-title" style="font-size:24px">מסמכים חשובים</div>
+      <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">קישורים מהירים</div>
+        <div class="upload-hint">אפשר לעדכן בקלות את קישורי הטיסות והמלונות בבלוק ההגדרות בקוד.</div>
+        <div class="quick-links" id="quickLinks"></div>
+      </div>
       <div class="event"><h3>✈️ כרטיסי טיסה</h3><p>תל אביב → טוקיו</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
       <div class="event" style="margin-top:10px"><h3>🏨 הזמנות מלונות</h3><p>טוקיו, האקונה, נגויה, קיוטו ואוסקה</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
       <div class="event" style="margin-top:10px"><h3>🚄 כרטיסי רכבות</h3><p>Shinkansen ומעברים בין הערים</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
@@ -586,6 +594,18 @@ const FX_TO_ILS = {
   DOLLAR: 3.6,
   SHEKEL: 1
 };
+const quickLinksConfig = [
+  {
+    title: '✈️ Emirates - ניהול הזמנה',
+    subtitle: 'כניסה להזמנה, כרטיסים ושינויים בטיסה',
+    url: 'https://www.emirates.com/'
+  },
+  {
+    title: '🏨 Booking.com - ההזמנות שלכם',
+    subtitle: 'גישה מהירה להזמנות מלון ואישורים',
+    url: 'https://www.booking.com/'
+  }
+];
 let supabaseClient = null;
 let currentSession = null;
 let expensesEditingId = null;
@@ -775,15 +795,31 @@ const hotelsByDay = {
     name: 'Hotel Gracery Shinjuku',
     meta: "טוקיו · שינג'וקו",
     mapQuery: 'Hotel Gracery Shinjuku Tokyo',
+    bookingUrl: 'https://www.booking.com/',
     extra: 'Confirmation number: 6297195681 | PIN code: 6226'
   },
   '14': {
     name: 'Aura Tachibana',
     meta: 'Hakone Yumoto · ספא ואונסן',
     mapQuery: 'Aura Tachibana Hakone',
+    bookingUrl: 'https://www.booking.com/',
     extra: ''
   }
 };
+
+function renderQuickLinks(){
+  const holder = document.getElementById('quickLinks');
+  if (!holder) return;
+  holder.innerHTML = quickLinksConfig.map(link => `
+    <div class="quick-link">
+      <div>
+        <div style="font-weight:900">${link.title}</div>
+        <div class="small" style="color:#64748b;opacity:1">${link.subtitle}</div>
+      </div>
+      <a class="btn primary" target="_blank" href="${link.url}">פתיחה</a>
+    </div>
+  `).join('');
+}
 
 function isSupabaseConfigured(){
   return Boolean(supabaseUrl && supabaseAnonKey);
@@ -1487,15 +1523,20 @@ function render(day){
   document.getElementById('routeText').innerText=data[day].route;
   const overviewNode = document.getElementById('routeOverview');
   const tipsNode = document.getElementById('routeTips');
-  const hotel = hotelsByDay[day] || { name: 'מלון טרם עודכן', meta: 'עדכנו כאן את פרטי הלינה ליום זה', mapQuery: 'Tokyo hotels', extra: '' };
+  const hotel = hotelsByDay[day] || { name: 'מלון טרם עודכן', meta: 'עדכנו כאן את פרטי הלינה ליום זה', mapQuery: 'Tokyo hotels', bookingUrl: '', extra: '' };
   const hotelNameNode = document.getElementById('hotelName');
   const hotelMetaNode = document.getElementById('hotelMeta');
   const hotelExtraNode = document.getElementById('hotelExtra');
   const hotelNavNode = document.getElementById('hotelNavLink');
+  const hotelBookingNode = document.getElementById('hotelBookingLink');
   if (hotelNameNode) hotelNameNode.textContent = hotel.name;
   if (hotelMetaNode) hotelMetaNode.textContent = hotel.meta;
   if (hotelExtraNode) hotelExtraNode.textContent = hotel.extra || '';
   if (hotelNavNode) hotelNavNode.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel.mapQuery)}`;
+  if (hotelBookingNode) {
+    hotelBookingNode.classList.toggle('hidden', !hotel.bookingUrl);
+    if (hotel.bookingUrl) hotelBookingNode.href = hotel.bookingUrl;
+  }
   if (overviewNode) overviewNode.value = routeDayNotes[day].overview;
   if (tipsNode) tipsNode.value = routeDayNotes[day].tips;
   setRouteNotesEditMode(false);
@@ -1595,6 +1636,7 @@ function swapTransportPoints(){
 renderMainPage();
 renderCountdownChip();
 renderTransportationDays();
+renderQuickLinks();
 render('14');
 initNavigation();
 
