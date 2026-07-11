@@ -87,6 +87,18 @@
     .nav button{border:0;background:transparent;color:#667085;font-size:11px;font-weight:800;pointer-events:auto}
     .nav .active{color:var(--primary)} .ico{display:block;font-size:21px;margin-bottom:4px}
     .screen{display:none}.screen.active{display:block}
+    #main{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
+    #route{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
+    #group{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
+    #expenses{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
+    #docs{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
+    #transportation{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
+    #main{overflow-y:auto;padding-bottom:180px}
+    #route{overflow-y:auto;padding-bottom:180px}
+    #group{overflow-y:auto;padding-bottom:180px}
+    #expenses{overflow-y:auto;padding-bottom:180px}
+    #docs{overflow-y:auto;padding-bottom:180px}
+    #transportation{overflow-y:auto;padding-bottom:180px}
     .expense{display:flex;justify-content:space-between;background:#fff;padding:14px;border-radius:18px;margin-bottom:9px;
       border:1px solid var(--line)} .sum{font-weight:900}
     .poll-option{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;margin-bottom:9px}
@@ -1553,6 +1565,7 @@ document.getElementById('magicLinkBtn').addEventListener('click', async () => {
 
 initAuth();
 renderMainPage();
+console.log('Main page initialized with', Object.keys(citiesByDay).length, 'days');
 
 // Disable stale PWA shell caching so refresh always uses the current app
 if ('serviceWorker' in navigator) {
