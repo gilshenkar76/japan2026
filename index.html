@@ -68,7 +68,7 @@
       border:1px solid var(--line)}
     .event-row{display:flex;gap:12px;align-items:center}
     .thumb{width:64px;height:64px;border-radius:16px;object-fit:cover;background:#e8edf5}
-    .event h3{margin:0 0 5px;font-size:16px}.event p{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
+    .event h3{margin:0 0 5px;font-size:16px}.event p{margin:0;color:var(--muted);font-size:12px;line-height:1.45;white-space:pre-line}
     .actions{display:flex;gap:7px;margin-top:11px}
     .btn{border:0;border-radius:12px;padding:9px 11px;font-weight:800;font-size:12px;text-decoration:none;
       display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
@@ -715,10 +715,10 @@ function renderCountdownChip(){
 }
 
 const data = {
-  '12-13': { title:"טיסה ליפן", route:"TLV 22:20 (T3) → DXB 03:25+1 (T3) · Connection 4:55h · DXB 08:20 → HND 22:30 (T3)", events:[
-    ["22:20","TLV → DXB (EK2168 / FZ1842)","תל אביב T3 בינלאומי → דובאי T3 · משך טיסה 3:05 · Economy Saver · Confirmed · Operated by flydubai · Boeing 737 MAX 8","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
-    ["03:25 +1","Connection in DXB","קונקשן בדובאי (DXB) · משך קונקשן 4:55 · מעבר בין שערים וטרמינל 3","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Dubai International Airport"],
-    ["08:20","DXB → HND (EK312)","דובאי T3 → טוקיו האנדה T3 · משך טיסה 9:10 · Economy Saver · Confirmed · Boeing 777-300ER","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Haneda Airport"],
+  '12-13': { title:"טיסה ליפן", route:"TLV 22:20 (T3) → DXB 03:25+1 (T3) [EK2168/FZ1842] · Connection 4:55h · DXB 08:20 → HND 22:30 (T3) [EK312]", events:[
+    ["22:20","TLV → DXB","Flight: EK2168 / FZ1842\nתל אביב T3 בינלאומי → דובאי T3\nמשך טיסה: 3:05\nClass/Fare: Economy Saver\nStatus: Confirmed\nOperated by flydubai\nAircraft: Boeing 737 MAX 8","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
+    ["03:25 +1","Connection in DXB","Connection: Dubai (DXB)\nמשך קונקשן: 4:55\nמעבר בין שערים וטרמינל 3","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Dubai International Airport"],
+    ["08:20","DXB → HND","Flight: EK312\nדובאי T3 → טוקיו האנדה T3\nמשך טיסה: 9:10\nClass/Fare: Economy Saver\nStatus: Confirmed\nAircraft: Boeing 777-300ER","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Haneda Airport"],
     ["22:30","הגעה לטוקיו","נחיתה בהאנדה והתארגנות ללילה הראשון בעיר","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Haneda Airport"]
   ]},
   '14': { title:"טוקיו → האקונה", route:"שינג'וקו → Hakone-Yumoto → המלון", events:[
@@ -792,10 +792,10 @@ const data = {
     ["12:00","Akihabara","רובע האנימה והאלקטרוניקה","https://images.unsplash.com/photo-1542931287-023b922fa89b?auto=format&fit=crop&w=300&q=80","Akihabara"],
     ["16:30","Tokyo Skytree","תצפית פנורמית בשעת שקיעה","https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=300&q=80","Tokyo Skytree"]
   ]},
-  '28': { title:"טיסה חזרה הביתה", route:"NRT 22:20 (T2) → DXB 05:30+1 (T3) · Connection 5:25h · DXB 10:55 → TLV 12:45 (T3)", events:[
-    ["22:20","NRT → DXB (EK319)","טוקיו נאריטה T2 → דובאי T3 · משך טיסה 12:10 · Economy Saver · Confirmed · Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
-    ["05:30 +1","Connection in DXB","קונקשן בדובאי (DXB) · משך קונקשן 5:25 · המשך לטיסת קישור לתל אביב","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Dubai International Airport"],
-    ["10:55 +1","DXB → TLV (EK2268 / FZ1635)","דובאי T3 → תל אביב T3 בינלאומי · משך טיסה 3:50 · Economy Saver · Confirmed · Operated by flydubai · Boeing 737 MAX 8","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
+  '28': { title:"טיסה חזרה הביתה", route:"NRT 22:20 (T2) → DXB 05:30+1 (T3) [EK319] · Connection 5:25h · DXB 10:55 → TLV 12:45 (T3) [EK2268/FZ1635]", events:[
+    ["22:20","NRT → DXB","Flight: EK319\nטוקיו נאריטה T2 → דובאי T3\nמשך טיסה: 12:10\nClass/Fare: Economy Saver\nStatus: Confirmed\nAircraft: Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
+    ["05:30 +1","Connection in DXB","Connection: Dubai (DXB)\nמשך קונקשן: 5:25\nהמשך לטיסת קישור לתל אביב","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Dubai International Airport"],
+    ["10:55 +1","DXB → TLV","Flight: EK2268 / FZ1635\nדובאי T3 → תל אביב T3 בינלאומי\nמשך טיסה: 3:50\nClass/Fare: Economy Saver\nStatus: Confirmed\nOperated by flydubai\nAircraft: Boeing 737 MAX 8","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
     ["12:45 +1","נחיתה בתל אביב","הגעה לישראל וסיום הטיול","https://images.unsplash.com/photo-1540339832862-fde94ed5d7de?auto=format&fit=crop&w=300&q=80","Ben Gurion Airport"]
   ]}
 };
