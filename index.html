@@ -139,6 +139,11 @@
     .flight-status-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
     .flight-status-title{font-weight:900;font-size:13px}
     .flight-status-sub{font-size:11px;color:var(--muted);margin-top:2px}
+    .flight-sync-panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:10px}
+    .flight-sync-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .flight-sync-status{font-size:11px;color:var(--muted);margin-top:8px}
+    .sync-toggle{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:#334155}
+    .sync-toggle input{margin:0}
     .flight-status-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
     .status-chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:800;cursor:pointer}
     .status-chip.active.on-time{background:#ecfdf3;border-color:#86efac;color:#166534}
@@ -443,7 +448,18 @@
       <div class="section-title" style="font-size:24px">מסמכים חשובים</div>
       <div class="upload-panel">
         <div class="section-title" style="margin:0;font-size:18px">סטטוס טיסות חי</div>
-        <div class="upload-hint">כאן אפשר לעדכן ידנית On Time / Delayed ושער (Gate) מיד כשמתפרסם באפליקציית Emirates.</div>
+        <div class="upload-hint">עובד אוטומטית דרך API. אפשר גם לעדכן ידנית אם צריך.</div>
+        <div class="flight-sync-panel">
+          <div class="flight-sync-row">
+            <input id="flightApiKey" class="input" type="password" placeholder="Aviationstack API key" style="flex:1;min-width:170px" />
+            <button class="btn ghost" type="button" onclick="saveFlightApiKey()">שמירת מפתח</button>
+            <button class="btn primary" type="button" onclick="syncFlightStatusesFromApi(false)">סנכרון עכשיו</button>
+          </div>
+          <div class="flight-sync-row" style="margin-top:8px">
+            <label class="sync-toggle"><input id="flightAutoSync" type="checkbox" onchange="toggleFlightAutoSync(this.checked)">סנכרון אוטומטי כל 5 דקות</label>
+          </div>
+          <div id="flightSyncStatus" class="flight-sync-status">טרם סונכרן</div>
+        </div>
         <div id="flightStatusBoard" class="flight-status-board"></div>
       </div>
       <div class="upload-panel">
@@ -631,18 +647,21 @@ const quickLinksConfig = [
   }
 ];
 const flightStatusDefaults = [
-  { id: 'ek2168_fz1842', label: '12.11 TLV → DXB', flight: 'EK2168 / FZ1842', status: 'unknown', gate: '' },
-  { id: 'ek312', label: '13.11 DXB → HND', flight: 'EK312', status: 'unknown', gate: '' },
-  { id: 'ek319', label: '28.11 NRT → DXB', flight: 'EK319', status: 'unknown', gate: '' },
-  { id: 'ek2268_fz1635', label: '29.11 DXB → TLV', flight: 'EK2268 / FZ1635', status: 'unknown', gate: '' }
+  { id: 'ek2168_fz1842', label: '12.11 TLV → DXB', flight: 'EK2168 / FZ1842', queryFlight: 'EK2168', status: 'unknown', gate: '' },
+  { id: 'ek312', label: '13.11 DXB → HND', flight: 'EK312', queryFlight: 'EK312', status: 'unknown', gate: '' },
+  { id: 'ek319', label: '28.11 NRT → DXB', flight: 'EK319', queryFlight: 'EK319', status: 'unknown', gate: '' },
+  { id: 'ek2268_fz1635', label: '29.11 DXB → TLV', flight: 'EK2268 / FZ1635', queryFlight: 'EK2268', status: 'unknown', gate: '' }
 ];
 const FLIGHT_STATUS_STORAGE_KEY = 'japan2026.flightStatus';
+const FLIGHT_SYNC_CONFIG_KEY = 'japan2026.flightSyncConfig';
+const FLIGHT_SYNC_INTERVAL_MS = 5 * 60 * 1000;
 let supabaseClient = null;
 let currentSession = null;
 let expensesEditingId = null;
 let currentRouteDay = '14';
 let isRouteNotesEditing = false;
 const routeDayNotes = {};
+let flightAutoSyncTimer = null;
 
 const citiesByDay = {
   '12-13': { city: 'טיסה ליפן', image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80' },
@@ -945,6 +964,34 @@ function saveFlightStatuses(statuses){
   localStorage.setItem(FLIGHT_STATUS_STORAGE_KEY, JSON.stringify(map));
 }
 
+function loadFlightSyncConfig(){
+  try {
+    const raw = localStorage.getItem(FLIGHT_SYNC_CONFIG_KEY);
+    const parsed = raw ? JSON.parse(raw) : {};
+    return {
+      apiKey: parsed.apiKey || '',
+      autoSync: Boolean(parsed.autoSync),
+      lastSyncAt: parsed.lastSyncAt || '',
+      lastError: parsed.lastError || ''
+    };
+  } catch (_error) {
+    return { apiKey: '', autoSync: false, lastSyncAt: '', lastError: '' };
+  }
+}
+
+function saveFlightSyncConfig(nextConfig){
+  localStorage.setItem(FLIGHT_SYNC_CONFIG_KEY, JSON.stringify(nextConfig));
+}
+
+function escapeHtml(value){
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function statusLabel(status){
   if (status === 'on-time') return 'On Time';
   if (status === 'delayed') return 'Delayed';
@@ -962,7 +1009,7 @@ function renderFlightStatusBoard(){
           <div class="flight-status-title">${item.label} · ${item.flight}</div>
           <div class="flight-status-sub">Status: ${statusLabel(item.status)}</div>
         </div>
-        <input class="gate-input" placeholder="Gate" value="${item.gate || ''}" oninput="setFlightGate('${item.id}', this.value)" />
+        <input class="gate-input" placeholder="Gate" value="${escapeHtml(item.gate || '')}" oninput="setFlightGate('${item.id}', this.value)" />
       </div>
       <div class="flight-status-actions">
         <button class="status-chip ${item.status === 'on-time' ? 'active on-time' : ''}" type="button" onclick="setFlightStatus('${item.id}','on-time')">On Time</button>
@@ -971,6 +1018,119 @@ function renderFlightStatusBoard(){
       <div class="flight-updated">עודכן לאחרונה: ${item.updatedAt ? formatDate(item.updatedAt) : 'טרם עודכן'}</div>
     </div>
   `).join('');
+}
+
+function updateFlightSyncStatus(message){
+  const node = document.getElementById('flightSyncStatus');
+  if (node) node.textContent = message;
+}
+
+function apiStatusToLocal(status){
+  const value = String(status || '').toLowerCase();
+  if (value === 'delayed' || value === 'cancelled' || value === 'diverted') return 'delayed';
+  if (value === 'scheduled' || value === 'active' || value === 'landed') return 'on-time';
+  return 'unknown';
+}
+
+function pickApiGate(flightData){
+  return flightData?.departure?.gate || flightData?.arrival?.gate || '';
+}
+
+async function fetchFlightLiveStatus(queryFlight, apiKey){
+  const url = `https://api.aviationstack.com/v1/flights?access_key=${encodeURIComponent(apiKey)}&flight_iata=${encodeURIComponent(queryFlight)}&limit=1`;
+  const response = await fetch(url, { method: 'GET' });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const payload = await response.json();
+  const flightData = payload?.data && payload.data[0];
+  if (!flightData) throw new Error(`לא נמצאו נתונים ל-${queryFlight}`);
+  return {
+    status: apiStatusToLocal(flightData.flight_status),
+    gate: pickApiGate(flightData),
+    sourceStatus: flightData.flight_status || ''
+  };
+}
+
+async function syncFlightStatusesFromApi(silent = false){
+  const config = loadFlightSyncConfig();
+  if (!config.apiKey) {
+    if (!silent) alert('צריך לשמור Aviationstack API key כדי לסנכרן אוטומטית.');
+    updateFlightSyncStatus('לא הוגדר API key');
+    return;
+  }
+  if (!silent) updateFlightSyncStatus('מסנכרן נתוני טיסות...');
+  const statuses = loadFlightStatuses();
+  try {
+    for (const item of statuses) {
+      const live = await fetchFlightLiveStatus(item.queryFlight || item.flight, config.apiKey);
+      item.status = live.status;
+      if (live.gate) item.gate = String(live.gate).trim();
+      item.updatedAt = new Date().toISOString();
+    }
+    saveFlightStatuses(statuses);
+    const nextConfig = { ...config, lastSyncAt: new Date().toISOString(), lastError: '' };
+    saveFlightSyncConfig(nextConfig);
+    renderFlightStatusBoard();
+    updateFlightSyncStatus(`סונכרן בהצלחה: ${formatDate(nextConfig.lastSyncAt)}`);
+  } catch (error) {
+    const nextConfig = { ...config, lastError: error.message || 'Sync failed' };
+    saveFlightSyncConfig(nextConfig);
+    updateFlightSyncStatus(`שגיאת סנכרון: ${nextConfig.lastError}`);
+    if (!silent) alert(`סנכרון נכשל: ${nextConfig.lastError}`);
+  }
+}
+
+function startFlightAutoSync(){
+  if (flightAutoSyncTimer) {
+    clearInterval(flightAutoSyncTimer);
+    flightAutoSyncTimer = null;
+  }
+  const config = loadFlightSyncConfig();
+  if (!config.autoSync || !config.apiKey) return;
+  flightAutoSyncTimer = setInterval(() => {
+    syncFlightStatusesFromApi(true);
+  }, FLIGHT_SYNC_INTERVAL_MS);
+}
+
+function saveFlightApiKey(){
+  const keyNode = document.getElementById('flightApiKey');
+  const apiKey = keyNode ? keyNode.value.trim() : '';
+  const config = loadFlightSyncConfig();
+  const nextConfig = { ...config, apiKey };
+  saveFlightSyncConfig(nextConfig);
+  updateFlightSyncStatus(apiKey ? 'מפתח API נשמר מקומית בדפדפן זה' : 'API key הוסר');
+  startFlightAutoSync();
+}
+
+function toggleFlightAutoSync(enabled){
+  const config = loadFlightSyncConfig();
+  const nextConfig = { ...config, autoSync: Boolean(enabled) };
+  saveFlightSyncConfig(nextConfig);
+  startFlightAutoSync();
+  if (enabled) {
+    syncFlightStatusesFromApi(true);
+    updateFlightSyncStatus('סנכרון אוטומטי פעיל (כל 5 דקות)');
+  } else {
+    updateFlightSyncStatus('סנכרון אוטומטי כבוי');
+  }
+}
+
+function initFlightSyncUi(){
+  const config = loadFlightSyncConfig();
+  const keyNode = document.getElementById('flightApiKey');
+  const autoNode = document.getElementById('flightAutoSync');
+  if (keyNode) keyNode.value = config.apiKey || '';
+  if (autoNode) autoNode.checked = Boolean(config.autoSync);
+  if (config.lastSyncAt) {
+    updateFlightSyncStatus(`סנכרון אחרון: ${formatDate(config.lastSyncAt)}`);
+  } else if (config.lastError) {
+    updateFlightSyncStatus(`שגיאה אחרונה: ${config.lastError}`);
+  } else {
+    updateFlightSyncStatus(config.apiKey ? 'API key מוגדר. אפשר לסנכרן עכשיו.' : 'הזינו API key כדי להפעיל עדכון אוטומטי.');
+  }
+  startFlightAutoSync();
+  if (config.autoSync && config.apiKey) {
+    syncFlightStatusesFromApi(true);
+  }
 }
 
 function setFlightStatus(id, status){
@@ -1815,6 +1975,7 @@ renderCountdownChip();
 renderTransportationDays();
 renderQuickLinks();
 renderFlightStatusBoard();
+initFlightSyncUi();
 render('14');
 initNavigation();
 
