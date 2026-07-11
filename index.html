@@ -69,6 +69,12 @@
     .event-row{display:flex;gap:12px;align-items:center}
     .thumb{width:64px;height:64px;border-radius:16px;object-fit:cover;background:#e8edf5}
     .event h3{margin:0 0 5px;font-size:16px}.event p{margin:0;color:var(--muted);font-size:12px;line-height:1.45;white-space:pre-line}
+    .event-desc{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
+    .route-live-chips{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
+    .route-live-chip{border:1px solid #d8e0ea;background:#eef2f7;color:#475569;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:800}
+    .route-live-chip.on-time{background:#ecfdf3;border-color:#86efac;color:#166534}
+    .route-live-chip.delayed{background:#fff7ed;border-color:#fdba74;color:#9a3412}
+    .route-live-chip.unknown{background:#eef2f7;border-color:#d8e0ea;color:#475569}
     .actions{display:flex;gap:7px;margin-top:11px}
     .btn{border:0;border-radius:12px;padding:9px 11px;font-weight:800;font-size:12px;text-decoration:none;
       display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
@@ -1203,8 +1209,9 @@ function findRelevantFlightStatus(day, description){
 }
 
 function appendLiveFlightInfo(day, description){
+  const baseDescription = escapeHtml(description).replace(/\n/g, '<br>');
   const item = findRelevantFlightStatus(day, description);
-  if (!item) return description;
+  if (!item) return baseDescription;
   const gate = item.gate ? item.gate : 'טרם פורסם';
   const updated = item.updatedAt ? formatDate(item.updatedAt) : 'טרם עודכן';
   const originalDepTime = item.originalDepartureTime || 'טרם פורסם';
@@ -1215,7 +1222,8 @@ function appendLiveFlightInfo(day, description){
   const arrTime = item.arrivalScheduled ? formatDate(item.arrivalScheduled) : 'טרם פורסם';
   const depTerminal = item.departureTerminal || 'טרם פורסם';
   const arrTerminal = item.arrivalTerminal || 'טרם פורסם';
-  return `${description}\nOriginal Departure: ${originalDepTime} | T: ${originalDepTerminal}\nOriginal Arrival: ${originalArrTime} | T: ${originalArrTerminal}\nLive Status: ${statusLabel(item.status)} | Gate: ${gate}\nDeparture: ${depTime} | T: ${depTerminal}\nArrival: ${arrTime} | T: ${arrTerminal}\nUpdated: ${updated}`;
+  const statusClass = item.status === 'on-time' ? 'on-time' : item.status === 'delayed' ? 'delayed' : 'unknown';
+  return `${baseDescription}<br>Original Departure: ${escapeHtml(originalDepTime)} | T: ${escapeHtml(originalDepTerminal)}<br>Original Arrival: ${escapeHtml(originalArrTime)} | T: ${escapeHtml(originalArrTerminal)}<div class="route-live-chips"><span class="route-live-chip ${statusClass}">Status: ${escapeHtml(statusLabel(item.status))}</span><span class="route-live-chip">Gate: ${escapeHtml(gate)}</span></div>Departure: ${escapeHtml(depTime)} | T: ${escapeHtml(depTerminal)}<br>Arrival: ${escapeHtml(arrTime)} | T: ${escapeHtml(arrTerminal)}<br>Updated: ${escapeHtml(updated)}`;
 }
 
 function renderRouteFlightStatus(day){
@@ -1997,7 +2005,7 @@ function render(day){
     const eventDescription = appendLiveFlightInfo(day, e[2]);
     const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
     tl.innerHTML += `<div class="item"><div class="time">${e[0]}</div><div class="event">
-      <div class="event-row"><img class="thumb" src="${e[3]}"><div><h3>${e[1]}</h3><p>${eventDescription}</p></div></div>
+      <div class="event-row"><img class="thumb" src="${e[3]}"><div><h3>${e[1]}</h3><div class="event-desc">${eventDescription}</div></div></div>
       <div class="actions"><a class="btn primary" target="_blank" href="${link}">📍 נווט עכשיו</a>
       <button class="btn ghost" onclick="alert('סומן כבוצע ✓')">✓ סיימנו</button></div></div></div>`;
   });
