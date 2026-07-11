@@ -24,8 +24,8 @@
       font-family:Arial,Helvetica,sans-serif;color:var(--ink);}
     .phone{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;
       box-shadow:0 0 40px rgba(0,0,0,.12);padding-bottom:150px}
-    .hero{background:linear-gradient(135deg,#111827,#26334d);color:#fff;padding:12px 18px 10px;
-      border-radius:0 0 28px 28px;position:relative;overflow:hidden}
+    .hero{background:linear-gradient(135deg,#111827,#26334d);color:#fff;padding:8px 18px 6px;
+      border-radius:0 0 20px 20px;position:relative;overflow:hidden}
     .hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;
       background:rgba(255,255,255,.06);left:-50px;top:-65px}
     .top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
@@ -125,6 +125,13 @@
     .auth-status{font-size:13px;color:var(--muted);margin-top:8px}
     .warning{background:#fff7ed;color:#9a3412;border:1px solid #fdba74;border-radius:16px;padding:12px 14px;margin-top:10px;font-size:13px}
     .success{background:#ecfdf3;color:#166534;border:1px solid #86efac;border-radius:16px;padding:12px 14px;margin-top:10px;font-size:13px}
+    .day-card{position:relative;height:160px;border-radius:16px;overflow:hidden;cursor:pointer;border:0;box-shadow:var(--shadow);transition:transform 0.2s;background:transparent}
+    .day-card:hover{transform:scale(1.02)}
+    .day-card-bg{position:absolute;top:0;left:0;right:0;bottom:0;background-size:cover;background-position:center;filter:brightness(0.7)}
+    .day-card-content{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;color:#fff;text-align:right;z-index:2}
+    .day-card-city{font-size:18px;font-weight:900;line-height:1.1}
+    .day-card-date{font-size:12px;opacity:0.9;margin-top:4px}
+    .main-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:12px 14px}
     .hidden{display:none !important}
     .btn:disabled{opacity:.55;cursor:not-allowed}
     #expenseReceipt {
@@ -195,7 +202,11 @@
     </div>
   </section>
 
-  <main id="route" class="screen active">
+  <main id="main" class="screen active">
+    <div class="main-grid" id="mainGrid"></div>
+  </main>
+
+  <main id="route" class="screen">
     <div class="tabs">
       <button class="tab active" type="button" data-day="14" onclick="switchDay(this,'14')">14.11</button>
       <button class="tab" type="button" data-day="15" onclick="switchDay(this,'15')">15.11</button>
@@ -503,7 +514,8 @@
   </main>
 
   <nav class="nav">
-    <button class="active" type="button" data-screen="route"><span class="ico">🗺️</span>מסלול</button>
+    <button class="active" type="button" data-screen="main"><span class="ico">🏠</span>ראשי</button>
+    <button type="button" data-screen="route"><span class="ico">🗺️</span>מסלול</button>
     <button type="button" data-screen="group"><span class="ico">👥</span>קבוצה</button>
     <button type="button" data-screen="expenses"><span class="ico">💴</span>הוצאות</button>
     <button type="button" data-screen="docs"><span class="ico">📄</span>מסמכים</button>
@@ -542,6 +554,42 @@ let expensesEditingId = null;
 let currentRouteDay = '14';
 let isRouteNotesEditing = false;
 const routeDayNotes = {};
+
+const citiesByDay = {
+  '14': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=500&q=60' },
+  '15': { city: 'האקונה', image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=500&q=60' },
+  '16': { city: 'הר פוג\'י', image: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?auto=format&fit=crop&w=500&q=60' },
+  '17': { city: 'נגויה', image: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=500&q=60' },
+  '18': { city: 'קיוטו', image: 'https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=500&q=60' },
+  '19': { city: 'קיוטו', image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=500&q=60' },
+  '20': { city: 'נארה', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=500&q=60' },
+  '21': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1542951841857-5f90071e7989?auto=format&fit=crop&w=500&q=60' },
+  '22': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=500&q=60' },
+  '23': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=500&q=60' },
+  '24': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=500&q=60' },
+  '25': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=500&q=60' },
+  '26': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988f1?auto=format&fit=crop&w=500&q=60' },
+  '27': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=500&q=60' },
+  '28': { city: 'שדה תעופה', image: 'https://images.unsplash.com/photo-1540339832862-fde94ed5d7de?auto=format&fit=crop&w=500&q=60' }
+};
+
+function renderMainPage(){
+  const grid = document.getElementById('mainGrid');
+  grid.innerHTML = Object.entries(citiesByDay).map(([day, info]) => `
+    <button class="day-card" type="button" onclick="showDayPlanFromMain('${day}')">
+      <div class="day-card-bg" style="background-image:url('${info.image}')"></div>
+      <div class="day-card-content">
+        <div class="day-card-city">${info.city}</div>
+        <div class="day-card-date">${day}.11</div>
+      </div>
+    </button>
+  `).join('');
+}
+
+function showDayPlanFromMain(day){
+  render(day);
+  showScreen('route', document.querySelector('.nav button[data-screen="route"]'));
+}
 
 const data = {
   '14': { title:"טוקיו → האקונה", route:"שינג'וקו → Hakone-Yumoto → המלון", events:[
@@ -1352,6 +1400,7 @@ function swapTransportPoints(){
   fromNode.value = toNode.value;
   toNode.value = temp;
 }
+renderMainPage();
 render('14');
 initNavigation();
 
