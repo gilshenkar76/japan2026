@@ -227,7 +227,7 @@
     <div class="content">
       <div class="day-head">
         <div>
-          <button class="btn ghost" type="button" onclick="showScreen('main', document.querySelector('.nav button[data-screen=\"main\"]'))" style="padding:6px 12px;font-size:11px;margin-bottom:8px">⬅️ חזור לראשי</button>
+          <button class="btn primary" type="button" onclick="goBackToMain()" style="padding:8px 14px;font-size:12px;margin-bottom:10px;font-weight:900;border-radius:12px">⬅️ חזור לראשי</button>
           <div>
             <div class="small" style="color:#e53935;font-weight:800">היום הראשון</div>
             <div class="day-title" id="dayTitle">טוקיו → האקונה</div>
@@ -559,21 +559,21 @@ let isRouteNotesEditing = false;
 const routeDayNotes = {};
 
 const citiesByDay = {
-  '14': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '15': { city: 'האקונה', image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '16': { city: 'הר פוג\'י', image: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '17': { city: 'נגויה', image: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '18': { city: 'קיוטו', image: 'https://images.unsplash.com/photo-1522383150241-6c328333e944?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '19': { city: 'קיוטו', image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '20': { city: 'נארה', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '21': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1545064157-fd5a22d9db96?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '22': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1566626469935-e6e9a9c8d9c5?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '23': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '24': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1475725846242-540a9b1ea206?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '25': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '26': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988f1?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '27': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' },
-  '28': { city: 'שדה תעופה', image: 'https://images.unsplash.com/photo-1540339832862-fde94ed5d7de?auto=format&fit=crop&w=500&q=60&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3' }
+  '14': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80' },
+  '15': { city: 'האקונה', image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?w=600&q=80' },
+  '16': { city: 'הר פוג\'י', image: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?w=600&q=80' },
+  '17': { city: 'נגויה', image: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=600&q=80' },
+  '18': { city: 'קיוטו', image: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80' },
+  '19': { city: 'קיוטו', image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80' },
+  '20': { city: 'נארה', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80' },
+  '21': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1545064157-fd5a22d9db96?w=600&q=80' },
+  '22': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1552667466-07d71e725e34?w=600&q=80' },
+  '23': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&q=80' },
+  '24': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1475725846242-540a9b1ea206?w=600&q=80' },
+  '25': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&q=80' },
+  '26': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988f1?w=600&q=80' },
+  '27': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=600&q=80' },
+  '28': { city: 'שדה תעופה', image: 'https://images.unsplash.com/photo-1540339832862-fde94ed5d7de?w=600&q=80' }
 };
 
 function renderMainPage(){
@@ -1354,6 +1354,11 @@ function render(day){
 }
 function switchDay(el,day){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');render(day)}
 function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+
+function goBackToMain(){
+  const mainBtn = document.querySelector('.nav button[data-screen="main"]');
+  if (mainBtn) showScreen('main', mainBtn);
+}
 
 function setRouteNotesEditMode(editing){
   isRouteNotesEditing = editing;
