@@ -447,23 +447,6 @@
     <div class="content">
       <div class="section-title" style="font-size:24px">מסמכים חשובים</div>
       <div class="upload-panel">
-        <div class="section-title" style="margin:0;font-size:18px">סטטוס טיסות חי</div>
-        <div class="upload-hint">עובד אוטומטית דרך API. אפשר גם לעדכן ידנית אם צריך.</div>
-        <div class="flight-sync-panel">
-          <div class="flight-sync-row">
-            <input id="flightApiKey" class="input" type="password" placeholder="Aviationstack API key" style="flex:1;min-width:170px" />
-            <button class="btn ghost" type="button" onclick="saveFlightApiKey()">שמירת מפתח</button>
-            <button class="btn ghost" type="button" onclick="testFlightApiKey()">בדיקת מפתח</button>
-            <button class="btn primary" type="button" onclick="syncFlightStatusesFromApi(false)">סנכרון עכשיו</button>
-          </div>
-          <div class="flight-sync-row" style="margin-top:8px">
-            <label class="sync-toggle"><input id="flightAutoSync" type="checkbox" onchange="toggleFlightAutoSync(this.checked)">סנכרון אוטומטי כל 5 דקות</label>
-          </div>
-          <div id="flightSyncStatus" class="flight-sync-status">טרם סונכרן</div>
-        </div>
-        <div id="flightStatusBoard" class="flight-status-board"></div>
-      </div>
-      <div class="upload-panel">
         <div class="section-title" style="margin:0;font-size:18px">קישורים מהירים</div>
         <div class="upload-hint">אפשר לעדכן בקלות את קישורי הטיסות והמלונות בבלוק ההגדרות בקוד.</div>
         <div class="quick-links" id="quickLinks"></div>
@@ -488,6 +471,23 @@
   <main id="transportation" class="screen">
     <div class="content">
       <div class="section-title" style="font-size:24px">תחבורה - בחרו יום</div>
+      <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">סטטוס טיסות חי</div>
+        <div class="upload-hint">עובד אוטומטית דרך API. אפשר גם לעדכן ידנית אם צריך.</div>
+        <div class="flight-sync-panel">
+          <div class="flight-sync-row">
+            <input id="flightApiKey" class="input" type="password" placeholder="Aviationstack API key" style="flex:1;min-width:170px" />
+            <button class="btn ghost" type="button" onclick="saveFlightApiKey()">שמירת מפתח</button>
+            <button class="btn ghost" type="button" onclick="testFlightApiKey()">בדיקת מפתח</button>
+            <button class="btn primary" type="button" onclick="syncFlightStatusesFromApi(false)">סנכרון עכשיו</button>
+          </div>
+          <div class="flight-sync-row" style="margin-top:8px">
+            <label class="sync-toggle"><input id="flightAutoSync" type="checkbox" onchange="toggleFlightAutoSync(this.checked)">סנכרון אוטומטי כל 5 דקות</label>
+          </div>
+          <div id="flightSyncStatus" class="flight-sync-status">טרם סונכרן</div>
+        </div>
+        <div id="flightStatusBoard" class="flight-status-board"></div>
+      </div>
       <div class="main-grid" id="transportationGrid" style="margin-bottom:20px"></div>
     </div>
   </main>
