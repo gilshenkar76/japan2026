@@ -68,6 +68,11 @@
     .hotel{background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa}
     .notice{margin-top:12px;border-radius:18px;padding:13px;background:#eaf8f0;color:#156b3b;font-size:13px;
       border:1px solid #c9edd7}
+    .route-notes{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:var(--shadow)}
+    .route-notes-grid{display:grid;gap:10px;margin-top:8px}
+    .route-notes label{font-size:13px;font-weight:800;color:#374151}
+    .route-textarea{width:100%;min-height:86px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;color:var(--ink);background:#f8fafc}
+    .route-notes-help{font-size:12px;color:var(--muted);margin-top:8px}
     .group-card{background:#fff;border-radius:22px;padding:14px;box-shadow:var(--shadow);border:1px solid var(--line)}
     .member{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line)}
     .member:last-child{border-bottom:0}.status{font-size:12px;color:var(--ok);font-weight:800}
@@ -189,6 +194,21 @@
       </div>
 
       <div class="notice">📢 הודעה לקבוצה: נפגשים בלובי בשעה 08:45 עם כל המזוודות.</div>
+
+      <div class="route-notes">
+        <div class="section-title" style="margin:0;font-size:18px">הערות ליום</div>
+        <div class="route-notes-grid">
+          <div>
+            <label for="routeOverview">סקירה כללית</label>
+            <textarea id="routeOverview" class="route-textarea" placeholder="הוסיפו כאן סקירה כללית ליום..."></textarea>
+          </div>
+          <div>
+            <label for="routeTips">טיפים חשובים</label>
+            <textarea id="routeTips" class="route-textarea" placeholder="הוסיפו כאן טיפים חשובים ליום..."></textarea>
+          </div>
+        </div>
+        <div class="route-notes-help">אפשר לערוך חופשי. התוכן נשמר לכל יום כל עוד הדף פתוח.</div>
+      </div>
 
       <div class="section-title">המסלול שלנו</div>
       <div class="timeline" id="timeline"></div>
@@ -481,6 +501,8 @@ const FX_TO_ILS = {
 let supabaseClient = null;
 let currentSession = null;
 let expensesEditingId = null;
+let currentRouteDay = '14';
+const routeDayNotes = {};
 
 const data = {
   '14': { title:"טוקיו → האקונה", route:"שינג'וקו → Hakone-Yumoto → המלון", events:[
@@ -1200,8 +1222,19 @@ async function initAuth(){
 
 function render(day){
   if (!data[day]) return;
+  currentRouteDay = day;
+  if (!routeDayNotes[day]) {
+    routeDayNotes[day] = {
+      overview: `תכנון יום ${day}.11: ${data[day].route}`,
+      tips: 'צאו בזמן, בדקו כתובות מראש, ושמרו צילום מסך של הניווט.'
+    };
+  }
   document.getElementById('dayTitle').innerText=data[day].title;
   document.getElementById('routeText').innerText=data[day].route;
+  const overviewNode = document.getElementById('routeOverview');
+  const tipsNode = document.getElementById('routeTips');
+  if (overviewNode) overviewNode.value = routeDayNotes[day].overview;
+  if (tipsNode) tipsNode.value = routeDayNotes[day].tips;
   const tl=document.getElementById('timeline'); tl.innerHTML='';
   data[day].events.forEach(e=>{
     const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
@@ -1329,6 +1362,16 @@ document.getElementById('expenseAddToggleBtn').addEventListener('click', () => {
 });
 
 resetExpenseForm();
+
+document.getElementById('routeOverview').addEventListener('input', event => {
+  if (!routeDayNotes[currentRouteDay]) routeDayNotes[currentRouteDay] = { overview: '', tips: '' };
+  routeDayNotes[currentRouteDay].overview = event.target.value;
+});
+
+document.getElementById('routeTips').addEventListener('input', event => {
+  if (!routeDayNotes[currentRouteDay]) routeDayNotes[currentRouteDay] = { overview: '', tips: '' };
+  routeDayNotes[currentRouteDay].tips = event.target.value;
+});
 
 document.getElementById('loginForm').addEventListener('submit', async event => {
   event.preventDefault();
