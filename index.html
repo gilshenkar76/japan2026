@@ -598,12 +598,14 @@ const quickLinksConfig = [
   {
     title: '✈️ Emirates - ניהול הזמנה',
     subtitle: 'כניסה להזמנה, כרטיסים ושינויים בטיסה',
-    url: 'https://www.emirates.com/'
+    url: 'https://www.emirates.com/',
+    appUrl: 'emirates://'
   },
   {
     title: '🏨 Booking.com - ההזמנות שלכם',
     subtitle: 'גישה מהירה להזמנות מלון ואישורים',
-    url: 'https://www.booking.com/'
+    url: 'https://www.booking.com/',
+    appUrl: 'booking://'
   }
 ];
 let supabaseClient = null;
@@ -796,6 +798,7 @@ const hotelsByDay = {
     meta: "טוקיו · שינג'וקו",
     mapQuery: 'Hotel Gracery Shinjuku Tokyo',
     bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
     extra: 'Confirmation number: 6297195681 | PIN code: 6226'
   },
   '14': {
@@ -803,9 +806,32 @@ const hotelsByDay = {
     meta: 'Hakone Yumoto · ספא ואונסן',
     mapQuery: 'Aura Tachibana Hakone',
     bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
     extra: ''
   }
 };
+
+function openSmartLink(appUrl, webUrl){
+  if (!webUrl) return;
+  if (!appUrl) {
+    window.open(webUrl, '_blank', 'noopener');
+    return;
+  }
+
+  const now = Date.now();
+  const fallbackDelayMs = 1300;
+  const hiddenFrame = document.createElement('iframe');
+  hiddenFrame.style.display = 'none';
+  hiddenFrame.src = appUrl;
+  document.body.appendChild(hiddenFrame);
+
+  setTimeout(() => {
+    hiddenFrame.remove();
+    if (Date.now() - now < fallbackDelayMs + 250) {
+      window.open(webUrl, '_blank', 'noopener');
+    }
+  }, fallbackDelayMs);
+}
 
 function renderQuickLinks(){
   const holder = document.getElementById('quickLinks');
@@ -816,7 +842,7 @@ function renderQuickLinks(){
         <div style="font-weight:900">${link.title}</div>
         <div class="small" style="color:#64748b;opacity:1">${link.subtitle}</div>
       </div>
-      <a class="btn primary" target="_blank" href="${link.url}">פתיחה</a>
+      <button class="btn primary" type="button" onclick="openSmartLink('${link.appUrl || ''}','${link.url}')">פתיחה</button>
     </div>
   `).join('');
 }
@@ -1523,7 +1549,7 @@ function render(day){
   document.getElementById('routeText').innerText=data[day].route;
   const overviewNode = document.getElementById('routeOverview');
   const tipsNode = document.getElementById('routeTips');
-  const hotel = hotelsByDay[day] || { name: 'מלון טרם עודכן', meta: 'עדכנו כאן את פרטי הלינה ליום זה', mapQuery: 'Tokyo hotels', bookingUrl: '', extra: '' };
+  const hotel = hotelsByDay[day] || { name: 'מלון טרם עודכן', meta: 'עדכנו כאן את פרטי הלינה ליום זה', mapQuery: 'Tokyo hotels', bookingUrl: '', bookingAppUrl: '', extra: '' };
   const hotelNameNode = document.getElementById('hotelName');
   const hotelMetaNode = document.getElementById('hotelMeta');
   const hotelExtraNode = document.getElementById('hotelExtra');
@@ -1535,7 +1561,13 @@ function render(day){
   if (hotelNavNode) hotelNavNode.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel.mapQuery)}`;
   if (hotelBookingNode) {
     hotelBookingNode.classList.toggle('hidden', !hotel.bookingUrl);
-    if (hotel.bookingUrl) hotelBookingNode.href = hotel.bookingUrl;
+    if (hotel.bookingUrl) {
+      hotelBookingNode.href = '#';
+      hotelBookingNode.onclick = event => {
+        event.preventDefault();
+        openSmartLink(hotel.bookingAppUrl || '', hotel.bookingUrl);
+      };
+    }
   }
   if (overviewNode) overviewNode.value = routeDayNotes[day].overview;
   if (tipsNode) tipsNode.value = routeDayNotes[day].tips;
