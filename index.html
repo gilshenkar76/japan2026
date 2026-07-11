@@ -950,6 +950,10 @@ function loadFlightStatuses(){
       ...item,
       status: parsed[item.id]?.status || item.status,
       gate: parsed[item.id]?.gate || item.gate,
+      departureScheduled: parsed[item.id]?.departureScheduled || '',
+      arrivalScheduled: parsed[item.id]?.arrivalScheduled || '',
+      departureTerminal: parsed[item.id]?.departureTerminal || '',
+      arrivalTerminal: parsed[item.id]?.arrivalTerminal || '',
       updatedAt: parsed[item.id]?.updatedAt || ''
     }));
   } catch (_error) {
@@ -959,7 +963,15 @@ function loadFlightStatuses(){
 
 function saveFlightStatuses(statuses){
   const map = statuses.reduce((acc, item) => {
-    acc[item.id] = { status: item.status, gate: item.gate, updatedAt: item.updatedAt || '' };
+    acc[item.id] = {
+      status: item.status,
+      gate: item.gate,
+      departureScheduled: item.departureScheduled || '',
+      arrivalScheduled: item.arrivalScheduled || '',
+      departureTerminal: item.departureTerminal || '',
+      arrivalTerminal: item.arrivalTerminal || '',
+      updatedAt: item.updatedAt || ''
+    };
     return acc;
   }, {});
   localStorage.setItem(FLIGHT_STATUS_STORAGE_KEY, JSON.stringify(map));
@@ -998,6 +1010,14 @@ function statusLabel(status){
   return 'טרם עודכן';
 }
 
+function flightField(value){
+  return value ? escapeHtml(value) : 'טרם פורסם';
+}
+
+function scheduleField(value){
+  return value ? formatDate(value) : 'טרם פורסם';
+}
+
 function renderFlightStatusBoard(){
   const holder = document.getElementById('flightStatusBoard');
   if (!holder) return;
@@ -1015,6 +1035,8 @@ function renderFlightStatusBoard(){
         <button class="status-chip ${item.status === 'on-time' ? 'active on-time' : ''}" type="button" onclick="setFlightStatus('${item.id}','on-time')">On Time</button>
         <button class="status-chip ${item.status === 'delayed' ? 'active delayed' : ''}" type="button" onclick="setFlightStatus('${item.id}','delayed')">Delayed</button>
       </div>
+      <div class="flight-status-sub">Departure: ${scheduleField(item.departureScheduled)} · Terminal: ${flightField(item.departureTerminal)}</div>
+      <div class="flight-status-sub">Arrival: ${scheduleField(item.arrivalScheduled)} · Terminal: ${flightField(item.arrivalTerminal)}</div>
       <div class="flight-updated">עודכן לאחרונה: ${item.updatedAt ? formatDate(item.updatedAt) : 'טרם עודכן'}</div>
     </div>
   `).join('');
@@ -1055,6 +1077,10 @@ async function fetchFlightLiveStatus(queryFlight, apiKey){
   return {
     status: apiStatusToLocal(payload.status),
     gate: payload.gate || '',
+    departureScheduled: payload.departureScheduled || '',
+    arrivalScheduled: payload.arrivalScheduled || '',
+    departureTerminal: payload.departureTerminal || '',
+    arrivalTerminal: payload.arrivalTerminal || '',
     sourceStatus: payload.sourceStatus || ''
   };
 }
@@ -1068,6 +1094,10 @@ async function syncFlightStatusesFromApi(silent = false){
       const live = await fetchFlightLiveStatus(item.queryFlight || item.flight);
       item.status = live.status;
       if (live.gate) item.gate = String(live.gate).trim();
+      item.departureScheduled = live.departureScheduled || '';
+      item.arrivalScheduled = live.arrivalScheduled || '';
+      item.departureTerminal = live.departureTerminal || '';
+      item.arrivalTerminal = live.arrivalTerminal || '';
       item.updatedAt = new Date().toISOString();
     }
     saveFlightStatuses(statuses);
@@ -1171,7 +1201,11 @@ function appendLiveFlightInfo(day, description){
   if (!item) return description;
   const gate = item.gate ? item.gate : 'טרם פורסם';
   const updated = item.updatedAt ? formatDate(item.updatedAt) : 'טרם עודכן';
-  return `${description}\nLive Status: ${statusLabel(item.status)} | Gate: ${gate}\nUpdated: ${updated}`;
+  const depTime = item.departureScheduled ? formatDate(item.departureScheduled) : 'טרם פורסם';
+  const arrTime = item.arrivalScheduled ? formatDate(item.arrivalScheduled) : 'טרם פורסם';
+  const depTerminal = item.departureTerminal || 'טרם פורסם';
+  const arrTerminal = item.arrivalTerminal || 'טרם פורסם';
+  return `${description}\nLive Status: ${statusLabel(item.status)} | Gate: ${gate}\nDeparture: ${depTime} | T: ${depTerminal}\nArrival: ${arrTime} | T: ${arrTerminal}\nUpdated: ${updated}`;
 }
 
 function renderRouteFlightStatus(day){
@@ -1194,10 +1228,16 @@ function renderRouteFlightStatus(day){
     .map(item => {
       const gate = item.gate ? item.gate : 'טרם פורסם';
       const updated = item.updatedAt ? formatDate(item.updatedAt) : 'טרם עודכן';
+      const depTime = item.departureScheduled ? formatDate(item.departureScheduled) : 'טרם פורסם';
+      const arrTime = item.arrivalScheduled ? formatDate(item.arrivalScheduled) : 'טרם פורסם';
+      const depTerminal = item.departureTerminal || 'טרם פורסם';
+      const arrTerminal = item.arrivalTerminal || 'טרם פורסם';
       return `
         <div class="flight-status-card">
           <div class="flight-status-title">${item.label} · ${item.flight}</div>
           <div class="flight-status-sub">Status: ${statusLabel(item.status)} | Gate: ${gate}</div>
+          <div class="flight-status-sub">Departure: ${depTime} · Terminal: ${escapeHtml(depTerminal)}</div>
+          <div class="flight-status-sub">Arrival: ${arrTime} · Terminal: ${escapeHtml(arrTerminal)}</div>
           <div class="flight-updated">Updated: ${updated}</div>
         </div>
       `;

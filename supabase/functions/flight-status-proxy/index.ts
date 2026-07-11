@@ -76,6 +76,10 @@ export default {
       flight,
       status: mapStatus(row?.flight_status),
       gate: String(gate || "").trim(),
+      departureScheduled: String(row?.departure?.scheduled || ""),
+      arrivalScheduled: String(row?.arrival?.scheduled || ""),
+      departureTerminal: String(row?.departure?.terminal || ""),
+      arrivalTerminal: String(row?.arrival?.terminal || ""),
       sourceStatus: String(row?.flight_status || ""),
       updatedAt: new Date().toISOString(),
     };
