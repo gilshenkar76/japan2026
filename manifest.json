@@ -2,7 +2,7 @@
   "name": "Japan 2026 – Group Trip",
   "short_name": "Japan 2026",
   "description": "הטיול שלנו ליפן – מסלול משותף לקבוצה",
-  "start_url": "./index-3.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#111827",
