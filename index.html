@@ -37,8 +37,8 @@
     .avatar{width:34px;height:34px;border-radius:50%;border:2px solid #fff;margin-left:-8px;
       display:grid;place-items:center;font-size:13px;font-weight:700;background:#fff;color:#111827}
     .a1{background:#ffd6d6}.a2{background:#d9e8ff}.a3{background:#e8dbff}.a4{background:#d8f6df}.a5{background:#ffe9bd}.a6{background:#f5d9ff}
-    .tabs{display:flex;gap:9px;overflow:auto;padding:15px 14px 8px;scrollbar-width:none}
-    .tab{flex:0 0 auto;border:0;background:#fff;color:#455066;border-radius:18px;padding:10px 14px;
+    .tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:15px 14px 8px}
+    .tab{width:100%;border:0;background:#fff;color:#455066;border-radius:18px;padding:10px 8px;
       box-shadow:0 4px 14px rgba(15,23,42,.07);font-weight:700;cursor:pointer}
     .tab.active{background:var(--primary);color:white}
     .content{padding:6px 14px 0}
