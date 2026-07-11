@@ -453,6 +453,7 @@
           <div class="flight-sync-row">
             <input id="flightApiKey" class="input" type="password" placeholder="Aviationstack API key" style="flex:1;min-width:170px" />
             <button class="btn ghost" type="button" onclick="saveFlightApiKey()">שמירת מפתח</button>
+            <button class="btn ghost" type="button" onclick="testFlightApiKey()">בדיקת מפתח</button>
             <button class="btn primary" type="button" onclick="syncFlightStatusesFromApi(false)">סנכרון עכשיו</button>
           </div>
           <div class="flight-sync-row" style="margin-top:8px">
@@ -1099,6 +1100,22 @@ function saveFlightApiKey(){
   saveFlightSyncConfig(nextConfig);
   updateFlightSyncStatus(apiKey ? 'מפתח API נשמר מקומית בדפדפן זה' : 'API key הוסר');
   startFlightAutoSync();
+}
+
+async function testFlightApiKey(){
+  const keyNode = document.getElementById('flightApiKey');
+  const apiKey = keyNode ? keyNode.value.trim() : '';
+  if (!apiKey) {
+    updateFlightSyncStatus('נא להזין API key לבדיקה');
+    return;
+  }
+  updateFlightSyncStatus('בודק מפתח API...');
+  try {
+    await fetchFlightLiveStatus('EK312', apiKey);
+    updateFlightSyncStatus('API key תקין ומחזיר נתונים');
+  } catch (error) {
+    updateFlightSyncStatus(`API key לא תקין או חסום: ${error.message || 'unknown error'}`);
+  }
 }
 
 function toggleFlightAutoSync(enabled){
