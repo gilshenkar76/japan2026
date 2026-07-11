@@ -599,13 +599,20 @@ const quickLinksConfig = [
     title: '✈️ Emirates - ניהול הזמנה',
     subtitle: 'כניסה להזמנה, כרטיסים ושינויים בטיסה',
     url: 'https://www.emirates.com/',
-    appUrl: 'emirates://'
+    appUrls: [
+      'intent://www.emirates.com/#Intent;scheme=https;package=com.emirates.ek.android;end',
+      'emirates://'
+    ],
+    preferSameTab: true
   },
   {
     title: '🏨 Booking.com - ההזמנות שלכם',
     subtitle: 'גישה מהירה להזמנות מלון ואישורים',
     url: 'https://www.booking.com/',
-    appUrl: 'booking://'
+    appUrls: [
+      'booking://',
+      'intent://www.booking.com/#Intent;scheme=https;package=com.booking;end'
+    ]
   }
 ];
 let supabaseClient = null;
@@ -811,38 +818,82 @@ const hotelsByDay = {
   }
 };
 
-function openSmartLink(appUrl, webUrl){
+function openSmartLink(appUrlOrUrls, webUrl, preferSameTab = false){
+  const appUrls = Array.isArray(appUrlOrUrls)
+    ? appUrlOrUrls.filter(Boolean)
+    : (appUrlOrUrls ? [appUrlOrUrls] : []);
+
   if (!webUrl) return;
-  if (!appUrl) {
-    window.open(webUrl, '_blank', 'noopener');
+  if (!appUrls.length) {
+    if (preferSameTab) {
+      window.location.href = webUrl;
+    } else {
+      window.open(webUrl, '_blank', 'noopener');
+    }
     return;
   }
 
   const now = Date.now();
-  const fallbackDelayMs = 1300;
-  const hiddenFrame = document.createElement('iframe');
-  hiddenFrame.style.display = 'none';
-  hiddenFrame.src = appUrl;
-  document.body.appendChild(hiddenFrame);
+  const fallbackDelayMs = 1700;
+  let switchedToApp = false;
+  let appTryIndex = 0;
 
-  setTimeout(() => {
-    hiddenFrame.remove();
-    if (Date.now() - now < fallbackDelayMs + 250) {
+  const fallbackToWeb = () => {
+    if (preferSameTab) {
+      window.location.href = webUrl;
+    } else {
       window.open(webUrl, '_blank', 'noopener');
     }
+  };
+
+  const markSwitched = () => {
+    if (document.hidden) switchedToApp = true;
+  };
+
+  const tryNextAppUrl = () => {
+    if (appTryIndex >= appUrls.length) return;
+    const appUrl = appUrls[appTryIndex++];
+
+    if (appUrl.startsWith('intent://') || preferSameTab) {
+      window.location.href = appUrl;
+    } else {
+      const hiddenFrame = document.createElement('iframe');
+      hiddenFrame.style.display = 'none';
+      hiddenFrame.src = appUrl;
+      document.body.appendChild(hiddenFrame);
+      setTimeout(() => hiddenFrame.remove(), 700);
+    }
+
+    if (appTryIndex < appUrls.length) {
+      setTimeout(tryNextAppUrl, 350);
+    }
+  };
+
+  document.addEventListener('visibilitychange', markSwitched, { once: true });
+  tryNextAppUrl();
+  setTimeout(() => {
+    if (!switchedToApp && Date.now() - now < fallbackDelayMs + 450) {
+      fallbackToWeb();
+    }
   }, fallbackDelayMs);
+}
+
+function openQuickLink(index){
+  const link = quickLinksConfig[index];
+  if (!link) return;
+  openSmartLink(link.appUrls || link.appUrl || '', link.url, Boolean(link.preferSameTab));
 }
 
 function renderQuickLinks(){
   const holder = document.getElementById('quickLinks');
   if (!holder) return;
-  holder.innerHTML = quickLinksConfig.map(link => `
+  holder.innerHTML = quickLinksConfig.map((link, index) => `
     <div class="quick-link">
       <div>
         <div style="font-weight:900">${link.title}</div>
         <div class="small" style="color:#64748b;opacity:1">${link.subtitle}</div>
       </div>
-      <button class="btn primary" type="button" onclick="openSmartLink('${link.appUrl || ''}','${link.url}')">פתיחה</button>
+      <button class="btn primary" type="button" onclick="openQuickLink(${index})">פתיחה</button>
     </div>
   `).join('');
 }
