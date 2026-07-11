@@ -186,9 +186,9 @@
       <div class="trip-title">הטיול שלנו ליפן</div>
       <button class="header-login-btn" id="headerLoginBtn" type="button">כניסה</button>
     </div>
-    <div class="trip-sub">14–28 בנובמבר 2026 · 6 מטיילים</div>
+    <div class="trip-sub">12–28 בנובמבר 2026 · 6 מטיילים</div>
     <div class="hero-stats">
-      <div class="stat-chip">15 ימים</div>
+      <div class="stat-chip">16 ימים</div>
       <div class="stat-chip">8 ערים</div>
       <div class="stat-chip" id="countdownChip">טוען ספירה לאחור...</div>
     </div>
@@ -592,6 +592,7 @@ let isRouteNotesEditing = false;
 const routeDayNotes = {};
 
 const citiesByDay = {
+  '12-13': { city: 'טיסה ליפן', image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80' },
   '14': { city: 'טוקיו - האקונה', image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80' },
   '15': { city: 'האקונה', image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600&q=80' },
   '16': { city: 'הר פוג\'י', image: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?w=600&q=80' },
@@ -674,6 +675,11 @@ function renderCountdownChip(){
 }
 
 const data = {
+  '12-13': { title:"טיסה ליפן", route:"תל אביב → קונקשן → טוקיו", events:[
+    ["20:30","יציאה לשדה תעופה","הגעה מוקדמת לצ'ק-אין ובדיקות ביטחון","https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=300&q=80","Ben Gurion Airport"],
+    ["00:30","טיסה בינלאומית","טיסת לילה ליפן עם קונקשן","https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=300&q=80","Tokyo"],
+    ["17:00","נחיתה והתארגנות","נחיתה בטוקיו, מעבר הגירה והגעה למלון","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Tokyo" ]
+  ]},
   '14': { title:"טוקיו → האקונה", route:"שינג'וקו → Hakone-Yumoto → המלון", events:[
     ["09:00","Tokyo Metropolitan Government Building","תצפית חינמית על טוקיו","https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80","Tokyo Metropolitan Government Building"],
     ["10:00","Shinjuku Gyoen","גן יפני וטיול בוקר רגוע","https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=300&q=80","Shinjuku Gyoen"],
