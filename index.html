@@ -12,6 +12,7 @@
   <link rel="apple-touch-icon" href="icon-192.png" />
   <title>Japan 2026 – Group Trip</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
   <style>
     :root{
       --bg:#f5f7fb; --card:#ffffff; --ink:#172033; --muted:#6b7280;
@@ -282,6 +283,16 @@
           </table>
         </div>
         <div class="expense-total" id="expensesTotal">סה"כ: 0</div>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+          <button class="btn primary" onclick="exportExpensesToCSV()">ייצוא ל־CSV</button>
+        </div>
+      </div>
+
+      <div class="upload-panel">
+        <div class="section-title" style="margin:0;font-size:18px">ההוצאות לפי משפחה</div>
+        <div style="display:flex;justify-content:center;align-items:center;min-height:200px;margin-top:12px">
+          <canvas id="familyPieChart" style="max-width:300px"></canvas>
+        </div>
       </div>
 
       <div class="upload-panel">
@@ -631,6 +642,112 @@ async function renderExpenses(){
     `;
   }).join('');
   totalNode.textContent = `סה"כ בשקלים: ${formatExpenseValue(totalIls)} ₪`;
+  await renderFamilyPieChart();
+}
+
+async function renderFamilyPieChart(){
+  const client = initSupabase();
+  if (!isSupabaseConfigured() || !currentSession) return;
+  const { data, error } = await client
+    .from('expenses')
+    .select('person_name, amount, currency')
+    .order('person_name', { ascending: true });
+  
+  if (error || !data || !data.length) return;
+  
+  const familyTotals = {};
+  data.forEach(row => {
+    const family = row.person_name || 'Unknown';
+    const ils = toIls(row.amount, row.currency);
+    familyTotals[family] = (familyTotals[family] || 0) + ils;
+  });
+  
+  const families = Object.keys(familyTotals).sort();
+  const labels = families;
+  const dataValues = families.map(f => familyTotals[f]);
+  const colors = ['#ff6b6b', '#2f6fed', '#ffb347'];
+  
+  const ctx = document.getElementById('familyPieChart');
+  if (!ctx) return;
+  
+  if (window.familyChart instanceof Chart) {
+    window.familyChart.destroy();
+  }
+  
+  window.familyChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: dataValues,
+        backgroundColor: colors.slice(0, families.length),
+        borderColor: '#fff',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { padding: 15, font: { size: 13, weight: 'bold' } }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.label || '';
+              const value = formatExpenseValue(context.parsed);
+              return label + ': ' + value + ' ₪';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+async function exportExpensesToCSV(){
+  if (!currentSession) {
+    alert('יש להתחבר קודם כדי לייצא הוצאות.');
+    return;
+  }
+  const client = initSupabase();
+  const { data, error } = await client
+    .from('expenses')
+    .select('expense_date, person_name, reason, amount, currency, receipt_path')
+    .order('expense_date', { ascending: false });
+  
+  if (error || !data) {
+    alert('שגיאה בטעינת הוצאות: ' + (error?.message || 'unknown'));
+    return;
+  }
+  
+  const headers = ['תאריך', 'משפחה', 'סיבה', 'סכום', 'מטבע', 'בשקלים', 'קבלה'];
+  const rows = data.map(row => [
+    row.expense_date || '',
+    row.person_name || '',
+    row.reason || '',
+    formatExpenseValue(row.amount),
+    currencyLabel(row.currency),
+    formatExpenseValue(toIls(row.amount, row.currency)),
+    row.receipt_path ? 'כן' : 'לא'
+  ]);
+  
+  let csv = headers.join(',') + '\n';
+  rows.forEach(row => {
+    csv += row.map(cell => {
+      const str = String(cell || '');
+      return str.includes(',') ? `"${str}"` : str;
+    }).join(',') + '\n';
+  });
+  
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'expenses_' + new Date().toISOString().slice(0,10) + '.csv';
+  link.click();
+  URL.revokeObjectURL(link.href);
 }
 
 async function startEditExpense(id){
