@@ -94,17 +94,15 @@
     .member{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line)}
     .member:last-child{border-bottom:0}.status{font-size:12px;color:var(--ok);font-weight:800}
     .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);
-      background:rgba(255,255,255,.95);backdrop-filter:blur(10px);display:grid;grid-template-columns:repeat(7,1fr);
+      background:rgba(248,251,255,.97);backdrop-filter:blur(10px);display:grid;grid-template-columns:repeat(7,1fr);
       gap:6px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));border-top:1px solid #d7e0ec;z-index:9999;
       pointer-events:auto;box-shadow:0 -8px 20px rgba(16,24,40,.08)}
-    .nav button{border:1px solid transparent;background:transparent;color:#4b5563;font-size:11px;font-weight:800;pointer-events:auto;cursor:pointer;
-      border-radius:12px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:56px;
+    .nav button{border:1px solid transparent;background:transparent;color:#374151;font-size:12px;font-weight:800;letter-spacing:.1px;pointer-events:auto;cursor:pointer;
+      border-radius:12px;padding:10px 4px;display:flex;align-items:center;justify-content:center;min-height:54px;
       transition:transform .16s ease,border-color .16s ease,background .16s ease,color .16s ease}
-    .nav button:hover{transform:scale(1.03);border-color:#d6dfeb;background:#f8fbff;color:#1f2937}
+    .nav button:hover{cursor:pointer;transform:scale(1.03);border-color:#d6dfeb;background:#f3f8ff;color:#111827}
     .nav button:active{transform:scale(.99)}
     .nav button.active{color:#0f3f84;background:#eaf3ff;border-color:#bdd3f3}
-    .ico{display:block;font-size:16px;margin-bottom:4px;opacity:.88;transition:transform .16s ease}
-    .nav button:hover .ico{transform:scale(1.06)}
     .screen{display:none}.screen.active{display:block}
     #main{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
     #route{overflow-y:auto;padding-bottom:200px;max-height:calc(100vh - 160px)}
@@ -170,7 +168,7 @@
     .expense-actions{display:flex;gap:6px;justify-content:flex-end}
     .file-picker-inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .auth-card{display:none}
-    .header-login-btn{background:#fff;color:#111827;border:0;border-radius:11px;padding:6px 12px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+    .header-login-btn{background:#fff;color:#111827;border:0;border-radius:11px;padding:7px 18px;min-width:82px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.1)}
     .view-mode-btn{background:#e2e8f0;color:#0f172a;border:0;border-radius:11px;padding:6px 12px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08)}
     .view-mode-btn.active{background:#fde68a;color:#78350f}
     .auth-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);display:none;z-index:10000;place-items:center;padding:20px}
@@ -619,13 +617,13 @@
   </main>
 
   <nav class="nav">
-    <button class="active" type="button" data-screen="main"><span class="ico">🏠</span>ראשי</button>
-    <button type="button" data-screen="route"><span class="ico">🗺️</span>מסלול</button>
-    <button type="button" data-screen="group" class="hidden"><span class="ico">👥</span>קבוצה</button>
-    <button type="button" data-screen="expenses"><span class="ico">💴</span>הוצאות</button>
-    <button type="button" data-screen="docs"><span class="ico">📄</span>מסמכים</button>
-    <button type="button" data-screen="transportation"><span class="ico">🚆</span>תחבורה</button>
-    <button type="button" data-screen="photos"><span class="ico">🖼️</span>תמונות</button>
+    <button class="active" type="button" data-screen="main">ראשי</button>
+    <button type="button" data-screen="route">מסלול</button>
+    <button type="button" data-screen="group" class="hidden">קבוצה</button>
+    <button type="button" data-screen="expenses">הוצאות</button>
+    <button type="button" data-screen="docs">מסמכים</button>
+    <button type="button" data-screen="transportation">תחבורה</button>
+    <button type="button" data-screen="photos">תמונות</button>
   </nav>
 </div>
 
