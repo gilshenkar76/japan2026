@@ -39,6 +39,7 @@
     .hero:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;
       background:rgba(14,165,233,.18);right:-86px;top:-92px}
     .top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+    .top-actions{display:flex;align-items:center;gap:8px}
     .logo{font-weight:800;font-size:20px}.small{font-size:12px;opacity:.8}
     .trip-title{margin:0;font-size:22px;font-weight:900;line-height:1.08;letter-spacing:.2px}
     .trip-sub{margin-top:4px;font-size:12px;opacity:.9}
@@ -170,6 +171,8 @@
     .file-picker-inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .auth-card{display:none}
     .header-login-btn{background:#fff;color:#111827;border:0;border-radius:11px;padding:6px 12px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+    .view-mode-btn{background:#e2e8f0;color:#0f172a;border:0;border-radius:11px;padding:6px 12px;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .view-mode-btn.active{background:#fde68a;color:#78350f}
     .auth-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);display:none;z-index:10000;place-items:center;padding:20px}
     .auth-modal.active{display:grid}
     .auth-modal-content{background:#fff;border-radius:24px;padding:20px;max-width:380px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,.2)}
@@ -200,7 +203,13 @@
       height: 0;
       pointer-events: none;
     }
-    @media (min-width:700px){body{padding:25px}.phone{border-radius:32px;overflow:hidden;min-height:900px}}
+    @media (min-width:700px){
+      body{padding:25px}
+      .phone{border-radius:32px;overflow:hidden;min-height:900px;max-width:min(1100px,96vw)}
+      .phone.mobile-preview{max-width:430px}
+      .phone .nav{width:min(1100px,96vw)}
+      .phone.mobile-preview .nav{width:min(430px,100%)}
+    }
   </style>
 </head>
 <body>
@@ -208,7 +217,10 @@
   <header class="hero">
     <div class="top">
       <div class="trip-title">הטיול שלנו ליפן</div>
-      <button class="header-login-btn" id="headerLoginBtn" type="button">כניסה</button>
+      <div class="top-actions">
+        <button class="view-mode-btn" id="viewModeBtn" type="button">mobile</button>
+        <button class="header-login-btn" id="headerLoginBtn" type="button">כניסה</button>
+      </div>
     </div>
     <div class="trip-sub">12–28 בנובמבר 2026 · 6 מטיילים</div>
     <div class="hero-stats">
@@ -674,6 +686,7 @@ const FLIGHT_STATUS_STORAGE_KEY = 'japan2026.flightStatus';
 const FLIGHT_SYNC_CONFIG_KEY = 'japan2026.flightSyncConfig';
 const FLIGHT_SYNC_INTERVAL_MS = 5 * 60 * 1000;
 const FLIGHT_PROXY_URL = `${supabaseUrl}/functions/v1/flight-status-proxy`;
+const VIEW_MODE_STORAGE_KEY = 'japan2026.viewMode';
 let supabaseClient = null;
 let currentSession = null;
 let expensesEditingId = null;
@@ -2091,6 +2104,40 @@ function swapTransportPoints(){
   fromNode.value = toNode.value;
   toNode.value = temp;
 }
+
+function applyViewMode(mode){
+  const phone = document.querySelector('.phone');
+  const button = document.getElementById('viewModeBtn');
+  if (!phone || !button) return;
+  const isDesktopScreen = window.matchMedia('(min-width:700px)').matches;
+  if (!isDesktopScreen) {
+    phone.classList.add('mobile-preview');
+    button.classList.add('active');
+    return;
+  }
+  const mobileMode = mode === 'mobile';
+  phone.classList.toggle('mobile-preview', mobileMode);
+  button.classList.toggle('active', mobileMode);
+}
+
+function initViewModeToggle(){
+  const button = document.getElementById('viewModeBtn');
+  if (!button) return;
+  const savedMode = localStorage.getItem(VIEW_MODE_STORAGE_KEY);
+  const initialMode = savedMode || (window.matchMedia('(min-width:700px)').matches ? 'desktop' : 'mobile');
+  applyViewMode(initialMode);
+  button.addEventListener('click', () => {
+    const phone = document.querySelector('.phone');
+    if (!phone) return;
+    const nextMode = phone.classList.contains('mobile-preview') ? 'desktop' : 'mobile';
+    localStorage.setItem(VIEW_MODE_STORAGE_KEY, nextMode);
+    applyViewMode(nextMode);
+  });
+  window.addEventListener('resize', () => {
+    const mode = localStorage.getItem(VIEW_MODE_STORAGE_KEY) || 'desktop';
+    applyViewMode(mode);
+  });
+}
 renderMainPage();
 renderCountdownChip();
 renderTransportationDays();
@@ -2099,6 +2146,7 @@ renderFlightStatusBoard();
 initFlightSyncUi();
 render('14');
 initNavigation();
+initViewModeToggle();
 
 document.getElementById('expenseDate').valueAsDate = new Date();
 document.getElementById('expenseReceipt').addEventListener('change', event => {
