@@ -31,7 +31,7 @@
       linear-gradient(180deg,#e8eff8 0,#f6f9fd 40%,#edf3fb 100%);
       font-family:'Heebo','Segoe UI',Tahoma,sans-serif;color:var(--ink);}
     .phone{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;
-      box-shadow:0 0 40px rgba(0,0,0,.12);padding-bottom:150px}
+      box-shadow:0 0 40px rgba(0,0,0,.12);padding-bottom:150px;overflow:visible}
     .hero{background:linear-gradient(140deg,var(--hero-start),var(--hero-mid) 55%,var(--hero-end));color:#fff;padding:8px 14px 10px;
       border-radius:0 0 20px 20px;position:relative;overflow:hidden}
     .hero:after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;
@@ -97,8 +97,8 @@
       background:linear-gradient(180deg,rgba(248,251,255,.98),rgba(241,246,252,.96));backdrop-filter:blur(12px);display:grid;grid-template-columns:repeat(7,1fr);
       gap:6px;padding:9px 8px calc(9px + env(safe-area-inset-bottom));border-top:1px solid #d5dfec;z-index:9999;
       pointer-events:auto;box-shadow:0 -10px 26px rgba(16,24,40,.10)}
-    .nav button{position:relative;border:1px solid transparent;background:transparent;color:#475569;font-size:12px;font-weight:800;letter-spacing:.1px;pointer-events:auto;cursor:pointer;
-      border-radius:12px;padding:10px 4px;display:flex;align-items:center;justify-content:center;min-height:54px;
+    .nav button{position:relative;border:1px solid transparent;background:transparent;color:#475569;font-size:11px;font-weight:800;letter-spacing:.1px;pointer-events:auto;cursor:pointer;
+      border-radius:12px;padding:7px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:56px;
       transition:transform .16s ease,border-color .16s ease,background .16s ease,color .16s ease,box-shadow .16s ease}
     .nav button:hover{cursor:pointer;transform:translateY(-1px);border-color:#cfdcec;background:#f7fbff;color:#1f2937;box-shadow:0 6px 14px rgba(15,23,42,.08)}
     .nav button:active{transform:translateY(1px)}
@@ -613,13 +613,13 @@
   </main>
 
   <nav class="nav">
-    <button class="active" type="button" data-screen="main">ראשי</button>
-    <button type="button" data-screen="route">מסלול</button>
-    <button type="button" data-screen="group" class="hidden">קבוצה</button>
-    <button type="button" data-screen="expenses">הוצאות</button>
-    <button type="button" data-screen="docs">מסמכים</button>
-    <button type="button" data-screen="transportation">תחבורה</button>
-    <button type="button" data-screen="photos">תמונות</button>
+    <button class="active" type="button" data-screen="main"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg><span>ראשי</span></button>
+    <button type="button" data-screen="route"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><span>מסלול</span></button>
+    <button type="button" data-screen="group" class="hidden"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="7" r="3"/><path d="M21 20c0-3.3-1.3-5.4-4-6"/></svg><span>קבוצה</span></button>
+    <button type="button" data-screen="expenses"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><span>הוצאות</span></button>
+    <button type="button" data-screen="docs"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>מסמכים</span></button>
+    <button type="button" data-screen="transportation"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>תחבורה</span></button>
+    <button type="button" data-screen="photos"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>תמונות</span></button>
   </nav>
 </div>
 
