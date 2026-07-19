@@ -269,7 +269,7 @@
         <div class="weather">☀️ 17°</div>
       </div>
 
-      <div class="map-card">
+      <div class="map-card" id="dayMapCard">
         <div class="map-chip">מסלול היום</div>
         <div class="route-line" id="routeText">שינג'וקו → Hakone-Yumoto → המלון</div>
       </div>
@@ -1993,6 +1993,23 @@ function render(day){
   }
   document.getElementById('dayTitle').innerText=data[day].title;
   document.getElementById('routeText').innerText=data[day].route;
+  
+  // Update map background based on day
+  const mapCard = document.getElementById('dayMapCard');
+  if (mapCard) {
+    if (day === '14') {
+      // Use the walking route map for Day 14
+      mapCard.style.background = `
+        linear-gradient(rgba(17,24,39,.08),rgba(17,24,39,.08)),
+        url('assets/maps/day14_walking_map.png') center/cover`;
+    } else {
+      // Default generic map background for other days
+      mapCard.style.background = `
+        linear-gradient(rgba(17,24,39,.08),rgba(17,24,39,.08)),
+        url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=900&q=80') center/cover`;
+    }
+  }
+  
   const overviewNode = document.getElementById('routeOverview');
   const tipsNode = document.getElementById('routeTips');
   const hotel = hotelsByDay[day] || { name: 'מלון טרם עודכן', meta: 'עדכנו כאן את פרטי הלינה ליום זה', mapQuery: 'Tokyo hotels', bookingUrl: '', bookingAppUrl: '', extra: '' };
