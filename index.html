@@ -72,7 +72,8 @@
     .section-title{font-size:17px;font-weight:900;margin:20px 2px 10px}
     .timeline{display:grid;gap:10px}
     .attraction-cards{display:grid;gap:14px}
-    .attraction-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:0;overflow:hidden;box-shadow:var(--shadow)}
+    .attraction-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:0;overflow:hidden;box-shadow:var(--shadow);position:relative}
+    .attraction-card-time{position:absolute;top:12px;right:12px;background:rgba(30,41,59,0.92);color:#fff;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:800;z-index:1;box-shadow:0 2px 8px rgba(0,0,0,0.25)}
     .attraction-card-img{width:100%;height:160px;object-fit:cover;background:#e8edf5}
     .attraction-card-content{padding:14px}
     .attraction-card-title{font-size:16px;font-weight:800;margin:0 0 8px;color:#1e293b}
@@ -2164,6 +2165,7 @@ function render(day){
     
     const attractions = [
       {
+        time: '09:00',
         title: 'Tokyo Metropolitan Government Building',
         desc: 'תצפית חינמית על טוקיו מקומה 45. נוף מרהיב של העיר מגובה 202 מטר. ניתן לראות את הר פוג\'י במזג אוויר בהיר.',
         address: '📍 <b>東京都新宿区西新宿2-8-1</b>2 Chome-8-1 Nishishinjuku, Shinjuku City, Tokyo 163-8001',
@@ -2173,6 +2175,7 @@ function render(day){
         link: 'Tokyo Metropolitan Government Building, Tokyo'
       },
       {
+        time: '10:30',
         title: 'Shinjuku Gyoen National Garden',
         desc: 'אחד הגנים היפים ביותר בטוקיו, משלב סגנונות יפניים, צרפתיים ואנגליים. מקום מושלם לטיול רגוע ולצילומים.',
         address: '📍 <b>東京都新宿区内藤町11</b>11 Naitomachi, Shinjuku City, Tokyo 160-0014',
@@ -2182,6 +2185,7 @@ function render(day){
         link: 'Shinjuku Gyoen National Garden, Tokyo'
       },
       {
+        time: '12:30',
         title: 'ארוחת RAMEN ליד הפארק',
         desc: 'ארוחת צהריים ברמן יפני אותנטי. באזור שינג\'וקו יש עשרות מסעדות רמן מעולות, כולן במחירים סבירים.',
         address: '📍 <b>新宿駅周辺</b>Shinjuku area, near Shinjuku Gyoen',
@@ -2191,6 +2195,7 @@ function render(day){
         link: 'Ichiran Ramen Shinjuku'
       },
       {
+        time: '13:45',
         title: 'Odakyu Romancecar להאקונה',
         desc: 'רכבת מהירה ונוחה משינג\'וקו להאקונה. נסיעה יפה של כשעה וחצי עם נוף להר פוג\'י (במזג אוויר בהיר).',
         address: '📍 <b>新宿駅 小田急線ホーム</b>Shinjuku Station, Odakyu Line Platform',
@@ -2200,6 +2205,7 @@ function render(day){
         link: 'Odakyu Romancecar Shinjuku Station'
       },
       {
+        time: '15:30',
         title: 'Aura Tachibana - הגעה למלון',
         desc: 'ריוקן (מלון יפני מסורתי) עם אונסן (מעיינות חמים). מקום מושלם להירגע אחרי יום של טיולים.',
         address: '📍 <b>神奈川県足柄下郡箱根町湯本592</b>592 Yumoto, Hakone, Ashigarashimo District, Kanagawa 250-0311',
@@ -2213,6 +2219,7 @@ function render(day){
     attractions.forEach(a => {
       const mapsLink = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a.link);
       tl.innerHTML += `<div class="attraction-card">
+        <div class="attraction-card-time">${a.time}</div>
         <img class="attraction-card-img" src="${a.img}" alt="${a.title}">
         <div class="attraction-card-content">
           <h3 class="attraction-card-title">${a.title}</h3>
