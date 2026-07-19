@@ -52,7 +52,7 @@
     .a1{background:#ffd6d6}.a2{background:#d9e8ff}.a3{background:#e8dbff}.a4{background:#d8f6df}.a5{background:#ffe9bd}.a6{background:#f5d9ff}
     .content{padding:6px 14px 0}
     .day-head{display:flex;justify-content:space-between;align-items:flex-end;margin:10px 2px 12px}
-    .day-head.minimalist{align-items:center;margin:8px 2px 12px;gap:12px}
+    .day-head.minimalist{align-items:center;margin:8px 2px 12px;gap:12px;direction:ltr}
     .day-head.minimalist .day-title{font-size:18px;margin:0;flex:1}
     .home-icon-btn{background:transparent;border:0;font-size:22px;padding:0;cursor:pointer;line-height:1;opacity:0.7;transition:opacity 0.2s;flex-shrink:0}
     .home-icon-btn:hover{opacity:1}
@@ -2024,7 +2024,7 @@ function render(day){
   const weather = dayHeadContainer.querySelector('.weather');
   
   if (day === '14') {
-    // Restructure for single-line: [🏠] [Title] [Weather]
+    // Restructure for single-line: [🏠] [Title] [Date] [Weather]
     if (dayHeadContainer) {
       dayHeadContainer.classList.add('minimalist');
       dayHeadContainer.innerHTML = '';
@@ -2035,12 +2035,22 @@ function render(day){
       homeBtn.onclick = goBackToMain;
       homeBtn.textContent = '🏠';
       
+      // Create date element
+      const dateEl = document.createElement('div');
+      dateEl.className = 'day-date';
+      dateEl.textContent = '14.11';
+      dateEl.style.fontSize = '13px';
+      dateEl.style.color = '#64748b';
+      dateEl.style.fontWeight = '600';
+      dateEl.style.flexShrink = '0';
+      
       // Move title directly
       dayTitle.style.display = 'block';
       
-      // Append in order: home, title, weather
+      // Append in order: home, title, date, weather
       dayHeadContainer.appendChild(homeBtn);
       dayHeadContainer.appendChild(dayTitle);
+      dayHeadContainer.appendChild(dateEl);
       if (weather) dayHeadContainer.appendChild(weather);
     }
   } else {
