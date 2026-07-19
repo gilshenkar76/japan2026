@@ -2051,7 +2051,7 @@ function render(day){
   const routeNotesPanel = document.getElementById('routeNotesPanel');
   
   if (day === '14') {
-    // Day 14: Single combined field
+    // Day 14: Single combined field - always visible
     if (routeTipsContainer) routeTipsContainer.style.display = 'none';
     if (routeOverviewLabel) routeOverviewLabel.style.display = 'none';
     if (routeNotesHelp) routeNotesHelp.style.display = 'none';
@@ -2062,10 +2062,9 @@ function render(day){
       const combinedText = [routeDayNotes[day].overview, routeDayNotes[day].tips].filter(t => t && t.trim()).join('\n\n');
       overviewNode.value = combinedText;
     }
-    // Hide entire panel if empty
+    // Always show panel for Day 14 (even if empty) so user can edit
     if (routeNotesPanel) {
-      const hasContent = overviewNode && overviewNode.value.trim().length > 0;
-      routeNotesPanel.style.display = hasContent ? 'block' : 'none';
+      routeNotesPanel.style.display = 'block';
     }
   } else {
     // Other days: Show both fields normally
