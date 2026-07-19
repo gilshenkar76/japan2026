@@ -71,20 +71,16 @@
       border-radius:16px;padding:11px 13px;font-size:13px}
     .section-title{font-size:17px;font-weight:900;margin:20px 2px 10px}
     .timeline{display:grid;gap:10px}
-    .timeline-rich{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
-    .timeline-schedule{display:grid;gap:8px}
-    .schedule-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;gap:10px;align-items:center}
-    .schedule-time{font-size:13px;font-weight:800;color:#64748b;min-width:75px}
-    .schedule-title{font-size:14px;font-weight:700;color:#1e293b}
-    .attraction-cards{display:grid;gap:12px}
+    .attraction-cards{display:grid;gap:14px}
     .attraction-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:0;overflow:hidden;box-shadow:var(--shadow)}
-    .attraction-card-img{width:100%;height:140px;object-fit:cover;background:#e8edf5}
-    .attraction-card-content{padding:12px}
-    .attraction-card-title{font-size:15px;font-weight:800;margin:0 0 6px;color:#1e293b}
-    .attraction-card-desc{font-size:12px;color:#64748b;line-height:1.5;margin:0 0 8px}
-    .attraction-card-address{font-size:11px;color:#94a3b8;margin:0 0 8px;display:flex;align-items:center;gap:4px}
-    .attraction-card-tips{font-size:11px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:8px;color:#475569;line-height:1.4}
-    .attraction-card-hours{font-size:11px;font-weight:700;color:#64748b;margin-top:6px}
+    .attraction-card-img{width:100%;height:160px;object-fit:cover;background:#e8edf5}
+    .attraction-card-content{padding:14px}
+    .attraction-card-title{font-size:16px;font-weight:800;margin:0 0 8px;color:#1e293b}
+    .attraction-card-desc{font-size:13px;color:#64748b;line-height:1.6;margin:0 0 10px}
+    .attraction-card-address{font-size:12px;color:#94a3b8;margin:0 0 10px;display:flex;align-items:flex-start;gap:6px;line-height:1.5}
+    .attraction-card-tips{font-size:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;color:#475569;line-height:1.5;margin-bottom:10px}
+    .attraction-card-hours{font-size:12px;font-weight:700;color:#64748b;margin-bottom:10px}
+    .attraction-card-qr{text-align:center;padding:10px 0;border-top:1px solid #e2e8f0;background:#f8fafc}
     .item{display:grid;grid-template-columns:58px 1fr;gap:10px;align-items:stretch}
     .time{font-size:13px;color:var(--muted);font-weight:800;padding-top:14px;text-align:center}
     .event{background:var(--card);border-radius:20px;padding:13px;box-shadow:var(--shadow);
@@ -2163,70 +2159,59 @@ function render(day){
   const tl=document.getElementById('timeline'); tl.innerHTML='';
   
   if (day === '14') {
-    // Rich two-column layout for Day 14
-    tl.className = 'timeline-rich';
+    // Attraction cards layout for Day 14 (matching PNG with QR codes)
+    tl.className = 'attraction-cards';
     
-    // Left column: Schedule
-    const schedule = [
-      ['08:00-08:45', 'השארת מזוודות במלון'],
-      ['09:00-10:00', 'Tokyo Metropolitan Government Building'],
-      ['10:15-11:30', 'Shinjuku Gyoen National Garden'],
-      ['12:00-13:00', 'ארוחת RAMEN ליד הפארק'],
-      ['13:15-14:30', 'נסיעה להאקונה (Odakyu Romancecar)'],
-      ['15:00-22:00', 'הגעה וטיול ב-Aura Tachibana']
-    ];
-    
-    let scheduleHTML = '<div class="timeline-schedule">';
-    schedule.forEach(([time, title]) => {
-      scheduleHTML += `<div class="schedule-item">
-        <div class="schedule-time">${time}</div>
-        <div class="schedule-title">${title}</div>
-      </div>`;
-    });
-    scheduleHTML += '</div>';
-    
-    // Right column: Attraction cards
     const attractions = [
       {
         title: 'Tokyo Metropolitan Government Building',
-        desc: 'תצפית חינמית על טוקיו מקומה 45. נוף מרהיב של העיר מגובה 202 מטר.',
+        desc: 'תצפית חינמית על טוקיו מקומה 45. נוף מרהיב של העיר מגובה 202 מטר. ניתן לראות את הר פוג\'י במזג אוויר בהיר.',
         address: '2 Chome-8-1 Nishishinjuku, Shinjuku City, Tokyo 163-8001',
-        tips: '💡 כניסה חינם! פתוח 09:30-23:00. מומלץ להגיע מוקדם למזג אוויר בהיר.',
-        hours: '09:30-23:00',
-        img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=400&q=80',
-        link: 'Tokyo Metropolitan Government Building'
+        tips: '💡 כניסה חינם! פתוח 09:30-23:00 (סגור בראשון השני של כל חודש).\nמומלץ להגיע מוקדם בבוקר למזג אוויר בהיר ולנוף הטוב ביותר.',
+        hours: '🕐 09:30-23:00 | 🎫 חינם',
+        img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=600&q=80',
+        link: 'Tokyo Metropolitan Government Building, Tokyo'
       },
       {
         title: 'Shinjuku Gyoen National Garden',
-        desc: 'גן יפני מסורתי עם אגמים ונופים רגועים. מקום מושלם לטיול בוקר.',
+        desc: 'אחד הגנים היפים ביותר בטוקיו, משלב סגנונות יפניים, צרפתיים ואנגליים. מקום מושלם לטיול רגוע ולצילומים.',
         address: '11 Naitomachi, Shinjuku City, Tokyo 160-0014',
-        tips: '💡 כניסה: ¥500. פתוח 09:00-16:30. אל תפספסו את הגשר היפני!',
-        hours: '09:00-16:30 | ¥500',
-        img: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=400&q=80',
-        link: 'Shinjuku Gyoen National Garden'
+        tips: '💡 כניסה: ¥500 למבוגר.\nפתוח 09:00-16:30 (יום שני סגור).\nאסור להכניס אלכוהול. מומלץ לבקר באביב (פריחת הדובדבן) או בסתיו (עלי סתיו).',
+        hours: '🕐 09:00-16:30 (סגור בשני) | 🎫 ¥500',
+        img: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80',
+        link: 'Shinjuku Gyoen National Garden, Tokyo'
+      },
+      {
+        title: 'Odakyu Romancecar להאקונה',
+        desc: 'רכבת מהירה ונוחה משינג\'וקו להאקונה. נסיעה יפה של כשעה וחצי עם נוף להר פוג\'י (במזג אוויר בהיר).',
+        address: 'תחנת Shinjuku, יציאה ל-Odakyu Line',
+        tips: '💡 מומלץ להזמין מושבים מראש באתר Odakyu.\nעלות: ~¥2,280 (כולל מושב שמור).\nהרכבת יוצאת מתחנת שינג\'וקו, קו Odakyu (לא JR!).',
+        hours: '🕐 נסיעות תכופות | 🎫 ~¥2,280',
+        img: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=600&q=80',
+        link: 'Odakyu Romancecar Shinjuku Station'
       }
     ];
     
-    let attractionsHTML = '<div class="attraction-cards">';
     attractions.forEach(a => {
       const mapsLink = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a.link);
-      attractionsHTML += `<div class="attraction-card">
+      tl.innerHTML += `<div class="attraction-card">
         <img class="attraction-card-img" src="${a.img}" alt="${a.title}">
         <div class="attraction-card-content">
           <h3 class="attraction-card-title">${a.title}</h3>
           <div class="attraction-card-desc">${a.desc}</div>
           <div class="attraction-card-address">📍 ${a.address}</div>
           <div class="attraction-card-tips">${a.tips}</div>
-          <div class="attraction-card-hours">🕐 ${a.hours}</div>
-          <div class="actions" style="margin-top:10px">
-            <a class="btn primary" target="_blank" href="${mapsLink}">📍 נווט</a>
+          <div class="attraction-card-hours">${a.hours}</div>
+          <div class="actions">
+            <a class="btn primary" target="_blank" href="${mapsLink}" style="width:100%">📍 פתח ב-Google Maps</a>
           </div>
+        </div>
+        <div class="attraction-card-qr">
+          <div style="font-size:11px;color:#64748b;margin-bottom:4px">סרוק לניווט</div>
+          <div style="font-size:20px">📱</div>
         </div>
       </div>`;
     });
-    attractionsHTML += '</div>';
-    
-    tl.innerHTML = scheduleHTML + attractionsHTML;
   } else {
     // Default timeline for other days
     tl.className = 'timeline';
