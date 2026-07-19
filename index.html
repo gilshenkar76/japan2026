@@ -80,7 +80,6 @@
     .attraction-card-address{font-size:12px;color:#94a3b8;margin:0 0 10px;display:flex;align-items:flex-start;gap:6px;line-height:1.5}
     .attraction-card-tips{font-size:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;color:#475569;line-height:1.5;margin-bottom:10px}
     .attraction-card-hours{font-size:12px;font-weight:700;color:#64748b;margin-bottom:10px}
-    .attraction-card-qr{text-align:center;padding:10px 0;border-top:1px solid #e2e8f0;background:#f8fafc}
     .item{display:grid;grid-template-columns:58px 1fr;gap:10px;align-items:stretch}
     .time{font-size:13px;color:var(--muted);font-weight:800;padding-top:14px;text-align:center}
     .event{background:var(--card);border-radius:20px;padding:13px;box-shadow:var(--shadow);
@@ -2159,7 +2158,7 @@ function render(day){
   const tl=document.getElementById('timeline'); tl.innerHTML='';
   
   if (day === '14') {
-    // Attraction cards layout for Day 14 (matching PNG with QR codes)
+    // Attraction cards layout for Day 14 (5 attractions from PNG)
     tl.className = 'attraction-cards';
     
     const attractions = [
@@ -2182,13 +2181,31 @@ function render(day){
         link: 'Shinjuku Gyoen National Garden, Tokyo'
       },
       {
+        title: 'ארוחת RAMEN ליד הפארק',
+        desc: 'ארוחת צהריים ברמן יפני אותנטי. באזור שינג\'וקו יש עשרות מסעדות רמן מעולות, כולן במחירים סבירים.',
+        address: 'Shinjuku area, near Shinjuku Gyoen',
+        tips: '💡 מומלץ: Ichiran Ramen או Ippudo.\nמחיר ממוצע: ¥800-1,200 לקערת רמן.\nרוב המקומות עם מכונות הזמנה אוטומטיות - בחרו את המנה ותשלמו מראש.',
+        hours: '🕐 12:00-13:00 | 🎫 ~¥1,000',
+        img: 'https://images.unsplash.com/photo-1557872943-16a5ac26437e?auto=format&fit=crop&w=600&q=80',
+        link: 'Ichiran Ramen Shinjuku'
+      },
+      {
         title: 'Odakyu Romancecar להאקונה',
         desc: 'רכבת מהירה ונוחה משינג\'וקו להאקונה. נסיעה יפה של כשעה וחצי עם נוף להר פוג\'י (במזג אוויר בהיר).',
-        address: 'תחנת Shinjuku, יציאה ל-Odakyu Line',
+        address: 'Shinjuku Station, Odakyu Line Platform',
         tips: '💡 מומלץ להזמין מושבים מראש באתר Odakyu.\nעלות: ~¥2,280 (כולל מושב שמור).\nהרכבת יוצאת מתחנת שינג\'וקו, קו Odakyu (לא JR!).',
         hours: '🕐 נסיעות תכופות | 🎫 ~¥2,280',
         img: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=600&q=80',
         link: 'Odakyu Romancecar Shinjuku Station'
+      },
+      {
+        title: 'Aura Tachibana - הגעה למלון',
+        desc: 'ריוקן (מלון יפני מסורתי) עם אונסן (מעיינות חמים). מקום מושלם להירגע אחרי יום של טיולים.',
+        address: '592 Yumoto, Hakone, Ashigarashimo District, Kanagawa 250-0311',
+        tips: '💡 צ\'ק-אין: 15:00.\nאל תשכחו להביא בגדי ים לאונסן.\nארוחת ערב במלון (kaiseki - מנות יפניות מרובות) - מומלץ מאוד!',
+        hours: '🕐 צ\'ק-אין 15:00 | 🛏️ ריוקן מסורתי',
+        img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
+        link: 'Aura Tachibana Hakone Yumoto'
       }
     ];
     
@@ -2205,10 +2222,6 @@ function render(day){
           <div class="actions">
             <a class="btn primary" target="_blank" href="${mapsLink}" style="width:100%">📍 פתח ב-Google Maps</a>
           </div>
-        </div>
-        <div class="attraction-card-qr">
-          <div style="font-size:11px;color:#64748b;margin-bottom:4px">סרוק לניווט</div>
-          <div style="font-size:20px">📱</div>
         </div>
       </div>`;
     });
