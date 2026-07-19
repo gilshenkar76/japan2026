@@ -2228,6 +2228,8 @@ function render(day){
     
     attractions.forEach(a => {
       const mapsLink = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a.link);
+      const geminiQuery = encodeURIComponent(`תן לי מידע נוסף על ${a.title} ביפן`);
+      const geminiLink = `https://gemini.google.com/app?q=${geminiQuery}`;
       tl.innerHTML += `<div class="attraction-card">
         <div class="attraction-card-time">${a.time}</div>
         <img class="attraction-card-img" src="${a.img}" alt="${a.title}">
@@ -2237,8 +2239,9 @@ function render(day){
           <div class="attraction-card-address">📍 ${a.address}</div>
           <div class="attraction-card-tips">${a.tips}</div>
           <div class="attraction-card-hours">${a.hours}</div>
-          <div class="actions">
-            <a class="btn primary" target="_blank" href="${mapsLink}" style="width:100%">📍 פתח ב-Google Maps</a>
+          <div class="actions" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <a class="btn primary" target="_blank" href="${mapsLink}">📍 מפה</a>
+            <a class="btn" target="_blank" href="${geminiLink}" style="background:#8e44ad;color:#fff">✨ שאל Gemini</a>
           </div>
         </div>
       </div>`;
