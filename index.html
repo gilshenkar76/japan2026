@@ -2002,6 +2002,27 @@ async function initAuth(){
   });
 }
 
+function askGemini(attractionTitle) {
+  const prompt = `תן לי מידע נוסף על ${attractionTitle} ביפן`;
+  
+  // Copy to clipboard
+  navigator.clipboard.writeText(prompt).then(() => {
+    // Show notification
+    const notification = document.createElement('div');
+    notification.textContent = '✅ הטקסט הועתק! הדבק אותו ב-Gemini';
+    notification.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#4caf50;color:#fff;padding:12px 24px;border-radius:8px;z-index:10000;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.3)';
+    document.body.appendChild(notification);
+    
+    // Open Gemini
+    window.open('https://gemini.google.com/app', '_blank');
+    
+    // Remove notification after 3 seconds
+    setTimeout(() => notification.remove(), 3000);
+  }).catch(err => {
+    alert('לא ניתן להעתיק לקליפבורד: ' + err);
+  });
+}
+
 function render(day){
   if (!data[day]) return;
   if (isRouteNotesEditing) saveCurrentRouteNotes();
@@ -2228,8 +2249,7 @@ function render(day){
     
     attractions.forEach(a => {
       const mapsLink = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a.link);
-      const geminiQuery = encodeURIComponent(`תן לי מידע נוסף על ${a.title} ביפן`);
-      const geminiLink = `https://gemini.google.com/app?q=${geminiQuery}`;
+      const attractionTitle = a.title.replace(/'/g, "\\'");
       tl.innerHTML += `<div class="attraction-card">
         <div class="attraction-card-time">${a.time}</div>
         <img class="attraction-card-img" src="${a.img}" alt="${a.title}">
@@ -2241,7 +2261,7 @@ function render(day){
           <div class="attraction-card-hours">${a.hours}</div>
           <div class="actions" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
             <a class="btn primary" target="_blank" href="${mapsLink}">📍 מפה</a>
-            <a class="btn" target="_blank" href="${geminiLink}" style="background:#8e44ad;color:#fff">✨ שאל Gemini</a>
+            <button class="btn" onclick="askGemini('${attractionTitle}')" style="background:#8e44ad;color:#fff;border:none;cursor:pointer">✨ שאל Gemini</button>
           </div>
         </div>
       </div>`;
