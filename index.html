@@ -52,12 +52,12 @@
     .a1{background:#ffd6d6}.a2{background:#d9e8ff}.a3{background:#e8dbff}.a4{background:#d8f6df}.a5{background:#ffe9bd}.a6{background:#f5d9ff}
     .content{padding:6px 14px 0}
     .day-head{display:flex;justify-content:space-between;align-items:flex-end;margin:10px 2px 12px}
-    .day-head.minimalist{align-items:center;margin:8px 2px 12px}
-    .day-head.minimalist .day-title{font-size:20px;margin:0}
-    .home-icon-btn{background:transparent;border:0;font-size:24px;padding:4px;cursor:pointer;line-height:1;opacity:0.7;transition:opacity 0.2s}
+    .day-head.minimalist{align-items:center;margin:8px 2px 12px;gap:12px}
+    .day-head.minimalist .day-title{font-size:18px;margin:0;flex:1}
+    .home-icon-btn{background:transparent;border:0;font-size:22px;padding:0;cursor:pointer;line-height:1;opacity:0.7;transition:opacity 0.2s;flex-shrink:0}
     .home-icon-btn:hover{opacity:1}
     .day-meta{font-size:13px;font-weight:700;color:#64748b;margin-bottom:4px;letter-spacing:0.3px}
-    .day-title{font-size:22px;font-weight:900}.weather{font-size:13px;color:var(--muted)}
+    .day-title{font-size:22px;font-weight:900}.weather{font-size:13px;color:var(--muted);flex-shrink:0}
     .map-card{height:170px;border-radius:24px;background:
       linear-gradient(rgba(17,24,39,.08),rgba(17,24,39,.08)),
       url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=900&q=80') center/cover;
@@ -270,7 +270,6 @@
       <div class="day-head" id="dayHeadContainer">
         <div>
           <button class="btn primary" type="button" onclick="goBackToMain()" style="padding:8px 14px;font-size:12px;margin-bottom:10px;font-weight:900;border-radius:12px" id="backButton">⬅️ חזור לראשי</button>
-          <button class="home-icon-btn" type="button" onclick="goBackToMain()" id="homeIconButton" style="display:none">🏠</button>
           <div>
             <div class="small" style="color:#e53935;font-weight:800" id="dayLabel">היום הראשון</div>
             <div class="day-meta" id="dayMeta" style="display:none"></div>
@@ -2011,25 +2010,38 @@ function render(day){
   document.getElementById('dayTitle').innerText=data[day].title;
   document.getElementById('routeText').innerText=data[day].route;
   
-  // Day 14: Apply minimalist header layout
+  // Day 14: Apply ultra-compact single-line header
   const dayHeadContainer = document.getElementById('dayHeadContainer');
   const backButton = document.getElementById('backButton');
-  const homeIconButton = document.getElementById('homeIconButton');
   const dayLabel = document.getElementById('dayLabel');
+  const dayTitle = document.getElementById('dayTitle');
   const dayMeta = document.getElementById('dayMeta');
+  const weather = dayHeadContainer.querySelector('.weather');
   
   if (day === '14') {
-    // Ultra-compact single-line header for Day 14
-    if (dayHeadContainer) dayHeadContainer.classList.add('minimalist');
-    if (backButton) backButton.style.display = 'none';
-    if (homeIconButton) homeIconButton.style.display = 'inline-block';
-    if (dayLabel) dayLabel.style.display = 'none';
-    if (dayMeta) dayMeta.style.display = 'none'; // Remove date line
+    // Restructure for single-line: [🏠] [Title] [Weather]
+    if (dayHeadContainer) {
+      dayHeadContainer.classList.add('minimalist');
+      dayHeadContainer.innerHTML = '';
+      
+      // Create home icon button
+      const homeBtn = document.createElement('button');
+      homeBtn.className = 'home-icon-btn';
+      homeBtn.onclick = goBackToMain;
+      homeBtn.textContent = '🏠';
+      
+      // Move title directly
+      dayTitle.style.display = 'block';
+      
+      // Append in order: home, title, weather
+      dayHeadContainer.appendChild(homeBtn);
+      dayHeadContainer.appendChild(dayTitle);
+      if (weather) dayHeadContainer.appendChild(weather);
+    }
   } else {
-    // Other days: Keep original layout
+    // Other days: Keep original nested layout
     if (dayHeadContainer) dayHeadContainer.classList.remove('minimalist');
     if (backButton) backButton.style.display = 'inline-block';
-    if (homeIconButton) homeIconButton.style.display = 'none';
     if (dayLabel) dayLabel.style.display = 'block';
     if (dayMeta) dayMeta.style.display = 'none';
   }
