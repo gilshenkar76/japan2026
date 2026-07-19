@@ -91,6 +91,7 @@
     .route-notes label{font-size:13px;font-weight:800;color:#374151}
     .route-textarea{width:100%;min-height:86px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;color:var(--ink);background:#f8fafc}
     .route-textarea[readonly]{background:#eef2f7;cursor:default}
+    .route-textarea.auto-resize{min-height:40px;resize:none;overflow:hidden}
     .route-notes-actions{position:absolute;left:12px;top:12px;display:flex;gap:8px}
     .route-notes-help{font-size:12px;color:var(--muted);margin-top:8px}
     .group-card{background:#fff;border-radius:22px;padding:14px;box-shadow:var(--shadow);border:1px solid var(--line)}
@@ -2051,7 +2052,7 @@ function render(day){
   const routeNotesPanel = document.getElementById('routeNotesPanel');
   
   if (day === '14') {
-    // Day 14: Single combined field - always visible
+    // Day 14: Single combined field - always visible with auto-resize
     if (routeTipsContainer) routeTipsContainer.style.display = 'none';
     if (routeOverviewLabel) routeOverviewLabel.style.display = 'none';
     if (routeNotesHelp) routeNotesHelp.style.display = 'none';
@@ -2061,6 +2062,14 @@ function render(day){
       // Combine both fields into one for Day 14
       const combinedText = [routeDayNotes[day].overview, routeDayNotes[day].tips].filter(t => t && t.trim()).join('\n\n');
       overviewNode.value = combinedText;
+      
+      // Enable auto-resize
+      overviewNode.classList.add('auto-resize');
+      autoResizeTextarea(overviewNode);
+      
+      // Add input listener for auto-resize
+      overviewNode.removeEventListener('input', handleTextareaResize);
+      overviewNode.addEventListener('input', handleTextareaResize);
     }
     // Always show panel for Day 14 (even if empty) so user can edit
     if (routeNotesPanel) {
@@ -2109,6 +2118,16 @@ function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.cl
 function goBackToMain(){
   const mainBtn = document.querySelector('.nav button[data-screen="main"]');
   if (mainBtn) showScreen('main', mainBtn);
+}
+
+function autoResizeTextarea(textarea) {
+  if (!textarea) return;
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+}
+
+function handleTextareaResize(event) {
+  autoResizeTextarea(event.target);
 }
 
 function setRouteNotesEditMode(editing){
