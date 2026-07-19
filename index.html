@@ -1995,6 +1995,11 @@ function render(day){
   if (!data[day]) return;
   if (isRouteNotesEditing) saveCurrentRouteNotes();
   currentRouteDay = day;
+  
+  // Hide hero header when rendering day page
+  const hero = document.querySelector('.hero');
+  if (hero) hero.style.display = 'none';
+  
   if (!routeDayNotes[day]) {
     if (day === '14') {
       // Day 14: Empty by default (will hide section)
@@ -2155,7 +2160,18 @@ function copyHotelDetails(){
   }
   alert(text);
 }
-function showScreen(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+function showScreen(id,btn){
+  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));
+  btn.classList.add('active');
+  
+  // Hide hero header on day pages, show only on main
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    hero.style.display = (id === 'main') ? 'block' : 'none';
+  }
+}
 
 function goBackToMain(){
   const mainBtn = document.querySelector('.nav button[data-screen="main"]');
