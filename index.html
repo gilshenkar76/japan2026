@@ -52,6 +52,10 @@
     .a1{background:#ffd6d6}.a2{background:#d9e8ff}.a3{background:#e8dbff}.a4{background:#d8f6df}.a5{background:#ffe9bd}.a6{background:#f5d9ff}
     .content{padding:6px 14px 0}
     .day-head{display:flex;justify-content:space-between;align-items:flex-end;margin:10px 2px 12px}
+    .day-head.minimalist{align-items:flex-start;margin:6px 2px 14px}
+    .home-icon-btn{background:transparent;border:0;font-size:24px;padding:4px;cursor:pointer;line-height:1;opacity:0.7;transition:opacity 0.2s}
+    .home-icon-btn:hover{opacity:1}
+    .day-meta{font-size:13px;font-weight:700;color:#64748b;margin-bottom:4px;letter-spacing:0.3px}
     .day-title{font-size:22px;font-weight:900}.weather{font-size:13px;color:var(--muted)}
     .map-card{height:170px;border-radius:24px;background:
       linear-gradient(rgba(17,24,39,.08),rgba(17,24,39,.08)),
@@ -262,11 +266,13 @@
 
   <main id="route" class="screen">
     <div class="content">
-      <div class="day-head">
+      <div class="day-head" id="dayHeadContainer">
         <div>
-          <button class="btn primary" type="button" onclick="goBackToMain()" style="padding:8px 14px;font-size:12px;margin-bottom:10px;font-weight:900;border-radius:12px">⬅️ חזור לראשי</button>
+          <button class="btn primary" type="button" onclick="goBackToMain()" style="padding:8px 14px;font-size:12px;margin-bottom:10px;font-weight:900;border-radius:12px" id="backButton">⬅️ חזור לראשי</button>
+          <button class="home-icon-btn" type="button" onclick="goBackToMain()" id="homeIconButton" style="display:none">🏠</button>
           <div>
-            <div class="small" style="color:#e53935;font-weight:800">היום הראשון</div>
+            <div class="small" style="color:#e53935;font-weight:800" id="dayLabel">היום הראשון</div>
+            <div class="day-meta" id="dayMeta" style="display:none"></div>
             <div class="day-title" id="dayTitle">טוקיו → האקונה</div>
           </div>
         </div>
@@ -2003,6 +2009,32 @@ function render(day){
   }
   document.getElementById('dayTitle').innerText=data[day].title;
   document.getElementById('routeText').innerText=data[day].route;
+  
+  // Day 14: Apply minimalist header layout
+  const dayHeadContainer = document.getElementById('dayHeadContainer');
+  const backButton = document.getElementById('backButton');
+  const homeIconButton = document.getElementById('homeIconButton');
+  const dayLabel = document.getElementById('dayLabel');
+  const dayMeta = document.getElementById('dayMeta');
+  
+  if (day === '14') {
+    // Option A: Minimalist layout for Day 14
+    if (dayHeadContainer) dayHeadContainer.classList.add('minimalist');
+    if (backButton) backButton.style.display = 'none';
+    if (homeIconButton) homeIconButton.style.display = 'block';
+    if (dayLabel) dayLabel.style.display = 'none';
+    if (dayMeta) {
+      dayMeta.textContent = 'יום 1 · 14.11';
+      dayMeta.style.display = 'block';
+    }
+  } else {
+    // Other days: Keep original layout
+    if (dayHeadContainer) dayHeadContainer.classList.remove('minimalist');
+    if (backButton) backButton.style.display = 'inline-block';
+    if (homeIconButton) homeIconButton.style.display = 'none';
+    if (dayLabel) dayLabel.style.display = 'block';
+    if (dayMeta) dayMeta.style.display = 'none';
+  }
   
   // Update map background based on day
   const mapCard = document.getElementById('dayMapCard');
