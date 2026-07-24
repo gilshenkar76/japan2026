@@ -2944,17 +2944,16 @@ if ('caches' in window) {
     expandedStepIdx = null;
     $('navGuideOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
+    // Push a history entry so the phone back button first returns to the guide home,
+    // then closes the overlay (matches the header button behavior).
+    history.pushState({ ng: 'home' }, '');
     renderHome();
   };
   window.closeNavGuide = function(){
-    // From a section view, first go back to the guide home (3 sections).
-    // From the home view, actually close the overlay.
-    if (currentSectionIdx !== null) {
-      renderHome();
-      return;
+    // Delegate to browser history so back button and X share the same flow.
+    if ($('navGuideOverlay').classList.contains('open')) {
+      history.back();
     }
-    $('navGuideOverlay').classList.remove('open');
-    document.body.style.overflow = '';
   };
   window.resetNavGuideProgress = function(){
     if (!confirm('לאפס את כל התקדמות מדריך הניווט?')) return;
@@ -3030,6 +3029,8 @@ if ('caches' in window) {
     const done = state.completed?.[sec.id] || [];
     const firstUncompleted = sec.steps.findIndex((_, i) => !done.includes(i));
     expandedStepIdx = firstUncompleted >= 0 ? firstUncompleted : null;
+    // Push a section history entry so the phone back button returns to guide home.
+    history.pushState({ ng: 'section', idx }, '');
     renderSection(idx);
   }
 
@@ -3090,7 +3091,7 @@ if ('caches' in window) {
     const contBtn = document.getElementById('ngContinueBtn');
     if (contBtn) contBtn.addEventListener('click', () => {
       if (idx < SECTIONS.length - 1) enterSection(idx + 1);
-      else renderHome();
+      else history.back(); // return to guide home, keeps history in sync
     });
 
     // Scroll expanded step into view
@@ -3213,6 +3214,25 @@ if ('caches' in window) {
     if (e.key !== 'Escape') return;
     if ($('ngPhotoModal').classList.contains('open')) { window.closeNavPhotoModal(); return; }
     if ($('navGuideOverlay').classList.contains('open')) { window.closeNavGuide(); }
+  });
+
+  // ---- Browser / phone back-button integration ----
+  // Back navigation flow: section view  ->  guide home  ->  overlay closed.
+  window.addEventListener('popstate', (e) => {
+    const overlay = $('navGuideOverlay');
+    if (!overlay.classList.contains('open')) return;
+    const st = e.state;
+    if (st && st.ng === 'section' && typeof st.idx === 'number') {
+      renderSection(st.idx);
+    } else if (st && st.ng === 'home') {
+      renderHome();
+    } else {
+      // Popped past all guide states -> actually close the overlay.
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      currentSectionIdx = null;
+      expandedStepIdx = null;
+    }
   });
 })();
 </script>
