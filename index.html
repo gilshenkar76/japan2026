@@ -783,7 +783,7 @@
 <div class="nav-guide-overlay" id="navGuideOverlay" role="dialog" aria-modal="true" aria-label="מדריך ניווט">
   <div class="ng-header">
     <div class="ng-header-row">
-      <button class="ng-close" type="button" onclick="closeNavGuide()" aria-label="סגור">✕</button>
+      <button class="ng-close" id="ngCloseBtn" type="button" onclick="closeNavGuide()" aria-label="סגור">✕</button>
       <div style="flex:1;min-width:0">
         <h2 class="ng-header-title" id="ngHeaderTitle">Tokyo → Hakone</h2>
         <p class="ng-header-sub" id="ngHeaderSub">שבת · יום 1 של הטיול</p>
@@ -2947,6 +2947,12 @@ if ('caches' in window) {
     renderHome();
   };
   window.closeNavGuide = function(){
+    // From a section view, first go back to the guide home (3 sections).
+    // From the home view, actually close the overlay.
+    if (currentSectionIdx !== null) {
+      renderHome();
+      return;
+    }
     $('navGuideOverlay').classList.remove('open');
     document.body.style.overflow = '';
   };
@@ -2959,6 +2965,20 @@ if ('caches' in window) {
   window.closeNavPhotoModal = function(){
     $('ngPhotoModal').classList.remove('open');
   };
+
+  function updateHeaderCloseButton(){
+    const btn = $('ngCloseBtn');
+    if (!btn) return;
+    if (currentSectionIdx !== null) {
+      btn.textContent = '‹';
+      btn.setAttribute('aria-label', 'חזרה למסך המדריך');
+      btn.title = 'חזרה למסך המדריך';
+    } else {
+      btn.textContent = '✕';
+      btn.setAttribute('aria-label', 'סגור');
+      btn.title = 'סגור';
+    }
+  }
 
   // ---- Rendering ----
   function renderHome(){
@@ -3000,6 +3020,7 @@ if ('caches' in window) {
         enterSection(Number(btn.dataset.idx));
       });
     });
+    updateHeaderCloseButton();
   }
 
   // Enters a section fresh: auto-expand first uncompleted step.
@@ -3079,6 +3100,7 @@ if ('caches' in window) {
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     }
+    updateHeaderCloseButton();
   }
 
   function renderStep(sec, i, step){
