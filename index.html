@@ -224,6 +224,137 @@
       .phone .main-grid{grid-template-columns:repeat(3,1fr)}
       .phone.mobile-preview .main-grid{grid-template-columns:repeat(2,1fr)}
     }
+
+    /* ============================================================
+       NAVIGATION GUIDE (Day 14: Tokyo → Hakone step-by-step)
+       ============================================================ */
+    .nav-guide-launcher{margin:14px 0 6px;padding:0;border:0;background:transparent;width:100%;cursor:pointer;text-align:right}
+    .nav-guide-launcher .ngl-card{
+      background:linear-gradient(135deg,#0f766e 0%,#0e7490 55%,#1d4ed8 100%);
+      color:#fff;border-radius:20px;padding:16px 18px;display:flex;align-items:center;gap:14px;
+      box-shadow:0 12px 28px rgba(29,78,216,.28);position:relative;overflow:hidden}
+    .nav-guide-launcher .ngl-card:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;
+      background:rgba(255,255,255,.09);left:-50px;top:-60px}
+    .nav-guide-launcher .ngl-icon{font-size:32px;flex-shrink:0;position:relative;z-index:1}
+    .nav-guide-launcher .ngl-text{flex:1;position:relative;z-index:1}
+    .nav-guide-launcher .ngl-title{font-size:16px;font-weight:900;margin:0 0 3px}
+    .nav-guide-launcher .ngl-sub{font-size:12px;opacity:.9;margin:0}
+    .nav-guide-launcher .ngl-arrow{font-size:22px;font-weight:900;opacity:.85;position:relative;z-index:1}
+
+    .nav-guide-overlay{position:fixed;inset:0;background:#f4f6fb;z-index:10000;display:none;flex-direction:column;
+      font-family:'Heebo','Segoe UI',Tahoma,sans-serif;color:var(--ink);direction:rtl}
+    .nav-guide-overlay.open{display:flex}
+    .nav-guide-overlay *{box-sizing:border-box}
+
+    .ng-header{background:#fff;padding:12px 14px calc(12px + env(safe-area-inset-top));
+      border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px rgba(15,23,42,.04)}
+    .ng-header-row{display:flex;align-items:center;gap:10px}
+    .ng-close{background:transparent;border:0;font-size:26px;line-height:1;color:#334155;cursor:pointer;
+      padding:4px 8px;border-radius:10px}
+    .ng-close:hover{background:#f1f5f9}
+    .ng-header-title{flex:1;font-size:15px;font-weight:800;color:#0f172a;margin:0}
+    .ng-header-sub{font-size:12px;color:#64748b;font-weight:600;margin:2px 0 0}
+    .ng-reset{background:transparent;border:1px solid #e2e8f0;color:#64748b;font-size:11px;font-weight:700;
+      padding:6px 10px;border-radius:10px;cursor:pointer}
+    .ng-reset:hover{background:#f8fafc;color:#0f172a}
+
+    .ng-progress{margin-top:10px}
+    .ng-progress-row{display:flex;justify-content:space-between;font-size:12px;color:#64748b;
+      font-weight:700;margin-bottom:6px}
+    .ng-progress-bar{height:8px;background:#eef2f7;border-radius:999px;overflow:hidden}
+    .ng-progress-fill{height:100%;border-radius:999px;transition:width .3s ease;background:var(--ng-accent,#2E7D32)}
+
+    .ng-body{flex:1;overflow-y:auto;padding:16px 14px 40px;-webkit-overflow-scrolling:touch}
+
+    /* Home view */
+    .ng-home-title{font-size:20px;font-weight:900;margin:2px 2px 4px;color:#0f172a}
+    .ng-home-sub{font-size:13px;color:#64748b;margin:0 2px 18px}
+    .ng-section-list{display:grid;gap:14px}
+    .ng-section-card{border:0;text-align:right;cursor:pointer;padding:18px 18px;border-radius:20px;
+      color:#fff;position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;
+      min-height:96px;box-shadow:0 10px 24px rgba(15,23,42,.14);transition:transform .15s ease}
+    .ng-section-card:hover{transform:translateY(-2px)}
+    .ng-section-card:active{transform:translateY(0)}
+    .ng-section-card.walk{background:linear-gradient(135deg,#2E7D32,#43a047)}
+    .ng-section-card.train{background:linear-gradient(135deg,#1976D2,#42a5f5)}
+    .ng-section-card.dest{background:linear-gradient(135deg,#F57C00,#ffa726)}
+    .ng-section-card:after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;
+      background:rgba(255,255,255,.11);left:-40px;bottom:-60px}
+    .ng-section-icon{font-size:34px;flex-shrink:0;position:relative;z-index:1}
+    .ng-section-body{flex:1;position:relative;z-index:1}
+    .ng-section-title{font-size:17px;font-weight:900;margin:0 0 4px}
+    .ng-section-meta{font-size:12px;opacity:.92;margin:0 0 4px;font-weight:700}
+    .ng-section-preview{font-size:12px;opacity:.85;margin:0}
+    .ng-section-chevron{font-size:24px;font-weight:900;opacity:.85;position:relative;z-index:1}
+    .ng-section-done-badge{position:absolute;top:12px;left:14px;background:rgba(255,255,255,.24);
+      padding:3px 9px;border-radius:999px;font-size:11px;font-weight:800;z-index:1}
+
+    /* Section view */
+    .ng-back{background:transparent;border:0;color:#0f172a;font-size:14px;font-weight:800;
+      cursor:pointer;padding:0;margin-bottom:12px;display:inline-flex;align-items:center;gap:6px}
+    .ng-back:hover{color:#1d4ed8}
+
+    .ng-steps{display:grid;gap:16px}
+    .ng-step{background:#fff;border:1px solid #e2e8f0;border-radius:18px;overflow:hidden;
+      box-shadow:0 6px 14px rgba(15,23,42,.05);transition:box-shadow .2s ease,border-color .2s ease}
+    .ng-step.expanded{border-color:var(--ng-accent,#2E7D32);box-shadow:0 12px 28px rgba(15,23,42,.10)}
+    .ng-step.completed{background:#ecfdf3;border-color:#86efac}
+    .ng-step.completed .ng-step-title{color:#166534}
+
+    .ng-step-head{display:flex;align-items:center;gap:12px;padding:16px 16px;cursor:pointer;
+      min-height:72px;user-select:none}
+    .ng-step-status{width:28px;height:28px;border-radius:50%;border:2px solid #cbd5e1;flex-shrink:0;
+      display:grid;place-items:center;font-size:14px;font-weight:900;color:#94a3b8;background:#fff}
+    .ng-step.expanded .ng-step-status{border-color:var(--ng-accent,#2E7D32);color:var(--ng-accent,#2E7D32);background:#fff}
+    .ng-step.expanded .ng-step-status:after{content:"";width:10px;height:10px;border-radius:50%;background:var(--ng-accent,#2E7D32);position:absolute}
+    .ng-step.completed .ng-step-status{background:var(--ng-accent,#2E7D32);border-color:var(--ng-accent,#2E7D32);color:#fff}
+    .ng-step.completed .ng-step-status:after{content:"✓"}
+
+    .ng-step-head-text{flex:1;min-width:0}
+    .ng-step-num{font-size:11px;color:#94a3b8;font-weight:800;letter-spacing:.3px;margin:0 0 2px}
+    .ng-step-title{font-size:15px;font-weight:800;color:#0f172a;margin:0;line-height:1.35}
+    .ng-step-chevron{font-size:18px;color:#94a3b8;flex-shrink:0;transition:transform .25s ease}
+    .ng-step.expanded .ng-step-chevron{transform:rotate(180deg);color:var(--ng-accent,#2E7D32)}
+
+    .ng-step-body{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 16px}
+    .ng-step.expanded .ng-step-body{max-height:2000px;padding:0 16px 18px}
+
+    .ng-step-img-wrap{margin:0 -2px 14px;border-radius:16px;overflow:hidden;background:#e8edf5;cursor:zoom-in;position:relative}
+    .ng-step-img{width:100%;height:auto;display:block;max-height:300px;object-fit:cover}
+    .ng-step-img-zoom-hint{position:absolute;bottom:8px;left:8px;background:rgba(15,23,42,.72);
+      color:#fff;font-size:11px;font-weight:700;padding:4px 8px;border-radius:8px;pointer-events:none}
+
+    .ng-step-desc{font-size:15px;line-height:1.55;color:#0f172a;margin:0 0 12px}
+
+    .ng-step-tip{background:#fff8e1;border:1px solid #ffe082;border-radius:12px;padding:10px 12px;
+      font-size:13px;line-height:1.5;color:#5d4037;margin:0 0 12px;display:flex;gap:8px}
+    .ng-step-tip-icon{flex-shrink:0}
+
+    .ng-step-meta{display:flex;flex-wrap:wrap;gap:10px 14px;margin:0 0 14px;font-size:14px;color:#475569;font-weight:600}
+    .ng-step-meta span{display:inline-flex;align-items:center;gap:4px}
+
+    .ng-complete-btn{width:100%;min-height:52px;border:0;border-radius:14px;font-size:15px;font-weight:900;
+      cursor:pointer;color:#fff;background:var(--ng-accent,#2E7D32);
+      display:flex;align-items:center;justify-content:center;gap:8px;transition:filter .15s ease}
+    .ng-complete-btn:hover{filter:brightness(1.08)}
+    .ng-complete-btn:active{filter:brightness(.94)}
+    .ng-complete-btn.done{background:#94a3b8}
+
+    .ng-section-complete{margin-top:22px;padding:20px 16px;background:#fff;border:1px solid #86efac;
+      border-radius:18px;text-align:center;color:#166534}
+    .ng-section-complete h3{margin:0 0 6px;font-size:17px;font-weight:900}
+    .ng-section-complete p{margin:0 0 14px;font-size:13px;color:#166534;opacity:.85}
+    .ng-section-complete button{background:var(--ng-accent,#2E7D32);color:#fff;border:0;border-radius:12px;
+      padding:11px 18px;font-size:14px;font-weight:800;cursor:pointer}
+
+    /* Fullscreen image modal */
+    .ng-photo-modal{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:10001;display:none;
+      align-items:center;justify-content:center;padding:20px;cursor:zoom-out;overflow:auto}
+    .ng-photo-modal.open{display:flex}
+    .ng-photo-modal img{max-width:100%;max-height:100%;border-radius:14px;object-fit:contain}
+    .ng-photo-modal-close{position:absolute;top:calc(14px + env(safe-area-inset-top));left:14px;
+      background:rgba(255,255,255,.15);border:0;color:#fff;font-size:26px;width:44px;height:44px;
+      border-radius:50%;cursor:pointer;display:grid;place-items:center}
   </style>
 </head>
 <body>
@@ -518,20 +649,6 @@
   <main id="transportation" class="screen">
     <div class="content">
       <div class="section-title" style="font-size:24px">תחבורה - בחרו יום</div>
-      <div class="upload-panel">
-        <div class="section-title" style="margin:0;font-size:18px">סטטוס טיסות חי</div>
-        <div class="upload-hint">מתעדכן אוטומטית לכולם דרך שרת משותף. אפשר גם לעדכן ידנית אם צריך.</div>
-        <div class="flight-sync-panel">
-          <div class="flight-sync-row">
-            <button class="btn primary" type="button" onclick="syncFlightStatusesFromApi(false)">סנכרון עכשיו</button>
-          </div>
-          <div class="flight-sync-row" style="margin-top:8px">
-            <label class="sync-toggle"><input id="flightAutoSync" type="checkbox" onchange="toggleFlightAutoSync(this.checked)">סנכרון אוטומטי כל 5 דקות</label>
-          </div>
-          <div id="flightSyncStatus" class="flight-sync-status">טרם סונכרן</div>
-        </div>
-        <div id="flightStatusBoard" class="flight-status-board"></div>
-      </div>
       <div class="main-grid" id="transportationGrid" style="margin-bottom:20px"></div>
     </div>
   </main>
@@ -546,6 +663,22 @@
             <div class="day-title" id="transportationDayTitle">ביום 14.11</div>
           </div>
         </div>
+      </div>
+
+      <!-- Flight status panel (shown only on flight days: 12-13 outbound, 28 return) -->
+      <div class="upload-panel hidden" id="transportFlightPanel">
+        <div class="section-title" style="margin:0;font-size:18px">סטטוס טיסות חי</div>
+        <div class="upload-hint">מתעדכן אוטומטית לכולם דרך שרת משותף. אפשר גם לעדכן ידנית אם צריך.</div>
+        <div class="flight-sync-panel">
+          <div class="flight-sync-row">
+            <button class="btn primary" type="button" onclick="syncFlightStatusesFromApi(false)">סנכרון עכשיו</button>
+          </div>
+          <div class="flight-sync-row" style="margin-top:8px">
+            <label class="sync-toggle"><input id="flightAutoSync" type="checkbox" onchange="toggleFlightAutoSync(this.checked)">סנכרון אוטומטי כל 5 דקות</label>
+          </div>
+          <div id="flightSyncStatus" class="flight-sync-status">טרם סונכרן</div>
+        </div>
+        <div id="flightStatusBoard" class="flight-status-board"></div>
       </div>
 
       <div class="upload-panel">
@@ -642,6 +775,35 @@
     <button type="button" data-screen="transportation"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>תחבורה</span></button>
     <button type="button" data-screen="photos"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>תמונות</span></button>
   </nav>
+</div>
+
+<!-- ============================================================
+     NAVIGATION GUIDE OVERLAY (Day 14: Tokyo → Hakone)
+     ============================================================ -->
+<div class="nav-guide-overlay" id="navGuideOverlay" role="dialog" aria-modal="true" aria-label="מדריך ניווט">
+  <div class="ng-header">
+    <div class="ng-header-row">
+      <button class="ng-close" type="button" onclick="closeNavGuide()" aria-label="סגור">✕</button>
+      <div style="flex:1;min-width:0">
+        <h2 class="ng-header-title" id="ngHeaderTitle">Tokyo → Hakone</h2>
+        <p class="ng-header-sub" id="ngHeaderSub">שבת · יום 1 של הטיול</p>
+      </div>
+      <button class="ng-reset" type="button" onclick="resetNavGuideProgress()">איפוס</button>
+    </div>
+    <div class="ng-progress" id="ngProgress" style="display:none">
+      <div class="ng-progress-row">
+        <span id="ngProgressLabel">שלב 1 מתוך 6</span>
+        <span id="ngProgressPct">0%</span>
+      </div>
+      <div class="ng-progress-bar"><div class="ng-progress-fill" id="ngProgressFill" style="width:0%"></div></div>
+    </div>
+  </div>
+  <div class="ng-body" id="ngBody"></div>
+</div>
+
+<div class="ng-photo-modal" id="ngPhotoModal" onclick="closeNavPhotoModal()">
+  <button class="ng-photo-modal-close" type="button" aria-label="סגור">✕</button>
+  <img id="ngPhotoModalImg" alt="">
 </div>
 
 <script>
@@ -759,21 +921,28 @@ function renderTransportationDays(){
     if (b === '12-13') return 1;
     return Number(a) - Number(b);
   });
-  grid.innerHTML = orderedDays.map(([day, info]) => `
-    <button class="day-card" type="button" onclick="showTransportationDetails('${day}')">
+  grid.innerHTML = orderedDays.map(([day, info]) => {
+    const isGuideDay = day === '14';
+    const onclick = isGuideDay ? 'openNavGuide()' : `showTransportationDetails('${day}')`;
+    const extra = isGuideDay ? ` · 18 שלבים` : '';
+    return `
+    <button class="day-card" type="button" onclick="${onclick}">
       <div class="day-card-bg" style="background-image:url('${info.image}')"></div>
       <div class="day-card-content">
         <div class="day-card-city">${info.city}</div>
-        <div class="day-card-date">${day}.11</div>
+        <div class="day-card-date">${day}.11${extra}</div>
       </div>
-    </button>
-  `).join('');
+    </button>`;
+  }).join('');
 }
 
 function showTransportationDetails(day){
   if (!data[day]) return;
   document.getElementById('transportationDayTitle').textContent = `${data[day].title}`;
   document.getElementById('transportationRoute').textContent = data[day].route;
+  // Show live flight status panel only on flight days (outbound 12-13, return 28)
+  const flightPanel = document.getElementById('transportFlightPanel');
+  if (flightPanel) flightPanel.classList.toggle('hidden', !(day === '12-13' || day === '28'));
   showScreen('transportation-details', document.querySelector('.nav button[data-screen="transportation"]'));
 }
 
@@ -2183,7 +2352,7 @@ function render(day){
   if (day === '14') {
     // Attraction cards layout for Day 14 (5 attractions from PNG)
     tl.className = 'attraction-cards';
-    
+
     const attractions = [
       {
         time: '08:00 - 08:45',
@@ -2592,6 +2761,432 @@ if ('caches' in window) {
     }
   });
 }
+
+/* ============================================================
+   NAVIGATION GUIDE - Day 14: Tokyo -> Hakone
+   Step-by-step interactive travel guide (3 sections, 18 steps).
+   ============================================================ */
+(function(){
+  // ---- Color system (matches spec) ----
+  const SECTION_COLORS = {
+    walk:  '#2E7D32', // Green - Walking
+    train: '#1976D2', // Blue  - Train
+    dest:  '#F57C00'  // Orange - Destination
+  };
+
+  // ---- Data model ----
+  // NOTE: image URLs use existing project assets where available; the rest are
+  // stock photos as placeholders. Replace with real infographic crops later.
+  const SECTIONS = [
+    {
+      id: 'walk_to_station',
+      kind: 'walk',
+      icon: '🚶',
+      title: 'הליכה לתחנת שינג\'וקו',
+      titleEn: 'Walk to Shinjuku Station',
+      meta: '6 דקות · 6 שלבים',
+      preview: 'יציאה מהמלון → כניסה לתחנה',
+      steps: [
+        { title: 'יציאה מהמלון Gracery Shinjuku',
+          desc: 'צאו מהלובי של המלון וסובבו ימינה לכיוון רחוב Yasukuni-dori. עברו דרך הכניסה הראשית של המלון עם המזוודות המופקדות.',
+          tip: 'ודאו שקיבלתם קבלה על הפקדת המזוודות במלון.',
+          distance: '0 מ׳', duration: '1 דקה', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=900&q=80' },
+        { title: 'חציית Yasukuni-dori',
+          desc: 'המשיכו דרומה לכיוון תחנת שינג\'וקו. חצו את הכביש הראשי במעבר חצייה מסומן.',
+          tip: 'המתינו לרמזור ירוק - הצומת עמוסה מאוד גם בבוקר.',
+          distance: '120 מ׳', duration: '1 דקה', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=900&q=80' },
+        { title: 'המשך ישר לאורך Shinjuku-dori',
+          desc: 'הליכה ישרה במורד Shinjuku-dori. תראו את כניסות תחנת שינג\'וקו משמאלכם עם שילוט לבן וירוק.',
+          tip: 'מחפשים את השלט "Odakyu Line" - קו הרכבת שלנו.',
+          distance: '250 מ׳', duration: '2 דקות', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=900&q=80' },
+        { title: 'זיהוי כניסת Odakyu',
+          desc: 'חפשו את השלט הכחול הגדול של Odakyu Line. הכניסה נמצאת בקומת הרחוב עם מדרגות נעות יורדות.',
+          tip: 'אל תיכנסו לתחנת JR הרגילה - הרכבת שלנו יוצאת מקו Odakyu בלבד.',
+          distance: '80 מ׳', duration: '1 דקה', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=900&q=80' },
+        { title: 'ירידה במדרגות הנעות',
+          desc: 'רדו במדרגות הנעות אל אזור הכרטיסים של Odakyu Line. עמדות הכרטיסים נמצאות מייד בסוף המדרגות.',
+          tip: 'שמרו על מעקה - המדרגות הנעות ביפן זזות מהר יותר מהרגיל.',
+          distance: '20 מ׳', duration: '1 דקה', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1601641497420-6ee0f335c6a4?auto=format&fit=crop&w=900&q=80' },
+        { title: 'הגעה לאזור הכרטיסים',
+          desc: 'אתם עכשיו באזור המרכזי של תחנת Odakyu Shinjuku, ליד עמדות הכרטיסים ומכונות ההנפקה. השלב הבא: קניית כרטיס Romancecar.',
+          tip: 'חפשו את דלפק "Romancecar Ticket Counter" עם השלט האדום.',
+          distance: '30 מ׳', duration: '1 דקה', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&w=900&q=80' }
+      ]
+    },
+    {
+      id: 'romancecar',
+      kind: 'train',
+      icon: '🚄',
+      title: 'Romancecar להאקונה',
+      titleEn: 'Romancecar to Hakone',
+      meta: '85 דקות · 7 שלבים',
+      preview: 'כרטיס → רציף → נסיעה',
+      steps: [
+        { title: 'רכישת כרטיס Romancecar',
+          desc: 'ניגשו לדלפק Romancecar או למכונת הכרטיסים. בחרו את המספר של הרכבת ("Hakone" יעד) ומושבים שמורים לכל הקבוצה.',
+          tip: 'עלות כרטיס: ~¥2,280 כולל מושב שמור. אפשר לשלם גם באשראי.',
+          distance: '-', duration: '5 דקות', transport: 'שירות',
+          image: 'https://images.unsplash.com/photo-1519666336592-e225a99dcd2f?auto=format&fit=crop&w=900&q=80' },
+        { title: 'מציאת הרציף הנכון',
+          desc: 'הרציפים של Romancecar נמצאים בקצה הצפוני של תחנת Odakyu. עקבו אחרי השילוט הצבעוני של Romancecar (סמל של רכבת אדומה).',
+          tip: 'בדקו שוב את מספר הרכבת והרציף בכרטיס - Romancecar יוצאת כל חצי שעה.',
+          distance: '150 מ׳', duration: '3 דקות', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1526764673109-7c9e6dfff8b8?auto=format&fit=crop&w=900&q=80' },
+        { title: 'מעבר בשערי הכניסה',
+          desc: 'הכניסו את הכרטיס לשער האוטומטי. השער ייפתח, קחו את הכרטיס מהצד השני והמשיכו.',
+          tip: 'שמרו את הכרטיס - תזדקקו לו גם ליציאה מהתחנה ביעד.',
+          distance: '5 מ׳', duration: '30 שניות', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1567359781514-3b964e2b04d6?auto=format&fit=crop&w=900&q=80' },
+        { title: 'המתנה ברציף',
+          desc: 'עמדו במקום המסומן על הרציף בהתאם למספר הקרון והמושב שלכם. הרכבות ביפן עוצרות במדויק במקום המסומן.',
+          tip: 'תמיד יש שילוט בדיוק במקום העמידה עבור כל קרון.',
+          distance: '-', duration: '5-10 דקות', transport: 'המתנה',
+          image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=80' },
+        { title: 'עלייה לרכבת',
+          desc: 'כשהרכבת מגיעה, אפשרו קודם ליוצאים לרדת ואז עלו. מצאו את המושבים לפי מספרם המודפס בכרטיס.',
+          tip: 'ה-Romancecar היא רכבת נוחה עם חלונות גדולים - שבו בצד ימין לנוף להר פוג\'י.',
+          distance: '-', duration: '1 דקה', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=900&q=80' },
+        { title: 'נסיעה של 85 דקות',
+          desc: 'שבו בנוח, פתחו את הווילון, ותהנו מהנוף המשתנה מטוקיו לטבע הפראי של האקונה. יש שירותים ומכונת חטיפים בקרון.',
+          tip: 'בערך אחרי 60 דקות מתחילים לראות הרים - ואם המזג בהיר, גם את הר פוג\'י!',
+          distance: '82 ק"מ', duration: '85 דקות', transport: 'רכבת',
+          image: 'https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=900&q=80' },
+        { title: 'ירידה בתחנת Hakone-Yumoto',
+          desc: 'הרכבת מגיעה לתחנה הסופית Hakone-Yumoto. אספו את חפציכם וירדו מהרכבת. עקבו אחר השלטים ליציאה.',
+          tip: 'הכניסו שוב את הכרטיס בשער היציאה. השער יבלע אותו - זה תקין.',
+          distance: '-', duration: '2 דקות', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=900&q=80' }
+      ]
+    },
+    {
+      id: 'reach_hotel',
+      kind: 'dest',
+      icon: '♨️',
+      title: 'הגעה ל-Aura Tachibana',
+      titleEn: 'Reach Aura Tachibana',
+      meta: '15 דקות · 5 שלבים',
+      preview: 'תחנה → אוטובוס → מלון',
+      steps: [
+        { title: 'יציאה מתחנת Hakone-Yumoto',
+          desc: 'צאו מהתחנה דרך היציאה הראשית. תראו רחבה גדולה עם חנויות מזכרות ותחנת אוטובוסים בהמשך הרחוב.',
+          tip: 'יש שירותים נקיים ליד היציאה - כדאי לנצל לפני האוטובוס.',
+          distance: '50 מ׳', duration: '2 דקות', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=900&q=80' },
+        { title: 'תחנת האוטובוסים',
+          desc: 'תחנת האוטובוסים ממוקמת ממש מחוץ לתחנת הרכבת, בכיכר הראשית. חפשו את הקו לכיוון "Yumoto Onsen area".',
+          tip: 'לחלק מהריוקנים יש שאטל חינם - שאלו את המקבל של המלון או תראו אם כתוב "Aura Tachibana" על אוטובוס.',
+          distance: '80 מ׳', duration: '2 דקות', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=80' },
+        { title: 'עלייה לאוטובוס / שאטל',
+          desc: 'עלו לאוטובוס. משלמים ביציאה - קחו כרטיס מהמכונה ליד הכניסה שמראה את התחנה בה עליתם. שמרו את הכרטיס.',
+          tip: 'המחיר משתנה לפי מרחק - זה מופיע על הצג בקדמת האוטובוס.',
+          distance: '-', duration: '1 דקה', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=900&q=80' },
+        { title: 'נסיעה של 8 דקות',
+          desc: 'האוטובוס עולה בכביש מפותל דרך אזור המעיינות החמים של Yumoto. הנוף היפני האותנטי מתחיל להיפרש - נהר, גשרים אדומים וריוקנים.',
+          tip: 'לחצו על הפעמון כשמתקרבים לתחנת "Aura Tachibana" - הנהג לא עוצר אוטומטית.',
+          distance: '2.5 ק"מ', duration: '8 דקות', transport: 'אוטובוס',
+          image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80' },
+        { title: 'הגעה לריוקן Aura Tachibana',
+          desc: 'רדו בתחנת האוטובוס. הריוקן נמצא מטרים ספורים מהתחנה - חפשו את השלט היפני המסורתי בכניסה. צ\'ק-אין החל מ-15:00.',
+          tip: 'בכניסה מחליפים לנעלי בית - השאירו את הנעליים בכניסה. אל תשכחו לקחת את הבגדי ים לאונסן!',
+          distance: '30 מ׳', duration: '1 דקה', transport: 'הליכה',
+          image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80' }
+      ]
+    }
+  ];
+
+  // ---- State ----
+  const STORAGE_KEY = 'navGuide_day14_v1';
+  let state = loadState();
+  let currentSectionIdx = null;   // null = home view
+  let expandedStepIdx = null;
+
+  function loadState(){
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return { completed: {} }; // { section_id: [stepIndex, ...] }
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === 'object' ? parsed : { completed: {} };
+    } catch { return { completed: {} }; }
+  }
+  function saveState(){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch (e) { console.warn('navGuide save failed', e); }
+  }
+  function isCompleted(sectionId, stepIdx){
+    return (state.completed?.[sectionId] || []).includes(stepIdx);
+  }
+  function setCompleted(sectionId, stepIdx, done){
+    if (!state.completed) state.completed = {};
+    if (!state.completed[sectionId]) state.completed[sectionId] = [];
+    const arr = state.completed[sectionId];
+    const i = arr.indexOf(stepIdx);
+    if (done && i < 0) arr.push(stepIdx);
+    if (!done && i >= 0) arr.splice(i, 1);
+    saveState();
+  }
+
+  // ---- DOM helpers ----
+  const $ = (id) => document.getElementById(id);
+  function escHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  // ---- Public API (attached to window) ----
+  window.openNavGuide = function(){
+    currentSectionIdx = null;
+    expandedStepIdx = null;
+    $('navGuideOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    renderHome();
+  };
+  window.closeNavGuide = function(){
+    $('navGuideOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  window.resetNavGuideProgress = function(){
+    if (!confirm('לאפס את כל התקדמות מדריך הניווט?')) return;
+    state = { completed: {} };
+    saveState();
+    if (currentSectionIdx == null) renderHome(); else renderSection(currentSectionIdx);
+  };
+  window.closeNavPhotoModal = function(){
+    $('ngPhotoModal').classList.remove('open');
+  };
+
+  // ---- Rendering ----
+  function renderHome(){
+    currentSectionIdx = null;
+    $('ngProgress').style.display = 'none';
+    $('ngHeaderTitle').textContent = 'Tokyo → Hakone';
+    $('ngHeaderSub').textContent = 'שבת · יום 1 של הטיול';
+    document.documentElement.style.setProperty('--ng-accent', SECTION_COLORS.walk);
+
+    const parts = [];
+    parts.push('<h1 class="ng-home-title">שלוש תחנות עד המלון</h1>');
+    parts.push('<p class="ng-home-sub">בחרו את השלב הבא במסלול. כל תחנה כוללת ניווט צעד-אחר-צעד עם תמונות.</p>');
+    parts.push('<div class="ng-section-list">');
+    SECTIONS.forEach((sec, idx) => {
+      const total = sec.steps.length;
+      const done = (state.completed?.[sec.id] || []).length;
+      const allDone = done === total;
+      const badge = done > 0
+        ? `<div class="ng-section-done-badge">${done}/${total}${allDone ? ' ✓' : ''}</div>`
+        : '';
+      parts.push(`
+        <button class="ng-section-card ${sec.kind}" type="button" data-idx="${idx}">
+          ${badge}
+          <div class="ng-section-icon">${sec.icon}</div>
+          <div class="ng-section-body">
+            <h3 class="ng-section-title">${escHtml(sec.title)}</h3>
+            <p class="ng-section-meta">${escHtml(sec.meta)}</p>
+            <p class="ng-section-preview">${escHtml(sec.preview)}</p>
+          </div>
+          <div class="ng-section-chevron">‹</div>
+        </button>`);
+    });
+    parts.push('</div>');
+    const body = $('ngBody');
+    body.innerHTML = parts.join('');
+    body.scrollTop = 0;
+    body.querySelectorAll('.ng-section-card').forEach(btn => {
+      btn.addEventListener('click', () => {
+        renderSection(Number(btn.dataset.idx));
+      });
+    });
+  }
+
+  function renderSection(idx){
+    currentSectionIdx = idx;
+    const sec = SECTIONS[idx];
+    const accent = SECTION_COLORS[sec.kind];
+    document.documentElement.style.setProperty('--ng-accent', accent);
+    $('ngHeaderTitle').textContent = sec.title;
+    $('ngHeaderSub').textContent = sec.titleEn + ' · ' + sec.meta;
+
+    // Auto-expand first uncompleted step
+    const done = state.completed?.[sec.id] || [];
+    expandedStepIdx = sec.steps.findIndex((_, i) => !done.includes(i));
+    if (expandedStepIdx < 0) expandedStepIdx = null; // all done
+
+    updateProgress();
+
+    const parts = [];
+    parts.push('<button class="ng-back" type="button" id="ngBackBtn">‹ חזרה למסך הבית של המדריך</button>');
+    parts.push('<div class="ng-steps" id="ngSteps">');
+    sec.steps.forEach((step, i) => {
+      parts.push(renderStep(sec, i, step));
+    });
+    parts.push('</div>');
+    // Section complete banner
+    const allDone = done.length === sec.steps.length && sec.steps.length > 0;
+    if (allDone) {
+      parts.push(`
+        <div class="ng-section-complete">
+          <h3>🎉 סיימתם את השלב!</h3>
+          <p>${escHtml(sec.title)} — הכל הושלם.</p>
+          <button type="button" id="ngContinueBtn">${idx < SECTIONS.length - 1 ? 'המשך לשלב הבא ›' : 'חזרה למסך הבית ›'}</button>
+        </div>`);
+    }
+
+    const body = $('ngBody');
+    body.innerHTML = parts.join('');
+    body.scrollTop = 0;
+
+    $('ngBackBtn').addEventListener('click', renderHome);
+    body.querySelectorAll('[data-step-head]').forEach(el => {
+      el.addEventListener('click', () => {
+        const i = Number(el.dataset.stepHead);
+        expandedStepIdx = (expandedStepIdx === i) ? null : i;
+        renderSection(currentSectionIdx);
+      });
+    });
+    body.querySelectorAll('[data-complete]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const i = Number(el.dataset.complete);
+        onComplete(idx, i);
+      });
+    });
+    body.querySelectorAll('[data-zoom]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openPhotoModal(el.dataset.zoom);
+      });
+    });
+    const contBtn = document.getElementById('ngContinueBtn');
+    if (contBtn) contBtn.addEventListener('click', () => {
+      if (idx < SECTIONS.length - 1) renderSection(idx + 1);
+      else renderHome();
+    });
+
+    // Scroll expanded step into view
+    if (expandedStepIdx != null) {
+      requestAnimationFrame(() => {
+        const el = body.querySelector(`[data-step-head="${expandedStepIdx}"]`);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }
+
+  function renderStep(sec, i, step){
+    const completed = isCompleted(sec.id, i);
+    const expanded = expandedStepIdx === i && !completed
+      ? true
+      : expandedStepIdx === i;
+    const cls = ['ng-step'];
+    if (expanded) cls.push('expanded');
+    if (completed) cls.push('completed');
+    const statusInner = completed ? '' : (i + 1);
+    return `
+      <div class="${cls.join(' ')}">
+        <div class="ng-step-head" data-step-head="${i}">
+          <div class="ng-step-status">${statusInner}</div>
+          <div class="ng-step-head-text">
+            <p class="ng-step-num">שלב ${i + 1} מתוך ${sec.steps.length}</p>
+            <h4 class="ng-step-title">${escHtml(step.title)}</h4>
+          </div>
+          <div class="ng-step-chevron">▼</div>
+        </div>
+        <div class="ng-step-body">
+          ${step.image ? `
+            <div class="ng-step-img-wrap" data-zoom="${escHtml(step.image)}">
+              <img class="ng-step-img" src="${escHtml(step.image)}" alt="${escHtml(step.title)}" loading="lazy">
+              <div class="ng-step-img-zoom-hint">🔍 להקלקה להגדלה</div>
+            </div>` : ''}
+          <p class="ng-step-desc">${escHtml(step.desc)}</p>
+          ${step.tip ? `
+            <div class="ng-step-tip">
+              <span class="ng-step-tip-icon">💡</span>
+              <span>${escHtml(step.tip)}</span>
+            </div>` : ''}
+          <div class="ng-step-meta">
+            ${step.distance ? `<span>📍 ${escHtml(step.distance)}</span>` : ''}
+            ${step.duration ? `<span>⏱ ${escHtml(step.duration)}</span>` : ''}
+            ${step.transport ? `<span>🚶 ${escHtml(step.transport)}</span>` : ''}
+          </div>
+          <button class="ng-complete-btn ${completed ? 'done' : ''}" type="button" data-complete="${i}">
+            ${completed ? '↺ בטל סימון' : '✓ סמן כהושלם'}
+          </button>
+        </div>
+      </div>`;
+  }
+
+  function updateProgress(){
+    if (currentSectionIdx == null) { $('ngProgress').style.display = 'none'; return; }
+    const sec = SECTIONS[currentSectionIdx];
+    const done = (state.completed?.[sec.id] || []).length;
+    const total = sec.steps.length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    $('ngProgress').style.display = 'block';
+    $('ngProgressLabel').textContent = `${done} מתוך ${total} הושלמו`;
+    $('ngProgressPct').textContent = pct + '%';
+    $('ngProgressFill').style.width = pct + '%';
+  }
+
+  function onComplete(sectionIdx, stepIdx){
+    const sec = SECTIONS[sectionIdx];
+    const already = isCompleted(sec.id, stepIdx);
+    setCompleted(sec.id, stepIdx, !already);
+    if (!already) {
+      // Auto-advance to next uncompleted step
+      const done = state.completed?.[sec.id] || [];
+      const nextIdx = sec.steps.findIndex((_, i) => !done.includes(i));
+      expandedStepIdx = nextIdx >= 0 ? nextIdx : null;
+    } else {
+      expandedStepIdx = stepIdx;
+    }
+    renderSection(sectionIdx);
+  }
+
+  // ---- Photo modal ----
+  function openPhotoModal(src){
+    const modal = $('ngPhotoModal');
+    $('ngPhotoModalImg').src = src;
+    modal.classList.add('open');
+  }
+
+  // ---- Swipe navigation (left = next step, right = previous step) ----
+  let touchStartX = null, touchStartY = null;
+  const overlayEl = $('navGuideOverlay');
+  if (overlayEl) {
+    overlayEl.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    overlayEl.addEventListener('touchend', (e) => {
+      if (touchStartX == null || currentSectionIdx == null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      touchStartX = touchStartY = null;
+      // Only horizontal swipes above threshold
+      if (Math.abs(dx) < 60 || Math.abs(dy) > 40) return;
+      const sec = SECTIONS[currentSectionIdx];
+      if (expandedStepIdx == null) return;
+      // In RTL, swipe left = "next" content, swipe right = "previous"
+      // (matches natural reading direction for Hebrew users)
+      if (dx < 0 && expandedStepIdx < sec.steps.length - 1) {
+        expandedStepIdx += 1; renderSection(currentSectionIdx);
+      } else if (dx > 0 && expandedStepIdx > 0) {
+        expandedStepIdx -= 1; renderSection(currentSectionIdx);
+      }
+    }, { passive: true });
+  }
+
+  // ---- ESC to close ----
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if ($('ngPhotoModal').classList.contains('open')) { window.closeNavPhotoModal(); return; }
+    if ($('navGuideOverlay').classList.contains('open')) { window.closeNavGuide(); }
+  });
+})();
 </script>
 </body>
 </html>
