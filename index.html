@@ -2997,9 +2997,19 @@ if ('caches' in window) {
     body.scrollTop = 0;
     body.querySelectorAll('.ng-section-card').forEach(btn => {
       btn.addEventListener('click', () => {
-        renderSection(Number(btn.dataset.idx));
+        enterSection(Number(btn.dataset.idx));
       });
     });
+  }
+
+  // Enters a section fresh: auto-expand first uncompleted step.
+  // Use this instead of renderSection() when navigating INTO a section.
+  function enterSection(idx){
+    const sec = SECTIONS[idx];
+    const done = state.completed?.[sec.id] || [];
+    const firstUncompleted = sec.steps.findIndex((_, i) => !done.includes(i));
+    expandedStepIdx = firstUncompleted >= 0 ? firstUncompleted : null;
+    renderSection(idx);
   }
 
   function renderSection(idx){
@@ -3010,11 +3020,7 @@ if ('caches' in window) {
     $('ngHeaderTitle').textContent = sec.title;
     $('ngHeaderSub').textContent = sec.titleEn + ' · ' + sec.meta;
 
-    // Auto-expand first uncompleted step
     const done = state.completed?.[sec.id] || [];
-    expandedStepIdx = sec.steps.findIndex((_, i) => !done.includes(i));
-    if (expandedStepIdx < 0) expandedStepIdx = null; // all done
-
     updateProgress();
 
     const parts = [];
@@ -3031,7 +3037,7 @@ if ('caches' in window) {
         <div class="ng-section-complete">
           <h3>🎉 סיימתם את השלב!</h3>
           <p>${escHtml(sec.title)} — הכל הושלם.</p>
-          <button type="button" id="ngContinueBtn">${idx < SECTIONS.length - 1 ? 'המשך לשלב הבא ›' : 'חזרה למסך הבית ›'}</button>
+          <button type="button" id="ngContinueBtn">${idx < SECTIONS.length - 1 ? '‹ המשך לשלב הבא' : '‹ חזרה למסך הבית'}</button>
         </div>`);
     }
 
@@ -3062,7 +3068,7 @@ if ('caches' in window) {
     });
     const contBtn = document.getElementById('ngContinueBtn');
     if (contBtn) contBtn.addEventListener('click', () => {
-      if (idx < SECTIONS.length - 1) renderSection(idx + 1);
+      if (idx < SECTIONS.length - 1) enterSection(idx + 1);
       else renderHome();
     });
 
