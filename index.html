@@ -105,7 +105,13 @@
     .attraction-card-tips{font-size:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;color:#475569;line-height:1.5;margin-bottom:10px}
     .attraction-card-hours{font-size:12px;font-weight:700;color:#64748b;margin-bottom:10px}
     .item{display:grid;grid-template-columns:58px 1fr;gap:10px;align-items:stretch}
-    .time{font-size:13px;color:var(--muted);font-weight:800;padding-top:14px;text-align:center}
+    .time{font-size:13px;color:var(--muted);font-weight:800;padding-top:14px;text-align:center;direction:ltr;line-height:1.35}
+    .tl-section{background:linear-gradient(135deg,#4c1d95,#6d28d9);color:#fff;font-weight:900;text-align:center;padding:10px 14px;border-radius:14px;font-size:14px;box-shadow:var(--shadow);margin:4px 0}
+    .transit-leg{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow);margin-bottom:10px}
+    .transit-route{font-weight:800;font-size:14px;color:#1e293b;margin-bottom:4px}
+    .transit-note{font-size:12px;color:var(--muted);margin-bottom:8px}
+    .transit-meta{display:flex;flex-wrap:wrap;gap:8px}
+    .transit-meta span{background:#eef2f7;border:1px solid #d8e0ea;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;color:#475569}
     .event{background:var(--card);border-radius:20px;padding:13px;box-shadow:var(--shadow);
       border:1px solid var(--line)}
     .event-row{display:flex;gap:12px;align-items:center}
@@ -477,6 +483,8 @@
 
       <div class="section-title">המסלול שלנו</div>
       <div class="timeline" id="timeline"></div>
+
+      <div id="dayTransitCard" class="hidden"></div>
 
       <div class="section-title">המלון הערב</div>
       <div class="event hotel">
@@ -922,12 +930,20 @@ const citiesByDay = {
 // Dedicated clean route maps per day (src + aspect-ratio of the image)
 const routeMapsByDay = {
   '14': { src: 'assets/maps/day14_walking_map.png', ratio: '338 / 261' },
-  '19': { src: 'assets/maps/day19_route_map.png', ratio: '388 / 584', legend: true }
+  '19': { src: 'assets/maps/day19_route_map.png', ratio: '368 / 644', legend: false }
 };
 
 // Short Hebrew theme shown as the banner subtitle per day (fallback: route text)
 const themesByDay = {
   '19': 'מקדשים, מסורת, שופינג וערב של ברים'
+};
+
+// Public-transport legs shown on the route page per day
+const transitByDay = {
+  '19': [
+    { from: 'Eikandō Temple', to: 'Kiyomizu-dera', note: 'אחרי Eikandō אפשר ללכת רגלי או במונית/אוטובוס', line: 'אוטובוס 5 או 100', time: '~10–15 דק׳', cost: '¥230' },
+    { from: 'Shijo Kawaramachi', to: 'Hotel Monterey Kyoto', note: 'חזרה למלון', line: 'רכבת: Hankyu Kyoto Line · Kawaramachi → Karasuma', time: '~5 דק׳', cost: '¥140' }
+  ]
 };
 
 function renderMainPage(){
@@ -1049,18 +1065,19 @@ const data = {
     ["18:00","חזרה למלון","מנוחה, מקלחת, החלפת בגדים והשארת הקניות בחדר.","https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80","Kyoto Hotel"]
   ]},
   '19': { title:"קיוטו – מקדשים, שופינג וברים", route:"Eikandō → Kiyomizu-dera → Gion → Shijo → Pontocho", events:[
-    ["09:00","Eikandō Temple (永観堂)","מקדש בודהיסטי מהיפים בקיוטו, מפורסם בעלי השלכת האדומים","assets/attractions/day19/eikando.jpg","Eikando Temple Kyoto"],
-    ["10:15","Kiyomizu-dera","מקדש ההרים עם מרפסת העץ והנוף לקיוטו","assets/attractions/day19/kiyomizu.jpg","Kiyomizu-dera"],
-    ["10:45","Sannenzaka + Ninenzaka","סמטאות מדרגות עתיקות עם חנויות ובתי תה","assets/attractions/day19/sannenzaka.jpg","Sannenzaka Ninenzaka Kyoto"],
-    ["11:45","Yasaka Pagoda (Hōkan-ji)","פגודה בת חמש קומות בלב גיון","assets/attractions/day19/yasaka.jpg","Yasaka Pagoda Hokanji"],
-    ["12:15","ארוחת צהריים","הפסקת אוכל בגיון או בשיג'ו קוואראמאצ'י","assets/attractions/day19/lunch.jpg","Gion Kyoto"],
-    ["13:30","Shijo Kawaramachi","רובע הקניות המרכזי של קיוטו","assets/attractions/day19/shijo.jpg","Shijo Kawaramachi Kyoto"],
+    ["09:00<br>10:00","Eikandō Temple (永観堂)","מקדש בודהיסטי מהיפים בקיוטו, מפורסם בעלי השלכת האדומים","assets/attractions/day19/eikando.jpg","Eikando Temple Kyoto"],
+    ["10:15<br>10:45","Kiyomizu-dera","מקדש ההרים עם מרפסת העץ והנוף לקיוטו","assets/attractions/day19/kiyomizu.jpg","Kiyomizu-dera"],
+    ["10:45<br>11:45","Sannenzaka + Ninenzaka","סמטאות מדרגות עתיקות עם חנויות ובתי תה","assets/attractions/day19/sannenzaka.jpg","Sannenzaka Ninenzaka Kyoto"],
+    ["11:45<br>12:05","Yasaka Pagoda (Hōkan-ji)","פגודה בת חמש קומות בלב גיון","assets/attractions/day19/yasaka.jpg","Yasaka Pagoda Hokanji"],
+    ["12:15<br>13:15","ארוחת צהריים","הפסקת אוכל בגיון או בשיג'ו קוואראמאצ'י","assets/attractions/day19/lunch.jpg","Gion Kyoto"],
+    ["13:30<br>17:30","Shijo Kawaramachi","רובע הקניות המרכזי של קיוטו","assets/attractions/day19/shijo.jpg","Shijo Kawaramachi Kyoto"],
     ["18:00","חזרה למלון","מנוחה קצרה לפני יציאה לערב","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
-    ["19:00","Kiyamachi & Pontocho","טיול ערב בסמטאות לאורך תעלת המים","assets/attractions/day19/kiyamachi.jpg","Pontocho Kyoto"],
-    ["19:30","L'Escamoteur Bar","בר קוקטיילים אווירתי בסגנון קסמים","assets/attractions/day19/escamoteur.jpg","L'Escamoteur Bar Kyoto"],
-    ["20:30","ארוחת ערב","ארוחה בפונטוצ'ו או קיאמאצ'י","assets/attractions/day19/dinner.jpg","Pontocho Kyoto"],
-    ["21:10","Turquoise Bar","בר קוקטיילים לסיום הערב","assets/attractions/day19/turquoise.jpg","Turquoise Bar Kyoto"],
-    ["22:15","חזרה למלון","סיום יום 6 בקיוטו","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
+    ["","__SECTION__","🍸 ערב: ברים וארוחת ערב","",""],
+    ["19:00<br>19:30","Kiyamachi & Pontocho","טיול ערב בסמטאות לאורך תעלת המים","assets/attractions/day19/kiyamachi.jpg","Pontocho Kyoto"],
+    ["19:30<br>20:30","L'Escamoteur Bar","בר קוקטיילים אווירתי בסגנון קסמים","assets/attractions/day19/escamoteur.jpg","L'Escamoteur Bar Kyoto"],
+    ["20:30<br>21:10","ארוחת ערב","ארוחה בפונטוצ'ו או קיאמאצ'י","assets/attractions/day19/dinner.jpg","Pontocho Kyoto"],
+    ["21:10<br>22:15","Turquoise Bar","בר קוקטיילים לסיום הערב","assets/attractions/day19/turquoise.jpg","Turquoise Bar Kyoto"],
+    ["22:15~","חזרה למלון","סיום יום 6 בקיוטו","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
   ]},
   '20': { title:"נארה יום מלא", route:"Kyoto → Nara → Kyoto", events:[
     ["09:00","נסיעה לנארה","JR Nara Line מקיוטו","https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=300&q=80","Nara"],
@@ -2503,6 +2520,7 @@ function render(day){
     // Default timeline for other days
     tl.className = 'timeline';
     data[day].events.forEach(e=>{
+      if (e[1] === '__SECTION__') { tl.innerHTML += `<div class="tl-section">${e[2]}</div>`; return; }
       const eventDescription = appendLiveFlightInfo(day, e[2]);
       const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
       tl.innerHTML += `<div class="item"><div class="time">${e[0]}</div><div class="event">
@@ -2510,6 +2528,23 @@ function render(day){
         <div class="actions"><a class="btn primary" target="_blank" href="${link}">📍 נווט עכשיו</a>
         <button class="btn ghost" onclick="alert('סומן כבוצע ✓')">✓ סיימנו</button></div></div></div>`;
     });
+  }
+
+  const transitCard = document.getElementById('dayTransitCard');
+  if (transitCard) {
+    const legs = transitByDay[day];
+    if (legs && legs.length) {
+      transitCard.innerHTML = '<div class="section-title">תחבורה ציבורית</div>' + legs.map(l =>
+        `<div class="transit-leg">
+          <div class="transit-route">🚌 ${l.from} → ${l.to}</div>
+          ${l.note ? `<div class="transit-note">${l.note}</div>` : ''}
+          <div class="transit-meta"><span>${l.line}</span><span>⏱ ${l.time}</span><span>💴 ${l.cost}</span></div>
+        </div>`).join('');
+      transitCard.classList.remove('hidden');
+    } else {
+      transitCard.innerHTML = '';
+      transitCard.classList.add('hidden');
+    }
   }
   renderUploads();
 }
