@@ -104,9 +104,10 @@
     .attraction-card-address b{display:block;color:#64748b;font-size:13px;margin-bottom:2px}
     .attraction-card-tips{font-size:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;color:#475569;line-height:1.5;margin-bottom:10px}
     .attraction-card-hours{font-size:12px;font-weight:700;color:#64748b;margin-bottom:10px}
-    .item{display:grid;grid-template-columns:58px 1fr;gap:10px;align-items:stretch}
-    .time{font-size:13px;color:var(--muted);font-weight:800;text-align:center;direction:ltr;line-height:1.35;display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:10px}
-    .nav-btn{font-size:10px!important;padding:4px 7px!important;border-radius:10px!important;margin-top:2px;white-space:nowrap}
+    .item{display:block}
+    .time-badge{display:inline-flex;align-items:center;background:#f0f4fa;border:1px solid #e2e8f0;border-radius:999px;padding:3px 11px;font-size:12px;font-weight:800;color:#344054;direction:ltr;letter-spacing:.3px;flex-shrink:0}
+    .event-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .nav-btn{width:34px!important;height:34px!important;border-radius:9px!important;padding:0!important;font-size:17px!important;flex-shrink:0;line-height:1;display:inline-flex!important;align-items:center!important;justify-content:center!important}
     .event-transit{font-size:11px;color:var(--muted);margin-top:6px;padding-top:5px;border-top:1px solid rgba(0,0,0,0.06)}
     .tl-section{background:linear-gradient(135deg,#4c1d95,#6d28d9);color:#fff;font-weight:900;text-align:center;padding:10px 14px;border-radius:14px;font-size:14px;box-shadow:var(--shadow);margin:4px 0}
     .transit-leg{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow);margin-bottom:10px}
@@ -2605,8 +2606,10 @@ function render(day){
       const eventDescription = appendLiveFlightInfo(day, e[2]);
       const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
       const transitNote = e[5] ? `<div class="event-transit">${e[5]}</div>` : '';
-      tl.innerHTML += `<div class="item"><div class="time">${e[0]}<a class="btn primary nav-btn" target="_blank" href="${link}">📍 נווט</a></div><div class="event">
-        <div class="event-row"><img class="thumb" src="${e[3]}"><div><h3>${e[1]}</h3><div class="event-desc">${eventDescription}</div>${transitNote}</div></div>
+      const timeDisplay = e[0].replace('<br>',' – ');
+      tl.innerHTML += `<div class="item"><div class="event">
+        <div class="event-header"><span class="time-badge">${timeDisplay}</span><a class="btn primary nav-btn" target="_blank" href="${link}">📍</a></div>
+        <div class="event-row"><img class="thumb" src="${e[3]}"><div style="min-width:0"><h3>${e[1]}</h3><div class="event-desc">${eventDescription}</div>${transitNote}</div></div>
       </div></div>`;
     });
   }
