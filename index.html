@@ -471,11 +471,11 @@
         <div class="route-notes-grid">
           <div>
             <label for="routeOverview" id="routeOverviewLabel">סקירה כללית</label>
-            <textarea id="routeOverview" class="route-textarea" placeholder="הוסיפו כאן סקירה כללית ליום..." readonly></textarea>
+            <textarea id="routeOverview" class="route-textarea" placeholder="הוסיפו כאן סקירה כללית ליום..."></textarea>
           </div>
           <div id="routeTipsContainer">
             <label for="routeTips">טיפים חשובים</label>
-            <textarea id="routeTips" class="route-textarea" placeholder="הוסיפו כאן טיפים חשובים ליום..." readonly></textarea>
+            <textarea id="routeTips" class="route-textarea" placeholder="הוסיפו כאן טיפים חשובים ליום..."></textarea>
           </div>
         </div>
         <div class="route-notes-help" id="routeNotesHelp">אפשר לערוך חופשי. התוכן נשמר לכל יום כל עוד הדף פתוח.</div>
@@ -483,8 +483,6 @@
 
       <div class="section-title">המסלול שלנו</div>
       <div class="timeline" id="timeline"></div>
-
-      <div id="dayTransitCard" class="hidden"></div>
 
       <div class="section-title">המלון הערב</div>
       <div class="event hotel">
@@ -503,17 +501,6 @@
         </div>
       </div>
 
-      <div class="upload-panel" id="route-upload-panel">
-        <div class="upload-row">
-          <div>
-            <div class="section-title" style="margin:0;font-size:18px">קבצי מסלול</div>
-            <div class="upload-hint">אפשר להוסיף קבצי PDF, תמונות או סיכומי יום לכל חברי הקבוצה.</div>
-          </div>
-          <button class="btn primary" data-upload-button onclick="pickFiles('route')">הוספת קובץ</button>
-          <input id="file-input-route" type="file" hidden onchange="handleFileUpload('route', event)">
-        </div>
-        <div class="file-list" id="file-list-route"></div>
-      </div>
     </div>
   </main>
 
@@ -723,6 +710,8 @@
           <div class="route-line" id="transportationRoute" style="position:relative;height:100%;display:flex;align-items:center;justify-content:center">לא זמין</div>
         </div>
       </div>
+
+      <div class="upload-panel hidden" id="transportTransitPanel"></div>
 
       <div class="upload-panel">
         <div class="section-title" style="margin:0;font-size:18px">אפשרויות ניווט</div>
@@ -946,6 +935,14 @@ const transitByDay = {
   ]
 };
 
+// Preset Hebrew route notes per day (overview + tips), used to prefill the notes boxes
+const routeNotesPresets = {
+  '19': {
+    overview: 'היום — יום של איזון בין המסורת לקיוטו המודרנית: מקדשים בבוקר, שופינג בצהריים, מנוחה במלון וערב של ברים!',
+    tips: 'צאו בזמן, בדקו כתובות מראש, ושמרו צילום מסך של הניווט.'
+  }
+};
+
 function renderMainPage(){
   const grid = document.getElementById('mainGrid');
   const orderedDays = Object.entries(citiesByDay).sort(([a], [b]) => {
@@ -998,6 +995,23 @@ function showTransportationDetails(day){
   // Show live flight status panel only on flight days (outbound 12-13, return 28)
   const flightPanel = document.getElementById('transportFlightPanel');
   if (flightPanel) flightPanel.classList.toggle('hidden', !(day === '12-13' || day === '28'));
+  // Public-transport legs for this day (shown here in the תחבורה tab)
+  const transitPanel = document.getElementById('transportTransitPanel');
+  if (transitPanel) {
+    const legs = transitByDay[day];
+    if (legs && legs.length) {
+      transitPanel.innerHTML = '<div class="section-title" style="margin:0;font-size:18px">תחבורה ציבורית</div>' + legs.map(l =>
+        `<div class="transit-leg" style="margin-top:10px">
+          <div class="transit-route">🚌 ${l.from} → ${l.to}</div>
+          ${l.note ? `<div class="transit-note">${l.note}</div>` : ''}
+          <div class="transit-meta"><span>${l.line}</span><span>⏱ ${l.time}</span><span>💴 ${l.cost}</span></div>
+        </div>`).join('');
+      transitPanel.classList.remove('hidden');
+    } else {
+      transitPanel.innerHTML = '';
+      transitPanel.classList.add('hidden');
+    }
+  }
   showScreen('transportation-details', document.querySelector('.nav button[data-screen="transportation"]'));
 }
 
@@ -2325,6 +2339,9 @@ function render(day){
     if (day === '14') {
       // Day 14: Empty by default (will hide section)
       routeDayNotes[day] = { overview: '', tips: '' };
+    } else if (routeNotesPresets[day]) {
+      // Days with a curated Hebrew preset
+      routeDayNotes[day] = { ...routeNotesPresets[day] };
     } else {
       // Other days: Default templates
       routeDayNotes[day] = {
@@ -2426,7 +2443,7 @@ function render(day){
     if (routeNotesPanel) routeNotesPanel.style.display = 'block';
   }
   
-  setRouteNotesEditMode(false);
+  setRouteNotesEditMode(true);
   renderRouteFlightStatus(day);
   const tl=document.getElementById('timeline'); tl.innerHTML='';
   
@@ -2530,22 +2547,6 @@ function render(day){
     });
   }
 
-  const transitCard = document.getElementById('dayTransitCard');
-  if (transitCard) {
-    const legs = transitByDay[day];
-    if (legs && legs.length) {
-      transitCard.innerHTML = '<div class="section-title">תחבורה ציבורית</div>' + legs.map(l =>
-        `<div class="transit-leg">
-          <div class="transit-route">🚌 ${l.from} → ${l.to}</div>
-          ${l.note ? `<div class="transit-note">${l.note}</div>` : ''}
-          <div class="transit-meta"><span>${l.line}</span><span>⏱ ${l.time}</span><span>💴 ${l.cost}</span></div>
-        </div>`).join('');
-      transitCard.classList.remove('hidden');
-    } else {
-      transitCard.innerHTML = '';
-      transitCard.classList.add('hidden');
-    }
-  }
   renderUploads();
 }
 
