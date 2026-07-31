@@ -58,6 +58,28 @@
     .home-icon-btn:hover{opacity:1}
     .day-meta{font-size:13px;font-weight:700;color:#64748b;margin-bottom:4px;letter-spacing:0.3px}
     .day-title{font-size:22px;font-weight:900}.weather{font-size:13px;color:var(--muted);flex-shrink:0}
+    /* Day title banner (date badge + city + theme) */
+    .day-head.banner-head{display:block;margin:8px 2px 14px}
+    .banner-head .home-icon-btn{margin-bottom:10px}
+    .day-banner{display:flex;direction:ltr;align-items:stretch;background:#fff;border:1px solid var(--line);
+      border-radius:20px;overflow:hidden;box-shadow:var(--shadow);min-height:96px}
+    .day-banner-badge{background:#171b4d;color:#fff;display:flex;flex-direction:column;align-items:center;
+      justify-content:center;text-align:center;padding:12px 16px;min-width:122px}
+    .dbb-date{font-size:19px;font-weight:900;letter-spacing:.5px;line-height:1.1}
+    .dbb-weekday{font-size:12px;font-weight:700;color:#c4c8ea;margin-top:5px}
+    .dbb-dayof{font-size:11px;font-weight:600;color:#9297cc;margin-top:7px}
+    .day-banner-main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 18px;
+      direction:rtl;text-align:right}
+    .dbm-city{font-size:30px;font-weight:900;color:#171b4d;line-height:1.05}
+    .dbm-theme{font-size:12.5px;font-weight:800;color:#e11d48;margin-top:7px;letter-spacing:.2px}
+    /* Hebrew map legend (mirrors the route line styles) */
+    .map-legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;background:#fff;
+      border:1px solid var(--line);border-radius:16px;padding:10px 14px;margin-top:10px;box-shadow:var(--shadow)}
+    .map-legend-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#374151}
+    .mll{width:26px;height:0;border-top-width:3px;border-top-color:#5f2b8f;flex-shrink:0}
+    .mll-walk{border-top-style:dashed}
+    .mll-transit{border-top-style:solid}
+    .mll-evening{border-top-style:dotted}
     .map-card{height:170px;border-radius:24px;background:
       linear-gradient(rgba(17,24,39,.08),rgba(17,24,39,.08)),
       url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=900&q=80') center/cover;
@@ -424,6 +446,12 @@
       <div class="map-card" id="dayMapCard">
         <div class="map-chip">מסלול היום</div>
         <div class="route-line" id="routeText">שינג'וקו → Hakone-Yumoto → המלון</div>
+      </div>
+
+      <div class="map-legend hidden" id="dayMapLegend">
+        <div class="map-legend-item"><span class="mll mll-walk"></span>רגלי</div>
+        <div class="map-legend-item"><span class="mll mll-transit"></span>תחבורה ציבורית</div>
+        <div class="map-legend-item"><span class="mll mll-evening"></span>מסלול ערב</div>
       </div>
 
       <div id="routeFlightStatusPanel" class="upload-panel hidden"></div>
@@ -891,6 +919,17 @@ const citiesByDay = {
   '28': { city: 'טוקיו - חזרה הביתה', image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80' }
 };
 
+// Dedicated clean route maps per day (src + aspect-ratio of the image)
+const routeMapsByDay = {
+  '14': { src: 'assets/maps/day14_walking_map.png', ratio: '338 / 261' },
+  '19': { src: 'assets/maps/day19_route_map.png', ratio: '388 / 584', legend: true }
+};
+
+// Short Hebrew theme shown as the banner subtitle per day (fallback: route text)
+const themesByDay = {
+  '19': 'מקדשים, מסורת, שופינג וערב של ברים'
+};
+
 function renderMainPage(){
   const grid = document.getElementById('mainGrid');
   const orderedDays = Object.entries(citiesByDay).sort(([a], [b]) => {
@@ -1000,10 +1039,14 @@ const data = {
     ["13:00","נסיעה לקיוטו","שינקנסן מנגויה לקיוטו","https://images.unsplash.com/photo-1568747578869-3fa0f8ca3f4f?auto=format&fit=crop&w=300&q=80","Kyoto Station"],
     ["16:30","גיון ופונטוצ'ו","טיול ערב ברובע ההיסטורי","https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=300&q=80","Gion Kyoto"]
   ]},
-  '18': { title:"קיוטו עם מדריך", route:"Fushimi Inari → Kiyomizu-dera → Gion", events:[
-    ["09:00","Fushimi Inari Taisha","אלפי שערי טוריאי אדומים","https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?auto=format&fit=crop&w=300&q=80","Fushimi Inari Taisha"],
-    ["11:30","Kiyomizu-dera","מקדש ונוף מעל קיוטו","https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=300&q=80","Kiyomizu-dera"],
-    ["16:00","Gion","רובע מסורתי וערב בקיוטו","https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=300&q=80","Gion Kyoto"]
+  '18': { title:"קיוטו עם מדריך", route:"Eikando → Kiyomizu-dera → Sannenzaka → Yasaka Pagoda → Shijo Kawaramachi", events:[
+    ["09:00 - 10:00","Eikando Temple (永観堂)","אחד המקדשים היפים ביותר לצפייה בעלי השלכת הסתוויים. מפורסם בפסל אמידה המביט לאחור.\nהליכה 10-15 דקות.","https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=300&q=80","Eikando Temple Kyoto"],
+    ["10:15 - 10:45","Kiyomizu-dera","אחד המקדשים המפורסמים בקיוטו עם מרפסת עץ ונוף מרהיב על העיר.\nהליכה 15 דקות.","https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=300&q=80","Kiyomizu-dera"],
+    ["10:45 - 11:45","Sannenzaka + Ninenzaka","סמטאות ציוריות עם חנויות מסורתיות, בתי קפה ומזכרות.\nהליכה 10 דקות.","https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=300&q=80","Ninenzaka Sannenzaka Kyoto"],
+    ["11:45 - 12:05","Yasaka Pagoda (Hōkan-ji)","הפגודה המפורסמת של יאסקה — סמל הרובע ההיסטורי היגשיאמה.\nהליכה 20 דקות עד תחנת האוטובוס.","https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?auto=format&fit=crop&w=300&q=80","Yasaka Pagoda Hokanji Kyoto"],
+    ["12:15 - 13:15","ארוחת צהריים","מומלץ לטעום מטבח יפני מסורתי ברובע גיון או שיג'ו קוואראמאצ'י.","https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=300&q=80","Gion Kyoto restaurants"],
+    ["13:30 - 17:30","Shijo Kawaramachi Shopping","רובע הקניות המרכזי של קיוטו: UNIQLO, GU, Kyoto BAL, OPA, Loft, Hands ועוד!","https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=300&q=80","Shijo Kawaramachi"],
+    ["18:00","חזרה למלון","מנוחה, מקלחת, החלפת בגדים והשארת הקניות בחדר.","https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80","Kyoto Hotel"]
   ]},
   '19': { title:"אראשיאמה וצפון קיוטו", route:"Arashiyama → Ryoan-ji → Kinkaku-ji", events:[
     ["08:30","Arashiyama Bamboo Grove","הליכה ביער הבמבוק","https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=300&q=80","Arashiyama Bamboo Grove"],
@@ -1074,6 +1117,14 @@ const hotelsByDay = {
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
     extra: ''
+  },
+  '18': {
+    name: 'Hotel Monterey Kyoto',
+    meta: 'קיוטו · Karasuma-dori, Nakagyo-ku',
+    mapQuery: 'Hotel Monterey Kyoto',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
   }
 };
 
@@ -2192,6 +2243,41 @@ function askGemini(attractionTitle) {
   });
 }
 
+// Build a display date + Hebrew weekday + trip-day number for a day key (November 2026)
+function getDayMeta(day){
+  const heWeekdays = ['יום ראשון','יום שני','יום שלישי','יום רביעי','יום חמישי','יום שישי','שבת'];
+  let dayNum, dateStr;
+  if (day === '12-13') { dayNum = 12; dateStr = '12–13.11.2026'; }
+  else { dayNum = Number(day); dateStr = `${String(dayNum).padStart(2, '0')}.11.2026`; }
+  const weekday = heWeekdays[new Date(2026, 10, dayNum).getDay()];
+  const tripNo = day === '12-13' ? null : dayNum - 13; // Nov 14 = day 1 of the trip
+  return { dateStr, weekday, tripNo };
+}
+
+// Render the day title banner: [date badge] + [big city name + theme]
+function renderDayBanner(day){
+  const container = document.getElementById('dayHeadContainer');
+  if (!container) return;
+  const meta = getDayMeta(day);
+  const city = (citiesByDay[day] && citiesByDay[day].city) || '';
+  const theme = themesByDay[day] || (data[day] && data[day].route) || '';
+  const tripLine = meta.tripNo ? `יום ${meta.tripNo} ב${city}` : 'טיסה בינלאומית';
+  container.className = 'day-head banner-head';
+  container.innerHTML = `
+    <button class="home-icon-btn" type="button" onclick="goBackToMain()" aria-label="חזרה לראשי">🏠</button>
+    <div class="day-banner">
+      <div class="day-banner-badge">
+        <div class="dbb-date">${meta.dateStr}</div>
+        <div class="dbb-weekday">${meta.weekday}</div>
+        <div class="dbb-dayof">${tripLine}</div>
+      </div>
+      <div class="day-banner-main">
+        <div class="dbm-city">${city} ⛩️🌸</div>
+        ${theme ? `<div class="dbm-theme">${theme}</div>` : ''}
+      </div>
+    </div>`;
+}
+
 function render(day){
   if (!data[day]) return;
   if (isRouteNotesEditing) saveCurrentRouteNotes();
@@ -2213,70 +2299,31 @@ function render(day){
       };
     }
   }
-  document.getElementById('dayTitle').innerText=data[day].title;
   document.getElementById('routeText').innerText=data[day].route;
-  
-  // Day 14: Apply ultra-compact single-line header
-  const dayHeadContainer = document.getElementById('dayHeadContainer');
-  const backButton = document.getElementById('backButton');
-  const dayLabel = document.getElementById('dayLabel');
-  const dayTitle = document.getElementById('dayTitle');
-  const dayMeta = document.getElementById('dayMeta');
-  const weather = dayHeadContainer.querySelector('.weather');
-  
-  if (day === '14') {
-    // Restructure for single-line: [🏠] [Title] [Date] [Weather]
-    if (dayHeadContainer) {
-      dayHeadContainer.classList.add('minimalist');
-      dayHeadContainer.innerHTML = '';
-      
-      // Create home icon button
-      const homeBtn = document.createElement('button');
-      homeBtn.className = 'home-icon-btn';
-      homeBtn.onclick = goBackToMain;
-      homeBtn.textContent = '🏠';
-      
-      // Create date element
-      const dateEl = document.createElement('div');
-      dateEl.className = 'day-date';
-      dateEl.textContent = '14.11';
-      dateEl.style.fontSize = '13px';
-      dateEl.style.color = '#64748b';
-      dateEl.style.fontWeight = '600';
-      dateEl.style.flexShrink = '0';
-      
-      // Move title directly
-      dayTitle.style.display = 'block';
-      
-      // Append in order: home, title, date, weather
-      dayHeadContainer.appendChild(homeBtn);
-      dayHeadContainer.appendChild(dayTitle);
-      dayHeadContainer.appendChild(dateEl);
-      if (weather) dayHeadContainer.appendChild(weather);
-    }
-  } else {
-    // Other days: Keep original nested layout
-    if (dayHeadContainer) dayHeadContainer.classList.remove('minimalist');
-    if (backButton) backButton.style.display = 'inline-block';
-    if (dayLabel) dayLabel.style.display = 'block';
-    if (dayMeta) dayMeta.style.display = 'none';
-  }
-  
+
+  // Build the day title banner (date badge + city + theme) for every day
+  renderDayBanner(day);
+
   // Update map background based on day
   const mapCard = document.getElementById('dayMapCard');
   if (mapCard) {
-    if (day === '14') {
-      // Use the walking route map for Day 14 - clean map without overlays
-      mapCard.style.background = `#f8fafc url('assets/maps/day14_walking_map.png') center/contain no-repeat`;
+    const routeMap = routeMapsByDay[day];
+    if (routeMap) {
+      // Dedicated clean route map for this day (no overlays)
+      mapCard.style.background = `#f8fafc url('${routeMap.src}') center/contain no-repeat`;
+      mapCard.style.aspectRatio = routeMap.ratio;
       mapCard.classList.add('clean-map');
     } else {
       // Default generic map background for other days with overlays
+      mapCard.style.aspectRatio = '';
       mapCard.style.background = `
         linear-gradient(rgba(17,24,39,.08),rgba(17,24,39,.08)),
         url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=900&q=80') center/cover`;
       mapCard.classList.remove('clean-map');
     }
   }
+  const legendEl = document.getElementById('dayMapLegend');
+  if (legendEl) legendEl.classList.toggle('hidden', !(routeMapsByDay[day] && routeMapsByDay[day].legend));
   
   const overviewNode = document.getElementById('routeOverview');
   const tipsNode = document.getElementById('routeTips');
