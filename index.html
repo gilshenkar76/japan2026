@@ -105,10 +105,12 @@
     .attraction-card-tips{font-size:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;color:#475569;line-height:1.5;margin-bottom:10px}
     .attraction-card-hours{font-size:12px;font-weight:700;color:#64748b;margin-bottom:10px}
     .item{display:block}
-    .time-badge{display:inline-flex;align-items:center;background:#f0f4fa;border:1px solid #e2e8f0;border-radius:999px;padding:3px 11px;font-size:12px;font-weight:800;color:#344054;direction:ltr;letter-spacing:.3px;flex-shrink:0}
-    .event-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .time-badge{display:inline-flex;align-items:center;background:#f0f4fa;border:1px solid #e2e8f0;border-radius:999px;padding:3px 11px;font-size:12px;font-weight:800;color:#344054;direction:ltr;letter-spacing:.3px;flex-shrink:0;white-space:nowrap}
+    .event-top{display:flex;align-items:flex-start;justify-content:space-between;gap:6px;margin-bottom:5px}
+    .event-top h3{margin:0;font-size:15px;flex:1}
+    .event-footer{display:flex;align-items:center;justify-content:space-between;margin-top:8px;min-height:34px}
     .nav-btn{width:34px!important;height:34px!important;border-radius:9px!important;padding:0!important;font-size:17px!important;flex-shrink:0;line-height:1;display:inline-flex!important;align-items:center!important;justify-content:center!important}
-    .event-transit{font-size:11px;color:var(--muted);margin-top:6px;padding-top:5px;border-top:1px solid rgba(0,0,0,0.06)}
+    .event-transit{font-size:11px;color:var(--muted);flex:1}
     .tl-section{background:linear-gradient(135deg,#4c1d95,#6d28d9);color:#fff;font-weight:900;text-align:center;padding:10px 14px;border-radius:14px;font-size:14px;box-shadow:var(--shadow);margin:4px 0}
     .transit-leg{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow);margin-bottom:10px}
     .transit-route{font-weight:800;font-size:14px;color:#1e293b;margin-bottom:4px}
@@ -117,7 +119,7 @@
     .transit-meta span{background:#eef2f7;border:1px solid #d8e0ea;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;color:#475569}
     .event{background:var(--card);border-radius:20px;padding:13px;box-shadow:var(--shadow);
       border:1px solid var(--line)}
-    .event-row{display:flex;gap:12px;align-items:center}
+    .event-row{display:flex;gap:12px;align-items:flex-start}
     .thumb{width:64px;height:64px;border-radius:16px;object-fit:cover;background:#e8edf5}
     .event h3{margin:0 0 5px;font-size:16px}.event p{margin:0;color:var(--muted);font-size:12px;line-height:1.45;white-space:pre-line}
     .event-desc{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
@@ -2605,11 +2607,14 @@ function render(day){
       if (e[1] === '__SECTION__') { tl.innerHTML += `<div class="tl-section">${e[2]}</div>`; return; }
       const eventDescription = appendLiveFlightInfo(day, e[2]);
       const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
-      const transitNote = e[5] ? `<div class="event-transit">${e[5]}</div>` : '';
+      const transitNote = e[5] ? `<span class="event-transit">${e[5]}</span>` : '<span></span>';
       const timeDisplay = e[0].replace('<br>',' – ');
       tl.innerHTML += `<div class="item"><div class="event">
-        <div class="event-header"><span class="time-badge">${timeDisplay}</span><a class="btn primary nav-btn" target="_blank" href="${link}">📍</a></div>
-        <div class="event-row"><img class="thumb" src="${e[3]}"><div style="min-width:0"><h3>${e[1]}</h3><div class="event-desc">${eventDescription}</div>${transitNote}</div></div>
+        <div class="event-row"><img class="thumb" src="${e[3]}"><div style="min-width:0;flex:1">
+          <div class="event-top"><h3>${e[1]}</h3><span class="time-badge">${timeDisplay}</span></div>
+          <div class="event-desc">${eventDescription}</div>
+          <div class="event-footer">${transitNote}<a class="btn primary nav-btn" target="_blank" href="${link}">📍</a></div>
+        </div></div>
       </div></div>`;
     });
   }
