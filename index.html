@@ -920,13 +920,15 @@ const citiesByDay = {
 const routeMapsByDay = {
   '14': { src: 'assets/maps/day14_walking_map.png', ratio: '338 / 261' },
   '19': { src: 'assets/maps/day19_route_map.png', ratio: '368 / 644', legend: false },
-  '21': { src: 'assets/maps/day21_route_map.png', ratio: '372 / 122', legend: false }
+  '21': { src: 'assets/maps/day21_route_map.png', ratio: '372 / 122', legend: false },
+  '23': { src: 'assets/maps/day23_route_map.png', ratio: '260 / 118', legend: false }
 };
 
 // Short Hebrew theme shown as the banner subtitle per day (fallback: route text)
 const themesByDay = {
   '19': 'מקדשים, מסורת, שופינג וערב של ברים',
-  '21': 'מסע מקיוטו לאוסקה – שוק, תצפית, קניות וגסטרונומיה'
+  '21': 'מסע מקיוטו לאוסקה – שוק, תצפית, קניות וגסטרונומיה',
+  '23': 'שרין, אקווריום, תצפית, שופינג וערב קסום ב-teamLab'
 };
 
 // Public-transport legs shown on the route page per day
@@ -939,6 +941,13 @@ const transitByDay = {
     { from: 'Kyoto Station', to: 'Shin-Osaka Station', note: 'שינקנסן – JR Tokaido/Kyoto Line', line: 'שינקנסן JR', time: '~30 דק׳', cost: '¥1,490' },
     { from: 'Shin-Osaka', to: 'Umeda', note: 'מטרו – Midosuji Line', line: 'Osaka Metro Midosuji Line', time: '~20 דק׳', cost: '¥240' },
     { from: 'Umeda', to: 'Namba', note: 'מטרו – Midosuji Line', line: 'Osaka Metro Midosuji Line', time: '~15 דק׳', cost: '¥240' }
+  ],
+  '23': [
+    { from: 'Sumiyoshi Taisha', to: 'Kaiyukan Aquarium', note: 'Nankai Honsen → Osakako (Chuo Line)', line: 'Nankai + Chuo Line', time: '~15 דק׳', cost: '¥280' },
+    { from: 'Kaiyukan', to: 'Abeno Harukas', note: 'Chuo Line → Tennoji Station', line: 'Osaka Metro Chuo Line', time: '~15 דק׳', cost: '¥280' },
+    { from: 'Abeno Harukas', to: 'Shinsaibashi', note: 'מטרו – Midosuji Line', line: 'Osaka Metro Midosuji Line', time: '~20 דק׳', cost: '¥240' },
+    { from: 'Shinsaibashi', to: 'teamLab Botanical Garden', note: 'מטרו – Midosuji Line → Nagai Station', line: 'Osaka Metro Midosuji Line', time: '~15 דק׳', cost: '¥240' },
+    { from: 'teamLab Botanical Garden', to: 'Excel Hotel Tokyu Osaka', note: 'חזרה למלון', line: 'Osaka Metro', time: '~30 דק׳', cost: '¥280' }
   ]
 };
 
@@ -951,6 +960,10 @@ const routeNotesPresets = {
   '21': {
     overview: 'יום מעבר מקיוטו לאוסקה: שוק נישיקי בבוקר, שינקנסן, תצפית מ-Umeda Sky Building, שופינג ב-Namba ולסיום ארוחת Wagyu מושלמת!',
     tips: 'בקרו בנישיקי בבוקר (פחות עומס). הזמינו מקום מראש ב-Gyujiro לארוחת הערב. נסעו עם IC Card בכל המטרו.'
+  },
+  '23': {
+    overview: 'יום מלא של אוסקה: שרין עתיק, אקווריום ענק, תצפית מ-Abeno Harukas, שופינג בשינסאיבאשי וערב קסום ב-teamLab Botanical Garden!',
+    tips: 'הזמינו כרטיסים ל-Kaiyukan ול-teamLab מראש! קחו ז\'קט לערב — מתקרר בגן. בואו ל-Kaiyukan בבוקר (פחות עומס).'
   }
 };
 
@@ -1128,10 +1141,15 @@ const data = {
     ["12:00","Shinsekai + Kuromon","שווקים ורובע מקומי","https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=300&q=80","Kuromon Market"],
     ["17:00","Dotonbori + Tombori Cruise","שייט ערב וניאונים","https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80","Dotonbori"]
   ]},
-  '23': { title:"אוסקה - קניות ומנוחה", route:"Sumiyoshi → Abeno Harukas → teamLab Osaka", events:[
-    ["09:30","Sumiyoshi Taisha","מקדש שקט לפתיחת היום","https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=300&q=80","Sumiyoshi Taisha"],
-    ["11:30","Abeno Harukas 300","תצפית גבוהה על העיר","https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=300&q=80","Abeno Harukas"],
-    ["14:30","Shinsaibashi + Namba Parks + teamLab","קניות והופעת אור בערב","https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=300&q=80","Shinsaibashi"]
+  '23': { title:"אוסקה – שרין, אקווריום, תצפית, שופינג ו-teamLab", route:"Sumiyoshi Taisha → Kaiyukan → Tempozan → Abeno Harukas → Shinsaibashi → teamLab Botanical Garden", events:[
+    ["09:00<br>10:00","Sumiyoshi Taisha","אחד המקדשים הסינטואיסטיים העתיקים ביפן, עם גשרים ייחודיים ואווירה שקטה","assets/attractions/day23/sumiyoshi.jpg","Sumiyoshi Taisha Osaka"],
+    ["10:30<br>12:30","Kaiyukan Aquarium (海遊館)","אחד מגדולי האקווריומים בעולם – מנהרת מים ענקית עם לוויתן כרישים, פינגווינים ועוד","assets/attractions/day23/kaiyukan.jpg","Kaiyukan Aquarium Osaka"],
+    ["12:30<br>13:30","ארוחת צהריים – Tempozan Harbor Village","מסעדות עם נוף לים, פירות ים ובתי קפה. מקום נהדר לנוח לפני ההמשך","assets/attractions/day23/tempozan.jpg","Tempozan Harbor Village Osaka"],
+    ["14:00<br>15:00","Abeno Harukas 300","פלטפורמת תצפית בקומה 60 עם נוף 360° על אוסקה. אחת הגבוהות ביפן","assets/attractions/day23/abeno.jpg","Abeno Harukas 300 Osaka"],
+    ["15:30<br>17:00","Shinsaibashi-suji Shopping Street","רחוב הקניות הראשי של אוסקה: מותגים עולמיים, סובניר ושופינג אידיאלי","assets/attractions/day23/shinsaibashi.jpg","Shinsaibashi Osaka"],
+    ["","__SECTION__","✨ ערב: teamLab Botanical Garden","",""],
+    ["17:30<br>20:00","teamLab Botanical Garden Osaka","גן בוטני עם אמנות דיגיטלית קסומה, אורות וטבע. חוויה בלתי נשכחת בלילה","assets/attractions/day23/teamlab.jpg","teamLab Botanical Garden Osaka"],
+    ["20:30<br>22:00","חזרה למלון","Excel Hotel Tokyu Osaka. סיום יום 10 באוסקה","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka"]
   ]},
   '24': { title:"אוסקה → טוקיו", route:"Shinkansen → Shinjuku Night", events:[
     ["09:00","נסיעה לטוקיו","שינקנסן מאוסקה לטוקיו","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Tokyo Station"],
@@ -1195,6 +1213,22 @@ const hotelsByDay = {
     extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
   },
   '21': {
+    name: 'Excel Hotel Tokyu Osaka',
+    meta: 'אוסקה · Namba, Chuo Ward',
+    mapQuery: 'Excel Hotel Tokyu Osaka Namba',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: '5-1-15 Namba, Chuo Ward, Osaka 542-0076, Japan'
+  },
+  '22': {
+    name: 'Excel Hotel Tokyu Osaka',
+    meta: 'אוסקה · Namba, Chuo Ward',
+    mapQuery: 'Excel Hotel Tokyu Osaka Namba',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: '5-1-15 Namba, Chuo Ward, Osaka 542-0076, Japan'
+  },
+  '23': {
     name: 'Excel Hotel Tokyu Osaka',
     meta: 'אוסקה · Namba, Chuo Ward',
     mapQuery: 'Excel Hotel Tokyu Osaka Namba',
