@@ -24,3 +24,11 @@
 - The day header is a data-driven banner built by `renderDayBanner(day)`.
 - Per-day route maps are extracted from `updated_days/DD_11_2026.jpeg` into
   `assets/maps/dayDD_route_map.png` and registered in `routeMapsByDay`.
+
+## Attraction images rule
+- Attraction/timeline images must come from the **photo thumbnails in the source
+  image** (`updated_days/DD_11_2026.jpeg`), not from Unsplash or other stock URLs.
+- Crop each stop's thumbnail into `assets/attractions/dayDD/<name>.jpg` and reference
+  those local paths in the day's `events` array (the 4th field of each event).
+- Do the same for every future day update: extract the real photos from the source
+  image rather than shipping placeholder stock images.
