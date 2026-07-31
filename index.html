@@ -906,7 +906,7 @@ const citiesByDay = {
   '18': { city: 'קיוטו', image: 'https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=600&q=80' },
   '19': { city: 'קיוטו', image: 'https://images.unsplash.com/photo-1549693578-d683be217e58?w=600&q=80' },
   '20': { city: 'נארה', image: 'https://images.unsplash.com/photo-1530554764233-e79e16c91d08?w=600&q=80' },
-  '21': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=600&q=80' },
+  '21': { city: 'קיוטו → אוסקה', image: 'https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=600&q=80' },
   '22': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?w=600&q=80' },
   '23': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80' },
   '24': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&q=80' },
@@ -919,12 +919,14 @@ const citiesByDay = {
 // Dedicated clean route maps per day (src + aspect-ratio of the image)
 const routeMapsByDay = {
   '14': { src: 'assets/maps/day14_walking_map.png', ratio: '338 / 261' },
-  '19': { src: 'assets/maps/day19_route_map.png', ratio: '368 / 644', legend: false }
+  '19': { src: 'assets/maps/day19_route_map.png', ratio: '368 / 644', legend: false },
+  '21': { src: 'assets/maps/day21_route_map.png', ratio: '372 / 122', legend: false }
 };
 
 // Short Hebrew theme shown as the banner subtitle per day (fallback: route text)
 const themesByDay = {
-  '19': 'מקדשים, מסורת, שופינג וערב של ברים'
+  '19': 'מקדשים, מסורת, שופינג וערב של ברים',
+  '21': 'מסע מקיוטו לאוסקה – שוק, תצפית, קניות וגסטרונומיה'
 };
 
 // Public-transport legs shown on the route page per day
@@ -932,6 +934,11 @@ const transitByDay = {
   '19': [
     { from: 'Eikandō Temple', to: 'Kiyomizu-dera', note: 'אחרי Eikandō אפשר ללכת רגלי או במונית/אוטובוס', line: 'אוטובוס 5 או 100', time: '~10–15 דק׳', cost: '¥230' },
     { from: 'Shijo Kawaramachi', to: 'Hotel Monterey Kyoto', note: 'חזרה למלון', line: 'רכבת: Hankyu Kyoto Line · Kawaramachi → Karasuma', time: '~5 דק׳', cost: '¥140' }
+  ],
+  '21': [
+    { from: 'Kyoto Station', to: 'Shin-Osaka Station', note: 'שינקנסן – JR Tokaido/Kyoto Line', line: 'שינקנסן JR', time: '~30 דק׳', cost: '¥1,490' },
+    { from: 'Shin-Osaka', to: 'Umeda', note: 'מטרו – Midosuji Line', line: 'Osaka Metro Midosuji Line', time: '~20 דק׳', cost: '¥240' },
+    { from: 'Umeda', to: 'Namba', note: 'מטרו – Midosuji Line', line: 'Osaka Metro Midosuji Line', time: '~15 דק׳', cost: '¥240' }
   ]
 };
 
@@ -940,6 +947,10 @@ const routeNotesPresets = {
   '19': {
     overview: 'היום — יום של איזון בין המסורת לקיוטו המודרנית: מקדשים בבוקר, שופינג בצהריים, מנוחה במלון וערב של ברים!',
     tips: 'צאו בזמן, בדקו כתובות מראש, ושמרו צילום מסך של הניווט.'
+  },
+  '21': {
+    overview: 'יום מעבר מקיוטו לאוסקה: שוק נישיקי בבוקר, שינקנסן, תצפית מ-Umeda Sky Building, שופינג ב-Namba ולסיום ארוחת Wagyu מושלמת!',
+    tips: 'בקרו בנישיקי בבוקר (פחות עומס). הזמינו מקום מראש ב-Gyujiro לארוחת הערב. נסעו עם IC Card בכל המטרו.'
   }
 };
 
@@ -1098,10 +1109,19 @@ const data = {
     ["10:00","Todai-ji + Nara Park","מקדש טודאי-ג'י ופארק האיילים","https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=300&q=80","Todai-ji"],
     ["14:00","Kasuga Taisha + Kofuku-ji","מקדשים מרכזיים בנארה","https://images.unsplash.com/photo-1530554764233-e79e16c91d08?auto=format&fit=crop&w=300&q=80","Kasuga Taisha"]
   ]},
-  '21': { title:"קיוטו → אוסקה", route:"Ginkaku-ji → Nishiki → Umeda", events:[
-    ["09:00","Ginkaku-ji","הביתן הכסוף ודרך הפילוסופים","https://images.unsplash.com/photo-1492571350019-22de08371fd3?auto=format&fit=crop&w=300&q=80","Ginkaku-ji"],
-    ["12:15","Nishiki Market","שוק אוכל וקניות במרכז קיוטו","https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=300&q=80","Nishiki Market"],
-    ["17:00","נסיעה לאוסקה + Umeda Sky","מעבר ערב לאוסקה ותצפית","https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=300&q=80","Umeda Sky Building"]
+  '21': { title:"קיוטו → אוסקה – מודרניות, קניות וגסטרונומיה", route:"Nishiki Market → Shinkansen → Umeda Sky Building → Grand Green → Namba City → Namba Parks → Wagyu", events:[
+    ["08:00<br>09:30","Nishiki Market (錦市場)","שוק האוכל המפורסם של קיוטו – 'המטבח של קיוטו'. פירות ים, ממתקים יפניים, חומץ מתוקן וסושי טרי","assets/attractions/day21/nishiki.jpg","Nishiki Market Kyoto"],
+    ["10:00<br>10:30","נסיעה: קיוטו → אוסקה","שינקנסן JR Tokaido/Kyoto Line מתחנת Kyoto → Shin-Osaka. ~30 דקות","assets/attractions/day21/transfer.jpg","Kyoto Station"],
+    ["10:30<br>11:00","הגעה לאוסקה","הגעה לתחנת Shin-Osaka, מעבר לאזור Umeda. אחסון מזוודות בלוקרים","assets/attractions/day21/arrival.jpg","Shin-Osaka Station"],
+    ["11:15<br>12:45","Umeda Sky Building","מבנה ארכיטקטורי מרשים עם פלטפורמת תצפית פנורמית ב-173 מטר גובה","assets/attractions/day21/umeda_sky.jpg","Umeda Sky Building Osaka"],
+    ["12:45<br>13:45","Grand Green Osaka","פארק עירוני מודרני עם חנויות ומסעדות. פתוח 24/7","assets/attractions/day21/grand_green.jpg","Grand Green Osaka"],
+    ["13:45<br>14:15","Tully's Coffee – Grand Green Osaka","הפסקת קפה לפני כניסה ל-Namba","assets/attractions/day21/tullys.jpg","Tully's Coffee Grand Green Osaka"],
+    ["14:30<br>15:30","Namba City","מרכז קניות גדול ליד Namba Parks. בגדים, קוסמטיקה וסוברניר","assets/attractions/day21/namba_city.jpg","Namba City Osaka"],
+    ["15:30<br>16:30","Namba Parks","קומפלקס ייחודי עם פארק על הגג, מסעדות ובתי קפה עם נוף מרהיב","assets/attractions/day21/namba_parks.jpg","Namba Parks Osaka"],
+    ["16:30<br>17:30","חזרה למלון וצ'ק-אין","Excel Hotel Tokyu Osaka. מנוחה ורענון לפני הערב","assets/attractions/day21/hotel.jpg","Excel Hotel Tokyu Osaka"],
+    ["","__SECTION__","🥩 ערב: ארוחה ובר","",""],
+    ["19:00<br>20:45","Gyujiro Yakiniku Restaurant","ארוחת Wagyu פרמיום מהטובים ביפן. בישול עצמי על גריל שולחני","assets/attractions/day21/wagyu.jpg","Gyujiro Yakiniku Restaurant Osaka"],
+    ["21:00<br>23:00","Nayuta Pub","בר יפני עם מבחר בירות, וויסקי יפני וקוקטיילים","assets/attractions/day21/nayuta.jpg","Nayuta Pub Osaka"]
   ]},
   '22': { title:"אוסקה - היסטוריה ואורות", route:"Osaka Castle → Dotonbori → River Cruise", events:[
     ["09:00","Osaka Castle","ביקור במבצר אוסקה","https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=300&q=80","Osaka Castle"],
@@ -1173,6 +1193,14 @@ const hotelsByDay = {
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
     extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
+  },
+  '21': {
+    name: 'Excel Hotel Tokyu Osaka',
+    meta: 'אוסקה · Namba, Chuo Ward',
+    mapQuery: 'Excel Hotel Tokyu Osaka Namba',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: '5-1-15 Namba, Chuo Ward, Osaka 542-0076, Japan'
   }
 };
 
