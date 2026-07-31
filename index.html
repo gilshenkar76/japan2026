@@ -105,7 +105,9 @@
     .attraction-card-tips{font-size:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;color:#475569;line-height:1.5;margin-bottom:10px}
     .attraction-card-hours{font-size:12px;font-weight:700;color:#64748b;margin-bottom:10px}
     .item{display:grid;grid-template-columns:58px 1fr;gap:10px;align-items:stretch}
-    .time{font-size:13px;color:var(--muted);font-weight:800;padding-top:14px;text-align:center;direction:ltr;line-height:1.35}
+    .time{font-size:13px;color:var(--muted);font-weight:800;text-align:center;direction:ltr;line-height:1.35;display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:10px}
+    .nav-btn{font-size:10px!important;padding:4px 7px!important;border-radius:10px!important;margin-top:2px;white-space:nowrap}
+    .event-transit{font-size:11px;color:var(--muted);margin-top:6px;padding-top:5px;border-top:1px solid rgba(0,0,0,0.06)}
     .tl-section{background:linear-gradient(135deg,#4c1d95,#6d28d9);color:#fff;font-weight:900;text-align:center;padding:10px 14px;border-radius:14px;font-size:14px;box-shadow:var(--shadow);margin:4px 0}
     .transit-leg{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow);margin-bottom:10px}
     .transit-route{font-weight:800;font-size:14px;color:#1e293b;margin-bottom:4px}
@@ -1142,14 +1144,14 @@ const data = {
     ["17:00","Dotonbori + Tombori Cruise","שייט ערב וניאונים","https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80","Dotonbori"]
   ]},
   '23': { title:"אוסקה – שרין, אקווריום, תצפית, שופינג ו-teamLab", route:"Sumiyoshi Taisha → Kaiyukan → Tempozan → Abeno Harukas → Shinsaibashi → teamLab Botanical Garden", events:[
-    ["09:00<br>10:00","Sumiyoshi Taisha","אחד המקדשים הסינטואיסטיים העתיקים ביפן, עם גשרים ייחודיים ואווירה שקטה","assets/attractions/day23/sumiyoshi.jpg","Sumiyoshi Taisha Osaka"],
-    ["10:30<br>12:30","Kaiyukan Aquarium (海遊館)","אחד מגדולי האקווריומים בעולם – מנהרת מים ענקית עם לוויתן כרישים, פינגווינים ועוד","assets/attractions/day23/kaiyukan.jpg","Kaiyukan Aquarium Osaka"],
-    ["12:30<br>13:30","ארוחת צהריים – Tempozan Harbor Village","מסעדות עם נוף לים, פירות ים ובתי קפה. מקום נהדר לנוח לפני ההמשך","assets/attractions/day23/tempozan.jpg","Tempozan Harbor Village Osaka"],
-    ["14:00<br>15:00","Abeno Harukas 300","פלטפורמת תצפית בקומה 60 עם נוף 360° על אוסקה. אחת הגבוהות ביפן","assets/attractions/day23/abeno.jpg","Abeno Harukas 300 Osaka"],
-    ["15:30<br>17:00","Shinsaibashi-suji Shopping Street","רחוב הקניות הראשי של אוסקה: מותגים עולמיים, סובניר ושופינג אידיאלי","assets/attractions/day23/shinsaibashi.jpg","Shinsaibashi Osaka"],
+    ["09:00<br>10:00","Sumiyoshi Taisha","אחד המקדשים הסינטואיסטיים העתיקים ביפן, עם גשרים ייחודיים ואווירה שקטה","assets/attractions/day23/sumiyoshi.jpg","Sumiyoshi Taisha Osaka","🚶 רגלי ≈ 5 דק׳ מהתחנה"],
+    ["10:30<br>12:30","Kaiyukan Aquarium (海遊館)","אחד מגדולי האקווריומים בעולם – מנהרת מים ענקית עם לוויתן כרישים, פינגווינים ועוד","assets/attractions/day23/kaiyukan.jpg","Kaiyukan Aquarium Osaka","🚆 ~10 דק׳ · Osakako (Chuo Line)"],
+    ["12:30<br>13:30","ארוחת צהריים – Tempozan Harbor Village","מסעדות עם נוף לים, פירות ים ובתי קפה. מקום נהדר לנוח לפני ההמשך","assets/attractions/day23/tempozan.jpg","Tempozan Harbor Village Osaka","🚶 רגלי ≈ 2 דק׳ מ-Kaiyukan"],
+    ["14:00<br>15:00","Abeno Harukas 300","פלטפורמת תצפית בקומה 60 עם נוף 360° על אוסקה. אחת הגבוהות ביפן","assets/attractions/day23/abeno.jpg","Abeno Harukas 300 Osaka","🚆 ~15 דק׳ · Chuo Line → Tennoji"],
+    ["15:30<br>17:00","Shinsaibashi-suji Shopping Street","רחוב הקניות הראשי של אוסקה: מותגים עולמיים, סובניר ושופינג אידיאלי","assets/attractions/day23/shinsaibashi.jpg","Shinsaibashi Osaka","🚆 ~20 דק׳ · Midosuji Line מ-Tennoji"],
     ["","__SECTION__","✨ ערב: teamLab Botanical Garden","",""],
-    ["17:30<br>20:00","teamLab Botanical Garden Osaka","גן בוטני עם אמנות דיגיטלית קסומה, אורות וטבע. חוויה בלתי נשכחת בלילה","assets/attractions/day23/teamlab.jpg","teamLab Botanical Garden Osaka"],
-    ["20:30<br>22:00","חזרה למלון","Excel Hotel Tokyu Osaka. סיום יום 10 באוסקה","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka"]
+    ["17:30<br>20:00","teamLab Botanical Garden Osaka","גן בוטני עם אמנות דיגיטלית קסומה, אורות וטבע. חוויה בלתי נשכחת בלילה","assets/attractions/day23/teamlab.jpg","teamLab Botanical Garden Osaka","🚆 ~15 דק׳ · Midosuji Line → Nagai"],
+    ["20:30<br>22:00","חזרה למלון","Excel Hotel Tokyu Osaka. סיום יום 10 באוסקה","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka",""]
   ]},
   '24': { title:"אוסקה → טוקיו", route:"Shinkansen → Shinjuku Night", events:[
     ["09:00","נסיעה לטוקיו","שינקנסן מאוסקה לטוקיו","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Tokyo Station"],
@@ -2602,10 +2604,10 @@ function render(day){
       if (e[1] === '__SECTION__') { tl.innerHTML += `<div class="tl-section">${e[2]}</div>`; return; }
       const eventDescription = appendLiveFlightInfo(day, e[2]);
       const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
-      tl.innerHTML += `<div class="item"><div class="time">${e[0]}</div><div class="event">
-        <div class="event-row"><img class="thumb" src="${e[3]}"><div><h3>${e[1]}</h3><div class="event-desc">${eventDescription}</div></div></div>
-        <div class="actions"><a class="btn primary" target="_blank" href="${link}">📍 נווט עכשיו</a>
-        <button class="btn ghost" onclick="alert('סומן כבוצע ✓')">✓ סיימנו</button></div></div></div>`;
+      const transitNote = e[5] ? `<div class="event-transit">${e[5]}</div>` : '';
+      tl.innerHTML += `<div class="item"><div class="time">${e[0]}<a class="btn primary nav-btn" target="_blank" href="${link}">📍 נווט</a></div><div class="event">
+        <div class="event-row"><img class="thumb" src="${e[3]}"><div><h3>${e[1]}</h3><div class="event-desc">${eventDescription}</div>${transitNote}</div></div>
+      </div></div>`;
     });
   }
 
