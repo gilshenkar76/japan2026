@@ -1082,9 +1082,12 @@ const data = {
     ["22:30","הגעה לטוקיו","נחיתה בהאנדה והתארגנות ללילה הראשון בעיר","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Haneda Airport"]
   ]},
   '14': { title:"טוקיו --> האקונה", route:"שינג'וקו → Hakone-Yumoto → המלון", events:[
-    ["09:00","Tokyo Metropolitan Government Building","תצפית חינמית על טוקיו","https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80","Tokyo Metropolitan Government Building"],
-    ["10:00","Shinjuku Gyoen","גן יפני וטיול בוקר רגוע","https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=300&q=80","Shinjuku Gyoen"],
-    ["12:00","נסיעה להאקונה","רכבת משינג'וקו ל-Hakone-Yumoto","https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=300&q=80","Hakone Yumoto Station"]
+    ["08:00<br>08:45","הפקדת מזוודות במלון","מפקידים את המזוודות במלון לשליחה לקיוטו וממשיכים את היום עם תרמיל קל בלבד.\nהמזוודות יגיעו למלון בקיוטו ב-17.11.","https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=300&q=80","Hotel Gracery Shinjuku"],
+    ["09:00<br>10:00","Tokyo Metropolitan Government Building","תצפית חינמית על טוקיו מקומה 45, נוף מרהיב מגובה 202 מ' וראייה של הר פוג'י במזג אוויר בהיר.\nכניסה חינם, מומלץ להגיע מוקדם בבוקר.","https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80","Tokyo Metropolitan Government Building"],
+    ["10:15<br>11:30","Shinjuku Gyoen","גן יפני, צרפתי ואנגלי משולב, בריכות ועצים פורחים.\nכניסה ¥500, טיול בוקר רגוע לפני ההמשך לרכבת.","https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=300&q=80","Shinjuku Gyoen National Garden, Tokyo"],
+    ["12:00<br>13:00","RAMEN - ארוחת צהריים","ארוחת רמן יפני אותנטי ליד הפארק לפני היציאה להאקונה.\nמומלץ: Ichiran Ramen, Menya Musashi, Afuri Shinjuku.","https://images.unsplash.com/photo-1557872943-16a5ac26437e?auto=format&fit=crop&w=300&q=80","Ichiran Ramen Shinjuku"],
+    ["13:15<br>14:30","Odakyu Romancecar להאקונה","רכבת מהירה ונוחה משינג'וקו להאקונה-יומוטו, נסיעה של כ-85 דקות עם נוף אפשרי להר פוג'י.\nמומלץ להזמין מושבים מראש.","https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=300&q=80","Odakyu Romancecar Shinjuku Station"],
+    ["15:00<br>22:00","Aura Tachibana - ריוקן בהאקונה","הגעה לריוקן מסורתי עם אונסן. ערב של צ'ק-אין, אונסן וארוחת קייסקי.\nאל תשכחו בגדי ים לאונסן!","https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80","Aura Tachibana Hakone Yumoto"]
   ]},
   '15': { title:"יום האקונה", route:"Lake Ashi → Pirate Ship → Ropeway → Owakudani", events:[
     ["09:00","Lake Ashi","אגם אשי ונוף להר פוג'י","https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=300&q=80","Lake Ashi"],
@@ -2518,111 +2521,23 @@ function render(day){
   renderRouteFlightStatus(day);
   const tl=document.getElementById('timeline'); tl.innerHTML='';
   
-  if (day === '14') {
-    // Attraction cards layout for Day 14 (5 attractions from PNG)
-    tl.className = 'attraction-cards';
-
-    const attractions = [
-      {
-        time: '08:00 - 08:45',
-        title: 'הפקדת מזוודות במלון',
-        desc: 'מפקידים את המזוודות במלון לשליחה לקיוטו. ממשיכים את היום עם תרמיל קל בלבד.',
-        address: '📍 <b>ホテルグレイスリー新宿</b>Hotel Gracery Shinjuku',
-        tips: '💡 המזוודות יגיעו למלון בקיוטו ב-17.11.\nנסעו עם תרמיל קטן - תהיו חופשיים לטייל בנוחות!',
-        hours: '🕐 08:00 - 08:45 | 📦 שליחת מזוודות',
-        img: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80',
-        link: 'Hotel Gracery Shinjuku'
-      },
-      {
-        time: '09:00 - 10:00',
-        title: 'Tokyo Metropolitan Government Building',
-        desc: 'תצפית חינמית על טוקיו מקומה 45. נוף מרהיב של העיר מגובה 202 מטר. ניתן לראות את הר פוג\'י וכל טוקיו במזג אוויר בהיר.',
-        address: '📍 <b>東京都新宿区西新宿2-8-1</b>2 Chome-8-1 Nishishinjuku, Shinjuku City, Tokyo 163-8001',
-        tips: '💡 כניסה חינם! פתוח 09:30-23:00 (סגור בראשון השני של כל חודש).\nמומלץ להגיע מוקדם בבוקר למזג אוויר בהיר ולנוף הטוב ביותר של הר פוג\'י.',
-        hours: '🕐 09:00 - 10:00 (שעה) | 🎫 חינם',
-        img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=600&q=80',
-        link: 'Tokyo Metropolitan Government Building, Tokyo'
-      },
-      {
-        time: '10:15 - 11:30',
-        title: 'Shinjuku Gyoen National Garden',
-        desc: 'אחד הגנים היפים ביותר בטוקיו, משלב סגנונות יפניים, צרפתיים ואנגליים. גן יפני, בריכות, עצים פורחים (במיוחד יפה באביב ובסתיו).',
-        address: '📍 <b>東京都新宿区内藤町11</b>11 Naitomachi, Shinjuku City, Tokyo 160-0014',
-        tips: '💡 כניסה: ¥500 למבוגר. פתוח 09:00-16:30 (סגור בשני).\nאסור להכניס אלכוהול. מקום מושלם לטיול בוקר רגוע ולצילומים.\n✨ הפארק הכי יפה בבוקר - ממשיכים ישר לארוחת צהריים ואז לרכבת!',
-        hours: '🕐 10:15 - 11:30 (שעה וחצי) | 🎫 ¥500',
-        img: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80',
-        link: 'Shinjuku Gyoen National Garden, Tokyo'
-      },
-      {
-        time: '12:00 - 13:00',
-        title: 'RAMEN - ארוחת צהריים ליד הפארק',
-        desc: 'ארוחת צהריים ברמן יפני אותנטי. אחרי הטיול בפארק - ארוחה באחד ממסעדות הרמן המעולות באזור שינג\'וקו.',
-        address: '📍 <b>新宿駅周辺</b>Shinjuku area, near Shinjuku Gyoen',
-        tips: '💡 מומלץ:\n• Ichiran Ramen (Shinjuku Central East Exit)\n• Menya Musashi Shinjuku Sohonten\n• Afuri Shinjuku Subnade\nמחיר: ¥800-1,200. רוב המקומות עם מכונות הזמנה אוטומטיות.',
-        hours: '🕐 12:00 - 13:00 (שעה) | 🎫 ~¥1,000',
-        img: 'https://images.unsplash.com/photo-1557872943-16a5ac26437e?auto=format&fit=crop&w=600&q=80',
-        link: 'Ichiran Ramen Shinjuku'
-      },
-      {
-        time: '13:15 - 14:30',
-        title: 'Odakyu Romancecar - נסיעה להאקונה',
-        desc: 'רכבת מהירה ונוחה משינג\'וקו להאקונה-יומוטו. נסיעה יפהפייה של ~85 דקות עם נוף להר פוג\'י (במזג אוויר בהיר).',
-        address: '📍 <b>新宿駅 小田急線ホーム</b>Shinjuku Station, Odakyu Line Platform',
-        tips: '💡 מומלץ להזמין מושבים שמורים מראש באתר Odakyu.\nעלות: ~¥2,280 (כולל מושב שמור).\n⚠️ הרכבת יוצאת מקו Odakyu (לא JR!) - לא תחנת JR שינג\'וקו הרגילה.',
-        hours: '🕐 13:15 - 14:30 (85 דקות) | 🎫 ~¥2,280',
-        img: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=600&q=80',
-        link: 'Odakyu Romancecar Shinjuku Station'
-      },
-      {
-        time: '15:00 - 22:00',
-        title: 'Aura Tachibana - רֵיוֹקָן בהאקונה',
-        desc: 'הגעה לריוקן (מלון יפני מסורתי) עם אונסן (מעיינות חמים). ערב של הרפייה: צ\'ק-אין, אונסן, ארוחת קייסקי (מנות יפניות מרובות) ומנוחה.',
-        address: '📍 <b>神奈川県足柄下郡箱根町湯本592</b>592 Yumoto, Hakone, Ashigarashimo District, Kanagawa 250-0311',
-        tips: '💡 צ\'ק-אין: 15:00\n✅ מה לעשות:\n• אונסן (מעיינות חמים)\n• ארוחת ערב קייסקי\n• הירגעות והנאה מהריוקן\n🩱 אל תשכחו בגדי ים לאונסן!',
-        hours: '🕐 15:00 - 22:00 (ערב מלא) | 🛏️ ריוקן',
-        img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
-        link: 'Aura Tachibana Hakone Yumoto'
-      }
-    ];
-    
-    attractions.forEach(a => {
-      const mapsLink = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a.link);
-      const attractionTitle = a.title.replace(/'/g, "\\'");
-      tl.innerHTML += `<div class="attraction-card">
-        <div class="attraction-card-time">${a.time}</div>
-        <img class="attraction-card-img" src="${a.img}" alt="${a.title}">
-        <div class="attraction-card-content">
-          <h3 class="attraction-card-title">${a.title}</h3>
-          <div class="attraction-card-desc">${a.desc}</div>
-          <div class="attraction-card-address">📍 ${a.address}</div>
-          <div class="attraction-card-tips">${a.tips}</div>
-          <div class="attraction-card-hours">${a.hours}</div>
-          <div class="actions" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <a class="btn primary" target="_blank" href="${mapsLink}">📍 מפה</a>
-            <button class="btn" onclick="askGemini('${attractionTitle}')" style="background:#8e44ad;color:#fff;border:none;cursor:pointer">✨ שאל Gemini</button>
-          </div>
-        </div>
-      </div>`;
-    });
-  } else {
-    // Default timeline for other days
-    tl.className = 'timeline';
-    data[day].events.forEach(e=>{
-      if (e[1] === '__SECTION__') { tl.innerHTML += `<div class="tl-section">${e[2]}</div>`; return; }
-      const eventDescription = appendLiveFlightInfo(day, e[2]);
-      const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
-      const transitNote = e[5] ? `<div class="event-transit">${e[5]}</div>` : '';
-      const timeDisplay = e[0].replace('<br>',' – ');
-      tl.innerHTML += `<div class="item"><div class="event">
-        <a class="event-img-nav" target="_blank" href="${link}"><img src="${e[3]}" alt="${e[1]}"><span class="time-badge">${timeDisplay}</span></a>
-        <div class="event-content">
-          <h3>${e[1]}</h3>
-          <div class="event-desc">${eventDescription}</div>
-          ${transitNote}
-        </div>
-      </div></div>`;
-    });
-  }
+  // Shared timeline card layout (flexible height + min-height rule) for all days
+  tl.className = 'timeline';
+  data[day].events.forEach(e=>{
+    if (e[1] === '__SECTION__') { tl.innerHTML += `<div class="tl-section">${e[2]}</div>`; return; }
+    const eventDescription = appendLiveFlightInfo(day, e[2]);
+    const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
+    const transitNote = e[5] ? `<div class="event-transit">${e[5]}</div>` : '';
+    const timeDisplay = e[0].replace('<br>',' – ');
+    tl.innerHTML += `<div class="item"><div class="event">
+      <a class="event-img-nav" target="_blank" href="${link}"><img src="${e[3]}" alt="${e[1]}"><span class="time-badge">${timeDisplay}</span></a>
+      <div class="event-content">
+        <h3>${e[1]}</h3>
+        <div class="event-desc">${eventDescription}</div>
+        ${transitNote}
+      </div>
+    </div></div>`;
+  });
 
   renderUploads();
 }
