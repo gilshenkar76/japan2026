@@ -931,14 +931,16 @@ const routeMapsByDay = {
   '14': { src: 'assets/maps/day14_walking_map.png', ratio: '338 / 261' },
   '19': { src: 'assets/maps/day19_route_map.png', ratio: '368 / 644', legend: false },
   '21': { src: 'assets/maps/day21_route_map.png', ratio: '372 / 122', legend: false },
-  '23': { src: 'assets/maps/day23_route_map.png', ratio: '260 / 118', legend: false }
+  '23': { src: 'assets/maps/day23_route_map.png', ratio: '260 / 118', legend: false },
+  '24': { src: 'assets/maps/day24_route_map.png', ratio: '254 / 246', legend: false }
 };
 
 // Short Hebrew theme shown as the banner subtitle per day (fallback: route text)
 const themesByDay = {
   '19': 'מקדשים, מסורת, שופינג וערב של ברים',
   '21': 'מסע מקיוטו לאוסקה – שוק, תצפית, קניות וגסטרונומיה',
-  '23': 'שרין, אקווריום, תצפית, שופינג וערב קסום ב-teamLab'
+  '23': 'שרין, אקווריום, תצפית, שופינג וערב קסום ב-teamLab',
+  '24': "שינקנסן לטוקיו, גינזה וערב תוסס בשינג'וקו"
 };
 
 // Public-transport legs shown on the route page per day
@@ -958,6 +960,11 @@ const transitByDay = {
     { from: 'Abeno Harukas', to: 'Shinsaibashi', note: 'מטרו – Midosuji Line', line: 'Osaka Metro Midosuji Line', time: '~20 דק׳', cost: '¥240' },
     { from: 'Shinsaibashi', to: 'teamLab Botanical Garden', note: 'מטרו – Midosuji Line → Nagai Station', line: 'Osaka Metro Midosuji Line', time: '~15 דק׳', cost: '¥240' },
     { from: 'teamLab Botanical Garden', to: 'Excel Hotel Tokyu Osaka', note: 'חזרה למלון', line: 'Osaka Metro', time: '~30 דק׳', cost: '¥280' }
+  ],
+  '24': [
+    { from: 'Shin-Osaka Station', to: 'Tokyo Station', note: 'שינקנסן Nozomi/Hikari מאוסקה לטוקיו', line: 'שינקנסן JR Tokaido', time: '~2:30 שעות', cost: '¥14,720' },
+    { from: 'Tokyo Station', to: 'remm PLUS Ginza', note: 'הליכה קצרה/מטרו לגינזה', line: 'JR Yamanote / הליכה', time: '~10 דק׳', cost: '¥0–¥200' },
+    { from: 'Ginza', to: 'Shinjuku (Kabukicho)', note: 'ערב תוסס בשינג\'וקו', line: 'Tokyo Metro Marunouchi Line', time: '~15 דק׳', cost: '¥210' }
   ]
 };
 
@@ -974,6 +981,10 @@ const routeNotesPresets = {
   '23': {
     overview: 'יום מלא של אוסקה: שרין עתיק, אקווריום ענק, תצפית מ-Abeno Harukas, שופינג בשינסאיבאשי וערב קסום ב-teamLab Botanical Garden!',
     tips: 'הזמינו כרטיסים ל-Kaiyukan ול-teamLab מראש! קחו ז\'קט לערב — מתקרר בגן. בואו ל-Kaiyukan בבוקר (פחות עומס).'
+  },
+  '24': {
+    overview: "היום עוברים מאוסקה לטוקיו ברכבת השינקנסן, מתארגנים במלון בגינזה, ואז יוצאים לערב תוסס בגינזה ובשינג'וקו — Omoide Yokocho, Golden Gai ו-Kabukicho!",
+    tips: "שקלו לשלוח מזוודות גדולות ישירות למלון בטוקיו בשירות Takkyubin/Ta-Q-Bin (מתבצע בקבלה, מגיע למחרת, כ-¥2,500-3,500 למזוודה) ולנסוע קלים. קחו מזומן לארוחות קטנות, נעליים נוחות להליכה, והכי טוב לצלם בגינזה ובשינג'וקו בשעות הערב."
   }
 };
 
@@ -1164,10 +1175,20 @@ const data = {
     ["17:30<br>20:00","teamLab Botanical Garden Osaka","גן בוטני עם אמנות דיגיטלית קסומה, אורות וטבע. חוויה בלתי נשכחת בלילה","assets/attractions/day23/teamlab.jpg","teamLab Botanical Garden Osaka","🚆 ~15 דק׳ · Midosuji Line → Nagai"],
     ["20:30<br>22:00","חזרה למלון","Excel Hotel Tokyu Osaka. סיום יום 10 באוסקה","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka",""]
   ]},
-  '24': { title:"אוסקה → טוקיו", route:"Shinkansen → Shinjuku Night", events:[
-    ["09:00","נסיעה לטוקיו","שינקנסן מאוסקה לטוקיו","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Tokyo Station"],
-    ["11:30","צ'ק-אין ומנוחה","התארגנות במלון","https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80","Tokyo Hotel"],
-    ["15:00","3D Cat + Kabukicho","Omoide Yokocho ו-Golden Gai בלילה","https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=300&q=80","Kabukicho"]
+  '24': { title:"אוסקה → טוקיו – יום ההגעה", route:"Shin-Osaka → Shinkansen Nozomi → Ginza → Omoide Yokocho → Golden Gai → Kabukicho", events:[
+    ["09:30","יציאה מהמלון באוסקה","צ'ק-אאוט מ-Excel Hotel Tokyu Osaka ויציאה לתחנת השינקנסן. כדאי לשקול לשלוח מזוודות גדולות ישירות למלון בטוקיו בשירות Takkyubin (Ta-Q-Bin) — נמסר למחרת, כ-¥2,500-3,500 למזוודה","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka"],
+    ["09:30<br>11:00","נסיעה לתחנת Shin-Osaka ועלייה לרכבת","מעבר לתחנת Shin-Osaka והמתנה לרכבת השינקנסן","assets/attractions/day24/shinkansen.jpg","Shin-Osaka Station"],
+    ["11:00<br>13:30","Shinkansen Nozomi לטוקיו","נסיעה ברכבת השינקנסן המהירה והנוחה מאוסקה לטוקיו, כשעתיים וחצי","assets/attractions/day24/shinkansen.jpg","Tokyo Station","🚄 Nozomi/Hikari · ~2:30 שעות"],
+    ["13:30<br>14:30","הגעה למלון remm PLUS Ginza וצ'ק-אין","נסיעה מתחנת טוקיו למלון בגינזה, התארגנות ומנוחה קצרה","assets/attractions/day24/hotel_tokyo.jpg","remm PLUS Ginza Tokyo"],
+    ["14:30<br>15:30","Uobei Ginza – ארוחת צהריים","מסעדת סושי עם פס נע — מהיר, טעים ואיכותי. פופולרי מאוד בקרב תושבים ותיירים","assets/attractions/day24/uobei.jpg","Uobei Ginza"],
+    ["15:30<br>16:00","Ginza Six Rooftop Garden","גינה יפהפייה על גג קניון גינזה סיקס עם נוף מרהיב לטוקיו. פתוח עד 23:00, כניסה חופשית","assets/attractions/day24/ginza_six.jpg","Ginza Six Rooftop Garden"],
+    ["16:05<br>16:25","Nissan Crossing","שואו-רום של ניסאן בגינזה — תצוגות אינטראקטיביות, קונספט קארים וטכנולוגיית העתיד","assets/attractions/day24/nissan.jpg","Nissan Crossing Ginza"],
+    ["16:25<br>17:00","חזרה למלון למנוחה קצרה","זמן להתארגן לפני היציאה לשינג'וקו","assets/attractions/day24/hotel_tokyo.jpg","remm PLUS Ginza Tokyo"],
+    ["","__SECTION__","🌃 ערב: שינג'וקו הלילית","",""],
+    ["17:40<br>19:00","Omoide Yokocho","סמטאות צרות עם ברים ומסעדות קטנות — אווירה אותנטית של טוקיו הישנה","assets/attractions/day24/omoide.jpg","Omoide Yokocho","🚇 Marunouchi Line · ~15 דק׳"],
+    ["19:00<br>20:00","Golden Gai","רובע אגדי עם ברים זעירים — לכל בר אופי ואווירה משלו","assets/attractions/day24/golden_gai.jpg","Golden Gai Shinjuku"],
+    ["20:00<br>22:30","Kabukicho","הרובע התוסס ביותר בטוקיו — אורות ניאון, מסעדות, קריוקי, מכונות משחק ומועדוני לילה","assets/attractions/day24/kabukicho.jpg","Kabukicho Tokyo"],
+    ["22:30","חזרה למלון","סיום היום הראשון בטוקיו","assets/attractions/day24/hotel_tokyo.jpg","remm PLUS Ginza Tokyo"]
   ]},
   '25': { title:"טוקיו – שיבויה", route:"Meiji Shrine → Harajuku → Omotesando → Shibuya", events:[
     ["09:00","Meiji Shrine","מקדש בלב יער עירוני","https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=300&q=80","Meiji Shrine"],
@@ -1248,6 +1269,14 @@ const hotelsByDay = {
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
     extra: '5-1-15 Namba, Chuo Ward, Osaka 542-0076, Japan'
+  },
+  '24': {
+    name: 'remm PLUS Ginza',
+    meta: "טוקיו · גינזה",
+    mapQuery: 'remm PLUS Ginza Tokyo',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: ''
   }
 };
 
