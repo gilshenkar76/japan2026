@@ -60,7 +60,8 @@
     .day-title{font-size:22px;font-weight:900}.weather{font-size:13px;color:var(--muted);flex-shrink:0}
     /* Day title banner (date badge + city + theme) */
     .day-head.banner-head{display:block;margin:8px 2px 14px}
-    .banner-head .home-icon-btn{margin-bottom:10px}
+    .banner-top-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+    .banner-app-title{font-size:14px;font-weight:800;color:var(--ink);opacity:.8;line-height:1}
     .day-banner{display:flex;direction:ltr;align-items:stretch;background:#fff;border:1px solid var(--line);
       border-radius:20px;overflow:hidden;box-shadow:var(--shadow);min-height:96px}
     .day-banner-badge{background:#171b4d;color:#fff;display:flex;flex-direction:column;align-items:center;
@@ -2386,7 +2387,10 @@ function renderDayBanner(day){
   const tripLine = meta.tripNo ? `יום ${meta.tripNo} ב${city}` : 'טיסה בינלאומית';
   container.className = 'day-head banner-head';
   container.innerHTML = `
-    <button class="home-icon-btn" type="button" onclick="goBackToMain()" aria-label="חזרה לראשי">🏠</button>
+    <div class="banner-top-row">
+      <button class="home-icon-btn" type="button" onclick="goBackToMain()" aria-label="חזרה לראשי">🏠</button>
+      <div class="banner-app-title">הטיול שלנו ליפן ✈️</div>
+    </div>
     <div class="day-banner">
       <div class="day-banner-badge">
         <div class="dbb-date">${meta.dateStr}</div>
