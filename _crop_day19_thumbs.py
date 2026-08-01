@@ -8,19 +8,19 @@ os.makedirs(OUT, exist_ok=True)
 
 im = Image.open(SRC).convert("RGB")
 
-# (name, left, top, right, bottom)
+# (name, left, top, right, bottom) - precisely aligned to source photo bounds (no white-gap bleed)
 boxes = [
-    ("eikando",    103, 138, 293, 236),
-    ("kiyomizu",   103, 258, 293, 356),
-    ("sannenzaka", 103, 377, 293, 475),
-    ("yasaka",     103, 495, 293, 605),
-    ("lunch",      103, 613, 293, 713),
-    ("shijo",      103, 770, 293, 878),
-    ("hotel",      103, 905, 293, 985),
-    ("kiyamachi",  103, 1030, 293, 1108),
-    ("escamoteur", 103, 1112, 293, 1190),
-    ("dinner",     103, 1200, 293, 1277),
-    ("turquoise",  103, 1288, 293, 1356),
+    ("eikando",    103, 129, 293, 244),
+    ("kiyomizu",   103, 262, 293, 375),
+    ("sannenzaka", 103, 393, 293, 505),
+    ("yasaka",     103, 523, 293, 634),
+    ("lunch",      103, 651, 293, 756),
+    ("shijo",      103, 770, 293, 877),
+    ("hotel",      103, 894, 293, 981),
+    ("kiyamachi",  103, 1019, 293, 1105),
+    ("escamoteur", 103, 1117, 293, 1193),
+    ("dinner",     103, 1203, 293, 1271),
+    ("turquoise",  103, 1281, 293, 1334),
 ]
 
 for name, l, t, r, b in boxes:
