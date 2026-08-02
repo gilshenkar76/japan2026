@@ -929,7 +929,9 @@ const citiesByDay = {
 // Dedicated clean route maps per day (src + aspect-ratio of the image)
 const routeMapsByDay = {
   '14': { src: 'assets/maps/day14_walking_map.png', ratio: '338 / 261' },
+  '18': { src: 'assets/maps/day18_route_map.png', ratio: '340 / 130', legend: false },
   '19': { src: 'assets/maps/day19_route_map.png', ratio: '368 / 644', legend: false },
+  '20': { src: 'assets/maps/day20_route_map.png', ratio: '334 / 617', legend: false },
   '21': { src: 'assets/maps/day21_route_map.png', ratio: '372 / 122', legend: false },
   '23': { src: 'assets/maps/day23_route_map.png', ratio: '260 / 118', legend: false },
   '24': { src: 'assets/maps/day24_route_map.png', ratio: '254 / 246', legend: false }
@@ -937,7 +939,9 @@ const routeMapsByDay = {
 
 // Short Hebrew theme shown as the banner subtitle per day (fallback: route text)
 const themesByDay = {
+  '18': 'טיול מודרך יום שלם בקיוטו – מקדשים היסטוריים, טבע ותרבות מסורתית',
   '19': 'מקדשים, מסורת, שופינג וערב של ברים',
+  '20': 'יום מלא בנארה – מקדשים עתיקים, פארק האיילים והעיר העתיקה',
   '21': 'מסע מקיוטו לאוסקה – שוק, תצפית, קניות וגסטרונומיה',
   '23': 'שרין, אקווריום, תצפית, שופינג וערב קסום ב-teamLab',
   '24': "שינקנסן לטוקיו, גינזה וערב תוסס בשינג'וקו"
@@ -945,6 +949,10 @@ const themesByDay = {
 
 // Public-transport legs shown on the route page per day
 const transitByDay = {
+  '20': [
+    { from: 'JR Kyoto Station', to: 'JR Nara Station', note: 'קיוטו → נארה', line: 'JR Nara Line', time: '~45 דק׳', cost: '¥720' },
+    { from: 'JR Nara Station', to: 'JR Kyoto Station', note: 'נארה → קיוטו', line: 'JR Nara Line', time: '~45 דק׳', cost: '¥720' }
+  ],
   '19': [
     { from: 'Eikandō Temple', to: 'Kiyomizu-dera', note: 'אחרי Eikandō אפשר ללכת רגלי או במונית/אוטובוס', line: 'אוטובוס 5 או 100', time: '~10–15 דק׳', cost: '¥230' },
     { from: 'Shijo Kawaramachi', to: 'Hotel Monterey Kyoto', note: 'חזרה למלון', line: 'רכבת: Hankyu Kyoto Line · Kawaramachi → Karasuma', time: '~5 דק׳', cost: '¥140' }
@@ -970,6 +978,10 @@ const transitByDay = {
 
 // Preset Hebrew route notes per day (overview + tips), used to prefill the notes boxes
 const routeNotesPresets = {
+  '20': {
+    overview: 'יום שלם בנארה – עיר הבירה העתיקה של יפן: מקדש טודאי-ג\'י עם הבודהה הגדול, פארק האיילים, קסוגה טאישה, קופוקו-ג\'י והעיר העתיקה נארה-מאצ\'י, ובחזרה לקיוטו לערב חופשי.',
+    tips: 'המקדשים פתוחים 6:00–18:00. הביאו קרקרים מיוחדים (shika senbei) להאכלת האיילים ואל תאכילו אותם במזון אחר. נעליים נוחות – הרבה הליכה. בערב מומלץ לשריין מקום מראש במסעדה ב-Kiyamachi/Pontocho.'
+  },
   '19': {
     overview: 'היום — יום של איזון בין המסורת לקיוטו המודרנית: מקדשים בבוקר, שופינג בצהריים, מנוחה במלון וערב של ברים!',
     tips: 'צאו בזמן, בדקו כתובות מראש, ושמרו צילום מסך של הניווט.'
@@ -1117,14 +1129,16 @@ const data = {
     ["13:00","נסיעה לקיוטו","שינקנסן מנגויה לקיוטו","https://images.unsplash.com/photo-1568747578869-3fa0f8ca3f4f?auto=format&fit=crop&w=300&q=80","Kyoto Station"],
     ["16:30","גיון ופונטוצ'ו","טיול ערב ברובע ההיסטורי","https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=300&q=80","Gion Kyoto"]
   ]},
-  '18': { title:"קיוטו עם מדריך", route:"Eikando → Kiyomizu-dera → Sannenzaka → Yasaka Pagoda → Shijo Kawaramachi", events:[
-    ["09:00 - 10:00","Eikando Temple (永観堂)","אחד המקדשים היפים ביותר לצפייה בעלי השלכת הסתוויים. מפורסם בפסל אמידה המביט לאחור.\nהליכה 10-15 דקות.","https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=300&q=80","Eikando Temple Kyoto"],
-    ["10:15 - 10:45","Kiyomizu-dera","אחד המקדשים המפורסמים בקיוטו עם מרפסת עץ ונוף מרהיב על העיר.\nהליכה 15 דקות.","https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=300&q=80","Kiyomizu-dera"],
-    ["10:45 - 11:45","Sannenzaka + Ninenzaka","סמטאות ציוריות עם חנויות מסורתיות, בתי קפה ומזכרות.\nהליכה 10 דקות.","https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=300&q=80","Ninenzaka Sannenzaka Kyoto"],
-    ["11:45 - 12:05","Yasaka Pagoda (Hōkan-ji)","הפגודה המפורסמת של יאסקה — סמל הרובע ההיסטורי היגשיאמה.\nהליכה 20 דקות עד תחנת האוטובוס.","https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?auto=format&fit=crop&w=300&q=80","Yasaka Pagoda Hokanji Kyoto"],
-    ["12:15 - 13:15","ארוחת צהריים","מומלץ לטעום מטבח יפני מסורתי ברובע גיון או שיג'ו קוואראמאצ'י.","https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=300&q=80","Gion Kyoto restaurants"],
-    ["13:30 - 17:30","Shijo Kawaramachi Shopping","רובע הקניות המרכזי של קיוטו: UNIQLO, GU, Kyoto BAL, OPA, Loft, Hands ועוד!","https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=300&q=80","Shijo Kawaramachi"],
-    ["18:00","חזרה למלון","מנוחה, מקלחת, החלפת בגדים והשארת הקניות בחדר.","https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80","Kyoto Hotel"]
+  '18': { title:"קיוטו – טיול מודרך", route:"Fushimi Inari → Bamboo Grove → Tenryu-ji → Ryoan-ji → Kinkaku-ji → Gion", events:[
+    ["10:00","פגישה עם המדריך","מפגש עם מדריך דובר רוסית בלובי המלון, הכרות ותיאום התוכנית ליום","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
+    ["10:10<br>11:45","Fushimi Inari Taisha","מקדש מפורסם עם אלפי שערי טוריי אדומים, היסטוריה, מסורת ונוף מרהיב על קיוטו","assets/attractions/day18/fushimi.jpg","Fushimi Inari Taisha"],
+    ["11:45<br>12:30","Arashiyama Bamboo Grove","טיול ביער הבמבוק הקסום – אחד המקומות האטמוספריים ביותר בקיוטו","assets/attractions/day18/bamboo.jpg","Arashiyama Bamboo Grove"],
+    ["12:30<br>13:10","Tenryu-ji Temple","מקדש זן מרהיב וגן מורשת עולמית של אונסק\"ו","assets/attractions/day18/tenryuji.jpg","Tenryu-ji Temple"],
+    ["13:10<br>14:00","ארוחת צהריים","מומלץ לטעום מטבח מקומי באראשיאמה: סובה, אודון או קייסקי","assets/attractions/day18/lunch.jpg","Arashiyama restaurants"],
+    ["15:00<br>15:45","Ryoan-ji Temple","מקדש זן בודהיסטי עם גן האבנים היבש המפורסם – סמל לפילוסופיית הזן","assets/attractions/day18/ryoanji.jpg","Ryoan-ji Temple"],
+    ["16:00<br>17:00","Kinkaku-ji (הפביליון הזהוב)","אחד המקדשים המפורסמים בקיוטו, מצופה עלי זהב","assets/attractions/day18/kinkakuji.jpg","Kinkaku-ji Golden Pavilion"],
+    ["17:00<br>19:00","רובע גיון","טיול עם המדריך ברובע ההיסטורי גיון – מקדש יאסקה, בתי גיישה, סמטאות עתיקות ואווירה קסומה","assets/attractions/day18/gion.jpg","Gion District Kyoto"],
+    ["19:00<br>19:30","חזרה למלון","חזרה למלון מונטריי קיוטו. מומלץ לנוח ואז לצאת לבר ערב","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
   ]},
   '19': { title:"קיוטו – מקדשים, שופינג וברים", route:"Eikandō → Kiyomizu-dera → Gion → Shijo → Pontocho", events:[
     ["09:00<br>10:00","Eikandō Temple (永観堂)","מקדש בודהיסטי מהיפים בקיוטו, מפורסם בעלי השלכת האדומים","assets/attractions/day19/eikando.jpg","Eikando Temple Kyoto"],
@@ -1141,10 +1155,18 @@ const data = {
     ["21:10<br>22:15","Turquoise Bar","בר קוקטיילים לסיום הערב","assets/attractions/day19/turquoise.jpg","Turquoise Bar Kyoto"],
     ["22:15~","חזרה למלון","סיום יום 6 בקיוטו","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
   ]},
-  '20': { title:"נארה יום מלא", route:"Kyoto → Nara → Kyoto", events:[
-    ["09:00","נסיעה לנארה","JR Nara Line מקיוטו","https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=300&q=80","Nara"],
-    ["10:00","Todai-ji + Nara Park","מקדש טודאי-ג'י ופארק האיילים","https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=300&q=80","Todai-ji"],
-    ["14:00","Kasuga Taisha + Kofuku-ji","מקדשים מרכזיים בנארה","https://images.unsplash.com/photo-1530554764233-e79e16c91d08?auto=format&fit=crop&w=300&q=80","Kasuga Taisha"]
+  '20': { title:"נארה – יום מלא", route:"Todai-ji → Nara Park → Kasuga Taisha → Kofuku-ji → Nara Machi → Kyoto", events:[
+    ["09:00<br>10:00","Todai-ji (מקדש טודאי-ג'י)","המקדש הראשי של נארה ואחד המבנים העצי הגדולים בעולם. כאן נמצא הבודהה הגדול (דאיבוטסו)","assets/attractions/day20/todaiji.jpg","Todai-ji Nara"],
+    ["10:00<br>11:30","Nara Park (פארק נארה)","פארק יפהפה עם מאות איילים ידידותיים המשוטטים חופשי ואוכלים קרקרים מיוחדים","assets/attractions/day20/narapark.jpg","Nara Park"],
+    ["11:30<br>13:00","Kasuga Taisha (קסוגה טאישה)","מקדש שינטו מפורסם עם אלפי פנסי אבן וברונזה, מוקף ביער","assets/attractions/day20/kasuga.jpg","Kasuga Taisha"],
+    ["13:00<br>14:00","ארוחת צהריים","מומלץ לטעום מטבח מקומי: אודון, סובה, קארי יפני או סט טישוקו","assets/attractions/day20/lunch.jpg","Nara restaurants"],
+    ["14:00<br>15:00","Kofuku-ji (מקדש קופוקו-ג'י)","קומפלקס מקדשים היסטורי עם פגודה ומוזיאון לאמנות בודהיסטית","assets/attractions/day20/kofukuji.jpg","Kofuku-ji Nara"],
+    ["15:00<br>16:00","Nara Machi (העיר העתיקה)","טיול ברובע ההיסטורי עם בתים מסורתיים, חנויות מזכרות וממתקים","assets/attractions/day20/naramachi.jpg","Naramachi"],
+    ["16:00<br>17:00","חזרה לקיוטו","רכבת JR Nara Line – הדרך הנוחה והמהירה ביותר לחזור לקיוטו","assets/attractions/day20/train.jpg","JR Nara Station"],
+    ["","__SECTION__","🍶 ערב: ארוחת ערב וברים (לפי רצון)","",""],
+    ["19:00<br>19:30","Kiyamachi & Pontocho","הטיילת הטובה ביותר לארוחת ערב ובארים בקיוטו, אווירת סמטאות מסורתיות","assets/attractions/day19/kiyamachi.jpg","Pontocho Kyoto"],
+    ["19:30<br>20:30","ארוחת ערב","מומלץ לאכול בפונטוצ'ו או קיאמאצ'י: וואגיו, סושי, יאקיטורי ומנות יפניות נוספות","assets/attractions/day19/dinner.jpg","Pontocho Kyoto"],
+    ["20:30~","חזרה למלון","מונית (~10-15 דק') או הליכה (~20 דק') ברחובות הלילה היפים","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
   ]},
   '21': { title:"קיוטו → אוסקה – מודרניות, קניות וגסטרונומיה", route:"Nishiki Market → Shinkansen → Umeda Sky Building → Grand Green → Namba City → Namba Parks → Wagyu", events:[
     ["08:00<br>09:30","Nishiki Market (錦市場)","שוק האוכל המפורסם של קיוטו – 'המטבח של קיוטו'. פירות ים, ממתקים יפניים, חומץ מתוקן וסושי טרי","assets/attractions/day21/nishiki.jpg","Nishiki Market Kyoto"],
@@ -1239,6 +1261,14 @@ const hotelsByDay = {
     extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
   },
   '19': {
+    name: 'Hotel Monterey Kyoto',
+    meta: 'קיוטו · Karasuma-dori, Nakagyo-ku',
+    mapQuery: 'Hotel Monterey Kyoto',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
+  },
+  '20': {
     name: 'Hotel Monterey Kyoto',
     meta: 'קיוטו · Karasuma-dori, Nakagyo-ku',
     mapQuery: 'Hotel Monterey Kyoto',
