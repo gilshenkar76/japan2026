@@ -910,9 +910,9 @@ let flightAutoSyncTimer = null;
 const citiesByDay = {
   '12-13': { city: 'טיסה ליפן', image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80' },
   '14': { city: 'טוקיו - האקונה', image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80' },
-  '15': { city: 'האקונה', image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600&q=80' },
-  '16': { city: 'הר פוג\'י', image: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?w=600&q=80' },
-  '17': { city: 'נגויה - טויוטה', image: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=600&q=80' },
+  '15': { city: 'האקונה', image: 'assets/attractions/day15/lake_ashi.jpg' },
+  '16': { city: 'הר פוג\'י', image: 'assets/attractions/day16/chureito.jpg' },
+  '17': { city: 'נגויה - טויוטה', image: 'assets/attractions/day17/toyota.jpg' },
   '18': { city: 'קיוטו', image: 'https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=600&q=80' },
   '19': { city: 'קיוטו', image: 'https://images.unsplash.com/photo-1549693578-d683be217e58?w=600&q=80' },
   '20': { city: 'נארה', image: 'https://images.unsplash.com/photo-1530554764233-e79e16c91d08?w=600&q=80' },
@@ -929,6 +929,9 @@ const citiesByDay = {
 // Dedicated clean route maps per day (src + aspect-ratio of the image)
 const routeMapsByDay = {
   '14': { src: 'assets/maps/day14_walking_map.png', ratio: '338 / 261' },
+  '15': { src: 'assets/maps/day15_route_map.png', ratio: '400 / 250', legend: false },
+  '16': { src: 'assets/maps/day16_route_map.png', ratio: '390 / 220', legend: false },
+  '17': { src: 'assets/maps/day17_route_map.png', ratio: '502 / 300', legend: false },
   '18': { src: 'assets/maps/day18_route_map.png', ratio: '340 / 130', legend: false },
   '19': { src: 'assets/maps/day19_route_map.png', ratio: '368 / 644', legend: false },
   '20': { src: 'assets/maps/day20_route_map.png', ratio: '334 / 617', legend: false },
@@ -939,6 +942,9 @@ const routeMapsByDay = {
 
 // Short Hebrew theme shown as the banner subtitle per day (fallback: route text)
 const themesByDay = {
+  '15': 'יום מלא בהאקונה – אגם אשי, ספינת פיראטים, רכבל ועמק געשי אווקודאני',
+  '16': 'מעבר מהר פוג\'י לנגויה – פגודת צ\'וריאיטו, אושינו הקאיי ומסדרון המייפל',
+  '17': 'מעבר מנגויה לקיוטו – מוזיאון טויוטה, שינקנסן וערב בטרמאצ\'י ופונטוצ\'ו',
   '18': 'טיול מודרך יום שלם בקיוטו – מקדשים היסטוריים, טבע ותרבות מסורתית',
   '19': 'מקדשים, מסורת, שופינג וערב של ברים',
   '20': 'יום מלא בנארה – מקדשים עתיקים, פארק האיילים והעיר העתיקה',
@@ -949,6 +955,24 @@ const themesByDay = {
 
 // Public-transport legs shown on the route page per day
 const transitByDay = {
+  '15': [
+    { from: 'Aura Tachibana', to: 'Lake Ashi', note: 'הליכה מהמלון לאגם', line: 'רגלי', time: '~10 דק׳', cost: '—' },
+    { from: 'Togendai', to: 'Hakone-machi', note: 'ספינת פיראטים על האגם', line: 'Hakone Sightseeing Cruise', time: '~35 דק׳', cost: '¥1,200' },
+    { from: 'Togendai', to: 'Owakudani', note: 'רכבל האקונה', line: 'Hakone Ropeway', time: '~30 דק׳', cost: '¥1,500' },
+    { from: 'Owakudani', to: 'מוזיאון פתוח', note: 'אוטובוס מקומי', line: 'Hakone Tozan Bus', time: '~15 דק׳', cost: '¥400' }
+  ],
+  '16': [
+    { from: 'Lake Kawaguchi', to: 'Mishima', note: 'קוואגוצ\'י → מישימה', line: 'אוטובוס', time: '~1:20 שעות', cost: '¥2,200' },
+    { from: 'Mishima', to: 'Nagoya', note: 'שינקנסן היקארי', line: 'שינקנסן JR Hikari', time: '~1:05 שעות', cost: '¥6,500' },
+    { from: 'Nagoya Station', to: 'Nagoya JR Gate Tower Hotel', note: 'הליכה מהתחנה למלון', line: 'רגלי', time: '~10 דק׳', cost: '—' }
+  ],
+  '17': [
+    { from: 'Nagoya JR Gate Tower Hotel', to: 'Toyota Kaikan Museum', note: 'נסיעה במונית למוזיאון', line: 'מונית', time: '~20 דק׳', cost: '¥2,000' },
+    { from: 'Nagoya Station', to: 'Kyoto Station', note: 'שינקנסן היקארי', line: 'שינקנסן JR Hikari', time: '~1:00 שעה', cost: '¥6,300' },
+    { from: 'Kyoto Station', to: 'Hotel Monterey Kyoto', note: 'הליכה/מטרו לתחנת המלון', line: 'רגלי', time: '~15 דק׳', cost: '—' },
+    { from: 'Hotel Monterey Kyoto', to: 'Teramachi Shopping Arcade', note: 'הליכה בערב', line: 'רגלי', time: '~10 דק׳ (900 מ\')', cost: '—' },
+    { from: 'Teramachi Shopping Arcade', to: 'Pontocho Alley', note: 'הליכה בערב', line: 'רגלי', time: '~5 דק׳ (350 מ\')', cost: '—' }
+  ],
   '20': [
     { from: 'JR Kyoto Station', to: 'JR Nara Station', note: 'קיוטו → נארה', line: 'JR Nara Line', time: '~45 דק׳', cost: '¥720' },
     { from: 'JR Nara Station', to: 'JR Kyoto Station', note: 'נארה → קיוטו', line: 'JR Nara Line', time: '~45 דק׳', cost: '¥720' }
@@ -978,6 +1002,18 @@ const transitByDay = {
 
 // Preset Hebrew route notes per day (overview + tips), used to prefill the notes boxes
 const routeNotesPresets = {
+  '15': {
+    overview: 'יום מלא בהאקונה: אגם אשי עם נוף להר פוג\'י, שייט בספינת פיראטים, רכבל להאקונה ועמק געשי אווקודאני עם הביצה השחורה המפורסמת, ולסיום ביקור במוזיאון הפתוח וחזרה לריוקן לערב אונסן.',
+    tips: 'מזג האוויר בהאקונה יכול להשתנות במהירות – קחו בגדים חמים ומטריה. הביצה השחורה (קורו טמאגו) היא מעדן מקומי של אווקודאני. במוזיאון הפתוח יש בית קפה ואזורי מנוחה. בערב המלון מציע ארוחות מסורתיות ואונסן.'
+  },
+  '16': {
+    overview: 'יום מעבר מהר פוג\'י לנגויה: פגודת צ\'וריאיטו עם הנוף האייקוני של הר פוג\'י, כפר אושינו הקאיי עם בריכות המים הצלולות, מסדרון המייפל באגם קוואגוצ\'י, ואז נסיעה (אוטובוס+שינקנסן) לנגויה, עם ערב חופשי ברובע סאקאה.',
+    tips: 'מזג האוויר בפוג\'י בנובמבר קריר – קחו בגדים חמים ונעליים נוחות. בפגודת צ\'וריאיטו יש כ-400 מדרגות לנקודת התצפית. הזמן הטוב ביותר לתמונות: בוקר בפגודה, יום באושינו הקאיי, ערב בנגויה. מומלץ להזמין כרטיסי אוטובוס מראש.'
+  },
+  '17': {
+    overview: 'יום מעבר מנגויה לקיוטו: ביקור במוזיאון טויוטה, נסיעה בשינקנסן היקארי, התארגנות במלון, וערב קסום בטיילת טרמאצ\'י ובסמטת פונטוצ\'ו לאורך נהר קאמו.',
+    tips: 'Teramachi Shopping Arcade פתוח עד 20:00, חלק מהחנויות והמסעדות עד 21:00. Pontocho Alley יפהפה במיוחד בערב, השעה הכי טובה לארוחת ערב 18:00-20:00. מומלץ להזמין מקום מראש במסעדות פופולריות, במיוחד אם רוצים לנסות מטבח קייסקי או וואגיו.'
+  },
   '20': {
     overview: 'יום שלם בנארה – עיר הבירה העתיקה של יפן: מקדש טודאי-ג\'י עם הבודהה הגדול, פארק האיילים, קסוגה טאישה, קופוקו-ג\'י והעיר העתיקה נארה-מאצ\'י, ובחזרה לקיוטו לערב חופשי.',
     tips: 'המקדשים פתוחים 6:00–18:00. הביאו קרקרים מיוחדים (shika senbei) להאכלת האיילים ואל תאכילו אותם במזון אחר. נעליים נוחות – הרבה הליכה. בערב מומלץ לשריין מקום מראש במסעדה ב-Kiyamachi/Pontocho.'
@@ -1114,20 +1150,30 @@ const data = {
     ["15:00<br>22:00","Aura Tachibana - ריוקן בהאקונה","הגעה לריוקן מסורתי עם אונסן. ערב של צ'ק-אין, אונסן וארוחת קייסקי.\nאל תשכחו בגדי ים לאונסן!","https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80","Aura Tachibana Hakone Yumoto"]
   ]},
   '15': { title:"יום האקונה", route:"Lake Ashi → Pirate Ship → Ropeway → Owakudani", events:[
-    ["09:00","Lake Ashi","אגם אשי ונוף להר פוג'י","https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=300&q=80","Lake Ashi"],
-    ["10:00","Hakone Pirate Ship","שייט באגם","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=300&q=80","Hakone Sightseeing Cruise"],
-    ["11:30","Owakudani","עמק געשי וביצים שחורות","https://images.unsplash.com/photo-1558862107-d49ef2a04d72?auto=format&fit=crop&w=300&q=80","Owakudani"]
+    ["09:00<br>10:00","Lake Ashi","אגם אשי עם שער טוריי ונוף להר פוג'י במזג אוויר בהיר.","assets/attractions/day15/lake_ashi.jpg","Lake Ashi"],
+    ["10:00<br>10:35","Hakone Pirate Ship","שייט בספינת פיראטים מעוצבת מ-Togendai ל-Hakone-machi.","assets/attractions/day15/pirate_ship.jpg","Hakone Sightseeing Cruise"],
+    ["10:50<br>11:20","Hakone Ropeway","רכבל עם נוף מרהיב לעמק הגעשי של אווקודאני.","assets/attractions/day15/ropeway.jpg","Hakone Ropeway"],
+    ["11:30<br>13:00","Owakudani","עמק געשי פעיל עם פעותות גופרית והביצה השחורה המפורסמת (קורו טמאגו).","assets/attractions/day15/owakudani.jpg","Owakudani"],
+    ["13:00<br>14:00","ארוחת צהריים","סובה/אודון מקומי באזור אווקודאני.","assets/attractions/day15/lunch.jpg","Owakudani restaurants"],
+    ["13:30<br>16:00","Hakone Open-Air Museum","מוזיאון פתוח עם פסלי פיסול ואמנות מודרנית בנוף פתוח.","assets/attractions/day15/museum.jpg","Hakone Open-Air Museum"],
+    ["16:00<br>22:00","חזרה למלון ואונסן","חזרה ל-Aura Tachibana לערב של מנוחה, אונסן וארוחת קייסקי.","assets/attractions/day15/hotel.jpg","Aura Tachibana Hakone Yumoto"]
   ]},
   '16': { title:"פוג'י → נגויה", route:"Chureito → Oshino Hakkai → Kawaguchiko → Nagoya", events:[
-    ["09:00","Chureito Pagoda","הנוף האייקוני של הר פוג'י","https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?auto=format&fit=crop&w=300&q=80","Chureito Pagoda"],
-    ["11:00","Oshino Hakkai","כפר מסורתי ובריכות צלולות","https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=300&q=80","Oshino Hakkai"],
-    ["15:00","Lake Kawaguchi","אגם קוואגוצ'י ושדרת המייפל","https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=300&q=80","Lake Kawaguchi"],
-    ["18:00","נסיעה לנגויה","מעבר ברכבת מהירה לנגויה","https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80","Nagoya Station"]
+    ["09:00<br>10:00","Chureito Pagoda","הנוף האייקוני של הר פוג'י מנקודת התצפית של הפגודה, כ-400 מדרגות בדרך.","assets/attractions/day16/chureito.jpg","Chureito Pagoda"],
+    ["10:30<br>12:00","Oshino Hakkai","כפר מסורתי עם שמונה בריכות מים צלולות משלג של הר פוג'י.","assets/attractions/day16/oshino.jpg","Oshino Hakkai"],
+    ["12:15<br>13:15","Lake Kawaguchi – מסדרון המייפל","טיול לאורך שדרת עצי מייפל בשלבי הסתיו, עם נוף לאגם קוואגוצ'י.","assets/attractions/day16/maple.jpg","Lake Kawaguchi Maple Corridor"],
+    ["13:15<br>14:15","ארוחת צהריים","אודון/הוטו מקומי לפני המעבר לנגויה.","assets/attractions/day16/lunch.jpg","Kawaguchiko restaurants"],
+    ["14:30<br>16:20","נסיעה לנגויה","מעבר באוטובוס ל-Mishima ומשם בשינקנסן היקארי לנגויה.","assets/attractions/day16/transfer.jpg","Nagoya Station"],
+    ["16:30<br>17:00","צ'ק-אין במלון","התארגות ב-Nagoya JR Gate Tower Hotel סמוך לתחנת רכבת ה-JR.","assets/attractions/day16/checkin.jpg","Nagoya JR Gate Tower Hotel"],
+    ["17:30<br>22:00","ערב חופשי בסאקאע","טיול ברובע Sakae, קניות וארוחת ערב במסעדות האזור.","assets/attractions/day16/evening.jpg","Sakae Nagoya"]
   ]},
   '17': { title:"נגויה → קיוטו", route:"Toyota Kaikan → שינקנסן → Gion", events:[
-    ["09:00","Toyota Kaikan Museum","מוזיאון טויוטה והיסטוריית רכב","https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=300&q=80","Toyota Kaikan Museum"],
-    ["13:00","נסיעה לקיוטו","שינקנסן מנגויה לקיוטו","https://images.unsplash.com/photo-1568747578869-3fa0f8ca3f4f?auto=format&fit=crop&w=300&q=80","Kyoto Station"],
-    ["16:30","גיון ופונטוצ'ו","טיול ערב ברובע ההיסטורי","https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=300&q=80","Gion Kyoto"]
+    ["08:20<br>11:30","Toyota Kaikan Museum","מוזיאון טויוטה – היסטורית החברה, רכבי קונספט וטכנולוגיות ייצור.","assets/attractions/day17/toyota.jpg","Toyota Kaikan Museum"],
+    ["12:00<br>13:00","שינקנסן לקיוטו","נסיעה בשינקנסן היקארי מנגויה לקיוטו.","assets/attractions/day17/shinkansen.jpg","Kyoto Station"],
+    ["13:00<br>15:30","צ'ק-אין במלון","התארגות ב-Hotel Monterey Kyoto ומנוחה קצרה לפני הערב.","assets/attractions/day17/hotel.jpg","Hotel Monterey Kyoto"],
+    ["17:00<br>18:30","Teramachi Shopping Arcade","טיילת קניות מקורה עם גג עץ. 🚶 ~10 דק' הליכה מהמלון (900 מ').","assets/attractions/day17/teramachi.jpg","Teramachi Shopping Arcade Kyoto"],
+    ["18:35<br>20:30","Pontocho Alley – ארוחת ערב","סמטה עתיקה מוארת פנסים לאורך נהר קאמו. 🚶 ~5 דק' הליכה מ-Teramachi (350 מ').","assets/attractions/day17/pontocho.jpg","Pontocho Alley Kyoto"],
+    ["20:30<br>21:00","חזרה למלון","חזרה רגלית למלון. 🚶 ~15-20 דק' הליכה.","assets/attractions/day17/return.jpg","Hotel Monterey Kyoto"]
   ]},
   '18': { title:"קיוטו – טיול מודרך", route:"Fushimi Inari → Bamboo Grove → Tenryu-ji → Ryoan-ji → Kinkaku-ji → Gion", events:[
     ["10:00","פגישה עם המדריך","מפגש עם מדריך דובר רוסית בלובי המלון, הכרות ותיאום התוכנית ליום","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
@@ -1251,6 +1297,30 @@ const hotelsByDay = {
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
     extra: ''
+  },
+  '15': {
+    name: 'Aura Tachibana',
+    meta: 'Hakone Yumoto · ספא ואונסן',
+    mapQuery: 'Aura Tachibana Hakone',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: ''
+  },
+  '16': {
+    name: 'Nagoya JR Gate Tower Hotel',
+    meta: 'נגויה · ליד תחנת JR נגויה',
+    mapQuery: 'Nagoya JR Gate Tower Hotel',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: ''
+  },
+  '17': {
+    name: 'Hotel Monterey Kyoto',
+    meta: 'קיוטו · Karasuma-dori, Nakagyo-ku',
+    mapQuery: 'Hotel Monterey Kyoto',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
   },
   '18': {
     name: 'Hotel Monterey Kyoto',
