@@ -1,11 +1,14 @@
-"""Build day-20 route map: crop map card from source and translate Russian labels to Hebrew."""
+"""Build day-20 route map: crop full map card (title + map + legend) and translate Russian to Hebrew."""
 from PIL import Image, ImageDraw, ImageFont
 
 SRC = "prep_days/20.11.2026.png"
 OUT = "assets/maps/day20_route_map.png"
+SCALE = 2  # upscale for sharper output
 
 im = Image.open(SRC).convert("RGB")
-card = im.crop((690, 128, 1024, 745))   # 334 x 617 (legend box excluded)
+# Crop below the Russian title bar; we'll draw our own Hebrew title at top
+card = im.crop((672, 128, 1024, 800))   # 352 × 672
+W, H = card.size
 d = ImageDraw.Draw(card)
 
 
@@ -22,34 +25,51 @@ def he(s):
     return s[::-1]
 
 
-# Title bar (solid purple)
-d.rectangle([0, 0, 334, 24], fill=(75, 20, 95))
-d.text((167, 12), he("מפת מסלול היום"), font=font(14), fill=(255, 255, 255), anchor="mm")
+PURPLE = (75, 20, 95)
+WHITE  = (255, 255, 255)
+DARK   = (30, 20, 20)
+SOFT   = (60, 40, 30)
 
-# Full two-line label redraw per pin (English name kept + fresh Hebrew translation)
+# --- Hebrew title bar replaces the Russian one ---
+d.rectangle([0, 0, W, 30], fill=PURPLE)
+d.text((W // 2, 15), he("מפת מסלול היום"), font=font(15), fill=WHITE, anchor="mm")
+
+# --- Per-pin label redraw (coordinates from measured crop slices) ---
+# Use WHITE fill so we always paint over source text regardless of its color
+LABEL_BG = (255, 255, 255)
 labels = [
-    (45,  "Tōdai-ji",      "(מקדש טודאי-ג'י)"),
-    (120, "Nara Park",     "(פארק נארה)"),
-    (196, "Kasuga Taisha", "(קסוגה טאישה)"),
-    (308, "Lunch",         "(ארוחת צהריים)"),
-    (375, "Kofuku-ji",     "(מקדש קופוקו-ג'י)"),
-    (450, "Nara Machi",    "(העיר העתיקה)"),
+    ( 68,  36, 185,  54, "Tōdai-ji",       "(מקדש טודאי-ג'י)"),
+    (132, 150, 295, 100, "Nara Park",      "(פארק נארה)"),
+    (190, 196, W-2, 175, "Kasuga Taisha",  "(קסוגה טאישה)"),
+    (264, 130, W-2, 244, "Lunch",          "(ארוחת צהריים)"),
+    (373,  88, W-2, 357, "Kofuku-ji",      "(מקדש קופוקו-ג'י)"),
+    (440,  28, 235, 424, "Nara Machi",     "(העיר העתיקה)"),
 ]
-for y0, name, he_txt in labels:
-    bg = card.getpixel((5, y0 + 5))
-    d.rectangle([30, y0 - 10, 334, y0 + 27], fill=bg)
-    d.text((34, y0), name, font=font(13), fill=(30, 20, 20), anchor="lm")
-    d.text((34, y0 + 17), he(he_txt), font=font(11), fill=(60, 40, 30), anchor="lm")
+for y0, x0, x1, y_top, name, he_txt in labels:
+    d.rectangle([x0, y_top, x1, y0 + 32], fill=LABEL_BG)
+    d.text((x0 + 4, y0),      name,       font=font(13), fill=DARK, anchor="lm")
+    d.text((x0 + 4, y0 + 17), he(he_txt), font=font(11), fill=SOFT, anchor="lm")
 
-# extra cleanup for residual Russian sliver above Tōdai-ji label
-d.rectangle([30, 70, 270, 90], fill=card.getpixel((5, 75)))
-d.rectangle([290, 195, 334, 215], fill=card.getpixel((325, 230)))    # small in-map pin annotation
-d.rectangle([280, 190, 334, 245], fill=card.getpixel((330, 255)))    # small in-map pin annotation (best-effort)
+# secondary Kasuga tent icon below the label box — keep ABOVE the Lunch label (y<244)
+bg_ks2 = card.getpixel((10, 234))
+d.rectangle([150, 224, W - 2, 243], fill=bg_ks2)
 
-# "Возвращение в Киото" (bottom) -> single Hebrew line
-bg2 = card.getpixel((5, 599))
-d.rectangle([30, 582, 230, 618], fill=bg2)
-d.text((34, 599), he("חזרה לקיוטו"), font=font(13), fill=(30, 20, 20), anchor="lm")
+# small secondary fork+(Обед) map marker below the Lunch label
+bg_fork = card.getpixel((10, 322))
+d.rectangle([130, 298, W - 2, 352], fill=bg_fork)
 
-card.save(OUT)
-print("saved", OUT, card.size)
+# --- "7 Возвращение в Киото" (two-line label + on-route bus marker) ---
+d.rectangle([28, 544, 170, 634], fill=LABEL_BG)
+d.text((32, 566), he("חזרה לקיוטו"), font=font(13), fill=DARK, anchor="lm")
+
+# --- Legend: "Пешком" → "רגלי", "Поезд JR Nara Line" → "JR Nara Line" ---
+bg_leg = card.getpixel((10, 600))
+d.rectangle([155, 589, W - 2, 612], fill=bg_leg)
+d.text((195, 600), he("רגלי"), font=font(11), fill=DARK, anchor="lm")
+d.rectangle([155, 607, W - 2, 652], fill=bg_leg)
+d.text((195, 622), "JR Nara Line", font=font(11), fill=DARK, anchor="lm")
+
+# --- Upscale 2× for quality ---
+out_img = card.resize((W * SCALE, H * SCALE), Image.LANCZOS)
+out_img.save(OUT)
+print("saved", OUT, out_img.size)
