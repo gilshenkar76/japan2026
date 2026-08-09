@@ -946,7 +946,7 @@ const themesByDay = {
   '16': 'מעבר מהר פוג\'י לנגויה – פגודת צ\'וריאיטו, אושינו הקאיי ומסדרון המייפל',
   '17': 'מעבר מנגויה לקיוטו – מוזיאון טויוטה, שינקנסן וערב בטרמאצ\'י ופונטוצ\'ו',
   '18': 'טיול מודרך יום שלם בקיוטו – מקדשים היסטוריים, טירת ניג\'ו, טבע ותרבות מסורתית',
-  '19': 'מקדשים, מסורת, שופינג וערב של ברים',
+  '19': 'מקדשים, היגשיאמה, קניות וערב בפונטוצ׳ו',
   '20': 'יום מלא בנארה – מקדשים עתיקים, פארק האיילים והעיר העתיקה',
   '21': 'מסע מקיוטו לאוסקה – שוק, תצפית, קניות וגסטרונומיה',
   '23': 'שרין, אקווריום, תצפית, שופינג וערב קסום ב-teamLab',
@@ -978,8 +978,11 @@ const transitByDay = {
     { from: 'JR Nara Station', to: 'JR Kyoto Station', note: 'נארה → קיוטו', line: 'JR Nara Line', time: '~45 דק׳', cost: '¥720' }
   ],
   '19': [
-    { from: 'Eikandō Temple', to: 'Kiyomizu-dera', note: 'אחרי Eikandō אפשר ללכת רגלי או במונית/אוטובוס', line: 'אוטובוס 5 או 100', time: '~10–15 דק׳', cost: '¥230' },
-    { from: 'Shijo Kawaramachi', to: 'Hotel Monterey Kyoto', note: 'חזרה למלון', line: 'רכבת: Hankyu Kyoto Line · Kawaramachi → Karasuma', time: '~5 דק׳', cost: '¥140' }
+    { from: 'Hotel Monterey Kyoto', to: 'Eikandō Temple', note: 'יציאה בבוקר ברכבת תחתית + הליכה קצרה', line: 'מטרו + רגלי', time: '~15 דק׳', cost: '¥220–260' },
+    { from: 'Eikandō Temple', to: 'Nanzen-ji Temple', note: 'מעבר קצר בין המקדשים', line: 'רגלי', time: '~10 דק׳', cost: '—' },
+    { from: 'Nanzen-ji Temple', to: 'Kiyomizu-dera', note: 'המשך ישיר לאזור היגשיאמה', line: 'מונית', time: '~15 דק׳', cost: '¥1,200–1,800' },
+    { from: 'Yasaka Pagoda', to: 'Teramachi + Shijo Kawaramachi', note: 'מעבר לקניות אחה"צ', line: 'רגלי', time: '~15–20 דק׳', cost: '—' },
+    { from: 'Shijo Kawaramachi', to: 'Hotel Monterey Kyoto', note: 'חזרה למלון למנוחה קצרה', line: 'רגלי / מטרו', time: '~10–15 דק׳', cost: '¥0–220' }
   ],
   '21': [
     { from: 'Kyoto Station', to: 'Shin-Osaka Station', note: 'שינקנסן – JR Tokaido/Kyoto Line', line: 'שינקנסן JR', time: '~30 דק׳', cost: '¥1,490' },
@@ -1019,8 +1022,8 @@ const routeNotesPresets = {
     tips: 'המקדשים פתוחים 6:00–18:00. הביאו קרקרים מיוחדים (shika senbei) להאכלת האיילים ואל תאכילו אותם במזון אחר. נעליים נוחות – הרבה הליכה. בערב מומלץ לשריין מקום מראש במסעדה ב-Kiyamachi/Pontocho.'
   },
   '19': {
-    overview: 'היום — יום של איזון בין המסורת לקיוטו המודרנית: מקדשים בבוקר, שופינג בצהריים, מנוחה במלון וערב של ברים!',
-    tips: 'צאו בזמן, בדקו כתובות מראש, ושמרו צילום מסך של הניווט.'
+    overview: 'יום קיוטו קלאסי בהיגשיאמה: Eikandō, Nanzen-ji ו-Kiyomizu-dera בשעות הבוקר, שיטוט היסטורי ברחובות Ninenzaka/Sannenzaka, קניות אחר הצהריים ב-Teramachi וב-Shijo Kawaramachi, וסיום ערב ב-Pontocho/Kiyamachi.',
+    tips: 'מומלץ לצאת מוקדם למקדשים, לקחת מונית קצרה מ-Nanzen-ji ל-Kiyomizu, ולהגיע לפונטוצ׳ו סביב 19:00 לאווירה מצוינת ולזמינות טובה יותר במסעדות.'
   },
   '21': {
     overview: 'יום מעבר מקיוטו לאוסקה: שוק נישיקי בבוקר, שינקנסן, תצפית מ-Umeda Sky Building, שופינג ב-Namba ולסיום ארוחת Wagyu מושלמת!',
@@ -1201,20 +1204,20 @@ const data = {
     ["","__SECTION__","🏮 ערב – Gion","",""],
     ["18:00<br>20:00","🏮 רובע גיון","טיול עם המדריך ברובע ההיסטורי גיון – רחוב הנמיקוג'י, אווירת קיוטו המסורתית, תאורת ערב ואפשרות לפגוש גיישות","assets/attractions/day18/gion.jpg","Gion District Kyoto"]
   ]},
-  '19': { title:"קיוטו – מקדשים, שופינג וברים", route:"Eikandō → Kiyomizu-dera → Gion → Shijo → Pontocho", events:[
-    ["09:00<br>10:00","Eikandō Temple (永観堂)","מקדש בודהיסטי מהיפים בקיוטו, מפורסם בעלי השלכת האדומים","assets/attractions/day19/eikando.jpg","Eikando Temple Kyoto"],
-    ["10:15<br>10:45","Kiyomizu-dera","מקדש ההרים עם מרפסת העץ והנוף לקיוטו","assets/attractions/day19/kiyomizu.jpg","Kiyomizu-dera"],
-    ["10:45<br>11:45","Sannenzaka + Ninenzaka","סמטאות מדרגות עתיקות עם חנויות ובתי תה","assets/attractions/day19/sannenzaka.jpg","Sannenzaka Ninenzaka Kyoto"],
-    ["11:45<br>12:05","Yasaka Pagoda (Hōkan-ji)","פגודה בת חמש קומות בלב גיון","assets/attractions/day19/yasaka.jpg","Yasaka Pagoda Hokanji"],
-    ["12:15<br>13:15","ארוחת צהריים","הפסקת אוכל בגיון או בשיג'ו קוואראמאצ'י","assets/attractions/day19/lunch.jpg","Gion Kyoto"],
-    ["13:30<br>17:30","Shijo Kawaramachi","רובע הקניות המרכזי של קיוטו","assets/attractions/day19/shijo.jpg","Shijo Kawaramachi Kyoto"],
-    ["18:00","חזרה למלון","מנוחה קצרה לפני יציאה לערב","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
-    ["","__SECTION__","🍸 ערב: ברים וארוחת ערב","",""],
-    ["19:00<br>19:30","Kiyamachi & Pontocho","טיול ערב בסמטאות לאורך תעלת המים","assets/attractions/day19/kiyamachi.jpg","Pontocho Kyoto"],
-    ["19:30<br>20:30","L'Escamoteur Bar","בר קוקטיילים אווירתי בסגנון קסמים","assets/attractions/day19/escamoteur.jpg","L'Escamoteur Bar Kyoto"],
-    ["20:30<br>21:10","ארוחת ערב","ארוחה בפונטוצ'ו או קיאמאצ'י","assets/attractions/day19/dinner.jpg","Pontocho Kyoto"],
-    ["21:10<br>22:15","Turquoise Bar","בר קוקטיילים לסיום הערב","assets/attractions/day19/turquoise.jpg","Turquoise Bar Kyoto"],
-    ["22:15~","חזרה למלון","סיום יום 6 בקיוטו","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
+  '19': { title:"קיוטו – היגשיאמה, מקדשים וקניות", route:"Hotel Monterey → Eikandō → Nanzen-ji → Kiyomizu-dera → Ninenzaka/Sannenzaka → Yasaka → Teramachi/Shijo → Pontocho", events:[
+    ["08:45<br>09:00","יציאה מהמלון לכיוון Eikandō (永観堂)","נסיעה במטרו והליכה קצרה אל אזור המקדש","assets/transfers/train.jpg","Eikando Temple Kyoto","🚇 מטרו + 🚶 הליכה קצרה"],
+    ["09:00<br>10:15","ביקור ב־Eikandō (永観堂)","מקדש בודהיסטי יפהפה עם גנים מטופחים ואווירת בוקר רגועה","assets/attractions/day19/eikando.jpg","Eikando Temple Kyoto"],
+    ["10:15<br>10:25","הליכה ל־Nanzen-ji (南禅寺)","מעבר רגלי קצר בין האתרים באזור","assets/transfers/walk.jpg","Nanzen-ji Temple Kyoto","🚶 כ-10 דק׳"],
+    ["10:25<br>11:10","ביקור ב־Nanzen-ji (南禅寺)","כולל סיור במקדש ובאקוודוקט ההיסטורי","assets/attractions/day19/eikando.jpg","Nanzen-ji Temple Kyoto"],
+    ["11:10<br>11:25","מעבר ל־Kiyomizu-dera (清水寺)","נסיעה קצרה במונית לאזור היגשיאמה","assets/transfers/taxi.jpg","Kiyomizu-dera","🚖 מונית · כ-15 דק׳"],
+    ["11:25<br>12:40","ביקור ב־Kiyomizu-dera (清水寺)","מקדש אייקוני עם מרפסת העץ המפורסמת ותצפיות מרהיבות על קיוטו","assets/attractions/day19/kiyomizu.jpg","Kiyomizu-dera"],
+    ["12:40<br>13:20","שיטוט ב־Ninenzaka (二年坂) ו־Sannenzaka (三年坂)","רחובות היסטוריים עם חנויות, בתי תה ונקודות צילום יפות","assets/attractions/day19/sannenzaka.jpg","Sannenzaka Ninenzaka Kyoto","🚶 מעבר רגלי"],
+    ["13:20<br>13:35","Yasaka Pagoda / Hōkan-ji (八坂の塔・法観寺)","תצפית וצילומים ליד הפגודה האייקונית של היגשיאמה","assets/attractions/day19/yasaka.jpg","Yasaka Pagoda Hokanji","🚶 הליכה קצרה"],
+    ["13:35<br>14:30","ארוחת צהריים באזור היגשיאמה","הפסקת צהריים רגועה לפני המשך הטיול והקניות","assets/attractions/day19/lunch.jpg","Higashiyama Kyoto"],
+    ["14:30<br>15:30","שיטוט רגוע באזור Higashiyama (東山)","בתי קפה וחנויות מסורתיות לאורך הסמטאות באזור","assets/attractions/day19/sannenzaka.jpg","Higashiyama Kyoto","🚶"],
+    ["15:30<br>17:00","קניות: Teramachi Shopping Arcade + Shijo Kawaramachi","זמן קניות חופשי באזור המסחרי המרכזי של קיוטו","assets/attractions/day19/shijo.jpg","Teramachi Shopping Arcade Kyoto","🚶"],
+    ["17:00","חזרה למלון Hotel Monterey Kyoto","מנוחה קצרה והתארגנות לערב","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
+    ["19:00 ואילך","ערב ב־Pontocho (先斗町) ו־Kiyamachi (木屋町通)","ארוחת ערב ובילוי בברים לאורך הסמטאות ותעלת המים","assets/attractions/day19/kiyamachi.jpg","Pontocho Kyoto"]
   ]},
   '20': { title:"נארה – יום מלא", route:"Todai-ji → Nara Park → Kasuga Taisha → Kofuku-ji → Nara Machi → Kyoto", events:[
     ["07:55","יציאה מהמלון Monterey Kyoto","צ'ק-אאוט וכבודה – יוצאים לתחנה לפני עלות הרכבת","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
