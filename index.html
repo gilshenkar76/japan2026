@@ -114,10 +114,10 @@
     .transit-note{font-size:12px;color:var(--muted);margin-bottom:8px}
     .transit-meta{display:flex;flex-wrap:wrap;gap:8px}
     .transit-meta span{background:#eef2f7;border:1px solid #d8e0ea;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;color:#475569}
-    .event{background:var(--card);border-radius:20px;box-shadow:var(--shadow);border:1px solid var(--line);display:flex;overflow:hidden;padding:0;min-height:112px}
+    .event{background:var(--card);border-radius:20px;box-shadow:var(--shadow);border:1px solid var(--line);display:flex;overflow:hidden;padding:0;min-height:90px}
     .event-img-nav{width:110px;flex-shrink:0;display:block;text-decoration:none;background:#e8edf5;overflow:hidden;position:relative;
       box-shadow:inset 0 0 0 9999px rgba(0,0,0,0);transition:transform .15s ease,box-shadow .15s ease;transform:translateZ(0)}
-    .event-img-nav img{width:110px;height:100%;min-height:112px;object-fit:cover;display:block;transition:transform .2s ease,filter .2s ease}
+    .event-img-nav img{width:110px;height:100%;min-height:90px;object-fit:cover;display:block;transition:transform .2s ease,filter .2s ease}
     .event-img-nav::after{content:'📍';position:absolute;top:6px;left:6px;width:24px;height:24px;border-radius:50%;
       background:rgba(255,255,255,0.92);box-shadow:0 2px 6px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;
       font-size:12px;pointer-events:none}
@@ -125,7 +125,7 @@
     .event-img-nav:hover img{filter:brightness(1.06)}
     .event-img-nav:active{transform:translateY(-1px) scale(1.0)}
     .event-content{flex:1;padding:11px 13px;min-width:0}
-    .event-content h3{margin:0 0 4px;font-size:15px;line-height:1.3}
+    .event-content h3{margin:0 0 4px;font-size:15px}
     .event-transit{font-size:11px;color:var(--muted);margin-top:7px}
     .event-desc{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
     .route-live-chips{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
@@ -934,7 +934,7 @@ const routeMapsByDay = {
   '17': { src: 'assets/maps/day17_route_map.png', ratio: '502 / 300', legend: false },
   '18': { src: 'assets/maps/day18_route_map.png', ratio: '340 / 130', legend: false },
   '19': { src: 'assets/maps/day19_route_map.png', ratio: '368 / 644', legend: false },
-  '20': { src: 'assets/maps/day20_route_map.png', ratio: '352 / 672', legend: false },
+  '20': { src: 'assets/maps/day20_route_map.png', ratio: '334 / 617', legend: false },
   '21': { src: 'assets/maps/day21_route_map.png', ratio: '372 / 122', legend: false },
   '23': { src: 'assets/maps/day23_route_map.png', ratio: '260 / 118', legend: false },
   '24': { src: 'assets/maps/day24_route_map.png', ratio: '254 / 246', legend: false }
@@ -945,8 +945,8 @@ const themesByDay = {
   '15': 'יום מלא בהאקונה – אגם אשי, ספינת פיראטים, רכבל ועמק געשי אווקודאני',
   '16': 'מעבר מהר פוג\'י לנגויה – פגודת צ\'וריאיטו, אושינו הקאיי ומסדרון המייפל',
   '17': 'מעבר מנגויה לקיוטו – מוזיאון טויוטה, שינקנסן וערב בטרמאצ\'י ופונטוצ\'ו',
-  '18': 'טיול מודרך יום שלם בקיוטו – מקדשים היסטוריים, טירת ניג\'ו, טבע ותרבות מסורתית',
-  '19': 'מקדשים, היגשיאמה, קניות וערב בפונטוצ׳ו',
+  '18': 'טיול מודרך יום שלם בקיוטו – מקדשים היסטוריים, טבע ותרבות מסורתית',
+  '19': 'מקדשים, מסורת, שופינג וערב של ברים',
   '20': 'יום מלא בנארה – מקדשים עתיקים, פארק האיילים והעיר העתיקה',
   '21': 'מסע מקיוטו לאוסקה – שוק, תצפית, קניות וגסטרונומיה',
   '23': 'שרין, אקווריום, תצפית, שופינג וערב קסום ב-teamLab',
@@ -974,15 +974,17 @@ const transitByDay = {
     { from: 'Teramachi Shopping Arcade', to: 'Pontocho Alley', note: 'הליכה בערב', line: 'רגלי', time: '~5 דק׳ (350 מ\')', cost: '—' }
   ],
   '20': [
-    { from: 'JR Kyoto Station', to: 'JR Nara Station', note: 'קיוטו → נארה', line: 'JR Nara Line', time: '~45 דק׳', cost: '¥720' },
-    { from: 'JR Nara Station', to: 'JR Kyoto Station', note: 'נארה → קיוטו', line: 'JR Nara Line', time: '~45 דק׳', cost: '¥720' }
+    { from: 'Hotel Monterey Kyoto', to: 'Karasuma Oike Station', note: 'יציאה מהמלון והליכה לתחנה', line: 'רגלי', time: '~10 דק׳', cost: '—' },
+    { from: 'Karasuma Oike Station', to: 'Kyoto Station', note: 'נסיעת מטרו קצרה לתחנת הרכבת הראשית', line: 'Subway (Karasuma Line)', time: '~15 דק׳', cost: '¥220' },
+    { from: 'Kyoto Station', to: 'Nara Station', note: 'נסיעה לנארה', line: 'JR Nara Line', time: '~40 דק׳', cost: '¥720' },
+    { from: 'Naramachi', to: 'Nara Station', note: 'הליכה לתחנה לקראת החזרה', line: 'רגלי', time: '~15 דק׳', cost: '—' },
+    { from: 'Nara Station', to: 'Kyoto Station', note: 'חזרה לקיוטו', line: 'JR Nara Line', time: '~45 דק׳', cost: '¥720' },
+    { from: 'Kyoto Station', to: 'Hotel Monterey Kyoto', note: 'מטרו חזרה למלון', line: 'Subway (Karasuma Line)', time: '~15 דק׳', cost: '¥220' },
+    { from: 'Hotel Monterey Kyoto', to: 'Kiyamachi & Pontocho', note: 'הליכה לערב באזור הנהר והסמטאות', line: 'רגלי', time: '~15–20 דק׳', cost: '—' }
   ],
   '19': [
-    { from: 'Hotel Monterey Kyoto', to: 'Eikandō Temple', note: 'יציאה בבוקר ברכבת תחתית + הליכה קצרה', line: 'מטרו + רגלי', time: '~15 דק׳', cost: '¥220–260' },
-    { from: 'Eikandō Temple', to: 'Nanzen-ji Temple', note: 'מעבר קצר בין המקדשים', line: 'רגלי', time: '~10 דק׳', cost: '—' },
-    { from: 'Nanzen-ji Temple', to: 'Kiyomizu-dera', note: 'המשך ישיר לאזור היגשיאמה', line: 'מונית', time: '~15 דק׳', cost: '¥1,200–1,800' },
-    { from: 'Yasaka Pagoda', to: 'Teramachi + Shijo Kawaramachi', note: 'מעבר לקניות אחה"צ', line: 'רגלי', time: '~15–20 דק׳', cost: '—' },
-    { from: 'Shijo Kawaramachi', to: 'Hotel Monterey Kyoto', note: 'חזרה למלון למנוחה קצרה', line: 'רגלי / מטרו', time: '~10–15 דק׳', cost: '¥0–220' }
+    { from: 'Eikandō Temple', to: 'Kiyomizu-dera', note: 'אחרי Eikandō אפשר ללכת רגלי או במונית/אוטובוס', line: 'אוטובוס 5 או 100', time: '~10–15 דק׳', cost: '¥230' },
+    { from: 'Shijo Kawaramachi', to: 'Hotel Monterey Kyoto', note: 'חזרה למלון', line: 'רכבת: Hankyu Kyoto Line · Kawaramachi → Karasuma', time: '~5 דק׳', cost: '¥140' }
   ],
   '21': [
     { from: 'Kyoto Station', to: 'Shin-Osaka Station', note: 'שינקנסן – JR Tokaido/Kyoto Line', line: 'שינקנסן JR', time: '~30 דק׳', cost: '¥1,490' },
@@ -1018,12 +1020,12 @@ const routeNotesPresets = {
     tips: 'Teramachi Shopping Arcade פתוח עד 20:00, חלק מהחנויות והמסעדות עד 21:00. Pontocho Alley יפהפה במיוחד בערב, השעה הכי טובה לארוחת ערב 18:00-20:00. מומלץ להזמין מקום מראש במסעדות פופולריות, במיוחד אם רוצים לנסות מטבח קייסקי או וואגיו.'
   },
   '20': {
-    overview: 'יום שלם בנארה – עיר הבירה העתיקה של יפן: מקדש טודאי-ג\'י עם הבודהה הגדול, פארק האיילים, קסוגה טאישה, קופוקו-ג\'י והעיר העתיקה נארה-מאצ\'י, ובחזרה לקיוטו לערב חופשי.',
-    tips: 'המקדשים פתוחים 6:00–18:00. הביאו קרקרים מיוחדים (shika senbei) להאכלת האיילים ואל תאכילו אותם במזון אחר. נעליים נוחות – הרבה הליכה. בערב מומלץ לשריין מקום מראש במסעדה ב-Kiyamachi/Pontocho.'
+    overview: 'יום מלא בנארה: יציאה מוקדמת מקיוטו דרך Karasuma Oike ו-Kyoto Station, ביקור ב-Todai-ji, Nara Park, Kasuga Taisha, Kofuku-ji ו-Naramachi, חזרה לקיוטו למנוחה קצרה ואז ערב ב-Kiyamachi וב-Pontocho.',
+    tips: 'השתמשו בכרטיס IC למטרו ול-JR, קחו נעליים נוחות להליכה, והביאו מזומן קטן לקרקרים לאיילים (shika senbei). בערב מומלץ להגיע לפונטוצ׳ו סביב 19:00 להזמנת מקום נוחה יותר.'
   },
   '19': {
-    overview: 'יום קיוטו קלאסי בהיגשיאמה: Eikandō, Nanzen-ji ו-Kiyomizu-dera בשעות הבוקר, שיטוט היסטורי ברחובות Ninenzaka/Sannenzaka, קניות אחר הצהריים ב-Teramachi וב-Shijo Kawaramachi, וסיום ערב ב-Pontocho/Kiyamachi.',
-    tips: 'מומלץ לצאת מוקדם למקדשים, לקחת מונית קצרה מ-Nanzen-ji ל-Kiyomizu, ולהגיע לפונטוצ׳ו סביב 19:00 לאווירה מצוינת ולזמינות טובה יותר במסעדות.'
+    overview: 'היום — יום של איזון בין המסורת לקיוטו המודרנית: מקדשים בבוקר, שופינג בצהריים, מנוחה במלון וערב של ברים!',
+    tips: 'צאו בזמן, בדקו כתובות מראש, ושמרו צילום מסך של הניווט.'
   },
   '21': {
     overview: 'יום מעבר מקיוטו לאוסקה: שוק נישיקי בבוקר, שינקנסן, תצפית מ-Umeda Sky Building, שופינג ב-Namba ולסיום ארוחת Wagyu מושלמת!',
@@ -1166,77 +1168,66 @@ const data = {
     ["10:30<br>12:00","Oshino Hakkai","כפר מסורתי עם שמונה בריכות מים צלולות משלג של הר פוג'י.","assets/attractions/day16/oshino.jpg","Oshino Hakkai"],
     ["12:15<br>13:15","Lake Kawaguchi – מסדרון המייפל","טיול לאורך שדרת עצי מייפל בשלבי הסתיו, עם נוף לאגם קוואגוצ'י.","assets/attractions/day16/maple.jpg","Lake Kawaguchi Maple Corridor"],
     ["13:15<br>14:15","ארוחת צהריים","אודון/הוטו מקומי לפני המעבר לנגויה.","assets/attractions/day16/lunch.jpg","Kawaguchiko restaurants"],
-    ["14:30<br>16:20","נסיעה לנגויה","מעבר באוטובוס ל-Mishima ומשם בשינקנסן היקארי לנגויה.","assets/transfers/train.jpg","Nagoya Station"],
+    ["14:30<br>16:20","נסיעה לנגויה","מעבר באוטובוס ל-Mishima ומשם בשינקנסן היקארי לנגויה.","assets/attractions/day16/transfer.jpg","Nagoya Station"],
     ["16:30<br>17:00","צ'ק-אין במלון","התארגות ב-Nagoya JR Gate Tower Hotel סמוך לתחנת רכבת ה-JR.","assets/attractions/day16/checkin.jpg","Nagoya JR Gate Tower Hotel"],
     ["17:30<br>22:00","ערב חופשי בסאקאע","טיול ברובע Sakae, קניות וארוחת ערב במסעדות האזור.","assets/attractions/day16/evening.jpg","Sakae Nagoya"]
   ]},
-  '17': { title:"נגויה → קיוטו", route:"Toyota Kaikan → שינקנסן → To-ji → Nishiki Market → Teramachi → Hotel Monterey", events:[
+  '17': { title:"נגויה → קיוטו", route:"Toyota Kaikan → שינקנסן → Gion", events:[
     ["08:20<br>11:30","Toyota Kaikan Museum","מוזיאון טויוטה – היסטורית החברה, רכבי קונספט וטכנולוגיות ייצור.","assets/attractions/day17/toyota.jpg","Toyota Kaikan Museum"],
-    ["12:00<br>13:00","שינקנסן לקיוטו","נסיעה בשינקנסן היקארי מנגויה לקיוטו.","assets/transfers/train.jpg","Kyoto Station","🚄 Hikari · ~35 דק'"],
-    ["13:00<br>13:40","ארוחת צהריים – Kyoto Station","ארוחת צהריים בתחנת קיוטו – מגוון מסעדות איכותיות ב-Isetan (קומה 11) ובמסדרון Cube ממש בתחנה","assets/attractions/day17/shinkansen.jpg","Kyoto Station"],
-    ["13:45<br>14:00","🚶 הליכה: Kyoto Station → To-ji Temple","הליכה של ~15 דק' דרומה (כ-1.5 ק\"מ) לעבר מקדש טו-ג'י","assets/transfers/walk.jpg","To-ji Temple Kyoto","🚶 הליכה · ~15 דק'"],
-    ["14:00<br>15:15","To-ji Temple (東寺)","מקדש בודהיסטי עתיק עם הפגודה הגבוהה ביותר ביפן (55 מ') – אחד הסמלים המיתיים של קיוטו","assets/attractions/day18/tenryuji.jpg","To-ji Temple Kyoto"],
-    ["15:15<br>15:45","🚕 מעבר מ-To-ji אל Nishiki Market","אוטובוס 207 (Toji → Shijo Karasuma, ~15 דק') או מונית (~$8-10 לרכב). שוק ניישיקי צמוד לרדת מהאוטובוס","assets/transfers/taxi.jpg","Nishiki Market Kyoto","🚌 אוטובוס 207 · ~15 דק'"],
-    ["15:45<br>16:45","Nishiki Market (錦市場)","שוק האוכל המפורסם של קיוטו – 'המטבח של קיוטו'. דגי ים, ממתקים, טעימות ומעדנים מסורתיים","assets/attractions/day21/nishiki.jpg","Nishiki Market Kyoto"],
-    ["16:45<br>18:15","Teramachi & Shinkyogoku Arcade","גלריות קניות מקורות עתיקות (ממש לידו של ניישיקי) – חנויות מזכרות, ממתקים, בגדים ואווירת קיוטו מסורתית","assets/attractions/day17/teramachi.jpg","Teramachi Shopping Arcade Kyoto"],
-    ["18:15","צ'ק-אין – Hotel Monterey Kyoto","התארגות ב-Hotel Monterey Kyoto ומנוחה קצרה לפני הערב","assets/attractions/day17/hotel.jpg","Hotel Monterey Kyoto"],
-    ["19:30<br>21:00","Pontocho Alley – ארוחת ערב","סמטה עתיקה מוארת פנסים לאורך נהר קאמו. 🚶 ~10 דק' הליכה מהמלון","assets/attractions/day17/pontocho.jpg","Pontocho Alley Kyoto"],
-    ["21:00<br>21:30","חזרה למלון","חזרה רגלית למלון. 🚶 ~15-20 דק' הליכה.","assets/attractions/day17/return.jpg","Hotel Monterey Kyoto"]
+    ["12:00<br>13:00","שינקנסן לקיוטו","נסיעה בשינקנסן היקארי מנגויה לקיוטו.","assets/attractions/day17/shinkansen.jpg","Kyoto Station"],
+    ["13:00<br>15:30","צ'ק-אין במלון","התארגות ב-Hotel Monterey Kyoto ומנוחה קצרה לפני הערב.","assets/attractions/day17/hotel.jpg","Hotel Monterey Kyoto"],
+    ["17:00<br>18:30","Teramachi Shopping Arcade","טיילת קניות מקורה עם גג עץ. 🚶 ~10 דק' הליכה מהמלון (900 מ').","assets/attractions/day17/teramachi.jpg","Teramachi Shopping Arcade Kyoto"],
+    ["18:35<br>20:30","Pontocho Alley – ארוחת ערב","סמטה עתיקה מוארת פנסים לאורך נהר קאמו. 🚶 ~5 דק' הליכה מ-Teramachi (350 מ').","assets/attractions/day17/pontocho.jpg","Pontocho Alley Kyoto"],
+    ["20:30<br>21:00","חזרה למלון","חזרה רגלית למלון. 🚶 ~15-20 דק' הליכה.","assets/attractions/day17/return.jpg","Hotel Monterey Kyoto"]
   ]},
-  '18': { title:"קיוטו – טיול מודרך", route:"Fushimi Inari → Arashiyama → Tenryu-ji → Kinkaku-ji → Ryoan-ji → Nijo Castle → Gion", events:[
-    ["08:30<br>09:00","🚕 מעבר מהמלון אל Fushimi Inari","2 מוניות מ-Hotel Monterey Kyoto לתחנת Inari (~3.5 ק\"מ, כ-15-20 דק'). מומלץ לבקש מהמלון ביום שלפני. עלות: כ-$16-20 סה\"כ לקבוצה (~$3 לאדם)","assets/transfers/taxi.jpg","Hotel Monterey Kyoto","🚕 2 מוניות · ~20 דק' · ~$16-20"],
-    ["09:00<br>09:50","Fushimi Inari Taisha","טיול עצמי בשערי הטוריי האדומים התחתונים – פוטוגניים ומרהיבים. אין צורך לטפס להר","assets/attractions/day18/fushimi.jpg","Fushimi Inari Taisha"],
-    ["09:50<br>10:30","🚕 מעבר מ-Fushimi Inari אל Arashiyama","2 מוניות דרך GO Taxi / Uber מהכניסה לציר (~16 ק\"מ, כ-30-40 דק'). מסלול ישיר חוצה את דרום קיוטו. עלות: כ-$46-60 סה\"כ לקבוצה (~$7-9 לאדם)","assets/transfers/taxi.jpg","Arashiyama Bamboo Grove","🚕 2 מוניות · ~35 דק' · ~$46-60"],
-    ["","__SECTION__","👤 פגישה עם המדריך – אראשיאמה","",""],
-    ["10:30<br>11:15","פגישה עם המדריך + Arashiyama Bamboo Grove","מפגש עם המדריך בכניסה ליער הבמבוק הקסום – אחד המקומות האטמוספריים ביותר בקיוטו","assets/attractions/day18/bamboo.jpg","Arashiyama Bamboo Grove"],
-    ["11:15<br>11:45","Togetsukyo Bridge + רחובות ישנים","גשר הירח מעל נהר הוי + טיול ברחובות הישנים עם בתי תה ואווירת קיוטו מסורתית","assets/attractions/day18/bamboo.jpg","Togetsukyo Bridge Arashiyama"],
-    ["11:45<br>12:30","Tenryu-ji Temple","מקדש זן מרהיב עם גן מורשת עולמית של אונסקו","assets/attractions/day18/tenryuji.jpg","Tenryu-ji Temple"],
-    ["12:30<br>13:30","ארוחת צהריים","מומלץ לטעום מטבח מקומי באראשיאמה: סובה, אודון או קייסקי (תזמון מצוין לקבוצה של 7)","assets/attractions/day18/lunch.jpg","Arashiyama restaurants"],
-    ["","__SECTION__","🏛️ קיוטו הצפוני – Kinkaku-ji & Ryoan-ji","",""],
-    ["13:30<br>13:50","🚕 מעבר מ-Arashiyama אל Kinkaku-ji","2 מוניות דרך GO Taxi / Uber (~5-6 ק\"מ, כ-15-20 דק'). עלות: כ-$20-26 סה\"כ לקבוצה (~$3-4 לאדם)","assets/transfers/taxi.jpg","Kinkaku-ji Golden Pavilion","🚕 2 מוניות · ~15 דק' · ~$20-26"],
-    ["13:50<br>14:35","Kinkaku-ji (הפביליון הזהוב)","אחד המקדשים המפורסמים בקיוטו, מצופה עלי זהב ומוקף בגן מסורתי יפהפה","assets/attractions/day18/kinkakuji.jpg","Kinkaku-ji Golden Pavilion"],
-    ["14:35<br>14:50","🚶 מעבר מ-Kinkaku-ji אל Ryoan-ji","הליכה נוחה של כ-15-20 דק' (כ-1.5 ק\"מ). חינם, נעים ומחסך מונית נוספת","assets/transfers/walk.jpg","Ryoan-ji Temple Kyoto","🚶 הליכה · ~15-20 דק' · חינם"],
-    ["14:50<br>15:35","Ryoan-ji Temple","מקדש זן בודהיסטי עם גן האבנים היבש המפורסם – סמל לפילוסופיית הזן","assets/attractions/day18/ryoanji.jpg","Ryoan-ji Temple"],
-    ["","__SECTION__","🏯 קיוטו ההיסטורית – Nijo Castle","",""],
-    ["15:35<br>16:00","🚕 מעבר מ-Ryoan-ji אל Nijo Castle","2 מוניות דרך GO Taxi / Uber (~4 ק\"מ, כ-10-15 דק'). עלות: כ-$16-24 סה\"כ לקבוצה (~$2-3 לאדם)","assets/transfers/taxi.jpg","Nijo Castle Kyoto","🚕 2 מוניות · ~15 דק' · ~$16-24"],
-    ["16:00<br>17:45","Nijo Castle (טירת ניג'ו)","המקום שבו המדריך מביא את הערך הגדול ביותר: היסטוריית השוגון, מרצפות הציוצות וסוף עידן הסמוראים. מומלץ לקנות כרטיסים מראש באתר הרשמי","assets/attractions/day18/ryoanji.jpg","Nijo Castle Kyoto"],
-    ["17:45<br>18:00","🚕 מעבר מ-Nijo Castle אל Gion","2 מוניות GO Taxi / Uber (~3 ק\"מ, כ-10-15 דק'). עלות: כ-$13-20 סה\"כ לקבוצה (~$2-3 לאדם)","assets/transfers/taxi.jpg","Gion District Kyoto","🚕 2 מוניות · ~15 דק' · ~$13-20"],
-    ["","__SECTION__","🏮 ערב – Gion","",""],
-    ["18:00<br>20:00","🏮 רובע גיון","טיול עם המדריך ברובע ההיסטורי גיון – רחוב הנמיקוג'י, אווירת קיוטו המסורתית, תאורת ערב ואפשרות לפגוש גיישות","assets/attractions/day18/gion.jpg","Gion District Kyoto"]
+  '18': { title:"קיוטו – טיול מודרך", route:"Fushimi Inari → Bamboo Grove → Tenryu-ji → Ryoan-ji → Kinkaku-ji → Gion", events:[
+    ["10:00","פגישה עם המדריך","מפגש עם מדריך דובר רוסית בלובי המלון, הכרות ותיאום התוכנית ליום","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
+    ["10:10<br>11:45","Fushimi Inari Taisha","מקדש מפורסם עם אלפי שערי טוריי אדומים, היסטוריה, מסורת ונוף מרהיב על קיוטו","assets/attractions/day18/fushimi.jpg","Fushimi Inari Taisha"],
+    ["11:45<br>12:30","Arashiyama Bamboo Grove","טיול ביער הבמבוק הקסום – אחד המקומות האטמוספריים ביותר בקיוטו","assets/attractions/day18/bamboo.jpg","Arashiyama Bamboo Grove"],
+    ["12:30<br>13:10","Tenryu-ji Temple","מקדש זן מרהיב וגן מורשת עולמית של אונסק\"ו","assets/attractions/day18/tenryuji.jpg","Tenryu-ji Temple"],
+    ["13:10<br>14:00","ארוחת צהריים","מומלץ לטעום מטבח מקומי באראשיאמה: סובה, אודון או קייסקי","assets/attractions/day18/lunch.jpg","Arashiyama restaurants"],
+    ["15:00<br>15:45","Ryoan-ji Temple","מקדש זן בודהיסטי עם גן האבנים היבש המפורסם – סמל לפילוסופיית הזן","assets/attractions/day18/ryoanji.jpg","Ryoan-ji Temple"],
+    ["16:00<br>17:00","Kinkaku-ji (הפביליון הזהוב)","אחד המקדשים המפורסמים בקיוטו, מצופה עלי זהב","assets/attractions/day18/kinkakuji.jpg","Kinkaku-ji Golden Pavilion"],
+    ["17:00<br>19:00","רובע גיון","טיול עם המדריך ברובע ההיסטורי גיון – מקדש יאסקה, בתי גיישה, סמטאות עתיקות ואווירה קסומה","assets/attractions/day18/gion.jpg","Gion District Kyoto"],
+    ["19:00<br>19:30","חזרה למלון","חזרה למלון מונטריי קיוטו. מומלץ לנוח ואז לצאת לבר ערב","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
   ]},
-  '19': { title:"קיוטו – היגשיאמה, מקדשים וקניות", route:"Hotel Monterey → Eikandō → Nanzen-ji → Kiyomizu-dera → Ninenzaka/Sannenzaka → Yasaka → Teramachi/Shijo → Pontocho", events:[
-    ["08:45<br>09:00","יציאה מהמלון לכיוון Eikandō (永観堂)","נסיעה במטרו והליכה קצרה אל אזור המקדש","assets/transfers/train.jpg","Eikando Temple Kyoto","🚇 מטרו + 🚶 הליכה קצרה"],
-    ["09:00<br>10:15","ביקור ב־Eikandō (永観堂)","מקדש בודהיסטי יפהפה עם גנים מטופחים ואווירת בוקר רגועה","assets/attractions/day19/eikando.jpg","Eikando Temple Kyoto"],
-    ["10:15<br>10:25","הליכה ל־Nanzen-ji (南禅寺)","מעבר רגלי קצר בין האתרים באזור","assets/transfers/walk.jpg","Nanzen-ji Temple Kyoto","🚶 כ-10 דק׳"],
-    ["10:25<br>11:10","ביקור ב־Nanzen-ji (南禅寺)","כולל סיור במקדש ובאקוודוקט ההיסטורי","assets/attractions/day19/eikando.jpg","Nanzen-ji Temple Kyoto"],
-    ["11:10<br>11:25","מעבר ל־Kiyomizu-dera (清水寺)","נסיעה קצרה במונית לאזור היגשיאמה","assets/transfers/taxi.jpg","Kiyomizu-dera","🚖 מונית · כ-15 דק׳"],
-    ["11:25<br>12:40","ביקור ב־Kiyomizu-dera (清水寺)","מקדש אייקוני עם מרפסת העץ המפורסמת ותצפיות מרהיבות על קיוטו","assets/attractions/day19/kiyomizu.jpg","Kiyomizu-dera"],
-    ["12:40<br>13:20","שיטוט ב־Ninenzaka (二年坂) ו־Sannenzaka (三年坂)","רחובות היסטוריים עם חנויות, בתי תה ונקודות צילום יפות","assets/attractions/day19/sannenzaka.jpg","Sannenzaka Ninenzaka Kyoto","🚶 מעבר רגלי"],
-    ["13:20<br>13:35","Yasaka Pagoda / Hōkan-ji (八坂の塔・法観寺)","תצפית וצילומים ליד הפגודה האייקונית של היגשיאמה","assets/attractions/day19/yasaka.jpg","Yasaka Pagoda Hokanji","🚶 הליכה קצרה"],
-    ["13:35<br>14:30","ארוחת צהריים באזור היגשיאמה","הפסקת צהריים רגועה לפני המשך הטיול והקניות","assets/attractions/day19/lunch.jpg","Higashiyama Kyoto"],
-    ["14:30<br>15:30","שיטוט רגוע באזור Higashiyama (東山)","בתי קפה וחנויות מסורתיות לאורך הסמטאות באזור","assets/attractions/day19/sannenzaka.jpg","Higashiyama Kyoto","🚶"],
-    ["15:30<br>17:00","קניות: Teramachi Shopping Arcade + Shijo Kawaramachi","זמן קניות חופשי באזור המסחרי המרכזי של קיוטו","assets/attractions/day19/shijo.jpg","Teramachi Shopping Arcade Kyoto","🚶"],
-    ["17:00","חזרה למלון Hotel Monterey Kyoto","מנוחה קצרה והתארגנות לערב","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
-    ["19:00 ואילך","ערב ב־Pontocho (先斗町) ו־Kiyamachi (木屋町通)","ארוחת ערב ובילוי בברים לאורך הסמטאות ותעלת המים","assets/attractions/day19/kiyamachi.jpg","Pontocho Kyoto"]
+  '19': { title:"קיוטו – מקדשים, שופינג וברים", route:"Eikandō → Kiyomizu-dera → Gion → Shijo → Pontocho", events:[
+    ["09:00<br>10:00","Eikandō Temple (永観堂)","מקדש בודהיסטי מהיפים בקיוטו, מפורסם בעלי השלכת האדומים","assets/attractions/day19/eikando.jpg","Eikando Temple Kyoto"],
+    ["10:15<br>10:45","Kiyomizu-dera","מקדש ההרים עם מרפסת העץ והנוף לקיוטו","assets/attractions/day19/kiyomizu.jpg","Kiyomizu-dera"],
+    ["10:45<br>11:45","Sannenzaka + Ninenzaka","סמטאות מדרגות עתיקות עם חנויות ובתי תה","assets/attractions/day19/sannenzaka.jpg","Sannenzaka Ninenzaka Kyoto"],
+    ["11:45<br>12:05","Yasaka Pagoda (Hōkan-ji)","פגודה בת חמש קומות בלב גיון","assets/attractions/day19/yasaka.jpg","Yasaka Pagoda Hokanji"],
+    ["12:15<br>13:15","ארוחת צהריים","הפסקת אוכל בגיון או בשיג'ו קוואראמאצ'י","assets/attractions/day19/lunch.jpg","Gion Kyoto"],
+    ["13:30<br>17:30","Shijo Kawaramachi","רובע הקניות המרכזי של קיוטו","assets/attractions/day19/shijo.jpg","Shijo Kawaramachi Kyoto"],
+    ["18:00","חזרה למלון","מנוחה קצרה לפני יציאה לערב","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
+    ["","__SECTION__","🍸 ערב: ברים וארוחת ערב","",""],
+    ["19:00<br>19:30","Kiyamachi & Pontocho","טיול ערב בסמטאות לאורך תעלת המים","assets/attractions/day19/kiyamachi.jpg","Pontocho Kyoto"],
+    ["19:30<br>20:30","L'Escamoteur Bar","בר קוקטיילים אווירתי בסגנון קסמים","assets/attractions/day19/escamoteur.jpg","L'Escamoteur Bar Kyoto"],
+    ["20:30<br>21:10","ארוחת ערב","ארוחה בפונטוצ'ו או קיאמאצ'י","assets/attractions/day19/dinner.jpg","Pontocho Kyoto"],
+    ["21:10<br>22:15","Turquoise Bar","בר קוקטיילים לסיום הערב","assets/attractions/day19/turquoise.jpg","Turquoise Bar Kyoto"],
+    ["22:15~","חזרה למלון","סיום יום 6 בקיוטו","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
   ]},
-  '20': { title:"נארה – יום מלא", route:"Todai-ji → Nara Park → Kasuga Taisha → Kofuku-ji → Nara Machi → Kyoto", events:[
-    ["07:55","יציאה מהמלון Monterey Kyoto","צ'ק-אאוט וכבודה – יוצאים לתחנה לפני עלות הרכבת","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
-    ["08:20<br>09:00","🚄 JR Miyakoji Express: קיוטו → נארה","רכבת JR Miyakoji Express מתחנת Kyoto Station לתחנת Nara Station – ~40 דק', נוף כפרי נפלא בדרך","assets/attractions/day20/train.jpg","JR Kyoto Station","🚆 JR Miyakoji Express · ~40 דק' · ¥720"],
+  '20': { title:"נארה – יום מלא וחזרה לערב בקיוטו", route:"Hotel Monterey → Karasuma Oike → Kyoto Station → Nara (Todai-ji, Nara Park, Kasuga, Kofuku-ji, Naramachi) → Kyoto → Pontocho", events:[
+    ["07:50","יציאה מ-Hotel Monterey Kyoto","הליכה לתחנת Karasuma Oike לקראת הנסיעה לנארה","assets/transfers/walk.jpg","Karasuma Oike Station Kyoto","🚶 הליכה לתחנה"],
+    ["08:00<br>08:15","Karasuma Oike → Kyoto Station","נסיעת מטרו קצרה לתחנת קיוטו","assets/transfers/train.jpg","Kyoto Station","🚇 Subway"],
+    ["08:15<br>08:55","Kyoto Station → Nara Station","רכבת JR Nara Line מקיוטו לנארה","assets/attractions/day20/train.jpg","JR Nara Station","🚆 JR Nara Line"],
     ["09:00<br>10:00","Todai-ji (מקדש טודאי-ג'י)","המקדש הראשי של נארה ואחד המבנים העצי הגדולים בעולם. כאן נמצא הבודהה הגדול (דאיבוטסו)","assets/attractions/day20/todaiji.jpg","Todai-ji Nara"],
     ["10:00<br>11:30","Nara Park (פארק נארה)","פארק יפהפה עם מאות איילים ידידותיים המשוטטים חופשי ואוכלים קרקרים מיוחדים","assets/attractions/day20/narapark.jpg","Nara Park"],
     ["11:30<br>13:00","Kasuga Taisha (קסוגה טאישה)","מקדש שינטו מפורסם עם אלפי פנסי אבן וברונזה, מוקף ביער","assets/attractions/day20/kasuga.jpg","Kasuga Taisha"],
     ["13:00<br>14:00","ארוחת צהריים","מומלץ לטעום מטבח מקומי: אודון, סובה, קארי יפני או סט טישוקו","assets/attractions/day20/lunch.jpg","Nara restaurants"],
     ["14:00<br>15:00","Kofuku-ji (מקדש קופוקו-ג'י)","קומפלקס מקדשים היסטורי עם פגודה ומוזיאון לאמנות בודהיסטית","assets/attractions/day20/kofukuji.jpg","Kofuku-ji Nara"],
-    ["15:00<br>16:00","Nara Machi (העיר העתיקה)","טיול ברובע ההיסטורי עם בתים מסורתיים, חנויות מזכרות וממתקים","assets/attractions/day20/naramachi.jpg","Naramachi"],
-    ["16:00<br>17:00","חזרה לקיוטו","רכבת JR Nara Line – הדרך הנוחה והמהירה ביותר לחזור לקיוטו","assets/attractions/day20/train.jpg","JR Nara Station"],
-    ["","__SECTION__","🍶 ערב: ארוחת ערב וברים (לפי רצון)","",""],
-    ["19:00<br>19:30","Kiyamachi & Pontocho","הטיילת הטובה ביותר לארוחת ערב ובארים בקיוטו, אווירת סמטאות מסורתיות","assets/attractions/day19/kiyamachi.jpg","Pontocho Kyoto"],
-    ["19:30<br>20:30","ארוחת ערב","מומלץ לאכול בפונטוצ'ו או קיאמאצ'י: וואגיו, סושי, יאקיטורי ומנות יפניות נוספות","assets/attractions/day19/dinner.jpg","Pontocho Kyoto"],
-    ["20:30~","חזרה למלון","מונית (~10-15 דק') או הליכה (~20 דק') ברחובות הלילה היפים","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
+    ["15:00<br>16:00","Naramachi (ならまち)","טיול ברובע ההיסטורי עם בתים מסורתיים, חנויות מזכרות וממתקים","assets/attractions/day20/naramachi.jpg","Naramachi"],
+    ["16:00<br>16:15","הליכה לתחנת Nara","מעבר רגלי קצר לסיום היום בנארה","assets/transfers/walk.jpg","Nara Station","🚶 הליכה"],
+    ["16:15<br>17:00","Nara → Kyoto Station","רכבת JR בחזרה לקיוטו","assets/attractions/day20/train.jpg","Kyoto Station","🚆 JR Nara Line"],
+    ["17:00<br>17:15","Kyoto Station → Hotel Monterey Kyoto","נסיעת מטרו קצרה וחזרה למלון","assets/transfers/train.jpg","Hotel Monterey Kyoto","🚇 Subway"],
+    ["17:15<br>19:00","מנוחה במלון / התארגנות","זמן חופשי למנוחה לפני יציאה לערב","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
+    ["","__SECTION__","🍶 ערב בקיוטו – אוכל וסמטאות","",""],
+    ["19:00<br>19:30","Kiyamachi & Pontocho","הליכה מהמלון (כ-15–20 דק׳) ובילוי ערב בסמטאות המסורתיות לאורך הנהר","assets/attractions/day19/kiyamachi.jpg","Pontocho Kyoto","🚶 ~15–20 דק׳"],
+    ["19:30<br>20:30","ארוחת ערב אחרונה בקיוטו","מומלץ לאכול בפונטוצ'ו או בקיאמאצ'י: וואגיו, סושי, יאקיטורי ומנות יפניות נוספות","assets/attractions/day19/dinner.jpg","Pontocho Kyoto"],
+    ["20:30~","חזרה למלון","הליכה נעימה ברחובות הערב או מונית קצרה לפי הצורך","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
   ]},
   '21': { title:"קיוטו → אוסקה – מודרניות, קניות וגסטרונומיה", route:"Nishiki Market → Shinkansen → Umeda Sky Building → Grand Green → Namba City → Namba Parks → Wagyu", events:[
     ["08:00<br>09:30","Nishiki Market (錦市場)","שוק האוכל המפורסם של קיוטו – 'המטבח של קיוטו'. פירות ים, ממתקים יפניים, חומץ מתוקן וסושי טרי","assets/attractions/day21/nishiki.jpg","Nishiki Market Kyoto"],
-    ["10:00<br>10:30","נסיעה: קיוטו → אוסקה","שינקנסן JR Tokaido/Kyoto Line מתחנת Kyoto → Shin-Osaka. ~30 דקות","assets/transfers/train.jpg","Kyoto Station"],
+    ["10:00<br>10:30","נסיעה: קיוטו → אוסקה","שינקנסן JR Tokaido/Kyoto Line מתחנת Kyoto → Shin-Osaka. ~30 דקות","assets/attractions/day21/transfer.jpg","Kyoto Station"],
     ["10:30<br>11:00","הגעה לאוסקה","הגעה לתחנת Shin-Osaka, מעבר לאזור Umeda. אחסון מזוודות בלוקרים","assets/attractions/day21/arrival.jpg","Shin-Osaka Station"],
     ["11:15<br>12:45","Umeda Sky Building","מבנה ארכיטקטורי מרשים עם פלטפורמת תצפית פנורמית ב-173 מטר גובה","assets/attractions/day21/umeda_sky.jpg","Umeda Sky Building Osaka"],
     ["12:45<br>13:45","Grand Green Osaka","פארק עירוני מודרני עם חנויות ומסעדות. פתוח 24/7","assets/attractions/day21/grand_green.jpg","Grand Green Osaka"],
@@ -2553,41 +2544,6 @@ function renderDayBanner(day){
     </div>`;
 }
 
-// Add a balanced line break to long event titles while avoiding tiny orphan endings.
-function formatTimelineTitle(title){
-  const raw = String(title || '').trim();
-  if (!raw) return '';
-  const words = raw.split(/\s+/).filter(Boolean);
-  if (words.length < 3 || raw.length < 22) return escapeHtml(raw);
-
-  const cleanToken = (token) => token.replace(/[()\[\]{}.,:;!?"'׳״/\\-]+/g, '');
-  let bestIndex = -1;
-  let bestScore = Number.POSITIVE_INFINITY;
-
-  for (let i = 1; i < words.length; i++) {
-    const left = words.slice(0, i).join(' ');
-    const rightWords = words.slice(i);
-    const right = rightWords.join(' ');
-    if (!right) continue;
-
-    const rightLastWord = cleanToken(rightWords[rightWords.length - 1]);
-    if (right.length < 5) continue;
-    if (rightWords.length === 1 && rightLastWord.length <= 2) continue;
-    if (rightLastWord.length <= 2) continue;
-
-    const score = Math.abs(left.length - right.length);
-    if (score < bestScore) {
-      bestScore = score;
-      bestIndex = i;
-    }
-  }
-
-  if (bestIndex === -1) return escapeHtml(raw);
-  const left = words.slice(0, bestIndex).join(' ');
-  const right = words.slice(bestIndex).join(' ');
-  return `${escapeHtml(left)}<br>${escapeHtml(right)}`;
-}
-
 function render(day){
   if (!data[day]) return;
   if (isRouteNotesEditing) saveCurrentRouteNotes();
@@ -2717,12 +2673,10 @@ function render(day){
     const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
     const transitNote = e[5] ? `<div class="event-transit">${e[5]}</div>` : '';
     const timeDisplay = e[0].replace('<br>',' – ');
-    const titleHtml = formatTimelineTitle(e[1]);
-    const safeTitle = escapeHtml(e[1]);
     tl.innerHTML += `<div class="item"><div class="event">
-      <a class="event-img-nav" target="_blank" href="${link}"><img src="${e[3]}" alt="${safeTitle}"><span class="time-badge">${timeDisplay}</span></a>
+      <a class="event-img-nav" target="_blank" href="${link}"><img src="${e[3]}" alt="${e[1]}"><span class="time-badge">${timeDisplay}</span></a>
       <div class="event-content">
-        <h3>${titleHtml}</h3>
+        <h3>${e[1]}</h3>
         <div class="event-desc">${eventDescription}</div>
         ${transitNote}
       </div>
