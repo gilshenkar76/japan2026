@@ -989,9 +989,13 @@ const transitByDay = {
     { from: 'Shijo Kawaramachi', to: 'Hotel Monterey Kyoto', note: 'חזרה למלון', line: 'רכבת: Hankyu Kyoto Line · Kawaramachi → Karasuma', time: '~5 דק׳', cost: '¥140' }
   ],
   '21': [
-    { from: 'Kyoto Station', to: 'Shin-Osaka Station', note: 'שינקנסן – JR Tokaido/Kyoto Line', line: 'שינקנסן JR', time: '~30 דק׳', cost: '¥1,490' },
-    { from: 'Shin-Osaka', to: 'Umeda', note: 'מטרו – Midosuji Line', line: 'Osaka Metro Midosuji Line', time: '~20 דק׳', cost: '¥240' },
-    { from: 'Umeda', to: 'Namba', note: 'מטרו – Midosuji Line', line: 'Osaka Metro Midosuji Line', time: '~15 דק׳', cost: '¥240' }
+    { from: 'Hotel Monterey Kyoto', to: 'Nishiki Market', note: 'הליכה בוקר מהמלון', line: 'רגלי', time: '~15 דק׳', cost: '—' },
+    { from: 'Nishiki Market', to: 'Shijo Station', note: 'הליכה קצרה לתחנת שיג׳ו', line: 'רגלי', time: '~10 דק׳', cost: '—' },
+    { from: 'Shijo Station', to: 'Kyoto Station', note: 'מעבר עירוני קצר', line: 'Karasuma Line (Subway)', time: '~5 דק׳', cost: '¥220' },
+    { from: 'Kyoto Station', to: 'Shin-Osaka', note: 'שינקנסן לקראת הכניסה לאוסקה', line: 'Shinkansen', time: '~15 דק׳', cost: '¥1,420' },
+    { from: 'Shin-Osaka', to: 'Osaka Station / Umeda', note: 'מטרו למרכז אומדה', line: 'Osaka Metro', time: '~15 דק׳', cost: '¥240' },
+    { from: 'Umeda', to: 'Namba', note: 'מעבר לקניות בדרום העיר', line: 'Midosuji Line', time: '~15 דק׳', cost: '¥240' },
+    { from: 'Shinsaibashi', to: 'Honmachi', note: 'נסיעה קצרה למלון', line: 'Midosuji Line', time: '~15 דק׳', cost: '¥190' }
   ],
   '23': [
     { from: 'Sumiyoshi Taisha', to: 'Kaiyukan Aquarium', note: 'Nankai Honsen → Osakako (Chuo Line)', line: 'Nankai + Chuo Line', time: '~15 דק׳', cost: '¥280' },
@@ -1030,8 +1034,8 @@ const routeNotesPresets = {
     tips: 'צאו בזמן, בדקו כתובות מראש, ושמרו צילום מסך של הניווט.'
   },
   '21': {
-    overview: 'יום מעבר מקיוטו לאוסקה: שוק נישיקי בבוקר, שינקנסן, תצפית מ-Umeda Sky Building, שופינג ב-Namba ולסיום ארוחת Wagyu מושלמת!',
-    tips: 'בקרו בנישיקי בבוקר (פחות עומס). הזמינו מקום מראש ב-Gyujiro לארוחת הערב. נסעו עם IC Card בכל המטרו.'
+    overview: 'יום מעבר מדורג מקיוטו לאוסקה: בוקר בנישיקי, מעבר דרך Shijo ו-Kyoto Station לשינקנסן, המשך ל-Umeda (Sky Building ו-Grand Green), אחר הצהריים Namba Parks ושופינג ב-Shinsaibashi/Amerikamura, ולסיום צ׳ק-אין ב-Osaka Excel Hotel Tokyu.',
+    tips: 'הכי נוח לעבוד עם IC Card לכל המטרו, לשמור מרווחי זמן קצרים בין המעברים, ולהשאיר את הקניות הכבדות לסוף היום לפני ההגעה למלון.'
   },
   '23': {
     overview: 'יום מלא של אוסקה: שרין עתיק, אקווריום ענק, תצפית מ-Abeno Harukas, שופינג בשינסאיבאשי וערב קסום ב-teamLab Botanical Garden!',
@@ -1232,19 +1236,23 @@ const data = {
     ["19:30<br>20:30","ארוחת ערב אחרונה בקיוטו","מומלץ לאכול בפונטוצ'ו או בקיאמאצ'י: וואגיו, סושי, יאקיטורי ומנות יפניות נוספות","assets/attractions/day19/dinner.jpg","Pontocho Kyoto"],
     ["20:30~","חזרה למלון","הליכה נעימה ברחובות הערב או מונית קצרה לפי הצורך","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
   ]},
-  '21': { title:"קיוטו → אוסקה – מודרניות, קניות וגסטרונומיה", route:"Nishiki Market → Shinkansen → Umeda Sky Building → Grand Green → Namba City → Namba Parks → Wagyu", events:[
-    ["08:00<br>09:30","Nishiki Market (錦市場)","שוק האוכל המפורסם של קיוטו – 'המטבח של קיוטו'. פירות ים, ממתקים יפניים, חומץ מתוקן וסושי טרי","assets/attractions/day21/nishiki.jpg","Nishiki Market Kyoto"],
-    ["10:00<br>10:30","נסיעה: קיוטו → אוסקה","שינקנסן JR Tokaido/Kyoto Line מתחנת Kyoto → Shin-Osaka. ~30 דקות","assets/attractions/day21/transfer.jpg","Kyoto Station"],
-    ["10:30<br>11:00","הגעה לאוסקה","הגעה לתחנת Shin-Osaka, מעבר לאזור Umeda. אחסון מזוודות בלוקרים","assets/attractions/day21/arrival.jpg","Shin-Osaka Station"],
-    ["11:15<br>12:45","Umeda Sky Building","מבנה ארכיטקטורי מרשים עם פלטפורמת תצפית פנורמית ב-173 מטר גובה","assets/attractions/day21/umeda_sky.jpg","Umeda Sky Building Osaka"],
-    ["12:45<br>13:45","Grand Green Osaka","פארק עירוני מודרני עם חנויות ומסעדות. פתוח 24/7","assets/attractions/day21/grand_green.jpg","Grand Green Osaka"],
-    ["13:45<br>14:15","Tully's Coffee – Grand Green Osaka","הפסקת קפה לפני כניסה ל-Namba","assets/attractions/day21/tullys.jpg","Tully's Coffee Grand Green Osaka"],
-    ["14:30<br>15:30","Namba City","מרכז קניות גדול ליד Namba Parks. בגדים, קוסמטיקה וסוברניר","assets/attractions/day21/namba_city.jpg","Namba City Osaka"],
-    ["15:30<br>16:30","Namba Parks","קומפלקס ייחודי עם פארק על הגג, מסעדות ובתי קפה עם נוף מרהיב","assets/attractions/day21/namba_parks.jpg","Namba Parks Osaka"],
-    ["16:30<br>17:30","חזרה למלון וצ'ק-אין","Excel Hotel Tokyu Osaka. מנוחה ורענון לפני הערב","assets/attractions/day21/hotel.jpg","Excel Hotel Tokyu Osaka"],
-    ["","__SECTION__","🥩 ערב: ארוחה ובר","",""],
-    ["19:00<br>20:45","Gyujiro Yakiniku Restaurant","ארוחת Wagyu פרמיום מהטובים ביפן. בישול עצמי על גריל שולחני","assets/attractions/day21/wagyu.jpg","Gyujiro Yakiniku Restaurant Osaka"],
-    ["21:00<br>23:00","Nayuta Pub","בר יפני עם מבחר בירות, וויסקי יפני וקוקטיילים","assets/attractions/day21/nayuta.jpg","Nayuta Pub Osaka"]
+  '21': { title:"קיוטו → אוסקה – נישיקי, אומדה, נמבה ושינסאיבאשי", route:"Hotel Monterey → Nishiki → Shijo → Kyoto Station → Shin-Osaka → Umeda → Namba Parks → Shinsaibashi → Honmachi", events:[
+    ["07:30<br>08:30","ארוחת בוקר במלון","ארוחת בוקר ב-Hotel Monterey Kyoto והיערכות ליום מעבר וקניות","assets/attractions/day21/hotel.jpg","Hotel Monterey Kyoto"],
+    ["08:30<br>08:45","הליכה ל־Nishiki Market","הליכה קצרה מהמלון לכיוון שוק נישיקי","assets/transfers/walk.jpg","Nishiki Market Kyoto","🚶"],
+    ["09:00<br>10:00","Nishiki Market (錦市場)","שוק האוכל המפורסם של קיוטו – טעימות, דוכנים מקומיים ואווירה חיה בבוקר","assets/attractions/day21/nishiki.jpg","Nishiki Market Kyoto"],
+    ["10:00<br>10:10","הליכה ל־Shijo Station","מעבר קצר לתחנת הרכבת התחתית","assets/transfers/walk.jpg","Shijo Station Kyoto","🚶"],
+    ["10:10<br>10:15","Shijo Station → Kyoto Station","נסיעה קצרה ב-Karasuma Line","assets/transfers/train.jpg","Kyoto Station","🚇 Karasuma Line"],
+    ["10:30<br>10:45","Kyoto Station → Shin-Osaka","נסיעה בשינקנסן לאוסקה","assets/attractions/day21/transfer.jpg","Shin-Osaka Station","🚄 Shinkansen"],
+    ["10:45<br>11:00","Shin-Osaka → Osaka Station / Umeda","מעבר קצר למרכז אומדה","assets/transfers/train.jpg","Osaka Station Umeda","🚇"],
+    ["11:15<br>12:30","Umeda Sky Building","תצפית פנורמית ואדריכלות מודרנית בלב אומדה","assets/attractions/day21/umeda_sky.jpg","Umeda Sky Building Osaka"],
+    ["12:30<br>13:30","Grand Green Osaka","מתחם חדש עם גנים עירוניים, מסעדות וחנויות","assets/attractions/day21/grand_green.jpg","Grand Green Osaka"],
+    ["13:30<br>14:15","Umeda / Osaka Station Area","שיטוט באזור התחנה המרכזית והמתחמים המסחריים","assets/attractions/day21/arrival.jpg","Osaka Station Umeda"],
+    ["14:15<br>15:00","ארוחת צהריים יפנית עממית","הפסקת אוכל לפני המעבר לנמבה","assets/attractions/day21/tullys.jpg","Umeda Osaka restaurants"],
+    ["15:00<br>15:15","Umeda → Namba","מעבר ב-Midosuji Line","assets/transfers/train.jpg","Namba Station Osaka","🚇 Midosuji Line"],
+    ["15:15<br>16:30","Namba Parks","קניות, גינות גג ואווירה אורבנית ייחודית","assets/attractions/day21/namba_parks.jpg","Namba Parks Osaka"],
+    ["16:30<br>18:00","Shinsaibashi + Amerikamura","שופינג במותגים וחנויות אופנה (כולל Uniqlo, GU, Onitsuka Tiger)","assets/attractions/day21/namba_city.jpg","Shinsaibashi Osaka"],
+    ["18:00<br>18:15","Shinsaibashi → Honmachi","נסיעה קצרה למלון","assets/transfers/train.jpg","Honmachi Station Osaka","🚇"],
+    ["18:15<br>19:00","צ׳ק-אין ב־Osaka Excel Hotel Tokyu","הגעה למלון, התארגנות ומנוחה לסיום היום","assets/attractions/day21/hotel.jpg","Excel Hotel Tokyu Osaka"]
   ]},
   '22': { title:"אוסקה - היסטוריה ואורות", route:"Osaka Castle → Dotonbori → River Cruise", events:[
     ["09:00","Osaka Castle","ביקור במבצר אוסקה","https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=300&q=80","Osaka Castle"],
