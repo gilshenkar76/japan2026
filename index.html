@@ -126,9 +126,11 @@
     .event-img-nav:active{transform:translateY(-1px) scale(1.0)}
     .event-content{flex:1;padding:11px 13px;min-width:0}
     .event-content h3{margin:0 0 4px;font-size:15px;line-height:1.3}
+    .event-content h3.title-ltr{text-align:left;direction:ltr}
+    .event-content h3.title-rtl{text-align:right;direction:rtl}
     .event-title-line{display:block}
-    .event-title-line.transition-start{text-align:left;direction:ltr}
-    .event-title-line.transition-end{text-align:right;direction:ltr}
+    .event-title-line.title-ltr{text-align:left;direction:ltr}
+    .event-title-line.title-rtl{text-align:right;direction:rtl}
     .event-transit{font-size:11px;color:var(--muted);margin-top:7px}
     .event-desc{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
     .route-live-chips{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
@@ -1194,16 +1196,26 @@ const data = {
     ["19:30<br>21:00","Pontocho Alley – ארוחת ערב","סמטה עתיקה מוארת פנסים לאורך נהר קאמו. הליכה של כ-15–20 דקות מהמלון.","assets/attractions/day17/pontocho.jpg","Pontocho Alley Kyoto"],
     ["21:00<br>21:30","חזרה למלון","חזרה רגלית למלון. 🚶 ~15-20 דק' הליכה.","assets/attractions/day17/return.jpg","Hotel Monterey Kyoto"]
   ]},
-  '18': { title:"קיוטו – טיול מודרך", route:"Fushimi Inari → Bamboo Grove → Tenryu-ji → Ryoan-ji → Kinkaku-ji → Gion", events:[
-    ["10:00","פגישה עם המדריך","מפגש עם מדריך דובר רוסית בלובי המלון, הכרות ותיאום התוכנית ליום","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
-    ["10:10<br>11:45","Fushimi Inari Taisha","מקדש מפורסם עם אלפי שערי טוריי אדומים, היסטוריה, מסורת ונוף מרהיב על קיוטו","assets/attractions/day18/fushimi.jpg","Fushimi Inari Taisha"],
-    ["11:45<br>12:30","Arashiyama Bamboo Grove","טיול ביער הבמבוק הקסום – אחד המקומות האטמוספריים ביותר בקיוטו","assets/attractions/day18/bamboo.jpg","Arashiyama Bamboo Grove"],
-    ["12:30<br>13:10","Tenryu-ji Temple","מקדש זן מרהיב וגן מורשת עולמית של אונסק\"ו","assets/attractions/day18/tenryuji.jpg","Tenryu-ji Temple"],
-    ["13:10<br>14:00","ארוחת צהריים","מומלץ לטעום מטבח מקומי באראשיאמה: סובה, אודון או קייסקי","assets/attractions/day18/lunch.jpg","Arashiyama restaurants"],
-    ["15:00<br>15:45","Ryoan-ji Temple","מקדש זן בודהיסטי עם גן האבנים היבש המפורסם – סמל לפילוסופיית הזן","assets/attractions/day18/ryoanji.jpg","Ryoan-ji Temple"],
-    ["16:00<br>17:00","Kinkaku-ji (הפביליון הזהוב)","אחד המקדשים המפורסמים בקיוטו, מצופה עלי זהב","assets/attractions/day18/kinkakuji.jpg","Kinkaku-ji Golden Pavilion"],
-    ["17:00<br>19:00","רובע גיון","טיול עם המדריך ברובע ההיסטורי גיון – מקדש יאסקה, בתי גיישה, סמטאות עתיקות ואווירה קסומה","assets/attractions/day18/gion.jpg","Gion District Kyoto"],
-    ["19:00<br>19:30","חזרה למלון","חזרה למלון מונטריי קיוטו. מומלץ לנוח ואז לצאת לבר ערב","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
+  '18': { title:"קיוטו – טיול מודרך", route:"Hotel Monterey → Fushimi Inari → Arashiyama → Tenryu-ji → Kinkaku-ji → Ryoan-ji → Nijo Castle → Gion", events:[
+    ["08:30<br>09:00","יציאה עצמאית ל־Fushimi Inari Taisha","נסיעה עצמאית מהמלון לתחנת Inari/אזור המקדש","assets/transfers/train.jpg","Fushimi Inari Taisha","🚇/🚖 מעבר עצמאי"],
+    ["09:00<br>09:50","Fushimi Inari Taisha","ביקור עצמאי בשערי הטוריי האדומים במסלול התחתון והפוטוגני","assets/attractions/day18/fushimi.jpg","Fushimi Inari Taisha"],
+    ["09:50<br>10:30","מעבר ל־Arashiyama Bamboo Grove","מעבר עצמאי מ־Fushimi Inari לאראשיאמה","assets/transfers/taxi.jpg","Arashiyama Bamboo Grove","🚕/🚆 כ-30-40 דק׳"],
+    ["","__SECTION__","👤 פגישה עם המדריכה – אראשיאמה","",""],
+    ["10:30<br>11:15","פגישה עם המדריכה + Arashiyama Bamboo Grove","פגישה עם המדריכה בכניסה ליער הבמבוק והמשך סיור מודרך","assets/attractions/day18/bamboo.jpg","Arashiyama Bamboo Grove"],
+    ["11:15<br>11:45","Togetsukyo Bridge + רחובות ישנים","גשר הירח מעל נהר הוי וטיול ברחובות המסורתיים של אראשיאמה","assets/attractions/day18/bamboo.jpg","Togetsukyo Bridge Arashiyama"],
+    ["11:45<br>12:30","Tenryu-ji Temple","מקדש זן מרהיב וגן מורשת עולמית של אונסק\"ו","assets/attractions/day18/tenryuji.jpg","Tenryu-ji Temple"],
+    ["12:30<br>13:30","ארוחת צהריים","מומלץ לטעום מטבח מקומי באראשיאמה: סובה, אודון או קייסקי","assets/attractions/day18/lunch.jpg","Arashiyama restaurants"],
+    ["","__SECTION__","🏛️ קיוטו הצפוני – Kinkaku-ji & Ryoan-ji","",""],
+    ["13:30<br>13:50","🚕 מעבר מ-Arashiyama אל Kinkaku-ji","מעבר לאזור המקדשים בצפון קיוטו","assets/transfers/taxi.jpg","Kinkaku-ji Golden Pavilion","🚕 כ-15-20 דק׳"],
+    ["13:50<br>14:35","Kinkaku-ji (הפביליון הזהוב)","אחד המקדשים המפורסמים בקיוטו, מצופה עלי זהב","assets/attractions/day18/kinkakuji.jpg","Kinkaku-ji Golden Pavilion"],
+    ["14:35<br>14:50","🚶 מעבר מ-Kinkaku-ji אל Ryoan-ji","הליכה נוחה של כ-15 דקות בין המקדשים","assets/transfers/walk.jpg","Ryoan-ji Temple Kyoto","🚶 כ-15 דק׳"],
+    ["14:50<br>15:35","Ryoan-ji Temple","מקדש זן בודהיסטי עם גן האבנים היבש המפורסם – סמל לפילוסופיית הזן","assets/attractions/day18/ryoanji.jpg","Ryoan-ji Temple"],
+    ["","__SECTION__","🏯 קיוטו ההיסטורית – Nijo Castle","",""],
+    ["15:35<br>16:00","🚕 מעבר מ-Ryoan-ji אל Nijo Castle","מעבר קצר למרכז ההיסטורי של קיוטו","assets/transfers/taxi.jpg","Nijo Castle Kyoto","🚕 כ-15 דק׳"],
+    ["16:00<br>17:45","Nijo Castle (טירת ניג׳ו)","טירת השוגון ההיסטורית עם מרצפות הזמיר והארמונות המפורסמים","assets/attractions/day18/ryoanji.jpg","Nijo Castle Kyoto"],
+    ["17:45<br>18:00","🚕 מעבר מ-Nijo Castle אל Gion","מעבר לרובע המסורתי לקראת ערב","assets/transfers/taxi.jpg","Gion District Kyoto","🚕 כ-10-15 דק׳"],
+    ["","__SECTION__","🏮 ערב – Gion","",""],
+    ["18:00<br>20:00","רובע גיון","טיול עם המדריכה ברובע ההיסטורי גיון – סמטאות עתיקות, אווירה מסורתית ותאורת ערב קסומה","assets/attractions/day18/gion.jpg","Gion District Kyoto"]
   ]},
   '19': { title:"קיוטו – מקדשים, שופינג וברים", route:"Eikandō → Kiyomizu-dera → Gion → Shijo → Pontocho", events:[
     ["09:00<br>10:00","Eikandō Temple (永観堂)","מקדש בודהיסטי מהיפים בקיוטו, מפורסם בעלי השלכת האדומים","assets/attractions/day19/eikando.jpg","Eikando Temple Kyoto"],
@@ -1555,6 +1567,10 @@ function escapeHtml(value){
     .replace(/'/g, '&#39;');
 }
 
+function getTitleAlignClass(text){
+  return /[\u0590-\u05FF]/.test(String(text || '')) ? 'title-rtl' : 'title-ltr';
+}
+
 function formatTimelineTitle(title){
   const raw = String(title || '').trim();
   if (!raw) return '';
@@ -1567,7 +1583,7 @@ function formatTimelineTitle(title){
       const left = parts.shift().trim();
       const right = parts.join(` ${arrow} `).trim();
       if (left && right) {
-        return `<span class="event-title-line transition-start">${escapeHtml(`${left} ${arrow}`)}</span><span class="event-title-line transition-end">${escapeHtml(right)}</span>`;
+        return `<span class="event-title-line ${getTitleAlignClass(left)}">${escapeHtml(`${left} ${arrow}`)}</span><span class="event-title-line ${getTitleAlignClass(right)}">${escapeHtml(right)}</span>`;
       }
     }
   }
@@ -2713,10 +2729,11 @@ function render(day){
     const timeDisplay = e[0].replace('<br>',' – ');
     const titleHtml = formatTimelineTitle(e[1]);
     const altTitle = escapeHtml(e[1]);
+    const titleAlignClass = getTitleAlignClass(e[1]);
     tl.innerHTML += `<div class="item"><div class="event">
       <a class="event-img-nav" target="_blank" href="${link}"><img src="${e[3]}" alt="${altTitle}"><span class="time-badge">${timeDisplay}</span></a>
       <div class="event-content">
-        <h3>${titleHtml}</h3>
+        <h3 class="${titleAlignClass}">${titleHtml}</h3>
         <div class="event-desc">${eventDescription}</div>
         ${transitNote}
       </div>
