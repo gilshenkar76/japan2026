@@ -125,7 +125,7 @@
     .event-img-nav:hover img{filter:brightness(1.06)}
     .event-img-nav:active{transform:translateY(-1px) scale(1.0)}
     .event-content{flex:1;padding:11px 13px;min-width:0}
-    .event-content h3{margin:0 0 4px;font-size:15px}
+    .event-content h3{margin:0 0 4px;font-size:15px;line-height:1.3}
     .event-transit{font-size:11px;color:var(--muted);margin-top:7px}
     .event-desc{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
     .route-live-chips{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
@@ -1552,6 +1552,26 @@ function escapeHtml(value){
     .replace(/'/g, '&#39;');
 }
 
+function formatTimelineTitle(title){
+  const raw = String(title || '').trim();
+  if (!raw) return '';
+
+  const arrowMatch = raw.match(/\s(->|→)\s/);
+  if (arrowMatch && raw.length > 24) {
+    const arrow = arrowMatch[1];
+    const parts = raw.split(new RegExp(`\\s${arrow === '->' ? '->' : '→'}\\s`, 'u'));
+    if (parts.length >= 2) {
+      const left = parts.shift().trim();
+      const right = parts.join(` ${arrow} `).trim();
+      if (left && right) {
+        return `${escapeHtml(`${left} ${arrow}`)}<br>${escapeHtml(right)}`;
+      }
+    }
+  }
+
+  return escapeHtml(raw);
+}
+
 function statusLabel(status){
   if (status === 'on-time') return 'On Time';
   if (status === 'delayed') return 'Delayed';
@@ -2688,10 +2708,12 @@ function render(day){
     const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
     const transitNote = e[5] ? `<div class="event-transit">${e[5]}</div>` : '';
     const timeDisplay = e[0].replace('<br>',' – ');
+    const titleHtml = formatTimelineTitle(e[1]);
+    const altTitle = escapeHtml(e[1]);
     tl.innerHTML += `<div class="item"><div class="event">
-      <a class="event-img-nav" target="_blank" href="${link}"><img src="${e[3]}" alt="${e[1]}"><span class="time-badge">${timeDisplay}</span></a>
+      <a class="event-img-nav" target="_blank" href="${link}"><img src="${e[3]}" alt="${altTitle}"><span class="time-badge">${timeDisplay}</span></a>
       <div class="event-content">
-        <h3>${e[1]}</h3>
+        <h3>${titleHtml}</h3>
         <div class="event-desc">${eventDescription}</div>
         ${transitNote}
       </div>
