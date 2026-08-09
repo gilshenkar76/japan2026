@@ -969,9 +969,11 @@ const transitByDay = {
   '17': [
     { from: 'Nagoya JR Gate Tower Hotel', to: 'Toyota Kaikan Museum', note: 'נסיעה במונית למוזיאון', line: 'מונית', time: '~20 דק׳', cost: '¥2,000' },
     { from: 'Nagoya Station', to: 'Kyoto Station', note: 'שינקנסן היקארי', line: 'שינקנסן JR Hikari', time: '~1:00 שעה', cost: '¥6,300' },
-    { from: 'Kyoto Station', to: 'Hotel Monterey Kyoto', note: 'הליכה/מטרו לתחנת המלון', line: 'רגלי', time: '~15 דק׳', cost: '—' },
-    { from: 'Hotel Monterey Kyoto', to: 'Teramachi Shopping Arcade', note: 'הליכה בערב', line: 'רגלי', time: '~10 דק׳ (900 מ\')', cost: '—' },
-    { from: 'Teramachi Shopping Arcade', to: 'Pontocho Alley', note: 'הליכה בערב', line: 'רגלי', time: '~5 דק׳ (350 מ\')', cost: '—' }
+    { from: 'Kyoto Station', to: 'To-ji Temple', note: 'הליכה קצרה דרומה מתחנת קיוטו', line: 'רגלי', time: '~15 דק׳', cost: '—' },
+    { from: 'To-ji Temple', to: 'Nishiki Market', note: 'מעבר לאזור השוק', line: 'אוטובוס 207 / מונית', time: '~15 דק׳', cost: '¥230 / ¥1,200' },
+    { from: 'Nishiki Market', to: 'Teramachi Shopping Arcade', note: 'מעבר רגלי קצר בין האזורים', line: 'רגלי', time: '~5 דק׳', cost: '—' },
+    { from: 'Teramachi Shopping Arcade', to: 'Hotel Monterey Kyoto', note: 'חזרה לצ׳ק-אין ומנוחה קצרה', line: 'רגלי', time: '~10 דק׳', cost: '—' },
+    { from: 'Hotel Monterey Kyoto', to: 'Pontocho Alley', note: 'יציאה רגלית לארוחת ערב', line: 'רגלי', time: '~15–20 דק׳', cost: '—' }
   ],
   '20': [
     { from: 'Hotel Monterey Kyoto', to: 'Karasuma Oike Station', note: 'יציאה מהמלון והליכה לתחנה', line: 'רגלי', time: '~10 דק׳', cost: '—' },
@@ -1016,7 +1018,7 @@ const routeNotesPresets = {
     tips: 'מזג האוויר בפוג\'י בנובמבר קריר – קחו בגדים חמים ונעליים נוחות. בפגודת צ\'וריאיטו יש כ-400 מדרגות לנקודת התצפית. הזמן הטוב ביותר לתמונות: בוקר בפגודה, יום באושינו הקאיי, ערב בנגויה. מומלץ להזמין כרטיסי אוטובוס מראש.'
   },
   '17': {
-    overview: 'יום מעבר מנגויה לקיוטו: ביקור במוזיאון טויוטה, נסיעה בשינקנסן היקארי, התארגנות במלון, וערב קסום בטיילת טרמאצ\'י ובסמטת פונטוצ\'ו לאורך נהר קאמו.',
+    overview: 'יום מעבר מנגויה לקיוטו: מוזיאון טויוטה, שינקנסן לקיוטו, אטרקציות בעיר (To-ji, Nishiki, Teramachi) ורק אחר כך צ׳ק-אין במלון, לפני ערב בפונטוצ׳ו.',
     tips: 'Teramachi Shopping Arcade פתוח עד 20:00, חלק מהחנויות והמסעדות עד 21:00. Pontocho Alley יפהפה במיוחד בערב, השעה הכי טובה לארוחת ערב 18:00-20:00. מומלץ להזמין מקום מראש במסעדות פופולריות, במיוחד אם רוצים לנסות מטבח קייסקי או וואגיו.'
   },
   '20': {
@@ -1172,13 +1174,18 @@ const data = {
     ["16:30<br>17:00","צ'ק-אין במלון","התארגות ב-Nagoya JR Gate Tower Hotel סמוך לתחנת רכבת ה-JR.","assets/attractions/day16/checkin.jpg","Nagoya JR Gate Tower Hotel"],
     ["17:30<br>22:00","ערב חופשי בסאקאע","טיול ברובע Sakae, קניות וארוחת ערב במסעדות האזור.","assets/attractions/day16/evening.jpg","Sakae Nagoya"]
   ]},
-  '17': { title:"נגויה → קיוטו", route:"Toyota Kaikan → שינקנסן → Gion", events:[
+  '17': { title:"נגויה → קיוטו", route:"Toyota Kaikan → שינקנסן → To-ji → Nishiki → Teramachi → Hotel Monterey → Pontocho", events:[
     ["08:20<br>11:30","Toyota Kaikan Museum","מוזיאון טויוטה – היסטורית החברה, רכבי קונספט וטכנולוגיות ייצור.","assets/attractions/day17/toyota.jpg","Toyota Kaikan Museum"],
     ["12:00<br>13:00","שינקנסן לקיוטו","נסיעה בשינקנסן היקארי מנגויה לקיוטו.","assets/attractions/day17/shinkansen.jpg","Kyoto Station"],
-    ["13:00<br>15:30","צ'ק-אין במלון","התארגות ב-Hotel Monterey Kyoto ומנוחה קצרה לפני הערב.","assets/attractions/day17/hotel.jpg","Hotel Monterey Kyoto"],
-    ["17:00<br>18:30","Teramachi Shopping Arcade","טיילת קניות מקורה עם גג עץ. 🚶 ~10 דק' הליכה מהמלון (900 מ').","assets/attractions/day17/teramachi.jpg","Teramachi Shopping Arcade Kyoto"],
-    ["18:35<br>20:30","Pontocho Alley – ארוחת ערב","סמטה עתיקה מוארת פנסים לאורך נהר קאמו. 🚶 ~5 דק' הליכה מ-Teramachi (350 מ').","assets/attractions/day17/pontocho.jpg","Pontocho Alley Kyoto"],
-    ["20:30<br>21:00","חזרה למלון","חזרה רגלית למלון. 🚶 ~15-20 דק' הליכה.","assets/attractions/day17/return.jpg","Hotel Monterey Kyoto"]
+    ["13:00<br>13:40","ארוחת צהריים – Kyoto Station","ארוחת צהריים בתחנת קיוטו – מגוון מסעדות איכותיות ב-Isetan ובמסדרון Cube.","assets/attractions/day17/shinkansen.jpg","Kyoto Station"],
+    ["13:45<br>14:00","🚶 הליכה: Kyoto Station → To-ji Temple","הליכה של כ-15 דקות דרומה (כ-1.5 ק\"מ) לעבר מקדש טו-ג'י.","assets/transfers/walk.jpg","To-ji Temple Kyoto","🚶 הליכה · ~15 דק׳"],
+    ["14:00<br>15:15","To-ji Temple (東寺)","מקדש בודהיסטי עתיק עם הפגודה הגבוהה ביותר ביפן (55 מ׳) – מהסמלים האיקוניים של קיוטו.","assets/attractions/day18/tenryuji.jpg","To-ji Temple Kyoto"],
+    ["15:15<br>15:45","🚕 מעבר מ-To-ji אל Nishiki Market","אוטובוס 207 או מונית קצרה לאזור נישיקי.","assets/transfers/taxi.jpg","Nishiki Market Kyoto","🚌 אוטובוס 207 · ~15 דק׳"],
+    ["15:45<br>16:45","Nishiki Market (錦市場)","שוק האוכל המפורסם של קיוטו – טעימות, ממתקים ומאכלים מקומיים.","assets/attractions/day21/nishiki.jpg","Nishiki Market Kyoto"],
+    ["16:45<br>18:15","Teramachi & Shinkyogoku Arcade","גלריות קניות מקורות עם חנויות מזכרות, ביגוד ומתוקים יפניים.","assets/attractions/day17/teramachi.jpg","Teramachi Shopping Arcade Kyoto"],
+    ["18:15","צ'ק-אין – Hotel Monterey Kyoto","התארגנות במלון ומנוחה קצרה לפני הערב.","assets/attractions/day17/hotel.jpg","Hotel Monterey Kyoto"],
+    ["19:30<br>21:00","Pontocho Alley – ארוחת ערב","סמטה עתיקה מוארת פנסים לאורך נהר קאמו. הליכה של כ-15–20 דקות מהמלון.","assets/attractions/day17/pontocho.jpg","Pontocho Alley Kyoto"],
+    ["21:00<br>21:30","חזרה למלון","חזרה רגלית למלון. 🚶 ~15-20 דק' הליכה.","assets/attractions/day17/return.jpg","Hotel Monterey Kyoto"]
   ]},
   '18': { title:"קיוטו – טיול מודרך", route:"Fushimi Inari → Bamboo Grove → Tenryu-ji → Ryoan-ji → Kinkaku-ji → Gion", events:[
     ["10:00","פגישה עם המדריך","מפגש עם מדריך דובר רוסית בלובי המלון, הכרות ותיאום התוכנית ליום","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
