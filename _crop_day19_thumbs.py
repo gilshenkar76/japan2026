@@ -1,12 +1,14 @@
-"""Crop attraction thumbnails from updated_days/19_11_2026.jpeg into assets/attractions/day19/."""
+"""Crop attraction thumbnails for day 19 into assets/attractions/day19/."""
 import os
 from PIL import Image
 
 SRC = "updated_days/19_11_2026.jpeg"
+SRC_UPDATES = "kioto_updates/19.11.2026.png"
 OUT = "assets/attractions/day19"
 os.makedirs(OUT, exist_ok=True)
 
 im = Image.open(SRC).convert("RGB")
+im_updates = Image.open(SRC_UPDATES).convert("RGB")
 
 # (name, left, top, right, bottom) - precisely aligned to source photo bounds (no white-gap bleed)
 boxes = [
@@ -23,16 +25,25 @@ boxes = [
     ("turquoise",  103, 1281, 293, 1334),
 ]
 
+update_boxes = [
+    ("philosopher", 103, 259, 293, 375),
+    ("nanzenji",    103, 392, 293, 507),
+]
+
 for name, l, t, r, b in boxes:
     im.crop((l, t, r, b)).save(os.path.join(OUT, f"{name}.jpg"), quality=88)
+
+for name, l, t, r, b in update_boxes:
+    im_updates.crop((l, t, r, b)).save(os.path.join(OUT, f"{name}.jpg"), quality=88)
 
 # contact sheet for verification
 cols = 4
 thumb_w = 190
 pad = 6
-rows = (len(boxes) + cols - 1) // cols
 # use max height
 crops = [im.crop((l, t, r, b)) for _, l, t, r, b in boxes]
+crops += [im_updates.crop((l, t, r, b)) for _, l, t, r, b in update_boxes]
+rows = (len(crops) + cols - 1) // cols
 max_h = max(c.height for c in crops)
 sheet = Image.new("RGB", (cols * (thumb_w + pad) + pad, rows * (max_h + pad) + pad), (240, 240, 240))
 for i, c in enumerate(crops):
@@ -40,4 +51,4 @@ for i, c in enumerate(crops):
     ry = i // cols
     sheet.paste(c, (pad + rx * (thumb_w + pad), pad + ry * (max_h + pad)))
 sheet.save("assets/attractions/day19/_contact_sheet.jpg", quality=85)
-print("done", len(boxes), "crops")
+print("done", len(crops), "crops")
