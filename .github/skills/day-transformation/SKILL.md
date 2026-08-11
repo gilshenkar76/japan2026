@@ -20,7 +20,7 @@ These are global style rules for the shared timeline card and must stay consiste
 
 - Time badge (`.time-badge`): flush to the image top edge with no margin (`top: 0; left: 0; right: 0; border-radius: 0`).
 - Map pin icon (`.event-img-nav::after`): flush to the bottom-right corner (`bottom: 0; right: 0`).
-- Timeline image block (`.event-img-nav`, `.event-img-nav img`): keep a uniform baseline width and minimum height (`width: 110px; min-height: 110px`), but do **not** lock it to a fixed height. The image column must stretch to the full card height when the text content is taller than the default baseline.
+- Timeline card baseline (`.event` + image block): keep a uniform baseline height of `110px` for regular/short text events (`.event { min-height: 110px; }` and image `min-height: 110px`). Do **not** lock to a fixed height: when description text is longer, the card may grow and the image column must stretch to full card height.
 
 If a user asks to tune these values, update the shared CSS once in `index.html` and verify it affects all days uniformly (do not add day-specific CSS branches).
 
