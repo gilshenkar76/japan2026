@@ -10,10 +10,19 @@ A day goes from generic Unsplash-stock timeline events to:
 1. Real local cropped photos per attraction (not stock images)
 2. A translated Hebrew route-map image (source is Russian — no Russian may ship)
 3. Hotel card data (`hotelsByDay`)
-4. Timeline events rendered with the **already-global** shared card component — flexible height with a min-height floor, full-height clickable photo with overlaid time badge, 3D hover-lift, pin-icon hint. **No CSS/JS changes are needed for this part** — it's shared by every day already.
+4. Timeline events rendered with the **already-global** shared card component — flexible height with a min-height floor, full-height clickable photo with overlaid time badge, 3D hover-lift, pin-icon hint. **Keep the shared CSS/JS behavior exactly as defined below** so all days look identical.
 5. Optional extras: theme subtitle, public-transport legs, curated Hebrew route notes.
 
 Days 19, 21, 23 are the reference implementations. Day 14 also uses the shared card but was sourced from the older `prep_days` PNG format (see Prerequisites).
+
+## Shared timeline UI baseline (apply to all days)
+These are global style rules for the shared timeline card and must stay consistent when transforming additional days:
+
+- Time badge (`.time-badge`): flush to the image top edge with no margin (`top: 0; left: 0; right: 0; border-radius: 0`).
+- Map pin icon (`.event-img-nav::after`): flush to the bottom-right corner (`bottom: 0; right: 0`).
+- Timeline image block (`.event-img-nav`, `.event-img-nav img`): keep a uniform baseline width and minimum height (`width: 110px; min-height: 110px`), but do **not** lock it to a fixed height. The image column must stretch to the full card height when the text content is taller than the default baseline.
+
+If a user asks to tune these values, update the shared CSS once in `index.html` and verify it affects all days uniformly (do not add day-specific CSS branches).
 
 ## Prerequisites: source image
 Look for `updated_days/DD_11_2026.jpeg` — the Russian-original one-page day plan (has a column of small attraction photo thumbnails + a compact route-map card with a title bar and legend).
