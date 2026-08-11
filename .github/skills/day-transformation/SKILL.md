@@ -24,6 +24,8 @@ These are global style rules for the shared timeline card and must stay consiste
 
 If a user asks to tune these values, update the shared CSS once in `index.html` and verify it affects all days uniformly (do not add day-specific CSS branches).
 
+- Hotel action buttons (`.hotel .actions > .btn`): keep the hotel CTA row wrapped and responsive. The actions container must allow wrapping, and buttons should use flexible widths so `ניווט`, `Booking`, and copy actions never overflow outside the hotel card on narrow layouts.
+
 ## Prerequisites: source image
 Look for `updated_days/DD_11_2026.jpeg` — the Russian-original one-page day plan (has a column of small attraction photo thumbnails + a compact route-map card with a title bar and legend).
 - **Exists** → follow the workflow below (this is how 19/21/23 were built).

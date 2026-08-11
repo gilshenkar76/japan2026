@@ -138,9 +138,10 @@
     .route-live-chip.on-time{background:#ecfdf3;border-color:#86efac;color:#166534}
     .route-live-chip.delayed{background:#fff7ed;border-color:#fdba74;color:#9a3412}
     .route-live-chip.unknown{background:#eef2f7;border-color:#d8e0ea;color:#475569}
-    .actions{display:flex;gap:7px;margin-top:11px}
+    .actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;min-width:0}
     .btn{border:0;border-radius:12px;padding:9px 11px;font-weight:800;font-size:12px;text-decoration:none;
-      display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+      display:inline-flex;align-items:center;justify-content:center;cursor:pointer;min-width:0;max-width:100%}
+    .hotel .actions > .btn{flex:1 1 140px}
     .primary{background:var(--blue);color:white}.ghost{background:#f0f4fa;color:#344054}
     .hotel{background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa}
     .notice{margin-top:12px;border-radius:18px;padding:13px;background:#eaf8f0;color:#156b3b;font-size:13px;
