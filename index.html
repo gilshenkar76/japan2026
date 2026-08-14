@@ -958,6 +958,7 @@ const themesByDay = {
   '19': 'קימונו, היגשיאמה, מקדשים וערב חופשי בקיוטו',
   '20': 'יום מלא בנארה – מקדשים עתיקים, פארק האיילים והעיר העתיקה',
   '21': 'מסע מקיוטו לאוסקה – שוק, תצפית, קניות וגסטרונומיה',
+  '22': 'אוסקה הקלאסית – טירה היסטורית, שווקים, מקדש אריה וניאונים בדוטונבורי',
   '23': 'שרין, אקווריום, תצפית, שופינג וערב קסום ב-teamLab',
   '24': "שינקנסן לטוקיו, גינזה וערב תוסס בשינג'וקו"
 };
@@ -1008,6 +1009,15 @@ const transitByDay = {
     { from: 'Umeda', to: 'Namba', note: 'מעבר לקניות בדרום העיר', line: 'Midosuji Line', time: '~15 דק׳', cost: '¥240' },
     { from: 'Shinsaibashi', to: 'Honmachi', note: 'נסיעה קצרה למלון', line: 'Midosuji Line', time: '~15 דק׳', cost: '¥190' }
   ],
+  '22': [
+    { from: 'Excel Hotel Tokyu Osaka', to: 'Osaka Castle', note: 'יציאה בבוקר מהמלון לכיוון הטירה', line: 'Osaka Metro / הליכה', time: '~20–25 דק׳', cost: '¥190–¥240' },
+    { from: 'Osaka Castle', to: 'Kuromon Market', note: 'מעבר מהאזור ההיסטורי לאזור השוק', line: 'Osaka Metro / הליכה', time: '~25–30 דק׳', cost: '¥230' },
+    { from: 'Kuromon/Namba', to: 'Shinsekai', note: 'מעבר לאזור Tsutenkaku', line: 'Osaka Metro / הליכה', time: '~15–20 דק׳', cost: '¥190' },
+    { from: 'Shinsekai', to: 'Namba Yasaka Shrine', note: 'מעבר קצר למקדש האריה', line: 'Osaka Metro / הליכה', time: '~15–20 דק׳', cost: '¥190' },
+    { from: 'Namba Yasaka Shrine', to: 'Hozenji Yokocho', note: 'מעבר רגלי קצר', line: 'רגלי', time: '~10 דק׳', cost: '—' },
+    { from: 'Hozenji Yokocho', to: 'Dotonbori', note: 'המשך למסלול הניאונים', line: 'רגלי', time: '~10–15 דק׳', cost: '—' },
+    { from: 'Dotonbori', to: 'Tombori River Cruise', note: 'ירידה לרציף השיט', line: 'רגלי', time: '~5–10 דק׳', cost: '—' }
+  ],
   '23': [
     { from: 'Sumiyoshi Taisha', to: 'Kaiyukan Aquarium', note: 'Nankai Honsen → Osakako (Chuo Line)', line: 'Nankai + Chuo Line', time: '~15 דק׳', cost: '¥280' },
     { from: 'Kaiyukan', to: 'Abeno Harukas', note: 'Chuo Line → Tennoji Station', line: 'Osaka Metro Chuo Line', time: '~15 דק׳', cost: '¥280' },
@@ -1047,6 +1057,10 @@ const routeNotesPresets = {
   '21': {
     overview: 'יום מעבר מדורג מקיוטו לאוסקה: בוקר בנישיקי, מעבר דרך Shijo ו-Kyoto Station לשינקנסן, המשך ל-Umeda (Sky Building ו-Grand Green), אחר הצהריים Namba Parks ושופינג ב-Shinsaibashi/Amerikamura, ולסיום צ׳ק-אין ב-Osaka Excel Hotel Tokyu.',
     tips: 'הכי נוח לעבוד עם IC Card לכל המטרו, לשמור מרווחי זמן קצרים בין המעברים, ולהשאיר את הקניות הכבדות לסוף היום לפני ההגעה למלון.'
+  },
+  '22': {
+    overview: 'יום עומק באוסקה עם מדריכה: Osaka Castle וההיסטוריה של איחוד יפן, שוק Kuromon לטעימות, Shinsekai ו-Tsutenkaku, מקדש Namba Yasaka, סמטת Hozenji Yokocho, ולסיום דוטונבורי ושיט Tombori בשעת דמדומים.',
+    tips: 'כדאי להגיע עם נעלי הליכה נוחות, להחזיק IC Card טעון למעברים קצרים, ולהגיע מוקדם לשייט Tombori כדי להימנע מתור. באזור Kuromon אפשר לשלב טעימות קטנות במקום ארוחה כבדה אם רוצים להשאיר מקום לערב בדוטונבורי.'
   },
   '23': {
     overview: 'יום מלא של אוסקה: שרין עתיק, אקווריום ענק, תצפית מ-Abeno Harukas, שופינג בשינסאיבאשי וערב קסום ב-teamLab Botanical Garden!',
@@ -1280,10 +1294,20 @@ const data = {
     ["18:00<br>18:15","Shinsaibashi → Honmachi","נסיעה קצרה למלון","assets/transfers/train.jpg","Honmachi Station Osaka","🚇"],
     ["18:15<br>19:00","צ׳ק-אין ב־Osaka Excel Hotel Tokyu","הגעה למלון, התארגנות ומנוחה לסיום היום","assets/attractions/day21/hotel.jpg","Excel Hotel Tokyu Osaka"]
   ]},
-  '22': { title:"אוסקה - היסטוריה ואורות", route:"Osaka Castle → Dotonbori → River Cruise", events:[
-    ["09:00","Osaka Castle","ביקור במבצר אוסקה","https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=300&q=80","Osaka Castle"],
-    ["12:00","Shinsekai + Kuromon","שווקים ורובע מקומי","https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=300&q=80","Kuromon Market"],
-    ["17:00","Dotonbori + Tombori Cruise","שייט ערב וניאונים","https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80","Dotonbori"]
+  '22': { title:"אוסקה – היסטוריה, שווקים וניאונים", route:"Excel Hotel Tokyu → Osaka Castle → Kuromon Market → Shinsekai → Namba Yasaka Shrine → Hozenji Yokocho → Dotonbori → Tombori Cruise", events:[
+    ["07:30<br>08:15","ארוחת בוקר במלון","פתיחת יום רגועה ב-Excel Hotel Tokyu Osaka, בלי לחץ, עם זמן להתארגנות נוחה לפני היציאה למסלול של אוסקה הקלאסית.","assets/attractions/day22/hotel.jpg","Excel Hotel Tokyu Osaka"],
+    ["08:15<br>08:40","יציאה מהמלון","יציאה מהמלון לכיוון Osaka Castle בהתאם למסלול המדריכה, כולל מעבר עירוני קצר בתחבורה ציבורית/הליכה.","assets/transfers/train.jpg","Osaka Castle","🚇/🚶 מעבר בוקר"],
+    ["09:15","פגישה עם המדריכה","נקודת מפגש ליד Osaka Castle ותיאום קצר לפני תחילת הסיור ההיסטורי של הבוקר.","assets/attractions/day22/osaka_castle.jpg","Osaka Castle"],
+    ["09:15<br>11:00","Osaka Castle","סיור במבצר אוסקה עם רקע על איחוד יפן, סיפורו של Toyotomi Hideyoshi, נקודות תצפית יפות וצילומים סביב המתחם ההיסטורי.","assets/attractions/day22/osaka_castle.jpg","Osaka Castle"],
+    ["11:00<br>11:30","מעבר ל-Kuromon Market","מעבר מהטירה לשוק Kuromon ברכבת/הליכה לפי הקצב וההכוונה של המדריכה.","assets/transfers/train.jpg","Kuromon Market Osaka","🚇/🚶 מעבר לפי המסלול"],
+    ["11:30<br>12:50","Kuromon Market","שוק האוכל המפורסם של אוסקה: טעימות מקומיות, פירות ים, Wagyu, דוכנים תוססים ואווירה יומיומית אותנטית של העיר.","assets/attractions/day22/kuromon_market.jpg","Kuromon Market Osaka"],
+    ["13:00<br>14:00","ארוחת צהריים","עצירת צהריים באזור Kuromon/Namba, עם מבחר רחב של אוכל מקומי לפני ההמשך לאזורי התרבות והניאון.","assets/attractions/day22/lunch.jpg","Namba Osaka"],
+    ["14:00<br>15:00","Shinsekai","ביקור ב-Shinsekai – אוסקה של פעם, אזור Tsutenkaku, רחובות צבעוניים ואוכל רחוב באווירה נוסטלגית.","assets/attractions/day22/shinsekai.jpg","Shinsekai Osaka"],
+    ["15:00<br>15:20","מעבר ל-Namba Yasaka Shrine","מעבר קצר לכיוון מקדש האריה המפורסם של Namba Yasaka.","assets/transfers/walk.jpg","Namba Yasaka Shrine Osaka","🚶/🚇 מעבר קצר"],
+    ["15:20<br>15:45","Namba Yasaka Shrine","ביקור במקדש Namba Yasaka עם מבנה ראש האריה האייקוני – נקודה מיוחדת לצילום בלב אוסקה.","assets/attractions/day22/namba_yasaka.jpg","Namba Yasaka Shrine Osaka"],
+    ["15:45<br>16:10","Hozenji Yokocho","הליכה בסמטה מסורתית וקסומה בלב העיר, עם אבני דרך היסטוריות ואווירה שקטה בניגוד לרחובות הסואנים מסביב.","assets/attractions/day22/hozenji.jpg","Hozenji Yokocho Osaka"],
+    ["16:10<br>17:30","Dotonbori","מרכז אוסקה התוסס: שלטי ניאון ענקיים, אזור Glico המפורסם, גשרי הנהר וסיפורים מקומיים על הרחוב הכי אייקוני בעיר.","assets/attractions/day22/dotonbori.jpg","Dotonbori Osaka"],
+    ["17:30<br>17:50","Tombori River Cruise","שיט קצר על התעלה בשעת הדמדומים, עם זווית אחרת על דוטונבורי והאורות שמתחילים להידלק לקראת הערב.","assets/attractions/day22/tombori_cruise.jpg","Tombori River Cruise Osaka"]
   ]},
   '23': { title:"אוסקה – שרין, אקווריום, תצפית, שופינג ו-teamLab", route:"Sumiyoshi Taisha → Kaiyukan → Tempozan → Abeno Harukas → Shinsaibashi → teamLab Botanical Garden", events:[
     ["09:00<br>10:00","Sumiyoshi Taisha","אחד המקדשים הסינטואיסטיים העתיקים ביפן, עם גשרים ייחודיים ואווירה שקטה","assets/attractions/day23/sumiyoshi.jpg","Sumiyoshi Taisha Osaka","🚶 רגלי ≈ 5 דק׳ מהתחנה"],
