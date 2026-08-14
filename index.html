@@ -1019,11 +1019,12 @@ const transitByDay = {
     { from: 'Dotonbori', to: 'Tombori River Cruise', note: 'ירידה לרציף השיט', line: 'רגלי', time: '~5–10 דק׳', cost: '—' }
   ],
   '23': [
-    { from: 'Sumiyoshi Taisha', to: 'Kaiyukan Aquarium', note: 'Nankai Honsen → Osakako (Chuo Line)', line: 'Nankai + Chuo Line', time: '~15 דק׳', cost: '¥280' },
-    { from: 'Kaiyukan', to: 'Abeno Harukas', note: 'Chuo Line → Tennoji Station', line: 'Osaka Metro Chuo Line', time: '~15 דק׳', cost: '¥280' },
-    { from: 'Abeno Harukas', to: 'Shinsaibashi', note: 'מטרו – Midosuji Line', line: 'Osaka Metro Midosuji Line', time: '~20 דק׳', cost: '¥240' },
-    { from: 'Shinsaibashi', to: 'teamLab Botanical Garden', note: 'מטרו – Midosuji Line → Nagai Station', line: 'Osaka Metro Midosuji Line', time: '~15 דק׳', cost: '¥240' },
-    { from: 'teamLab Botanical Garden', to: 'Excel Hotel Tokyu Osaka', note: 'חזרה למלון', line: 'Osaka Metro', time: '~30 דק׳', cost: '¥280' }
+    { from: 'Excel Hotel Tokyu Osaka', to: 'Kaiyukan Aquarium', note: 'נסיעה לאזור המפרץ של אוסקה', line: 'Osaka Metro', time: '~45 דק׳', cost: '¥280' },
+    { from: 'Kaiyukan / Tempozan', to: 'Shinsaibashi', note: 'מעבר מ-Osakako לשינסאיבאשי', line: 'Chuo Line + Midosuji Line', time: '~35 דק׳', cost: '¥240' },
+    { from: 'Shinsaibashi', to: 'Sumiyoshi Taisha', note: 'מעבר דרומה למקדש העתיק', line: 'Midosuji + Nankai', time: '~35 דק׳', cost: '¥320' },
+    { from: 'Sumiyoshi Taisha', to: 'Nagai Park / teamLab', note: 'נסיעה קצרה לכיוון פארק נגאי וכניסה למתחם הערב', line: 'Nankai + Midosuji', time: '~35 דק׳', cost: '¥280' },
+    { from: 'teamLab Botanical Garden', to: 'Abeno Harukas 300', note: 'מעבר קצר ל-Tennoji לתצפית לילה', line: 'Osaka Metro Midosuji Line', time: '~30 דק׳', cost: '¥240' },
+    { from: 'Abeno Harukas 300', to: 'Excel Hotel Tokyu Osaka', note: 'חזרה למלון או עצירת ערב קלה בדרך', line: 'Osaka Metro Midosuji Line', time: '~20 דק׳', cost: '¥240' }
   ],
   '24': [
     { from: 'Shin-Osaka Station', to: 'Tokyo Station', note: 'שינקנסן Nozomi/Hikari מאוסקה לטוקיו', line: 'שינקנסן JR Tokaido', time: '~2:30 שעות', cost: '¥14,720' },
@@ -1063,8 +1064,8 @@ const routeNotesPresets = {
     tips: 'כדאי להגיע עם נעלי הליכה נוחות, להחזיק IC Card טעון למעברים קצרים, ולהגיע מוקדם לשייט Tombori כדי להימנע מתור. באזור Kuromon אפשר לשלב טעימות קטנות במקום ארוחה כבדה אם רוצים להשאיר מקום לערב בדוטונבורי.'
   },
   '23': {
-    overview: 'יום מלא של אוסקה: שרין עתיק, אקווריום ענק, תצפית מ-Abeno Harukas, שופינג בשינסאיבאשי וערב קסום ב-teamLab Botanical Garden!',
-    tips: 'הזמינו כרטיסים ל-Kaiyukan ול-teamLab מראש! קחו ז\'קט לערב — מתקרר בגן. בואו ל-Kaiyukan בבוקר (פחות עומס).'
+    overview: 'יום 23 מתמקד במסלול אורבני זורם באוסקה: יציאה מהמלון ל-Kaiyukan, עצירת צהריים ב-Tempozan, קניות בשינסאיבאשי, ביקור ב-Sumiyoshi Taisha, מעבר רגוע דרך Nagai Park, חוויית ערב ב-teamLab Botanical Garden ותצפית לילה ב-Abeno Harukas 300.',
+    tips: 'מומלץ להזמין מראש כרטיסים ל-Kaiyukan, teamLab ו-Abeno Harukas לשעות הערב. החזיקו IC Card טעון למעברים המרובים, והשאירו מרווח של 10-15 דקות בין תחנות לטובת ניווט והחלפות קווים.'
   },
   '24': {
     overview: "היום עוברים מאוסקה לטוקיו ברכבת השינקנסן, מתארגנים במלון בגינזה, ואז יוצאים לערב תוסס בגינזה ובשינג'וקו — Omoide Yokocho, Golden Gai ו-Kabukicho!",
@@ -1307,15 +1308,19 @@ const data = {
     ["16:10<br>17:30","Dotonbori","מרכז אוסקה התוסס: שלטי ניאון ענקיים, אזור Glico המפורסם, גשרי הנהר וסיפורים מקומיים על הרחוב הכי אייקוני בעיר.","assets/attractions/day22/dotonbori.jpg","Dotonbori Osaka"],
     ["17:30<br>17:50","Tombori River Cruise","שיט קצר על התעלה בשעת הדמדומים, עם זווית אחרת על דוטונבורי והאורות שמתחילים להידלק לקראת הערב.","assets/attractions/day22/tombori_cruise.jpg","Tombori River Cruise Osaka"]
   ]},
-  '23': { title:"אוסקה – שרין, אקווריום, תצפית, שופינג ו-teamLab", route:"Sumiyoshi Taisha → Kaiyukan → Tempozan → Abeno Harukas → Shinsaibashi → teamLab Botanical Garden", events:[
-    ["09:00<br>10:00","Sumiyoshi Taisha","אחד המקדשים הסינטואיסטיים העתיקים ביפן, עם גשרים ייחודיים ואווירה שקטה","assets/attractions/day23/sumiyoshi.jpg","Sumiyoshi Taisha Osaka","🚶 רגלי ≈ 5 דק׳ מהתחנה"],
-    ["10:30<br>12:30","Kaiyukan Aquarium (海遊館)","אחד מגדולי האקווריומים בעולם – מנהרת מים ענקית עם לוויתן כרישים, פינגווינים ועוד","assets/attractions/day23/kaiyukan.jpg","Kaiyukan Aquarium Osaka","🚆 ~10 דק׳ · Osakako (Chuo Line)"],
-    ["12:30<br>13:30","ארוחת צהריים – Tempozan Harbor Village","מסעדות עם נוף לים, פירות ים ובתי קפה. מקום נהדר לנוח לפני ההמשך","assets/attractions/day23/tempozan.jpg","Tempozan Harbor Village Osaka","🚶 רגלי ≈ 2 דק׳ מ-Kaiyukan"],
-    ["14:00<br>15:00","Abeno Harukas 300","פלטפורמת תצפית בקומה 60 עם נוף 360° על אוסקה. אחת הגבוהות ביפן","assets/attractions/day23/abeno.jpg","Abeno Harukas 300 Osaka","🚆 ~15 דק׳ · Chuo Line → Tennoji"],
-    ["15:30<br>17:00","Shinsaibashi-suji Shopping Street","רחוב הקניות הראשי של אוסקה: מותגים עולמיים, סובניר ושופינג אידיאלי","assets/attractions/day23/shinsaibashi.jpg","Shinsaibashi Osaka","🚆 ~20 דק׳ · Midosuji Line מ-Tennoji"],
-    ["","__SECTION__","✨ ערב: teamLab Botanical Garden","",""],
-    ["17:30<br>20:00","teamLab Botanical Garden Osaka","גן בוטני עם אמנות דיגיטלית קסומה, אורות וטבע. חוויה בלתי נשכחת בלילה","assets/attractions/day23/teamlab.jpg","teamLab Botanical Garden Osaka","🚆 ~15 דק׳ · Midosuji Line → Nagai"],
-    ["20:30<br>22:00","חזרה למלון","Excel Hotel Tokyu Osaka. סיום יום 10 באוסקה","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka",""]
+  '23': { title:"אוסקה – אקווריום, שופינג וערב אורות", route:"Excel Hotel Tokyu → Kaiyukan → Tempozan → Shinsaibashi → Sumiyoshi Taisha → Nagai Park → teamLab Botanical Garden → Abeno Harukas 300", events:[
+    ["09:15","יציאה מהמלון","יציאה מ-Osaka Excel Hotel Tokyu לתחילת יום מלא באוסקה, עם מעבר מוקדם לכיוון אזור המפרץ.","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka"],
+    ["09:15<br>10:00","נסיעה ל-Kaiyukan","נסיעה לכיוון אזור המפרץ של אוסקה לקראת פתיחת הביקור באקווריום.","assets/transfers/train.jpg","Kaiyukan Aquarium Osaka","🚇 Osaka Metro · ~45 דק׳"],
+    ["10:00<br>12:15","Osaka Aquarium Kaiyukan","אחד האקווריומים המרשימים בעולם, עם תצוגות ענק, מסלול עומק מעגלי וחוויית ביקור מרשימה לכל אורך הבוקר.","assets/attractions/day23/kaiyukan.jpg","Kaiyukan Aquarium Osaka"],
+    ["12:15<br>13:05","Tempozan Marketplace + צהריים","עצירת צהריים נוחה ליד הנמל: אוכל יפני, קניות קלות ומנוחה קצרה לפני חזרה למרכז העיר.","assets/attractions/day23/tempozan.jpg","Tempozan Marketplace Osaka"],
+    ["13:05<br>13:40","מעבר לשינסאיבאשי","נסיעה מאזור Tempozan לשינסאיבאשי דרך קווי המטרו המרכזיים.","assets/transfers/train.jpg","Shinsaibashi Osaka","🚇 Chuo + Midosuji"],
+    ["13:40<br>15:00","Shinsaibashi Shopping","בלוק קניות ממוקד בשינסאיבאשי: Uniqlo, GU, Onitsuka Tiger ומתחמי קניות נוספים בסביבה.","assets/attractions/day23/shinsaibashi.jpg","Shinsaibashi Shopping Street Osaka"],
+    ["15:00<br>15:35","מעבר ל-Sumiyoshi Taisha","מעבר דרומה לכיוון Sumiyoshi Taisha לקראת ביקור קצר במקדש ההיסטורי.","assets/transfers/train.jpg","Sumiyoshi Taisha Osaka","🚇/🚆 מעבר עירוני"],
+    ["15:35<br>16:20","Sumiyoshi Taisha","מקדש שינטו עתיק ואחד החשובים ביפן, עם אדריכלות מסורתית ואווירה שקטה בלב העיר.","assets/attractions/day23/sumiyoshi.jpg","Sumiyoshi Taisha Osaka"],
+    ["16:20<br>17:25","Nagai Park","סיבוב רגוע בפארק Nagai והתקדמות נוחה לכיוון מתחם TeamLab לקראת אירועי הערב.","assets/transfers/walk.jpg","Nagai Park Osaka"],
+    ["18:00<br>19:45","TeamLab Botanical Garden Osaka","חוויית תאורה ואמנות אינטראקטיבית בגן הבוטני של אוסקה, עם מסלול ערב מרשים בין עבודות האור.","assets/attractions/day23/teamlab.jpg","teamLab Botanical Garden Osaka"],
+    ["20:15<br>21:15","Abeno Harukas 300","תצפית הלילה הגבוהה ביותר במסלול, עם מבט פנורמי על אוסקה המוארת.","assets/attractions/day23/abeno.jpg","Abeno Harukas 300 Osaka"],
+    ["21:15~","חזרה למלון / ארוחת ערב","סיום גמיש לפי מצב האנרגיות: חזרה למלון או עצירת ערב קלה באזור Tennoji/מרכז העיר.","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka"]
   ]},
   '24': { title:"אוסקה → טוקיו – יום ההגעה", route:"Shin-Osaka → Shinkansen Nozomi → Ginza → Omoide Yokocho → Golden Gai → Kabukicho", events:[
     ["09:30","יציאה מהמלון באוסקה","צ'ק-אאוט מ-Excel Hotel Tokyu Osaka ויציאה לתחנת השינקנסן. כדאי לשקול לשלוח מזוודות גדולות ישירות למלון בטוקיו בשירות Takkyubin (Ta-Q-Bin) — נמסר למחרת, כ-¥2,500-3,500 למזוודה","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka"],
