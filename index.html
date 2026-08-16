@@ -133,6 +133,11 @@
     .event-title-line.title-rtl{text-align:right;direction:rtl}
     .event-transit{font-size:11px;color:var(--muted);margin-top:7px}
     .event-desc{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
+    .audio-btn{display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:3px 9px;border-radius:999px;border:1.5px solid #a5b4fc;background:#eef2ff;color:#3730a3;font-size:11px;font-weight:700;cursor:pointer;transition:background .15s}
+    .audio-btn:hover{background:#e0e7ff}
+    .audio-btn.playing{background:#3730a3;color:#fff;border-color:#3730a3}
+    .audio-btn.playing::before{content:'⏸ '}
+    .audio-btn:not(.playing)::before{content:'🔊 '}
     .route-live-chips{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
     .route-live-chip{border:1px solid #d8e0ea;background:#eef2f7;color:#475569;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:800}
     .route-live-chip.on-time{background:#ecfdf3;border-color:#86efac;color:#166534}
@@ -2609,6 +2614,25 @@ function getDayMeta(day){
 }
 
 // Render the day title banner: [date badge] + [big city name + theme]
+// MP3 files in mp3/ folder keyed by exact event name
+const audioMap = {
+  'Chureito Pagoda':  'mp3/Chureito Pagoda.mp3',
+  'Oshino Hakkai':    'mp3/Oshino Hakkai.mp3',
+};
+let _activeAudio = null, _activeBtn = null;
+function playEventAudio(name, btn) {
+  const src = audioMap[name]; if (!src) return;
+  if (_activeAudio && !_activeAudio.paused) {
+    _activeAudio.pause();
+    if (_activeBtn) _activeBtn.classList.remove('playing');
+    if (_activeBtn === btn) { _activeAudio = null; _activeBtn = null; return; }
+  }
+  if (!btn._audio) { btn._audio = new Audio(src); btn._audio.onended = () => btn.classList.remove('playing'); }
+  btn._audio.play();
+  btn.classList.add('playing');
+  _activeAudio = btn._audio; _activeBtn = btn;
+}
+
 function renderDayBanner(day){
   const container = document.getElementById('dayHeadContainer');
   if (!container) return;
@@ -2773,6 +2797,7 @@ function render(day){
         <h3 class="${titleAlignClass}">${titleHtml}</h3>
         <div class="event-desc">${eventDescription}</div>
         ${transitNote}
+        ${audioMap[e[1]] ? `<button class="audio-btn" onclick="playEventAudio('${e[1].replace(/'/g,"\\'")}",this)">${escapeHtml(e[1])}</button>` : ''}
       </div>
     </div></div>`;
   });
