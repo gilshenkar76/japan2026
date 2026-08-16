@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>מסלול יום 23 – אוסקה</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0d0d1a; display: flex; justify-content: center; padding: 24px 12px; font-family: "Segoe UI", Arial, sans-serif; min-height: 100vh; }
+  .card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.55); max-width: 780px; width: 100%; }
+  .card-header { background: linear-gradient(135deg,#1a237e,#283593); color: white; padding: 14px 22px; text-align: center; }
+  .card-header h1 { margin: 0 0 3px; font-size: 1.2rem; }
+  .card-header p  { font-size: 0.72rem; opacity: 0.72; margin: 0; }
+  svg { display: block; width: 100%; height: auto; }
+  .card-footer { padding: 10px 18px; background: #f4f5fb; border-top: 1px solid #e0e4f0; display: flex; justify-content: center; }
+  .legend { display: flex; gap: 20px; align-items: center; font-size: 0.75rem; color: #555; flex-wrap: wrap; justify-content: center; }
+  .li { display: flex; align-items: center; gap: 7px; }
+  .l-metro { width: 30px; height: 3px; background: #c2185b; border-radius: 2px; }
+  .l-walk  { width: 30px; height: 0; border-top: 3px dashed #283593; }
+  .l-dot   { width: 20px; height: 20px; border-radius: 50%; background: #1a237e; color: white; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; border: 2.5px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.3); flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-header">
+    <h1>מסלול יום 23/11 – אוסקה</h1>
+    <p>Excel Hotel Tokyu · Kaiyukan · Tempozan · Shinsaibashi · Sumiyoshi · Nagai · TeamLab · Abeno Harukas 300</p>
+  </div>
+
+  <svg viewBox="0 0 760 720" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,Arial,sans-serif">
+    <defs>
+      <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+        <rect width="36" height="36" fill="#cdd5e2"/>
+        <rect x="2" y="2" width="32" height="32" fill="#edf1f8" rx="2"/>
+      </pattern>
+      <pattern id="pgrid" width="36" height="36" patternUnits="userSpaceOnUse">
+        <rect width="36" height="36" fill="#b4ccaa"/>
+        <rect x="2" y="2" width="32" height="32" fill="#d4ebca" rx="2"/>
+      </pattern>
+    </defs>
+
+    <rect width="760" height="720" fill="url(#grid)"/>
+
+    <!-- Osaka Bay west -->
+    <path d="M0,80 Q45,150 35,270 Q22,390 40,475 Q58,545 28,615 Q12,660 0,700 L0,80Z" fill="#b3cfe8" opacity="0.72"/>
+    <path d="M35,110 Q88,170 82,258 Q76,346 88,428 Q98,488 65,555" stroke="#88b4d0" stroke-width="2.5" fill="none" opacity="0.6"/>
+
+    <!-- Yodo River -->
+    <path d="M110,52 Q210,92 330,110 Q445,128 545,115 Q630,104 700,90" stroke="#88b4d0" stroke-width="10" fill="none" opacity="0.4" stroke-linecap="round"/>
+
+    <!-- Dotonbori canal -->
+    <path d="M115,308 Q235,300 345,304 Q455,308 555,298" stroke="#88b4d0" stroke-width="6" fill="none" opacity="0.4" stroke-linecap="round"/>
+
+    <!-- Tennoji Park green -->
+    <ellipse cx="455" cy="558" rx="58" ry="40" fill="url(#pgrid)" opacity="0.8"/>
+
+    <!-- Namba tint block -->
+    <rect x="370" y="348" width="85" height="65" rx="5" fill="#dde3f0" opacity="0.55"/>
+
+    <!-- ROUTES -->
+    <path d="M538,622 C385,608 215,488 72,312" stroke="#c2185b" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M72,312 L72,272" stroke="#283593" stroke-width="3" fill="none" stroke-dasharray="7,5" stroke-linecap="round"/>
+    <path d="M72,272 C148,244 298,168 465,108" stroke="#c2185b" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M465,108 C518,228 498,390 262,512" stroke="#c2185b" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M262,512 C330,530 402,545 482,558" stroke="#283593" stroke-width="3" fill="none" stroke-dasharray="7,5" stroke-linecap="round"/>
+    <path d="M482,558 C502,552 522,546 542,538" stroke="#283593" stroke-width="3" fill="none" stroke-dasharray="7,5" stroke-linecap="round"/>
+    <path d="M542,538 C544,518 543,500 542,482" stroke="#c2185b" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M542,482 C540,530 538,578 538,622" stroke="#283593" stroke-width="3" fill="none" stroke-dasharray="7,5" stroke-linecap="round"/>
+
+    <!-- DISTANCE BADGES -->
+    <rect x="205" y="515" rx="9" width="112" height="18" fill="white" stroke="#c2185b" stroke-width="1" opacity="0.93"/>
+    <text x="261" y="527.5" text-anchor="middle" font-size="10" font-weight="700" fill="#c2185b">&#x1F687; 8.5 km · ~45 &#x05D3;&#x05E7;&#x05F3;</text>
+
+    <rect x="82" y="287" rx="8" width="68" height="16" fill="white" stroke="#283593" stroke-width="1" opacity="0.93"/>
+    <text x="116" y="298.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#283593">&#x1F6B6; 200 &#x05DE;&#x05F3;</text>
+
+    <rect x="145" y="191" rx="9" width="112" height="18" fill="white" stroke="#c2185b" stroke-width="1" opacity="0.93"/>
+    <text x="201" y="203.5" text-anchor="middle" font-size="10" font-weight="700" fill="#c2185b">&#x1F687; 9.2 km · ~35 &#x05D3;&#x05E7;&#x05F3;</text>
+
+    <rect x="476" y="292" rx="9" width="112" height="18" fill="white" stroke="#c2185b" stroke-width="1" opacity="0.93"/>
+    <text x="532" y="304.5" text-anchor="middle" font-size="10" font-weight="700" fill="#c2185b">&#x1F687; 7.8 km · ~35 &#x05D3;&#x05E7;&#x05F3;</text>
+
+    <rect x="273" y="543" rx="9" width="112" height="18" fill="white" stroke="#283593" stroke-width="1" opacity="0.93"/>
+    <text x="329" y="555.5" text-anchor="middle" font-size="10" font-weight="700" fill="#283593">&#x1F6B6; 2.1 km · ~25 &#x05D3;&#x05E7;&#x05F3;</text>
+
+    <rect x="476" y="534" rx="8" width="65" height="16" fill="white" stroke="#283593" stroke-width="1" opacity="0.93"/>
+    <text x="508" y="545.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#283593">&#x1F6B6; 500 &#x05DE;&#x05F3;</text>
+
+    <rect x="460" y="503" rx="8" width="72" height="16" fill="white" stroke="#c2185b" stroke-width="1" opacity="0.93"/>
+    <text x="496" y="514.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#c2185b">&#x1F687; 3.8 km</text>
+
+    <rect x="456" y="548" rx="8" width="72" height="16" fill="white" stroke="#283593" stroke-width="1" opacity="0.93"/>
+    <text x="492" y="559.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#283593">&#x1F6B6; 400 &#x05DE;&#x05F3;</text>
+
+    <!-- STOP S: Hotel -->
+    <rect x="335" y="607" rx="7" width="182" height="34" fill="rgba(255,255,255,0.93)" stroke="#1a237e" stroke-width="1.2"/>
+    <text x="510" y="623" text-anchor="end" font-size="11.5" font-weight="700" fill="#1a237e">Excel Hotel Tokyu Osaka</text>
+    <text x="510" y="635" text-anchor="end" font-size="9.5" fill="#888">09:15 &#x05D9;&#x05E6;&#x05D9;&#x05D0;&#x05D4; · Tennoji</text>
+    <circle cx="538" cy="622" r="16" fill="#1a237e" stroke="white" stroke-width="3"/>
+    <text x="538" y="627" text-anchor="middle" font-size="12.5" font-weight="800" fill="white">S</text>
+
+    <!-- STOP 2: Kaiyukan -->
+    <rect x="90" y="298" rx="7" width="148" height="34" fill="rgba(255,255,255,0.93)" stroke="#0277bd" stroke-width="1.2"/>
+    <text x="96" y="314" text-anchor="start" font-size="11.5" font-weight="700" fill="#0277bd">Kaiyukan &#x1F420;</text>
+    <text x="96" y="326" text-anchor="start" font-size="9.5" fill="#888">10:00–12:15</text>
+    <circle cx="72" cy="312" r="15" fill="#0277bd" stroke="white" stroke-width="3"/>
+    <text x="72" y="317" text-anchor="middle" font-size="12" font-weight="800" fill="white">2</text>
+
+    <!-- STOP 3: Tempozan -->
+    <rect x="90" y="257" rx="7" width="175" height="34" fill="rgba(255,255,255,0.93)" stroke="#e65100" stroke-width="1.2"/>
+    <text x="96" y="273" text-anchor="start" font-size="11.5" font-weight="700" fill="#e65100">Tempozan &#x1F35C;</text>
+    <text x="96" y="285" text-anchor="start" font-size="9.5" fill="#888">12:15–13:05 · &#x05D0;&#x05E8;&#x05D5;&#x05D7;&#x05EA; &#x05E6;&#x05D4;&#x05E8;&#x05D9;&#x05D9;&#x05DD;</text>
+    <circle cx="72" cy="272" r="15" fill="#e65100" stroke="white" stroke-width="3"/>
+    <text x="72" y="277" text-anchor="middle" font-size="12" font-weight="800" fill="white">3</text>
+
+    <!-- STOP 4: Shinsaibashi -->
+    <rect x="315" y="118" rx="7" width="164" height="34" fill="rgba(255,255,255,0.93)" stroke="#ad1457" stroke-width="1.2"/>
+    <text x="321" y="134" text-anchor="start" font-size="11.5" font-weight="700" fill="#ad1457">Shinsaibashi &#x1F6CD;&#xFE0F;</text>
+    <text x="321" y="146" text-anchor="start" font-size="9.5" fill="#888">13:40–15:00 · &#x05E7;&#x05E0;&#x05D9;&#x05D5;&#x05EA;</text>
+    <circle cx="465" cy="108" r="15" fill="#ad1457" stroke="white" stroke-width="3"/>
+    <text x="465" y="113" text-anchor="middle" font-size="12" font-weight="800" fill="white">4</text>
+
+    <!-- STOP 5: Sumiyoshi -->
+    <rect x="65" y="498" rx="7" width="178" height="34" fill="rgba(255,255,255,0.93)" stroke="#4a148c" stroke-width="1.2"/>
+    <text x="236" y="514" text-anchor="end" font-size="11.5" font-weight="700" fill="#4a148c">Sumiyoshi Taisha &#x26E9;&#xFE0F;</text>
+    <text x="236" y="526" text-anchor="end" font-size="9.5" fill="#888">15:35–16:20 · &#x05DE;&#x05E7;&#x05D3;&#x05E9;</text>
+    <circle cx="262" cy="512" r="15" fill="#4a148c" stroke="white" stroke-width="3"/>
+    <text x="262" y="517" text-anchor="middle" font-size="12" font-weight="800" fill="white">5</text>
+
+    <!-- STOP 6: Nagai Park -->
+    <rect x="396" y="571" rx="7" width="118" height="34" fill="rgba(255,255,255,0.93)" stroke="#2e7d32" stroke-width="1.2"/>
+    <text x="402" y="587" text-anchor="start" font-size="11.5" font-weight="700" fill="#2e7d32">Nagai Park &#x1F333;</text>
+    <text x="402" y="599" text-anchor="start" font-size="9.5" fill="#888">16:20–17:25</text>
+    <circle cx="482" cy="558" r="15" fill="#2e7d32" stroke="white" stroke-width="3"/>
+    <text x="482" y="563" text-anchor="middle" font-size="12" font-weight="800" fill="white">6</text>
+
+    <!-- STOP 7: teamLab -->
+    <rect x="560" y="524" rx="7" width="158" height="34" fill="rgba(255,255,255,0.93)" stroke="#00695c" stroke-width="1.2"/>
+    <text x="566" y="540" text-anchor="start" font-size="11.5" font-weight="700" fill="#00695c">teamLab &#x2728;</text>
+    <text x="566" y="552" text-anchor="start" font-size="9.5" fill="#888">18:00–19:45 · &#x05D0;&#x05DE;&#x05E0;&#x05D5;&#x05EA;</text>
+    <circle cx="542" cy="538" r="15" fill="#00695c" stroke="white" stroke-width="3"/>
+    <text x="542" y="543" text-anchor="middle" font-size="12" font-weight="800" fill="white">7</text>
+
+    <!-- STOP 8: Abeno Harukas -->
+    <rect x="560" y="467" rx="7" width="178" height="34" fill="rgba(255,255,255,0.93)" stroke="#37474f" stroke-width="1.2"/>
+    <text x="566" y="483" text-anchor="start" font-size="11.5" font-weight="700" fill="#37474f">Abeno Harukas &#x1F303;</text>
+    <text x="566" y="495" text-anchor="start" font-size="9.5" fill="#888">20:15–21:15 · &#x05EA;&#x05E6;&#x05E4;&#x05D9;&#x05EA; &#x05DC;&#x05D9;&#x05DC;&#x05D4;</text>
+    <circle cx="542" cy="482" r="15" fill="#37474f" stroke="white" stroke-width="3"/>
+    <text x="542" y="487" text-anchor="middle" font-size="12" font-weight="800" fill="white">8</text>
+
+    <!-- Compass -->
+    <g transform="translate(42,672)">
+      <circle r="20" fill="rgba(255,255,255,0.82)" stroke="#aaa" stroke-width="1"/>
+      <line x1="0" y1="-14" x2="0" y2="14" stroke="#555" stroke-width="1.5"/>
+      <line x1="-14" y1="0" x2="14" y2="0" stroke="#555" stroke-width="1.5"/>
+      <text x="0" y="-17" text-anchor="middle" font-size="9" fill="#333" font-weight="700">N</text>
+    </g>
+
+    <!-- Scale bar -->
+    <g transform="translate(640,695)">
+      <line x1="0" y1="0" x2="52" y2="0" stroke="#666" stroke-width="2"/>
+      <line x1="0" y1="-4" x2="0" y2="4" stroke="#666" stroke-width="2"/>
+      <line x1="52" y1="-4" x2="52" y2="4" stroke="#666" stroke-width="2"/>
+      <text x="26" y="-6" text-anchor="middle" font-size="9" fill="#666">~5 km</text>
+    </g>
+  </svg>
+
+  <div class="card-footer">
+    <div class="legend">
+      <div class="li"><div class="l-dot">S</div> &#x05DE;&#x05D5;&#x05E6;&#x05D0; / &#x05D9;&#x05E2;&#x05D3;</div>
+      <div class="li"><div class="l-metro"></div> &#x05DE;&#x05D8;&#x05E8;&#x05D5; / &#x05E8;&#x05DB;&#x05D1;&#x05EA;</div>
+      <div class="li"><div class="l-walk"></div> &#x05D4;&#x05DC;&#x05D9;&#x05DB;&#x05D4;</div>
+      <div class="li" style="font-size:0.7rem;color:#888">&#x05DE;&#x05E1;&#x05E4;&#x05E8;&#x05D9;&#x05DD; = &#x05E1;&#x05D3;&#x05E8; &#x05D4;&#x05D1;&#x05D9;&#x05E7;&#x05D5;&#x05E8;</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

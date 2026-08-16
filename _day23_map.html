@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מסלול יום 23 – אוסקה</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+  h1 { text-align: center; color: #1a1a2e; margin-bottom: 6px; font-size: 1.5rem; }
+  .subtitle { text-align: center; color: #555; font-size: 0.9rem; margin-bottom: 24px; }
+
+  .map-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    padding: 30px 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+
+  .stop {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    position: relative;
+  }
+
+  /* vertical line between stops */
+  .stop:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 22px;
+    top: 48px;
+    width: 3px;
+    height: calc(100% - 24px);
+    background: linear-gradient(to bottom, #e0e0e0 0%, #e0e0e0 100%);
+    z-index: 0;
+  }
+
+  .stop-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 46px;
+    z-index: 1;
+  }
+
+  .stop-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .stop-content {
+    flex: 1;
+    padding-bottom: 28px;
+  }
+
+  .stop-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.3;
+  }
+
+  .stop-time {
+    font-size: 0.78rem;
+    color: #777;
+    margin-top: 2px;
+  }
+
+  .stop-desc {
+    font-size: 0.82rem;
+    color: #555;
+    margin-top: 4px;
+    line-height: 1.45;
+  }
+
+  /* transport segment */
+  .transport {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 8px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .transport-left {
+    min-width: 46px;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .transport-badge {
+    background: #ffe082;
+    border: 2px solid #ffb300;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #5d4037;
+    white-space: nowrap;
+  }
+
+  .transport-badge.walk {
+    background: #c8e6c9;
+    border-color: #388e3c;
+    color: #1b5e20;
+  }
+
+  /* stop type colors */
+  .hotel  { background: #1565c0; }
+  .aqua   { background: #0277bd; }
+  .market { background: #e65100; }
+  .shop   { background: #ad1457; }
+  .shrine { background: #4a148c; }
+  .park   { background: #2e7d32; }
+  .art    { background: #004d40; }
+  .obs    { background: #37474f; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    justify-content: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: #444;
+  }
+  .legend-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+
+<h1>🗺️ מסלול יום 23/11 – אוסקה</h1>
+<p class="subtitle">אקווריום · שופינג · מקדש · TeamLab · תצפית לילה</p>
+
+<div class="map-container">
+
+  <!-- 1 Hotel -->
+  <div class="stop">
+    <div class="stop-left">
+      <div class="stop-icon hotel">🏨</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-name">Excel Hotel Tokyu Osaka</div>
+      <div class="stop-time">09:15 יציאה</div>
+      <div class="stop-desc">מלון המוצא · אזור Tennoji/מרכז אוסקה</div>
+    </div>
+  </div>
+
+  <!-- transport 1 -->
+  <div class="transport">
+    <div class="transport-left"></div>
+    <div class="transport-badge">🚇 Osaka Metro · ~45 דק׳</div>
+  </div>
+
+  <!-- 2 Kaiyukan -->
+  <div class="stop">
+    <div class="stop-left">
+      <div class="stop-icon aqua">🐠</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-name">Osaka Aquarium Kaiyukan</div>
+      <div class="stop-time">10:00 – 12:15</div>
+      <div class="stop-desc">אחד האקווריומים הגדולים בעולם · אזור המפרץ</div>
+    </div>
+  </div>
+
+  <!-- transport 2 -->
+  <div class="transport">
+    <div class="transport-left"></div>
+    <div class="transport-badge walk">🚶 הליכה קצרה</div>
+  </div>
+
+  <!-- 3 Tempozan -->
+  <div class="stop">
+    <div class="stop-left">
+      <div class="stop-icon market">🍜</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-name">Tempozan Marketplace</div>
+      <div class="stop-time">12:15 – 13:05 · ארוחת צהריים</div>
+      <div class="stop-desc">קניון ואוכל יפני ליד הנמל</div>
+    </div>
+  </div>
+
+  <!-- transport 3 -->
+  <div class="transport">
+    <div class="transport-left"></div>
+    <div class="transport-badge">🚇 Chuo Line → Midosuji Line · ~35 דק׳</div>
+  </div>
+
+  <!-- 4 Shinsaibashi -->
+  <div class="stop">
+    <div class="stop-left">
+      <div class="stop-icon shop">🛍️</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-name">Shinsaibashi Shopping</div>
+      <div class="stop-time">13:40 – 15:00</div>
+      <div class="stop-desc">Uniqlo · GU · Onitsuka Tiger · מרכז הקניות</div>
+    </div>
+  </div>
+
+  <!-- transport 4 -->
+  <div class="transport">
+    <div class="transport-left"></div>
+    <div class="transport-badge">🚇/🚆 מטרו דרומה · ~35 דק׳</div>
+  </div>
+
+  <!-- 5 Sumiyoshi -->
+  <div class="stop">
+    <div class="stop-left">
+      <div class="stop-icon shrine">⛩️</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-name">Sumiyoshi Taisha</div>
+      <div class="stop-time">15:35 – 16:20</div>
+      <div class="stop-desc">מקדש שינטו עתיק ומרשים · דרום אוסקה</div>
+    </div>
+  </div>
+
+  <!-- transport 5 -->
+  <div class="transport">
+    <div class="transport-left"></div>
+    <div class="transport-badge walk">🚶 הליכה ~10 דק׳</div>
+  </div>
+
+  <!-- 6 Nagai Park -->
+  <div class="stop">
+    <div class="stop-left">
+      <div class="stop-icon park">🌳</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-name">Nagai Park</div>
+      <div class="stop-time">16:20 – 17:25</div>
+      <div class="stop-desc">פארק עירוני רחב · מנוחה לפני הערב</div>
+    </div>
+  </div>
+
+  <!-- transport 6 -->
+  <div class="transport">
+    <div class="transport-left"></div>
+    <div class="transport-badge">🚇 Midosuji Line · ~10 דק׳</div>
+  </div>
+
+  <!-- 7 TeamLab -->
+  <div class="stop">
+    <div class="stop-left">
+      <div class="stop-icon art">✨</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-name">teamLab Botanical Garden Osaka</div>
+      <div class="stop-time">18:00 – 19:45</div>
+      <div class="stop-desc">אמנות אינטראקטיבית ואורות · גן בוטני בלילה</div>
+    </div>
+  </div>
+
+  <!-- transport 7 -->
+  <div class="transport">
+    <div class="transport-left"></div>
+    <div class="transport-badge walk">🚶 הליכה ~10 דק׳</div>
+  </div>
+
+  <!-- 8 Abeno Harukas -->
+  <div class="stop">
+    <div class="stop-left">
+      <div class="stop-icon obs">🌃</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-name">Abeno Harukas 300</div>
+      <div class="stop-time">20:15 – 21:15</div>
+      <div class="stop-desc">גורד שחקים הגבוה ביפן · תצפית לילה פנורמית</div>
+    </div>
+  </div>
+
+  <!-- transport 8 -->
+  <div class="transport">
+    <div class="transport-left"></div>
+    <div class="transport-badge">🚇 חזרה למרכז · ~10 דק׳</div>
+  </div>
+
+  <!-- 9 Hotel return -->
+  <div class="stop">
+    <div class="stop-left">
+      <div class="stop-icon hotel">🏨</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-name">Excel Hotel Tokyu Osaka</div>
+      <div class="stop-time">21:15~ חזרה</div>
+      <div class="stop-desc">סיום יום / ארוחת ערב אופציונלית באזור Tennoji</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#1565c0"></div> מלון</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#0277bd"></div> אקווריום</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e65100"></div> שוק/מסעדה</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ad1457"></div> קניות</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4a148c"></div> מקדש</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#2e7d32"></div> פארק</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#004d40"></div> אמנות/TeamLab</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#37474f"></div> תצפית</div>
+  </div>
+</div>
+
+</body>
+</html>

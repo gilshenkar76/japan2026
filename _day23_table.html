@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>לוח זמנים 23.11 – אוסקה</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0d0d1a; font-family: "Segoe UI", Arial, sans-serif; padding: 24px 14px; min-height: 100vh; }
+  .card { max-width: 860px; margin: 0 auto; background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
+  .card-header { background: linear-gradient(135deg,#1a237e,#283593); color: white; padding: 16px 24px; }
+  .card-header h1 { font-size: 1.25rem; margin-bottom: 3px; }
+  .card-header p  { font-size: 0.78rem; opacity: 0.75; }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { background: #e8eaf6; }
+  thead th { padding: 10px 14px; font-size: 0.78rem; font-weight: 700; color: #3949ab; text-align: right; border-bottom: 2px solid #c5cae9; white-space: nowrap; }
+
+  tbody tr { border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
+  tbody tr:hover { background: #f8f9ff; }
+
+  /* row type coloring */
+  tr.transport { background: #fff8f0; }
+  tr.transport:hover { background: #fff0e0; }
+  tr.activity  { background: white; }
+  tr.activity.evening { background: #fafafa; }
+
+  td { padding: 10px 14px; vertical-align: middle; font-size: 0.88rem; }
+
+  .td-time { white-space: nowrap; font-weight: 700; color: #37474f; font-size: 0.82rem; min-width: 90px; font-variant-numeric: tabular-nums; }
+  .td-icon { font-size: 1.3rem; text-align: center; width: 38px; padding: 0 4px; }
+  .td-name { font-weight: 600; color: #1a237e; }
+  .td-name.transport-name { color: #e65100; font-weight: 500; }
+  .td-trans { font-size: 0.78rem; color: #e65100; background: #fff3e0; border-radius: 10px; padding: 2px 9px; display: inline-block; white-space: nowrap; }
+  .td-desc { font-size: 0.82rem; color: #555; line-height: 1.45; }
+  .td-dur  { white-space: nowrap; font-size: 0.78rem; color: #777; text-align: center; }
+
+  .badge-walk  { background: #e8f5e9; color: #2e7d32; border-radius: 10px; padding: 2px 8px; font-size: 0.75rem; font-weight: 600; display: inline-block; }
+  .badge-metro { background: #e3f2fd; color: #0277bd; border-radius: 10px; padding: 2px 8px; font-size: 0.75rem; font-weight: 600; display: inline-block; }
+
+  .section-label { background: #ede7f6; }
+  .section-label td { padding: 6px 14px; font-size: 0.78rem; font-weight: 700; color: #512da8; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  tfoot td { padding: 10px 14px; font-size: 0.78rem; color: #888; background: #f9f9f9; border-top: 2px solid #e0e0e0; }
+
+  /* ── audio player cell ── */
+  .td-audio { width: 170px; padding: 6px 10px; }
+  .ap-wrap { display: flex; flex-direction: column; gap: 4px; }
+
+  .ap-pick {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: #ede7f6; border: 1.5px dashed #7e57c2;
+    border-radius: 8px; padding: 4px 10px;
+    font-size: 0.75rem; font-weight: 600; color: #512da8;
+    cursor: pointer; transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .ap-pick:hover { background: #d1c4e9; }
+
+  .ap-player { display: none; flex-direction: column; gap: 3px; }
+  .ap-player.loaded { display: flex; }
+
+  .ap-controls { display: flex; align-items: center; gap: 5px; }
+  .ap-btn {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #1a237e; color: white; border: none;
+    cursor: pointer; font-size: 0.85rem; display: flex;
+    align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background 0.15s;
+  }
+  .ap-btn:hover { background: #3949ab; }
+  .ap-btn.playing { background: #c62828; }
+
+  .ap-fname {
+    font-size: 0.7rem; color: #555; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; max-width: 115px;
+    direction: ltr;
+  }
+
+  .ap-bar-wrap {
+    width: 100%; height: 4px; background: #e0e0e0;
+    border-radius: 2px; cursor: pointer; position: relative;
+  }
+  .ap-bar-fill {
+    height: 100%; background: #1a237e; border-radius: 2px;
+    width: 0%; pointer-events: none; transition: width 0.1s linear;
+  }
+
+  .ap-time { font-size: 0.68rem; color: #888; direction: ltr; }
+
+  .ap-remove {
+    font-size: 0.68rem; color: #aaa; cursor: pointer;
+    background: none; border: none; padding: 0;
+    align-self: flex-start;
+  }
+  .ap-remove:hover { color: #e53935; }
+
+  @media (max-width: 600px) {
+    .td-desc { display: none; }
+    td { padding: 8px 10px; }
+    .td-audio { width: 36px; }
+    .ap-pick span.ap-pick-label { display: none; }
+    .ap-fname, .ap-time, .ap-remove { display: none; }
+  }
+</style>
+
+<script>
+// ── audio state per row (keyed by rowId) ──────────────────────────────────
+const audioMap = {};   // rowId → { audio, objUrl }
+
+function pickFile(rowId) {
+  const input = document.getElementById('fi-' + rowId);
+  input.click();
+}
+
+function onFileChosen(rowId, input) {
+  if (!input.files.length) return;
+  const file = input.files[0];
+  // revoke old url if any
+  if (audioMap[rowId]) {
+    audioMap[rowId].audio.pause();
+    URL.revokeObjectURL(audioMap[rowId].objUrl);
+  }
+  const url = URL.createObjectURL(file);
+  const audio = new Audio(url);
+  audioMap[rowId] = { audio, objUrl: url };
+
+  // wire up events
+  audio.addEventListener('timeupdate', () => updateProgress(rowId));
+  audio.addEventListener('ended', () => setPlayState(rowId, false));
+  audio.addEventListener('loadedmetadata', () => updateProgress(rowId));
+
+  // show player, hide pick button
+  document.getElementById('pick-' + rowId).style.display = 'none';
+  const player = document.getElementById('pl-' + rowId);
+  player.classList.add('loaded');
+  document.getElementById('fname-' + rowId).textContent = file.name;
+  setPlayState(rowId, false);
+}
+
+function togglePlay(rowId) {
+  const state = audioMap[rowId];
+  if (!state) return;
+  if (state.audio.paused) {
+    // pause all others first
+    Object.entries(audioMap).forEach(([id, s]) => {
+      if (id !== rowId && !s.audio.paused) { s.audio.pause(); setPlayState(id, false); }
+    });
+    state.audio.play();
+    setPlayState(rowId, true);
+  } else {
+    state.audio.pause();
+    setPlayState(rowId, false);
+  }
+}
+
+function setPlayState(rowId, playing) {
+  const btn = document.getElementById('btn-' + rowId);
+  if (!btn) return;
+  btn.textContent = playing ? '⏸' : '▶';
+  btn.classList.toggle('playing', playing);
+}
+
+function updateProgress(rowId) {
+  const state = audioMap[rowId];
+  if (!state) return;
+  const { audio } = state;
+  const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+  const fill = document.getElementById('fill-' + rowId);
+  if (fill) fill.style.width = pct + '%';
+  const timeEl = document.getElementById('time-' + rowId);
+  if (timeEl) timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration || 0);
+}
+
+function seekBar(rowId, e) {
+  const state = audioMap[rowId];
+  if (!state || !state.audio.duration) return;
+  const bar = e.currentTarget;
+  const pct = e.offsetX / bar.offsetWidth;
+  state.audio.currentTime = pct * state.audio.duration;
+}
+
+function removeAudio(rowId) {
+  const state = audioMap[rowId];
+  if (state) { state.audio.pause(); URL.revokeObjectURL(state.objUrl); delete audioMap[rowId]; }
+  document.getElementById('pl-' + rowId).classList.remove('loaded');
+  document.getElementById('pick-' + rowId).style.display = '';
+  document.getElementById('fi-' + rowId).value = '';
+}
+
+function fmt(s) {
+  if (!isFinite(s)) return '0:00';
+  const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+  return m + ':' + String(sec).padStart(2, '0');
+}
+
+// ── inject audio cells on load ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  let rowIdx = 0;
+
+  document.querySelectorAll('tbody tr').forEach(tr => {
+    // section-label rows: just extend colspan
+    if (tr.classList.contains('section-label')) {
+      const td = tr.querySelector('td');
+      if (td) td.colSpan = 7;
+      return;
+    }
+
+    const id = 'r' + (rowIdx++);
+    const td = document.createElement('td');
+    td.className = 'td-audio';
+    td.innerHTML = `
+      <input type="file" id="fi-${id}" accept="audio/*,.mp3,.m4a,.ogg,.wav"
+             style="display:none" onchange="onFileChosen('${id}',this)">
+      <div class="ap-wrap">
+        <label id="pick-${id}" class="ap-pick" onclick="pickFile('${id}')">
+          🎵 <span class="ap-pick-label">הוסף MP3</span>
+        </label>
+        <div id="pl-${id}" class="ap-player">
+          <div class="ap-controls">
+            <button id="btn-${id}" class="ap-btn" onclick="togglePlay('${id}')">▶</button>
+            <span id="fname-${id}" class="ap-fname"></span>
+            <button class="ap-remove" onclick="removeAudio('${id}')" title="הסר">✕</button>
+          </div>
+          <div class="ap-bar-wrap" onclick="seekBar('${id}',event)">
+            <div id="fill-${id}" class="ap-bar-fill"></div>
+          </div>
+          <span id="time-${id}" class="ap-time">0:00 / 0:00</span>
+        </div>
+      </div>`;
+    tr.appendChild(td);
+  });
+
+  // tfoot colspan fix
+  const tfootCells = document.querySelectorAll('tfoot tr td');
+  if (tfootCells.length) tfootCells[tfootCells.length - 1].colSpan =
+    (parseInt(tfootCells[tfootCells.length - 1].colSpan) || 1);
+});
+</script>
+</head>
+<body>
+<div class="card">
+  <div class="card-header">
+    <h1>&#x05DC;&#x05D5;&#x05D7; &#x05D6;&#x05DE;&#x05E0;&#x05D9;&#x05DD; &#x2013; 23 &#x05E0;&#x05D5;&#x05D1;&#x05DE;&#x05D1;&#x05E8; 2026 &#x2013; &#x05D0;&#x05D5;&#x05E1;&#x05E7;&#x05D4;</h1>
+    <p>Excel Hotel Tokyu Osaka &rarr; Kaiyukan &rarr; Tempozan &rarr; Shinsaibashi &rarr; Sumiyoshi &rarr; Nagai &rarr; TeamLab &rarr; Abeno Harukas</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>&#x05E9;&#x05E2;&#x05D5;&#x05EA;</th>
+        <th></th>
+        <th>&#x05E2;&#x05E6;&#x05D9;&#x05E8;&#x05D4; / &#x05E0;&#x05E1;&#x05D9;&#x05E2;&#x05D4;</th>
+        <th>&#x05EA;&#x05D9;&#x05D0;&#x05D5;&#x05E8;</th>
+        <th>&#x05D0;&#x05DE;&#x05E6;&#x05E2;&#x05D9; &#x05D4;&#x05D2;&#x05E2;&#x05D4;</th>
+        <th>&#x05D6;&#x05DE;&#x05DF;</th>
+        <th>&#x05E9;&#x05DE;&#x05E2;</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- MORNING -->
+      <tr class="section-label"><td colspan="6">&#x1F305; &#x05D1;&#x05D5;&#x05E7;&#x05E8;</td></tr>
+
+      <tr class="activity">
+        <td class="td-time">09:15</td>
+        <td class="td-icon">&#x1F3E8;</td>
+        <td class="td-name">&#x05D9;&#x05E6;&#x05D9;&#x05D0;&#x05D4; &#x05DE;&#x05D4;&#x05DE;&#x05DC;&#x05D5;&#x05DF;</td>
+        <td class="td-desc">Excel Hotel Tokyu Osaka &ndash; &#x05D0;&#x05D6;&#x05D5;&#x05E8; Tennoji</td>
+        <td></td>
+        <td class="td-dur">&#x2212;</td>
+      </tr>
+
+      <tr class="transport">
+        <td class="td-time">09:15 &rarr; 10:00</td>
+        <td class="td-icon">&#x1F687;</td>
+        <td class="td-name transport-name">&#x05E0;&#x05E1;&#x05D9;&#x05E2;&#x05D4; &#x05DC;-Kaiyukan</td>
+        <td class="td-desc">&#x05D0;&#x05D6;&#x05D5;&#x05E8; &#x05D4;&#x05DE;&#x05E4;&#x05E8;&#x05E5; &#x05E9;&#x05DC; &#x05D0;&#x05D5;&#x05E1;&#x05E7;&#x05D4;</td>
+        <td><span class="badge-metro">&#x1F687; Osaka Metro &nbsp;~8.5 km</span></td>
+        <td class="td-dur">45 &#x05D3;&#x05E7;&#x05F3;</td>
+      </tr>
+
+      <tr class="activity">
+        <td class="td-time">10:00 &ndash; 12:15</td>
+        <td class="td-icon">&#x1F420;</td>
+        <td class="td-name">Osaka Aquarium Kaiyukan</td>
+        <td class="td-desc">&#x05D0;&#x05D7;&#x05D3; &#x05D4;&#x05D0;&#x05E7;&#x05D5;&#x05D5;&#x05E8;&#x05D9;&#x05D5;&#x05DE;&#x05D9;&#x05DD; &#x05D4;&#x05D2;&#x05D3;&#x05D5;&#x05DC;&#x05D9;&#x05DD; &#x05D1;&#x05E2;&#x05D5;&#x05DC;&#x05DD; &ndash; &#x05EA;&#x05E6;&#x05D5;&#x05D2;&#x05D5;&#x05EA; &#x05E2;&#x05E0;&#x05E7; &#x05D5;&#x05DE;&#x05E1;&#x05DC;&#x05D5;&#x05DC; &#x05E2;&#x05D5;&#x05DE;&#x05E7; &#x05DE;&#x05E2;&#x05D2;&#x05DC;&#x05D9;</td>
+        <td><span class="td-trans">&#x1F3AB; &#x05DB;&#x05E8;&#x05D8;&#x05D9;&#x05E1; ~&#xa5;2,300</span></td>
+        <td class="td-dur">2h 15m</td>
+      </tr>
+
+      <tr class="transport">
+        <td class="td-time">12:15 &rarr; 12:18</td>
+        <td class="td-icon">&#x1F6B6;</td>
+        <td class="td-name transport-name">&#x05D4;&#x05DC;&#x05D9;&#x05DB;&#x05D4; &#x05DC;-Tempozan</td>
+        <td class="td-desc">&#x05E6;&#x05DE;&#x05D5;&#x05D3; &#x05DC;&#x05D0;&#x05E7;&#x05D5;&#x05D5;&#x05E8;&#x05D9;&#x05D5;&#x05DD;</td>
+        <td><span class="badge-walk">&#x1F6B6; &#x05D4;&#x05DC;&#x05D9;&#x05DB;&#x05D4; ~200 &#x05DE;&#x05F3;</span></td>
+        <td class="td-dur">3 &#x05D3;&#x05E7;&#x05F3;</td>
+      </tr>
+
+      <tr class="activity">
+        <td class="td-time">12:15 &ndash; 13:05</td>
+        <td class="td-icon">&#x1F35C;</td>
+        <td class="td-name">Tempozan Marketplace &ndash; &#x05E6;&#x05D4;&#x05E8;&#x05D9;&#x05D9;&#x05DD;</td>
+        <td class="td-desc">&#x05E7;&#x05E0;&#x05D9;&#x05D5;&#x05DF; &#x05D5;&#x05D0;&#x05D5;&#x05DB;&#x05DC; &#x05D9;&#x05E4;&#x05E0;&#x05D9; &#x05DC;&#x05D9;&#x05D3; &#x05D4;&#x05E0;&#x05DE;&#x05DC;</td>
+        <td></td>
+        <td class="td-dur">50 &#x05D3;&#x05E7;&#x05F3;</td>
+      </tr>
+
+      <!-- AFTERNOON -->
+      <tr class="section-label"><td colspan="6">&#x1F31E; &#x05E6;&#x05D4;&#x05E8;&#x05D9;&#x05D9;&#x05DD;</td></tr>
+
+      <tr class="transport">
+        <td class="td-time">13:05 &rarr; 13:40</td>
+        <td class="td-icon">&#x1F687;</td>
+        <td class="td-name transport-name">&#x05E0;&#x05E1;&#x05D9;&#x05E2;&#x05D4; &#x05DC;&#x05E9;&#x05D9;&#x05E0;&#x05E1;&#x05D0;&#x05D9;&#x05D1;&#x05D0;&#x05E9;&#x05D9;</td>
+        <td class="td-desc">&#x05DE;-Tempozan &#x05DC;&#x05DE;&#x05E8;&#x05DB;&#x05D6; &#x05D4;&#x05E2;&#x05D9;&#x05E8;</td>
+        <td><span class="badge-metro">&#x1F687; Chuo &rarr; Midosuji &nbsp;~9.2 km</span></td>
+        <td class="td-dur">35 &#x05D3;&#x05E7;&#x05F3;</td>
+      </tr>
+
+      <tr class="activity">
+        <td class="td-time">13:40 &ndash; 15:00</td>
+        <td class="td-icon">&#x1F6CD;&#xFE0F;</td>
+        <td class="td-name">Shinsaibashi Shopping</td>
+        <td class="td-desc">Uniqlo, GU, Onitsuka Tiger &ndash; &#x05D1;&#x05DC;&#x05D5;&#x05E7; &#x05E7;&#x05E0;&#x05D9;&#x05D5;&#x05EA; &#x05DE;&#x05DE;&#x05D5;&#x05E7;&#x05D3;</td>
+        <td></td>
+        <td class="td-dur">1h 20m</td>
+      </tr>
+
+      <tr class="transport">
+        <td class="td-time">15:00 &rarr; 15:35</td>
+        <td class="td-icon">&#x1F686;</td>
+        <td class="td-name transport-name">&#x05E0;&#x05E1;&#x05D9;&#x05E2;&#x05D4; &#x05DC;-Sumiyoshi Taisha</td>
+        <td class="td-desc">&#x05E0;&#x05E1;&#x05D9;&#x05E2;&#x05D4; &#x05D3;&#x05E8;&#x05D5;&#x05DE;&#x05D4; &#x05DC;&#x05DE;&#x05E7;&#x05D3;&#x05E9;</td>
+        <td><span class="badge-metro">&#x1F686; Nankai Line &nbsp;~7.8 km</span></td>
+        <td class="td-dur">35 &#x05D3;&#x05E7;&#x05F3;</td>
+      </tr>
+
+      <tr class="activity">
+        <td class="td-time">15:35 &ndash; 16:20</td>
+        <td class="td-icon">&#x26E9;&#xFE0F;</td>
+        <td class="td-name">Sumiyoshi Taisha</td>
+        <td class="td-desc">&#x05DE;&#x05E7;&#x05D3;&#x05E9; &#x05E9;&#x05D9;&#x05E0;&#x05D8;&#x05D5; &#x05E2;&#x05EA;&#x05D9;&#x05E7; &ndash; &#x05D0;&#x05D3;&#x05E8;&#x05D9;&#x05DB;&#x05DC;&#x05D5;&#x05EA; &#x05DE;&#x05E1;&#x05D5;&#x05E8;&#x05EA;&#x05D9;&#x05EA; &#x05D5;&#x05D0;&#x05D5;&#x05D5;&#x05D9;&#x05E8;&#x05D4; &#x05E9;&#x05E7;&#x05D8;&#x05D4;</td>
+        <td><span class="td-trans">&#x05DB;&#x05E0;&#x05D9;&#x05E1;&#x05D4; &#x05D7;&#x05D5;&#x05E4;&#x05E9;&#x05D9;&#x05EA;</span></td>
+        <td class="td-dur">45 &#x05D3;&#x05E7;&#x05F3;</td>
+      </tr>
+
+      <tr class="transport">
+        <td class="td-time">16:20 &rarr; 16:45</td>
+        <td class="td-icon">&#x1F6B6;</td>
+        <td class="td-name transport-name">&#x05D4;&#x05DC;&#x05D9;&#x05DB;&#x05D4; &#x05DC;-Nagai Park</td>
+        <td class="td-desc">&#x05D3;&#x05E8;&#x05DA; &#x05E9;&#x05E7;&#x05D8;&#x05D4; &#x05D3;&#x05E8;&#x05D5;&#x05DE;&#x05D4;</td>
+        <td><span class="badge-walk">&#x1F6B6; &#x05D4;&#x05DC;&#x05D9;&#x05DB;&#x05D4; ~2.1 km</span></td>
+        <td class="td-dur">25 &#x05D3;&#x05E7;&#x05F3;</td>
+      </tr>
+
+      <tr class="activity">
+        <td class="td-time">16:20 &ndash; 17:25</td>
+        <td class="td-icon">&#x1F333;</td>
+        <td class="td-name">Nagai Park</td>
+        <td class="td-desc">&#x05E1;&#x05D9;&#x05D1;&#x05D5;&#x05D1; &#x05E8;&#x05D2;&#x05D5;&#x05E2; &ndash; &#x05DE;&#x05E0;&#x05D5;&#x05D7;&#x05D4; &#x05DC;&#x05E4;&#x05E0;&#x05D9; &#x05D0;&#x05D9;&#x05E8;&#x05D5;&#x05E2;&#x05D9; &#x05D4;&#x05E2;&#x05E8;&#x05D1;</td>
+        <td></td>
+        <td class="td-dur">1h 05m</td>
+      </tr>
+
+      <!-- EVENING -->
+      <tr class="section-label"><td colspan="6">&#x1F306; &#x05E2;&#x05E8;&#x05D1;</td></tr>
+
+      <tr class="transport">
+        <td class="td-time">17:25 &rarr; 17:32</td>
+        <td class="td-icon">&#x1F6B6;</td>
+        <td class="td-name transport-name">&#x05D4;&#x05DC;&#x05D9;&#x05DB;&#x05D4; &#x05DC;-TeamLab</td>
+        <td class="td-desc">&#x05D2;&#x05DF; &#x05D1;&#x05D5;&#x05D8;&#x05E0;&#x05D9; &#x05E0;&#x05D0;&#x05D2;&#x05D0;&#x05D9;</td>
+        <td><span class="badge-walk">&#x1F6B6; &#x05D4;&#x05DC;&#x05D9;&#x05DB;&#x05D4; ~500 &#x05DE;&#x05F3;</span></td>
+        <td class="td-dur">7 &#x05D3;&#x05E7;&#x05F3;</td>
+      </tr>
+
+      <tr class="activity evening">
+        <td class="td-time">18:00 &ndash; 19:45</td>
+        <td class="td-icon">&#x2728;</td>
+        <td class="td-name">teamLab Botanical Garden</td>
+        <td class="td-desc">&#x05D0;&#x05DE;&#x05E0;&#x05D5;&#x05EA; &#x05D0;&#x05D9;&#x05E0;&#x05D8;&#x05E8;&#x05D0;&#x05E7;&#x05D8;&#x05D9;&#x05D1;&#x05D9;&#x05EA; &#x05D5;&#x05EA;&#x05D0;&#x05D5;&#x05E8;&#x05D5;&#x05EA; &#x05D1;&#x05D2;&#x05DF; &#x05D4;&#x05D1;&#x05D5;&#x05D8;&#x05E0;&#x05D9; &#x05D1;&#x05DC;&#x05D9;&#x05DC;&#x05D4;</td>
+        <td><span class="td-trans">&#x1F3AB; &#x05DB;&#x05E8;&#x05D8;&#x05D9;&#x05E1; &#x05DE;&#x05E8;&#x05D0;&#x05E9; ~&#xa5;3,200</span></td>
+        <td class="td-dur">1h 45m</td>
+      </tr>
+
+      <tr class="transport">
+        <td class="td-time">19:45 &rarr; 20:15</td>
+        <td class="td-icon">&#x1F687;</td>
+        <td class="td-name transport-name">&#x05E0;&#x05E1;&#x05D9;&#x05E2;&#x05D4; &#x05DC;-Abeno Harukas</td>
+        <td class="td-desc">&#x05DC;&#x05E2;&#x05D1;&#x05E8; &#x05D0;&#x05D6;&#x05D5;&#x05E8; Tennoji</td>
+        <td><span class="badge-metro">&#x1F687; Midosuji Line &nbsp;~3.8 km</span></td>
+        <td class="td-dur">20 &#x05D3;&#x05E7;&#x05F3;</td>
+      </tr>
+
+      <tr class="activity evening">
+        <td class="td-time">20:15 &ndash; 21:15</td>
+        <td class="td-icon">&#x1F303;</td>
+        <td class="td-name">Abeno Harukas 300</td>
+        <td class="td-desc">&#x05EA;&#x05E6;&#x05E4;&#x05D9;&#x05EA; &#x05DC;&#x05D9;&#x05DC;&#x05D4; &#x05E4;&#x05E0;&#x05D5;&#x05E8;&#x05DE;&#x05D9;&#x05EA; &#x05DE;&#x05D4;&#x05D2;&#x05D5;&#x05E8;&#x05D3; &#x05E9;&#x05D7;&#x05E7;&#x05D9;&#x05DD; &#x05D4;&#x05D2;&#x05D1;&#x05D5;&#x05D4; &#x05D1;&#x05D9;&#x05E4;&#x05DF;</td>
+        <td><span class="td-trans">&#x1F3AB; &#x05DB;&#x05E8;&#x05D8;&#x05D9;&#x05E1; ~&#xa5;2,000</span></td>
+        <td class="td-dur">1h 00m</td>
+      </tr>
+
+      <tr class="transport">
+        <td class="td-time">21:15 &rarr; 21:20</td>
+        <td class="td-icon">&#x1F6B6;</td>
+        <td class="td-name transport-name">&#x05D7;&#x05D6;&#x05E8;&#x05D4; &#x05DC;&#x05DE;&#x05DC;&#x05D5;&#x05DF;</td>
+        <td class="td-desc">&#x05D0;&#x05D6;&#x05D5;&#x05E8; Tennoji &ndash; &#x05E1;&#x05DE;&#x05D5;&#x05DA; &#x05DC;-Abeno</td>
+        <td><span class="badge-walk">&#x1F6B6; &#x05D4;&#x05DC;&#x05D9;&#x05DB;&#x05D4; ~400 &#x05DE;&#x05F3;</span></td>
+        <td class="td-dur">5 &#x05D3;&#x05E7;&#x05F3;</td>
+      </tr>
+
+      <tr class="activity evening">
+        <td class="td-time">21:15~</td>
+        <td class="td-icon">&#x1F3E8;</td>
+        <td class="td-name">&#x05D7;&#x05D6;&#x05E8;&#x05D4; &#x05DC;&#x05DE;&#x05DC;&#x05D5;&#x05DF; / &#x05D0;&#x05E8;&#x05D5;&#x05D7;&#x05EA; &#x05E2;&#x05E8;&#x05D1;</td>
+        <td class="td-desc">&#x05E1;&#x05D9;&#x05D5;&#x05DD; &#x05D2;&#x05DE;&#x05D9;&#x05E9; &ndash; &#x05D0;&#x05D5;&#x05E4;&#x05E6;&#x05D9;&#x05D5;&#x05E0;&#x05D0;&#x05DC;&#x05D9;&#x05EA; &#x05E2;&#x05E6;&#x05D9;&#x05E8;&#x05EA; &#x05E2;&#x05E8;&#x05D1; &#x05D1;-Tennoji</td>
+        <td></td>
+        <td class="td-dur">&#x2212;</td>
+      </tr>
+
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">
+          &#x1F4CD; &#x05E1;&#x05D4;&#x05F4;&#x05DB; &#x05E0;&#x05E1;&#x05D9;&#x05E2;&#x05D4; &#x05D1;&#x05D9;&#x05D5;&#x05DD;&#x3A; ~30 km &nbsp;|&nbsp;
+          &#x1F6B6; &#x05D4;&#x05DC;&#x05D9;&#x05DB;&#x05D4;&#x3A; ~3.2 km &nbsp;|&nbsp;
+          &#x1F687; &#x05DE;&#x05D8;&#x05E8;&#x05D5;&#x3A; ~26.8 km
+        </td>
+        <td colspan="3">
+          &#x1F3AB; &#x05E1;&#x05D4;&#x05F4;&#x05DB; &#x05DB;&#x05E8;&#x05D8;&#x05D9;&#x05E1;&#x05D9;&#x05DD;&#x3A; ~&#xa5;7,500 &nbsp;|&nbsp;
+          &#x1F552; &#x05D9;&#x05E6;&#x05D9;&#x05D0;&#x05D4; 09:15 &nbsp;&rarr;&nbsp; &#x05E1;&#x05D9;&#x05D5;&#x05DD; ~21:30
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+</body>
+</html>
