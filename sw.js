@@ -1,10 +1,12 @@
 // Japan 2026 PWA – Service Worker
 // Caches the app shell so it works offline after the first visit
 
-const CACHE_NAME = 'japan2026-v7';
+const CACHE_NAME = 'japan2026-v8';
 const ASSETS = [
   './index.html',
-  './manifest.json'
+  './manifest.json',
+  './mp3/Chureito Pagoda.mp3',
+  './mp3/Oshino Hakkai.mp3'
 ];
 
 // Install: pre-cache app shell
