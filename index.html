@@ -133,11 +133,14 @@
     .event-title-line.title-rtl{text-align:right;direction:rtl}
     .event-transit{font-size:11px;color:var(--muted);margin-top:7px}
     .event-desc{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
-    .audio-btn{padding:2px 9px;border-radius:999px;border:1.5px solid #a5b4fc;background:#eef2ff;color:#3730a3;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;line-height:1.4;min-width:32px;text-align:center}
-    .audio-btn:hover{background:#e0e7ff}
-    .audio-btn.playing{background:#3730a3;color:#fff;border-color:#3730a3}
-    h3.title-ltr .audio-btn{float:right;margin-left:6px}
-    h3.title-rtl .audio-btn{float:left;margin-right:6px}
+    .audio-player{margin-top:8px;background:#f8fafc;border-radius:10px;padding:8px 10px;border:1px solid #e2e8f0}
+    .audio-player .ap-row{display:flex;flex-direction:row-reverse;align-items:center;gap:8px}
+    .audio-player .ap-btn{border:none;background:#3730a3;color:#fff;width:30px;height:30px;border-radius:50%;font-size:13px;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center}
+    .audio-player .ap-btn:hover{background:#4c3fc7}
+    .audio-player .ap-wave{flex:1;height:22px;display:flex;align-items:center;gap:2px;overflow:hidden;direction:ltr;cursor:pointer}
+    .audio-player .ap-wave span{width:3px;background:#c7d2fe;border-radius:2px}
+    .audio-player .ap-wave span.played{background:#3730a3}
+    .audio-player .ap-meta{display:flex;justify-content:space-between;font-size:10.5px;color:#94a3b8;margin-top:4px;direction:ltr}
     .route-live-chips{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
     .route-live-chip{border:1px solid #d8e0ea;background:#eef2f7;color:#475569;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:800}
     .route-live-chip.on-time{background:#ecfdf3;border-color:#86efac;color:#166534}
@@ -2621,18 +2624,79 @@ const audioMap = {
   'Lake Kawaguchi – מסדרון המייפל': 'mp3/Lake Kawaguchi.mp3',
   'To-ji Temple (東寺)':           'mp3/To-ji Temple.mp3',
 };
-let _activeAudio = null, _activeBtn = null;
-function playEventAudio(name, btn) {
-  const src = audioMap[name]; if (!src) return;
-  if (_activeAudio && !_activeAudio.paused) {
-    _activeAudio.pause();
-    if (_activeBtn) { _activeBtn.classList.remove('playing'); _activeBtn.textContent = '🔊'; }
-    if (_activeBtn === btn) { _activeAudio = null; _activeBtn = null; return; }
+let _activeAudio = null, _activeWrap = null;
+const AP_BARS = 40;
+function apHash(s){ let h=0; for(let i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0;} return Math.abs(h); }
+function apBuildWave(seed){
+  let bars = '', x = seed || 1;
+  for (let i=0;i<AP_BARS;i++){
+    x = (x*9301+49297)%233280;
+    const h = 6 + Math.round((x/233280)*16);
+    bars += `<span style="height:${h}px"></span>`;
   }
-  if (!btn._audio) { btn._audio = new Audio(src); btn._audio.onended = () => { btn.classList.remove('playing'); btn.textContent = '🔊'; }; }
-  btn._audio.play();
-  btn.classList.add('playing'); btn.textContent = '⏸';
-  _activeAudio = btn._audio; _activeBtn = btn;
+  return bars;
+}
+function apFmtTime(sec){
+  if (!isFinite(sec) || sec < 0) return '--:--';
+  const m = Math.floor(sec/60), s = Math.floor(sec%60);
+  return `${m}:${s.toString().padStart(2,'0')}`;
+}
+function apResetUI(wrap){
+  if (!wrap) return;
+  const btn = wrap.querySelector('.ap-btn');
+  if (btn) btn.textContent = '▶';
+}
+function toggleAudioPlayer(btn){
+  const wrap = btn.closest('.audio-player');
+  const name = wrap.dataset.audio;
+  const src = audioMap[name]; if (!src) return;
+  if (_activeAudio && _activeWrap !== wrap && !_activeAudio.paused) {
+    _activeAudio.pause();
+    apResetUI(_activeWrap);
+  }
+  if (!wrap._audio) {
+    const audio = new Audio(src);
+    wrap._audio = audio;
+    const durEl = wrap.querySelector('.ap-dur');
+    const curEl = wrap.querySelector('.ap-cur');
+    const spans = wrap.querySelectorAll('.ap-wave span');
+    audio.addEventListener('loadedmetadata', () => { durEl.textContent = apFmtTime(audio.duration); });
+    audio.addEventListener('timeupdate', () => {
+      curEl.textContent = apFmtTime(audio.currentTime);
+      const ratio = audio.duration ? audio.currentTime / audio.duration : 0;
+      const activeCount = Math.round(ratio * spans.length);
+      spans.forEach((s,i) => s.classList.toggle('played', i < activeCount));
+    });
+    audio.addEventListener('ended', () => apResetUI(wrap));
+  }
+  const audio = wrap._audio;
+  if (audio.paused) {
+    audio.play();
+    btn.textContent = '⏸';
+    _activeAudio = audio; _activeWrap = wrap;
+  } else {
+    audio.pause();
+    btn.textContent = '▶';
+  }
+}
+function seekAudioPlayer(evt, waveEl){
+  const wrap = waveEl.closest('.audio-player');
+  const audio = wrap._audio;
+  if (!audio || !audio.duration) return;
+  const rect = waveEl.getBoundingClientRect();
+  let ratio = (evt.clientX - rect.left) / rect.width;
+  ratio = Math.max(0, Math.min(1, ratio));
+  audio.currentTime = ratio * audio.duration;
+}
+function apPlayerHtml(name){
+  const seed = apHash(name);
+  return `<div class="audio-player" data-audio="${escapeHtml(name)}">
+    <div class="ap-row">
+      <button class="ap-btn" onclick="toggleAudioPlayer(this)">▶</button>
+      <div class="ap-wave" onclick="seekAudioPlayer(event,this)">${apBuildWave(seed)}</div>
+    </div>
+    <div class="ap-meta"><span class="ap-cur">0:00</span><span class="ap-dur">--:--</span></div>
+  </div>`;
 }
 
 function renderDayBanner(day){
@@ -2796,9 +2860,10 @@ function render(day){
     tl.innerHTML += `<div class="item"><div class="event">
       <a class="event-img-nav" target="_blank" href="${link}"><img src="${e[3]}" alt="${altTitle}"><span class="time-badge">${timeDisplay}</span></a>
       <div class="event-content">
-        <h3 class="${titleAlignClass}">${audioMap[e[1]] ? `<button class="audio-btn" data-audio="${escapeHtml(e[1])}" onclick="playEventAudio(this.dataset.audio,this)" title="${escapeHtml(e[1])}">🔊</button>` : ''}${titleHtml}</h3>
+        <h3 class="${titleAlignClass}">${titleHtml}</h3>
         <div class="event-desc">${eventDescription}</div>
         ${transitNote}
+        ${audioMap[e[1]] ? apPlayerHtml(e[1]) : ''}
       </div>
     </div></div>`;
   });
