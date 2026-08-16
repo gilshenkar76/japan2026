@@ -2797,7 +2797,7 @@ function render(day){
         <h3 class="${titleAlignClass}">${titleHtml}</h3>
         <div class="event-desc">${eventDescription}</div>
         ${transitNote}
-        ${audioMap[e[1]] ? `<button class="audio-btn" onclick="playEventAudio('${e[1].replace(/'/g,"\\'")}",this)">${escapeHtml(e[1])}</button>` : ''}
+        ${audioMap[e[1]] ? `<button class="audio-btn" data-audio="${escapeHtml(e[1])}" onclick="playEventAudio(this.dataset.audio,this)">${escapeHtml(e[1])}</button>` : ''}
       </div>
     </div></div>`;
   });
