@@ -56,7 +56,10 @@ TEXT = """
 
 async def main():
     print(f"Generating with voice: {VOICE}")
-    comm = edge_tts.Communicate(TEXT.strip(), VOICE)
+    # Collapse line wraps/blank lines into single spaces so edge-tts doesn't
+    # insert extra pauses at every wrapped or blank line.
+    text = " ".join(line.strip() for line in TEXT.strip().splitlines() if line.strip())
+    comm = edge_tts.Communicate(text, VOICE)
     await comm.save(OUT)
     print(f"Done -> {OUT}")
 
