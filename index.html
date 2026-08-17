@@ -93,7 +93,7 @@
     .route-line{position:absolute;bottom:14px;right:14px;left:14px;background:rgba(17,24,39,.85);color:#fff;
       border-radius:16px;padding:11px 13px;font-size:13px}
     .section-title{font-size:17px;font-weight:900;margin:20px 2px 10px}
-    .timeline{display:grid;gap:10px}
+    .timeline{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
     .attraction-cards{display:grid;gap:14px}
     .attraction-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:0;overflow:hidden;box-shadow:var(--shadow);position:relative}
     .attraction-card-time{position:absolute;top:12px;right:12px;background:rgba(30,41,59,0.92);color:#fff;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:800;z-index:1;box-shadow:0 2px 8px rgba(0,0,0,0.25);direction:ltr}
@@ -133,12 +133,12 @@
     .event-title-line.title-rtl{text-align:right;direction:rtl}
     .event-transit{font-size:11px;color:var(--muted);margin-top:7px}
     .event-desc{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
-    .audio-player{margin-top:8px;background:#f8fafc;border-radius:10px;padding:8px 10px;border:1px solid #e2e8f0}
-    .audio-player .ap-row{display:flex;flex-direction:row-reverse;align-items:center;gap:8px}
+    .audio-player{margin-top:8px;background:#f8fafc;border-radius:10px;padding:8px 10px;border:1px solid #e2e8f0;min-width:0}
+    .audio-player .ap-row{display:flex;flex-direction:row-reverse;align-items:center;gap:8px;min-width:0}
     .audio-player .ap-btn{border:none;background:#3730a3;color:#fff;width:30px;height:30px;border-radius:50%;font-size:13px;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center}
     .audio-player .ap-btn:hover{background:#4c3fc7}
-    .audio-player .ap-wave{flex:1;height:22px;display:flex;align-items:center;gap:2px;overflow:hidden;direction:ltr;cursor:pointer}
-    .audio-player .ap-wave span{width:3px;background:#c7d2fe;border-radius:2px}
+    .audio-player .ap-wave{flex:1;min-width:0;height:22px;display:flex;align-items:center;gap:2px;overflow:hidden;direction:ltr;cursor:pointer}
+    .audio-player .ap-wave span{width:3px;flex-shrink:0;background:#c7d2fe;border-radius:2px}
     .audio-player .ap-wave span.played{background:#3730a3}
     .audio-player .ap-meta{display:flex;justify-content:space-between;font-size:10.5px;color:#94a3b8;margin-top:4px;direction:ltr}
     .route-live-chips{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
