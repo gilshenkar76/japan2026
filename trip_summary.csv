@@ -1,0 +1,101 @@
+Date,City/Area,Time,Attraction / Event,Type,Hotel
+12-13.11,Tokyo (Flight),22:20,TLV → DXB (EK2168/FZ1842),Flight,Hotel Gracery Shinjuku
+12-13.11,Dubai (Transit),03:25+1,Connection in Dubai,Transit,Hotel Gracery Shinjuku
+12-13.11,Tokyo (Flight),08:20,DXB → HND (EK312),Flight,Hotel Gracery Shinjuku
+12-13.11,Tokyo,22:30,Arrival at Tokyo (Haneda),Arrival,Hotel Gracery Shinjuku
+14.11,Tokyo → Hakone,08:00-08:45,Luggage deposit at hotel,Logistics,Aura Tachibana
+14.11,Tokyo,09:00-10:00,Tokyo Metropolitan Gov. Building,Viewpoint,Aura Tachibana
+14.11,Tokyo,10:15-11:30,Shinjuku Gyoen,Park/Garden,Aura Tachibana
+14.11,Tokyo,12:00-13:00,Ramen lunch,Food,Aura Tachibana
+14.11,Tokyo → Hakone,13:15-14:30,Odakyu Romancecar to Hakone,Transit,Aura Tachibana
+14.11,Hakone,15:00-22:00,Aura Tachibana Ryokan,Hotel/Onsen,Aura Tachibana
+15.11,Hakone,09:00-10:00,Lake Ashi,Nature/Lake,Aura Tachibana
+15.11,Hakone,10:00-10:35,Hakone Pirate Ship,Cruise,Aura Tachibana
+15.11,Hakone,10:50-11:20,Hakone Ropeway,Ropeway,Aura Tachibana
+15.11,Hakone,11:30-13:00,Owakudani,Volcanic Valley,Aura Tachibana
+15.11,Hakone,13:00-14:00,Lunch,Food,Aura Tachibana
+15.11,Hakone,13:30-16:00,Hakone Open-Air Museum,Museum,Aura Tachibana
+15.11,Hakone,16:00-22:00,Return to hotel & Onsen,Hotel/Onsen,Aura Tachibana
+16.11,Mt Fuji → Nagoya,09:00-10:00,Chureito Pagoda,Pagoda/Viewpoint,Nagoya JR Gate Tower Hotel
+16.11,Mt Fuji,10:30-12:00,Oshino Hakkai,Traditional Village,Nagoya JR Gate Tower Hotel
+16.11,Mt Fuji,12:15-13:15,Lake Kawaguchi (Maple Corridor),Nature,Nagoya JR Gate Tower Hotel
+16.11,Mt Fuji,13:15-14:15,Lunch,Food,Nagoya JR Gate Tower Hotel
+16.11,Nagoya,14:30-16:20,Bus + Shinkansen to Nagoya,Transit,Nagoya JR Gate Tower Hotel
+16.11,Nagoya,16:30-17:00,Hotel check-in,Hotel,Nagoya JR Gate Tower Hotel
+16.11,Nagoya,17:30-22:00,Evening in Sakae,Shopping/Evening,Nagoya JR Gate Tower Hotel
+17.11,Nagoya → Kyoto,08:20-11:30,Toyota Kaikan Museum,Museum,Hotel Monterey Kyoto
+17.11,Nagoya → Kyoto,12:00-13:00,Shinkansen to Kyoto,Train,Hotel Monterey Kyoto
+17.11,Kyoto,13:00-15:30,Hotel check-in,Hotel,Hotel Monterey Kyoto
+17.11,Kyoto,17:00-18:30,Teramachi Shopping Arcade,Shopping,Hotel Monterey Kyoto
+17.11,Kyoto,18:35-20:30,Pontocho Alley (dinner),Food/Alley,Hotel Monterey Kyoto
+17.11,Kyoto,20:30-21:00,Return to hotel,Hotel,Hotel Monterey Kyoto
+18.11,Kyoto (Guided Tour),10:00,Meet guide,Meeting,Hotel Monterey Kyoto
+18.11,Kyoto,10:10-11:45,Fushimi Inari Taisha,Temple/Shrine,Hotel Monterey Kyoto
+18.11,Kyoto,11:45-12:30,Arashiyama Bamboo Grove,Nature,Hotel Monterey Kyoto
+18.11,Kyoto,12:30-13:10,Tenryu-ji Temple,Temple/Garden,Hotel Monterey Kyoto
+18.11,Kyoto,13:10-14:00,Lunch,Food,Hotel Monterey Kyoto
+18.11,Kyoto,15:00-15:45,Ryoan-ji Temple,Temple (Zen),Hotel Monterey Kyoto
+18.11,Kyoto,16:00-17:00,Kinkaku-ji (Golden Pavilion),Temple,Hotel Monterey Kyoto
+18.11,Kyoto,17:00-19:00,Gion District,Historic District,Hotel Monterey Kyoto
+18.11,Kyoto,19:00-19:30,Return to hotel,Hotel,Hotel Monterey Kyoto
+19.11,Kyoto,09:00-10:00,Eikando Temple,Temple/Shrine,Hotel Monterey Kyoto
+19.11,Kyoto,10:15-10:45,Kiyomizu-dera,Temple/Shrine,Hotel Monterey Kyoto
+19.11,Kyoto,10:45-11:45,Sannenzaka + Ninenzaka,Historic Street,Hotel Monterey Kyoto
+19.11,Kyoto,11:45-12:05,Yasaka Pagoda,Pagoda,Hotel Monterey Kyoto
+19.11,Kyoto,12:15-13:15,Lunch,Food,Hotel Monterey Kyoto
+19.11,Kyoto,13:30-17:30,Shijo Kawaramachi,Shopping,Hotel Monterey Kyoto
+19.11,Kyoto,18:00,Return to hotel,Hotel,Hotel Monterey Kyoto
+19.11,Kyoto,19:00-19:30,Kiyamachi & Pontocho,Nightlife,Hotel Monterey Kyoto
+19.11,Kyoto,19:30-20:30,L'Escamoteur Bar,Bar,Hotel Monterey Kyoto
+19.11,Kyoto,20:30-21:10,Dinner,Food,Hotel Monterey Kyoto
+19.11,Kyoto,21:10-22:15,Turquoise Bar,Bar,Hotel Monterey Kyoto
+20.11,Nara,09:00-10:00,Todai-ji,Temple/Shrine,Hotel Monterey Kyoto
+20.11,Nara,10:00-11:30,Nara Park (Deer),Nature/Park,Hotel Monterey Kyoto
+20.11,Nara,11:30-13:00,Kasuga Taisha,Temple/Shrine,Hotel Monterey Kyoto
+20.11,Nara,13:00-14:00,Lunch,Food,Hotel Monterey Kyoto
+20.11,Nara,14:00-15:00,Kofuku-ji,Temple/Shrine,Hotel Monterey Kyoto
+20.11,Nara,15:00-16:00,Nara Machi,Historic District,Hotel Monterey Kyoto
+20.11,Nara → Kyoto,16:00-17:00,Return to Kyoto (JR Nara Line),Train,Hotel Monterey Kyoto
+20.11,Kyoto,19:00-19:30,Kiyamachi & Pontocho,Nightlife,Hotel Monterey Kyoto
+20.11,Kyoto,19:30-20:30,Dinner,Food,Hotel Monterey Kyoto
+21.11,Kyoto → Osaka,08:00-09:30,Nishiki Market,Food Market,Excel Hotel Tokyu Osaka
+21.11,Kyoto → Osaka,10:00-10:30,Shinkansen to Osaka,Train,Excel Hotel Tokyu Osaka
+21.11,Osaka,11:15-12:45,Umeda Sky Building,Viewpoint,Excel Hotel Tokyu Osaka
+21.11,Osaka,12:45-13:45,Grand Green Osaka,Urban Park,Excel Hotel Tokyu Osaka
+21.11,Osaka,13:45-14:15,Tully's Coffee,Cafe,Excel Hotel Tokyu Osaka
+21.11,Osaka,14:30-15:30,Namba City,Shopping,Excel Hotel Tokyu Osaka
+21.11,Osaka,15:30-16:30,Namba Parks,Shopping/Rooftop,Excel Hotel Tokyu Osaka
+21.11,Osaka,16:30-17:30,Hotel check-in,Hotel,Excel Hotel Tokyu Osaka
+21.11,Osaka,19:00-20:45,Gyujiro Yakiniku (Wagyu),Food,Excel Hotel Tokyu Osaka
+21.11,Osaka,21:00-23:00,Nayuta Pub,Bar,Excel Hotel Tokyu Osaka
+22.11,Osaka,09:00,Osaka Castle,Historic Castle,Excel Hotel Tokyu Osaka
+22.11,Osaka,12:00,Shinsekai + Kuromon Market,Food Market/District,Excel Hotel Tokyu Osaka
+22.11,Osaka,17:00,Dotonbori + Tombori Cruise,Nightlife/Cruise,Excel Hotel Tokyu Osaka
+23.11,Osaka,09:00-10:00,Sumiyoshi Taisha,Temple/Shrine,Excel Hotel Tokyu Osaka
+23.11,Osaka,10:30-12:30,Kaiyukan Aquarium,Aquarium,Excel Hotel Tokyu Osaka
+23.11,Osaka,12:30-13:30,Tempozan Harbor Village,Food/Waterfront,Excel Hotel Tokyu Osaka
+23.11,Osaka,14:00-15:00,Abeno Harukas 300,Viewpoint,Excel Hotel Tokyu Osaka
+23.11,Osaka,15:30-17:00,Shinsaibashi-suji,Shopping,Excel Hotel Tokyu Osaka
+23.11,Osaka,17:30-20:00,teamLab Botanical Garden,Digital Art,Excel Hotel Tokyu Osaka
+24.11,Osaka → Tokyo,09:30,Hotel check-out,Logistics,remm PLUS Ginza
+24.11,Osaka → Tokyo,11:00-13:30,Shinkansen Nozomi to Tokyo,Train,remm PLUS Ginza
+24.11,Tokyo,13:30-14:30,Hotel check-in (remm PLUS Ginza),Hotel,remm PLUS Ginza
+24.11,Tokyo,14:30-15:30,Uobei Ginza (sushi),Food,remm PLUS Ginza
+24.11,Tokyo,15:30-16:00,Ginza Six Rooftop Garden,Rooftop/Garden,remm PLUS Ginza
+24.11,Tokyo,16:05-16:25,Nissan Crossing,Showroom,remm PLUS Ginza
+24.11,Tokyo,17:40-19:00,Omoide Yokocho,Alley/Bars,remm PLUS Ginza
+24.11,Tokyo,19:00-20:00,Golden Gai,Bar,remm PLUS Ginza
+24.11,Tokyo,20:00-22:30,Kabukicho,Nightlife District,remm PLUS Ginza
+25.11,Tokyo,09:00,Meiji Shrine,Temple/Shrine,remm PLUS Ginza (est.)
+25.11,Tokyo,10:30,Takeshita St. + Omotesando,Shopping,remm PLUS Ginza (est.)
+25.11,Tokyo,17:00,Shibuya Sky,Viewpoint,remm PLUS Ginza (est.)
+26.11,Tokyo,09:00,Tsukiji Outer Market,Food Market,remm PLUS Ginza (est.)
+26.11,Tokyo,11:00,teamLab Borderless,Digital Art,remm PLUS Ginza (est.)
+26.11,Tokyo,14:30,Miraikan + Ginza,Science Museum,remm PLUS Ginza (est.)
+27.11,Tokyo,09:00,Senso-ji + Nakamise-dori,Temple/Market,remm PLUS Ginza (est.)
+27.11,Tokyo,12:00,Akihabara,Electronics/Anime,remm PLUS Ginza (est.)
+27.11,Tokyo,16:30,Tokyo Skytree,Viewpoint,remm PLUS Ginza (est.)
+28.11,Flight home,22:20,NRT → DXB (EK319),Flight,—
+28.11,Dubai (Transit),05:30+1,Connection in Dubai,Transit,—
+28.11,Flight home,10:55+1,DXB → TLV (EK2268/FZ1635),Flight,—
+28.11,Tel Aviv,12:45+1,Landing in Tel Aviv,Arrival,—
