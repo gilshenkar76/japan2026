@@ -968,7 +968,10 @@ const themesByDay = {
   '21': 'מסע מקיוטו לאוסקה – שוק, תצפית, קניות וגסטרונומיה',
   '22': 'אוסקה הקלאסית – טירה היסטורית, שווקים, מקדש אריה וניאונים בדוטונבורי',
   '23': 'פסטיבל דושומאצ׳י, אקווריום, סומיושי תאישה, תצפית וערב קסום ב-teamLab',
-  '24': "שינקנסן לטוקיו, גינזה וערב תוסס בשינג'וקו"
+  '24': "שינקנסן לטוקיו, טיול במרונוצ'י ובגינזה וערב עם ארוחת Akita Dining",
+  '25': "הראג'וקו, אומוטסנדו ושיבויה — Shibuya Sky ואווירת ערב תוססת",
+  '26': "שוק צוקיג'י, teamLab Borderless באזאבודאי הילס וקניות בגינזה",
+  '27': "אסאקוסה, סנסו-ג'י, אקיהברה, אואנו ואמייוקו — וארוחת פרידה חגיגית"
 };
 
 // Public-transport legs shown on the route page per day
@@ -1035,9 +1038,8 @@ const transitByDay = {
     { from: 'Abeno Harukas', to: 'Excel Hotel Tokyu Osaka', note: 'חזרה למלון', line: 'מונית', time: '~25 דק׳', cost: '~¥1,500' }
   ],
   '24': [
-    { from: 'Shin-Osaka Station', to: 'Tokyo Station', note: 'שינקנסן Nozomi/Hikari מאוסקה לטוקיו', line: 'שינקנסן JR Tokaido', time: '~2:30 שעות', cost: '¥14,720' },
-    { from: 'Tokyo Station', to: 'remm PLUS Ginza', note: 'הליכה קצרה/מטרו לגינזה', line: 'JR Yamanote / הליכה', time: '~10 דק׳', cost: '¥0–¥200' },
-    { from: 'Ginza', to: 'Shinjuku (Kabukicho)', note: 'ערב תוסס בשינג\'וקו', line: 'Tokyo Metro Marunouchi Line', time: '~15 דק׳', cost: '¥210' }
+    { from: 'Shin-Osaka Station', to: 'Tokyo Station', note: 'שינקנסן Nozomi מאוסקה לטוקיו', line: 'שינקנסן JR Tokaido', time: '~2:30 שעות', cost: '¥14,720' },
+    { from: 'Tokyo Station', to: 'remm PLUS Ginza', note: 'הליכה קצרה/מטרו לגינזה', line: 'JR Yamanote / הליכה', time: '~10 דק׳', cost: '¥0–¥200' }
   ]
 };
 
@@ -1076,8 +1078,20 @@ const routeNotesPresets = {
     tips: 'הזמינו כרטיסים ל-Kaiyukan ול-teamLab מראש! קחו ז\'קט לערב — מתקרר בגן. שקלו מוניות בין סומיושי לנגאי כדי לא לאבד זמן, ותנו לעצמכם הפסקת קפה קצרה לפני הכניסה ל-teamLab.'
   },
   '24': {
-    overview: "היום עוברים מאוסקה לטוקיו ברכבת השינקנסן, מתארגנים במלון בגינזה, ואז יוצאים לערב תוסס בגינזה ובשינג'וקו — Omoide Yokocho, Golden Gai ו-Kabukicho!",
-    tips: "שקלו לשלוח מזוודות גדולות ישירות למלון בטוקיו בשירות Takkyubin/Ta-Q-Bin (מתבצע בקבלה, מגיע למחרת, כ-¥2,500-3,500 למזוודה) ולנסוע קלים. קחו מזומן לארוחות קטנות, נעליים נוחות להליכה, והכי טוב לצלם בגינזה ובשינג'וקו בשעות הערב."
+    overview: "היום עוברים מאוסקה לטוקיו ברכבת השינקנסן Nozomi, מסתובבים באזור תחנת טוקיו ומרונוצ'י, אוכלים מונג'איאקי בצוקישימה, מתארגנים במלון בגינזה, ואז יוצאים לערב מפנק של Akita Dining Namahage ובר מוזיקה בגינזה.",
+    tips: "המזוודות הגדולות נשלחות ישירות למלון בטוקיו יום קודם (Takkyubin/Ta-Q-Bin), כך שנוסעים היום עם תיקי יום בלבד. כדאי להזמין מקום מראש במסעדת Tsukishima Monja Tamatoya ו-Akita Dining Namahage לקבוצה."
+  },
+  '25': {
+    overview: "יום בהראג'וקו ובשיבויה: מקדש מייג'י, טאקשיטה סטריט, אומוטסנדו וקאט סטריט, שיבויה פארקו, שיבויה סקיי בשקיעה, פסל האצ'יקו והצומת המפורסמת, וערב עם יאקיטורי וברים בשיבויה.",
+    tips: "כדאי להזמין מראש כרטיסים ל-Shibuya Sky כדי להימנע מתור. יום נוח להליכה — נעליים נוחות חובה."
+  },
+  '26': {
+    overview: "יום של אוכל ואמנות: שוק צוקיג'י החיצוני בבוקר, teamLab Borderless באזאבודאי הילס, ואחר הצהריים/ערב קניות וארוחת ערב בגינזה.",
+    tips: "כדאי להגיע לצוקיג'י מוקדם כדי להימנע מעומס. יש להזמין כרטיסים מראש ל-teamLab Borderless."
+  },
+  '27': {
+    overview: "יום מסורתי באסאקוסה וסנסו-ג'י, אקיהברה לחובבי אלקטרוניקה ואנימה, פארק אואנו ושוק אמייוקו, ולסיום ארוחת פרידה חגיגית.",
+    tips: "כדאי להזמין מראש מקום לארוחת הפרידה (Omakase Sushi / Teppanyaki / Wagyu)."
   }
 };
 
@@ -1332,37 +1346,72 @@ const data = {
     ["20:15<br>21:15","Abeno Harukas 300","פלטפורמת תצפית בקומה 60 עם נוף 360° על אוסקה. אחת הגבוהות ביפן","assets/attractions/day23/abeno.jpg","Abeno Harukas 300 Osaka","1 שעה – תצפית לילה, תמונות וקצת זמן להסתובב"],
     ["21:40","הגעה למלון","סיום יום מלא אבל מאוזן","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka"]
   ]},
-  '24': { title:"אוסקה → טוקיו – יום ההגעה", route:"Shin-Osaka → Shinkansen Nozomi → Ginza → Omoide Yokocho → Golden Gai → Kabukicho", events:[
-    ["09:30","יציאה מהמלון באוסקה","צ'ק-אאוט מ-Excel Hotel Tokyu Osaka ויציאה לתחנת השינקנסן. כדאי לשקול לשלוח מזוודות גדולות ישירות למלון בטוקיו בשירות Takkyubin (Ta-Q-Bin) — נמסר למחרת, כ-¥2,500-3,500 למזוודה","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka"],
-    ["09:30<br>11:00","נסיעה לתחנת Shin-Osaka ועלייה לרכבת","מעבר לתחנת Shin-Osaka והמתנה לרכבת השינקנסן","assets/attractions/day24/shinkansen.jpg","Shin-Osaka Station"],
-    ["11:00<br>13:30","Shinkansen Nozomi לטוקיו","נסיעה ברכבת השינקנסן המהירה והנוחה מאוסקה לטוקיו, כשעתיים וחצי","assets/attractions/day24/shinkansen.jpg","Tokyo Station","🚄 Nozomi/Hikari · ~2:30 שעות"],
-    ["13:30<br>14:30","הגעה למלון remm PLUS Ginza וצ'ק-אין","נסיעה מתחנת טוקיו למלון בגינזה, התארגנות ומנוחה קצרה","assets/attractions/day24/hotel_tokyo.jpg","remm PLUS Ginza Tokyo"],
-    ["14:30<br>15:30","Uobei Ginza – ארוחת צהריים","מסעדת סושי עם פס נע — מהיר, טעים ואיכותי. פופולרי מאוד בקרב תושבים ותיירים","assets/attractions/day24/uobei.jpg","Uobei Ginza"],
-    ["15:30<br>16:00","Ginza Six Rooftop Garden","גינה יפהפייה על גג קניון גינזה סיקס עם נוף מרהיב לטוקיו. פתוח עד 23:00, כניסה חופשית","assets/attractions/day24/ginza_six.jpg","Ginza Six Rooftop Garden"],
-    ["16:05<br>16:25","Nissan Crossing","שואו-רום של ניסאן בגינזה — תצוגות אינטראקטיביות, קונספט קארים וטכנולוגיית העתיד","assets/attractions/day24/nissan.jpg","Nissan Crossing Ginza"],
-    ["16:25<br>17:00","חזרה למלון למנוחה קצרה","זמן להתארגן לפני היציאה לשינג'וקו","assets/attractions/day24/hotel_tokyo.jpg","remm PLUS Ginza Tokyo"],
-    ["","__SECTION__","🌃 ערב: שינג'וקו הלילית","",""],
-    ["17:40<br>19:00","Omoide Yokocho","סמטאות צרות עם ברים ומסעדות קטנות — אווירה אותנטית של טוקיו הישנה","assets/attractions/day24/omoide.jpg","Omoide Yokocho","🚇 Marunouchi Line · ~15 דק׳"],
-    ["19:00<br>20:00","Golden Gai","רובע אגדי עם ברים זעירים — לכל בר אופי ואווירה משלו","assets/attractions/day24/golden_gai.jpg","Golden Gai Shinjuku"],
-    ["20:00<br>22:30","Kabukicho","הרובע התוסס ביותר בטוקיו — אורות ניאון, מסעדות, קריוקי, מכונות משחק ומועדוני לילה","assets/attractions/day24/kabukicho.jpg","Kabukicho Tokyo"],
-    ["22:30","חזרה למלון","סיום היום הראשון בטוקיו","assets/attractions/day24/hotel_tokyo.jpg","remm PLUS Ginza Tokyo"]
+  '24': { title:"אוסקה → טוקיו – יום ההגעה", route:"Shin-Osaka → Shinkansen Nozomi → Tokyo Station → Ginza", events:[
+    ["09:00","יציאה מ-Osaka Excel Hotel Tokyu","יוצאים רק עם תיקי יום, המזוודות כבר בדרך לטוקיו","assets/attractions/day24/luggage_deposit.jpg","Excel Hotel Tokyu Osaka"],
+    ["09:00<br>09:25","מונית ל-Shin-Osaka Station","התחלה רגועה בלי לחץ","assets/attractions/day24/shinkansen.jpg","Shin-Osaka Station"],
+    ["09:25<br>10:00","קפה / בנטו / התארגנות","קונים אוכל לרכבת ומתמקמים","assets/attractions/day24/lunch_bento.jpg","Shin-Osaka Station"],
+    ["10:00<br>12:30","Nozomi Shinkansen לטוקיו","הדרך המהירה ביותר בין אוסקה לטוקיו, כ-2.5 שעות","assets/attractions/day24/shinkansen.jpg","Tokyo Station","🚄 Nozomi · ~2:30 שעות"],
+    ["12:30<br>13:00","Tokyo Station (Marunouchi Side)","הבניין ההיסטורי המרשים של התחנה והתחלת פרק טוקיו","assets/attractions/day24/hotel_tokyo.jpg","Tokyo Station"],
+    ["13:15<br>14:30","Tsukishima Monja Tamatoya","חוויית Monjayaki מקומית, ארוחת צהריים קבוצתית כיפית ל-6 אנשים","assets/attractions/day24/lunch_bento.jpg","Tsukishima Monja Tamatoya"],
+    ["14:30<br>15:15","Marunouchi Area","רחובות יפים, בנייני עסקים יוקרתיים ואווירת מרכז טוקיו","assets/attractions/day24/hotel_tokyo.jpg","Marunouchi Tokyo"],
+    ["15:15<br>15:30","Nissan Crossing","עצירה קצרה, רואים רכבי קונספט וטכנולוגיה יפנית","assets/attractions/day24/nissan.jpg","Nissan Crossing Ginza"],
+    ["15:30<br>16:15","Ginza Six Rooftop Garden","גג יפה עם מבט על גינזה","assets/attractions/day24/ginza_six.jpg","Ginza Six Rooftop Garden"],
+    ["16:15<br>18:00","טיול בגינזה","חנויות דגל, רחובות יוקרה, בתי קפה ואווירת טוקיו","assets/attractions/day24/ginza_six.jpg","Ginza Tokyo"],
+    ["18:00<br>18:45","צ'ק-אין ב-remm PLUS Ginza","מנוחה, מקלחת והחלפת בגדים לפני ערב ארוך","assets/attractions/day24/hotel_tokyo.jpg","remm PLUS Ginza Tokyo"],
+    ["19:15<br>19:30","הליכה למסעדה","הכול במרחק הליכה מהמלון","assets/attractions/day24/hotel_tokyo.jpg","Ginza Tokyo"],
+    ["19:30<br>21:00","Akita Dining Namahage","אוכל יפני אזורי ואווירה מסורתית מיוחדת","assets/attractions/day24/lunch_bento.jpg","Akita Dining Namahage Ginza"],
+    ["21:00<br>23:00","Ginza Music Bar / Cocktail Bar","ערב רגוע של מוזיקה, קוקטיילים וסיום יום ההגעה","assets/attractions/day24/ginza_six.jpg","Ginza Tokyo"],
+    ["23:00","חזרה למלון","הליכה קצרה חזרה ל-remm PLUS Ginza","assets/attractions/day24/hotel_tokyo.jpg","remm PLUS Ginza Tokyo"]
   ]},
-  '25': { title:"טוקיו – שיבויה", route:"Meiji Shrine → Harajuku → Omotesando → Shibuya", events:[
-    ["09:00","Meiji Shrine","מקדש בלב יער עירוני","https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=300&q=80","Meiji Shrine"],
-    ["10:30","Takeshita Street + Omotesando","קניות ותרבות רחוב בהרנג'וקו","https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=300&q=80","Omotesando"],
-    ["17:00","Shibuya Sky","שקיעה ותצפית מעל העיר","https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=300&q=80","Shibuya Sky"]
+  '25': { title:"טוקיו – הראג'וקו ושיבויה", route:"Meiji Jingu → Harajuku → Omotesando → Shibuya", events:[
+    ["09:00","יציאה מ-remm PLUS Ginza","נסיעה לכיוון הראג'וקו","assets/attractions/day25/hotel.jpg","remm PLUS Ginza Tokyo"],
+    ["09:40<br>11:00","Meiji Jingu","אחד המקדשים החשובים ביפן, יער ענק בלב העיר","assets/attractions/day25/meiji_jingu.jpg","Meiji Jingu"],
+    ["11:00<br>11:40","Takeshita Street","חוויית הראג'וקו צבעונית, אופנה ותרבות רחוב","assets/attractions/day25/takeshita_street.jpg","Takeshita Street"],
+    ["11:40<br>13:00","Omotesando + Cat Street","הרחובות הכי יפים באזור, אדריכלות, בתי קפה וחנויות מיוחדות","assets/attractions/day25/omotesando_cat_street.jpg","Omotesando"],
+    ["13:00<br>14:15","ארוחת צהריים","ארוחה רגועה באזור אומוטסנדו","assets/attractions/day25/lunch.jpg","Omotesando"],
+    ["14:15<br>15:30","Shibuya PARCO","Nintendo Store, Pokémon Center, Capcom Store, Jump Shop — קניות מסוג שאין בגינזה","assets/attractions/day25/shibuya_crossing.jpg","Shibuya PARCO"],
+    ["15:30<br>15:50","מעבר ל-Shibuya Sky","להגיע רגוע לפני התור","assets/attractions/day25/shibuya_sky.jpg","Shibuya Sky"],
+    ["16:00<br>17:15","Shibuya Sky","יום + שקיעה + אורות העיר — אחד ההיילייטים הגדולים בטוקיו","assets/attractions/day25/shibuya_sky.jpg","Shibuya Sky"],
+    ["17:15<br>18:00","The Roof / זמן חופשי","ליהנות מהנוף ומהמעבר לערב","assets/attractions/day25/shibuya_sky.jpg","Shibuya Sky"],
+    ["18:00<br>18:10","Hachiko Statue","תמונה קצרה, לא יותר","assets/attractions/day25/shibuya_crossing.jpg","Hachiko Statue Shibuya"],
+    ["18:10<br>18:30","Shibuya Crossing","לראות את הצומת המפורסם ולהמשיך","assets/attractions/day25/shibuya_crossing.jpg","Shibuya Crossing"],
+    ["18:30<br>19:00","שיטוט ערב בשיבויה","כשהאורות כבר דולקים","assets/attractions/day25/shibuya_crossing.jpg","Shibuya Tokyo"],
+    ["19:00<br>20:45","Yakitori Tsukada Shibuya","ארוחת ערב יפנית טובה שמתאימה לקבוצה","assets/attractions/day25/yakitori_tsukada.jpg","Yakitori Tsukada Shibuya"],
+    ["20:45<br>22:30","ברים בשיבויה","Nonbei Yokocho / קוקטייל בר / בר מקומי","assets/attractions/day25/shibuya_crossing.jpg","Nonbei Yokocho"],
+    ["22:30","חזרה למלון","סוף יום","assets/attractions/day25/hotel.jpg","remm PLUS Ginza Tokyo"]
   ]},
-  '26': { title:"טוקיו - מדע וחדשנות", route:"Tsukiji → teamLab → Miraikan → Ginza", events:[
-    ["09:00","Tsukiji Outer Market","שוק אוכל וטעימות בוקר","https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=300&q=80","Tsukiji Market"],
-    ["11:00","teamLab Borderless","מוזיאון דיגיטלי אינטראקטיבי","https://images.unsplash.com/photo-1577083552431-6e5fd01988f1?auto=format&fit=crop&w=300&q=80","teamLab Borderless"],
-    ["14:30","Miraikan + Ginza","מוזיאון מדע וערב אלגנטי בגינזה","https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=300&q=80","Miraikan"]
+  '26': { title:"טוקיו – צוקיג'י, teamLab וגינזה", route:"Tsukiji → Azabudai Hills → teamLab Borderless → Ginza", events:[
+    ["08:45","יציאה מהמלון","נוסעים לצוקיג'י לפני שהמקום נהיה עמוס","assets/attractions/day26/hotel.jpg","remm PLUS Ginza Tokyo"],
+    ["09:00<br>10:30","Tsukiji Outer Market","שוק האוכל המפורסם של טוקיו — Food Tour של סושי טרי, טונה, צדפות, וואגיו על שיפוד, טמאגויאקי וקינוחים","assets/attractions/day26/tsukiji_outer_market.jpg","Tsukiji Outer Market"],
+    ["10:30<br>10:50","מעבר ל-Azabudai Hills","נסיעה קצרה ל-teamLab","assets/attractions/day26/azabudai_hills.jpg","Azabudai Hills"],
+    ["11:00<br>13:15","teamLab Borderless","אחד ההיילייטים של הטיול — מוזיאון אמנות דיגיטלית ללא מסלול מוגדר","assets/attractions/day26/teamlab_borderless.jpg","teamLab Borderless Azabudai Hills"],
+    ["13:15<br>14:00","Azabudai Hills","קומפלקס חדש ויוקרתי — קפה, אוכל קל והליכה במתחם","assets/attractions/day26/azabudai_hills.jpg","Azabudai Hills"],
+    ["14:00<br>14:30","מעבר לגינזה","רכבת קצרה חזרה לאזור המלון","assets/attractions/day26/ginza_shopping_block.jpg","Ginza Tokyo"],
+    ["14:30<br>19:00","Ginza Shopping Block","בלוק הקניות הגדול של הטיול: Uniqlo Ginza, Loft, Itoya, Ginza Six, Onitsuka Tiger","assets/attractions/day26/ginza_shopping_block.jpg","Ginza Six"],
+    ["19:00<br>20:00","מלון ומנוחה","להניח שקיות, להתקלח ולהתרענן","assets/attractions/day26/hotel.jpg","remm PLUS Ginza Tokyo"],
+    ["20:00<br>21:30","ארוחת ערב בגינזה","ערב רגוע אחרי יום עמוס","assets/attractions/day26/ginza_shopping_block.jpg","Ginza Tokyo"],
+    ["21:30","בר / קוקטייל / חופשי","תלוי במצב הרוח והאנרגיה של הקבוצה","assets/attractions/day26/hotel.jpg","Ginza Tokyo"]
   ]},
-  '27': { title:"טוקיו - מסורת ואנימה", route:"Asakusa → Akihabara → Tokyo Skytree", events:[
-    ["09:00","Senso-ji + Nakamise-dori","מקדש אסאקוסה ושוק מסורתי","https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=300&q=80","Senso-ji"],
-    ["12:00","Akihabara","רובע האנימה והאלקטרוניקה","https://images.unsplash.com/photo-1542931287-023b922fa89b?auto=format&fit=crop&w=300&q=80","Akihabara"],
-    ["16:30","Tokyo Skytree","תצפית פנורמית בשעת שקיעה","https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=300&q=80","Tokyo Skytree"]
+  '27': { title:"טוקיו – אסאקוסה ואקיהברה", route:"Asakusa → Akihabara → Ueno → Ameyoko", events:[
+    ["09:00","יציאה מהמלון","נוסעים לכיוון אסאקוסה","assets/attractions/day27/hotel.jpg","remm PLUS Ginza Tokyo"],
+    ["09:30<br>12:00","Asakusa + Senso-ji","מקדש בודהיסטי מהמאה ה-7, שער Kaminarimon, רחוב Nakamise וסמטאות מסורתיות","assets/attractions/day27/asakusa_sensoji.jpg","Senso-ji Asakusa"],
+    ["12:00<br>13:00","ארוחת צהריים באסאקוסה","אזור מצוין לטמפורה, סובה או מסעדות יפניות מסורתיות","assets/attractions/day27/lunch.jpg","Asakusa Tokyo"],
+    ["13:15<br>14:45","Akihabara","בירת האלקטרוניקה והגיק-קאלצ'ר של יפן — גאדג'טים, משחקים, מצלמות וטכנולוגיה","assets/attractions/day27/akihabara.jpg","Akihabara"],
+    ["15:00<br>16:00","Ueno Park","פארק גדול ונעים עם מקדשים, מוזיאונים ואווירה רגועה","assets/attractions/day27/ueno_park.jpg","Ueno Park"],
+    ["16:00<br>18:00","Ameyoko Market","שוק רחוב צפוף וחי מתחת למסילת רכבת — אוכל רחוב, דוכנים ואווירה אותנטית","assets/attractions/day27/ameyoko_market.jpg","Ameyoko Market"],
+    ["18:00<br>19:00","חזרה למלון / מנוחה","מנוחה קצרה לפני ערב הסיום","assets/attractions/day27/hotel.jpg","remm PLUS Ginza Tokyo"],
+    ["20:00<br>22:30","ארוחת פרידה חגיגית","ארוחת סיום חגיגית של הטיול — Omakase Sushi, Teppanyaki או Wagyu ברמה גבוהה","assets/attractions/day27/lunch.jpg","Ginza Tokyo"],
+    ["22:30","חזרה למלון","הלילה האחרון המלא ביפן","assets/attractions/day27/hotel.jpg","remm PLUS Ginza Tokyo"]
   ]},
-  '28': { title:"טיסה חזרה הביתה", route:"קניות אחרונות וטיסה הביתה", events:[
+  '28': { title:"טוקיו – יום אחרון וטיסה הביתה", route:"Zojo-ji → Tokyo Tower → Roppongi Hills → NRT → DXB → TLV", events:[
+    ["09:00<br>10:00","ארוחת בוקר + צ'ק-אאוט","השארת מזוודות במלון","assets/attractions/day28/checkout.jpg","remm PLUS Ginza Tokyo"],
+    ["10:30<br>11:30","Zojo-ji Temple","מקדש מרשים עם Tokyo Tower ברקע","assets/attractions/day28/zojoji_temple.jpg","Zojo-ji Temple"],
+    ["11:30<br>12:30","Tokyo Tower","הסמל ההיסטורי של טוקיו","assets/attractions/day28/tokyo_tower.jpg","Tokyo Tower"],
+    ["12:30<br>13:30","ארוחת צהריים","באזור המגדל","assets/attractions/day28/lunch.jpg","Tokyo Tower"],
+    ["13:30<br>15:30","Roppongi Hills","רובע מודרני, בתי קפה, אדריכלות ואווירה","assets/attractions/day28/roppongi_hills.jpg","Roppongi Hills"],
+    ["15:30<br>16:30","קניות אחרונות בגינזה","רק השלמות אחרונות (אם צריך)","assets/attractions/day28/ginza_shopping.jpg","Ginza Tokyo"],
+    ["16:30<br>17:00","חזרה למלון","איסוף מזוודות","assets/attractions/day28/checkout.jpg","remm PLUS Ginza Tokyo"],
+    ["17:30","יציאה לנריטה","מספיק זמן להגיע 3 שעות לפני הטיסה","assets/attractions/day28/checkout.jpg","Narita Airport"],
     ["22:20","NRT → DXB","Flight: EK319\nOriginal Departure: 28.11 22:20 | T: NRT T2\nOriginal Arrival: 29.11 05:30 | T: DXB T3\nטוקיו נאריטה T2 → דובאי T3\nמשך טיסה: 12:10\nClass/Fare: Economy Saver\nStatus: Confirmed\nAircraft: Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
     ["05:30 +1","Connection in DXB","Connection: Dubai (DXB)\nמשך קונקשן: 5:25\nהמשך לטיסת קישור לתל אביב","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Dubai International Airport"],
     ["10:55 +1","DXB → TLV","Flight: EK2268 / FZ1635\nOriginal Departure: 29.11 10:55 | T: DXB T3\nOriginal Arrival: 29.11 12:45 | T: TLV T3\nדובאי T3 → תל אביב T3 בינלאומי\nמשך טיסה: 3:50\nClass/Fare: Economy Saver\nStatus: Confirmed\nOperated by flydubai\nAircraft: Boeing 737 MAX 8","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
@@ -1460,6 +1509,30 @@ const hotelsByDay = {
     extra: '5-1-15 Namba, Chuo Ward, Osaka 542-0076, Japan'
   },
   '24': {
+    name: 'remm PLUS Ginza',
+    meta: "טוקיו · גינזה",
+    mapQuery: 'remm PLUS Ginza Tokyo',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: ''
+  },
+  '25': {
+    name: 'remm PLUS Ginza',
+    meta: "טוקיו · גינזה",
+    mapQuery: 'remm PLUS Ginza Tokyo',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: ''
+  },
+  '26': {
+    name: 'remm PLUS Ginza',
+    meta: "טוקיו · גינזה",
+    mapQuery: 'remm PLUS Ginza Tokyo',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: ''
+  },
+  '27': {
     name: 'remm PLUS Ginza',
     meta: "טוקיו · גינזה",
     mapQuery: 'remm PLUS Ginza Tokyo',
