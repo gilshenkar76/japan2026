@@ -114,6 +114,15 @@
     .transit-note{font-size:12px;color:var(--muted);margin-bottom:8px}
     .transit-meta{display:flex;flex-wrap:wrap;gap:8px}
     .transit-meta span{background:#eef2f7;border:1px solid #d8e0ea;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;color:#475569}
+    .transfer-chip{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;justify-self:center;max-width:100%;margin:0;padding:6px 14px;border:1px dashed #94a3b8;border-radius:999px;background:#f8fafc;color:#475569;font-size:12px;font-weight:700;cursor:pointer}
+    .transfer-chip .tc-time{color:#e53935;font-weight:900}
+    .tleg{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow);margin-top:10px}
+    .tleg img{width:84px;height:84px;object-fit:cover;border-radius:12px;flex:0 0 auto}
+    .tleg-body{min-width:0;flex:1}
+    .tleg-time{font-size:12px;font-weight:900;color:#e53935}
+    .tleg-title{font-weight:800;font-size:14px;color:#1e293b;margin:2px 0}
+    .tleg-route{font-size:12px;color:var(--muted);direction:ltr;text-align:right;margin-bottom:4px}
+    .tleg-desc{font-size:12px;color:var(--muted);white-space:pre-line}
     .event{background:var(--card);border-radius:20px;box-shadow:var(--shadow);border:1px solid var(--line);display:flex;overflow:hidden;padding:0;min-height:110px}
     .event-img-nav{width:110px;min-height:110px;flex-shrink:0;display:block;text-decoration:none;background:#e8edf5;overflow:hidden;position:relative;
       box-shadow:inset 0 0 0 9999px rgba(0,0,0,0);transition:transform .15s ease,box-shadow .15s ease;transform:translateZ(0)}
@@ -150,6 +159,9 @@
     .btn{border:0;border-radius:12px;padding:9px 11px;font-weight:800;font-size:12px;text-decoration:none;
       display:inline-flex;align-items:center;justify-content:center;cursor:pointer;min-width:0;max-width:100%}
     .hotel .actions > .btn{flex:1 1 140px}
+    .day-nav{display:flex;gap:8px;margin:18px 0 8px}
+    .day-nav .btn{flex:1 1 0;padding:12px 8px;font-size:13px}
+    .day-nav .btn[disabled]{opacity:.4;cursor:default}
     .primary{background:var(--blue);color:white}.ghost{background:#f0f4fa;color:#344054}
     .hotel{display:block;padding:12px;background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa}
     .hotel .event-row{display:flex;gap:12px;align-items:flex-start}
@@ -528,6 +540,8 @@
         </div>
       </div>
 
+      <div class="day-nav" id="dayNav"></div>
+
     </div>
   </main>
 
@@ -738,6 +752,8 @@
         </div>
       </div>
 
+      <div class="upload-panel hidden" id="transportLegsPanel"></div>
+
       <div class="upload-panel hidden" id="transportTransitPanel"></div>
 
       <div class="upload-panel">
@@ -906,10 +922,10 @@ const quickLinksConfig = [
   }
 ];
 const flightStatusDefaults = [
-  { id: 'ek2168_fz1842', label: '12.11 TLV → DXB', flight: 'EK2168 / FZ1842', queryFlight: 'EK2168', status: 'unknown', gate: '', originalDepartureTime: '12.11 22:20', originalArrivalTime: '13.11 03:25', originalDepartureTerminal: 'TLV T3', originalArrivalTerminal: 'DXB T3' },
-  { id: 'ek312', label: '13.11 DXB → HND', flight: 'EK312', queryFlight: 'EK312', status: 'unknown', gate: '', originalDepartureTime: '13.11 08:20', originalArrivalTime: '13.11 22:30', originalDepartureTerminal: 'DXB T3', originalArrivalTerminal: 'HND T3' },
-  { id: 'ek319', label: '28.11 NRT → DXB', flight: 'EK319', queryFlight: 'EK319', status: 'unknown', gate: '', originalDepartureTime: '28.11 22:20', originalArrivalTime: '29.11 05:30', originalDepartureTerminal: 'NRT T2', originalArrivalTerminal: 'DXB T3' },
-  { id: 'ek2268_fz1635', label: '29.11 DXB → TLV', flight: 'EK2268 / FZ1635', queryFlight: 'EK2268', status: 'unknown', gate: '', originalDepartureTime: '29.11 10:55', originalArrivalTime: '29.11 12:45', originalDepartureTerminal: 'DXB T3', originalArrivalTerminal: 'TLV T3' }
+  { id: 'ey594', label: '12.11 TLV → AUH', flight: 'EY594', queryFlight: 'EY594', status: 'unknown', gate: '', originalDepartureTime: '12.11 14:00', originalArrivalTime: '12.11 19:05', originalDepartureTerminal: 'TLV', originalArrivalTerminal: 'AUH' },
+  { id: 'ey800', label: '12.11 AUH → NRT', flight: 'EY800', queryFlight: 'EY800', status: 'unknown', gate: '', originalDepartureTime: '12.11 21:05', originalArrivalTime: '13.11 11:40', originalDepartureTerminal: 'AUH', originalArrivalTerminal: 'NRT' },
+  { id: 'ey801', label: '28.11 NRT → AUH', flight: 'EY801', queryFlight: 'EY801', status: 'unknown', gate: '', originalDepartureTime: '28.11 17:20', originalArrivalTime: '29.11 00:40', originalDepartureTerminal: 'NRT', originalArrivalTerminal: 'AUH' },
+  { id: 'ey609', label: '29.11 AUH → TLV', flight: 'EY609', queryFlight: 'EY609', status: 'unknown', gate: '', originalDepartureTime: '29.11 02:45', originalArrivalTime: '29.11 04:30', originalDepartureTerminal: 'AUH', originalArrivalTerminal: 'TLV' }
 ];
 const FLIGHT_STATUS_STORAGE_KEY = 'japan2026.flightStatus';
 const FLIGHT_SYNC_CONFIG_KEY = 'japan2026.flightSyncConfig';
@@ -960,7 +976,7 @@ const routeMapsByDay = {
 // Short Hebrew theme shown as the banner subtitle per day (fallback: route text)
 const themesByDay = {
   '15': 'יום מלא בהאקונה – אגם אשי, ספינת פיראטים, רכבל ועמק געשי אווקודאני',
-  '16': 'מעבר מהר פוג\'י לנגויה – פגודת צ\'וריאיטו, אושינו הקאיי ומסדרון המייפל',
+  '16': 'מעבר מהר פוג\'י לקיוטו – פגודת צ\'וריאיטו, אושינו הקאיי ומסדרון המייפל',
   '17': 'מעבר מנגויה לקיוטו – מוזיאון טויוטה, שינקנסן וערב בטרמאצ\'י ופונטוצ\'ו',
   '18': 'טיול מודרך יום שלם בקיוטו – מקדשים היסטוריים, טבע ותרבות מסורתית',
   '19': 'קימונו, היגשיאמה, מקדשים וערב חופשי בקיוטו',
@@ -983,9 +999,9 @@ const transitByDay = {
     { from: 'Owakudani', to: 'מוזיאון פתוח', note: 'אוטובוס מקומי', line: 'Hakone Tozan Bus', time: '~15 דק׳', cost: '¥400' }
   ],
   '16': [
-    { from: 'Lake Kawaguchi', to: 'Mishima', note: 'קוואגוצ\'י → מישימה', line: 'אוטובוס', time: '~1:20 שעות', cost: '¥2,200' },
-    { from: 'Mishima', to: 'Nagoya', note: 'שינקנסן היקארי', line: 'שינקנסן JR Hikari', time: '~1:05 שעות', cost: '¥6,500' },
-    { from: 'Nagoya Station', to: 'Nagoya JR Gate Tower Hotel', note: 'הליכה מהתחנה למלון', line: 'רגלי', time: '~10 דק׳', cost: '—' }
+    { from: 'Lake Kawaguchi', to: 'Mishima', note: 'קוואגוצ\'י → מישימה', line: 'מיניוואן פרטי', time: '~1:20 שעות', cost: '—' },
+    { from: 'Mishima', to: 'Kyoto', note: 'שינקנסן היקארי ישיר, ללא החלפה', line: 'שינקנסן JR Hikari 721', time: '~1:51 שעות', cost: '~¥10,780' },
+    { from: 'Kyoto Station', to: 'Hotel Monterey Kyoto', note: 'מטרו Karasuma Line + הליכה, או מונית', line: 'מטרו', time: '~20 דק׳', cost: '¥220' }
   ],
   '17': [
     { from: 'Nagoya JR Gate Tower Hotel', to: 'Toyota Kaikan Museum', note: 'נסיעה במונית למוזיאון', line: 'מונית', time: '~20 דק׳', cost: '¥2,000' },
@@ -1050,8 +1066,8 @@ const routeNotesPresets = {
     tips: 'מזג האוויר בהאקונה יכול להשתנות במהירות – קחו בגדים חמים ומטריה. הביצה השחורה (קורו טמאגו) היא מעדן מקומי של אווקודאני. במוזיאון הפתוח יש בית קפה ואזורי מנוחה. בערב המלון מציע ארוחות מסורתיות ואונסן.'
   },
   '16': {
-    overview: 'יום מעבר מהר פוג\'י לנגויה: פגודת צ\'וריאיטו עם הנוף האייקוני של הר פוג\'י, כפר אושינו הקאיי עם בריכות המים הצלולות, מסדרון המייפל באגם קוואגוצ\'י, ואז נסיעה (אוטובוס+שינקנסן) לנגויה, עם ערב חופשי ברובע סאקאה.',
-    tips: 'מזג האוויר בפוג\'י בנובמבר קריר – קחו בגדים חמים ונעליים נוחות. בפגודת צ\'וריאיטו יש כ-400 מדרגות לנקודת התצפית. הזמן הטוב ביותר לתמונות: בוקר בפגודה, יום באושינו הקאיי, ערב בנגויה. מומלץ להזמין כרטיסי אוטובוס מראש.'
+    overview: 'יום מעבר מהר פוג\'י לקיוטו: פגודת צ\'וריאיטו עם הנוף האייקוני של הר פוג\'י, כפר אושינו הקאיי עם בריכות המים הצלולות, מסדרון המייפל באגם קוואגוצ\'י, ואז מיניוואן למישימה ושינקנסן Hikari ישיר לקיוטו וצ\'ק-אין ב-Hotel Monterey Kyoto.',
+    tips: 'מזג האוויר בפוג\'י בנובמבר קריר – קחו בגדים חמים ונעליים נוחות. בפגודת צ\'וריאיטו יש כ-400 מדרגות לנקודת התצפית. הזמן הטוב ביותר לתמונות: בוקר בפגודה, יום באושינו הקאיי. חשוב להזמין מראש מושבים ל-Hikari 721 (Mishima → Kyoto).'
   },
   '17': {
     overview: 'יום מעבר מנגויה לקיוטו: מוזיאון טויוטה, שינקנסן לקיוטו, אטרקציות בעיר (To-ji, Nishiki, Teramachi) ורק אחר כך צ׳ק-אין במלון, לפני ערב בפונטוצ׳ו.',
@@ -1113,6 +1129,23 @@ function renderMainPage(){
   `).join('');
 }
 
+function renderDayNav(day){
+  const nav = document.getElementById('dayNav');
+  if (!nav) return;
+  const days = Object.keys(citiesByDay).sort((a, b) => {
+    if (a === '12-13') return -1;
+    if (b === '12-13') return 1;
+    return Number(a) - Number(b);
+  });
+  const i = days.indexOf(day);
+  const prev = days[i - 1], next = days[i + 1];
+  const go = d => `render('${d}');window.scrollTo(0,0)`;
+  nav.innerHTML =
+    `<button class="btn ghost" type="button" ${prev ? `onclick="${go(prev)}"` : 'disabled'}>➡️ היום הקודם</button>` +
+    `<button class="btn primary" type="button" onclick="goBackToMain()">🏠 ראשי</button>` +
+    `<button class="btn ghost" type="button" ${next ? `onclick="${go(next)}"` : 'disabled'}>היום הבא ⬅️</button>`;
+}
+
 function showDayPlanFromMain(day){
   render(day);
   showScreen('route', document.querySelector('.nav button[data-screen="route"]'));
@@ -1127,7 +1160,7 @@ function renderTransportationDays(){
   });
   grid.innerHTML = orderedDays.map(([day, info]) => {
     const isGuideDay = day === '14';
-    const onclick = isGuideDay ? 'openNavGuide()' : `showTransportationDetails('${day}')`;
+    const onclick = `showTransportationDetails('${day}')`;
     const extra = isGuideDay ? ` · 18 שלבים` : '';
     return `
     <button class="day-card" type="button" onclick="${onclick}">
@@ -1147,6 +1180,7 @@ function showTransportationDetails(day){
   // Show live flight status panel only on flight days (outbound 12-13, return 28)
   const flightPanel = document.getElementById('transportFlightPanel');
   if (flightPanel) flightPanel.classList.toggle('hidden', !(day === '12-13' || day === '28'));
+  renderTransferLegs(day);
   // Public-transport legs for this day (shown here in the תחבורה tab)
   const transitPanel = document.getElementById('transportTransitPanel');
   if (transitPanel) {
@@ -1165,6 +1199,59 @@ function showTransportationDetails(day){
     }
   }
   showScreen('transportation-details', document.querySelector('.nav button[data-screen="transportation"]'));
+}
+
+function transferInfo(t){
+  const hint = t.tag || (t.title + ' ' + t.desc);
+  const transit = /🚆|🚄|🚈|🚂|🚇|🚌|רכבת|שינקנסן|אוטובוס/.test(hint);
+  const taxi = /🚕|🚖|🚐|מונית|שאטל|מיניוואן/.test(hint);
+  const walk = /🚶|הליכה|רגלי/.test(hint);
+  if (transit) return { icon: '🚆', travel: 'transit' };
+  if (taxi) return { icon: '🚕', travel: 'driving' };
+  if (walk) return { icon: '🚶', travel: 'walking' };
+  return { icon: '🚌', travel: 'transit' };
+}
+
+function transferDirectionsUrl(t){
+  const origin = t.from ? `&origin=${encodeURIComponent(t.from)}` : '';
+  return `https://www.google.com/maps/dir/?api=1${origin}&destination=${encodeURIComponent(t.to)}&travelmode=${transferInfo(t).travel}`;
+}
+
+// Compact link shown in the route tab between two stops
+function transferChipsHtml(day, idx){
+  return (transfersByDay[day] || []).filter(t => t.afterIdx === idx).map(t => {
+    const time = t.t.replace('<br>', ' – ');
+    const label = t.tag || `${transferInfo(t).icon} ${t.title}`;
+    return `<div class="transfer-chip" onclick="showTransportationDetails('${day}')"><span class="tc-time">${time}</span><span>${label}</span></div>`;
+  }).join('');
+}
+
+function renderTransferLegs(day){
+  const panel = document.getElementById('transportLegsPanel');
+  if (!panel) return;
+  const legs = transfersByDay[day] || [];
+  const guideBtn = day === '14'
+    ? '<div class="actions" style="margin-top:10px"><button class="btn primary" type="button" onclick="openNavGuide()">📖 מדריך ניווט מלא · 18 שלבים</button></div>'
+    : '';
+  if (!legs.length && !guideBtn) {
+    panel.innerHTML = '';
+    panel.classList.add('hidden');
+    return;
+  }
+  panel.innerHTML = '<div class="section-title" style="margin:0;font-size:18px">מעברים בין האטרקציות</div>' + guideBtn + legs.map(t => {
+    const route = t.from ? `${t.from} → ${t.to}` : `→ ${t.to}`;
+    return `<div class="tleg">
+      <img src="${t.img}" alt="" loading="lazy">
+      <div class="tleg-body">
+        <div class="tleg-time">${t.t.replace('<br>', ' – ')}</div>
+        <div class="tleg-title">${t.title}</div>
+        <div class="tleg-route">${route}</div>
+        <div class="tleg-desc">${t.desc}</div>
+        <div class="transit-meta" style="margin-top:6px">${t.tag ? `<span>${t.tag}</span>` : ''}<a class="btn ghost" style="padding:3px 12px;font-size:12px" target="_blank" rel="noopener" href="${transferDirectionsUrl(t)}">🧭 ניווט</a></div>
+      </div>
+    </div>`;
+  }).join('');
+  panel.classList.remove('hidden');
 }
 
 function backToTransportation(){
@@ -1195,192 +1282,139 @@ function renderCountdownChip(){
 
 const data = {
   '12-13': { title:"טיסה ליפן", route:"טיסה ארוכה ליפן, נסיעה וצ'ק אין למלון", events:[
-    ["22:20","TLV → DXB","Flight: EK2168 / FZ1842\nתל אביב T3 בינלאומי → דובאי T3\nמשך טיסה: 3:05\nClass/Fare: Economy Saver\nStatus: Confirmed\nOperated by flydubai\nAircraft: Boeing 737 MAX 8","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
-    ["03:25 +1","Connection in DXB","Connection: Dubai (DXB)\nמשך קונקשן: 4:55\nמעבר בין שערים וטרמינל 3","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Dubai International Airport"],
-    ["08:20","DXB → HND","Flight: EK312\nדובאי T3 → טוקיו האנדה T3\nמשך טיסה: 9:10\nClass/Fare: Economy Saver\nStatus: Confirmed\nAircraft: Boeing 777-300ER","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Haneda Airport"],
-    ["22:30","הגעה לטוקיו","נחיתה בהאנדה והתארגנות ללילה הראשון בעיר","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Haneda Airport"]
+    ["14:00","TLV → AUH","Flight: EY594\nתל אביב → אבו דאבי\nמשך טיסה: 3:05\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Boeing 787-9","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
+    ["19:05","Connection in AUH","קונקשן באבו דאבי: 2:00\nהמשך באותו נמל תעופה לטיסת EY800","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Abu Dhabi International Airport"],
+    ["21:05","AUH → NRT","Flight: EY800\nאבו דאבי → טוקיו נאריטה\nמשך טיסה: 9:35\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
+    ["11:40 +1","הגעה לטוקיו","נחיתה בנריטה והתארגנות לנסיעה לעיר","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Narita Airport"]
   ]},
   '14': { title:"טוקיו --> האקונה", route:"שינג'וקו → Hakone-Yumoto → המלון", events:[
-    ["08:00<br>08:45","הפקדת מזוודות במלון","מפקידים את המזוודות במלון לשליחה לקיוטו וממשיכים את היום עם תרמיל קל בלבד.\nהמזוודות יגיעו למלון בקיוטו ב-17.11.","assets/attractions/day14/luggage_drop.jpg","Hotel Gracery Shinjuku"],
+    ["08:00<br>08:45","הפקדת מזוודות במלון","מפקידים את המזוודות במלון לשליחה לקיוטו וממשיכים את היום עם תרמיל קל בלבד.\nהמזוודות יגיעו למלון בקיוטו ב-17.11.","assets/attractions/day14/baggage_transportation.jpg","Hotel Gracery Shinjuku"],
     ["09:00<br>10:00","Tokyo Metropolitan Government Building","תצפית חינמית על טוקיו מקומה 45, נוף מרהיב מגובה 202 מ' וראייה של הר פוג'י במזג אוויר בהיר.\nכניסה חינם, מומלץ להגיע מוקדם בבוקר.","assets/attractions/day14/tokyo_metro_gov.jpg","Tokyo Metropolitan Government Building"],
     ["10:15<br>11:30","Shinjuku Gyoen","גן יפני, צרפתי ואנגלי משולב, בריכות ועצים פורחים.\nכניסה ¥500, טיול בוקר רגוע לפני ההמשך לרכבת.","assets/attractions/day14/shinjuku_gyoen.jpg","Shinjuku Gyoen National Garden, Tokyo"],
     ["12:00<br>13:00","RAMEN - ארוחת צהריים","ארוחת רמן יפני אותנטי ליד הפארק לפני היציאה להאקונה.\nמומלץ: Ichiran Ramen, Menya Musashi, Afuri Shinjuku.","assets/attractions/day14/ramen_lunch.jpg","Ichiran Ramen Shinjuku"],
-    ["13:15<br>14:30","Odakyu Romancecar להאקונה","רכבת מהירה ונוחה משינג'וקו להאקונה-יומוטו, נסיעה של כ-85 דקות עם נוף אפשרי להר פוג'י.\nמומלץ להזמין מושבים מראש.","assets/transfers/train.jpg","Odakyu Romancecar Shinjuku Station"],
     ["15:00<br>22:00","Aura Tachibana - ריוקן בהאקונה","הגעה לריוקן מסורתי עם אונסן. ערב של צ'ק-אין, אונסן וארוחת קייסקי.\nאל תשכחו בגדי ים לאונסן!","assets/attractions/day14/aura_tachibana.jpg","Aura Tachibana Hakone Yumoto"]
   ]},
   '15': { title:"יום האקונה", route:"Heiwa no Torii → Pirate Ship → Owakudani → Sounzan → Gora → Open-Air Museum", events:[
-    ["08:30","🚐 שאטל מהמלון","שאטל של Aura Tachibana לתחנת Hakone-Yumoto","assets/transfers/bus.jpg","Hakone-Yumoto","🚐 שאטל מלון"],
-    ["08:45","🚌 אוטובוס H/K","קו אוטובוס מקומי לכיוון Hakone-jinja-iriguchi","assets/transfers/bus.jpg","Hakone-jinja-iriguchi","🚌 אוטובוס H/K"],
-    ["09:25","🚶 הליכה לשער השלום","הליכה של כ-10 דקות מהתחנה אל Heiwa no Torii","assets/transfers/walk.jpg","Heiwa no Torii","🚶 ~10 דק׳"],
     ["09:35<br>10:10","Heiwa no Torii (שער השלום)","השער האדום המפורסם העומד בתוך אגם אשי, עם נוף להר פוג'י ברקע במזג אוויר בהיר. עצירת צילום איקונית של האקונה.","assets/attractions/day15/heiwa_no_torii.jpg","Heiwa no Torii"],
-    ["10:10","🚶 הליכה לנמל","הליכה מהשער אל Moto-Hakone Port לקראת השייט","assets/transfers/walk.jpg","Moto-Hakone Port","🚶 הליכה לנמל"],
     ["10:30<br>11:05","⛴️ ספינת הפיראטים","שייט בספינת פיראטים מעוצבת מ-Moto-Hakone Port ל-Togendai, עם נוף פתוח לאגם אשי.","assets/attractions/day15/pirate_ship.jpg","Togendai","⛴️ ~35 דק׳"],
     ["11:05<br>11:30","🚡 רכבל להר Owakudani","רכבל עם נוף מרהיב לעמק הגעשי של אווקודאני","assets/attractions/day15/ropeway.jpg","Owakudani","🚡 ~25 דק׳"],
     ["11:30<br>12:45","Owakudani","עמק געשי פעיל עם פעולות גופרית והביצה השחורה המפורסמת (קורו טמאגו).","assets/attractions/day15/owakudani.jpg","Owakudani"],
-    ["12:45<br>13:25","ארוחת צהריים","סובה/אודון מקומי באזור אווקודאני","assets/attractions/day15/lunch.jpg","Owakudani restaurants"],
+    ["12:45<br>13:25","ארוחת צהריים","סובה/אודון מקומי באזור אווקודאני","assets/attractions/lunch.jpg","Owakudani restaurants"],
     ["13:25<br>13:40","🚡 רכבל לכיוון Sounzan","רכבל מתחנת Owakudani אל Sounzan","assets/attractions/day15/sounzan.jpg","Sounzan","🚡 ~15 דק׳"],
     ["13:40<br>14:00","🚋 רכבל הרים (Cable Car) לכיוון Gora","מעבר קצר מ-Sounzan אל Gora ברכבל ההרים","assets/attractions/day15/gora.jpg","Gora","🚋 ~20 דק׳"],
     ["14:00<br>14:10","🚂 רכבת ל-Chokoku-no-Mori","רכבת טוזאן קצרה מ-Gora אל Chokoku-no-Mori","assets/attractions/day15/chokoku_no_mori.jpg","Chokoku-no-Mori","🚂 ~10 דק׳"],
-    ["14:10","🚶 הליכה למוזיאון","הליכה של כ-2 דקות מהתחנה אל Hakone Open-Air Museum","assets/transfers/walk.jpg","Hakone Open-Air Museum","🚶 ~2 דק׳"],
     ["14:15<br>16:15","Hakone Open-Air Museum","מוזיאון פתוח עם פסלי פיסול ואמנות מודרנית בנוף פתוח, כולל אגף פיקאסו.","assets/attractions/day15/museum.jpg","Hakone Open-Air Museum"],
-    ["16:20<br>16:30","🚂 רכבת חזרה ל-Hakone-Yumoto","רכבת טוזאן מ-Chokoku-no-Mori בחזרה לתחנת Hakone-Yumoto","assets/transfers/train.jpg","Hakone-Yumoto","🚂 ~10 דק׳"],
-    ["17:05","🚕 שאטל/מונית למלון","התקשרות למלון ואיסוף בשאטל או מונית בחזרה ל-Aura Tachibana","assets/transfers/taxi.jpg","Aura Tachibana Hakone Yumoto","🚕 שאטל/מונית"],
     ["17:20<br>22:00","חזרה למלון ואונסן","ערב של מנוחה, אונסן וארוחת קייסקי ב-Aura Tachibana","assets/attractions/day15/hotel.jpg","Aura Tachibana Hakone Yumoto"]
   ]},
-    '16': { title:"פוג'י → נגויה", route:"Aura Tachibana → Chureito → Oshino Hakkai → Kawaguchiko Maple Corridor → Nagoya", events:[
-    ["07:30","🚐 מיניוואן פרטי","איסוף פרטי (Private Minivan) מהמלון Aura Tachibana בהאקונה בתחילת יום הפוג'י והמעבר לנגויה.","assets/transfers/minivan.jpg","Aura Tachibana Hakone"],
-    ["08:30<br>10:00","Chureito Pagoda","עלייה לנקודת התצפית המפורסמת של פגודת Chureito עם מבט פתוח להר פוג'י ולעיר Fujiyoshida. יש לא מעט מדרגות, אבל למעלה מחכה אחד הנופים המצולמים ביותר ביפן.","assets/attractions/day16/chureito.jpg","Chureito Pagoda"],
-    ["10:30<br>12:00","Oshino Hakkai","ביקור בכפר מסורתי ושקט עם שמונה בריכות מי שלגים צלולות, גשרים קטנים, בתי עץ ודוכנים מקומיים. עצירה מצוינת לצילומים ולאווירת פוג'י כפרית.","assets/attractions/day16/oshino.jpg","Oshino Hakkai"],
-    ["12:00<br>12:45","ארוחת צהריים","עצירה לארוחת צהריים בדרך, באזור Oshino, עם אפשרות למנות מקומיות כמו הוטו, אודון או סובה לפני ההליכה במסדרון המייפל.","assets/attractions/day16/lunch.jpg","Oshino Hakkai area"],
-    ["13:00<br>14:30","Lake Kawaguchi – מסדרון המייפל","הליכה נעימה ובלי לחץ לאורך מסדרון המייפל (Momiji Corridor) של Lake Kawaguchi, עם צבעי שלכת, שביל מסודר ונקודות מבט יפות לעבר האגם וההר כשמזג האוויר פתוח.","assets/attractions/day16/maple.jpg","Lake Kawaguchi Maple Corridor"],
-    ["14:30<br>18:00","נסיעה לנגויה","מעבר מסודר לכיוון Nagoya: תחילה אוטובוס/רכב אל Mishima ולאחר מכן שינקנסן לנגויה. זמן ארוך יותר להתארגנות ולנסיעה הנוחה.","assets/transfers/train.jpg","Nagoya Station"],
-    ["18:00<br>19:00","צ'ק-אין במלון","הגעה ל-Nagoya JR Gate Tower Hotel והתארגנות אחרי יום ארוך של נופים ונסיעות. המלון צמוד לתחנת JR המרכזית, מה שהופך את ההמשך בערב לפשוט במיוחד.","assets/attractions/day16/checkin.jpg","Nagoya JR Gate Tower Hotel"],
-    ["19:15<br>22:00","ערב חופשי בסאקאע","ערב חופשי לגמרי ברובע Sakae בנגויה: ארוחת ערב וסיבוב חופשי ללא התחייבויות מראש – רחובות מוארים, קניות, בתי קפה ומסעדות.","assets/attractions/day16/evening.jpg","Sakae Nagoya"],
-    ["22:00","חזרה למלון","סוף היום וחזרה ל-Nagoya JR Gate Tower Hotel למנוחה.","assets/transfers/walk.jpg","Nagoya JR Gate Tower Hotel"]
+    '16': { title:"פוג'י → קיוטו", route:"Aura Tachibana → Chureito → Oshino Hakkai → Kawaguchiko Maple Corridor → Kyoto", events:[
+    ["07:30","ארוחת בוקר מיוחדת של רויקאן","ארוחת בוקר מיוחדת של רויקאן Aura Tachibana לפני היציאה ליום הפוג'י. צריך לשריין מראש.","assets/attractions/day16/breakfast.jpg","Aura Tachibana Hakone Yumoto"],
+    ["08:30","🚐 מיניוואן פרטי","איסוף פרטי (Private Minivan) מהמלון Aura Tachibana בהאקונה בתחילת יום הפוג'י והמעבר לנגויה.","assets/transfers/minivan.jpg","Aura Tachibana Hakone Yumoto"],
+    ["09:30<br>10:50","Chureito Pagoda","עלייה לנקודת התצפית המפורסמת של פגודת Chureito עם מבט פתוח להר פוג'י ולעיר Fujiyoshida. יש לא מעט מדרגות, אבל למעלה מחכה אחד הנופים המצולמים ביותר ביפן.","assets/attractions/day16/chureito.jpg","Chureito Pagoda"],
+    ["11:10<br>12:25","Oshino Hakkai","ביקור בכפר מסורתי ושקט עם שמונה בריכות מי שלגים צלולות, גשרים קטנים, בתי עץ ודוכנים מקומיים. עצירה מצוינת לצילומים ולאווירת פוג'י כפרית.","assets/attractions/day16/oshino.jpg","Oshino Hakkai"],
+    ["12:25<br>13:10","ארוחת צהריים","עצירה לארוחת צהריים בדרך, באזור Oshino, עם אפשרות למנות מקומיות כמו הוטו, אודון או סובה לפני ההליכה במסדרון המייפל.","assets/attractions/lunch.jpg","Oshino Hakkai area"],
+    ["13:30<br>14:50","Lake Kawaguchi – מסדרון המייפל","הליכה נעימה ובלי לחץ לאורך מסדרון המייפל (Momiji Corridor) של Lake Kawaguchi, עם צבעי שלכת, שביל מסודר ונקודות מבט יפות לעבר האגם וההר כשמזג האוויר פתוח.","assets/attractions/day16/maple.jpg","Lake Kawaguchi Maple Corridor"],
+    ["17:46<br>19:37","Hikari 721 – Mishima→Kyoto","שינקנסן Hikari 721 בקו Tokaido Shinkansen (JR) ישירות מתחנת Mishima לתחנת Kyoto, בלי החלפה.\nיציאה: Mishima 17:46 · רציף 5\nהגעה: Kyoto 19:37\nמשך הנסיעה: כ-1:51 שעות\nהגעה במיניוואן לתחנת Mishima בין 17:00 ל-17:20 – נשאר זמן קצר לשירותים, אוכל ומציאת הרציף.\nנדרשת הזמנת מושבים מראש (Mishima → Kyoto).","assets/transfers/train.jpg","Mishima Station"],
+    ["20:15<br>21:00","צ'ק-אין – Hotel Monterey Kyoto","הגעה ל-Hotel Monterey Kyoto – אותו מלון שבו ממשיכים גם בימים הבאים. מתחנת Kyoto: מטרו Karasuma Line עד Karasuma Oike (כ-10 דק') והליכה קצרה, או מונית של כ-10–15 דקות.","assets/attractions/day17/hotel.jpg","Hotel Monterey Kyoto"],
   ]},
   '17': { title:"נגויה → קיוטו", route:"Toyota Kaikan → שינקנסן → To-ji → Nishiki → Teramachi → Hotel Monterey → Pontocho", events:[
     ["08:20<br>11:30","Toyota Kaikan Museum","ביקור מעמיק במוזיאון טויוטה: היסטוריה של המותג, רכבי קונספט, מערכות ייצור חכמות ותצוגות טכנולוגיות שממחישות את החדשנות של התעשייה היפנית.","assets/attractions/day17/toyota.jpg","Toyota Kaikan Museum"],
-    ["12:00<br>13:00","שינקנסן לקיוטו","נסיעה נוחה ומהירה בשינקנסן Hikari מנגויה לקיוטו, עם מעבר חלק בין מרכזי הערים והגעה ישירה לאזור התחנה המרכזית של קיוטו.","assets/transfers/train.jpg","Kyoto Station"],
-    ["13:00<br>13:40","ארוחת צהריים – Kyoto Station","עצירת צהריים בתחנת קיוטו עם מבחר רחב של מסעדות ב-Isetan ובמתחם Cube, לפני שממשיכים למסלול אחר הצהריים בעיר.","assets/attractions/day17/lunch.jpg","Kyoto Station"],
-    ["13:45<br>14:00","🚶 הליכה: Kyoto Station → To-ji Temple","הליכה של כ-15 דקות דרומה (כ-1.5 ק\"מ) לעבר מקדש טו-ג'י.","assets/transfers/walk.jpg","To-ji Temple Kyoto","🚶 הליכה · ~15 דק׳"],
+    ["13:00<br>13:40","ארוחת צהריים – Kyoto Station","עצירת צהריים בתחנת קיוטו עם מבחר רחב של מסעדות ב-Isetan ובמתחם Cube, לפני שממשיכים למסלול אחר הצהריים בעיר.","assets/attractions/lunch.jpg","Kyoto Station"],
     ["14:00<br>15:15","To-ji Temple (東寺)","מקדש עתיק ומרשים עם הפגודה הגבוהה ביותר ביפן (55 מ׳), גנים שקטים ואווירה היסטורית שמספרת את סיפורה של קיוטו הקלאסית.","assets/attractions/day17/toji.jpg","To-ji Temple Kyoto"],
-    ["15:15<br>15:45","🚕 מעבר מ-To-ji אל Nishiki Market","אוטובוס 207 או מונית קצרה לאזור נישיקי.","assets/transfers/taxi.jpg","Nishiki Market Kyoto","🚌 אוטובוס 207 · ~15 דק׳"],
     ["15:45<br>16:45","Nishiki Market (錦市場)","סיור וטעימות בשוק האוכל המפורסם של קיוטו: דוכנים צבעוניים, מנות מקומיות, קינוחים יפניים ומזכרות קולינריות באווירה חיה ותוססת.","assets/attractions/day17/nishiki.jpg","Nishiki Market Kyoto"],
     ["16:45<br>18:15","Teramachi & Shinkyogoku Arcade","הליכה בגלריות הקניות המקורות של מרכז קיוטו עם חנויות בוטיק, מזכרות, אופנה מקומית ומתוקים יפניים לאורך רחובות עם אופי מסורתי-עירוני.","assets/attractions/day17/teramachi.jpg","Teramachi Shopping Arcade Kyoto"],
     ["18:15","צ'ק-אין – Hotel Monterey Kyoto","הגעה למלון, צ'ק-אין והתארגנות רגועה לפני ערב חופשי. מיקום מרכזי שמאפשר לצאת בקלות ברגל לאזורי בילוי וארוחות ערב.","assets/attractions/day17/hotel.jpg","Hotel Monterey Kyoto"],
     ["19:30<br>21:00","Pontocho Alley – ארוחת ערב","יציאה לסמטת פונטוצ'ו המפורסמת לאורך נהר קאמו: סמטה היסטורית עם פנסים, מסעדות מקומיות ואווירת ערב קיוטואית קלאסית.","assets/attractions/day17/pontocho.jpg","Pontocho Alley Kyoto"],
-    ["21:00<br>21:30","חזרה למלון","חזרה רגלית למלון. 🚶 ~15-20 דק' הליכה.","assets/attractions/day17/return.jpg","Hotel Monterey Kyoto"]
   ]},
   '18': { title:"קיוטו – טיול מודרך", route:"Hotel Monterey → Fushimi Inari → Arashiyama → Tenryu-ji → Kinkaku-ji → Ryoan-ji → Nijo Castle → Gion", events:[
-    ["08:30<br>09:00","יציאה עצמאית ל־Fushimi Inari Taisha","נסיעה עצמאית מהמלון לתחנת Inari/אזור המקדש","assets/transfers/train.jpg","Fushimi Inari Taisha","🚇/🚖 מעבר עצמאי"],
     ["09:00<br>09:50","Fushimi Inari Taisha","ביקור עצמאי בשערי הטוריי האדומים במסלול התחתון והפוטוגני, עם עצירות קצרות לצילום ולתצפית על יער ההר בתחילת היום.","assets/attractions/day18/fushimi.jpg","Fushimi Inari Taisha"],
-    ["09:50<br>10:30","מעבר ל־Arashiyama Bamboo Grove","מעבר עצמאי מ־Fushimi Inari לאראשיאמה","assets/transfers/taxi.jpg","Arashiyama Bamboo Grove","🚕/🚆 כ-30-40 דק׳"],
     ["","__SECTION__","👤 פגישה עם המדריכה – אראשיאמה","",""],
     ["10:30<br>11:15","פגישה עם המדריכה + Arashiyama Bamboo Grove","פגישה עם המדריכה בכניסה ליער הבמבוק והמשך סיור מודרך בין השבילים הירוקים והאווירה הייחודית של אראשיאמה.","assets/attractions/day18/bamboo.jpg","Arashiyama Bamboo Grove"],
     ["11:15<br>11:45","Togetsukyo Bridge + רחובות ישנים","גשר Togetsukyo מעל נהר הוי, תצפיות יפות על ההרים והמשך הליכה ברחובות המסורתיים של אראשיאמה.","assets/attractions/day18/togetsukyo.jpg","Togetsukyo Bridge Arashiyama"],
     ["11:45<br>12:30","Tenryu-ji Temple","ביקור במקדש זן מרהיב ובגן מורשת עולמית של אונסק\"ו, עם שבילי אבן, בריכת נוי ונוף הררי מסביב.","assets/attractions/day18/tenryuji.jpg","Tenryu-ji Temple"],
-    ["12:30<br>13:30","ארוחת צהריים","עצירה לארוחת צהריים באזור אראשיאמה עם אפשרויות מקומיות כמו סובה, אודון, טמפורה או סטים יפניים לפני המשך הסיור בצפון קיוטו.","assets/attractions/day18/lunch.jpg","Arashiyama restaurants"],
+    ["12:30<br>13:30","ארוחת צהריים","עצירה לארוחת צהריים באזור אראשיאמה עם אפשרויות מקומיות כמו סובה, אודון, טמפורה או סטים יפניים לפני המשך הסיור בצפון קיוטו.","assets/attractions/lunch.jpg","Arashiyama restaurants"],
     ["","__SECTION__","🏛️ קיוטו הצפוני – Kinkaku-ji & Ryoan-ji","",""],
-    ["13:30<br>13:50","🚕 מעבר מ-Arashiyama אל Kinkaku-ji","מעבר לאזור המקדשים בצפון קיוטו","assets/transfers/taxi.jpg","Kinkaku-ji Golden Pavilion","🚕 כ-15-20 דק׳"],
     ["13:50<br>14:35","Kinkaku-ji (הפביליון הזהוב)","אחד האתרים האייקוניים בקיוטו: פביליון מצופה זהב המשתקף באגם, גני נוי מדויקים ומסלול הליכה מסודר סביב המתחם.","assets/attractions/day18/kinkakuji.jpg","Kinkaku-ji Golden Pavilion"],
-    ["14:35<br>14:50","🚶 מעבר מ-Kinkaku-ji אל Ryoan-ji","הליכה נוחה של כ-15 דקות בין המקדשים","assets/transfers/walk.jpg","Ryoan-ji Temple Kyoto","🚶 כ-15 דק׳"],
     ["14:50<br>15:35","Ryoan-ji Temple","מקדש זן שקט עם גן האבנים היבש המפורסם בעולם, מרחב מדיטטיבי ואחת החוויות התרבותיות המיוחדות ביותר בקיוטו.","assets/attractions/day18/ryoanji.jpg","Ryoan-ji Temple"],
     ["","__SECTION__","🏯 קיוטו ההיסטורית – Nijo Castle","",""],
-    ["15:35<br>16:00","🚕 מעבר מ-Ryoan-ji אל Nijo Castle","מעבר קצר למרכז ההיסטורי של קיוטו","assets/transfers/taxi.jpg","Nijo Castle Kyoto","🚕 כ-15 דק׳"],
     ["16:00<br>17:45","Nijo Castle (טירת ניג׳ו)","טירת השוגון ההיסטורית עם מרצפות הזמיר, אולמות עץ מרשימים ושרידים אותנטיים מתקופת אדו בלב העיר קיוטו.","assets/attractions/day18/nijo.jpg","Nijo Castle Kyoto"],
-    ["17:45<br>18:00","🚕 מעבר מ-Nijo Castle אל Gion","מעבר לרובע המסורתי לקראת ערב","assets/transfers/taxi.jpg","Gion District Kyoto","🚕 כ-10-15 דק׳"],
     ["","__SECTION__","🏮 ערב – Gion","",""],
     ["18:00<br>20:00","רובע גיון","טיול ערב מודרך ברובע ההיסטורי גיון בין סמטאות עתיקות, בתי עץ מסורתיים, פנסים מוארים ואווירה קיוטואית קלאסית לסיום היום.","assets/attractions/day18/gion.jpg","Gion District Kyoto"]
   ]},
     '19': { title:"קיוטו – קימונו, היגשיאמה ומקדשים", route:"Hotel Monterey → Kimono Mimosa → Kiyomizu-dera → Higashiyama → Tea Ceremony → Nanzen-ji → Eikandō → Philosopher's Path", events:[
-    ["07:40","יציאה מהמלון","יציאה מוקדמת מ-Hotel Monterey Kyoto לכיוון חנות השכרת הקימונו, לפני יום צפוף של קימונו, מקדשים והיגשיאמה.","assets/transfers/taxi.jpg","Hotel Monterey Kyoto","🚕 מונית · ~20 דק׳"],
     ["08:00<br>09:30","השכרת קימונו – Mimosa","בחירת קימונו בסגנון מסורתי, התאמות אחרונות והתארגנות נוחה לצילומים לפני היציאה למסלול היפה של היגשיאמה.","assets/attractions/day19/kimono.jpg","Kimono Mimosa Kyoto","👘 כ-6 אנשים · 1.5–2 שעות"],
     ["09:30<br>10:50","Kiyomizu-dera","מקדש ההרים עם מרפסת העץ והנוף הפתוח על קיוטו, הפעם עם צילומים בלבוש קימונו.","assets/attractions/day19/kiyomizu_new.jpg","Kiyomizu-dera"],
     ["10:50<br>11:00","Sannenzaka / Ninenzaka / Yasaka Pagoda","הליכה קצרה וצילומים תוך כדי מעבר בסמטאות ההיסטוריות ולצד הפגודה האיקונית, בדרך לטקס התה.","assets/attractions/day19/sannenzaka_new.jpg","Higashiyama Ward Kyoto"],
     ["11:00<br>11:45","טקס תה – Camellia FLOWER","טקס תה מסורתי בלבוש קימונו בבית התה Camellia FLOWER, חוויה שקטה ומיוחדת באמצע יום ההיגשיאמה.","assets/attractions/day19/kimono.jpg","Camellia FLOWER Kyoto"],
     ["11:45<br>12:15","החזרת קימונו – Mimosa","חזרה רגועה לחנות Mimosa והחזרת הלבוש, כולל זמן קצר להתארגנות לפני המשך המסלול לצהריים.","assets/attractions/day19/kimono_return.jpg","Kimono Mimosa Kyoto"],
-    ["12:15<br>13:15","ארוחת צהריים","הפסקת צהריים נוחה באזור היגשיאמה, עם אפשרויות מקומיות מגוונות לפני החלק השקט של אחר הצהריים.","assets/attractions/day19/lunch_higashiyama.jpg","Higashiyama Kyoto"],
-    ["13:15<br>13:40","מונית ל-Nanzen-ji","מעבר קצר לאזור המקדשים של מזרח קיוטו","assets/transfers/taxi.jpg","Nanzen-ji Temple Kyoto","🚕 מונית · ~25 דק׳"],
+    ["12:15<br>13:15","ארוחת צהריים","הפסקת צהריים נוחה באזור היגשיאמה, עם אפשרויות מקומיות מגוונות לפני החלק השקט של אחר הצהריים.","assets/attractions/lunch.jpg","Higashiyama Kyoto"],
     ["13:40<br>14:30","Nanzen-ji","מקדש זן רחב ידיים עם שער מרשים, גנים ואווירה שקטה","assets/attractions/day19/nanzenji_new.jpg","Nanzen-ji Temple Kyoto"],
     ["14:40<br>15:45","Eikandō Temple (永観堂)","אחד המקדשים היפים בקיוטו, מפורסם במיוחד בצבעי השלכת של נובמבר","assets/attractions/day19/eikando_new.jpg","Eikando Temple Kyoto"],
     ["15:45<br>16:45","Philosopher's Path","הליכה רגועה לסיום היום לאורך התעלה ובין עצי השלכת, כשהשקיעה כבר מתקרבת","assets/attractions/day19/philosopher_new.jpg","Philosopher's Path Kyoto"],
-    ["18:00<br>18:20","מונית למלון","חזרה למנוחה והתארגנות קלה לפני היציאה בערב","assets/transfers/taxi.jpg","Hotel Monterey Kyoto","🚕 מונית · ~20 דק׳"],
     ["","__SECTION__","🌙 ערב חופשי","",""],
     ["19:15<br>20:15","Pontocho Alley","בילוי ערב חופשי בסמטת פונטוצ'ו המוארת לאורך הנהר, עם מסעדות מקומיות, אווירה קיוטואית קלאסית והמון נקודות צילום יפות.","assets/attractions/day19/kiyamachi.jpg","Pontocho Kyoto"],
     ["20:15~","קוקטיילים / בילוי חופשי","המשך הערב לפי מצב הרוח - קוקטיילים, שיטוט נעים או חזרה מוקדמת למלון","assets/attractions/day19/turquoise.jpg","Kiyamachi Kyoto"]
   ]},
   '20': { title:"נארה – יום מלא וחזרה לערב בקיוטו", route:"Hotel Monterey → Karasuma Oike → Kyoto Station → Nara (Todai-ji, Nara Park, Kasuga, Kofuku-ji, Naramachi) → Kyoto → Pontocho", events:[
-    ["07:50","יציאה מ-Hotel Monterey Kyoto","הליכה לתחנת Karasuma Oike לקראת הנסיעה לנארה","assets/transfers/walk.jpg","Karasuma Oike Station Kyoto","🚶 הליכה לתחנה"],
-    ["08:00<br>08:15","Karasuma Oike → Kyoto Station","נסיעת מטרו קצרה לתחנת קיוטו","assets/transfers/train.jpg","Kyoto Station","🚇 Subway"],
-    ["08:15<br>08:55","Kyoto Station → Nara Station","רכבת JR Nara Line מקיוטו לנארה","assets/attractions/day20/train.jpg","JR Nara Station","🚆 JR Nara Line"],
     ["09:00<br>10:00","Todai-ji (מקדש טודאי-ג'י)","המקדש הראשי של נארה ואחד המבנים העצי הגדולים בעולם. כאן נמצא הבודהה הגדול (דאיבוטסו)","assets/attractions/day20/todaiji.jpg","Todai-ji Nara"],
     ["10:00<br>11:30","Nara Park (פארק נארה)","פארק יפהפה עם מאות איילים ידידותיים המשוטטים חופשי ואוכלים קרקרים מיוחדים","assets/attractions/day20/narapark.jpg","Nara Park"],
     ["11:30<br>13:00","Kasuga Taisha (קסוגה טאישה)","מקדש שינטו מפורסם עם אלפי פנסי אבן וברונזה, מוקף ביער","assets/attractions/day20/kasuga.jpg","Kasuga Taisha"],
-    ["13:00<br>14:00","ארוחת צהריים","מומלץ לטעום מטבח מקומי: אודון, סובה, קארי יפני או סט טישוקו","assets/attractions/day20/lunch.jpg","Nara restaurants"],
+    ["13:00<br>14:00","ארוחת צהריים","מומלץ לטעום מטבח מקומי: אודון, סובה, קארי יפני או סט טישוקו","assets/attractions/lunch.jpg","Nara restaurants"],
     ["14:00<br>15:00","Kofuku-ji (מקדש קופוקו-ג'י)","קומפלקס מקדשים היסטורי עם פגודה ומוזיאון לאמנות בודהיסטית","assets/attractions/day20/kofukuji.jpg","Kofuku-ji Nara"],
     ["15:00<br>16:00","Naramachi (ならまち)","טיול ברובע ההיסטורי עם בתים מסורתיים, חנויות מזכרות וממתקים","assets/attractions/day20/naramachi.jpg","Naramachi"],
-    ["16:00<br>16:15","הליכה לתחנת Nara","מעבר רגלי קצר לסיום היום בנארה","assets/transfers/walk.jpg","Nara Station","🚶 הליכה"],
-    ["16:15<br>17:00","Nara → Kyoto Station","רכבת JR בחזרה לקיוטו","assets/attractions/day20/train.jpg","Kyoto Station","🚆 JR Nara Line"],
-    ["17:00<br>17:15","Kyoto Station → Hotel Monterey Kyoto","נסיעת מטרו קצרה וחזרה למלון","assets/transfers/train.jpg","Hotel Monterey Kyoto","🚇 Subway"],
     ["17:15<br>19:00","מנוחה במלון / התארגנות","זמן חופשי למנוחה לפני יציאה לערב","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"],
     ["","__SECTION__","🍶 ערב בקיוטו – אוכל וסמטאות","",""],
-    ["19:00<br>19:30","Kiyamachi & Pontocho","הליכה מהמלון (כ-15–20 דק׳) ובילוי ערב בסמטאות המסורתיות לאורך הנהר","assets/transfers/walk.jpg","Pontocho Kyoto","🚶 ~15–20 דק׳"],
     ["19:30<br>20:30","ארוחת ערב אחרונה בקיוטו","מומלץ לאכול בפונטוצ'ו או בקיאמאצ'י: וואגיו, סושי, יאקיטורי ומנות יפניות נוספות","assets/attractions/day19/dinner.jpg","Pontocho Kyoto"],
-    ["20:30~","חזרה למלון","הליכה נעימה ברחובות הערב או מונית קצרה לפי הצורך","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto"]
   ]},
   '21': { title:"קיוטו → אוסקה – נישיקי, טקס תה, אומדה ונמבה סיטי", route:"Hotel Monterey → Nishiki → Kyoto Yoshitsugu (טקס תה) → Karasuma → Hankyu → Umeda Sky → Namba City → Dotonbori Craft Beer", events:[
     ["08:30<br>09:20","ארוחת בוקר וצ'ק-אאוט","ארוחת בוקר ב-Hotel Monterey Kyoto ויציאה לכיוון שוק נישיקי","assets/attractions/day21/hotel.jpg","Hotel Monterey Kyoto"],
-    ["09:20<br>09:35","הליכה ל-Nishiki Market","הליכה קצרה מהמלון לשוק","assets/transfers/walk.jpg","Nishiki Market Kyoto","🚶 ~15 דק׳"],
     ["09:35<br>10:45","Nishiki Market (錦市場)","כ-1:10 שעות סיור, טעימות ואוכל קל. זה מספיק בעיניי ולא צריך למשוך עד 11:15","assets/attractions/day21/nishiki.jpg","Nishiki Market Kyoto"],
-    ["10:45<br>10:55","מעבר ל-Kyoto Yoshitsugu","המקום ממש ליד השוק; נותנים 10 דקות כדי להגיע בנחת ולהתארגן","assets/transfers/walk.jpg","Kyoto Yoshitsugu","🚶 ~10 דק׳"],
     ["11:00<br>11:45","🍵 טקס תה – Kyoto Yoshitsugu","חוויה של 45 דקות עם מאצ'ה וטקס תה מסורתי. ¥4,400 לאדם","assets/attractions/day21/tea_ceremony.jpg","Kyoto Yoshitsugu"],
-    ["11:45<br>11:55","הליכה לתחנת Karasuma","מעבר קצר מהאתר; נותנים 10 דקות בכוונה","assets/transfers/walk.jpg","Karasuma Station Kyoto","🚶 ~10 דק׳"],
-    ["12:02<br>12:43","Hankyu Limited Express → Osaka-Umeda","רכבת ישירה מ-Karasuma. לפי לוח שבת הנוכחי: יציאה 12:02 והגעה 12:43 (阪急電鉄)","assets/transfers/train.jpg","Osaka-Umeda Station","🚈 Hankyu Limited Express"],
-    ["12:43<br>13:05","הליכה ל-Umeda Sky Building","כולל יציאה מהתחנה והתמצאות — זמן ריאלי","assets/transfers/walk.jpg","Umeda Sky Building Osaka","🚶 ~22 דק׳"],
     ["13:05<br>14:00","Umeda Sky Building","כ-55 דקות במצפה ובתצפית — מספיק כדי ליהנות מהנוף בלי למהר","assets/attractions/day21/umeda_sky.jpg","Umeda Sky Building Osaka"],
-    ["14:00<br>14:30","ארוחת צהריים באומדה","הפסקת אוכל קלה באזור Umeda Sky Building/התחנה לפני ההמשך לנמבה","assets/attractions/day21/tullys.jpg","Umeda Osaka restaurants"],
-    ["14:30<br>15:10","מעבר ל-Namba","הליכה לתחנה + Midosuji Line + יציאה בתחנת Namba","assets/transfers/train.jpg","Namba Station Osaka","🚇 Midosuji Line"],
+    ["14:00<br>14:30","ארוחת צהריים באומדה","הפסקת אוכל קלה באזור Umeda Sky Building/התחנה לפני ההמשך לנמבה","assets/attractions/lunch.jpg","Umeda Osaka restaurants"],
     ["15:10<br>17:45","🛍️ קניות משותפות – Namba City","זמן טוב מאוד לקניות (2:35) גם אחרי הוספת ארוחת הצהריים","assets/attractions/day21/namba_city.jpg","Namba City Osaka"],
-    ["17:45<br>18:00","הליכה למבשלת הבירה","כ-15 דקות","assets/transfers/walk.jpg","Dotonbori Craft Beer Brewery","🚶 ~15 דק׳"],
     ["18:00<br>20:00","🍺 Dotonbori Craft Beer Brewery","בירה וערב משותף — לא הייתי מקצר","https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=300&q=80","Dotonbori Craft Beer Brewery"],
-    ["20:00<br>20:30","נסיעה למלון","הליכה בהתאם למיקום / Hommachi","assets/transfers/train.jpg","Excel Hotel Tokyu Osaka","🚇/🚶"],
     ["20:30","הגעה ל-Osaka Excel Hotel Tokyu","סיום היום","assets/attractions/day21/hotel.jpg","Excel Hotel Tokyu Osaka"]
   ]},
 '22': { title:"אוסקה – היסטוריה, שווקים וניאונים", route:"Excel Hotel Tokyu → Osaka Castle → Kuromon Market → Shinsekai → Namba Yasaka Shrine → Hozenji Yokocho → Dotonbori → Tombori Cruise", events:[
-    ["08:15<br>08:40","נסיעה ל-Osaka Castle","יציאה מהמלון ונסיעה ל-Osaka Castle במונית כדי להתחיל את הבוקר בזמן ובנוחות.","assets/transfers/taxi.jpg","Osaka Castle","🚕 מונית · מעבר בוקר"],
     ["09:15<br>11:00","Osaka Castle","פגישה עם המדריכה. סיור במבצר אוסקה עם רקע על איחוד יפן, סיפורו של Toyotomi Hideyoshi, נקודות תצפית יפות וצילומים סביב המתחם ההיסטורי.","assets/attractions/day22/osaka_castle.jpg","Osaka Castle"],
-    ["11:00<br>11:30","מעבר ל-Kuromon Market","נסיעה קצרה במונית מ-Osaka Castle לשוק Kuromon כדי לעבור ביעילות לאזור האוכל של נמבה.","assets/transfers/taxi.jpg","Kuromon Market Osaka","🚕 מונית · מעבר קצר"],
     ["11:30<br>12:50","Kuromon Market","שוק האוכל המפורסם של אוסקה: טעימות מקומיות, פירות ים, Wagyu, דוכנים תוססים ואווירה יומיומית אותנטית של העיר.","assets/attractions/day22/kuromon_market.jpg","Kuromon Market Osaka"],
-    ["13:00<br>14:00","ארוחת צהריים","עצירת צהריים באזור Kuromon/Namba, עם מבחר רחב של אוכל יפני מקומי לפני ההמשך לאזורי התרבות והניאון.","https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=900&q=80","Namba Osaka"],
+    ["13:00<br>14:00","ארוחת צהריים","עצירת צהריים באזור Kuromon/Namba, עם מבחר רחב של אוכל יפני מקומי לפני ההמשך לאזורי התרבות והניאון.","assets/attractions/lunch.jpg","Namba Osaka"],
     ["14:00<br>15:00","Shinsekai","ביקור ב-Shinsekai – אוסקה של פעם, אזור Tsutenkaku, רחובות צבעוניים ואוכל רחוב באווירה נוסטלגית.","assets/attractions/day22/shinsekai.jpg","Shinsekai Osaka"],
-    ["15:00<br>15:20","מעבר ל-Namba Yasaka Shrine","מעבר קצר לכיוון מקדש האריה המפורסם של Namba Yasaka.","assets/transfers/walk.jpg","Namba Yasaka Shrine Osaka","🚶/🚇 מעבר קצר"],
     ["15:20<br>15:45","Namba Yasaka Shrine","ביקור במקדש Namba Yasaka עם מבנה ראש האריה האייקוני – נקודה מיוחדת לצילום בלב אוסקה.","assets/attractions/day22/namba_yasaka.jpg","Namba Yasaka Shrine Osaka"],
     ["15:45<br>16:10","Hozenji Yokocho","הליכה בסמטה מסורתית וקסומה בלב העיר, עם אבני דרך היסטוריות ואווירה שקטה בניגוד לרחובות הסואנים מסביב.","assets/attractions/day22/hozenji.jpg","Hozenji Yokocho Osaka"],
     ["16:10<br>17:30","Dotonbori","מרכז אוסקה התוסס: שלטי ניאון ענקיים, אזור Glico המפורסם, גשרי הנהר וסיפורים מקומיים על הרחוב הכי אייקוני בעיר.","assets/attractions/day22/dotonbori.jpg","Dotonbori Osaka"],
     ["17:30<br>17:50","Tombori River Cruise","שיט קצר על התעלה בשעת הדמדומים, עם זווית אחרת על דוטונבורי והאורות שמתחילים להידלק לקראת הערב.","assets/attractions/day22/tombori_cruise.jpg","Tombori River Cruise Osaka"]
   ]},
   '23': { title:"אוסקה – דושומאצ'י, אקווריום, סומיושי תאישה, תצפית ו-teamLab", route:"Doshomachi (Shinno-sai) → Kaiyukan → Sumiyoshi Taisha → teamLab Botanical Garden → Abeno Harukas", events:[
-    ["09:15<br>09:50","נסיעה ל-Doshomachi / Kitahama","מעבר בתחבורה ציבורית לרובע התרופות ההיסטורי של אוסקה","assets/transfers/train.jpg","Doshomachi Osaka","🚇 ~35 דק׳ · כולל הליכה בתחנה"],
     ["10:00<br>11:30","Shinno-sai Festival","פסטיבל שנתי במקדש סוקונאהיקונה שברובע דושומאצ'י – מקדש קטן, דוכני אוכל וסובניר ואווירת פסטיבל חגיגית","assets/attractions/day22/kuromon_market.jpg","Sukunahikona Shrine Osaka","1:30 ש׳ – מספיק זמן למקדש, לדוכנים ולאווירת הפסטיבל"],
-    ["11:30<br>12:10","נסיעה ל-Kaiyukan","מעבר לכיוון מפרץ אוסקה (Osaka Bay)","assets/transfers/train.jpg","Kaiyukan Aquarium Osaka","🚇 ~40 דק׳"],
     ["12:10<br>14:20","Kaiyukan Aquarium (海遊館)","אחד מגדולי האקווריומים בעולם – מנהרת מים ענקית עם לוויתן כרישים, פינגווינים ועוד","assets/attractions/day23/kaiyukan.jpg","Kaiyukan Aquarium Osaka","2:10 ש׳ – זמן טוב לביקור בלי לרוץ"],
-    ["14:20<br>15:00","ארוחת צהריים – Tempozan","באזור Tempozan עדיף מקום עם שירות מהיר יחסית","assets/attractions/day23/tempozan.jpg","Tempozan Harbor Village Osaka","40 דק׳"],
-    ["15:00<br>15:45","מעבר ל-Sumiyoshi Taisha","כדאי לשקול מונית כדי לא לאבד זמן","assets/transfers/taxi.jpg","Sumiyoshi Taisha Osaka","🚕 ~45 דק׳"],
+    ["14:20<br>15:00","ארוחת צהריים – Tempozan","באזור Tempozan עדיף מקום עם שירות מהיר יחסית","assets/attractions/lunch.jpg","Tempozan Harbor Village Osaka","40 דק׳"],
     ["15:45<br>16:40","Sumiyoshi Taisha","אחד המקדשים הסינטואיסטיים העתיקים ביפן, עם גשרים ייחודיים ואווירה שקטה","assets/attractions/day23/sumiyoshi.jpg","Sumiyoshi Taisha Osaka","55 דק׳ – מספיק לביקור נינוח לפני ההמשך"],
-    ["16:40<br>17:05","מעבר ל-Nagai","מונית יכולה להיות נוחה מאוד כאן","assets/transfers/taxi.jpg","Nagai Osaka","🚕 ~25 דק׳"],
     ["17:05<br>17:30","קפה / מנוחה / רחצה","זמן קצר לנוח, להתרענן ולהתארגן לפני הכניסה ל-teamLab","assets/transfers/walk.jpg","Nagai Park Osaka","25 דק׳ – יש גם מרווח ביטחון של עיכובים"],
-    ["17:30<br>17:45","הליכה ל-teamLab","הליכה רגועה בלי צורך למהר","assets/transfers/walk.jpg","teamLab Botanical Garden Osaka","🚶 ~30 דק׳"],
     ["","__SECTION__","✨ ערב: teamLab Botanical Garden","",""],
     ["18:00<br>19:45","teamLab Botanical Garden Osaka","גן בוטני עם אמנות דיגיטלית קסומה, אורות וטבע. חוויה בלתי נשכחת בלילה","assets/attractions/day23/teamlab.jpg","teamLab Botanical Garden Osaka","1:45 ש׳ – זמן טוב מאוד, במיוחד אחרי החשיכה"],
-    ["19:45<br>20:15","מעבר Nagai → Tennoji","מעבר קצר יחסית לכיוון Abeno Harukas","assets/transfers/train.jpg","Tennoji Station Osaka","🚆 ~30 דק׳"],
     ["20:15<br>21:15","Abeno Harukas 300","פלטפורמת תצפית בקומה 60 עם נוף 360° על אוסקה. אחת הגבוהות ביפן","assets/attractions/day23/abeno.jpg","Abeno Harukas 300 Osaka","1 שעה – תצפית לילה, תמונות וקצת זמן להסתובב"],
     ["21:40","הגעה למלון","סיום יום מלא אבל מאוזן","assets/attractions/day23/hotel.jpg","Excel Hotel Tokyu Osaka"]
   ]},
   '24': { title:"אוסקה → טוקיו – יום ההגעה", route:"Shin-Osaka → Shinkansen Nozomi → Tokyo Station → Ginza", events:[
     ["09:00","יציאה מ-Osaka Excel Hotel Tokyu","יוצאים רק עם תיקי יום, המזוודות כבר בדרך לטוקיו","assets/attractions/day24/luggage_deposit.jpg","Excel Hotel Tokyu Osaka"],
-    ["09:00<br>09:25","מונית ל-Shin-Osaka Station","התחלה רגועה בלי לחץ","assets/transfers/taxi.jpg","Shin-Osaka Station"],
     ["09:25<br>10:00","קפה / בנטו / התארגנות","קונים אוכל לרכבת ומתמקמים","assets/attractions/day24/lunch_bento.jpg","Shin-Osaka Station"],
-    ["10:00<br>12:30","Nozomi Shinkansen לטוקיו","הדרך המהירה ביותר בין אוסקה לטוקיו, כ-2.5 שעות","assets/transfers/train.jpg","Tokyo Station","🚄 Nozomi · ~2:30 שעות"],
     ["12:30<br>13:00","Tokyo Station (Marunouchi Side)","תחנת טוקיו היא אחד המבנים ההיסטוריים המרשימים ביותר בעיר, עם חזית לבנים אדומות בסגנון מערבי מתחילת המאה ה-20 ששוחזרה בקפידה לאחר מלחמת העולם השנייה. צד מרונוצ'י שקט ואלגנטי במיוחד, עם רחובות רחבים ובנייני משרדים מרשימים. זהו רגע נעים לעצור, לצלם את הבניין ההיסטורי ולהרגיש את המעבר מהקצב של אוסקה לאווירה המסודרת של טוקיו.","assets/attractions/day24/hotel_tokyo.jpg","Tokyo Station"],
-    ["13:15<br>14:30","Tsukishima Monja Tamatoya","צוקישימה היא שכונה קטנה על גדות נהר סומידה שמפורסמת בעיקר במאכל מונג'איאקי — גרסה נוזלית ואינטראקטיבית של אוקונומיאקי שמבשלים בעצמכם על פלטה חמה במרכז השולחן. מסעדת Tamatoya היא אחת הוותיקות והאהובות ברחוב, עם אווירה מקומית וחווייתית שמתאימה מצוין לקבוצה. זו ארוחת צהריים כיפית ומעט יוצאת דופן, ומומלץ להזמין כמה סוגים שונים ולחלוק בין כולם.","assets/attractions/day24/lunch_bento.jpg","Tsukishima Monja Tamatoya"],
+    ["13:15<br>14:30","Tsukishima Monja Tamatoya","צוקישימה היא שכונה קטנה על גדות נהר סומידה שמפורסמת בעיקר במאכל מונג'איאקי — גרסה נוזלית ואינטראקטיבית של אוקונומיאקי שמבשלים בעצמכם על פלטה חמה במרכז השולחן. מסעדת Tamatoya היא אחת הוותיקות והאהובות ברחוב, עם אווירה מקומית וחווייתית שמתאימה מצוין לקבוצה. זו ארוחת צהריים כיפית ומעט יוצאת דופן, ומומלץ להזמין כמה סוגים שונים ולחלוק בין כולם.","assets/attractions/lunch.jpg","Tsukishima Monja Tamatoya"],
     ["14:30<br>15:15","Marunouchi Area","מרונוצ'י הוא אזור העסקים היוקרתי שנמצא ממש ליד תחנת טוקיו, עם רחובות רחבים, גורדי שחקים מרשימים ובוטיקים יוקרתיים. השדרה המרכזית, Marunouchi Naka-dori, מעוטרת עצים ופסלים ומהווה מקום נעים להליכה רגועה. באזור אפשר למצוא גם בתי קפה אלגנטיים וחנויות דגל של מותגים בינלאומיים, המהווים ניגוד מעניין לרחובות התוססים והססגוניים יותר של גינזה הסמוכה.","assets/attractions/day24/hotel_tokyo.jpg","Marunouchi Tokyo"],
     ["15:15<br>15:30","Nissan Crossing","Nissan Crossing הוא שואו-רום פתוח וחינמי בלב גינזה, הממוקם בקומת הקרקע של בניין ניסאן הראשי. בפנים מוצגים דגמים חדשים ורכבי קונספט עתידניים, לצד תצוגות אינטראקטיביות על טכנולוגיית נהיגה אוטונומית וחשמל. יש גם מסך ענק ופינת קפה נעימה לישיבה קצרה. זו עצירה מהירה ומהנה בדרך, גם למי שלא חובב רכבים במיוחד.","assets/attractions/day24/nissan.jpg","Nissan Crossing Ginza"],
     ["15:30<br>16:15","Ginza Six Rooftop Garden","הגן על גג קניון היוקרה Ginza Six משתרע על פני כל שטח הגג ומציע נוף פתוח ומרשים אל רחובות גינזה ומגדליה. הכניסה חופשית ופתוחה עד השעה 23:00, מה שהופך אותו לנקודת עצירה נוחה בכל שעה ביום. יש שם ספסלים, צמחייה ירוקה ופינות ישיבה שקטות יחסית לרעש העיר שמתחתיו. זהו מקום נעים לנוח בו רגע לפני או אחרי קניות בקניון עצמו.","assets/attractions/day24/ginza_six.jpg","Ginza Six Rooftop Garden"],
     ["16:15<br>18:00","טיול בגינזה","גינזה היא אחד מרובעי הקניות והיוקרה המפורסמים בעולם, עם חנויות דגל של מותגי אופנה בינלאומיים לצד בתי כלבו יפניים ותיקים כמו Mitsukoshi ו-Wako. הרחוב הראשי, Chuo-dori, הופך בסופי שבוע למדרחוב שקט מרכבים ומאפשר להתהלך בנחת בין החלונות המעוצבים. לצד הקניות אפשר למצוא גם בתי קפה אלגנטיים, גלריות אמנות קטנות וארכיטקטורה מודרנית מרשימה. זו הזדמנות נעימה סתם להתרשם מהאווירה המהוקצעת של גינזה בשעות אחר הצהריים.","assets/attractions/day24/ginza_six.jpg","Ginza Tokyo"],
     ["18:00<br>18:45","צ'ק-אין ב-remm PLUS Ginza","מנוחה, מקלחת והחלפת בגדים לפני ערב ארוך","assets/attractions/day24/hotel_tokyo.jpg","remm PLUS Ginza Tokyo"],
-    ["19:15<br>19:30","הליכה למסעדה","הכול במרחק הליכה מהמלון","assets/transfers/walk.jpg","Ginza Tokyo"],
     ["19:30<br>21:00","Akita Dining Namahage","Akita Dining Namahage היא מסעדה תימטית המביאה לגינזה את המטבח והמסורת של מחוז אקיטה שבצפון יפן. השם לקוח מדמויות ה'נמהגה' — רוחות מפחידות שמסורתית מבקרות בבתים בערב השנה החדשה כדי להרחיק עצלנות. התפריט כולל מנות אזוריות ייחודיות, ולעיתים מתלווה גם הופעה קצרה של המלצרים המחופשים לדמויות הנמהגה. זו חוויה קולינרית ותרבותית שונה מהמסעדות היפניות הרגילות, ומומלצת לקבוצה שמחפשת גיוון.","assets/attractions/day24/lunch_bento.jpg","Akita Dining Namahage Ginza"],
     ["21:00<br>23:00","Ginza Music Bar / Cocktail Bar","גינזה מלאה בברי קוקטייל ומוזיקה אינטימיים, רבים מהם ממוקמים בקומות עליונות של בניינים ולא נראים כלל מהרחוב. האווירה בדרך כלל שקטה ומסוגננת, עם ברמנים מקצועיים שמכינים קוקטיילים ברמת אמנות. זהו סיום נעים ורגוע ליום הראשון בטוקיו, אחרי יום ארוך של נסיעות וסיורים. אפשר לבחור בר עם מוזיקה חיה קלה או בר ג'אז שקט יותר, לפי מצב הרוח.","assets/attractions/day24/ginza_six.jpg","Ginza Tokyo"],
-    ["23:00","חזרה למלון","הליכה קצרה חזרה ל-remm PLUS Ginza","assets/transfers/walk.jpg","remm PLUS Ginza Tokyo"]
   ]},
   '25': { title:"טוקיו – הראג'וקו ושיבויה", route:"Meiji Jingu → Harajuku → Omotesando → Shibuya", events:[
-    ["09:00","יציאה מ-remm PLUS Ginza","נסיעה לכיוון הראג'וקו","assets/transfers/train.jpg","remm PLUS Ginza Tokyo"],
     ["09:40<br>11:00","Meiji Jingu","מקדש מייג'י נבנה לזכר הקיסר מייג'י ואשתו ומוקף ביער עירוני ענק בן כ-100,000 עצים שנתרמו מכל רחבי יפן. הדרך למקדש עוברת דרך שערי טוריי ענקיים ושבילי חצץ שקטים, ומעניקה תחושת ניתוק מוחלט מהעיר הסואנת. במקדש עצמו אפשר לראות טקסי שינטו, לכתוב משאלה על לוחית עץ (אמה) ואף להיתקל בטקס חתונה מסורתי בסוף השבוע. זהו אחד המקומות הרגועים והמכובדים ביותר לביקור בבוקר טוקיו.","assets/attractions/day25/meiji_jingu.jpg","Meiji Jingu"],
     ["11:00<br>11:40","Takeshita Street","טאקשיטה סטריט הוא הרחוב הססגוני והתוסס ביותר בהראג'וקו, מוקד תרבות הרחוב והאופנה הצעירה של טוקיו. לאורך הרחוב הקצר מצטופפות חנויות אופנה מטורללות, בוטיקי קרפ-פס צבעוניים ודוכני חטיפים מתוקים כמו כותנת סוכר ענקית. זהו המקום המושלם לצפות בטרנדים העדכניים ביותר של נוער יפני ולצלם תמונות צבעוניות. בסופי שבוע הרחוב הופך צפוף מאוד, ולכן מומלץ להגיע בשעות הבוקר המוקדמות.","assets/attractions/day25/takeshita_street.jpg","Takeshita Street"],
     ["11:40<br>13:00","Omotesando + Cat Street","אומוטסנדו נחשב לשדרת השאנז-אליזה של טוקיו, עם עצי זלקובה מרשימים ובנייני בוטיק מעוצבים על ידי אדריכלים עולמיים כמו Herzog & de Meuron ו-Tadao Ando. קאט סטריט המקבילה, שמסתעפת ממנו, מציעה אווירה עצמאית ואינדי יותר עם חנויות וינטג', סטריטסטייל ובתי קפה קטנים. השילוב בין השניים יוצר ניגוד מעניין בין יוקרה מהוקצעת לתרבות רחוב חופשית. זהו אזור מצוין להליכה איטית, צילום ואפילו כמה קניות בדרך.","assets/attractions/day25/omotesando_cat_street.jpg","Omotesando"],
-    ["13:00<br>14:15","ארוחת צהריים","אומוטסנדו והרחובות הסמוכים מציעים מגוון רחב של מסעדות ובתי קפה מעוצבים, מבתי קפה קלים ועד מסעדות שף. זו הזדמנות טובה לעצור, לנוח קצת מההליכה ולהתרענן לקראת המשך היום בשיבויה. אפשר לבחור מטבח יפני מסורתי או משהו בינלאומי יותר, לפי החשק.","assets/attractions/day25/lunch.jpg","Omotesando"],
+    ["13:00<br>14:15","ארוחת צהריים","אומוטסנדו והרחובות הסמוכים מציעים מגוון רחב של מסעדות ובתי קפה מעוצבים, מבתי קפה קלים ועד מסעדות שף. זו הזדמנות טובה לעצור, לנוח קצת מההליכה ולהתרענן לקראת המשך היום בשיבויה. אפשר לבחור מטבח יפני מסורתי או משהו בינלאומי יותר, לפי החשק.","assets/attractions/lunch.jpg","Omotesando"],
     ["14:15<br>15:30","Shibuya PARCO","קניון Shibuya PARCO עבר שיפוץ ענק והפך לאחד ממוקדי הקניות הפופולריים ביותר בקרב חובבי פופ-קלצ'ר יפני. בקומות הקניון פזורות חנויות רשמיות כמו Nintendo TOKYO, Pokémon Center Shibuya, Capcom Store ו-Jump Shop, כולן עמוסות מוצרים ייחודיים שלא ניתן למצוא בגינזה. יש גם קומת אוכל תוססת עם דוכני סטריט-פוד וחנויות קונספט של מעצבים מקומיים. זהו עצירת קניות מושלמת לחובבי משחקים, מנגה ואנימה.","assets/attractions/day25/shibuya_crossing.jpg","Shibuya PARCO"],
-    ["15:30<br>15:50","מעבר ל-Shibuya Sky","להגיע רגוע לפני התור","assets/transfers/walk.jpg","Shibuya Sky"],
     ["16:00<br>17:15","Shibuya Sky","Shibuya Sky היא תצפית פתוחה ומרשימה על גג בניין Shibuya Scramble Square, בגובה 230 מטר מעל הרחובות. הטיימינג כאן מכוון בכוונה תחילה — מגיעים עוד ביום, נשארים לצפות בשקיעה, ורואים את העיר הופכת לים של אורות ניאון עם רדת החשיכה. אין שם רשתות הגנה שמפריעות לתמונות, מה שהופך אותה לאחת מתצפיות הגג היפות ביותר בעולם. זהו אחד ההיילייטים הגדולים של הטיול כולו, ומומלץ מאוד להזמין כרטיסים מראש.","assets/attractions/day25/shibuya_sky.jpg","Shibuya Sky"],
     ["17:15<br>18:00","The Roof / זמן חופשי","בקומת The Roof, החלק הפתוח ביותר של Shibuya Sky, אפשר לשבת על ספות נוחות, לשתות קוקטייל בבר הקטן ופשוט ליהנות מהנוף בלי למהר לשום מקום. זהו הזמן להירגע קצת אחרי יום קניות והליכה אינטנסיבי, ולצפות במעבר האיטי בין אור יום לאורות הלילה. יש גם פינות ישיבה מוצלות ומרפסות תלייה שמומלץ לנסות. מקום נעים במיוחד לזוגות או לקבוצה שרוצה לשבת בשקט רגע.","assets/attractions/day25/shibuya_sky.jpg","Shibuya Sky"],
     ["18:00<br>18:10","Hachiko Statue","פסל האצ'יקו מנציח את סיפורו המרגש של כלב האקיטה שהמשיך להמתין לבעליו המנוח מדי יום בתחנת שיבויה במשך תשע שנים, עד מותו שלו. הסיפור הפך לסמל לנאמנות ביפן ומשך אליו סרט הוליוודי ואינספור מבקרים מכל העולם. הפסל ממוקם ממש ליד יציאת שיבויה של תחנת הרכבת, והפך לנקודת מפגש פופולרית לתושבי טוקיו. זוהי עצירה קצרה וחביבה לתמונה, לפני שממשיכים לצומת המפורסמת.","assets/attractions/day25/shibuya_crossing.jpg","Hachiko Statue Shibuya"],
@@ -1388,45 +1422,129 @@ const data = {
     ["18:30<br>19:00","שיטוט ערב בשיבויה","אחרי החשיכה שיבויה הופכת לעולם אחר לגמרי — שלטי הניאון והמסכים הענקיים מוארים במלוא עוצמתם, והרחובות מתמלאים באנשים, מוזיקה ואור. זה הזמן המושלם סתם להסתובב בלי יעד, להיכנס לחנויות קטנות ולהרגיש את האנרגיה הצעירה של השכונה. אפשר גם לגלות סמטאות צדדיות עם ברים ומסעדות קטנות שלא בולטות ביום. זו הכנה נעימה לפני ארוחת הערב.","assets/attractions/day25/shibuya_crossing.jpg","Shibuya Tokyo"],
     ["19:00<br>20:45","Yakitori Tsukada Shibuya","Yakitori Tsukada היא רשת יאקיטורי איכותית ואהובה, שמגישה שיפודי עוף על גריל פחמים בסגנון המסורתי. התפריט מגוון ומכיל כמעט כל חלק אפשרי של העוף, לצד ירקות על האש ומנות צד יפניות קלאסיות. האווירה תוססת וחמה, טיפוסית למסעדות איזאקאיה יפניות, ומתאימה מצוין לארוחה קבוצתית עם המון טעימות. השירות מהיר ויעיל, גם כשהמקום מלא.","assets/attractions/day25/yakitori_tsukada.jpg","Yakitori Tsukada Shibuya"],
     ["20:45<br>22:30","ברים בשיבויה","Nonbei Yokocho, המכונה גם 'סמטת השיכורים', היא סמטה צרה ואטמוספרית עם עשרות ברים זעירים שמכילים לרוב רק כמה כיסאות. כל בר כזה הוא עולם קטן משלו, עם בעל בית וקהל קבוע, ומעניק הצצה לחיי הלילה האמיתיים של תושבי טוקיו. מי שמעדיף אווירה מסוגננת יותר יכול לבחור בקוקטייל בר מודרני בסביבה. כך או כך, זהו סיום מושלם לערב תוסס בשיבויה.","assets/attractions/day25/shibuya_crossing.jpg","Nonbei Yokocho"],
-    ["22:30","חזרה למלון","סוף יום","assets/transfers/train.jpg","remm PLUS Ginza Tokyo"]
   ]},
   '26': { title:"טוקיו – צוקיג'י, teamLab וגינזה", route:"Tsukiji → Azabudai Hills → teamLab Borderless → Ginza", events:[
-    ["08:45","יציאה מהמלון","נוסעים לצוקיג'י לפני שהמקום נהיה עמוס","assets/transfers/train.jpg","remm PLUS Ginza Tokyo"],
     ["09:00<br>10:30","Tsukiji Outer Market","שוק האוכל המפורסם של טוקיו — Food Tour של סושי טרי, טונה, צדפות, וואגיו על שיפוד, טמאגויאקי וקינוחים","assets/attractions/day26/tsukiji_outer_market.jpg","Tsukiji Outer Market"],
-    ["10:30<br>10:50","מעבר ל-Azabudai Hills","נסיעה קצרה ל-teamLab","assets/transfers/taxi.jpg","Azabudai Hills"],
     ["11:00<br>13:15","teamLab Borderless","אחד ההיילייטים של הטיול — מוזיאון אמנות דיגיטלית ללא מסלול מוגדר","assets/attractions/day26/teamlab_borderless.jpg","teamLab Borderless Azabudai Hills"],
     ["13:15<br>14:00","Azabudai Hills","אזאבודאי הילס הוא אחד הפרויקטים העירוניים החדשים והשאפתניים ביותר בטוקיו, שנפתח ב-2023 ומשלב מגדלי משרדים, מגורים, מסעדות וחללי אמנות ציבורית. העיצוב האדריכלי המודרני משלב שטחים ירוקים פתוחים בין הבניינים, ויוצר תחושה עירונית ונעימה יחסית לגודל הפרויקט. במתחם יש גם קונספט חנויות אוכל, בתי קפה איכותיים וגלריות קטנות. זהו מקום נחמד לנוח, לשתות קפה ולהסתובב מעט לפני או אחרי teamLab.","assets/attractions/day26/azabudai_hills.jpg","Azabudai Hills"],
-    ["14:00<br>14:30","מעבר לגינזה","רכבת קצרה חזרה לאזור המלון","assets/transfers/train.jpg","Ginza Tokyo"],
     ["14:30<br>19:00","Ginza Shopping Block","בלוק הקניות הגדול של הטיול: Uniqlo Ginza, Loft, Itoya, Ginza Six, Onitsuka Tiger","assets/attractions/day26/ginza_shopping_block.jpg","Ginza Six"],
     ["19:00<br>20:00","מלון ומנוחה","להניח שקיות, להתקלח ולהתרענן","assets/attractions/day26/hotel.jpg","remm PLUS Ginza Tokyo"],
     ["20:00<br>21:30","ארוחת ערב בגינזה","אחרי יום עמוס של שוק, אמנות דיגיטלית וקניות, זהו הזמן לארוחת ערב רגועה במסעדה בגינזה. האזור מציע מגוון עצום של אפשרויות, ממסעדות זולות ועד מסעדות קייסקי או וואגיו יוקרתיות. כדאי לבחור לפי מצב הרוח והרעב — אין כבר צורך למהר לעוד אטרקציה. זהו רגע טוב לשבת בנחת ולסכם את היום.","assets/attractions/day26/ginza_shopping_block.jpg","Ginza Tokyo"],
     ["21:30","בר / קוקטייל / חופשי","גינזה מציעה מגוון ברים לכל טעם, מברי קוקטייל יוקרתיים בקומות עליונות ועד פאבים קטנים ואינטימיים. זהו זמן פתוח וגמיש — אפשר להמשיך לבר, לחזור למלון למנוחה, או פשוט לטייל עוד קצת ברחובות המוארים. הכול תלוי במצב הרוח והאנרגיה שנותרה אחרי יום ארוך. אין תוכנית קבועה לשעה הזו, וזה בדיוק היופי שבה.","assets/attractions/day26/hotel.jpg","Ginza Tokyo"]
   ]},
   '27': { title:"טוקיו – אסאקוסה ואקיהברה", route:"Asakusa → Akihabara → Ueno → Ameyoko", events:[
-    ["09:00","יציאה מהמלון","נוסעים לכיוון אסאקוסה","assets/transfers/train.jpg","remm PLUS Ginza Tokyo"],
     ["09:30<br>12:00","Asakusa + Senso-ji","מקדש בודהיסטי מהמאה ה-7, שער Kaminarimon, רחוב Nakamise וסמטאות מסורתיות","assets/attractions/day27/asakusa_sensoji.jpg","Senso-ji Asakusa"],
-    ["12:00<br>13:00","ארוחת צהריים באסאקוסה","סביבת אסאקוסה מלאה במסעדות מסורתיות ותיקות, חלקן פועלות באותה משפחה כבר עשרות שנים. האזור מפורסם בעיקר בטמפורה פריכה ובסובה קרה או חמה, שתי מנות קלאסיות שמתאימות מצוין לארוחת צהריים. יש גם מסעדות אונאגי (צלופח) ו-Tempura-don ותיקות שכדאי לנסות. זו הזדמנות טובה לטעום מטבח יפני מסורתי בסביבה אותנטית.","assets/attractions/day27/lunch.jpg","Asakusa Tokyo"],
+    ["12:00<br>13:00","ארוחת צהריים באסאקוסה","סביבת אסאקוסה מלאה במסעדות מסורתיות ותיקות, חלקן פועלות באותה משפחה כבר עשרות שנים. האזור מפורסם בעיקר בטמפורה פריכה ובסובה קרה או חמה, שתי מנות קלאסיות שמתאימות מצוין לארוחת צהריים. יש גם מסעדות אונאגי (צלופח) ו-Tempura-don ותיקות שכדאי לנסות. זו הזדמנות טובה לטעום מטבח יפני מסורתי בסביבה אותנטית.","assets/attractions/lunch.jpg","Asakusa Tokyo"],
     ["13:15<br>14:45","Akihabara","בירת האלקטרוניקה והגיק-קאלצ'ר של יפן — גאדג'טים, משחקים, מצלמות וטכנולוגיה","assets/attractions/day27/akihabara.jpg","Akihabara"],
     ["15:00<br>16:00","Ueno Park","פארק גדול ונעים עם מקדשים, מוזיאונים ואווירה רגועה","assets/attractions/day27/ueno_park.jpg","Ueno Park"],
     ["16:00<br>18:00","Ameyoko Market","שוק רחוב צפוף וחי מתחת למסילת רכבת — אוכל רחוב, דוכנים ואווירה אותנטית","assets/attractions/day27/ameyoko_market.jpg","Ameyoko Market"],
     ["18:00<br>19:00","חזרה למלון / מנוחה","מנוחה קצרה לפני ערב הסיום","assets/transfers/train.jpg","remm PLUS Ginza Tokyo"],
     ["20:00<br>22:30","ארוחת פרידה חגיגית","ארוחת סיום חגיגית של הטיול — Omakase Sushi, Teppanyaki או Wagyu ברמה גבוהה","assets/attractions/day27/lunch.jpg","Ginza Tokyo"],
-    ["22:30","חזרה למלון","הלילה האחרון המלא ביפן","assets/transfers/walk.jpg","remm PLUS Ginza Tokyo"]
   ]},
-  '28': { title:"טוקיו – יום אחרון וטיסה הביתה", route:"Zojo-ji → Tokyo Tower → Roppongi Hills → NRT → DXB → TLV", events:[
+  '28': { title:"טוקיו – יום אחרון וטיסה הביתה", route:"Zojo-ji → Tokyo Tower → NRT → AUH → TLV", events:[
     ["09:00<br>10:00","ארוחת בוקר + צ'ק-אאוט","השארת מזוודות במלון","assets/attractions/day28/checkout.jpg","remm PLUS Ginza Tokyo"],
     ["10:30<br>11:30","Zojo-ji Temple","מקדש זוג'ו-ג'י הוא אחד המקדשים הבודהיסטים החשובים בטוקיו, ששימש לדורות רבים כמקדש המשפחתי של שושלת טוקוגאווה השלטת. השער הראשי, Sangedatsumon, הוא מבנה עץ עתיק ומרשים ששרד את מלחמת העולם השנייה. הצילום האייקוני של המקדש עם מגדל טוקיו טאוור המודרני ברקע יוצר ניגוד יפה בין יפן העתיקה לחדשה. בשטח המקדש אפשר גם לראות שורות של פסלוני ג'יזו קטנים לזכר תינוקות שלא נולדו.","assets/attractions/day28/zojoji_temple.jpg","Zojo-ji Temple"],
     ["11:30<br>12:30","Tokyo Tower","מגדל טוקיו טאוור נבנה ב-1958 בהשראת מגדל אייפל ושימש עשרות שנים כסמל ההיסטורי המובהק ביותר של העיר. בגובה 333 מטר, הוא עדיין משמש כאנטנת שידור פעילה לצד היותו אטרקציית תיירות מרכזית. מתצפית האמצע (Main Deck) אפשר לראות את פריסת טוקיו, ובימים בהירים אפילו להבחין בהר פוג'י באופק. הצבע הכתום-לבן האייקוני שלו הפך לאחד הסמלים המזוהים ביותר עם העיר כולה.","assets/attractions/day28/tokyo_tower.jpg","Tokyo Tower"],
-    ["12:30<br>13:30","ארוחת צהריים","סביבת טוקיו טאוור וזוג'ו-ג'י מציעה מספר מסעדות ובתי קפה נוחים לארוחת צהריים קלה, בלי צורך להתרחק. זהו זמן טוב לנוח קצת אחרי הביקור במקדש ובמגדל, לפני שממשיכים לרופונגי הילס. אפשר לבחור מטבח יפני קליל או משהו מהיר יותר, לפי הזמן שנותר.","assets/attractions/day28/lunch.jpg","Tokyo Tower"],
-    ["13:30<br>15:30","Roppongi Hills","רופונגי הילס הוא אחד הפרויקטים העירוניים המוצלחים והמוקדמים של טוקיו, שמשלב מגדל משרדים, קניון, בתי קולנוע ומוזיאון אמנות מודרנית (Mori Art Museum) תחת קורת גג אחת. הארכיטקטורה המודרנית לצד פסלי אמנות ציבורית, כמו פסל העכביש הענק Maman, יוצרת אווירה עירונית ומעוצבת מאוד. מתצפית Mori Tower אפשר לראות נוף פנורמי מרשים על טוקיו, כולל טוקיו טאוור הסמוך. זהו רובע נעים להליכה, קפה וקצת שקט לפני סיום היום.","assets/attractions/day28/roppongi_hills.jpg","Roppongi Hills"],
-    ["15:30<br>16:30","קניות אחרונות בגינזה","אם נשארו עוד מתנות או פריטים לקנות, זו ההזדמנות האחרונה לחזור לגינזה ולהשלים קניות לפני החזרה למלון. חנויות כמו Uniqlo, Itoya או Ginza Six עדיין פתוחות בשעות אלו ומאפשרות קנייה מהירה ויעילה. זהו זמן גמיש ולא חובה — אפשר גם פשוט לנוח לפני היציאה לנמל התעופה.","assets/attractions/day28/ginza_shopping.jpg","Ginza Tokyo"],
-    ["16:30<br>17:00","חזרה למלון","איסוף מזוודות","assets/transfers/train.jpg","remm PLUS Ginza Tokyo"],
-    ["17:30","יציאה לנריטה","מספיק זמן להגיע 3 שעות לפני הטיסה","assets/transfers/train.jpg","Narita Airport"],
-    ["22:20","NRT → DXB","Flight: EK319\nOriginal Departure: 28.11 22:20 | T: NRT T2\nOriginal Arrival: 29.11 05:30 | T: DXB T3\nטוקיו נאריטה T2 → דובאי T3\nמשך טיסה: 12:10\nClass/Fare: Economy Saver\nStatus: Confirmed\nAircraft: Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
-    ["05:30 +1","Connection in DXB","Connection: Dubai (DXB)\nמשך קונקשן: 5:25\nהמשך לטיסת קישור לתל אביב","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Dubai International Airport"],
-    ["10:55 +1","DXB → TLV","Flight: EK2268 / FZ1635\nOriginal Departure: 29.11 10:55 | T: DXB T3\nOriginal Arrival: 29.11 12:45 | T: TLV T3\nדובאי T3 → תל אביב T3 בינלאומי\nמשך טיסה: 3:50\nClass/Fare: Economy Saver\nStatus: Confirmed\nOperated by flydubai\nAircraft: Boeing 737 MAX 8","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
-    ["12:45 +1","נחיתה בתל אביב","הגעה לישראל וסיום הטיול","https://images.unsplash.com/photo-1540339832862-fde94ed5d7de?auto=format&fit=crop&w=300&q=80","Ben Gurion Airport"]
+    ["11:30<br>12:15","ארוחת צהריים מוקדמת","ארוחה קלה ומהירה ליד Tokyo Tower לפני החזרה למלון ואיסוף המזוודות.","assets/attractions/lunch.jpg","Tokyo Tower"],
+    ["12:15<br>12:45","חזרה למלון ואיסוף מזוודות","לחזור ישירות ל-remm PLUS Ginza ולאסוף את המזוודות שהושארו לאחר הצ'ק-אאוט.","assets/attractions/day28/ginza_shopping.jpg","remm PLUS Ginza Tokyo"],
+    ["17:20","NRT → AUH","Flight: EY801\nטוקיו נאריטה → אבו דאבי\nמשך טיסה: 12:20\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
+    ["00:40 +1","Connection in AUH","קונקשן באבו דאבי: 2:05\nהמשך באותו נמל תעופה לטיסת EY609","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Abu Dhabi International Airport"],
+    ["02:45 +1","AUH → TLV","Flight: EY609\nאבו דאבי → תל אביב\nמשך טיסה: 3:45\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Airbus A321","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
+    ["04:30 +1","נחיתה בתל אביב","הגעה לישראל וסיום הטיול","https://images.unsplash.com/photo-1540339832862-fde94ed5d7de?auto=format&fit=crop&w=300&q=80","Ben Gurion Airport"]
   ]}
+};
+
+// Transport legs between stops (moved out of data[day].events; shown in the transport tab)
+// afterIdx = index in data[day].events of the stop the leg follows (-1 = before the first stop)
+const transfersByDay = {
+  '14': [
+    {"t": "13:15<br>14:30", "title": "Odakyu Romancecar להאקונה", "desc": "רכבת מהירה ונוחה משינג'וקו להאקונה-יומוטו, נסיעה של כ-85 דקות עם נוף אפשרי להר פוג'י.\nמומלץ להזמין מושבים מראש.", "img": "assets/transfers/train.jpg", "to": "Odakyu Romancecar Shinjuku Station", "tag": "", "afterIdx": 3, "from": "Ichiran Ramen Shinjuku"}
+  ],
+  '15': [
+    {"t": "08:30", "title": "🚐 שאטל מהמלון", "desc": "שאטל של Aura Tachibana לתחנת Hakone-Yumoto", "img": "assets/transfers/bus.jpg", "to": "Hakone-Yumoto", "tag": "🚐 שאטל מלון", "afterIdx": -1, "from": null},
+    {"t": "08:45", "title": "🚌 אוטובוס H/K", "desc": "קו אוטובוס מקומי לכיוון Hakone-jinja-iriguchi", "img": "assets/transfers/bus.jpg", "to": "Hakone-jinja-iriguchi", "tag": "🚌 אוטובוס H/K", "afterIdx": -1, "from": null},
+    {"t": "09:25", "title": "🚶 הליכה לשער השלום", "desc": "הליכה של כ-10 דקות מהתחנה אל Heiwa no Torii", "img": "assets/transfers/walk.jpg", "to": "Heiwa no Torii", "tag": "🚶 ~10 דק׳", "afterIdx": -1, "from": null},
+    {"t": "10:10", "title": "🚶 הליכה לנמל", "desc": "הליכה מהשער אל Moto-Hakone Port לקראת השייט", "img": "assets/transfers/walk.jpg", "to": "Moto-Hakone Port", "tag": "🚶 הליכה לנמל", "afterIdx": 0, "from": "Heiwa no Torii"},
+    {"t": "14:10", "title": "🚶 הליכה למוזיאון", "desc": "הליכה של כ-2 דקות מהתחנה אל Hakone Open-Air Museum", "img": "assets/transfers/walk.jpg", "to": "Hakone Open-Air Museum", "tag": "🚶 ~2 דק׳", "afterIdx": 7, "from": "Chokoku-no-Mori"},
+    {"t": "16:20<br>16:30", "title": "🚂 רכבת חזרה ל-Hakone-Yumoto", "desc": "רכבת טוזאן מ-Chokoku-no-Mori בחזרה לתחנת Hakone-Yumoto", "img": "assets/transfers/train.jpg", "to": "Hakone-Yumoto", "tag": "🚂 ~10 דק׳", "afterIdx": 8, "from": "Hakone Open-Air Museum"},
+    {"t": "17:05", "title": "🚕 שאטל/מונית למלון", "desc": "התקשרות למלון ואיסוף בשאטל או מונית בחזרה ל-Aura Tachibana", "img": "assets/transfers/taxi.jpg", "to": "Aura Tachibana Hakone Yumoto", "tag": "🚕 שאטל/מונית", "afterIdx": 8, "from": "Hakone Open-Air Museum"}
+  ],
+  '17': [
+    {"t": "12:00<br>13:00", "title": "שינקנסן לקיוטו", "desc": "נסיעה נוחה ומהירה בשינקנסן Hikari מנגויה לקיוטו, עם מעבר חלק בין מרכזי הערים והגעה ישירה לאזור התחנה המרכזית של קיוטו.", "img": "assets/transfers/train.jpg", "to": "Kyoto Station", "tag": "", "afterIdx": 0, "from": "Toyota Kaikan Museum"},
+    {"t": "13:45<br>14:00", "title": "🚶 הליכה: Kyoto Station → To-ji Temple", "desc": "הליכה של כ-15 דקות דרומה (כ-1.5 ק\"מ) לעבר מקדש טו-ג'י.", "img": "assets/transfers/walk.jpg", "to": "To-ji Temple Kyoto", "tag": "🚶 הליכה · ~15 דק׳", "afterIdx": 1, "from": "Kyoto Station"},
+    {"t": "15:15<br>15:45", "title": "🚕 מעבר מ-To-ji אל Nishiki Market", "desc": "אוטובוס 207 או מונית קצרה לאזור נישיקי.", "img": "assets/transfers/taxi.jpg", "to": "Nishiki Market Kyoto", "tag": "🚌 אוטובוס 207 · ~15 דק׳", "afterIdx": 2, "from": "To-ji Temple Kyoto"},
+    {"t": "21:00<br>21:30", "title": "חזרה למלון", "desc": "חזרה רגלית למלון. 🚶 ~15-20 דק' הליכה.", "img": "assets/attractions/day17/return.jpg", "to": "Hotel Monterey Kyoto", "tag": "", "afterIdx": 6, "from": "Pontocho Alley Kyoto"}
+  ],
+  '18': [
+    {"t": "08:30<br>09:00", "title": "יציאה עצמאית ל־Fushimi Inari Taisha", "desc": "נסיעה עצמאית מהמלון לתחנת Inari/אזור המקדש", "img": "assets/transfers/train.jpg", "to": "Fushimi Inari Taisha", "tag": "🚇/🚖 מעבר עצמאי", "afterIdx": -1, "from": null},
+    {"t": "09:50<br>10:30", "title": "מעבר ל־Arashiyama Bamboo Grove", "desc": "מעבר עצמאי מ־Fushimi Inari לאראשיאמה", "img": "assets/transfers/taxi.jpg", "to": "Arashiyama Bamboo Grove", "tag": "🚕/🚆 כ-30-40 דק׳", "afterIdx": 0, "from": "Fushimi Inari Taisha"},
+    {"t": "13:30<br>13:50", "title": "🚕 מעבר מ-Arashiyama אל Kinkaku-ji", "desc": "מעבר לאזור המקדשים בצפון קיוטו", "img": "assets/transfers/taxi.jpg", "to": "Kinkaku-ji Golden Pavilion", "tag": "🚕 כ-15-20 דק׳", "afterIdx": 5, "from": "Arashiyama restaurants"},
+    {"t": "14:35<br>14:50", "title": "🚶 מעבר מ-Kinkaku-ji אל Ryoan-ji", "desc": "הליכה נוחה של כ-15 דקות בין המקדשים", "img": "assets/transfers/walk.jpg", "to": "Ryoan-ji Temple Kyoto", "tag": "🚶 כ-15 דק׳", "afterIdx": 7, "from": "Kinkaku-ji Golden Pavilion"},
+    {"t": "15:35<br>16:00", "title": "🚕 מעבר מ-Ryoan-ji אל Nijo Castle", "desc": "מעבר קצר למרכז ההיסטורי של קיוטו", "img": "assets/transfers/taxi.jpg", "to": "Nijo Castle Kyoto", "tag": "🚕 כ-15 דק׳", "afterIdx": 8, "from": "Ryoan-ji Temple"},
+    {"t": "17:45<br>18:00", "title": "🚕 מעבר מ-Nijo Castle אל Gion", "desc": "מעבר לרובע המסורתי לקראת ערב", "img": "assets/transfers/taxi.jpg", "to": "Gion District Kyoto", "tag": "🚕 כ-10-15 דק׳", "afterIdx": 10, "from": "Nijo Castle Kyoto"}
+  ],
+  '19': [
+    {"t": "07:40", "title": "יציאה מהמלון", "desc": "יציאה מוקדמת מ-Hotel Monterey Kyoto לכיוון חנות השכרת הקימונו, לפני יום צפוף של קימונו, מקדשים והיגשיאמה.", "img": "assets/transfers/taxi.jpg", "to": "Hotel Monterey Kyoto", "tag": "🚕 מונית · ~20 דק׳", "afterIdx": -1, "from": null},
+    {"t": "13:15<br>13:40", "title": "מונית ל-Nanzen-ji", "desc": "מעבר קצר לאזור המקדשים של מזרח קיוטו", "img": "assets/transfers/taxi.jpg", "to": "Nanzen-ji Temple Kyoto", "tag": "🚕 מונית · ~25 דק׳", "afterIdx": 5, "from": "Higashiyama Kyoto"},
+    {"t": "18:00<br>18:20", "title": "מונית למלון", "desc": "חזרה למנוחה והתארגנות קלה לפני היציאה בערב", "img": "assets/transfers/taxi.jpg", "to": "Hotel Monterey Kyoto", "tag": "🚕 מונית · ~20 דק׳", "afterIdx": 8, "from": "Philosopher's Path Kyoto"}
+  ],
+  '20': [
+    {"t": "07:50", "title": "יציאה מ-Hotel Monterey Kyoto", "desc": "הליכה לתחנת Karasuma Oike לקראת הנסיעה לנארה", "img": "assets/transfers/walk.jpg", "to": "Karasuma Oike Station Kyoto", "tag": "🚶 הליכה לתחנה", "afterIdx": -1, "from": null},
+    {"t": "08:00<br>08:15", "title": "Karasuma Oike → Kyoto Station", "desc": "נסיעת מטרו קצרה לתחנת קיוטו", "img": "assets/transfers/train.jpg", "to": "Kyoto Station", "tag": "🚇 Subway", "afterIdx": -1, "from": null},
+    {"t": "08:15<br>08:55", "title": "Kyoto Station → Nara Station", "desc": "רכבת JR Nara Line מקיוטו לנארה", "img": "assets/attractions/day20/train.jpg", "to": "JR Nara Station", "tag": "🚆 JR Nara Line", "afterIdx": -1, "from": null},
+    {"t": "16:00<br>16:15", "title": "הליכה לתחנת Nara", "desc": "מעבר רגלי קצר לסיום היום בנארה", "img": "assets/transfers/walk.jpg", "to": "Nara Station", "tag": "🚶 הליכה", "afterIdx": 5, "from": "Naramachi"},
+    {"t": "16:15<br>17:00", "title": "Nara → Kyoto Station", "desc": "רכבת JR בחזרה לקיוטו", "img": "assets/attractions/day20/train.jpg", "to": "Kyoto Station", "tag": "🚆 JR Nara Line", "afterIdx": 5, "from": "Naramachi"},
+    {"t": "17:00<br>17:15", "title": "Kyoto Station → Hotel Monterey Kyoto", "desc": "נסיעת מטרו קצרה וחזרה למלון", "img": "assets/transfers/train.jpg", "to": "Hotel Monterey Kyoto", "tag": "🚇 Subway", "afterIdx": 5, "from": "Naramachi"},
+    {"t": "19:00<br>19:30", "title": "Kiyamachi & Pontocho", "desc": "הליכה מהמלון (כ-15–20 דק׳) ובילוי ערב בסמטאות המסורתיות לאורך הנהר", "img": "assets/transfers/walk.jpg", "to": "Pontocho Kyoto", "tag": "🚶 ~15–20 דק׳", "afterIdx": 6, "from": "Hotel Monterey Kyoto"},
+    {"t": "20:30~", "title": "חזרה למלון", "desc": "הליכה נעימה ברחובות הערב או מונית קצרה לפי הצורך", "img": "assets/attractions/day19/hotel.jpg", "to": "Hotel Monterey Kyoto", "tag": "", "afterIdx": 8, "from": "Pontocho Kyoto"}
+  ],
+  '21': [
+    {"t": "09:20<br>09:35", "title": "הליכה ל-Nishiki Market", "desc": "הליכה קצרה מהמלון לשוק", "img": "assets/transfers/walk.jpg", "to": "Nishiki Market Kyoto", "tag": "🚶 ~15 דק׳", "afterIdx": 0, "from": "Hotel Monterey Kyoto"},
+    {"t": "10:45<br>10:55", "title": "מעבר ל-Kyoto Yoshitsugu", "desc": "המקום ממש ליד השוק; נותנים 10 דקות כדי להגיע בנחת ולהתארגן", "img": "assets/transfers/walk.jpg", "to": "Kyoto Yoshitsugu", "tag": "🚶 ~10 דק׳", "afterIdx": 1, "from": "Nishiki Market Kyoto"},
+    {"t": "11:45<br>11:55", "title": "הליכה לתחנת Karasuma", "desc": "מעבר קצר מהאתר; נותנים 10 דקות בכוונה", "img": "assets/transfers/walk.jpg", "to": "Karasuma Station Kyoto", "tag": "🚶 ~10 דק׳", "afterIdx": 2, "from": "Kyoto Yoshitsugu"},
+    {"t": "12:02<br>12:43", "title": "Hankyu Limited Express → Osaka-Umeda", "desc": "רכבת ישירה מ-Karasuma. לפי לוח שבת הנוכחי: יציאה 12:02 והגעה 12:43 (阪急電鉄)", "img": "assets/transfers/train.jpg", "to": "Osaka-Umeda Station", "tag": "🚈 Hankyu Limited Express", "afterIdx": 2, "from": "Kyoto Yoshitsugu"},
+    {"t": "12:43<br>13:05", "title": "הליכה ל-Umeda Sky Building", "desc": "כולל יציאה מהתחנה והתמצאות — זמן ריאלי", "img": "assets/transfers/walk.jpg", "to": "Umeda Sky Building Osaka", "tag": "🚶 ~22 דק׳", "afterIdx": 2, "from": "Kyoto Yoshitsugu"},
+    {"t": "14:30<br>15:10", "title": "מעבר ל-Namba", "desc": "הליכה לתחנה + Midosuji Line + יציאה בתחנת Namba", "img": "assets/transfers/train.jpg", "to": "Namba Station Osaka", "tag": "🚇 Midosuji Line", "afterIdx": 4, "from": "Umeda Osaka restaurants"},
+    {"t": "17:45<br>18:00", "title": "הליכה למבשלת הבירה", "desc": "כ-15 דקות", "img": "assets/transfers/walk.jpg", "to": "Dotonbori Craft Beer Brewery", "tag": "🚶 ~15 דק׳", "afterIdx": 5, "from": "Namba City Osaka"},
+    {"t": "20:00<br>20:30", "title": "נסיעה למלון", "desc": "הליכה בהתאם למיקום / Hommachi", "img": "assets/transfers/train.jpg", "to": "Excel Hotel Tokyu Osaka", "tag": "🚇/🚶", "afterIdx": 6, "from": "Dotonbori Craft Beer Brewery"}
+  ],
+  '22': [
+    {"t": "08:15<br>08:40", "title": "נסיעה ל-Osaka Castle", "desc": "יציאה מהמלון ונסיעה ל-Osaka Castle במונית כדי להתחיל את הבוקר בזמן ובנוחות.", "img": "assets/transfers/taxi.jpg", "to": "Osaka Castle", "tag": "🚕 מונית · מעבר בוקר", "afterIdx": -1, "from": null},
+    {"t": "11:00<br>11:30", "title": "מעבר ל-Kuromon Market", "desc": "נסיעה קצרה במונית מ-Osaka Castle לשוק Kuromon כדי לעבור ביעילות לאזור האוכל של נמבה.", "img": "assets/transfers/taxi.jpg", "to": "Kuromon Market Osaka", "tag": "🚕 מונית · מעבר קצר", "afterIdx": 0, "from": "Osaka Castle"},
+    {"t": "15:00<br>15:20", "title": "מעבר ל-Namba Yasaka Shrine", "desc": "מעבר קצר לכיוון מקדש האריה המפורסם של Namba Yasaka.", "img": "assets/transfers/walk.jpg", "to": "Namba Yasaka Shrine Osaka", "tag": "🚶/🚇 מעבר קצר", "afterIdx": 3, "from": "Shinsekai Osaka"}
+  ],
+  '23': [
+    {"t": "09:15<br>09:50", "title": "נסיעה ל-Doshomachi / Kitahama", "desc": "מעבר בתחבורה ציבורית לרובע התרופות ההיסטורי של אוסקה", "img": "assets/transfers/train.jpg", "to": "Doshomachi Osaka", "tag": "🚇 ~35 דק׳ · כולל הליכה בתחנה", "afterIdx": -1, "from": null},
+    {"t": "11:30<br>12:10", "title": "נסיעה ל-Kaiyukan", "desc": "מעבר לכיוון מפרץ אוסקה (Osaka Bay)", "img": "assets/transfers/train.jpg", "to": "Kaiyukan Aquarium Osaka", "tag": "🚇 ~40 דק׳", "afterIdx": 0, "from": "Sukunahikona Shrine Osaka"},
+    {"t": "15:00<br>15:45", "title": "מעבר ל-Sumiyoshi Taisha", "desc": "כדאי לשקול מונית כדי לא לאבד זמן", "img": "assets/transfers/taxi.jpg", "to": "Sumiyoshi Taisha Osaka", "tag": "🚕 ~45 דק׳", "afterIdx": 2, "from": "Tempozan Harbor Village Osaka"},
+    {"t": "16:40<br>17:05", "title": "מעבר ל-Nagai", "desc": "מונית יכולה להיות נוחה מאוד כאן", "img": "assets/transfers/taxi.jpg", "to": "Nagai Osaka", "tag": "🚕 ~25 דק׳", "afterIdx": 3, "from": "Sumiyoshi Taisha Osaka"},
+    {"t": "17:30<br>17:45", "title": "הליכה ל-teamLab", "desc": "הליכה רגועה בלי צורך למהר", "img": "assets/transfers/walk.jpg", "to": "teamLab Botanical Garden Osaka", "tag": "🚶 ~30 דק׳", "afterIdx": 4, "from": "Nagai Park Osaka"},
+    {"t": "19:45<br>20:15", "title": "מעבר Nagai → Tennoji", "desc": "מעבר קצר יחסית לכיוון Abeno Harukas", "img": "assets/transfers/train.jpg", "to": "Tennoji Station Osaka", "tag": "🚆 ~30 דק׳", "afterIdx": 6, "from": "teamLab Botanical Garden Osaka"}
+  ],
+  '24': [
+    {"t": "09:00<br>09:25", "title": "מונית ל-Shin-Osaka Station", "desc": "התחלה רגועה בלי לחץ", "img": "assets/transfers/taxi.jpg", "to": "Shin-Osaka Station", "tag": "", "afterIdx": 0, "from": "Excel Hotel Tokyu Osaka"},
+    {"t": "10:00<br>12:30", "title": "Nozomi Shinkansen לטוקיו", "desc": "הדרך המהירה ביותר בין אוסקה לטוקיו, כ-2.5 שעות", "img": "assets/transfers/train.jpg", "to": "Tokyo Station", "tag": "🚄 Nozomi · ~2:30 שעות", "afterIdx": 1, "from": "Shin-Osaka Station"},
+    {"t": "19:15<br>19:30", "title": "הליכה למסעדה", "desc": "הכול במרחק הליכה מהמלון", "img": "assets/transfers/walk.jpg", "to": "Ginza Tokyo", "tag": "", "afterIdx": 8, "from": "remm PLUS Ginza Tokyo"},
+    {"t": "23:00", "title": "חזרה למלון", "desc": "הליכה קצרה חזרה ל-remm PLUS Ginza", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": 10, "from": "Ginza Tokyo"}
+  ],
+  '25': [
+    {"t": "09:00", "title": "יציאה מ-remm PLUS Ginza", "desc": "נסיעה לכיוון הראג'וקו", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": -1, "from": null},
+    {"t": "15:30<br>15:50", "title": "מעבר ל-Shibuya Sky", "desc": "להגיע רגוע לפני התור", "img": "assets/transfers/walk.jpg", "to": "Shibuya Sky", "tag": "", "afterIdx": 4, "from": "Shibuya PARCO"},
+    {"t": "22:30", "title": "חזרה למלון", "desc": "סוף יום", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": 11, "from": "Nonbei Yokocho"}
+  ],
+  '26': [
+    {"t": "08:45", "title": "יציאה מהמלון", "desc": "נוסעים לצוקיג'י לפני שהמקום נהיה עמוס", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": -1, "from": null},
+    {"t": "10:30<br>10:50", "title": "מעבר ל-Azabudai Hills", "desc": "נסיעה קצרה ל-teamLab", "img": "assets/transfers/taxi.jpg", "to": "Azabudai Hills", "tag": "", "afterIdx": 0, "from": "Tsukiji Outer Market"},
+    {"t": "14:00<br>14:30", "title": "מעבר לגינזה", "desc": "רכבת קצרה חזרה לאזור המלון", "img": "assets/transfers/train.jpg", "to": "Ginza Tokyo", "tag": "", "afterIdx": 2, "from": "Azabudai Hills"}
+  ],
+  '27': [
+    {"t": "09:00", "title": "יציאה מהמלון", "desc": "נוסעים לכיוון אסאקוסה", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": -1, "from": null},
+    {"t": "22:30", "title": "חזרה למלון", "desc": "הלילה האחרון המלא ביפן", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": 6, "from": "Ginza Tokyo"}
+  ],
+  '28': [
+    {"t": "12:15<br>12:45", "title": "חזרה למלון", "desc": "איסוף מזוודות אחרי ארוחת הצהריים", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": 3, "from": "Tokyo Tower"},
+    {"t": "12:45", "title": "יציאה לנריטה", "desc": "יעד הגעה סביב 14:20, שלוש שעות לפני טיסת EY801", "img": "assets/transfers/train.jpg", "to": "Narita Airport", "tag": "", "afterIdx": 4, "from": "remm PLUS Ginza Tokyo"}
+  ]
 };
 
 const hotelsByDay = {
@@ -1455,12 +1573,12 @@ const hotelsByDay = {
     extra: ''
   },
   '16': {
-    name: 'Nagoya JR Gate Tower Hotel',
-    meta: 'נגויה · ליד תחנת JR נגויה',
-    mapQuery: 'Nagoya JR Gate Tower Hotel',
+    name: 'Hotel Monterey Kyoto',
+    meta: 'קיוטו · Karasuma-dori, Nakagyo-ku',
+    mapQuery: 'Hotel Monterey Kyoto',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
-    extra: ''
+    extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
   },
   '17': {
     name: 'Hotel Monterey Kyoto',
@@ -1896,8 +2014,8 @@ function setFlightGate(id, gate){
 
 function findRelevantFlightStatus(day, description){
   const relevantByDay = {
-    '12-13': ['ek2168_fz1842', 'ek312'],
-    '28': ['ek319', 'ek2268_fz1635']
+    '12-13': ['ey594', 'ey800'],
+    '28': ['ey801', 'ey609']
   };
   const relevantIds = relevantByDay[day] || [];
   if (!relevantIds.length) return null;
@@ -1938,8 +2056,8 @@ function renderRouteFlightStatus(day){
   const panel = document.getElementById('routeFlightStatusPanel');
   if (!panel) return;
   const relevantByDay = {
-    '12-13': ['ek2168_fz1842', 'ek312'],
-    '28': ['ek319', 'ek2268_fz1635']
+    '12-13': ['ey594', 'ey800'],
+    '28': ['ey801', 'ey609']
   };
   const ids = relevantByDay[day] || [];
   if (!ids.length) {
@@ -2939,7 +3057,8 @@ function render(day){
   
   // Shared timeline card layout (flexible height + min-height rule) for all days
   tl.className = 'timeline';
-  data[day].events.forEach(e=>{
+  tl.innerHTML += transferChipsHtml(day, -1);
+  data[day].events.forEach((e, idx)=>{
     if (e[1] === '__SECTION__') { tl.innerHTML += `<div class="tl-section">${e[2]}</div>`; return; }
     const eventDescription = appendLiveFlightInfo(day, e[2]);
     const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
@@ -2957,8 +3076,10 @@ function render(day){
         ${audioMap[e[1]] ? apPlayerHtml(e[1]) : ''}
       </div>
     </div></div>`;
+    tl.innerHTML += transferChipsHtml(day, idx);
   });
 
+  renderDayNav(day);
   renderUploads();
 }
 

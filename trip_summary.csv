@@ -1,8 +1,8 @@
 Date,City/Area,Time,Attraction / Event,Type,Hotel
-12-13.11,Tokyo (Flight),22:20,TLV → DXB (EK2168/FZ1842),Flight,Hotel Gracery Shinjuku
-12-13.11,Dubai (Transit),03:25+1,Connection in Dubai,Transit,Hotel Gracery Shinjuku
-12-13.11,Tokyo (Flight),08:20,DXB → HND (EK312),Flight,Hotel Gracery Shinjuku
-12-13.11,Tokyo,22:30,Arrival at Tokyo (Haneda),Arrival,Hotel Gracery Shinjuku
+12-13.11,Abu Dhabi (Flight),14:00,TLV → AUH (EY594),Flight,Hotel Gracery Shinjuku
+12-13.11,Abu Dhabi (Transit),19:05,Connection in Abu Dhabi (2:00),Transit,Hotel Gracery Shinjuku
+12-13.11,Tokyo (Flight),21:05,AUH → NRT (EY800),Flight,Hotel Gracery Shinjuku
+12-13.11,Tokyo,11:40+1,Arrival at Tokyo (Narita),Arrival,Hotel Gracery Shinjuku
 14.11,Tokyo → Hakone,08:00-08:45,Luggage deposit at hotel,Logistics,Aura Tachibana
 14.11,Tokyo,09:00-10:00,Tokyo Metropolitan Gov. Building,Viewpoint,Aura Tachibana
 14.11,Tokyo,10:15-11:30,Shinjuku Gyoen,Park/Garden,Aura Tachibana
@@ -95,7 +95,7 @@ Date,City/Area,Time,Attraction / Event,Type,Hotel
 27.11,Tokyo,09:00,Senso-ji + Nakamise-dori,Temple/Market,remm PLUS Ginza (est.)
 27.11,Tokyo,12:00,Akihabara,Electronics/Anime,remm PLUS Ginza (est.)
 27.11,Tokyo,16:30,Tokyo Skytree,Viewpoint,remm PLUS Ginza (est.)
-28.11,Flight home,22:20,NRT → DXB (EK319),Flight,—
-28.11,Dubai (Transit),05:30+1,Connection in Dubai,Transit,—
-28.11,Flight home,10:55+1,DXB → TLV (EK2268/FZ1635),Flight,—
-28.11,Tel Aviv,12:45+1,Landing in Tel Aviv,Arrival,—
+28.11,Flight home,17:20,NRT → AUH (EY801),Flight,—
+28.11,Abu Dhabi (Transit),00:40+1,Connection in Abu Dhabi (2:05),Transit,—
+28.11,Flight home,02:45+1,AUH → TLV (EY609),Flight,—
+28.11,Tel Aviv,04:30+1,Landing in Tel Aviv,Arrival,—
