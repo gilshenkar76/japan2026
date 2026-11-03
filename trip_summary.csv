@@ -23,12 +23,15 @@ Date,City/Area,Time,Attraction / Event,Type,Hotel
 16.11,Nagoya,14:30-16:20,Bus + Shinkansen to Nagoya,Transit,Nagoya JR Gate Tower Hotel
 16.11,Nagoya,16:30-17:00,Hotel check-in,Hotel,Nagoya JR Gate Tower Hotel
 16.11,Nagoya,17:30-22:00,Evening in Sakae,Shopping/Evening,Nagoya JR Gate Tower Hotel
-17.11,Nagoya → Kyoto,08:20-11:30,Toyota Kaikan Museum,Museum,Hotel Monterey Kyoto
-17.11,Nagoya → Kyoto,12:00-13:00,Shinkansen to Kyoto,Train,Hotel Monterey Kyoto
-17.11,Kyoto,13:00-15:30,Hotel check-in,Hotel,Hotel Monterey Kyoto
-17.11,Kyoto,17:00-18:30,Teramachi Shopping Arcade,Shopping,Hotel Monterey Kyoto
-17.11,Kyoto,18:35-20:30,Pontocho Alley (dinner),Food/Alley,Hotel Monterey Kyoto
-17.11,Kyoto,20:30-21:00,Return to hotel,Hotel,Hotel Monterey Kyoto
+17.11,Kyoto,07:30-08:10,Breakfast at Hotel Monterey Kyoto,Food,Hotel Monterey Kyoto
+17.11,Kyoto,08:45-10:45,Nijo Castle – Ninomaru Palace and gardens,Castle/Palace,Hotel Monterey Kyoto
+17.11,Kyoto,11:20-13:00,Nishiki Market tasting lunch,Food Market,Hotel Monterey Kyoto
+17.11,Kyoto,13:50-15:05,Nanzen-ji and aqueduct,Temple,Hotel Monterey Kyoto
+17.11,Kyoto,16:00-17:00,Downtown browsing or late coffee,Optional/Buffer,Hotel Monterey Kyoto
+17.11,Kyoto,17:30-18:00,Hulic Hall arrival and seating,Theatre,Hotel Monterey Kyoto
+17.11,Kyoto,18:00-18:45,EN – MIYABI drum show,Performance,Hotel Monterey Kyoto
+17.11,Kyoto,19:15-20:45,Japanese dinner downtown,Food,Hotel Monterey Kyoto
+17.11,Kyoto,After 20:45,Return to hotel,Transfer,Hotel Monterey Kyoto
 18.11,Kyoto (Guided Tour),10:00,Meet guide,Meeting,Hotel Monterey Kyoto
 18.11,Kyoto,10:10-11:45,Fushimi Inari Taisha,Temple/Shrine,Hotel Monterey Kyoto
 18.11,Kyoto,11:45-12:30,Arashiyama Bamboo Grove,Nature,Hotel Monterey Kyoto
