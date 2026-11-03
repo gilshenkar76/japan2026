@@ -32,15 +32,22 @@ Date,City/Area,Time,Attraction / Event,Type,Hotel
 17.11,Kyoto,18:00-18:45,EN – MIYABI drum show,Performance,Hotel Monterey Kyoto
 17.11,Kyoto,19:15-20:45,Japanese dinner downtown,Food,Hotel Monterey Kyoto
 17.11,Kyoto,After 20:45,Return to hotel,Transfer,Hotel Monterey Kyoto
-18.11,Kyoto (Guided Tour),10:00,Meet guide,Meeting,Hotel Monterey Kyoto
-18.11,Kyoto,10:10-11:45,Fushimi Inari Taisha,Temple/Shrine,Hotel Monterey Kyoto
-18.11,Kyoto,11:45-12:30,Arashiyama Bamboo Grove,Nature,Hotel Monterey Kyoto
-18.11,Kyoto,12:30-13:10,Tenryu-ji Temple,Temple/Garden,Hotel Monterey Kyoto
-18.11,Kyoto,13:10-14:00,Lunch,Food,Hotel Monterey Kyoto
-18.11,Kyoto,15:00-15:45,Ryoan-ji Temple,Temple (Zen),Hotel Monterey Kyoto
-18.11,Kyoto,16:00-17:00,Kinkaku-ji (Golden Pavilion),Temple,Hotel Monterey Kyoto
-18.11,Kyoto,17:00-19:00,Gion District,Historic District,Hotel Monterey Kyoto
-18.11,Kyoto,19:00-19:30,Return to hotel,Hotel,Hotel Monterey Kyoto
+18.11,Kyoto,07:30-08:15,Breakfast at Hotel Monterey Kyoto,Food,Hotel Monterey Kyoto
+18.11,Kyoto,09:00-10:30,Kimono dressing at Mimosa Higashiyama,Kimono,Hotel Monterey Kyoto
+18.11,Kyoto,10:30-11:10,Ichinenzaka to Yasaka Pagoda to Ninenzaka to Sannenzaka,Historic Streets,Hotel Monterey Kyoto
+18.11,Kyoto,11:10-12:00,Kiyomizu-dera,Temple,Hotel Monterey Kyoto
+18.11,Kyoto,12:30-13:00,Return kimono and change,Kimono,Hotel Monterey Kyoto
+18.11,Kyoto,13:00-14:10,Japanese lunch,Food,Hotel Monterey Kyoto
+18.11,Kyoto,14:10-15:00,Kodai-ji,Temple/Garden,Hotel Monterey Kyoto
+18.11,Kyoto,15:00-15:15,Nene-no-Michi / Ishibei-koji,Historic Streets,Hotel Monterey Kyoto
+18.11,Kyoto,15:30-16:25,Kennin-ji,Temple (Zen),Hotel Monterey Kyoto
+18.11,Kyoto,16:25-16:50,Hanamikoji,Historic District,Hotel Monterey Kyoto
+18.11,Kyoto,16:50-17:15,Yasaka Shrine,Shrine,Hotel Monterey Kyoto
+18.11,Kyoto,17:15-17:45,Gion Shirakawa,Historic District,Hotel Monterey Kyoto
+18.11,Kyoto,17:45-18:00,Shijo Bridge,Viewpoint,Hotel Monterey Kyoto
+18.11,Kyoto,18:00-18:20,Kamo River,Riverside,Hotel Monterey Kyoto
+18.11,Kyoto,18:20-19:30,Pontocho / free time,Optional/Buffer,Hotel Monterey Kyoto
+18.11,Kyoto,19:30-21:15,Dinner in Pontocho,Food,Hotel Monterey Kyoto
 19.11,Kyoto,09:00-10:00,Eikando Temple,Temple/Shrine,Hotel Monterey Kyoto
 19.11,Kyoto,10:15-10:45,Kiyomizu-dera,Temple/Shrine,Hotel Monterey Kyoto
 19.11,Kyoto,10:45-11:45,Sannenzaka + Ninenzaka,Historic Street,Hotel Monterey Kyoto
