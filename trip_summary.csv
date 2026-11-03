@@ -48,26 +48,26 @@ Date,City/Area,Time,Attraction / Event,Type,Hotel
 18.11,Kyoto,18:00-18:20,Kamo River,Riverside,Hotel Monterey Kyoto
 18.11,Kyoto,18:20-19:30,Pontocho / free time,Optional/Buffer,Hotel Monterey Kyoto
 18.11,Kyoto,19:30-21:15,Dinner in Pontocho,Food,Hotel Monterey Kyoto
-19.11,Kyoto,09:00-10:00,Eikando Temple,Temple/Shrine,Hotel Monterey Kyoto
-19.11,Kyoto,10:15-10:45,Kiyomizu-dera,Temple/Shrine,Hotel Monterey Kyoto
-19.11,Kyoto,10:45-11:45,Sannenzaka + Ninenzaka,Historic Street,Hotel Monterey Kyoto
-19.11,Kyoto,11:45-12:05,Yasaka Pagoda,Pagoda,Hotel Monterey Kyoto
-19.11,Kyoto,12:15-13:15,Lunch,Food,Hotel Monterey Kyoto
-19.11,Kyoto,13:30-17:30,Shijo Kawaramachi,Shopping,Hotel Monterey Kyoto
-19.11,Kyoto,18:00,Return to hotel,Hotel,Hotel Monterey Kyoto
-19.11,Kyoto,19:00-19:30,Kiyamachi & Pontocho,Nightlife,Hotel Monterey Kyoto
-19.11,Kyoto,19:30-20:30,L'Escamoteur Bar,Bar,Hotel Monterey Kyoto
-19.11,Kyoto,20:30-21:10,Dinner,Food,Hotel Monterey Kyoto
-19.11,Kyoto,21:10-22:15,Turquoise Bar,Bar,Hotel Monterey Kyoto
-20.11,Nara,09:00-10:00,Todai-ji,Temple/Shrine,Hotel Monterey Kyoto
-20.11,Nara,10:00-11:30,Nara Park (Deer),Nature/Park,Hotel Monterey Kyoto
-20.11,Nara,11:30-13:00,Kasuga Taisha,Temple/Shrine,Hotel Monterey Kyoto
-20.11,Nara,13:00-14:00,Lunch,Food,Hotel Monterey Kyoto
-20.11,Nara,14:00-15:00,Kofuku-ji,Temple/Shrine,Hotel Monterey Kyoto
-20.11,Nara,15:00-16:00,Nara Machi,Historic District,Hotel Monterey Kyoto
-20.11,Nara → Kyoto,16:00-17:00,Return to Kyoto (JR Nara Line),Train,Hotel Monterey Kyoto
-20.11,Kyoto,19:00-19:30,Kiyamachi & Pontocho,Nightlife,Hotel Monterey Kyoto
-20.11,Kyoto,19:30-20:30,Dinner,Food,Hotel Monterey Kyoto
+19.11,Kyoto,07:00-07:30,Breakfast at Hotel Monterey Kyoto,Food,Hotel Monterey Kyoto
+19.11,Arashiyama,08:40-09:20,Arashiyama Bamboo Grove,Nature,Hotel Monterey Kyoto
+19.11,Arashiyama,09:35-10:35,Tenryu-ji,Temple/Garden,Hotel Monterey Kyoto
+19.11,Arashiyama,10:50-11:20,Togetsukyo Bridge and riverside,Viewpoint,Hotel Monterey Kyoto
+19.11,Arashiyama,11:20-12:00,Hogon-in garden,Optional/Garden,Hotel Monterey Kyoto
+19.11,Arashiyama,12:15-13:15,Japanese lunch,Food,Hotel Monterey Kyoto
+19.11,Kyoto,14:10-14:55,Ryoan-ji,Optional/Temple,Hotel Monterey Kyoto
+19.11,Kyoto,15:30-16:30,Kinkaku-ji Golden Pavilion,Temple,Hotel Monterey Kyoto
+19.11,Kyoto,17:10-18:10,Kitano Tenmangu maple illumination,Optional/Seasonal,Hotel Monterey Kyoto
+19.11,Kyoto,19:30-21:00,Japanese dinner near hotel,Food,Hotel Monterey Kyoto
+20.11,Kyoto,07:00-07:45,Breakfast at Hotel Monterey Kyoto,Food,Osaka Excel Hotel Tokyu
+20.11,Kyoto,07:45-08:00,Checkout and luggage arrangements,Hotel,Osaka Excel Hotel Tokyu
+20.11,Kyoto,08:50-10:20,Fushimi Inari Taisha,Shrine,Osaka Excel Hotel Tokyu
+20.11,Nara,12:00-13:00,Japanese lunch,Food,Osaka Excel Hotel Tokyu
+20.11,Nara,13:00-13:30,Nara Park and deer,Nature/Park,Osaka Excel Hotel Tokyu
+20.11,Nara,13:30-14:45,Todai-ji South Gate and Great Buddha Hall,Temple,Osaka Excel Hotel Tokyu
+20.11,Nara,15:20-16:00,Kasuga Taisha,Optional/Shrine,Osaka Excel Hotel Tokyu
+20.11,Nara,16:45-17:10,Kintetsu-Nara boarding buffer,Buffer,Osaka Excel Hotel Tokyu
+20.11,Osaka,18:25-19:15,Check in at Osaka Excel Hotel Tokyu,Hotel,Osaka Excel Hotel Tokyu
+20.11,Osaka,19:15-20:45,Dinner near hotel,Food,Osaka Excel Hotel Tokyu
 21.11,Kyoto → Osaka,08:00-09:30,Nishiki Market,Food Market,Excel Hotel Tokyu Osaka
 21.11,Kyoto → Osaka,10:00-10:30,Shinkansen to Osaka,Train,Excel Hotel Tokyu Osaka
 21.11,Osaka,11:15-12:45,Umeda Sky Building,Viewpoint,Excel Hotel Tokyu Osaka
