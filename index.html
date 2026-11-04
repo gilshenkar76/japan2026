@@ -1089,7 +1089,7 @@ const routeNotesPresets = {
     tips: 'יש להשלים אריזה לפני ארוחת הבוקר ולסדר את המזוודות כך שלא נדרשת חזרה לקיוטו. Fushimi Inari ו-Todai-ji מוגנים; Kasuga Taisha יורד אם עייפים או מתעכבים. יש להזמין ארוחות לשישה, לבדוק את רכבת JR מ-Inari ולאשר את מסירת המזוודות עם המלון באוסקה.'
   },
   '21': {
-    overview: 'יום מעבר מדורג מקיוטו לאוסקה: בוקר בנישיקי, מעבר דרך Shijo ו-Kyoto Station לשינקנסן, המשך ל-Umeda (Sky Building ו-Grand Green), אחר הצהריים Namba Parks ושופינג ב-Shinsaibashi/Amerikamura, ולסיום צ׳ק-אין ב-Osaka Excel Hotel Tokyu.',
+    overview: 'יום מעבר מדורג מקיוטו לאוסקה: בוקר בנישיקי, מעבר דרך Shijo ו-Kyoto Station לשינקנסן, המשך ל-Umeda (Sky Building ו-Grand Green), אחר הצהריים Namba Parks ושופינג ב-Shinsaibashi/Amerikamura, ולסיום צ׳ק-אין ב-Villa Fontaine Grand Osaka Umeda.',
     tips: 'הכי נוח לעבוד עם IC Card לכל המטרו, לשמור מרווחי זמן קצרים בין המעברים, ולהשאיר את הקניות הכבדות לסוף היום לפני ההגעה למלון.'
   },
   '22': {
@@ -1384,7 +1384,7 @@ const data = {
     ["14:00<br>14:30","ארוחת צהריים באומדה","הפסקת אוכל קלה באזור Umeda Sky Building/התחנה לפני ההמשך לנמבה","assets/attractions/lunch.jpg","Umeda Osaka restaurants"],
     ["15:10<br>17:45","🛍️ קניות משותפות – Namba City","זמן טוב מאוד לקניות (2:35) גם אחרי הוספת ארוחת הצהריים","assets/attractions/day21/namba_city.jpg","Namba City Osaka"],
     ["18:00<br>20:00","🍺 Dotonbori Craft Beer Brewery","בירה וערב משותף — לא הייתי מקצר","https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=300&q=80","Dotonbori Craft Beer Brewery"],
-    ["20:30","הגעה ל-Osaka Excel Hotel Tokyu","סיום היום","assets/attractions/day21/hotel.jpg","Excel Hotel Tokyu Osaka"]
+    ["20:30","הגעה ל-Villa Fontaine Grand Osaka Umeda","סיום היום וצ׳ק-אין במלון באומדה.","assets/attractions/day21/hotel.jpg","Villa Fontaine Grand Osaka Umeda"]
   ]},
 '22': { title:"אוסקה – היסטוריה, שווקים וניאונים", route:"Excel Hotel Tokyu → Osaka Castle → Kuromon Market → Shinsekai → Namba Yasaka Shrine → Hozenji Yokocho → Dotonbori → Tombori Cruise", events:[
     ["09:15<br>11:00","Osaka Castle","פגישה עם המדריכה. סיור במבצר אוסקה עם רקע על איחוד יפן, סיפורו של Toyotomi Hideyoshi, נקודות תצפית יפות וצילומים סביב המתחם ההיסטורי.","assets/attractions/day22/osaka_castle.jpg","Osaka Castle"],
@@ -1521,7 +1521,7 @@ const transfersByDay = {
     {"t": "12:43<br>13:05", "title": "הליכה ל-Umeda Sky Building", "desc": "כולל יציאה מהתחנה והתמצאות — זמן ריאלי", "img": "assets/transfers/walk.jpg", "to": "Umeda Sky Building Osaka", "tag": "🚶 ~22 דק׳", "afterIdx": 2, "from": "Kyoto Yoshitsugu"},
     {"t": "14:30<br>15:10", "title": "מעבר ל-Namba", "desc": "הליכה לתחנה + Midosuji Line + יציאה בתחנת Namba", "img": "assets/transfers/train.jpg", "to": "Namba Station Osaka", "tag": "🚇 Midosuji Line", "afterIdx": 4, "from": "Umeda Osaka restaurants"},
     {"t": "17:45<br>18:00", "title": "הליכה למבשלת הבירה", "desc": "כ-15 דקות", "img": "assets/transfers/walk.jpg", "to": "Dotonbori Craft Beer Brewery", "tag": "🚶 ~15 דק׳", "afterIdx": 5, "from": "Namba City Osaka"},
-    {"t": "20:00<br>20:30", "title": "נסיעה למלון", "desc": "הליכה בהתאם למיקום / Hommachi", "img": "assets/transfers/train.jpg", "to": "Excel Hotel Tokyu Osaka", "tag": "🚇/🚶", "afterIdx": 6, "from": "Dotonbori Craft Beer Brewery"}
+    {"t": "20:00<br>20:30", "title": "נסיעה למלון", "desc": "נסיעה מ-Dotonbori לאזור Umeda והליכה קצרה למלון.", "img": "assets/transfers/train.jpg", "to": "Villa Fontaine Grand Osaka Umeda", "tag": "🚇/🚶", "afterIdx": 6, "from": "Dotonbori Craft Beer Brewery"}
   ],
   '22': [
     {"t": "08:15<br>08:40", "title": "נסיעה ל-Osaka Castle", "desc": "יציאה מהמלון ונסיעה ל-Osaka Castle במונית כדי להתחיל את הבוקר בזמן ובנוחות.", "img": "assets/transfers/taxi.jpg", "to": "Osaka Castle", "tag": "🚕 מונית · מעבר בוקר", "afterIdx": -1, "from": null},
@@ -1628,12 +1628,12 @@ const hotelsByDay = {
     extra: '4-1-15 Kutaro-cho, Chuo-ku, Osaka 541-0056, Japan'
   },
   '21': {
-    name: 'Excel Hotel Tokyu Osaka',
-    meta: 'אוסקה · Namba, Chuo Ward',
-    mapQuery: 'Excel Hotel Tokyu Osaka Namba',
+    name: 'Villa Fontaine Grand Osaka Umeda',
+    meta: 'אוסקה · Umeda, Kita Ward',
+    mapQuery: 'Villa Fontaine Grand Osaka Umeda',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
-    extra: '5-1-15 Namba, Chuo Ward, Osaka 542-0076, Japan'
+    extra: '2-15-9 Sonezaki, Kita-ku, Osaka 530-0057, Japan'
   },
   '22': {
     name: 'Excel Hotel Tokyu Osaka',
