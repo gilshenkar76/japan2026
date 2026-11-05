@@ -79,15 +79,18 @@ Date,City/Area,Time,Attraction / Event,Type,Hotel
 21.11,Osaka,17:30-17:55,Hozenji Yokocho,Historic Street,Osaka Excel Hotel Tokyu
 21.11,Osaka,18:00-20:00,Craft beer and dinner in Dotonbori,Food,Osaka Excel Hotel Tokyu
 21.11,Osaka,20:30-21:00,Check in at Osaka Excel Hotel Tokyu,Hotel,Osaka Excel Hotel Tokyu
-22.11,Osaka,09:00,Osaka Castle,Historic Castle,Excel Hotel Tokyu Osaka
-22.11,Osaka,12:00,Shinsekai + Kuromon Market,Food Market/District,Excel Hotel Tokyu Osaka
-22.11,Osaka,17:00,Dotonbori + Tombori Cruise,Nightlife/Cruise,Excel Hotel Tokyu Osaka
-23.11,Osaka,09:00-10:00,Sumiyoshi Taisha,Temple/Shrine,Excel Hotel Tokyu Osaka
-23.11,Osaka,10:30-12:30,Kaiyukan Aquarium,Aquarium,Excel Hotel Tokyu Osaka
-23.11,Osaka,12:30-13:30,Tempozan Harbor Village,Food/Waterfront,Excel Hotel Tokyu Osaka
-23.11,Osaka,14:00-15:00,Abeno Harukas 300,Viewpoint,Excel Hotel Tokyu Osaka
-23.11,Osaka,15:30-17:00,Shinsaibashi-suji,Shopping,Excel Hotel Tokyu Osaka
-23.11,Osaka,17:30-20:00,teamLab Botanical Garden,Digital Art,Excel Hotel Tokyu Osaka
+22.11,Osaka,09:00-10:30,Osaka Castle Main Tower + Stone Wall Museum,Historic Castle,Osaka Excel Hotel Tokyu
+22.11,Osaka,12:30-14:15,Shitennoji Temple + monthly market,Temple/Market,Osaka Excel Hotel Tokyu
+22.11,Osaka,14:40-16:30,Keitakuen Garden + Kintetsu Department Store,Garden/Shopping,Osaka Excel Hotel Tokyu
+22.11,Osaka,16:40-17:50,Abeno Harukas 300 at sunset,Viewpoint,Osaka Excel Hotel Tokyu
+22.11,Osaka,18:50-20:30,teamLab Botanical Garden Osaka,Digital Art,Osaka Excel Hotel Tokyu
+22.11,Osaka,21:20 onward,Late dinner + Midosuji Illumination,Food/Illumination,Osaka Excel Hotel Tokyu
+23.11,Osaka,09:00-10:00,Sumiyoshi Taisha,Temple/Shrine,Osaka Excel Hotel Tokyu
+23.11,Osaka,10:30-12:30,Kaiyukan Aquarium,Aquarium,Osaka Excel Hotel Tokyu
+23.11,Osaka,12:30-13:30,Tempozan Harbor Village,Food/Waterfront,Osaka Excel Hotel Tokyu
+23.11,Osaka,14:00-15:00,Abeno Harukas 300,Viewpoint,Osaka Excel Hotel Tokyu
+23.11,Osaka,15:30-17:00,Shinsaibashi-suji,Shopping,Osaka Excel Hotel Tokyu
+23.11,Osaka,17:30-20:00,teamLab Botanical Garden,Digital Art,Osaka Excel Hotel Tokyu
 24.11,Osaka → Tokyo,09:30,Hotel check-out,Logistics,remm PLUS Ginza
 24.11,Osaka → Tokyo,11:00-13:30,Shinkansen Nozomi to Tokyo,Train,remm PLUS Ginza
 24.11,Tokyo,13:30-14:30,Hotel check-in (remm PLUS Ginza),Hotel,remm PLUS Ginza
