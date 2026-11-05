@@ -921,8 +921,8 @@
             <div class="upload-hint">התמונות נשמרות בתיקיית האלבום של הטיול וזמינות לכל חברי הקבוצה.</div>
           </div>
           <div class="photo-upload-actions">
-            <button class="btn primary" data-photo-upload-button onclick="pickPhotoInput('camera')">📷 צילום</button>
-            <button class="btn ghost" data-photo-upload-button onclick="pickPhotoInput('library')">▦ בחירה מהטלפון</button>
+            <button class="btn primary" data-photo-upload-button onclick="pickPhotoInput('library')">▦ העלאת תמונות</button>
+            <button class="btn ghost" data-photo-upload-button onclick="pickPhotoInput('camera')">📷 צילום במצלמה</button>
           </div>
           <input id="photo-camera-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" capture="environment" hidden onchange="handleRepositoryPhotoUpload(event)">
           <input id="photo-library-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" multiple hidden onchange="handleRepositoryPhotoUpload(event)">
