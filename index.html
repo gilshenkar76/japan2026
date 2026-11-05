@@ -238,6 +238,18 @@
     .booking-details span{font-size:11px;color:#64748b;font-weight:800}
     .booking-details strong{font-size:13px;overflow-wrap:anywhere}
     @media(max-width:560px){.booking-details{grid-template-columns:1fr}}
+    .document-ticket{background:#fff;border:1px solid var(--line);border-radius:16px;margin-top:10px;box-shadow:var(--shadow);overflow:hidden}
+    .document-ticket summary{display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;list-style:none;user-select:none}
+    .document-ticket summary::-webkit-details-marker{display:none}
+    .document-ticket summary:focus-visible{outline:3px solid rgba(70,79,235,.3);outline-offset:-3px}
+    .ticket-summary-main{flex:1;min-width:0}
+    .ticket-title{font-size:15px;font-weight:900;line-height:1.35}
+    .ticket-main-info{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.45}
+    .ticket-status{flex:0 0 auto;color:#15803d;background:#dcfce7;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:900}
+    .ticket-chevron{flex:0 0 auto;font-size:20px;line-height:1;transition:transform .2s ease}
+    .document-ticket[open] .ticket-chevron{transform:rotate(180deg)}
+    .ticket-body{padding:0 14px 14px;border-top:1px solid var(--line)}
+    .ticket-body>p{margin:12px 0 0;font-size:13px;color:#475569}
     .flight-status-board{display:grid;gap:10px;margin-top:10px}
     .flight-status-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:10px 12px}
     .flight-status-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
@@ -711,33 +723,54 @@
         <div class="upload-hint">אפשר לעדכן בקלות את קישורי הטיסות והמלונות בבלוק ההגדרות בקוד.</div>
         <div class="quick-links" id="quickLinks"></div>
       </div>
-      <div class="upload-panel">
-        <div class="upload-row">
-          <div>
-            <div class="section-title" style="margin:0;font-size:18px">🥁 מופע התופים MIYABI בקיוטו</div>
-            <div class="upload-hint">הזמנה מאושרת ושולמה · 17 בנובמבר 2026 בשעה 18:00</div>
+      <details class="document-ticket">
+        <summary>
+          <div class="ticket-summary-main">
+            <div class="ticket-title">🥁 מופע התופים MIYABI בקיוטו</div>
+            <div class="ticket-main-info">17.11.2026 · 18:00 · הזמנה ARC-108388361</div>
           </div>
-          <span class="chip">מאושר</span>
+          <span class="ticket-status">מאושר</span>
+          <span class="ticket-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="ticket-body">
+          <div class="booking-details">
+            <div><span>מספר הזמנה</span><strong dir="ltr">ARC-108388361</strong></div>
+            <div><span>נוסע ראשי</span><strong>Gil Shenkar</strong></div>
+            <div><span>מועד</span><strong>יום שלישי, 17.11.2026 · 18:00</strong></div>
+            <div><span>כמות</span><strong>6 מבוגרים · תעריף רגיל</strong></div>
+            <div><span>סכום ששולם</span><strong dir="ltr">¥40,800</strong></div>
+            <div><span>משך</span><strong>כ-45 דקות · פתיחת דלתות ב-17:30</strong></div>
+            <div><span>מקום</span><strong>Hulic Hall Kyoto · Rissei Garden Hulic Kyoto, קומה 1</strong></div>
+            <div><span>כתובת</span><strong dir="ltr">310-2 Bizenjima-cho, Nakagyo-ku, Kyoto 604-8023</strong></div>
+            <div><span>גישה</span><strong>3 דקות הליכה מ-Kyoto-kawaramachi · 5 דקות מ-Gion-shijo</strong></div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" target="_blank" rel="noopener" href="https://arc-grp.jp/en/entertainment-en/">🌐 אתר המופע הרשמי</a>
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hulic%20Hall%20Kyoto">📍 ניווט לאולם</a>
+          </div>
         </div>
-        <div class="booking-details">
-          <div><span>מספר הזמנה</span><strong dir="ltr">ARC-108388361</strong></div>
-          <div><span>נוסע ראשי</span><strong>Gil Shenkar</strong></div>
-          <div><span>מועד</span><strong>יום שלישי, 17.11.2026 · 18:00</strong></div>
-          <div><span>כמות</span><strong>6 מבוגרים · תעריף רגיל</strong></div>
-          <div><span>סכום ששולם</span><strong dir="ltr">¥40,800</strong></div>
-          <div><span>משך</span><strong>כ-45 דקות · פתיחת דלתות ב-17:30</strong></div>
-          <div><span>מקום</span><strong>Hulic Hall Kyoto · Rissei Garden Hulic Kyoto, קומה 1</strong></div>
-          <div><span>כתובת</span><strong dir="ltr">310-2 Bizenjima-cho, Nakagyo-ku, Kyoto 604-8023</strong></div>
-          <div><span>גישה</span><strong>3 דקות הליכה מ-Kyoto-kawaramachi · 5 דקות מ-Gion-shijo</strong></div>
-        </div>
-        <div class="actions">
-          <a class="btn primary" target="_blank" rel="noopener" href="https://arc-grp.jp/en/entertainment-en/">🌐 אתר המופע הרשמי</a>
-          <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hulic%20Hall%20Kyoto">📍 ניווט לאולם</a>
-        </div>
-      </div>
-      <div class="event"><h3>✈️ כרטיסי טיסה</h3><p>תל אביב → טוקיו</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
-      <div class="event" style="margin-top:10px"><h3>🏨 הזמנות מלונות</h3><p>טוקיו, האקונה, נגויה, קיוטו ואוסקה</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
-      <div class="event" style="margin-top:10px"><h3>🚄 כרטיסי רכבות</h3><p>Shinkansen ומעברים בין הערים</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
+      </details>
+      <details class="document-ticket">
+        <summary>
+          <div class="ticket-summary-main"><div class="ticket-title">✈️ כרטיסי טיסה</div><div class="ticket-main-info">תל אביב → טוקיו</div></div>
+          <span class="ticket-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="ticket-body"><p>כרטיסי הטיסה, פרטי הנוסעים ואישורי ההזמנה.</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
+      </details>
+      <details class="document-ticket">
+        <summary>
+          <div class="ticket-summary-main"><div class="ticket-title">🏨 הזמנות מלונות</div><div class="ticket-main-info">טוקיו, האקונה, נגויה, קיוטו ואוסקה</div></div>
+          <span class="ticket-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="ticket-body"><p>אישורי המלונות, כתובות ופרטי הצ׳ק-אין.</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
+      </details>
+      <details class="document-ticket">
+        <summary>
+          <div class="ticket-summary-main"><div class="ticket-title">🚄 כרטיסי רכבות</div><div class="ticket-main-info">Shinkansen ומעברים בין הערים</div></div>
+          <span class="ticket-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="ticket-body"><p>כרטיסי הרכבות, הזמנות מושבים ומעברים בין הערים.</p><div class="actions"><button class="btn primary">פתיחה</button></div></div>
+      </details>
       <div class="upload-panel">
         <div class="upload-row">
           <div>
