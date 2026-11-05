@@ -951,7 +951,7 @@ const citiesByDay = {
   '20': { city: 'קיוטו → נארה → אוסקה', image: 'assets/attractions/day18/fushimi.jpg' },
   '21': { city: 'אוסקה', image: 'assets/attractions/day21/umeda_sky.jpg' },
   '22': { city: 'אוסקה', image: 'assets/attractions/day22/osaka_castle.jpg' },
-  '23': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80' },
+  '23': { city: 'אוסקה', image: 'assets/attractions/day23/sumiyoshi.jpg' },
   '24': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&q=80' },
   '25': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=600&q=80' },
   '26': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1554797589-7241bb691973?w=600&q=80' },
@@ -964,7 +964,6 @@ const routeMapsByDay = {
   '14': { src: 'assets/maps/day14_walking_map.png', ratio: '338 / 261' },
   '15': { src: 'assets/maps/day15_route_map.png', ratio: '400 / 250', legend: false },
   '16': { src: 'assets/maps/day16_route_map.png', ratio: '390 / 220', legend: false },
-  '23': { src: 'assets/maps/day23_route_map.png', ratio: '260 / 118', legend: false },
   '24': { src: 'assets/maps/day24_route_map.png', ratio: '254 / 246', legend: false }
 };
 
@@ -978,7 +977,7 @@ const themesByDay = {
   '20': 'פרידה מקיוטו – Fushimi Inari, נארה ומעבר למלון באוסקה',
   '21': 'אוסקה מצפון לדרום – Umeda, שוק Kuromon, Shinsekai, Dotonbori ומעבר מלון',
   '22': 'אוסקה ההיסטורית והמודרנית – Osaka Castle, Shitennoji, גן יפני, Harukas בשקיעה ו-teamLab',
-  '23': 'פסטיבל דושומאצ׳י, אקווריום, סומיושי תאישה, תצפית וערב קסום ב-teamLab',
+  '23': 'יום חג באוסקה – Shinno-sai, מקדש Sumiyoshi Taisha, קניות וארוחת פרידה',
   '24': "שינקנסן לטוקיו, טיול במרונוצ'י ובגינזה וערב עם ארוחת Akita Dining",
   '25': "הראג'וקו, אומוטסנדו ושיבויה — Shibuya Sky ואווירת ערב תוססת",
   '26': "שוק צוקיג'י, teamLab Borderless באזאבודאי הילס וקניות בגינזה",
@@ -1049,12 +1048,11 @@ const transitByDay = {
     { from: 'Namba', to: 'Osaka Excel Hotel Tokyu', note: 'הליכה צפונה לאורך Midosuji Illumination בדרך הישירה למלון', line: 'רגלי / Midosuji Line', time: 'לפי הקצב', cost: '—' }
   ],
   '23': [
-    { from: 'Osaka Excel Hotel Tokyu', to: 'Doshomachi / Kitahama', note: 'כולל הליכה בתחנה', line: 'Osaka Metro', time: '~35 דק׳', cost: '¥240' },
-    { from: 'Doshomachi', to: 'Kaiyukan Aquarium', note: 'מעבר לכיוון מפרץ אוסקה', line: 'Osaka Metro Chuo Line', time: '~40 דק׳', cost: '¥280' },
-    { from: 'Kaiyukan', to: 'Sumiyoshi Taisha', note: 'מומלץ מונית כדי לא לאבד זמן', line: 'מונית', time: '~45 דק׳', cost: '~¥2,000' },
-    { from: 'Sumiyoshi Taisha', to: 'Nagai', note: 'מונית נוחה מאוד למקטע הזה', line: 'מונית', time: '~25 דק׳', cost: '~¥1,300' },
-    { from: 'Nagai', to: 'Tennoji (Abeno Harukas)', note: 'מעבר קצר יחסית', line: 'Osaka Metro Midosuji Line', time: '~30 דק׳', cost: '¥240' },
-    { from: 'Abeno Harukas', to: 'Osaka Excel Hotel Tokyu', note: 'חזרה למלון', line: 'מונית', time: '~25 דק׳', cost: '~¥1,500' }
+    { from: 'Osaka Excel Hotel Tokyu', to: 'Doshomachi', note: 'מונית בבוקר לפני תחילת הגבלות התנועה ב-Midosuji; הזמן משוער', line: 'מונית', time: '~10–20 דק׳ (הערכה)', cost: '—' },
+    { from: 'Doshomachi', to: 'Namba', note: 'תחבורה ציבורית עדיפה לאחר תחילת הגבלות התנועה ב-Midosuji', line: 'Osaka Metro', time: '~30 דק׳ כולל הליכה (הערכה)', cost: '¥240' },
+    { from: 'Nankai Namba', to: 'Sumiyoshitaisha', note: 'רכבת מקומית בלבד; רכבות אקספרס אינן עוצרות בתחנה', line: 'Nankai Main Line Local + רגלי', time: '~30 דק׳', cost: '¥240' },
+    { from: 'Sumiyoshitaisha', to: 'Namba / Shinsaibashi', note: 'רכבת Nankai מקומית בחזרה ל-Namba והליכה לאזור הקניות', line: 'Nankai Main Line Local + רגלי', time: '~30 דק׳', cost: '¥240' },
+    { from: 'Dotonbori / Namba', to: 'Osaka Excel Hotel Tokyu', note: 'הליכה צפונה או קו Midosuji ל-Hommachi; חוזרים לאריזה לקראת המעבר לטוקיו', line: 'רגלי / Midosuji Line', time: 'לפי הקצב', cost: '¥0–¥190' }
   ],
   '24': [
     { from: 'Shin-Osaka Station', to: 'Tokyo Station', note: 'שינקנסן Nozomi מאוסקה לטוקיו', line: 'שינקנסן JR Tokaido', time: '~2:30 שעות', cost: '¥14,720' },
@@ -1097,8 +1095,8 @@ const routeNotesPresets = {
     tips: 'אין תיקים לסחוב היום. יש להזמין מראש את Harukas 300 ואת teamLab, ללבוש שכבות חמות לגן הלילי ולבדוק באפליקציית תחבורה יום קודם את הזמנים המסומנים כהערכה. ארוחת הערב מאוחרת, לכן חשוב לאכול נשנוש ב-Abeno ולהזמין שולחן סביב 21:15.'
   },
   '23': {
-    overview: 'יום מלא של אוסקה: פסטיבל שינו-סאי בדושומאצ׳י, אקווריום ענק, שרין עתיק בסומיושי תאישה, תצפית מ-Abeno Harukas וערב קסום ב-teamLab Botanical Garden!',
-    tips: 'הזמינו כרטיסים ל-Kaiyukan ול-teamLab מראש! קחו ז\'קט לערב — מתקרר בגן. שקלו מוניות בין סומיושי לנגאי כדי לא לאבד זמן, ותנו לעצמכם הפסקת קפה קצרה לפני הכניסה ל-teamLab.'
+    overview: 'יום חג רגוע יחסית שמתחיל בפסטיבל Shinno-sai ברובע התרופות ההיסטורי Doshomachi, ממשיך לארוחת צהריים ב-Namba ולביקור ב-Sumiyoshi Taisha, ומסתיים בארבע שעות קניות ב-Shinsaibashi וב-Amerikamura ובארוחת פרידה באזור Dotonbori.',
+    tips: 'אחרי 11:30 מעדיפים מטרו על מונית בגלל הגבלות התנועה ב-Midosuji. ל-Sumiyoshitaisha עולים רק על רכבת Nankai מקומית. זמני הנסיעה המסומנים כהערכה דורשים בדיקה יום קודם, ויש להזמין מראש מקום לארוחת הפרידה ולשמור זמן לאריזה בערב.'
   },
   '24': {
     overview: "היום עוברים מאוסקה לטוקיו ברכבת השינקנסן Nozomi, מסתובבים באזור תחנת טוקיו ומרונוצ'י, אוכלים מונג'איאקי בצוקישימה, מתארגנים במלון בגינזה, ואז יוצאים לערב מפנק של Akita Dining Namahage ובר מוזיקה בגינזה.",
@@ -1401,16 +1399,14 @@ const data = {
   ["21:20<br>22:50","ארוחת ערב מאוחרת ב-Namba / Dotonbori","איזקאיה או okonomiyaki הם בחירה טובה בשעה הזו. מומלץ להזמין שולחן סביב 21:15 ולוודא מראש את שעת ההזמנה האחרונה במטבח.","assets/attractions/day22/dotonbori.jpg","Namba Osaka restaurants","🍽️ 90 דקות · חשוב להזמין"],
   ["22:50 ואילך","Midosuji Illumination בדרך למלון","הליכה צפונה לאורך שדרת Midosuji המוארת לכיוון Osaka Excel Hotel Tokyu. אפשר לקצר במטרו אם עייפים.","assets/attractions/day22/dotonbori.jpg","Midosuji Illumination Osaka","✨ חינם · חזרה טבעית למלון"]
   ]},
-  '23': { title:"אוסקה – דושומאצ'י, אקווריום, סומיושי תאישה, תצפית ו-teamLab", route:"Doshomachi (Shinno-sai) → Kaiyukan → Sumiyoshi Taisha → teamLab Botanical Garden → Abeno Harukas", events:[
-    ["10:00<br>11:30","Shinno-sai Festival","פסטיבל שנתי במקדש סוקונאהיקונה שברובע דושומאצ'י – מקדש קטן, דוכני אוכל וסובניר ואווירת פסטיבל חגיגית","assets/attractions/day22/kuromon_market.jpg","Sukunahikona Shrine Osaka","1:30 ש׳ – מספיק זמן למקדש, לדוכנים ולאווירת הפסטיבל"],
-    ["12:10<br>14:20","Kaiyukan Aquarium (海遊館)","אחד מגדולי האקווריומים בעולם – מנהרת מים ענקית עם לוויתן כרישים, פינגווינים ועוד","assets/attractions/day23/kaiyukan.jpg","Kaiyukan Aquarium Osaka","2:10 ש׳ – זמן טוב לביקור בלי לרוץ"],
-    ["14:20<br>15:00","ארוחת צהריים – Tempozan","באזור Tempozan עדיף מקום עם שירות מהיר יחסית","assets/attractions/lunch.jpg","Tempozan Harbor Village Osaka","40 דק׳"],
-    ["15:45<br>16:40","Sumiyoshi Taisha","אחד המקדשים הסינטואיסטיים העתיקים ביפן, עם גשרים ייחודיים ואווירה שקטה","assets/attractions/day23/sumiyoshi.jpg","Sumiyoshi Taisha Osaka","55 דק׳ – מספיק לביקור נינוח לפני ההמשך"],
-    ["17:05<br>17:30","קפה / מנוחה / רחצה","זמן קצר לנוח, להתרענן ולהתארגן לפני הכניסה ל-teamLab","assets/transfers/walk.jpg","Nagai Park Osaka","25 דק׳ – יש גם מרווח ביטחון של עיכובים"],
-    ["","__SECTION__","✨ ערב: teamLab Botanical Garden","",""],
-    ["18:00<br>19:45","teamLab Botanical Garden Osaka","גן בוטני עם אמנות דיגיטלית קסומה, אורות וטבע. חוויה בלתי נשכחת בלילה","assets/attractions/day23/teamlab.jpg","teamLab Botanical Garden Osaka","1:45 ש׳ – זמן טוב מאוד, במיוחד אחרי החשיכה"],
-    ["20:15<br>21:15","Abeno Harukas 300","פלטפורמת תצפית בקומה 60 עם נוף 360° על אוסקה. אחת הגבוהות ביפן","assets/attractions/day23/abeno.jpg","Abeno Harukas 300 Osaka","1 שעה – תצפית לילה, תמונות וקצת זמן להסתובב"],
-    ["21:40","הגעה למלון","סיום יום מלא אבל מאוזן","assets/attractions/day23/hotel.jpg","Osaka Excel Hotel Tokyu"]
+  '23': { title:"אוסקה – Shinno-sai, Sumiyoshi, קניות וארוחת פרידה", route:"Osaka Excel Hotel Tokyu → Doshomachi → Namba → Sumiyoshi Taisha → Shinsaibashi → Dotonbori → המלון", events:[
+    ["08:15<br>09:15","ארוחת בוקר ב-Osaka Excel Hotel Tokyu","התחלה רגועה במלון אחרי הערב המאוחר של 22 בנובמבר.","assets/attractions/day23/hotel.jpg","Osaka Excel Hotel Tokyu","🍽️ שעה רגועה"],
+    ["10:00<br>11:15","Shinno-sai Festival במקדש Sukunahikona","פסטיבל חינמי של רובע התרופות ההיסטורי Doshomachi, המתקיים רק ב-22–23 בנובמבר. בין הדוכנים מחפשים את נמר הנייר hariko, קמע מסורתי נגד מחלות.","assets/transfers/walk.jpg","Sukunahikona Shrine Osaka","🐯 יום חג · 75 דקות"],
+    ["11:45<br>13:00","ארוחת צהריים ב-Namba","ארוחת צהריים נוחה לפני הרכבת דרומה. משאירים מספיק זמן להגיע לתחנת Nankai Namba ולמצוא רכבת מקומית.","assets/attractions/lunch.jpg","Nankai Namba Station restaurants","🍽️ 75 דקות"],
+    ["13:30<br>15:00","Sumiyoshi Taisha","מקדש שינטו שנוסד בשנת 211, עם ארבעה מבנים מרכזיים בסגנון sumiyoshi-zukuri וגשר הקשת האדום Sorihashi. הכניסה חינם ואין בתי קפה בשטח.","assets/attractions/day23/sumiyoshi.jpg","Sumiyoshi Taisha Osaka","⛩️ 90 דקות · שערים חיצוניים עד 16:00"],
+    ["15:30<br>19:30","קניות ב-Shinsaibashi ו-Amerikamura","ארבע שעות ל-Uniqlo, מדרחוב Shinsaibashi-suji ו-Amerikamura. המלון נמצא במרחק הליכה קצר מהאזור, כך שאפשר להניח בו שקיות באמצע.","assets/attractions/day23/shinsaibashi.jpg","Shinsaibashi-suji Shopping Street Osaka","🛍️ 4 שעות · Uniqlo עד 21:00"],
+    ["19:30<br>21:15","ארוחת פרידה ב-Dotonbori / Namba","ערב אחרון באוסקה עם okonomiyaki, kushikatsu או איזקאיה. המסעדה עדיין לא נבחרה ולכן חשוב להזמין מקום מראש לשישה.","assets/attractions/day22/dotonbori.jpg","Dotonbori Osaka restaurants","🍽️ 105 דקות · חשוב להזמין"],
+    ["21:30 ואילך","אריזה במלון","ב-Osaka Excel Hotel Tokyu בודקים שיש מקום במזוודות לכל הקניות ומשלימים אריזה לקראת המעבר לטוקיו.","assets/attractions/day23/hotel.jpg","Osaka Excel Hotel Tokyu","🧳 אריזה לקראת מחר"]
   ]},
   '24': { title:"אוסקה → טוקיו – יום ההגעה", route:"Shin-Osaka → Shinkansen Nozomi → Tokyo Station → Ginza", events:[
     ["09:00","יציאה מ-Osaka Excel Hotel Tokyu","יוצאים רק עם תיקי יום, המזוודות כבר בדרך לטוקיו","assets/attractions/day24/luggage_deposit.jpg","Osaka Excel Hotel Tokyu"],
@@ -1537,12 +1533,11 @@ const transfersByDay = {
     {"t": "20:30<br>21:20", "title": "Nagai → Namba", "desc": "הליכה לתחנת Nagai וקו Midosuji ישיר ל-Namba. הזמן הכולל כולל יציאה מהגן ומשוער.", "img": "assets/transfers/train.jpg", "to": "Namba Station Osaka", "tag": "🚶 + 🚇 ~50 דק׳ (הערכה)", "afterIdx": 8, "from": "teamLab Botanical Garden Osaka"}
   ],
   '23': [
-    {"t": "09:15<br>09:50", "title": "נסיעה ל-Doshomachi / Kitahama", "desc": "מעבר בתחבורה ציבורית לרובע התרופות ההיסטורי של אוסקה", "img": "assets/transfers/train.jpg", "to": "Doshomachi Osaka", "tag": "🚇 ~35 דק׳ · כולל הליכה בתחנה", "afterIdx": -1, "from": null},
-    {"t": "11:30<br>12:10", "title": "נסיעה ל-Kaiyukan", "desc": "מעבר לכיוון מפרץ אוסקה (Osaka Bay)", "img": "assets/transfers/train.jpg", "to": "Kaiyukan Aquarium Osaka", "tag": "🚇 ~40 דק׳", "afterIdx": 0, "from": "Sukunahikona Shrine Osaka"},
-    {"t": "15:00<br>15:45", "title": "מעבר ל-Sumiyoshi Taisha", "desc": "כדאי לשקול מונית כדי לא לאבד זמן", "img": "assets/transfers/taxi.jpg", "to": "Sumiyoshi Taisha Osaka", "tag": "🚕 ~45 דק׳", "afterIdx": 2, "from": "Tempozan Harbor Village Osaka"},
-    {"t": "16:40<br>17:05", "title": "מעבר ל-Nagai", "desc": "מונית יכולה להיות נוחה מאוד כאן", "img": "assets/transfers/taxi.jpg", "to": "Nagai Osaka", "tag": "🚕 ~25 דק׳", "afterIdx": 3, "from": "Sumiyoshi Taisha Osaka"},
-    {"t": "17:30<br>17:45", "title": "הליכה ל-teamLab", "desc": "הליכה רגועה בלי צורך למהר", "img": "assets/transfers/walk.jpg", "to": "teamLab Botanical Garden Osaka", "tag": "🚶 ~30 דק׳", "afterIdx": 4, "from": "Nagai Park Osaka"},
-    {"t": "19:45<br>20:15", "title": "מעבר Nagai → Tennoji", "desc": "מעבר קצר יחסית לכיוון Abeno Harukas", "img": "assets/transfers/train.jpg", "to": "Tennoji Station Osaka", "tag": "🚆 ~30 דק׳", "afterIdx": 6, "from": "teamLab Botanical Garden Osaka"}
+    {"t": "09:30<br>09:50", "title": "מונית ל-Doshomachi", "desc": "נסיעת בוקר לפני תחילת הגבלות התנועה ב-Midosuji סביב 11:30. זמן הנסיעה משוער.", "img": "assets/transfers/taxi.jpg", "to": "Sukunahikona Shrine Osaka", "tag": "🚕 ~10–20 דק׳ (הערכה)", "afterIdx": 0, "from": "Osaka Excel Hotel Tokyu"},
+    {"t": "11:15<br>11:45", "title": "Doshomachi → Namba", "desc": "עוברים ברכבת התחתית ולא במונית בגלל הגבלות התנועה ב-Midosuji. הזמן הכולל כולל הליכה ומשוער.", "img": "assets/transfers/train.jpg", "to": "Namba Station Osaka", "tag": "🚇 + 🚶 ~30 דק׳ (הערכה)", "afterIdx": 1, "from": "Sukunahikona Shrine Osaka"},
+    {"t": "13:00<br>13:30", "title": "Nankai Namba → Sumiyoshitaisha", "desc": "עולים על רכבת Nankai מקומית בלבד, משום שרכבות האקספרס אינן עוצרות ב-Sumiyoshitaisha, ואז הולכים כ-3 דקות למקדש.", "img": "assets/transfers/train.jpg", "to": "Sumiyoshi Taisha Osaka", "tag": "🚆 Local + 🚶 ~30 דק׳", "afterIdx": 2, "from": "Nankai Namba Station"},
+    {"t": "15:00<br>15:30", "title": "חזרה ל-Namba / Shinsaibashi", "desc": "רכבת Nankai מקומית בחזרה ל-Namba והליכה לאזור הקניות.", "img": "assets/transfers/train.jpg", "to": "Shinsaibashi-suji Shopping Street Osaka", "tag": "🚆 Local + 🚶 ~30 דק׳", "afterIdx": 3, "from": "Sumiyoshitaisha Station"},
+    {"t": "21:15<br>21:30", "title": "חזרה ל-Osaka Excel Hotel Tokyu", "desc": "הליכה צפונה או קו Midosuji ל-Hommachi, לפי העייפות ומיקום המסעדה. זמן ההגעה תלוי במסעדה שתיבחר.", "img": "assets/transfers/walk.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚶 / 🚇 ~15 דק׳ ומעלה", "afterIdx": 5, "from": "Dotonbori Osaka"}
   ],
   '24': [
     {"t": "09:00<br>09:25", "title": "מונית ל-Shin-Osaka Station", "desc": "התחלה רגועה בלי לחץ", "img": "assets/transfers/taxi.jpg", "to": "Shin-Osaka Station", "tag": "", "afterIdx": 0, "from": "Osaka Excel Hotel Tokyu"},
