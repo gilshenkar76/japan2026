@@ -145,16 +145,17 @@
     .event-title-line.title-rtl{text-align:right;direction:rtl}
     .event-transit{font-size:11px;color:var(--muted);margin-top:7px}
     .event-desc{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
-    .timeline-osaka .event{position:relative;display:block;min-height:210px;padding:0;isolation:isolate;background:#1f2937;border:4px solid #ff7a45}
-    .timeline-osaka .event::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(15,23,42,.35) 0%,rgba(15,23,42,.16) 28%,rgba(15,23,42,.78) 65%,rgba(15,23,42,.94) 100%)}
-    .timeline-osaka .event-img-nav{position:absolute;inset:0;z-index:0;width:100%;height:100%;min-height:0;border-radius:0}
-    .timeline-osaka .event-img-nav img{width:100%;height:100%;min-height:0;object-fit:cover}
-    .timeline-osaka .event-img-nav::after{z-index:3;bottom:10px;right:10px;border-radius:12px}
-    .timeline-osaka .time-badge{top:12px;right:12px;left:auto;width:max-content;max-width:calc(100% - 24px);padding:6px 10px;border-radius:9px;background:rgba(15,23,42,.82);font-size:13px;box-shadow:0 3px 12px rgba(0,0,0,.25)}
-    .timeline-osaka .event-content{position:relative;z-index:2;min-height:210px;padding:88px 12px 12px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;pointer-events:none;text-shadow:0 2px 5px rgba(0,0,0,.8)}
-    .timeline-osaka .event-content h3{position:absolute;top:12px;left:12px;right:132px;margin:0;font-size:18px;line-height:1.35;color:#fff;overflow:visible}
-    .timeline-osaka .event-desc{font-size:15px;line-height:1.55;color:#fff;font-weight:600}
-    .timeline-osaka .event-transit{margin-top:6px;font-size:13px;line-height:1.45;color:#f8fafc;font-weight:800}
+    .timeline-photo .event{position:relative;display:block;min-height:210px;padding:0;isolation:isolate;background:#1f2937;border:4px solid #ff7a45}
+    .timeline-photo .event::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(15,23,42,.35) 0%,rgba(15,23,42,.16) 28%,rgba(15,23,42,.78) 65%,rgba(15,23,42,.94) 100%)}
+    .timeline-photo .event-img-nav{position:absolute;inset:0;z-index:0;width:100%;height:100%;min-height:0;border-radius:0}
+    .timeline-photo .event-img-nav img{width:100%;height:100%;min-height:0;object-fit:cover}
+    .timeline-photo .event-img-nav::after{z-index:3;bottom:10px;right:10px;border-radius:12px}
+    .timeline-photo .time-badge{top:12px;right:12px;left:auto;width:max-content;max-width:calc(100% - 24px);padding:6px 10px;border-radius:9px;background:rgba(15,23,42,.82);font-size:13px;box-shadow:0 3px 12px rgba(0,0,0,.25)}
+    .timeline-photo .event-content{position:relative;z-index:2;min-height:210px;padding:88px 12px 12px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;pointer-events:none;text-shadow:0 2px 5px rgba(0,0,0,.8)}
+    .timeline-photo .event-content h3{position:absolute;top:12px;left:12px;right:132px;margin:0;font-size:18px;line-height:1.35;color:#fff;overflow:visible}
+    .timeline-photo .event-desc{font-size:15px;line-height:1.55;color:#fff;font-weight:600}
+    .timeline-photo .event-transit{margin-top:6px;font-size:13px;line-height:1.45;color:#f8fafc;font-weight:800}
+    .timeline-photo .event-content .actions,.timeline-photo .event-content .audio-player{pointer-events:auto;text-shadow:none}
     .audio-player{margin-top:8px;background:#f8fafc;border-radius:10px;padding:8px 10px;border:1px solid #e2e8f0;min-width:0}
     .audio-player .ap-row{display:flex;flex-direction:row-reverse;align-items:center;gap:8px;min-width:0}
     .audio-player .ap-btn{border:none;background:#3730a3;color:#fff;width:30px;height:30px;border-radius:50%;font-size:13px;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center}
@@ -3193,7 +3194,7 @@ function render(day){
   const tl=document.getElementById('timeline'); tl.innerHTML='';
   
   // Shared timeline card layout (flexible height + min-height rule) for all days
-  tl.className = isOsakaDay ? 'timeline timeline-osaka' : 'timeline';
+  tl.className = 'timeline timeline-photo';
   tl.innerHTML += transferChipsHtml(day, -1);
   data[day].events.forEach((e, idx)=>{
     if (e[1] === '__SECTION__') { tl.innerHTML += `<div class="tl-section">${e[2]}</div>`; return; }
