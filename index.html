@@ -1036,7 +1036,7 @@ const transitByDay = {
     { from: 'Kuromon Ichiba Market', to: 'Shinsekai', note: 'מונית נוחה יותר עם התיקים הקטנים', line: 'מונית', time: '~10–15 דק׳ (הערכה)', cost: '—' },
     { from: 'Shinsekai', to: 'Namba Yasaka Shrine', note: 'מעבר קצר במונית', line: 'מונית', time: '~10–15 דק׳ (הערכה)', cost: '—' },
     { from: 'Namba Yasaka Shrine', to: 'Dotonbori', note: 'קפה ומנוחה ב-Namba ואז הליכה ל-Dotonbori', line: 'רגלי', time: '~1:05 שעות כולל הפסקה', cost: '—' },
-    { from: 'Hozenji Yokocho', to: 'Osaka Excel Hotel Tokyu', note: 'קו Midosuji מ-Namba ל-Hommachi והליכה מיציאה 13; הליכה מלאה היא חלופה', line: 'Midosuji Line + רגלי', time: '~30 דק׳', cost: '¥190' }
+    { from: 'Dotonbori Craft Beer Brewery', to: 'Osaka Excel Hotel Tokyu', note: 'הליכה ל-Namba, קו Midosuji ל-Hommachi והליכה מיציאה 13', line: 'Midosuji Line + רגלי', time: '~30 דק׳', cost: '¥190' }
   ],
   '22': [
     { from: 'Excel Hotel Tokyu Osaka', to: 'Osaka Castle', note: 'יציאה בבוקר מהמלון לכיוון הטירה', line: 'Osaka Metro / הליכה', time: '~20–25 דק׳', cost: '¥190–¥240' },
@@ -1382,10 +1382,10 @@ const data = {
     ["13:25<br>14:35","Shinsekai ואזור Tsutenkaku","אוסקה רטרו בסגנון תחילת המאה ה-20, עם שלטי ניאון צבעוניים, מגדל Tsutenkaku ודוכני kushikatsu.","assets/attractions/day22/shinsekai.jpg","Shinsekai Osaka","🏮 כ-70 דקות"],
     ["14:55<br>15:25","Namba Yasaka Shrine","מקדש קטן וזכיר עם במה ענקית בצורת ראש אריה. אפשר לוותר על העצירה אם היום מתארך.","assets/attractions/day22/namba_yasaka.jpg","Namba Yasaka Shrine Osaka","🦁 אופציונלי · 30 דקות"],
     ["15:25<br>16:30","קפה ומנוחה ב-Namba","הפסקה אמיתית עם התיקים הקטנים לפני חלק הערב של היום.","assets/attractions/lunch.jpg","Namba Osaka cafes","☕ 65 דקות מנוחה"],
-    ["16:30<br>17:45","Dotonbori בשעת בין ערביים","הליכה לאורך התעלה, Ebisu Bridge ושלט Glico המפורסם בזמן שהאורות מתחילים להידלק.","assets/attractions/day22/dotonbori.jpg","Dotonbori Osaka","🌆 75 דקות"],
+    ["16:30<br>17:30","Dotonbori בשעת בין ערביים","הליכה לאורך התעלה, Ebisu Bridge ושלט Glico המפורסם בזמן שהאורות מתחילים להידלק.","assets/attractions/day22/dotonbori.jpg","Dotonbori Osaka","🌆 60 דקות"],
+    ["17:30<br>17:55","Hozenji Yokocho","סמטה צרה וישנה ליד מקדש Hozenji, עם אווירת ערב נעימה במיוחד ובדרך הטבעית לארוחת הערב.","assets/attractions/day22/hozenji.jpg","Hozenji Yokocho Osaka","🏮 25 דקות · לפני ארוחת הערב"],
     ["18:00<br>20:00","בירה בוטיק וארוחת ערב ב-Dotonbori","שעתיים במבשלת הבירה מהתוכנית המקורית, לארוחת ערב ובירה מקומית.","assets/attractions/day22/dotonbori.jpg","Dotonbori Craft Beer Brewery","🍺 ארוחת ערב · שעתיים"],
-    ["20:00<br>20:30","Hozenji Yokocho","סמטה צרה וישנה ליד מקדש Hozenji, עם אווירת ערב נעימה במיוחד.","assets/attractions/day22/hozenji.jpg","Hozenji Yokocho Osaka","🏮 הליכה קצרה מ-Dotonbori"],
-    ["20:30<br>21:00","צ׳ק-אין ב-Osaka Excel Hotel Tokyu","נסיעה מ-Namba ל-Hommachi והליכה קצרה מיציאה 13. המזוודות הראשיות כבר מחכות במלון.","assets/attractions/day21/hotel.jpg","Osaka Excel Hotel Tokyu","🏨 מעבר מלון והשלמת צ׳ק-אין"],
+    ["20:30<br>21:00","צ׳ק-אין ב-Osaka Excel Hotel Tokyu","המזוודות הראשיות כבר מחכות במלון. משלימים צ׳ק-אין ומתארגנים בחדרים.","assets/attractions/day21/hotel.jpg","Osaka Excel Hotel Tokyu","🏨 השלמת צ׳ק-אין"],
   ]},
 '22': { title:"אוסקה – היסטוריה, שווקים וניאונים", route:"Excel Hotel Tokyu → Osaka Castle → Kuromon Market → Shinsekai → Namba Yasaka Shrine → Hozenji Yokocho → Dotonbori → Tombori Cruise", events:[
     ["09:15<br>11:00","Osaka Castle","פגישה עם המדריכה. סיור במבצר אוסקה עם רקע על איחוד יפן, סיפורו של Toyotomi Hideyoshi, נקודות תצפית יפות וצילומים סביב המתחם ההיסטורי.","assets/attractions/day22/osaka_castle.jpg","Osaka Castle"],
@@ -1519,7 +1519,8 @@ const transfersByDay = {
     {"t": "10:45<br>11:40", "title": "Umeda Sky Building → Kuromon Market", "desc": "הליכה של כ-15 דקות לתחנת Umeda, קו Midosuji ישיר ל-Namba ללא החלפות, ואז הליכה של כ-10–15 דקות לשוק Kuromon.", "img": "assets/transfers/train.jpg", "to": "Kuromon Ichiba Market Osaka", "tag": "🚶 + 🚇 + 🚶 ~55 דק׳ (הערכה)", "afterIdx": 1, "from": "Umeda Sky Building Osaka"},
     {"t": "13:00<br>13:25", "title": "מונית ל-Shinsekai", "desc": "מונית קצרה ונוחה יותר עם התיקים הקטנים.", "img": "assets/transfers/taxi.jpg", "to": "Shinsekai Osaka", "tag": "🚕 ~10–15 דק׳ (הערכה)", "afterIdx": 2, "from": "Kuromon Ichiba Market Osaka"},
     {"t": "14:35<br>14:55", "title": "מונית ל-Namba Yasaka Shrine", "desc": "מעבר קצר מ-Shinsekai למקדש ראש האריה.", "img": "assets/transfers/taxi.jpg", "to": "Namba Yasaka Shrine Osaka", "tag": "🚕 ~10–15 דק׳ (הערכה)", "afterIdx": 3, "from": "Shinsekai Osaka"},
-    {"t": "17:45<br>18:00", "title": "הליכה למבשלת הבירה", "desc": "הליכה קצרה בתוך Dotonbori לקראת ארוחת הערב.", "img": "assets/transfers/walk.jpg", "to": "Dotonbori Craft Beer Brewery", "tag": "🚶 ~15 דק׳", "afterIdx": 6, "from": "Dotonbori Osaka"}
+    {"t": "17:55<br>18:00", "title": "הליכה למבשלת הבירה", "desc": "הליכה קצרה מ-Hozenji Yokocho לארוחת הערב.", "img": "assets/transfers/walk.jpg", "to": "Dotonbori Craft Beer Brewery", "tag": "🚶 ~5 דק׳", "afterIdx": 7, "from": "Hozenji Yokocho Osaka"},
+    {"t": "20:00<br>20:30", "title": "נסיעה ל-Osaka Excel Hotel Tokyu", "desc": "הליכה לתחנת Namba, קו Midosuji ל-Hommachi, ואז הליכה קצרה מיציאה 13 למלון.", "img": "assets/transfers/train.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚶 + 🚇 + 🚶 ~30 דק׳", "afterIdx": 8, "from": "Dotonbori Craft Beer Brewery"}
   ],
   '22': [
     {"t": "08:15<br>08:40", "title": "נסיעה ל-Osaka Castle", "desc": "יציאה מהמלון ונסיעה ל-Osaka Castle במונית כדי להתחיל את הבוקר בזמן ובנוחות.", "img": "assets/transfers/taxi.jpg", "to": "Osaka Castle", "tag": "🚕 מונית · מעבר בוקר", "afterIdx": -1, "from": null},
