@@ -22,6 +22,10 @@
 - `index.html` is a single-file SPA (UI + logic + data). Day content lives in the
   `data`, `citiesByDay`, `hotelsByDay`, `routeMapsByDay`, and `themesByDay` objects.
 - The day header is a data-driven banner built by `renderDayBanner(day)`.
+- `routeNotesPresets[day].overview` is the authoritative full-day Hebrew description
+  shown in the read-only `תכנון היום` section. Whenever events, order, timing,
+  transport, bookings, meals, or evening plans change, update that overview in the
+  same edit and validate it against the complete day timeline.
 - Per-day route maps are extracted from `updated_days/DD_11_2026.jpeg` into
   `assets/maps/dayDD_route_map.png` and registered in `routeMapsByDay`.
 
