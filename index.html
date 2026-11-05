@@ -89,10 +89,8 @@
     .map-card.clean-map{height:auto;aspect-ratio:338/261}
     .map-card.clean-map .map-chip,
     .map-card.clean-map .route-line{display:none}
-    #route.route-osaka #dayMapCard{display:none}
     .map-chip{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.94);padding:8px 11px;
       border-radius:14px;font-size:12px;font-weight:800}
-    #route.route-osaka .map-chip{display:none}
     .route-line{position:absolute;bottom:14px;right:14px;left:14px;background:rgba(17,24,39,.85);color:#fff;
       border-radius:16px;padding:11px 13px;font-size:13px}
     .section-title{font-size:17px;font-weight:900;margin:20px 2px 10px}
@@ -3035,25 +3033,22 @@ function render(day){
   if (!data[day]) return;
   if (isRouteNotesEditing) saveCurrentRouteNotes();
   currentRouteDay = day;
-  const isOsakaDay = ['21', '22', '23'].includes(day);
-  document.getElementById('route')?.classList.toggle('route-osaka', isOsakaDay);
   
   // Hide hero header when rendering day page
   const hero = document.querySelector('.hero');
   if (hero) hero.style.display = 'none';
   
   if (!routeDayNotes[day]) {
-    if (day === '14') {
-      // Day 14: Empty by default (will hide section)
-      routeDayNotes[day] = { overview: '', tips: '' };
-    } else if (routeNotesPresets[day]) {
-      // Days with a curated Hebrew preset
-      routeDayNotes[day] = { ...routeNotesPresets[day] };
+    if (routeNotesPresets[day]) {
+      const preset = routeNotesPresets[day];
+      routeDayNotes[day] = {
+        overview: [preset.overview, preset.tips].filter(Boolean).join(' '),
+        tips: ''
+      };
     } else {
-      // Other days: Default templates
       routeDayNotes[day] = {
         overview: `תכנון יום ${day}.11: ${data[day].route}`,
-        tips: 'צאו בזמן, בדקו כתובות מראש, ושמרו צילום מסך של הניווט.'
+        tips: ''
       };
     }
   }
@@ -3108,7 +3103,6 @@ function render(day){
   if (overviewNode) overviewNode.value = routeDayNotes[day].overview;
   if (tipsNode) tipsNode.value = routeDayNotes[day].tips;
   
-  // Special handling for Day 14 - single combined notes field
   const routeTipsContainer = document.getElementById('routeTipsContainer');
   const routeOverviewLabel = document.getElementById('routeOverviewLabel');
   const routeTipsLabel = document.getElementById('routeTipsLabel');
@@ -3116,11 +3110,11 @@ function render(day){
   const routeNotesHelp = document.getElementById('routeNotesHelp');
   const routeNotesPanel = document.getElementById('routeNotesPanel');
 
-  if (routeNotesTitle) routeNotesTitle.textContent = 'הערות ליום';
-  if (routeOverviewLabel) routeOverviewLabel.textContent = 'סקירה כללית';
-  if (routeTipsLabel) routeTipsLabel.textContent = 'טיפים חשובים';
-  if (overviewNode) overviewNode.placeholder = 'הוסיפו כאן סקירה כללית ליום...';
-  if (tipsNode) tipsNode.placeholder = 'הוסיפו כאן טיפים חשובים ליום...';
+  if (routeNotesTitle) routeNotesTitle.textContent = 'תכנון היום';
+  if (routeOverviewLabel) routeOverviewLabel.textContent = 'מסלול היום';
+  if (routeTipsLabel) routeTipsLabel.textContent = 'טיפים שימושיים';
+  if (overviewNode) overviewNode.placeholder = 'תיאור קצר וברור של מהלך היום...';
+  if (tipsNode) tipsNode.placeholder = 'הוסיפו טיפ...';
   [overviewNode, tipsNode].forEach(node => {
     if (!node) return;
     node.classList.remove('auto-resize');
@@ -3129,65 +3123,21 @@ function render(day){
     node.style.height = '';
   });
   
-  if (day === '14') {
-    // Day 14: Single combined field - always visible with auto-resize
-    if (routeTipsContainer) routeTipsContainer.style.display = 'none';
-    if (routeOverviewLabel) routeOverviewLabel.style.display = 'none';
-    if (routeNotesHelp) routeNotesHelp.style.display = 'none';
-    if (overviewNode) {
-      overviewNode.style.display = 'block';
-      overviewNode.placeholder = 'הוסיפו כאן הערות, טיפים ותכנון ליום...';
-      // Combine both fields into one for Day 14
-      const combinedText = [routeDayNotes[day].overview, routeDayNotes[day].tips].filter(t => t && t.trim()).join('\n\n');
-      overviewNode.value = combinedText;
-      
-      // Enable auto-resize
-      overviewNode.classList.add('auto-resize');
-      autoResizeTextarea(overviewNode);
-      
-      // Add input listener for auto-resize
-      overviewNode.removeEventListener('input', handleTextareaResize);
-      overviewNode.addEventListener('input', handleTextareaResize);
-    }
-    // Always show panel for Day 14 (even if empty) so user can edit
-    if (routeNotesPanel) {
-      routeNotesPanel.style.display = 'block';
-    }
-  } else if (isOsakaDay) {
-    if (routeNotesTitle) routeNotesTitle.textContent = 'תכנון היום';
-    if (routeOverviewLabel) routeOverviewLabel.textContent = 'מסלול היום';
-    if (routeTipsLabel) routeTipsLabel.textContent = 'טיפים שימושיים';
-    if (routeTipsContainer) routeTipsContainer.style.display = 'block';
-    if (routeOverviewLabel) routeOverviewLabel.style.display = 'block';
-    if (routeNotesHelp) {
-      routeNotesHelp.style.display = 'block';
-      routeNotesHelp.textContent = 'מסלול היום קבוע. אפשר להוסיף טיפים שימושיים ולשמור.';
-    }
-    if (overviewNode) overviewNode.placeholder = 'תיאור קצר וברור של מהלך היום...';
-    if (tipsNode) {
-      tipsNode.placeholder = 'הוסיפו טיפ...';
-      tipsNode.rows = 1;
-    }
-    [overviewNode, tipsNode].forEach(node => {
-      if (!node) return;
-      node.style.display = 'block';
-      node.classList.add('auto-resize');
-      autoResizeTextarea(node);
-      node.addEventListener('input', handleTextareaResize);
-    });
-    if (routeNotesPanel) routeNotesPanel.style.display = 'block';
-  } else {
-    // Other days: Show both fields normally
-    if (routeNotesHelp) routeNotesHelp.textContent = 'אפשר לערוך חופשי. התוכן נשמר לכל יום כל עוד הדף פתוח.';
-    if (routeTipsContainer) routeTipsContainer.style.display = 'block';
-    if (routeOverviewLabel) routeOverviewLabel.style.display = 'block';
-    if (routeNotesHelp) routeNotesHelp.style.display = 'block';
-    if (overviewNode) {
-      overviewNode.style.display = 'block';
-      overviewNode.placeholder = 'הוסיפו כאן סקירה כללית ליום...';
-    }
-    if (routeNotesPanel) routeNotesPanel.style.display = 'block';
+  if (routeTipsContainer) routeTipsContainer.style.display = 'block';
+  if (routeOverviewLabel) routeOverviewLabel.style.display = 'block';
+  if (routeNotesHelp) {
+    routeNotesHelp.style.display = 'block';
+    routeNotesHelp.textContent = 'מסלול היום קבוע. אפשר להוסיף טיפים שימושיים ולשמור.';
   }
+  if (tipsNode) tipsNode.rows = 1;
+  [overviewNode, tipsNode].forEach(node => {
+    if (!node) return;
+    node.style.display = 'block';
+    node.classList.add('auto-resize');
+    autoResizeTextarea(node);
+    node.addEventListener('input', handleTextareaResize);
+  });
+  if (routeNotesPanel) routeNotesPanel.style.display = 'block';
   
   setRouteNotesEditMode(true);
   renderRouteFlightStatus(day);
@@ -3273,9 +3223,8 @@ function setRouteNotesEditMode(editing){
   const editBtn = document.getElementById('routeEditBtn');
   const saveBtn = document.getElementById('routeSaveBtn');
   
-  if (overviewNode) overviewNode.readOnly = ['21', '22', '23'].includes(currentRouteDay) || !editing;
-  // Only edit tips if not Day 14 (where it's hidden)
-  if (tipsNode && currentRouteDay !== '14') tipsNode.readOnly = !editing;
+  if (overviewNode) overviewNode.readOnly = true;
+  if (tipsNode) tipsNode.readOnly = !editing;
   
   if (editBtn) editBtn.classList.toggle('hidden', editing);
   if (saveBtn) saveBtn.classList.toggle('hidden', !editing);
@@ -3286,15 +3235,8 @@ function saveCurrentRouteNotes(){
   const overviewNode = document.getElementById('routeOverview');
   const tipsNode = document.getElementById('routeTips');
   
-  if (currentRouteDay === '14') {
-    // Day 14: Save single combined field to overview, clear tips
-    routeDayNotes[currentRouteDay].overview = overviewNode ? overviewNode.value : '';
-    routeDayNotes[currentRouteDay].tips = '';
-  } else {
-    // Other days: Save both fields separately
-    routeDayNotes[currentRouteDay].overview = overviewNode ? overviewNode.value : '';
-    routeDayNotes[currentRouteDay].tips = tipsNode ? tipsNode.value : '';
-  }
+  routeDayNotes[currentRouteDay].overview = overviewNode ? overviewNode.value : '';
+  routeDayNotes[currentRouteDay].tips = tipsNode ? tipsNode.value : '';
 }
 
 function initNavigation(){
