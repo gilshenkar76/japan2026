@@ -231,12 +231,22 @@
     .upload-hint{font-size:12px;color:var(--muted);margin-top:6px}
     .file-list{display:grid;gap:10px;margin-top:12px}
     .file-card{background:#f8fafc;border:1px solid var(--line);border-radius:18px;padding:12px}
+    .photo-upload-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .photo-upload-status{margin-top:12px;padding:10px 12px;border-radius:12px;background:#eef2ff;color:#3730a3;font-size:13px;font-weight:800}
+    .photo-upload-progress{height:7px;border-radius:999px;background:#dbe3f0;overflow:hidden;margin-top:8px}
+    .photo-upload-progress-fill{height:100%;width:0;background:#171b4d;transition:width .25s ease}
     .photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
-    .photo-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
-    .photo-thumb{width:100%;height:124px;object-fit:cover;display:block;background:#e8edf5}
+    .photo-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+    .photo-thumb-button{display:block;width:100%;padding:0;border:0;background:#e8edf5;cursor:pointer;aspect-ratio:4/3;overflow:hidden}
+    .photo-thumb{width:100%;height:100%;object-fit:cover;display:block;background:#e8edf5;transition:transform .25s ease}
+    .photo-thumb-button:hover .photo-thumb{transform:scale(1.025)}
     .photo-body{padding:10px}
     .photo-title{font-size:13px;font-weight:800;line-height:1.35;margin:0 0 4px}
     .photo-meta{font-size:11px;color:var(--muted)}
+    .photo-delete{position:absolute;top:7px;left:7px;width:32px;height:32px;border:0;border-radius:50%;display:grid;place-items:center;
+      background:rgba(15,23,42,.82);color:#fff;font-size:16px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.2)}
+    .photo-delete:hover{background:#b91c1c}
+    @media(min-width:700px){.photo-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.photo-upload-actions{flex-wrap:nowrap}}
     .album-hero{background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa;border-radius:20px;padding:14px;box-shadow:var(--shadow)}
     .album-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
     .album-stat{background:#fff;border:1px solid #ffd7b3;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:800;color:#9a3412}
@@ -899,7 +909,7 @@
         <div class="section-title" style="margin:0;font-size:18px">אלבום הטיול העתידי</div>
         <div class="upload-hint">כאן נאסוף את כל התמונות מהטיול כדי לבנות אחר כך אלבום יפה ומסודר.</div>
         <div class="album-stats">
-          <div class="album-stat">📸 תמונות מהדרך</div>
+          <div class="album-stat" id="albumPhotoCount">📸 עדיין אין תמונות</div>
           <div class="album-stat">🖼️ אלבום עתידי</div>
           <div class="album-stat">✨ זיכרונות משותפים</div>
         </div>
@@ -908,11 +918,17 @@
         <div class="upload-row">
           <div>
             <div class="section-title" style="margin:0;font-size:18px">העלאת תמונות</div>
-            <div class="upload-hint">העלו כאן תמונות מהטיול בלבד, ואנחנו נשתמש בהן אחר כך לבניית אלבום יפה.</div>
+            <div class="upload-hint">התמונות נשמרות בתיקיית האלבום של הטיול וזמינות לכל חברי הקבוצה.</div>
           </div>
-          <button class="btn primary" data-upload-button onclick="pickFiles('photos')">הוספת תמונה</button>
-          <input id="file-input-photos" type="file" accept="image/*" capture="environment" hidden onchange="handleFileUpload('photos', event)">
+          <div class="photo-upload-actions">
+            <button class="btn primary" data-photo-upload-button onclick="pickPhotoInput('camera')">📷 צילום</button>
+            <button class="btn ghost" data-photo-upload-button onclick="pickPhotoInput('library')">▦ בחירה מהטלפון</button>
+          </div>
+          <input id="photo-camera-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" capture="environment" hidden onchange="handleRepositoryPhotoUpload(event)">
+          <input id="photo-library-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" multiple hidden onchange="handleRepositoryPhotoUpload(event)">
         </div>
+        <div id="photoUploadStatus" class="photo-upload-status hidden"></div>
+        <div id="photoUploadProgress" class="photo-upload-progress hidden"><div id="photoUploadProgressFill" class="photo-upload-progress-fill"></div></div>
         <div class="photo-grid" id="file-list-photos"></div>
       </div>
     </div>
@@ -962,6 +978,8 @@
 const supabaseUrl = 'https://ciabjdoqgedpszxngozu.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpYWJqZG9xZ2VkcHN6eG5nb3p1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjQ3NTAsImV4cCI6MjA5OTI0MDc1MH0.0GrJuNk1G5IpDjwsThe87yP20EzdYrmULX6xWBEt_Vg';
 const storageBucket = 'japan_trip_files';
+const githubPhotoApi = `${supabaseUrl}/functions/v1/github-photo-upload`;
+const githubAlbumUrl = 'https://github.com/gilshenkar76/japan2026/tree/master/trip-photos';
 const sectionTitles = {
   route: 'מסלול',
   group: 'קבוצה',
@@ -1018,6 +1036,7 @@ const FLIGHT_PROXY_URL = `${supabaseUrl}/functions/v1/flight-status-proxy`;
 const VIEW_MODE_STORAGE_KEY = 'japan2026.viewMode';
 let supabaseClient = null;
 let currentSession = null;
+let authBackendAvailable = true;
 let expensesEditingId = null;
 let currentRouteDay = '14';
 let isRouteNotesEditing = false;
@@ -2251,8 +2270,16 @@ function pickFiles(section){
   document.getElementById(`file-input-${section}`).click();
 }
 
+function pickPhotoInput(source){
+  if (!currentSession) {
+    openAuthModal();
+    return;
+  }
+  document.getElementById(source === 'camera' ? 'photo-camera-input' : 'photo-library-input').click();
+}
+
 function toggleUploadButtons(disabled){
-  document.querySelectorAll('[data-upload-button]').forEach(button => {
+  document.querySelectorAll('[data-upload-button],[data-photo-upload-button]').forEach(button => {
     button.disabled = disabled;
   });
 }
@@ -2263,6 +2290,157 @@ function sanitizeFileName(fileName){
 
 function isImageFile(fileName){
   return /\.(png|jpe?g|gif|webp|avif)$/i.test(fileName || '');
+}
+
+async function githubPhotoRequest(path = '', options = {}){
+  if (!currentSession?.access_token) throw new Error('צריך להתחבר מחדש כדי לגשת לאלבום.');
+  const headers = {
+    apikey: supabaseAnonKey,
+    Authorization: `Bearer ${currentSession.access_token}`,
+    ...(options.headers || {})
+  };
+  const response = await fetch(`${githubPhotoApi}${path}`, { ...options, headers });
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(payload.error || `שגיאת שרת ${response.status}`);
+  return payload;
+}
+
+function setPhotoUploadProgress(text, percent, visible = true){
+  const status = document.getElementById('photoUploadStatus');
+  const progress = document.getElementById('photoUploadProgress');
+  const fill = document.getElementById('photoUploadProgressFill');
+  status.textContent = text || '';
+  status.classList.toggle('hidden', !visible);
+  progress.classList.toggle('hidden', !visible);
+  fill.style.width = `${Math.max(0, Math.min(100, percent || 0))}%`;
+}
+
+function splitPhotoBatches(files){
+  const batches = [];
+  let batch = [];
+  let bytes = 0;
+  files.forEach(file => {
+    if (batch.length >= 12 || bytes + file.size > 24 * 1024 * 1024) {
+      batches.push(batch);
+      batch = [];
+      bytes = 0;
+    }
+    batch.push(file);
+    bytes += file.size;
+  });
+  if (batch.length) batches.push(batch);
+  return batches;
+}
+
+async function handleRepositoryPhotoUpload(event){
+  const files = Array.from(event.target.files || []);
+  event.target.value = '';
+  if (!files.length) return;
+  const unsupported = files.find(file => !['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/avif'].includes(file.type));
+  const oversized = files.find(file => file.size > 12 * 1024 * 1024);
+  if (unsupported) {
+    alert(`הקובץ ${unsupported.name} אינו בפורמט תמונה נתמך.`);
+    return;
+  }
+  if (oversized) {
+    alert(`התמונה ${oversized.name} גדולה מ-12 MB.`);
+    return;
+  }
+
+  const batches = splitPhotoBatches(files);
+  toggleUploadButtons(true);
+  try {
+    let completed = 0;
+    for (const batch of batches) {
+      setPhotoUploadProgress(`מעלה ${completed + 1}–${completed + batch.length} מתוך ${files.length} תמונות...`, completed / files.length * 100);
+      const body = new FormData();
+      batch.forEach(file => body.append('photos', file, file.name));
+      await githubPhotoRequest('', { method: 'POST', body });
+      completed += batch.length;
+      setPhotoUploadProgress(`${completed} מתוך ${files.length} תמונות הועלו`, completed / files.length * 100);
+    }
+    setPhotoUploadProgress(`${files.length === 1 ? 'התמונה הועלתה' : `${files.length} התמונות הועלו`} בהצלחה לאלבום.`, 100);
+    await renderRepositoryPhotos();
+    setTimeout(() => setPhotoUploadProgress('', 0, false), 3000);
+  } catch (error) {
+    setPhotoUploadProgress('', 0, false);
+    alert(`העלאת התמונות נכשלה: ${error.message}`);
+  } finally {
+    toggleUploadButtons(false);
+  }
+}
+
+function repositoryPhotoName(name){
+  return String(name || '').replace(/^\d{17}-\d{2}-[a-f0-9]{8}-/i, '');
+}
+
+function repositoryPhotoDate(path){
+  const date = String(path || '').match(/trip-photos\/(\d{4}-\d{2}-\d{2})\//)?.[1];
+  return date ? new Date(`${date}T12:00:00`).toLocaleDateString('he-IL') : '';
+}
+
+function openAlbumPhoto(encodedUrl){
+  const modal = document.getElementById('ngPhotoModal');
+  document.getElementById('ngPhotoModalImg').src = decodeURIComponent(encodedUrl);
+  modal.classList.add('open');
+}
+
+async function renderRepositoryPhotos(){
+  const holder = document.getElementById('file-list-photos');
+  const count = document.getElementById('albumPhotoCount');
+  if (!holder) return;
+  if (!authBackendAvailable) {
+    holder.innerHTML = '<div class="file-empty">שירות האלבום אינו פעיל כרגע. יש לשחזר את פרויקט Supabase לפני שניתן להתחבר ולהעלות תמונות.</div>';
+    if (count) count.textContent = '📸 האלבום אינו פעיל';
+    return;
+  }
+  if (!currentSession) {
+    holder.innerHTML = '<div class="file-empty">התחברו כדי לראות ולהעלות את תמונות הקבוצה.</div>';
+    if (count) count.textContent = '📸 התחברו לאלבום';
+    return;
+  }
+  holder.innerHTML = '<div class="file-empty">טוען את אלבום התמונות...</div>';
+  try {
+    const { photos = [] } = await githubPhotoRequest();
+    if (count) count.textContent = `📸 ${photos.length} תמונות באלבום`;
+    if (!photos.length) {
+      holder.innerHTML = '<div class="file-empty">עדיין לא הועלו תמונות. אפשר לצלם או לבחור מהטלפון.</div>';
+      return;
+    }
+    holder.innerHTML = photos.map(item => {
+      const encodedUrl = encodeURIComponent(item.url);
+      const encodedPath = encodeURIComponent(item.path);
+      const displayName = escapeHtml(repositoryPhotoName(item.name));
+      return `
+        <div class="photo-card">
+          <button class="photo-thumb-button" type="button" onclick="openAlbumPhoto('${encodedUrl}')" aria-label="פתיחת ${displayName}">
+            <img class="photo-thumb" src="${item.url}" alt="${displayName}" loading="lazy">
+          </button>
+          <button class="photo-delete" type="button" onclick="removeRepositoryPhoto('${encodedPath}','${item.sha}')" aria-label="מחיקת תמונה" title="מחיקה">×</button>
+          <div class="photo-body">
+            <div class="photo-title">${displayName}</div>
+            <div class="photo-meta">${repositoryPhotoDate(item.path)} · ${formatBytes(item.size || 0)}</div>
+          </div>
+        </div>`;
+    }).join('');
+  } catch (error) {
+    holder.innerHTML = `<div class="file-empty">לא ניתן לטעון את האלבום: ${escapeHtml(error.message)}</div>`;
+    if (count) count.textContent = '📸 האלבום אינו זמין';
+  }
+}
+
+async function removeRepositoryPhoto(encodedPath, sha){
+  if (!currentSession || !confirm('למחוק את התמונה מהאלבום המשותף?')) return;
+  try {
+    await githubPhotoRequest('', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ path: decodeURIComponent(encodedPath), sha })
+    });
+    await renderRepositoryPhotos();
+  } catch (error) {
+    alert(`מחיקת התמונה נכשלה: ${error.message}`);
+  }
 }
 
 async function getSignedUrl(section, objectName){
@@ -2323,7 +2501,7 @@ async function openFile(section, objectName){
 async function renderUploads(){
   const client = initSupabase();
   const loggedIn = Boolean(currentSession);
-  ['route', 'group', 'expenses', 'docs', 'transportation', 'photos'].forEach(section => {
+  ['route', 'group', 'expenses', 'docs', 'transportation'].forEach(section => {
     const holder = document.getElementById(`file-list-${section}`);
     if (!holder) return;
     if (!isSupabaseConfigured()) {
@@ -2337,9 +2515,10 @@ async function renderUploads(){
     holder.innerHTML = '<div class="file-empty">טוען קבצים...</div>';
   });
 
+  await renderRepositoryPhotos();
   if (!isSupabaseConfigured() || !loggedIn) return;
 
-  for (const section of ['route', 'group', 'expenses', 'docs', 'transportation', 'photos']) {
+  for (const section of ['route', 'group', 'expenses', 'docs', 'transportation']) {
     const holder = document.getElementById(`file-list-${section}`);
     if (!holder) continue;
     const { data, error } = await client.storage.from(storageBucket).list(sectionFolders[section], {
@@ -2876,12 +3055,22 @@ async function uploadExpenseReceipt(file){
 function updateAuthUI(){
   const configured = isSupabaseConfigured();
   const loggedIn = Boolean(currentSession);
-  document.getElementById('setupWarning').classList.toggle('hidden', configured);
-  document.getElementById('loginForm').classList.toggle('hidden', !configured || loggedIn);
+  document.getElementById('setupWarning').classList.toggle('hidden', configured && authBackendAvailable);
+  document.getElementById('loginForm').classList.toggle('hidden', !configured || !authBackendAvailable || loggedIn);
   document.getElementById('sessionControls').classList.toggle('hidden', !configured || !loggedIn);
-  toggleUploadButtons(!configured || !loggedIn);
+  document.querySelectorAll('[data-upload-button]').forEach(button => {
+    button.disabled = !configured || !authBackendAvailable || !loggedIn;
+  });
+  document.querySelectorAll('[data-photo-upload-button]').forEach(button => {
+    button.disabled = !configured || !authBackendAvailable;
+  });
   if (!configured) {
     document.getElementById('authSummary').textContent = 'צריך לחבר Supabase כדי לתת גישה רק לחברי הקבוצה ולהעלות קבצים משותפים.';
+    return;
+  }
+  if (!authBackendAvailable) {
+    document.getElementById('setupWarning').textContent = 'שירות ההתחברות של האלבום אינו פעיל כרגע. מנהל האפליקציה צריך לשחזר את פרויקט Supabase.';
+    document.getElementById('authSummary').textContent = 'לא ניתן להתחבר כרגע — שירות האלבום אינו פעיל.';
     return;
   }
   if (!loggedIn) {
@@ -2893,6 +3082,20 @@ function updateAuthUI(){
 
 async function initAuth(){
   if (!isSupabaseConfigured()) {
+    updateAuthUI();
+    await renderUploads();
+    await renderExpenses();
+    return;
+  }
+  try {
+    const healthResponse = await fetch(`${supabaseUrl}/auth/v1/health`, {
+      headers: { apikey: supabaseAnonKey }
+    });
+    authBackendAvailable = healthResponse.ok;
+  } catch {
+    authBackendAvailable = false;
+  }
+  if (!authBackendAvailable) {
     updateAuthUI();
     await renderUploads();
     await renderExpenses();
@@ -3464,9 +3667,11 @@ document.getElementById('loginForm').addEventListener('submit', async event => {
   }
 });
 
-document.getElementById('headerLoginBtn').addEventListener('click', () => {
+function openAuthModal(){
   document.getElementById('authModal').classList.add('active');
-});
+}
+
+document.getElementById('headerLoginBtn').addEventListener('click', openAuthModal);
 
 document.getElementById('authModalClose').addEventListener('click', () => {
   document.getElementById('authModal').classList.remove('active');
