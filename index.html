@@ -89,10 +89,10 @@
     .map-card.clean-map{height:auto;aspect-ratio:338/261}
     .map-card.clean-map .map-chip,
     .map-card.clean-map .route-line{display:none}
-    #route.route-day23 #dayMapCard{display:none}
+    #route.route-osaka #dayMapCard{display:none}
     .map-chip{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.94);padding:8px 11px;
       border-radius:14px;font-size:12px;font-weight:800}
-    #route.route-day23 .map-chip{display:none}
+    #route.route-osaka .map-chip{display:none}
     .route-line{position:absolute;bottom:14px;right:14px;left:14px;background:rgba(17,24,39,.85);color:#fff;
       border-radius:16px;padding:11px 13px;font-size:13px}
     .section-title{font-size:17px;font-weight:900;margin:20px 2px 10px}
@@ -145,16 +145,16 @@
     .event-title-line.title-rtl{text-align:right;direction:rtl}
     .event-transit{font-size:11px;color:var(--muted);margin-top:7px}
     .event-desc{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
-    .timeline-day23 .event{position:relative;display:block;min-height:210px;padding:0;isolation:isolate;background:#1f2937;border:4px solid #ff7a45}
-    .timeline-day23 .event::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(15,23,42,.35) 0%,rgba(15,23,42,.16) 28%,rgba(15,23,42,.78) 65%,rgba(15,23,42,.94) 100%)}
-    .timeline-day23 .event-img-nav{position:absolute;inset:0;z-index:0;width:100%;height:100%;min-height:0;border-radius:0}
-    .timeline-day23 .event-img-nav img{width:100%;height:100%;min-height:0;object-fit:cover}
-    .timeline-day23 .event-img-nav::after{z-index:3;bottom:10px;right:10px;border-radius:12px}
-    .timeline-day23 .time-badge{top:12px;right:12px;left:auto;width:max-content;max-width:calc(100% - 24px);padding:6px 10px;border-radius:9px;background:rgba(15,23,42,.82);font-size:13px;box-shadow:0 3px 12px rgba(0,0,0,.25)}
-    .timeline-day23 .event-content{position:relative;z-index:2;min-height:210px;padding:88px 12px 12px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;pointer-events:none;text-shadow:0 2px 5px rgba(0,0,0,.8)}
-    .timeline-day23 .event-content h3{position:absolute;top:12px;left:12px;right:132px;margin:0;font-size:18px;line-height:1.35;color:#fff;overflow:visible}
-    .timeline-day23 .event-desc{font-size:15px;line-height:1.55;color:#fff;font-weight:600}
-    .timeline-day23 .event-transit{margin-top:6px;font-size:13px;line-height:1.45;color:#f8fafc;font-weight:800}
+    .timeline-osaka .event{position:relative;display:block;min-height:210px;padding:0;isolation:isolate;background:#1f2937;border:4px solid #ff7a45}
+    .timeline-osaka .event::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(15,23,42,.35) 0%,rgba(15,23,42,.16) 28%,rgba(15,23,42,.78) 65%,rgba(15,23,42,.94) 100%)}
+    .timeline-osaka .event-img-nav{position:absolute;inset:0;z-index:0;width:100%;height:100%;min-height:0;border-radius:0}
+    .timeline-osaka .event-img-nav img{width:100%;height:100%;min-height:0;object-fit:cover}
+    .timeline-osaka .event-img-nav::after{z-index:3;bottom:10px;right:10px;border-radius:12px}
+    .timeline-osaka .time-badge{top:12px;right:12px;left:auto;width:max-content;max-width:calc(100% - 24px);padding:6px 10px;border-radius:9px;background:rgba(15,23,42,.82);font-size:13px;box-shadow:0 3px 12px rgba(0,0,0,.25)}
+    .timeline-osaka .event-content{position:relative;z-index:2;min-height:210px;padding:88px 12px 12px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;pointer-events:none;text-shadow:0 2px 5px rgba(0,0,0,.8)}
+    .timeline-osaka .event-content h3{position:absolute;top:12px;left:12px;right:132px;margin:0;font-size:18px;line-height:1.35;color:#fff;overflow:visible}
+    .timeline-osaka .event-desc{font-size:15px;line-height:1.55;color:#fff;font-weight:600}
+    .timeline-osaka .event-transit{margin-top:6px;font-size:13px;line-height:1.45;color:#f8fafc;font-weight:800}
     .audio-player{margin-top:8px;background:#f8fafc;border-radius:10px;padding:8px 10px;border:1px solid #e2e8f0;min-width:0}
     .audio-player .ap-row{display:flex;flex-direction:row-reverse;align-items:center;gap:8px;min-width:0}
     .audio-player .ap-btn{border:none;background:#3730a3;color:#fff;width:30px;height:30px;border-radius:50%;font-size:13px;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center}
@@ -1100,12 +1100,12 @@ const routeNotesPresets = {
     tips: 'יש להשלים אריזה לפני ארוחת הבוקר ולסדר את המזוודות כך שלא נדרשת חזרה לקיוטו. Fushimi Inari ו-Todai-ji מוגנים; Kasuga Taisha יורד אם עייפים או מתעכבים. יש להזמין ארוחות לשישה, לבדוק את רכבת JR מ-Inari ולאשר את מסירת המזוודות עם המלון באוסקה.'
   },
   '21': {
-    overview: 'יום אוסקה שמתחיל בארוחת בוקר וצ׳ק-אאוט מ-Villa Fontaine Grand Osaka Umeda, ממשיך לתצפית Umeda Sky Building, ארוחת טעימות בשוק Kuromon, Shinsekai, Namba Yasaka ו-Dotonbori בשעת בין ערביים, ומסתיים ב-Hozenji Yokocho ובצ׳ק-אין ב-Osaka Excel Hotel Tokyu.',
-    tips: 'נוסעים רק עם תיקים קטנים; המזוודות הראשיות מחכות ב-Osaka Excel Hotel Tokyu. זמני הנסיעה המסומנים כהערכה צריכים בדיקה באפליקציית תחבורה יום לפני. Namba Yasaka היא העצירה הראשונה שאפשר לוותר עליה אם היום מתארך.'
+    overview: 'אחרי ארוחת הבוקר נצא מ-Villa Fontaine Grand Osaka Umeda עם תיקים קטנים בלבד ונעלה לתצפית Umeda Sky Building. משם נמשיך לטעימות בשוק Kuromon, לאווירת הרטרו של Shinsekai ולמקדש Namba Yasaka, ולאחר מנוחה ב-Namba נגיע ל-Dotonbori בשעת בין ערביים, ל-Hozenji Yokocho ולארוחת ערב. בסוף הערב נעבור ל-Osaka Excel Hotel Tokyu, שם המזוודות הראשיות כבר מחכות. חשוב: לבדוק יום קודם את זמני הנסיעה המשוערים; אם היום מתארך, Namba Yasaka היא העצירה הראשונה שמוותרים עליה.',
+    tips: ''
   },
   '22': {
-    overview: 'יום אוסקה שמתחיל ב-Osaka Castle ובמוזיאון חומת האבן, ממשיך לאזור Tennoji עם Shitennoji, גן Keitakuen וקניות ב-Kintetsu, ועולה ל-Harukas 300 בזמן השקיעה. בערב נוסעים ל-teamLab Botanical Garden, אוכלים מאוחר ב-Namba וחוזרים למלון לאורך Midosuji Illumination.',
-    tips: 'אין תיקים לסחוב היום. יש להזמין מראש את Harukas 300 ואת teamLab, ללבוש שכבות חמות לגן הלילי ולבדוק באפליקציית תחבורה יום קודם את הזמנים המסומנים כהערכה. ארוחת הערב מאוחרת, לכן חשוב לאכול נשנוש ב-Abeno ולהזמין שולחן סביב 21:15.'
+    overview: 'נצא מהמלון ללא תיקים ונפתח את היום ב-Osaka Castle ובמוזיאון חומת האבן. אחרי ארוחת צהריים מוקדמת ב-Tennoji נבקר ב-Shitennoji וביריד החודשי, נמשיך לגן Keitakuen ולקניות ב-Kintetsu, ונעלה ל-Harukas 300 לקראת השקיעה. בערב נאכל נשנוש קל, ניסע ל-teamLab Botanical Garden, נאכל ארוחת ערב מאוחרת ב-Namba ונחזור למלון לאורך Midosuji Illumination. חשוב: להזמין מראש Harukas 300, teamLab ושולחן סביב 21:15, ללבוש שכבות חמות ולבדוק יום קודם את זמני הנסיעה המשוערים.',
+    tips: ''
   },
   '23': {
     overview: 'אחרי ארוחת הבוקר נצא במונית ל-Doshomachi ונפתח את היום בפסטיבל Shinno-sai במקדש Sukunahikona. משם נמשיך במטרו ל-Namba לארוחת צהריים, ונעלה על רכבת Nankai מקומית בלבד אל Sumiyoshi Taisha. אחר הצהריים נחזור ל-Namba ול-Shinsaibashi לארבע שעות של קניות, נסיים בארוחת פרידה באזור Dotonbori ונחזור למלון לאריזה. חשוב: אחרי 11:30 עדיף להשתמש במטרו בגלל הגבלות התנועה ב-Midosuji, לבדוק יום קודם את זמני הנסיעה המשוערים ולהזמין מראש מקום לארוחת הפרידה.',
@@ -1391,38 +1391,38 @@ const data = {
     ["19:15<br>20:45","ארוחת ערב ליד המלון","ארוחת ערב שהוזמנה מראש לשישה במרחק הליכה מהמלון. לא מוסיפים אטרקציה גדולה אחרי יום המעבר המלא.","assets/attractions/day19/dinner.jpg","Villa Fontaine Grand Osaka Umeda restaurants","🍽️ חשוב להזמין לשישה"],
   ]},
   '21': { title:"אוסקה – Umeda, Kuromon, Shinsekai ו-Dotonbori", route:"Villa Fontaine Umeda → Umeda Sky → Kuromon → Shinsekai → Namba Yasaka → Dotonbori → Hozenji Yokocho → Osaka Excel Hotel Tokyu", events:[
-    ["08:00<br>09:00","ארוחת בוקר ב-Villa Fontaine Grand Osaka Umeda","פתיחה רגועה של היום לפני הצ׳ק-אאוט והמעבר בין המלונות.","assets/attractions/day21/hotel.jpg","Villa Fontaine Grand Osaka Umeda","🧳 נוסעים עם תיקים קטנים בלבד"],
-    ["09:30<br>10:45","Umeda Sky Building","שני מגדלים המחוברים במרפסת Floating Garden Observatory, עם גג פתוח ונוף של 360 מעלות. נפתח ב-09:30; בבוקר התורים בדרך כלל קצרים יותר.","assets/attractions/day21/umeda_sky.jpg","Umeda Sky Building Osaka","🎟️ כרטיס ¥2,000 · כ-75 דקות"],
-    ["11:40<br>13:00","Kuromon Ichiba Market – ארוחת טעימות","המטבח של אוסקה: פירות ים, גריל, פירות ואוכל רחוב. טועמים תוך כדי הליכה ולכן אין צורך בארוחת צהריים נפרדת.","assets/attractions/day22/kuromon_market.jpg","Kuromon Ichiba Market Osaka","🍢 80 דקות לטעימות ושיטוט"],
-    ["13:25<br>14:35","Shinsekai ואזור Tsutenkaku","אוסקה רטרו בסגנון תחילת המאה ה-20, עם שלטי ניאון צבעוניים, מגדל Tsutenkaku ודוכני kushikatsu.","assets/attractions/day22/shinsekai.jpg","Shinsekai Osaka","🏮 כ-70 דקות"],
-    ["14:55<br>15:25","Namba Yasaka Shrine","מקדש קטן וזכיר עם במה ענקית בצורת ראש אריה. אפשר לוותר על העצירה אם היום מתארך.","assets/attractions/day22/namba_yasaka.jpg","Namba Yasaka Shrine Osaka","🦁 אופציונלי · 30 דקות"],
-    ["15:25<br>16:30","קפה ומנוחה ב-Namba","הפסקה אמיתית עם התיקים הקטנים לפני חלק הערב של היום.","assets/attractions/lunch.jpg","Namba Osaka cafes","☕ 65 דקות מנוחה"],
-    ["16:30<br>17:30","Dotonbori בשעת בין ערביים","הליכה לאורך התעלה, Ebisu Bridge ושלט Glico המפורסם בזמן שהאורות מתחילים להידלק.","assets/attractions/day22/dotonbori.jpg","Dotonbori Osaka","🌆 60 דקות"],
-    ["17:30<br>17:55","Hozenji Yokocho","סמטה צרה וישנה ליד מקדש Hozenji, עם אווירת ערב נעימה במיוחד ובדרך הטבעית לארוחת הערב.","assets/attractions/day22/hozenji.jpg","Hozenji Yokocho Osaka","🏮 25 דקות · לפני ארוחת הערב"],
-    ["18:00<br>20:00","בירה בוטיק וארוחת ערב ב-Dotonbori","שעתיים במבשלת הבירה מהתוכנית המקורית, לארוחת ערב ובירה מקומית.","assets/attractions/day22/dotonbori.jpg","Dotonbori Craft Beer Brewery","🍺 ארוחת ערב · שעתיים"],
-    ["20:30<br>21:00","צ׳ק-אין ב-Osaka Excel Hotel Tokyu","המזוודות הראשיות כבר מחכות במלון. משלימים צ׳ק-אין ומתארגנים בחדרים.","assets/attractions/day21/hotel.jpg","Osaka Excel Hotel Tokyu","🏨 השלמת צ׳ק-אין"],
+    ["08:00<br>09:00","ארוחת בוקר ב-Villa Fontaine Grand Osaka Umeda","פתיחה רגועה של היום לפני הצ׳ק-אאוט והמעבר בין המלונות.","pictures/Breakfast.jpg","Villa Fontaine Grand Osaka Umeda","🧳 נוסעים עם תיקים קטנים בלבד"],
+    ["09:30<br>10:45","Umeda Sky Building","שני מגדלים המחוברים במרפסת Floating Garden Observatory, עם גג פתוח ונוף של 360 מעלות. נפתח ב-09:30; בבוקר התורים בדרך כלל קצרים יותר.","pictures/Umeda Sky Building.jpg","Umeda Sky Building Osaka","🎟️ כרטיס ¥2,000 · כ-75 דקות"],
+    ["11:40<br>13:00","Kuromon Ichiba Market – ארוחת טעימות","המטבח של אוסקה: פירות ים, גריל, פירות ואוכל רחוב. טועמים תוך כדי הליכה ולכן אין צורך בארוחת צהריים נפרדת.","pictures/kuromon market.jpg","Kuromon Ichiba Market Osaka","🍢 80 דקות לטעימות ושיטוט"],
+    ["13:25<br>14:35","Shinsekai ואזור Tsutenkaku","אוסקה רטרו בסגנון תחילת המאה ה-20, עם שלטי ניאון צבעוניים, מגדל Tsutenkaku ודוכני kushikatsu.","pictures/shinsekai.jpg","Shinsekai Osaka","🏮 כ-70 דקות"],
+    ["14:55<br>15:25","Namba Yasaka Shrine","מקדש קטן וזכיר עם במה ענקית בצורת ראש אריה. אפשר לוותר על העצירה אם היום מתארך.","pictures/namba yasaka.jpg","Namba Yasaka Shrine Osaka","🦁 אופציונלי · 30 דקות"],
+    ["15:25<br>16:30","קפה ומנוחה ב-Namba","הפסקה אמיתית עם התיקים הקטנים לפני חלק הערב של היום.","pictures/lunch.jpg","Namba Osaka cafes","☕ 65 דקות מנוחה"],
+    ["16:30<br>17:30","Dotonbori בשעת בין ערביים","הליכה לאורך התעלה, Ebisu Bridge ושלט Glico המפורסם בזמן שהאורות מתחילים להידלק.","pictures/dotonbori.jpg","Dotonbori Osaka","🌆 60 דקות"],
+    ["17:30<br>17:55","Hozenji Yokocho","סמטה צרה וישנה ליד מקדש Hozenji, עם אווירת ערב נעימה במיוחד ובדרך הטבעית לארוחת הערב.","pictures/hozenji.jpg","Hozenji Yokocho Osaka","🏮 25 דקות · לפני ארוחת הערב"],
+    ["18:00<br>20:00","בירה בוטיק וארוחת ערב ב-Dotonbori","שעתיים במבשלת הבירה מהתוכנית המקורית, לארוחת ערב ובירה מקומית.","pictures/dotonbori.jpg","Dotonbori Craft Beer Brewery","🍺 ארוחת ערב · שעתיים"],
+    ["20:30<br>21:00","צ׳ק-אין ב-Osaka Excel Hotel Tokyu","המזוודות הראשיות כבר מחכות במלון. משלימים צ׳ק-אין ומתארגנים בחדרים.","pictures/baggage_transportation.jpg","Osaka Excel Hotel Tokyu","🏨 השלמת צ׳ק-אין"],
   ]},
 '22': { title:"אוסקה – Osaka Castle, Tennoji, Harukas ו-teamLab", route:"Osaka Excel Hotel Tokyu → Osaka Castle → Shitennoji → Keitakuen → Kintetsu → Harukas 300 → teamLab → Namba → Midosuji Illumination", events:[
-  ["07:30<br>08:30","ארוחת בוקר ב-Osaka Excel Hotel Tokyu","ארוחת בוקר רגועה במלון לפני היציאה. היום מתנהל בלי מזוודות או תיקים גדולים.","assets/attractions/day21/hotel.jpg","Osaka Excel Hotel Tokyu","🧳 ללא תיקים היום"],
-  ["09:00<br>10:30","Osaka Castle Main Tower ו-Toyotomi Stone Wall Museum","מתחילים בתצפית בקומה 8 ויורדים דרך התערוכות. כרטיס משולב כולל את המגדל ואת מוזיאון חומת האבן; מומלץ לקחת אודיו-גייד חינמי.","assets/attractions/day22/osaka_castle.jpg","Osaka Castle Main Tower","🎟️ ¥1,200 · להגיע לפתיחה"],
-  ["11:10<br>12:15","ארוחת צהריים באזור Tennoji / Abeno","ארוחת צהריים מוקדמת לפני רצף המקדש, הגן והתצפית. בוחרים מקום קרוב למסלול לכיוון Shitennoji.","assets/attractions/lunch.jpg","Tennoji Osaka restaurants","🍽️ 65 דקות"],
-  ["12:30<br>14:15","Shitennoji והיריד החודשי","המקדש הבודהיסטי הראשון ביפן שנבנה בידי המדינה, נוסד בשנת 593. ב-22 בחודש מתקיים יריד חודשי; האזור המרכזי פתוח עד 16:00.","assets/transfers/walk.jpg","Shitennoji Temple Osaka","🏯 105 דקות · יריד חודשי"],
-  ["14:40<br>15:30","Keitakuen Garden","גן יפני עם בריכה ונוף ל-Abeno Harukas. פתוח ביום ראשון עד 17:00, עם כניסה אחרונה ב-16:30.","assets/transfers/walk.jpg","Keitakuen Garden Osaka","🌿 ¥300 · 50 דקות"],
-  ["15:30<br>16:30","Kintetsu Department Store – אוכל ומזכרות","שעה במחלקות האוכל והמזכרות של Abeno Harukas, כולל קפה והצטיידות בנשנוש לפני השקיעה.","assets/attractions/day23/abeno.jpg","Kintetsu Department Store Abeno Harukas","🛍️ שעה · פתוח עד 20:00"],
-  ["16:40<br>17:50","Abeno Harukas 300 בשקיעה","תצפית פנורמית גבוהה על אוסקה. השקיעה צפויה סביב 16:51, כך שמגיעים מעט לפניה ונשארים עד אורות הערב.","assets/attractions/day23/abeno.jpg","Abeno Harukas 300 Osaka","🌇 70 דקות · להזמין מראש"],
-  ["17:50<br>18:20","נשנוש קל ב-Abeno","הפסקה קצרה לאוכל לפני הנסיעה לגן; ארוחת הערב המלאה תהיה רק אחרי teamLab.","assets/attractions/lunch.jpg","Abeno Harukas restaurants","🥪 30 דקות"],
-  ["18:50<br>20:30","teamLab Botanical Garden Osaka","גן בוטני פתוח עם מיצבי אור אינטראקטיביים בתוך הטבע. מגיעים אחרי עומס הפתיחה ומתלבשים חם לשהייה בחוץ.","assets/attractions/day23/teamlab.jpg","teamLab Botanical Garden Osaka","✨ 100 דקות · בחוץ · להזמין מראש"],
-  ["21:20<br>22:50","ארוחת ערב מאוחרת ב-Namba / Dotonbori","איזקאיה או okonomiyaki הם בחירה טובה בשעה הזו. מומלץ להזמין שולחן סביב 21:15 ולוודא מראש את שעת ההזמנה האחרונה במטבח.","assets/attractions/day22/dotonbori.jpg","Namba Osaka restaurants","🍽️ 90 דקות · חשוב להזמין"],
-  ["22:50 ואילך","Midosuji Illumination בדרך למלון","הליכה צפונה לאורך שדרת Midosuji המוארת לכיוון Osaka Excel Hotel Tokyu. אפשר לקצר במטרו אם עייפים.","assets/attractions/day22/dotonbori.jpg","Midosuji Illumination Osaka","✨ חינם · חזרה טבעית למלון"]
+  ["07:30<br>08:30","ארוחת בוקר ב-Osaka Excel Hotel Tokyu","ארוחת בוקר רגועה במלון לפני היציאה. היום מתנהל בלי מזוודות או תיקים גדולים.","pictures/Breakfast.jpg","Osaka Excel Hotel Tokyu","🧳 ללא תיקים היום"],
+  ["09:00<br>10:30","Osaka Castle Main Tower ו-Toyotomi Stone Wall Museum","מתחילים בתצפית בקומה 8 ויורדים דרך התערוכות. כרטיס משולב כולל את המגדל ואת מוזיאון חומת האבן; מומלץ לקחת אודיו-גייד חינמי.","pictures/osaka castle.jpg","Osaka Castle Main Tower","🎟️ ¥1,200 · להגיע לפתיחה"],
+  ["11:10<br>12:15","ארוחת צהריים באזור Tennoji / Abeno","ארוחת צהריים מוקדמת לפני רצף המקדש, הגן והתצפית. בוחרים מקום קרוב למסלול לכיוון Shitennoji.","pictures/lunch.jpg","Tennoji Osaka restaurants","🍽️ 65 דקות"],
+  ["12:30<br>14:15","Shitennoji והיריד החודשי","המקדש הבודהיסטי הראשון ביפן שנבנה בידי המדינה, נוסד בשנת 593. ב-22 בחודש מתקיים יריד חודשי; האזור המרכזי פתוח עד 16:00.","pictures/Shitennoji.jpg","Shitennoji Temple Osaka","🏯 105 דקות · יריד חודשי"],
+  ["14:40<br>15:30","Keitakuen Garden","גן יפני עם בריכה ונוף ל-Abeno Harukas. פתוח ביום ראשון עד 17:00, עם כניסה אחרונה ב-16:30.","pictures/Keitakuen Garden.jpg","Keitakuen Garden Osaka","🌿 ¥300 · 50 דקות"],
+  ["15:30<br>16:30","Kintetsu Department Store – אוכל ומזכרות","שעה במחלקות האוכל והמזכרות של Abeno Harukas, כולל קפה והצטיידות בנשנוש לפני השקיעה.","pictures/abeno harukas 300.jpg","Kintetsu Department Store Abeno Harukas","🛍️ שעה · פתוח עד 20:00"],
+  ["16:40<br>17:50","Abeno Harukas 300 בשקיעה","תצפית פנורמית גבוהה על אוסקה. השקיעה צפויה סביב 16:51, כך שמגיעים מעט לפניה ונשארים עד אורות הערב.","pictures/abeno harukas 300.jpg","Abeno Harukas 300 Osaka","🌇 70 דקות · להזמין מראש"],
+  ["17:50<br>18:20","נשנוש קל ב-Abeno","הפסקה קצרה לאוכל לפני הנסיעה לגן; ארוחת הערב המלאה תהיה רק אחרי teamLab.","pictures/lunch.jpg","Abeno Harukas restaurants","🥪 30 דקות"],
+  ["18:50<br>20:30","teamLab Botanical Garden Osaka","גן בוטני פתוח עם מיצבי אור אינטראקטיביים בתוך הטבע. מגיעים אחרי עומס הפתיחה ומתלבשים חם לשהייה בחוץ.","pictures/teamlab botanik garden osaka.jpg","teamLab Botanical Garden Osaka","✨ 100 דקות · בחוץ · להזמין מראש"],
+  ["21:20<br>22:50","ארוחת ערב מאוחרת ב-Namba / Dotonbori","איזקאיה או okonomiyaki הם בחירה טובה בשעה הזו. מומלץ להזמין שולחן סביב 21:15 ולוודא מראש את שעת ההזמנה האחרונה במטבח.","pictures/dotonbori.jpg","Namba Osaka restaurants","🍽️ 90 דקות · חשוב להזמין"],
+  ["22:50 ואילך","Midosuji Illumination בדרך למלון","הליכה צפונה לאורך שדרת Midosuji המוארת לכיוון Osaka Excel Hotel Tokyu. אפשר לקצר במטרו אם עייפים.","pictures/dotonbori.jpg","Midosuji Illumination Osaka","✨ חינם · חזרה טבעית למלון"]
   ]},
   '23': { title:"אוסקה – Shinno-sai, Sumiyoshi, קניות וארוחת פרידה", route:"Osaka Excel Hotel Tokyu → Doshomachi → Namba → Sumiyoshi Taisha → Shinsaibashi → Dotonbori → המלון", events:[
-    ["08:15<br>09:15","ארוחת בוקר ב-Osaka Excel Hotel Tokyu","התחלה רגועה במלון אחרי הערב המאוחר של 22 בנובמבר.","assets/attractions/day23/hotel.jpg","Osaka Excel Hotel Tokyu","🍽️ שעה רגועה"],
-    ["10:00<br>11:15","Shinno-sai Festival במקדש Sukunahikona","פסטיבל חינמי של רובע התרופות ההיסטורי Doshomachi, המתקיים רק ב-22–23 בנובמבר. בין הדוכנים מחפשים את נמר הנייר hariko, קמע מסורתי נגד מחלות.","assets/transfers/walk.jpg","Sukunahikona Shrine Osaka","🐯 יום חג · 75 דקות"],
-    ["11:45<br>13:00","ארוחת צהריים ב-Namba","ארוחת צהריים נוחה לפני הרכבת דרומה. משאירים מספיק זמן להגיע לתחנת Nankai Namba ולמצוא רכבת מקומית.","assets/attractions/lunch.jpg","Nankai Namba Station restaurants","🍽️ 75 דקות"],
-    ["13:30<br>15:00","Sumiyoshi Taisha","מקדש שינטו שנוסד בשנת 211, עם ארבעה מבנים מרכזיים בסגנון sumiyoshi-zukuri וגשר הקשת האדום Sorihashi. הכניסה חינם ואין בתי קפה בשטח.","assets/attractions/day23/sumiyoshi.jpg","Sumiyoshi Taisha Osaka","⛩️ 90 דקות · שערים חיצוניים עד 16:00"],
-    ["15:30<br>19:30","קניות ב-Shinsaibashi ו-Amerikamura","ארבע שעות ל-Uniqlo, מדרחוב Shinsaibashi-suji ו-Amerikamura. המלון נמצא במרחק הליכה קצר מהאזור, כך שאפשר להניח בו שקיות באמצע.","assets/attractions/day23/shinsaibashi.jpg","Shinsaibashi-suji Shopping Street Osaka","🛍️ 4 שעות · Uniqlo עד 21:00"],
-    ["19:30<br>21:15","ארוחת פרידה ב-Dotonbori / Namba","ערב אחרון באוסקה עם okonomiyaki, kushikatsu או איזקאיה. המסעדה עדיין לא נבחרה ולכן חשוב להזמין מקום מראש לשישה.","assets/attractions/day22/dotonbori.jpg","Dotonbori Osaka restaurants","🍽️ 105 דקות · חשוב להזמין"],
-    ["21:30 ואילך","אריזה במלון","ב-Osaka Excel Hotel Tokyu בודקים שיש מקום במזוודות לכל הקניות ומשלימים אריזה לקראת המעבר לטוקיו.","assets/attractions/day23/hotel.jpg","Osaka Excel Hotel Tokyu","🧳 אריזה לקראת מחר"]
+    ["08:15<br>09:15","ארוחת בוקר ב-Osaka Excel Hotel Tokyu","התחלה רגועה במלון אחרי הערב המאוחר של 22 בנובמבר.","pictures/Breakfast.jpg","Osaka Excel Hotel Tokyu","🍽️ שעה רגועה"],
+    ["10:00<br>11:15","Shinno-sai Festival במקדש Sukunahikona","פסטיבל חינמי של רובע התרופות ההיסטורי Doshomachi, המתקיים רק ב-22–23 בנובמבר. בין הדוכנים מחפשים את נמר הנייר hariko, קמע מסורתי נגד מחלות.","pictures/Shinno-sai Festival.jpg","Sukunahikona Shrine Osaka","🐯 יום חג · 75 דקות"],
+    ["11:45<br>13:00","ארוחת צהריים ב-Namba","ארוחת צהריים נוחה לפני הרכבת דרומה. משאירים מספיק זמן להגיע לתחנת Nankai Namba ולמצוא רכבת מקומית.","pictures/ארוחת צהריים ב-Namba.jpg","Nankai Namba Station restaurants","🍽️ 75 דקות"],
+    ["13:30<br>15:00","Sumiyoshi Taisha","מקדש שינטו שנוסד בשנת 211, עם ארבעה מבנים מרכזיים בסגנון sumiyoshi-zukuri וגשר הקשת האדום Sorihashi. הכניסה חינם ואין בתי קפה בשטח.","pictures/shumioshi taisha.jpg","Sumiyoshi Taisha Osaka","⛩️ 90 דקות · שערים חיצוניים עד 16:00"],
+    ["15:30<br>19:30","קניות ב-Shinsaibashi ו-Amerikamura","ארבע שעות ל-Uniqlo, מדרחוב Shinsaibashi-suji ו-Amerikamura. המלון נמצא במרחק הליכה קצר מהאזור, כך שאפשר להניח בו שקיות באמצע.","pictures/shinsaibashi.jpg","Shinsaibashi-suji Shopping Street Osaka","🛍️ 4 שעות · Uniqlo עד 21:00"],
+    ["19:30<br>21:15","ארוחת פרידה ב-Dotonbori / Namba","ערב אחרון באוסקה עם okonomiyaki, kushikatsu או איזקאיה. המסעדה עדיין לא נבחרה ולכן חשוב להזמין מקום מראש לשישה.","pictures/dotonbori.jpg","Dotonbori Osaka restaurants","🍽️ 105 דקות · חשוב להזמין"],
+    ["21:30 ואילך","אריזה במלון","ב-Osaka Excel Hotel Tokyu בודקים שיש מקום במזוודות לכל הקניות ומשלימים אריזה לקראת המעבר לטוקיו.","pictures/baggage_transportation.jpg","Osaka Excel Hotel Tokyu","🧳 אריזה לקראת מחר"]
   ]},
   '24': { title:"אוסקה → טוקיו – יום ההגעה", route:"Shin-Osaka → Shinkansen Nozomi → Tokyo Station → Ginza", events:[
     ["09:00","יציאה מ-Osaka Excel Hotel Tokyu","יוצאים רק עם תיקי יום, המזוודות כבר בדרך לטוקיו","assets/attractions/day24/luggage_deposit.jpg","Osaka Excel Hotel Tokyu"],
@@ -2972,7 +2972,8 @@ function render(day){
   if (!data[day]) return;
   if (isRouteNotesEditing) saveCurrentRouteNotes();
   currentRouteDay = day;
-  document.getElementById('route')?.classList.toggle('route-day23', day === '23');
+  const isOsakaDay = ['21', '22', '23'].includes(day);
+  document.getElementById('route')?.classList.toggle('route-osaka', isOsakaDay);
   
   // Hide hero header when rendering day page
   const hero = document.querySelector('.hero');
@@ -3089,7 +3090,7 @@ function render(day){
     if (routeNotesPanel) {
       routeNotesPanel.style.display = 'block';
     }
-  } else if (day === '23') {
+  } else if (isOsakaDay) {
     if (routeNotesTitle) routeNotesTitle.textContent = 'תכנון היום';
     if (routeOverviewLabel) routeOverviewLabel.textContent = 'מסלול היום';
     if (routeTipsLabel) routeTipsLabel.textContent = 'טיפים שימושיים';
@@ -3130,7 +3131,7 @@ function render(day){
   const tl=document.getElementById('timeline'); tl.innerHTML='';
   
   // Shared timeline card layout (flexible height + min-height rule) for all days
-  tl.className = day === '23' ? 'timeline timeline-day23' : 'timeline';
+  tl.className = isOsakaDay ? 'timeline timeline-osaka' : 'timeline';
   tl.innerHTML += transferChipsHtml(day, -1);
   data[day].events.forEach((e, idx)=>{
     if (e[1] === '__SECTION__') { tl.innerHTML += `<div class="tl-section">${e[2]}</div>`; return; }
@@ -3207,7 +3208,7 @@ function setRouteNotesEditMode(editing){
   const editBtn = document.getElementById('routeEditBtn');
   const saveBtn = document.getElementById('routeSaveBtn');
   
-  if (overviewNode) overviewNode.readOnly = currentRouteDay === '23' || !editing;
+  if (overviewNode) overviewNode.readOnly = ['21', '22', '23'].includes(currentRouteDay) || !editing;
   // Only edit tips if not Day 14 (where it's hidden)
   if (tipsNode && currentRouteDay !== '14') tipsNode.readOnly = !editing;
   
