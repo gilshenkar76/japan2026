@@ -58,26 +58,27 @@ Date,City/Area,Time,Attraction / Event,Type,Hotel
 19.11,Kyoto,15:30-16:30,Kinkaku-ji Golden Pavilion,Temple,Hotel Monterey Kyoto
 19.11,Kyoto,17:10-18:10,Kitano Tenmangu maple illumination,Optional/Seasonal,Hotel Monterey Kyoto
 19.11,Kyoto,19:30-21:00,Japanese dinner near hotel,Food,Hotel Monterey Kyoto
-20.11,Kyoto,07:00-07:45,Breakfast at Hotel Monterey Kyoto,Food,Osaka Excel Hotel Tokyu
-20.11,Kyoto,07:45-08:00,Checkout and luggage arrangements,Hotel,Osaka Excel Hotel Tokyu
-20.11,Kyoto,08:50-10:20,Fushimi Inari Taisha,Shrine,Osaka Excel Hotel Tokyu
-20.11,Nara,12:00-13:00,Japanese lunch,Food,Osaka Excel Hotel Tokyu
-20.11,Nara,13:00-13:30,Nara Park and deer,Nature/Park,Osaka Excel Hotel Tokyu
-20.11,Nara,13:30-14:45,Todai-ji South Gate and Great Buddha Hall,Temple,Osaka Excel Hotel Tokyu
-20.11,Nara,15:20-16:00,Kasuga Taisha,Optional/Shrine,Osaka Excel Hotel Tokyu
-20.11,Nara,16:45-17:10,Kintetsu-Nara boarding buffer,Buffer,Osaka Excel Hotel Tokyu
-20.11,Osaka,18:25-19:15,Check in at Osaka Excel Hotel Tokyu,Hotel,Osaka Excel Hotel Tokyu
-20.11,Osaka,19:15-20:45,Dinner near hotel,Food,Osaka Excel Hotel Tokyu
-21.11,Kyoto → Osaka,08:00-09:30,Nishiki Market,Food Market,Villa Fontaine Grand Osaka Umeda
-21.11,Kyoto → Osaka,10:00-10:30,Shinkansen to Osaka,Train,Villa Fontaine Grand Osaka Umeda
-21.11,Osaka,11:15-12:45,Umeda Sky Building,Viewpoint,Villa Fontaine Grand Osaka Umeda
-21.11,Osaka,12:45-13:45,Grand Green Osaka,Urban Park,Villa Fontaine Grand Osaka Umeda
-21.11,Osaka,13:45-14:15,Tully's Coffee,Cafe,Villa Fontaine Grand Osaka Umeda
-21.11,Osaka,14:30-15:30,Namba City,Shopping,Villa Fontaine Grand Osaka Umeda
-21.11,Osaka,15:30-16:30,Namba Parks,Shopping/Rooftop,Villa Fontaine Grand Osaka Umeda
-21.11,Osaka,16:30-17:30,Hotel check-in,Hotel,Villa Fontaine Grand Osaka Umeda
-21.11,Osaka,19:00-20:45,Gyujiro Yakiniku (Wagyu),Food,Villa Fontaine Grand Osaka Umeda
-21.11,Osaka,21:00-23:00,Nayuta Pub,Bar,Villa Fontaine Grand Osaka Umeda
+20.11,Kyoto,07:00-07:45,Breakfast at Hotel Monterey Kyoto,Food,Villa Fontaine Grand Osaka Umeda
+20.11,Kyoto,07:45-08:00,Checkout and luggage arrangements,Hotel,Villa Fontaine Grand Osaka Umeda
+20.11,Kyoto,08:50-10:20,Fushimi Inari Taisha,Shrine,Villa Fontaine Grand Osaka Umeda
+20.11,Nara,12:00-13:00,Japanese lunch,Food,Villa Fontaine Grand Osaka Umeda
+20.11,Nara,13:00-13:30,Nara Park and deer,Nature/Park,Villa Fontaine Grand Osaka Umeda
+20.11,Nara,13:30-14:45,Todai-ji South Gate and Great Buddha Hall,Temple,Villa Fontaine Grand Osaka Umeda
+20.11,Nara,15:20-16:00,Kasuga Taisha,Optional/Shrine,Villa Fontaine Grand Osaka Umeda
+20.11,Nara,16:45-17:10,Kintetsu-Nara boarding buffer,Buffer,Villa Fontaine Grand Osaka Umeda
+20.11,Osaka,18:25-19:15,Check in at Villa Fontaine Grand Osaka Umeda,Hotel,Villa Fontaine Grand Osaka Umeda
+20.11,Osaka,19:15-20:45,Dinner near hotel,Food,Villa Fontaine Grand Osaka Umeda
+21.11,Osaka,08:00-09:00,Breakfast at Villa Fontaine Grand Osaka Umeda,Food,Osaka Excel Hotel Tokyu
+21.11,Osaka,09:00-09:30,Checkout and walk to Umeda Sky Building,Transfer,Osaka Excel Hotel Tokyu
+21.11,Osaka,09:30-10:45,Umeda Sky Building,Viewpoint,Osaka Excel Hotel Tokyu
+21.11,Osaka,11:40-13:00,Kuromon Ichiba Market tasting lunch,Food Market,Osaka Excel Hotel Tokyu
+21.11,Osaka,13:25-14:35,Shinsekai and Tsutenkaku area,Historic District,Osaka Excel Hotel Tokyu
+21.11,Osaka,14:55-15:25,Namba Yasaka Shrine,Optional/Shrine,Osaka Excel Hotel Tokyu
+21.11,Osaka,15:25-16:30,Coffee and rest in Namba,Cafe/Rest,Osaka Excel Hotel Tokyu
+21.11,Osaka,16:30-17:45,Dotonbori at dusk,Historic District,Osaka Excel Hotel Tokyu
+21.11,Osaka,18:00-20:00,Craft beer and dinner in Dotonbori,Food,Osaka Excel Hotel Tokyu
+21.11,Osaka,20:00-20:30,Hozenji Yokocho,Historic Street,Osaka Excel Hotel Tokyu
+21.11,Osaka,20:30-21:00,Check in at Osaka Excel Hotel Tokyu,Hotel,Osaka Excel Hotel Tokyu
 22.11,Osaka,09:00,Osaka Castle,Historic Castle,Excel Hotel Tokyu Osaka
 22.11,Osaka,12:00,Shinsekai + Kuromon Market,Food Market/District,Excel Hotel Tokyu Osaka
 22.11,Osaka,17:00,Dotonbori + Tombori Cruise,Nightlife/Cruise,Excel Hotel Tokyu Osaka

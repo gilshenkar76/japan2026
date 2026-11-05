@@ -949,7 +949,7 @@ const citiesByDay = {
   '18': { city: 'קיוטו', image: 'assets/attractions/day19/kimono.jpg' },
   '19': { city: 'קיוטו', image: 'assets/attractions/day18/bamboo.jpg' },
   '20': { city: 'קיוטו → נארה → אוסקה', image: 'assets/attractions/day18/fushimi.jpg' },
-  '21': { city: 'קיוטו → אוסקה', image: 'https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=600&q=80' },
+  '21': { city: 'אוסקה', image: 'assets/attractions/day21/umeda_sky.jpg' },
   '22': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?w=600&q=80' },
   '23': { city: 'אוסקה', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80' },
   '24': { city: 'טוקיו', image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&q=80' },
@@ -964,7 +964,6 @@ const routeMapsByDay = {
   '14': { src: 'assets/maps/day14_walking_map.png', ratio: '338 / 261' },
   '15': { src: 'assets/maps/day15_route_map.png', ratio: '400 / 250', legend: false },
   '16': { src: 'assets/maps/day16_route_map.png', ratio: '390 / 220', legend: false },
-  '21': { src: 'assets/maps/day21_route_map.png', ratio: '372 / 122', legend: false },
   '23': { src: 'assets/maps/day23_route_map.png', ratio: '260 / 118', legend: false },
   '24': { src: 'assets/maps/day24_route_map.png', ratio: '254 / 246', legend: false }
 };
@@ -977,7 +976,7 @@ const themesByDay = {
   '18': 'יום קימונו בהיגשיאמה – Kiyomizu-dera, מקדשי זן, סמטאות Gion וערב ב-Pontocho',
   '19': 'אראשיאמה וצפון קיוטו – יער הבמבוק, Tenryu-ji, Ryoan-ji, Kinkaku-ji ותאורת שלכת אופציונלית',
   '20': 'פרידה מקיוטו – Fushimi Inari, נארה ומעבר למלון באוסקה',
-  '21': 'מסע מקיוטו לאוסקה – שוק, תצפית, קניות וגסטרונומיה',
+  '21': 'אוסקה מצפון לדרום – Umeda, שוק Kuromon, Shinsekai, Dotonbori ומעבר מלון',
   '22': 'אוסקה הקלאסית – טירה היסטורית, שווקים, מקדש אריה וניאונים בדוטונבורי',
   '23': 'פסטיבל דושומאצ׳י, אקווריום, סומיושי תאישה, תצפית וערב קסום ב-teamLab',
   '24': "שינקנסן לטוקיו, טיול במרונוצ'י ובגינזה וערב עם ארוחת Akita Dining",
@@ -1028,16 +1027,16 @@ const transitByDay = {
     { from: 'Fushimi Inari', to: 'JR Nara Station', note: 'רכבת ישירה דרומה; לבדוק יציאה מדויקת סמוך לנסיעה', line: 'JR Nara Line', time: '~75 דק׳ כולל המתנה', cost: '—' },
     { from: 'JR Nara Station', to: 'אזור הפארק', note: 'אוטובוס מקומי כדי לחסוך הליכה', line: 'אוטובוס + רגלי', time: '~25 דק׳', cost: '—' },
     { from: 'Kasuga Taisha', to: 'Kintetsu-Nara Station', note: 'חזרה מועדפת אחרי יום ההליכה', line: 'אוטובוס + רגלי', time: '~45 דק׳', cost: '—' },
-    { from: 'Kintetsu-Nara', to: 'Osaka Excel Hotel Tokyu', note: 'רכבת ל-Osaka-Namba, קו Midosuji ל-Hommachi והליכה', line: 'Kintetsu + Midosuji', time: '~75 דק׳', cost: '—' }
+    { from: 'Kintetsu-Nara', to: 'Villa Fontaine Grand Osaka Umeda', note: 'רכבת ל-Osaka-Namba, קו Midosuji ל-Umeda והליכה', line: 'Kintetsu + Midosuji', time: '~75 דק׳', cost: '—' }
   ],
   '21': [
-    { from: 'Hotel Monterey Kyoto', to: 'Nishiki Market', note: 'הליכה בוקר מהמלון', line: 'רגלי', time: '~15 דק׳', cost: '—' },
-    { from: 'Nishiki Market', to: 'Shijo Station', note: 'הליכה קצרה לתחנת שיג׳ו', line: 'רגלי', time: '~10 דק׳', cost: '—' },
-    { from: 'Shijo Station', to: 'Kyoto Station', note: 'מעבר עירוני קצר', line: 'Karasuma Line (Subway)', time: '~5 דק׳', cost: '¥220' },
-    { from: 'Kyoto Station', to: 'Shin-Osaka', note: 'שינקנסן לקראת הכניסה לאוסקה', line: 'Shinkansen', time: '~15 דק׳', cost: '¥1,420' },
-    { from: 'Shin-Osaka', to: 'Osaka Station / Umeda', note: 'מטרו למרכז אומדה', line: 'Osaka Metro', time: '~15 דק׳', cost: '¥240' },
-    { from: 'Umeda', to: 'Namba', note: 'מעבר לקניות בדרום העיר', line: 'Midosuji Line', time: '~15 דק׳', cost: '¥240' },
-    { from: 'Shinsaibashi', to: 'Honmachi', note: 'נסיעה קצרה למלון', line: 'Midosuji Line', time: '~15 דק׳', cost: '¥190' }
+    { from: 'Villa Fontaine Grand Osaka Umeda', to: 'Umeda Sky Building', note: 'צ׳ק-אאוט והליכה עם תיקי היום', line: 'רגלי', time: '~16 דק׳', cost: '—' },
+    { from: 'Umeda Sky Building', to: 'Namba Station', note: 'הליכה לתחנה ואז קו Midosuji ישיר, ללא החלפות', line: 'Midosuji Line + רגלי', time: '~40 דק׳ (הערכה)', cost: '¥240' },
+    { from: 'Namba Station', to: 'Kuromon Ichiba Market', note: 'הליכה מהתחנה לשוק', line: 'רגלי', time: '~10–15 דק׳', cost: '—' },
+    { from: 'Kuromon Ichiba Market', to: 'Shinsekai', note: 'מונית נוחה יותר עם התיקים הקטנים', line: 'מונית', time: '~10–15 דק׳ (הערכה)', cost: '—' },
+    { from: 'Shinsekai', to: 'Namba Yasaka Shrine', note: 'מעבר קצר במונית', line: 'מונית', time: '~10–15 דק׳ (הערכה)', cost: '—' },
+    { from: 'Namba Yasaka Shrine', to: 'Dotonbori', note: 'קפה ומנוחה ב-Namba ואז הליכה ל-Dotonbori', line: 'רגלי', time: '~1:05 שעות כולל הפסקה', cost: '—' },
+    { from: 'Hozenji Yokocho', to: 'Osaka Excel Hotel Tokyu', note: 'קו Midosuji מ-Namba ל-Hommachi והליכה מיציאה 13; הליכה מלאה היא חלופה', line: 'Midosuji Line + רגלי', time: '~30 דק׳', cost: '¥190' }
   ],
   '22': [
     { from: 'Excel Hotel Tokyu Osaka', to: 'Osaka Castle', note: 'יציאה בבוקר מהמלון לכיוון הטירה', line: 'Osaka Metro / הליכה', time: '~20–25 דק׳', cost: '¥190–¥240' },
@@ -1089,8 +1088,8 @@ const routeNotesPresets = {
     tips: 'יש להשלים אריזה לפני ארוחת הבוקר ולסדר את המזוודות כך שלא נדרשת חזרה לקיוטו. Fushimi Inari ו-Todai-ji מוגנים; Kasuga Taisha יורד אם עייפים או מתעכבים. יש להזמין ארוחות לשישה, לבדוק את רכבת JR מ-Inari ולאשר את מסירת המזוודות עם המלון באוסקה.'
   },
   '21': {
-    overview: 'יום מעבר מדורג מקיוטו לאוסקה: בוקר בנישיקי, מעבר דרך Shijo ו-Kyoto Station לשינקנסן, המשך ל-Umeda (Sky Building ו-Grand Green), אחר הצהריים Namba Parks ושופינג ב-Shinsaibashi/Amerikamura, ולסיום צ׳ק-אין ב-Villa Fontaine Grand Osaka Umeda.',
-    tips: 'הכי נוח לעבוד עם IC Card לכל המטרו, לשמור מרווחי זמן קצרים בין המעברים, ולהשאיר את הקניות הכבדות לסוף היום לפני ההגעה למלון.'
+    overview: 'יום אוסקה שמתחיל בארוחת בוקר וצ׳ק-אאוט מ-Villa Fontaine Grand Osaka Umeda, ממשיך לתצפית Umeda Sky Building, ארוחת טעימות בשוק Kuromon, Shinsekai, Namba Yasaka ו-Dotonbori בשעת בין ערביים, ומסתיים ב-Hozenji Yokocho ובצ׳ק-אין ב-Osaka Excel Hotel Tokyu.',
+    tips: 'נוסעים רק עם תיקים קטנים; המזוודות הראשיות מחכות ב-Osaka Excel Hotel Tokyu. זמני הנסיעה המסומנים כהערכה צריכים בדיקה באפליקציית תחבורה יום לפני. Namba Yasaka היא העצירה הראשונה שאפשר לוותר עליה אם היום מתארך.'
   },
   '22': {
     overview: 'יום עומק באוסקה עם מדריכה: Osaka Castle וההיסטוריה של איחוד יפן, שוק Kuromon לטעימות, Shinsekai ו-Tsutenkaku, מקדש Namba Yasaka, סמטת Hozenji Yokocho, ולסיום דוטונבורי ושיט Tombori בשעת דמדומים.',
@@ -1364,7 +1363,7 @@ const data = {
     ["17:10<br>18:10","תאורת השלכת ב-Kitano Tenmangu","גן מייפל עונתי מואר סביב הסוללה והנחל. זה אינו מופע והמסלול כולל שינויי גובה; יש לאשר מועדים ושעות רשמיים ל-2026.","assets/attractions/day19/eikando_new.jpg","Kitano Tenmangu Shrine Kyoto","🍁 אופציונלי · יש לאשר פתיחה"],
     ["19:30<br>21:00","ארוחת ערב יפנית ליד המלון","ארוחת ערב שהוזמנה מראש לשישה באזור Hotel Monterey Kyoto. אין חזרה נפרדת למלון אחר הצהריים.","assets/attractions/day19/dinner.jpg","Hotel Monterey Kyoto restaurants","🍽️ חשוב להזמין לשישה"],
   ]},
-  '20': { title:"קיוטו → נארה → אוסקה – Fushimi Inari, פארק נארה ו-Todai-ji", route:"Hotel Monterey → Fushimi Inari → JR Nara → Nara Park → Todai-ji → Kasuga Taisha → Kintetsu-Nara → Osaka Excel Hotel Tokyu", events:[
+  '20': { title:"קיוטו → נארה → אוסקה – Fushimi Inari, פארק נארה ו-Todai-ji", route:"Hotel Monterey → Fushimi Inari → JR Nara → Nara Park → Todai-ji → Kasuga Taisha → Kintetsu-Nara → Villa Fontaine Grand Osaka Umeda", events:[
     ["07:00<br>07:45","ארוחת בוקר ב-Hotel Monterey Kyoto","ארוחת בוקר רגילה לאחר השלמת האריזה, כדי שהצ׳ק-אאוט והיציאה לא יתעכבו.","assets/attractions/day19/breakfast.jpg","Hotel Monterey Kyoto","🧳 להשלים אריזה מראש"],
     ["07:45<br>08:00","צ׳ק-אאוט וסידור מזוודות","סגירת החשבון ואישור סידור המזוודות. אין להשאיר תיקים שיחייבו חזרה לקיוטו.","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto","🧳 מעבר ישיר לאוסקה בסוף היום"],
     ["08:50<br>10:20","Fushimi Inari Taisha","המקדש הראשי, מנהרות שערי הטוריי ועלייה קצרה בלבד. לא עולים לפסגה כדי לשמור זמן ואנרגיה לנארה.","assets/attractions/day18/fushimi.jpg","Fushimi Inari Taisha","⛩️ אתר חובה · ללא עלייה לפסגה"],
@@ -1373,18 +1372,20 @@ const data = {
     ["13:30<br>14:45","Todai-ji – השער הדרומי והבודהה הגדול","האתר התרבותי המרכזי בנארה: שער Nandaimon והבודהה הגדול בתוך Daibutsuden, אחד מאולמות העץ הגדולים בעולם.","assets/attractions/day20/todaiji.jpg","Todai-ji Nara","🏯 אתר חובה · 75 דקות"],
     ["15:20<br>16:00","Kasuga Taisha","התמקדות בדרך הגישה ובאזור התפילה הכללי. הביקור אופציונלי; לא מסתמכים על הכניסה הפנימית בתשלום שנסגרת ב-16:00.","assets/attractions/day20/kasuga.jpg","Kasuga Taisha Nara","🏮 אופציונלי · לבטל אם עייפים או מתעכבים"],
     ["16:45<br>17:10","שירותים, כרטיסים ומרווח עלייה לרכבת","מרווח מכוון בתחנת Kintetsu-Nara ולא שעת יציאה קשיחה. אפשר לקנות שתייה או חטיף לפני העלייה.","assets/attractions/day20/train.jpg","Kintetsu-Nara Station","🎫 מרווח תפעולי מכוון"],
-    ["18:25<br>19:15","צ׳ק-אין ב-Osaka Excel Hotel Tokyu","איסוף מזוודות שנשלחו מראש, התרעננות והתארגנות ראשונה במלון באוסקה.","assets/attractions/day21/hotel.jpg","Osaka Excel Hotel Tokyu","🏨 לינה באוסקה"],
-    ["19:15<br>20:45","ארוחת ערב ליד המלון","ארוחת ערב שהוזמנה מראש לשישה במרחק הליכה מהמלון. לא מוסיפים אטרקציה גדולה אחרי יום המעבר המלא.","assets/attractions/day19/dinner.jpg","Osaka Excel Hotel Tokyu restaurants","🍽️ חשוב להזמין לשישה"],
+    ["18:25<br>19:15","צ׳ק-אין ב-Villa Fontaine Grand Osaka Umeda","הגעה למלון באומדה, התרעננות והתארגנות אחרי יום המעבר המלא.","assets/attractions/day21/hotel.jpg","Villa Fontaine Grand Osaka Umeda","🏨 לינה באומדה"],
+    ["19:15<br>20:45","ארוחת ערב ליד המלון","ארוחת ערב שהוזמנה מראש לשישה במרחק הליכה מהמלון. לא מוסיפים אטרקציה גדולה אחרי יום המעבר המלא.","assets/attractions/day19/dinner.jpg","Villa Fontaine Grand Osaka Umeda restaurants","🍽️ חשוב להזמין לשישה"],
   ]},
-  '21': { title:"קיוטו → אוסקה – נישיקי, טקס תה, אומדה ונמבה סיטי", route:"Hotel Monterey → Nishiki → Kyoto Yoshitsugu (טקס תה) → Karasuma → Hankyu → Umeda Sky → Namba City → Dotonbori Craft Beer", events:[
-    ["08:30<br>09:20","ארוחת בוקר וצ'ק-אאוט","ארוחת בוקר ב-Hotel Monterey Kyoto ויציאה לכיוון שוק נישיקי","assets/attractions/day21/hotel.jpg","Hotel Monterey Kyoto"],
-    ["09:35<br>10:45","Nishiki Market (錦市場)","כ-1:10 שעות סיור, טעימות ואוכל קל. זה מספיק בעיניי ולא צריך למשוך עד 11:15","assets/attractions/day21/nishiki.jpg","Nishiki Market Kyoto"],
-    ["11:00<br>11:45","🍵 טקס תה – Kyoto Yoshitsugu","חוויה של 45 דקות עם מאצ'ה וטקס תה מסורתי. ¥4,400 לאדם","assets/attractions/day21/tea_ceremony.jpg","Kyoto Yoshitsugu"],
-    ["13:05<br>14:00","Umeda Sky Building","כ-55 דקות במצפה ובתצפית — מספיק כדי ליהנות מהנוף בלי למהר","assets/attractions/day21/umeda_sky.jpg","Umeda Sky Building Osaka"],
-    ["14:00<br>14:30","ארוחת צהריים באומדה","הפסקת אוכל קלה באזור Umeda Sky Building/התחנה לפני ההמשך לנמבה","assets/attractions/lunch.jpg","Umeda Osaka restaurants"],
-    ["15:10<br>17:45","🛍️ קניות משותפות – Namba City","זמן טוב מאוד לקניות (2:35) גם אחרי הוספת ארוחת הצהריים","assets/attractions/day21/namba_city.jpg","Namba City Osaka"],
-    ["18:00<br>20:00","🍺 Dotonbori Craft Beer Brewery","בירה וערב משותף — לא הייתי מקצר","https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=300&q=80","Dotonbori Craft Beer Brewery"],
-    ["20:30","הגעה ל-Villa Fontaine Grand Osaka Umeda","סיום היום וצ׳ק-אין במלון באומדה.","assets/attractions/day21/hotel.jpg","Villa Fontaine Grand Osaka Umeda"]
+  '21': { title:"אוסקה – Umeda, Kuromon, Shinsekai ו-Dotonbori", route:"Villa Fontaine Umeda → Umeda Sky → Kuromon → Shinsekai → Namba Yasaka → Dotonbori → Hozenji Yokocho → Osaka Excel Hotel Tokyu", events:[
+    ["08:00<br>09:00","ארוחת בוקר ב-Villa Fontaine Grand Osaka Umeda","פתיחה רגועה של היום לפני הצ׳ק-אאוט והמעבר בין המלונות.","assets/attractions/day21/hotel.jpg","Villa Fontaine Grand Osaka Umeda","🧳 נוסעים עם תיקים קטנים בלבד"],
+    ["09:30<br>10:45","Umeda Sky Building","שני מגדלים המחוברים במרפסת Floating Garden Observatory, עם גג פתוח ונוף של 360 מעלות. נפתח ב-09:30; בבוקר התורים בדרך כלל קצרים יותר.","assets/attractions/day21/umeda_sky.jpg","Umeda Sky Building Osaka","🎟️ כרטיס ¥2,000 · כ-75 דקות"],
+    ["11:40<br>13:00","Kuromon Ichiba Market – ארוחת טעימות","המטבח של אוסקה: פירות ים, גריל, פירות ואוכל רחוב. טועמים תוך כדי הליכה ולכן אין צורך בארוחת צהריים נפרדת.","assets/attractions/day22/kuromon_market.jpg","Kuromon Ichiba Market Osaka","🍢 80 דקות לטעימות ושיטוט"],
+    ["13:25<br>14:35","Shinsekai ואזור Tsutenkaku","אוסקה רטרו בסגנון תחילת המאה ה-20, עם שלטי ניאון צבעוניים, מגדל Tsutenkaku ודוכני kushikatsu.","assets/attractions/day22/shinsekai.jpg","Shinsekai Osaka","🏮 כ-70 דקות"],
+    ["14:55<br>15:25","Namba Yasaka Shrine","מקדש קטן וזכיר עם במה ענקית בצורת ראש אריה. אפשר לוותר על העצירה אם היום מתארך.","assets/attractions/day22/namba_yasaka.jpg","Namba Yasaka Shrine Osaka","🦁 אופציונלי · 30 דקות"],
+    ["15:25<br>16:30","קפה ומנוחה ב-Namba","הפסקה אמיתית עם התיקים הקטנים לפני חלק הערב של היום.","assets/attractions/lunch.jpg","Namba Osaka cafes","☕ 65 דקות מנוחה"],
+    ["16:30<br>17:45","Dotonbori בשעת בין ערביים","הליכה לאורך התעלה, Ebisu Bridge ושלט Glico המפורסם בזמן שהאורות מתחילים להידלק.","assets/attractions/day22/dotonbori.jpg","Dotonbori Osaka","🌆 75 דקות"],
+    ["18:00<br>20:00","בירה בוטיק וארוחת ערב ב-Dotonbori","שעתיים במבשלת הבירה מהתוכנית המקורית, לארוחת ערב ובירה מקומית.","assets/attractions/day22/dotonbori.jpg","Dotonbori Craft Beer Brewery","🍺 ארוחת ערב · שעתיים"],
+    ["20:00<br>20:30","Hozenji Yokocho","סמטה צרה וישנה ליד מקדש Hozenji, עם אווירת ערב נעימה במיוחד.","assets/attractions/day22/hozenji.jpg","Hozenji Yokocho Osaka","🏮 הליכה קצרה מ-Dotonbori"],
+    ["20:30<br>21:00","צ׳ק-אין ב-Osaka Excel Hotel Tokyu","נסיעה מ-Namba ל-Hommachi והליכה קצרה מיציאה 13. המזוודות הראשיות כבר מחכות במלון.","assets/attractions/day21/hotel.jpg","Osaka Excel Hotel Tokyu","🏨 מעבר מלון והשלמת צ׳ק-אין"],
   ]},
 '22': { title:"אוסקה – היסטוריה, שווקים וניאונים", route:"Excel Hotel Tokyu → Osaka Castle → Kuromon Market → Shinsekai → Namba Yasaka Shrine → Hozenji Yokocho → Dotonbori → Tombori Cruise", events:[
     ["09:15<br>11:00","Osaka Castle","פגישה עם המדריכה. סיור במבצר אוסקה עם רקע על איחוד יפן, סיפורו של Toyotomi Hideyoshi, נקודות תצפית יפות וצילומים סביב המתחם ההיסטורי.","assets/attractions/day22/osaka_castle.jpg","Osaka Castle"],
@@ -1511,17 +1512,14 @@ const transfersByDay = {
     {"t": "11:35<br>12:00", "title": "אוטובוס לאזור הפארק", "desc": "אוטובוס מקומי והליכה קצרה לאזור ארוחת הצהריים כדי לחסוך צעדים.", "img": "assets/transfers/bus.jpg", "to": "Todai-ji Nara restaurants", "tag": "🚌 + 🚶 ~25 דק׳", "afterIdx": 2, "from": "JR Nara Station"},
     {"t": "14:45<br>15:20", "title": "הליכה דרך הפארק ל-Kasuga Taisha", "desc": "הליכה נופית שממשיכים בה רק אם הקבוצה מרגישה בנוח; זהו מוקד הגמישות של אחר הצהריים.", "img": "assets/transfers/walk.jpg", "to": "Kasuga Taisha Nara", "tag": "🚶 ~35 דק׳", "afterIdx": 5, "from": "Todai-ji Nara"},
     {"t": "16:00<br>16:45", "title": "חזרה ל-Kintetsu-Nara Station", "desc": "הליכה ואוטובוס מקומי, כולל זמן המתנה, אחרי יום ההליכה.", "img": "assets/transfers/bus.jpg", "to": "Kintetsu-Nara Station", "tag": "🚶 + 🚌 ~45 דק׳", "afterIdx": 6, "from": "Kasuga Taisha Nara"},
-    {"t": "17:10<br>18:25", "title": "נארה → המלון באוסקה", "desc": "Kintetsu-Nara ל-Osaka-Namba, קו Midosuji ל-Hommachi והליכה של כשתי דקות מיציאה 13.", "img": "assets/transfers/train.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚆 + 🚇 + 🚶 ~75 דק׳", "afterIdx": 7, "from": "Kintetsu-Nara Station"}
+    {"t": "17:10<br>18:25", "title": "נארה → Villa Fontaine Umeda", "desc": "Kintetsu-Nara ל-Osaka-Namba, קו Midosuji ל-Umeda והליכה למלון.", "img": "assets/transfers/train.jpg", "to": "Villa Fontaine Grand Osaka Umeda", "tag": "🚆 + 🚇 + 🚶 ~75 דק׳", "afterIdx": 7, "from": "Kintetsu-Nara Station"}
   ],
   '21': [
-    {"t": "09:20<br>09:35", "title": "הליכה ל-Nishiki Market", "desc": "הליכה קצרה מהמלון לשוק", "img": "assets/transfers/walk.jpg", "to": "Nishiki Market Kyoto", "tag": "🚶 ~15 דק׳", "afterIdx": 0, "from": "Hotel Monterey Kyoto"},
-    {"t": "10:45<br>10:55", "title": "מעבר ל-Kyoto Yoshitsugu", "desc": "המקום ממש ליד השוק; נותנים 10 דקות כדי להגיע בנחת ולהתארגן", "img": "assets/transfers/walk.jpg", "to": "Kyoto Yoshitsugu", "tag": "🚶 ~10 דק׳", "afterIdx": 1, "from": "Nishiki Market Kyoto"},
-    {"t": "11:45<br>11:55", "title": "הליכה לתחנת Karasuma", "desc": "מעבר קצר מהאתר; נותנים 10 דקות בכוונה", "img": "assets/transfers/walk.jpg", "to": "Karasuma Station Kyoto", "tag": "🚶 ~10 דק׳", "afterIdx": 2, "from": "Kyoto Yoshitsugu"},
-    {"t": "12:02<br>12:43", "title": "Hankyu Limited Express → Osaka-Umeda", "desc": "רכבת ישירה מ-Karasuma. לפי לוח שבת הנוכחי: יציאה 12:02 והגעה 12:43 (阪急電鉄)", "img": "assets/transfers/train.jpg", "to": "Osaka-Umeda Station", "tag": "🚈 Hankyu Limited Express", "afterIdx": 2, "from": "Kyoto Yoshitsugu"},
-    {"t": "12:43<br>13:05", "title": "הליכה ל-Umeda Sky Building", "desc": "כולל יציאה מהתחנה והתמצאות — זמן ריאלי", "img": "assets/transfers/walk.jpg", "to": "Umeda Sky Building Osaka", "tag": "🚶 ~22 דק׳", "afterIdx": 2, "from": "Kyoto Yoshitsugu"},
-    {"t": "14:30<br>15:10", "title": "מעבר ל-Namba", "desc": "הליכה לתחנה + Midosuji Line + יציאה בתחנת Namba", "img": "assets/transfers/train.jpg", "to": "Namba Station Osaka", "tag": "🚇 Midosuji Line", "afterIdx": 4, "from": "Umeda Osaka restaurants"},
-    {"t": "17:45<br>18:00", "title": "הליכה למבשלת הבירה", "desc": "כ-15 דקות", "img": "assets/transfers/walk.jpg", "to": "Dotonbori Craft Beer Brewery", "tag": "🚶 ~15 דק׳", "afterIdx": 5, "from": "Namba City Osaka"},
-    {"t": "20:00<br>20:30", "title": "נסיעה למלון", "desc": "נסיעה מ-Dotonbori לאזור Umeda והליכה קצרה למלון.", "img": "assets/transfers/train.jpg", "to": "Villa Fontaine Grand Osaka Umeda", "tag": "🚇/🚶", "afterIdx": 6, "from": "Dotonbori Craft Beer Brewery"}
+    {"t": "09:00<br>09:30", "title": "צ׳ק-אאוט והליכה ל-Umeda Sky Building", "desc": "צ׳ק-אאוט מ-Villa Fontaine והליכה של כ-16 דקות דרך רובע Umeda.", "img": "assets/transfers/walk.jpg", "to": "Umeda Sky Building Osaka", "tag": "🚶 ~16 דק׳", "afterIdx": 0, "from": "Villa Fontaine Grand Osaka Umeda"},
+    {"t": "10:45<br>11:40", "title": "Umeda Sky Building → Kuromon Market", "desc": "הליכה של כ-15 דקות לתחנת Umeda, קו Midosuji ישיר ל-Namba ללא החלפות, ואז הליכה של כ-10–15 דקות לשוק Kuromon.", "img": "assets/transfers/train.jpg", "to": "Kuromon Ichiba Market Osaka", "tag": "🚶 + 🚇 + 🚶 ~55 דק׳ (הערכה)", "afterIdx": 1, "from": "Umeda Sky Building Osaka"},
+    {"t": "13:00<br>13:25", "title": "מונית ל-Shinsekai", "desc": "מונית קצרה ונוחה יותר עם התיקים הקטנים.", "img": "assets/transfers/taxi.jpg", "to": "Shinsekai Osaka", "tag": "🚕 ~10–15 דק׳ (הערכה)", "afterIdx": 2, "from": "Kuromon Ichiba Market Osaka"},
+    {"t": "14:35<br>14:55", "title": "מונית ל-Namba Yasaka Shrine", "desc": "מעבר קצר מ-Shinsekai למקדש ראש האריה.", "img": "assets/transfers/taxi.jpg", "to": "Namba Yasaka Shrine Osaka", "tag": "🚕 ~10–15 דק׳ (הערכה)", "afterIdx": 3, "from": "Shinsekai Osaka"},
+    {"t": "17:45<br>18:00", "title": "הליכה למבשלת הבירה", "desc": "הליכה קצרה בתוך Dotonbori לקראת ארוחת הערב.", "img": "assets/transfers/walk.jpg", "to": "Dotonbori Craft Beer Brewery", "tag": "🚶 ~15 דק׳", "afterIdx": 6, "from": "Dotonbori Osaka"}
   ],
   '22': [
     {"t": "08:15<br>08:40", "title": "נסיעה ל-Osaka Castle", "desc": "יציאה מהמלון ונסיעה ל-Osaka Castle במונית כדי להתחיל את הבוקר בזמן ובנוחות.", "img": "assets/transfers/taxi.jpg", "to": "Osaka Castle", "tag": "🚕 מונית · מעבר בוקר", "afterIdx": -1, "from": null},
@@ -1620,20 +1618,20 @@ const hotelsByDay = {
     extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
   },
   '20': {
-    name: 'Osaka Excel Hotel Tokyu',
-    meta: 'אוסקה · Honmachi, Chuo Ward',
-    mapQuery: 'Osaka Excel Hotel Tokyu',
-    bookingUrl: 'https://www.booking.com/',
-    bookingAppUrl: 'booking://',
-    extra: '4-1-15 Kutaro-cho, Chuo-ku, Osaka 541-0056, Japan'
-  },
-  '21': {
     name: 'Villa Fontaine Grand Osaka Umeda',
     meta: 'אוסקה · Umeda, Kita Ward',
     mapQuery: 'Villa Fontaine Grand Osaka Umeda',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
     extra: '2-15-9 Sonezaki, Kita-ku, Osaka 530-0057, Japan'
+  },
+  '21': {
+    name: 'Osaka Excel Hotel Tokyu',
+    meta: 'אוסקה · Honmachi, Chuo Ward',
+    mapQuery: 'Osaka Excel Hotel Tokyu',
+    bookingUrl: 'https://www.booking.com/',
+    bookingAppUrl: 'booking://',
+    extra: '4-1-15 Kutaro-cho, Chuo-ku, Osaka 541-0056, Japan'
   },
   '22': {
     name: 'Excel Hotel Tokyu Osaka',
