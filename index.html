@@ -91,6 +91,7 @@
     .map-card.clean-map .route-line{display:none}
     .map-chip{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.94);padding:8px 11px;
       border-radius:14px;font-size:12px;font-weight:800}
+    #route.route-day23 .map-chip{display:none}
     .route-line{position:absolute;bottom:14px;right:14px;left:14px;background:rgba(17,24,39,.85);color:#fff;
       border-radius:16px;padding:11px 13px;font-size:13px}
     .section-title{font-size:17px;font-weight:900;margin:20px 2px 10px}
@@ -517,14 +518,14 @@
           <button id="routeEditBtn" class="btn ghost" type="button">עריכה</button>
           <button id="routeSaveBtn" class="btn primary hidden" type="button">שמירה</button>
         </div>
-        <div class="section-title" style="margin:0;font-size:18px">הערות ליום</div>
+        <div class="section-title" id="routeNotesTitle" style="margin:0;font-size:18px">הערות ליום</div>
         <div class="route-notes-grid">
           <div>
             <label for="routeOverview" id="routeOverviewLabel">סקירה כללית</label>
             <textarea id="routeOverview" class="route-textarea" placeholder="הוסיפו כאן סקירה כללית ליום..."></textarea>
           </div>
           <div id="routeTipsContainer">
-            <label for="routeTips">טיפים חשובים</label>
+            <label for="routeTips" id="routeTipsLabel">טיפים חשובים</label>
             <textarea id="routeTips" class="route-textarea" placeholder="הוסיפו כאן טיפים חשובים ליום..."></textarea>
           </div>
         </div>
@@ -1106,8 +1107,8 @@ const routeNotesPresets = {
     tips: 'אין תיקים לסחוב היום. יש להזמין מראש את Harukas 300 ואת teamLab, ללבוש שכבות חמות לגן הלילי ולבדוק באפליקציית תחבורה יום קודם את הזמנים המסומנים כהערכה. ארוחת הערב מאוחרת, לכן חשוב לאכול נשנוש ב-Abeno ולהזמין שולחן סביב 21:15.'
   },
   '23': {
-    overview: 'יום חג רגוע יחסית שמתחיל בפסטיבל Shinno-sai ברובע התרופות ההיסטורי Doshomachi, ממשיך לארוחת צהריים ב-Namba ולביקור ב-Sumiyoshi Taisha, ומסתיים בארבע שעות קניות ב-Shinsaibashi וב-Amerikamura ובארוחת פרידה באזור Dotonbori.',
-    tips: 'אחרי 11:30 מעדיפים מטרו על מונית בגלל הגבלות התנועה ב-Midosuji. ל-Sumiyoshitaisha עולים רק על רכבת Nankai מקומית. זמני הנסיעה המסומנים כהערכה דורשים בדיקה יום קודם, ויש להזמין מראש מקום לארוחת הפרידה ולשמור זמן לאריזה בערב.'
+    overview: 'אחרי ארוחת הבוקר נצא במונית ל-Doshomachi ונפתח את היום בפסטיבל Shinno-sai במקדש Sukunahikona. משם נמשיך במטרו ל-Namba לארוחת צהריים, ונעלה על רכבת Nankai מקומית בלבד אל Sumiyoshi Taisha. אחר הצהריים נחזור ל-Namba ול-Shinsaibashi לארבע שעות של קניות, נסיים בארוחת פרידה באזור Dotonbori ונחזור למלון לאריזה. חשוב: אחרי 11:30 עדיף להשתמש במטרו בגלל הגבלות התנועה ב-Midosuji, לבדוק יום קודם את זמני הנסיעה המשוערים ולהזמין מראש מקום לארוחת הפרידה.',
+    tips: ''
   },
   '24': {
     overview: "היום עוברים מאוסקה לטוקיו ברכבת השינקנסן Nozomi, מסתובבים באזור תחנת טוקיו ומרונוצ'י, אוכלים מונג'איאקי בצוקישימה, מתארגנים במלון בגינזה, ואז יוצאים לערב מפנק של Akita Dining Namahage ובר מוזיקה בגינזה.",
@@ -1165,6 +1166,9 @@ function renderDayNav(day){
 function showDayPlanFromMain(day){
   render(day);
   showScreen('route', document.querySelector('.nav button[data-screen="route"]'));
+  requestAnimationFrame(() => {
+    document.querySelectorAll('#route .route-textarea.auto-resize').forEach(autoResizeTextarea);
+  });
 }
 
 function renderTransportationDays(){
@@ -3042,8 +3046,23 @@ function render(day){
   // Special handling for Day 14 - single combined notes field
   const routeTipsContainer = document.getElementById('routeTipsContainer');
   const routeOverviewLabel = document.getElementById('routeOverviewLabel');
+  const routeTipsLabel = document.getElementById('routeTipsLabel');
+  const routeNotesTitle = document.getElementById('routeNotesTitle');
   const routeNotesHelp = document.getElementById('routeNotesHelp');
   const routeNotesPanel = document.getElementById('routeNotesPanel');
+
+  if (routeNotesTitle) routeNotesTitle.textContent = 'הערות ליום';
+  if (routeOverviewLabel) routeOverviewLabel.textContent = 'סקירה כללית';
+  if (routeTipsLabel) routeTipsLabel.textContent = 'טיפים חשובים';
+  if (overviewNode) overviewNode.placeholder = 'הוסיפו כאן סקירה כללית ליום...';
+  if (tipsNode) tipsNode.placeholder = 'הוסיפו כאן טיפים חשובים ליום...';
+  [overviewNode, tipsNode].forEach(node => {
+    if (!node) return;
+    node.classList.remove('auto-resize');
+    node.removeEventListener('input', handleTextareaResize);
+    node.removeAttribute('rows');
+    node.style.height = '';
+  });
   
   if (day === '14') {
     // Day 14: Single combined field - always visible with auto-resize
@@ -3069,8 +3088,32 @@ function render(day){
     if (routeNotesPanel) {
       routeNotesPanel.style.display = 'block';
     }
+  } else if (day === '23') {
+    if (routeNotesTitle) routeNotesTitle.textContent = 'תכנון היום';
+    if (routeOverviewLabel) routeOverviewLabel.textContent = 'מסלול היום';
+    if (routeTipsLabel) routeTipsLabel.textContent = 'טיפים שימושיים';
+    if (routeTipsContainer) routeTipsContainer.style.display = 'block';
+    if (routeOverviewLabel) routeOverviewLabel.style.display = 'block';
+    if (routeNotesHelp) {
+      routeNotesHelp.style.display = 'block';
+      routeNotesHelp.textContent = 'מסלול היום קבוע. אפשר להוסיף טיפים שימושיים ולשמור.';
+    }
+    if (overviewNode) overviewNode.placeholder = 'תיאור קצר וברור של מהלך היום...';
+    if (tipsNode) {
+      tipsNode.placeholder = 'הוסיפו טיפ...';
+      tipsNode.rows = 1;
+    }
+    [overviewNode, tipsNode].forEach(node => {
+      if (!node) return;
+      node.style.display = 'block';
+      node.classList.add('auto-resize');
+      autoResizeTextarea(node);
+      node.addEventListener('input', handleTextareaResize);
+    });
+    if (routeNotesPanel) routeNotesPanel.style.display = 'block';
   } else {
     // Other days: Show both fields normally
+    if (routeNotesHelp) routeNotesHelp.textContent = 'אפשר לערוך חופשי. התוכן נשמר לכל יום כל עוד הדף פתוח.';
     if (routeTipsContainer) routeTipsContainer.style.display = 'block';
     if (routeOverviewLabel) routeOverviewLabel.style.display = 'block';
     if (routeNotesHelp) routeNotesHelp.style.display = 'block';
@@ -3163,7 +3206,7 @@ function setRouteNotesEditMode(editing){
   const editBtn = document.getElementById('routeEditBtn');
   const saveBtn = document.getElementById('routeSaveBtn');
   
-  if (overviewNode) overviewNode.readOnly = !editing;
+  if (overviewNode) overviewNode.readOnly = currentRouteDay === '23' || !editing;
   // Only edit tips if not Day 14 (where it's hidden)
   if (tipsNode && currentRouteDay !== '14') tipsNode.readOnly = !editing;
   
