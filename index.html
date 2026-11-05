@@ -1054,8 +1054,8 @@ const transitByDay = {
     { from: 'Osaka Excel Hotel Tokyu', to: 'Osaka Castle', note: 'הליכה ל-Hommachi, שתי תחנות בקו Chuo ל-Tanimachi 4-chome וכניסה דרך Otemon Gate', line: 'Chuo Line + רגלי', time: '~30 דק׳', cost: '¥190' },
     { from: 'Osaka Castle', to: 'Morinomiya Station', note: 'הליכת צילום לאורך התעלות וחומות האבן', line: 'רגלי', time: '~20 דק׳', cost: '—' },
     { from: 'Morinomiya', to: 'Tennoji', note: 'רכבת ישירה ללא החלפה', line: 'JR Osaka Loop Line', time: '~20 דק׳ כולל המתנה', cost: '¥180' },
-    { from: 'Tennoji', to: 'Shitennoji', note: 'הליכה מהמקום שנבחר לארוחת הצהריים אל המקדש', line: 'רגלי', time: '~10–15 דק׳', cost: '—' },
-    { from: 'Shitennoji', to: 'Tennoji Park', note: 'מונית קצרה או הליכה; זמן הנסיעה הוא הערכה', line: 'מונית / רגלי', time: '~7 / 20 דק׳', cost: '—' },
+    { from: 'Tennoji', to: 'Shitennoji', note: 'הליכה ישירה מהתחנה אל מתחם המקדש', line: 'רגלי', time: '~10–15 דק׳', cost: '—' },
+    { from: 'Shitennoji', to: 'Tennoji Park / Abeno', note: 'מונית קצרה או הליכה לאזור ארוחת הצהריים; זמן הנסיעה הוא הערכה', line: 'מונית / רגלי', time: '~7 / 20 דק׳', cost: '—' },
     { from: 'Abeno Harukas', to: 'teamLab Botanical Garden Osaka', note: 'קו Midosuji מ-Tennoji ל-Nagai והליכה של כ-10 דקות מיציאה 3', line: 'Midosuji Line + רגלי', time: '~30 דק׳ (הערכה)', cost: '¥190' },
     { from: 'teamLab Botanical Garden Osaka', to: 'Namba', note: 'חזרה ישירה בקו Midosuji, כולל הליכה מהגן לתחנה', line: 'Midosuji Line + רגלי', time: '~50 דק׳ (הערכה)', cost: '¥240' },
     { from: 'Namba', to: 'Osaka Excel Hotel Tokyu', note: 'הליכה צפונה לאורך Midosuji Illumination בדרך הישירה למלון', line: 'רגלי / Midosuji Line', time: 'לפי הקצב', cost: '—' }
@@ -1104,7 +1104,7 @@ const routeNotesPresets = {
     tips: ''
   },
   '22': {
-    overview: 'נצא מהמלון ללא תיקים ונפתח את היום ב-Osaka Castle ובמוזיאון חומת האבן. אחרי ארוחת צהריים מוקדמת ב-Tennoji נבקר ב-Shitennoji וביריד החודשי, נמשיך לגן Keitakuen ולקניות ב-Kintetsu, ונעלה ל-Harukas 300 לקראת השקיעה. בערב נאכל נשנוש קל, ניסע ל-teamLab Botanical Garden, נאכל ארוחת ערב מאוחרת ב-Namba ונחזור למלון לאורך Midosuji Illumination. חשוב: להזמין מראש Harukas 300, teamLab ושולחן סביב 21:15, ללבוש שכבות חמות ולבדוק יום קודם את זמני הנסיעה המשוערים.',
+    overview: 'נצא מהמלון ללא תיקים ונפתח את היום ב-Osaka Castle ובמוזיאון חומת האבן. משם ניסע ישירות ל-Shitennoji וליריד החודשי, ולאחר הביקור נאכל ארוחת צהריים באזור Tennoji Park / Abeno. נמשיך לגן Keitakuen ולקניות ב-Kintetsu, ונעלה ל-Harukas 300 לקראת השקיעה. בערב נאכל נשנוש קל, ניסע ל-teamLab Botanical Garden, נאכל ארוחת ערב מאוחרת ב-Namba ונחזור למלון לאורך Midosuji Illumination. חשוב: להזמין מראש Harukas 300, teamLab ושולחן סביב 21:15, ללבוש שכבות חמות ולבדוק יום קודם את זמני הנסיעה המשוערים.',
     tips: ''
   },
   '23': {
@@ -1405,8 +1405,8 @@ const data = {
 '22': { title:"אוסקה – Osaka Castle, Tennoji, Harukas ו-teamLab", route:"Osaka Excel Hotel Tokyu → Osaka Castle → Shitennoji → Keitakuen → Kintetsu → Harukas 300 → teamLab → Namba → Midosuji Illumination", events:[
   ["07:30<br>08:30","ארוחת בוקר ב-Osaka Excel Hotel Tokyu","ארוחת בוקר רגועה במלון לפני היציאה. היום מתנהל בלי מזוודות או תיקים גדולים.","pictures/Breakfast.jpg","Osaka Excel Hotel Tokyu","🧳 ללא תיקים היום"],
   ["09:00<br>10:30","Osaka Castle Main Tower ו-Toyotomi Stone Wall Museum","מתחילים בתצפית בקומה 8 ויורדים דרך התערוכות. כרטיס משולב כולל את המגדל ואת מוזיאון חומת האבן; מומלץ לקחת אודיו-גייד חינמי.","pictures/osaka castle.jpg","Osaka Castle Main Tower","🎟️ ¥1,200 · להגיע לפתיחה"],
-  ["11:10<br>12:15","ארוחת צהריים באזור Tennoji / Abeno","ארוחת צהריים מוקדמת לפני רצף המקדש, הגן והתצפית. בוחרים מקום קרוב למסלול לכיוון Shitennoji.","pictures/lunch.jpg","Tennoji Osaka restaurants","🍽️ 65 דקות"],
-  ["12:30<br>14:15","Shitennoji והיריד החודשי","המקדש הבודהיסטי הראשון ביפן שנבנה בידי המדינה, נוסד בשנת 593. ב-22 בחודש מתקיים יריד חודשי; האזור המרכזי פתוח עד 16:00.","pictures/Shitennoji.jpg","Shitennoji Temple Osaka","🏯 105 דקות · יריד חודשי"],
+  ["11:25<br>13:15","Shitennoji והיריד החודשי","המקדש הבודהיסטי הראשון ביפן שנבנה בידי המדינה, נוסד בשנת 593. ב-22 בחודש מתקיים יריד חודשי והכניסה לאזור המרכזי חינם; השטח נסגר ב-16:00.","pictures/Shitennoji.jpg","Shitennoji Temple Osaka","🏯 110 דקות · יריד חודשי"],
+  ["13:40<br>14:40","ארוחת צהריים באזור Tennoji Park / Abeno","ארוחה מסודרת אחרי הביקור במקדש, במקום קרוב ל-Keitakuen Garden לקראת המשך המסלול.","pictures/lunch.jpg","Tennoji Park Abeno restaurants","🍽️ 60 דקות"],
   ["14:40<br>15:30","Keitakuen Garden","גן יפני עם בריכה ונוף ל-Abeno Harukas. פתוח ביום ראשון עד 17:00, עם כניסה אחרונה ב-16:30.","pictures/Keitakuen Garden.jpg","Keitakuen Garden Osaka","🌿 ¥300 · 50 דקות"],
   ["15:30<br>16:30","Kintetsu Department Store – אוכל ומזכרות","שעה במחלקות האוכל והמזכרות של Abeno Harukas, כולל קפה והצטיידות בנשנוש לפני השקיעה.","pictures/abeno harukas 300.jpg","Kintetsu Department Store Abeno Harukas","🛍️ שעה · פתוח עד 20:00"],
   ["16:40<br>17:50","Abeno Harukas 300 בשקיעה","תצפית פנורמית גבוהה על אוסקה. השקיעה צפויה סביב 16:51, כך שמגיעים מעט לפניה ונשארים עד אורות הערב.","pictures/abeno harukas 300.jpg","Abeno Harukas 300 Osaka","🌇 70 דקות · להזמין מראש"],
@@ -1542,8 +1542,8 @@ const transfersByDay = {
     {"t": "08:30<br>09:00", "title": "נסיעה ל-Osaka Castle", "desc": "הליכה של כ-2 דקות ל-Hommachi, שתי תחנות בקו Chuo ל-Tanimachi 4-chome, יציאה 9 והליכה דרך Otemon Gate.", "img": "assets/transfers/train.jpg", "to": "Osaka Castle Main Tower", "tag": "🚶 + 🚇 + 🚶 ~30 דק׳", "afterIdx": 0, "from": "Osaka Excel Hotel Tokyu"},
     {"t": "10:30<br>10:50", "title": "הליכה ל-Morinomiya", "desc": "הליכת צילום לאורך התעלות וחומות האבן של פארק הטירה לכיוון תחנת Morinomiya.", "img": "assets/transfers/walk.jpg", "to": "Morinomiya Station", "tag": "🚶 ~20 דק׳", "afterIdx": 1, "from": "Osaka Castle Main Tower"},
     {"t": "10:50<br>11:10", "title": "Morinomiya → Tennoji", "desc": "רכבת ישירה בקו JR Osaka Loop Line, ללא החלפות.", "img": "assets/transfers/train.jpg", "to": "Tennoji Station", "tag": "🚆 JR Loop Line ~20 דק׳", "afterIdx": 1, "from": "Morinomiya Station"},
-    {"t": "12:15<br>12:30", "title": "הליכה ל-Shitennoji", "desc": "הליכה של כ-10–15 דקות מאזור ארוחת הצהריים אל מתחם המקדש.", "img": "assets/transfers/walk.jpg", "to": "Shitennoji Temple Osaka", "tag": "🚶 ~10–15 דק׳", "afterIdx": 2, "from": "Tennoji Osaka restaurants"},
-    {"t": "14:15<br>14:40", "title": "מעבר ל-Tennoji Park", "desc": "מונית קצרה של כ-7 דקות או הליכה של כ-20 דקות; הזמנים משוערים.", "img": "assets/transfers/taxi.jpg", "to": "Keitakuen Garden Osaka", "tag": "🚕 ~7 דק׳ / 🚶 ~20 דק׳ (הערכה)", "afterIdx": 3, "from": "Shitennoji Temple Osaka"},
+    {"t": "11:10<br>11:25", "title": "הליכה ל-Shitennoji", "desc": "הליכה ישירה של כ-10–15 דקות מתחנת Tennoji אל מתחם המקדש.", "img": "assets/transfers/walk.jpg", "to": "Shitennoji Temple Osaka", "tag": "🚶 ~10–15 דק׳", "afterIdx": 1, "from": "Tennoji Station"},
+    {"t": "13:15<br>13:40", "title": "מעבר לארוחת צהריים ב-Abeno", "desc": "מונית קצרה של כ-7 דקות או הליכה של כ-20 דקות אל אזור Tennoji Park / Abeno; הזמנים משוערים.", "img": "assets/transfers/taxi.jpg", "to": "Tennoji Park Abeno restaurants", "tag": "🚕 ~7 דק׳ / 🚶 ~20 דק׳ (הערכה)", "afterIdx": 2, "from": "Shitennoji Temple Osaka"},
     {"t": "16:30<br>16:40", "title": "עלייה ל-Harukas 300", "desc": "עולים בתוך Abeno Harukas אל קופת התצפית בקומה 16.", "img": "assets/transfers/walk.jpg", "to": "Abeno Harukas 300 Osaka", "tag": "🏢 בתוך הבניין · ~10 דק׳", "afterIdx": 5, "from": "Kintetsu Department Store Abeno Harukas"},
     {"t": "18:20<br>18:50", "title": "Tennoji → teamLab", "desc": "קו Midosuji ל-Nagai, יציאה 3 והליכה של כ-10 דקות אל הגן. הזמן הכולל משוער.", "img": "assets/transfers/train.jpg", "to": "teamLab Botanical Garden Osaka", "tag": "🚇 + 🚶 ~30 דק׳ (הערכה)", "afterIdx": 7, "from": "Abeno Harukas"},
     {"t": "20:30<br>21:20", "title": "Nagai → Namba", "desc": "הליכה לתחנת Nagai וקו Midosuji ישיר ל-Namba. הזמן הכולל כולל יציאה מהגן ומשוער.", "img": "assets/transfers/train.jpg", "to": "Namba Station Osaka", "tag": "🚶 + 🚇 ~50 דק׳ (הערכה)", "afterIdx": 8, "from": "teamLab Botanical Garden Osaka"}
