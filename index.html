@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#eef3f9" />
+  <meta name="theme-color" content="#f8fbff" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -19,7 +19,7 @@
   <style>
     :root{
       color-scheme:light;
-      --bg:#eef3f9; --card:#ffffff; --ink:#142033; --muted:#5f687a;
+      --bg:#f8fbff; --card:#ffffff; --ink:#142033; --muted:#5f687a;
       --primary:#e85d30; --primary2:#ff8a50; --line:#dde5f0; --ok:#18a957;
       --blue:#2f6fed; --shadow:0 14px 34px rgba(21,29,46,.10);
       --hero-start:#042f4f; --hero-mid:#0c4a6e; --hero-end:#226f9d;
@@ -143,7 +143,6 @@
     .event-title-line.title-rtl{text-align:right;direction:rtl}
     .event-transit{font-size:11px;color:var(--muted);margin-top:7px}
     .event-desc{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
-    #route.route-day23{background:#fbfdff}
     .timeline-day23 .event{position:relative;display:block;min-height:210px;padding:0;isolation:isolate;background:#1f2937;border-color:rgba(255,255,255,.18)}
     .timeline-day23 .event::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(15,23,42,.35) 0%,rgba(15,23,42,.16) 28%,rgba(15,23,42,.78) 65%,rgba(15,23,42,.94) 100%)}
     .timeline-day23 .event-img-nav{position:absolute;inset:0;z-index:0;width:100%;height:100%;min-height:0;border-radius:0}
@@ -203,7 +202,7 @@
     .nav button:active{transform:translateY(1px)}
     .nav button.active{color:#0f3f84;background:#e9f2ff;border-color:#b9cff0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55)}
     .nav button.active::after{content:"";position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:18px;height:3px;border-radius:999px;background:#0f5ad7}
-    .screen{display:none}.screen.active{display:block}
+    .screen{display:none;min-height:100vh;background:var(--bg)}.screen.active{display:block}
     #main{padding-bottom:180px}
     #route{padding-bottom:180px}
     #group{padding-bottom:180px}
