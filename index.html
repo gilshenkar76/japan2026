@@ -63,6 +63,16 @@
     .day-head.banner-head{display:block;margin:8px 2px 14px}
     .banner-top-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
     .banner-app-title{font-size:14px;font-weight:800;color:var(--ink);opacity:.8;line-height:1}
+    .banner-day-nav{display:flex;align-items:center;gap:6px;margin-right:auto;direction:ltr}
+    .banner-nav-btn{width:36px;height:36px;display:grid;place-items:center;border:1px solid #252b66;
+      border-radius:50%;background:#171b4d;color:#fff;cursor:pointer;box-shadow:0 3px 10px rgba(23,27,77,.2);
+      transition:transform .16s ease,background .16s ease,box-shadow .16s ease}
+    .banner-nav-btn:hover:not(:disabled){background:#252b66;box-shadow:0 5px 14px rgba(23,27,77,.28);transform:translateY(-1px)}
+    .banner-nav-btn:active:not(:disabled){transform:translateY(0) scale(.96)}
+    .banner-nav-btn:focus-visible{outline:3px solid rgba(225,29,72,.28);outline-offset:2px}
+    .banner-nav-btn:disabled{background:#e5e7eb;border-color:#d1d5db;color:#9ca3af;cursor:default;box-shadow:none}
+    .banner-arrow-icon{font-size:21px;font-weight:900;line-height:1;transform:translateX(1px)}
+    .banner-arrow-icon.left{transform:scaleX(-1) translateX(1px)}
     .day-banner{display:flex;direction:ltr;align-items:stretch;background:#fff;border:1px solid var(--line);
       border-radius:20px;overflow:hidden;box-shadow:var(--shadow);min-height:96px}
     .day-banner-badge{background:#171b4d;color:#fff;display:flex;flex-direction:column;align-items:center;
@@ -1205,11 +1215,7 @@ const routeNotesPresets = {
 
 function renderMainPage(){
   const grid = document.getElementById('mainGrid');
-  const orderedDays = Object.entries(citiesByDay).sort(([a], [b]) => {
-    if (a === '12-13') return -1;
-    if (b === '12-13') return 1;
-    return Number(a) - Number(b);
-  });
+  const orderedDays = getOrderedDays().map(day => [day, citiesByDay[day]]);
   grid.innerHTML = orderedDays.map(([day, info]) => `
     <button class="day-card" type="button" onclick="showDayPlanFromMain('${day}')">
       <div class="day-card-bg" style="background-image:url('${info.image}')"></div>
@@ -1221,17 +1227,27 @@ function renderMainPage(){
   `).join('');
 }
 
-function renderDayNav(day){
-  const nav = document.getElementById('dayNav');
-  if (!nav) return;
-  const days = Object.keys(citiesByDay).sort((a, b) => {
+function getOrderedDays(){
+  return Object.keys(citiesByDay).sort((a, b) => {
     if (a === '12-13') return -1;
     if (b === '12-13') return 1;
     return Number(a) - Number(b);
   });
+}
+
+function navigateToDay(day){
+  if (!day || !data[day]) return;
+  render(day);
+  window.scrollTo(0, 0);
+}
+
+function renderDayNav(day){
+  const nav = document.getElementById('dayNav');
+  if (!nav) return;
+  const days = getOrderedDays();
   const i = days.indexOf(day);
   const prev = days[i - 1], next = days[i + 1];
-  const go = d => `render('${d}');window.scrollTo(0,0)`;
+  const go = d => `navigateToDay('${d}')`;
   nav.innerHTML =
     `<button class="btn ghost" type="button" ${prev ? `onclick="${go(prev)}"` : 'disabled'}>➡️ היום הקודם</button>` +
     `<button class="btn primary" type="button" onclick="goBackToMain()">🏠 ראשי</button>` +
@@ -3019,6 +3035,10 @@ function apPlayerHtml(name){
 function renderDayBanner(day){
   const container = document.getElementById('dayHeadContainer');
   if (!container) return;
+  const days = getOrderedDays();
+  const dayIndex = days.indexOf(day);
+  const previousDay = days[dayIndex - 1];
+  const nextDay = days[dayIndex + 1];
   const meta = getDayMeta(day);
   const city = (citiesByDay[day] && citiesByDay[day].city) || '';
   const theme = themesByDay[day] || (data[day] && data[day].route) || '';
@@ -3028,6 +3048,10 @@ function renderDayBanner(day){
     <div class="banner-top-row">
       <button class="home-icon-btn" type="button" onclick="goBackToMain()" aria-label="חזרה לראשי">🏠</button>
       <div class="banner-app-title">הטיול שלנו ליפן ✈️</div>
+      <div class="banner-day-nav" aria-label="ניווט בין ימים">
+        <button class="banner-nav-btn" type="button" ${nextDay ? `onclick="navigateToDay('${nextDay}')"` : 'disabled'} aria-label="היום הבא" title="היום הבא"><span class="banner-arrow-icon left" aria-hidden="true">➜</span></button>
+        <button class="banner-nav-btn" type="button" ${previousDay ? `onclick="navigateToDay('${previousDay}')"` : 'disabled'} aria-label="היום הקודם" title="היום הקודם"><span class="banner-arrow-icon" aria-hidden="true">➜</span></button>
+      </div>
     </div>
     <div class="day-banner">
       <div class="day-banner-badge">
