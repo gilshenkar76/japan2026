@@ -1062,9 +1062,9 @@ const transitByDay = {
   ],
   '23': [
     { from: 'Osaka Excel Hotel Tokyu', to: 'Doshomachi', note: 'מונית בבוקר לפני תחילת הגבלות התנועה ב-Midosuji; הזמן משוער', line: 'מונית', time: '~10–20 דק׳ (הערכה)', cost: '—' },
-    { from: 'Doshomachi', to: 'Namba', note: 'תחבורה ציבורית עדיפה לאחר תחילת הגבלות התנועה ב-Midosuji', line: 'Osaka Metro', time: '~30 דק׳ כולל הליכה (הערכה)', cost: '¥240' },
-    { from: 'Nankai Namba', to: 'Sumiyoshitaisha', note: 'רכבת מקומית בלבד; רכבות אקספרס אינן עוצרות בתחנה', line: 'Nankai Main Line Local + רגלי', time: '~30 דק׳', cost: '¥240' },
-    { from: 'Sumiyoshitaisha', to: 'Namba / Shinsaibashi', note: 'רכבת Nankai מקומית בחזרה ל-Namba והליכה לאזור הקניות', line: 'Nankai Main Line Local + רגלי', time: '~30 דק׳', cost: '¥240' },
+    { from: 'Doshomachi', to: 'Nankai Namba', note: 'מטרו והליכה לתחנת Nankai; עדיף על מונית בגלל הגבלות התנועה ב-Midosuji', line: 'Osaka Metro + רגלי', time: '~40 דק׳ (הערכה)', cost: '¥240' },
+    { from: 'Nankai Namba', to: 'Sumiyoshitaisha', note: 'רכבת מקומית בלבד; רכבות אקספרס אינן עוצרות בתחנה, ולאחריה הליכה של כ-3 דקות', line: 'Nankai Main Line · רכבת מקומית + רגלי', time: '~30 דק׳', cost: '¥240' },
+    { from: 'Sumiyoshitaisha', to: 'Namba', note: 'רכבת Nankai מקומית בחזרה ל-Namba לקראת ארוחת צהריים מאוחרת', line: 'Nankai Main Line · רכבת מקומית', time: '~30 דק׳', cost: '¥240' },
     { from: 'Dotonbori / Namba', to: 'Osaka Excel Hotel Tokyu', note: 'הליכה צפונה או קו Midosuji ל-Hommachi; חוזרים לאריזה לקראת המעבר לטוקיו', line: 'רגלי / Midosuji Line', time: 'לפי הקצב', cost: '¥0–¥190' }
   ],
   '24': [
@@ -1108,7 +1108,7 @@ const routeNotesPresets = {
     tips: ''
   },
   '23': {
-    overview: 'אחרי ארוחת הבוקר נצא במונית ל-Doshomachi ונפתח את היום בפסטיבל Shinno-sai במקדש Sukunahikona. משם נמשיך במטרו ל-Namba לארוחת צהריים, ונעלה על רכבת Nankai מקומית בלבד אל Sumiyoshi Taisha. אחר הצהריים נחזור ל-Namba ול-Shinsaibashi לארבע שעות של קניות, נסיים בארוחת פרידה באזור Dotonbori ונחזור למלון לאריזה. חשוב: אחרי 11:30 עדיף להשתמש במטרו בגלל הגבלות התנועה ב-Midosuji, לבדוק יום קודם את זמני הנסיעה המשוערים ולהזמין מראש מקום לארוחת הפרידה.',
+    overview: 'אחרי ארוחת הבוקר נצא במונית ל-Doshomachi ונפתח את היום בפסטיבל Shinno-sai במקדש Sukunahikona, כולל נשנוש קל מדוכני האוכל. אחרי 11:30 נמשיך במטרו ובהליכה לתחנת Nankai Namba בגלל הגבלות התנועה ב-Midosuji, ונעלה על רכבת Nankai מקומית בלבד אל Sumiyoshi Taisha. אחר הצהריים נחזור ל-Namba לארוחת צהריים מאוחרת, נמשיך לקניות ב-Shinsaibashi וב-Amerikamura, נסיים בארוחת פרידה באזור Dotonbori ונחזור למלון לאריזה. חשוב: לבדוק יום קודם את זמני הנסיעה המשוערים ולהזמין מראש מקום לארוחת הפרידה.',
     tips: ''
   },
   '24': {
@@ -1415,12 +1415,12 @@ const data = {
   ["21:20<br>22:50","ארוחת ערב מאוחרת ב-Namba / Dotonbori","איזקאיה או okonomiyaki הם בחירה טובה בשעה הזו. מומלץ להזמין שולחן סביב 21:15 ולוודא מראש את שעת ההזמנה האחרונה במטבח.","pictures/dotonbori.jpg","Namba Osaka restaurants","🍽️ 90 דקות · חשוב להזמין"],
   ["22:50 ואילך","Midosuji Illumination בדרך למלון","הליכה צפונה לאורך שדרת Midosuji המוארת לכיוון Osaka Excel Hotel Tokyu. אפשר לקצר במטרו אם עייפים.","pictures/dotonbori.jpg","Midosuji Illumination Osaka","✨ חינם · חזרה טבעית למלון"]
   ]},
-  '23': { title:"אוסקה – Shinno-sai, Sumiyoshi, קניות וארוחת פרידה", route:"Osaka Excel Hotel Tokyu → Doshomachi → Namba → Sumiyoshi Taisha → Shinsaibashi → Dotonbori → המלון", events:[
+  '23': { title:"אוסקה – Shinno-sai, Sumiyoshi, קניות וארוחת פרידה", route:"Osaka Excel Hotel Tokyu → Doshomachi → Nankai Namba → Sumiyoshi Taisha → Namba → Shinsaibashi → Dotonbori → המלון", events:[
     ["08:15<br>09:15","ארוחת בוקר ב-Osaka Excel Hotel Tokyu","התחלה רגועה במלון אחרי הערב המאוחר של 22 בנובמבר.","pictures/Breakfast.jpg","Osaka Excel Hotel Tokyu","🍽️ שעה רגועה"],
-    ["10:00<br>11:15","Shinno-sai Festival במקדש Sukunahikona","פסטיבל חינמי של רובע התרופות ההיסטורי Doshomachi, המתקיים רק ב-22–23 בנובמבר. בין הדוכנים מחפשים את נמר הנייר hariko, קמע מסורתי נגד מחלות.","pictures/Shinno-sai Festival.jpg","Sukunahikona Shrine Osaka","🐯 יום חג · 75 דקות"],
-    ["11:45<br>13:00","ארוחת צהריים ב-Namba","ארוחת צהריים נוחה לפני הרכבת דרומה. משאירים מספיק זמן להגיע לתחנת Nankai Namba ולמצוא רכבת מקומית.","pictures/ארוחת צהריים ב-Namba.jpg","Nankai Namba Station restaurants","🍽️ 75 דקות"],
-    ["13:30<br>15:00","Sumiyoshi Taisha","מקדש שינטו שנוסד בשנת 211, עם ארבעה מבנים מרכזיים בסגנון sumiyoshi-zukuri וגשר הקשת האדום Sorihashi. הכניסה חינם ואין בתי קפה בשטח.","pictures/shumioshi taisha.jpg","Sumiyoshi Taisha Osaka","⛩️ 90 דקות · שערים חיצוניים עד 16:00"],
-    ["15:30<br>19:30","קניות ב-Shinsaibashi ו-Amerikamura","ארבע שעות ל-Uniqlo, מדרחוב Shinsaibashi-suji ו-Amerikamura. המלון נמצא במרחק הליכה קצר מהאזור, כך שאפשר להניח בו שקיות באמצע.","pictures/shinsaibashi.jpg","Shinsaibashi-suji Shopping Street Osaka","🛍️ 4 שעות · Uniqlo עד 21:00"],
+    ["10:00<br>11:30","Shinno-sai Festival במקדש Sukunahikona","פסטיבל חינמי של רובע התרופות ההיסטורי Doshomachi, המתקיים רק ב-22–23 בנובמבר. בין הדוכנים מחפשים את נמר הנייר hariko, קמע מסורתי נגד מחלות, ואוכלים נשנוש קל מדוכני האוכל כארוחת ביניים.","pictures/Shinno-sai Festival.jpg","Sukunahikona Shrine Osaka","🐯 יום חג · 90 דקות · דוכני אוכל"],
+    ["12:40<br>14:10","Sumiyoshi Taisha","מקדש שינטו שנוסד בשנת 211, עם ארבעה מבנים מרכזיים בסגנון sumiyoshi-zukuri וגשר הקשת האדום Sorihashi. הכניסה חינם ומגיעים זמן רב לפני סגירת השערים החיצוניים ב-16:00.","pictures/shumioshi taisha.jpg","Sumiyoshi Taisha Osaka","⛩️ 90 דקות · שערים חיצוניים עד 16:00"],
+    ["14:40<br>15:45","ארוחת צהריים מאוחרת ב-Namba","ארוחה מסודרת בישיבה אחרי החזרה מ-Sumiyoshi Taisha, לפני תחילת הקניות ב-Shinsaibashi וב-Amerikamura.","pictures/ארוחת צהריים ב-Namba.jpg","Nankai Namba Station restaurants","🍽️ 65 דקות · ארוחה מסודרת"],
+    ["15:45<br>19:30","קניות ב-Shinsaibashi ו-Amerikamura","כשלוש שעות ו-45 דקות ל-Uniqlo, מדרחוב Shinsaibashi-suji ו-Amerikamura. המלון נמצא במרחק הליכה קצר מהאזור, כך שאפשר להניח בו שקיות באמצע.","pictures/shinsaibashi.jpg","Shinsaibashi-suji Shopping Street Osaka","🛍️ 3:45 שעות · Uniqlo עד 21:00"],
     ["19:30<br>21:15","ארוחת פרידה ב-Dotonbori / Namba","ערב אחרון באוסקה עם okonomiyaki, kushikatsu או איזקאיה. המסעדה עדיין לא נבחרה ולכן חשוב להזמין מקום מראש לשישה.","pictures/dotonbori.jpg","Dotonbori Osaka restaurants","🍽️ 105 דקות · חשוב להזמין"],
     ["21:30 ואילך","אריזה במלון","ב-Osaka Excel Hotel Tokyu בודקים שיש מקום במזוודות לכל הקניות ומשלימים אריזה לקראת המעבר לטוקיו.","pictures/baggage_transportation.jpg","Osaka Excel Hotel Tokyu","🧳 אריזה לקראת מחר"]
   ]},
@@ -1550,9 +1550,9 @@ const transfersByDay = {
   ],
   '23': [
     {"t": "09:30<br>09:50", "title": "מונית ל-Doshomachi", "desc": "נסיעת בוקר לפני תחילת הגבלות התנועה ב-Midosuji סביב 11:30. זמן הנסיעה משוער.", "img": "assets/transfers/taxi.jpg", "to": "Sukunahikona Shrine Osaka", "tag": "🚕 ~10–20 דק׳ (הערכה)", "afterIdx": 0, "from": "Osaka Excel Hotel Tokyu"},
-    {"t": "11:15<br>11:45", "title": "Doshomachi → Namba", "desc": "עוברים ברכבת התחתית ולא במונית בגלל הגבלות התנועה ב-Midosuji. הזמן הכולל כולל הליכה ומשוער.", "img": "assets/transfers/train.jpg", "to": "Namba Station Osaka", "tag": "🚇 + 🚶 ~30 דק׳ (הערכה)", "afterIdx": 1, "from": "Sukunahikona Shrine Osaka"},
-    {"t": "13:00<br>13:30", "title": "Nankai Namba → Sumiyoshitaisha", "desc": "עולים על רכבת Nankai מקומית בלבד, משום שרכבות האקספרס אינן עוצרות ב-Sumiyoshitaisha, ואז הולכים כ-3 דקות למקדש.", "img": "assets/transfers/train.jpg", "to": "Sumiyoshi Taisha Osaka", "tag": "🚆 Local + 🚶 ~30 דק׳", "afterIdx": 2, "from": "Nankai Namba Station"},
-    {"t": "15:00<br>15:30", "title": "חזרה ל-Namba / Shinsaibashi", "desc": "רכבת Nankai מקומית בחזרה ל-Namba והליכה לאזור הקניות.", "img": "assets/transfers/train.jpg", "to": "Shinsaibashi-suji Shopping Street Osaka", "tag": "🚆 Local + 🚶 ~30 דק׳", "afterIdx": 3, "from": "Sumiyoshitaisha Station"},
+    {"t": "11:30<br>12:10", "title": "Doshomachi → Nankai Namba", "desc": "נוסעים במטרו ולא במונית בגלל הגבלות התנועה ב-Midosuji, וממשיכים ברגל לתחנת Nankai Namba. זמן הנסיעה הכולל משוער.", "img": "assets/transfers/train.jpg", "to": "Nankai Namba Station", "tag": "🚇 + 🚶 ~40 דק׳ (הערכה)", "afterIdx": 1, "from": "Sukunahikona Shrine Osaka"},
+    {"t": "12:10<br>12:40", "title": "Nankai Namba → Sumiyoshitaisha", "desc": "עולים על רכבת Nankai מקומית בלבד, משום שרכבות האקספרס אינן עוצרות ב-Sumiyoshitaisha, ואז הולכים כ-3 דקות למקדש.", "img": "assets/transfers/train.jpg", "to": "Sumiyoshi Taisha Osaka", "tag": "🚆 רכבת מקומית + 🚶 ~30 דק׳", "afterIdx": 1, "from": "Nankai Namba Station"},
+    {"t": "14:10<br>14:40", "title": "Sumiyoshitaisha → Namba", "desc": "חוזרים ברכבת Nankai מקומית ל-Namba לקראת ארוחת הצהריים המאוחרת.", "img": "assets/transfers/train.jpg", "to": "Nankai Namba Station restaurants", "tag": "🚆 רכבת מקומית ~30 דק׳", "afterIdx": 2, "from": "Sumiyoshitaisha Station"},
     {"t": "21:15<br>21:30", "title": "חזרה ל-Osaka Excel Hotel Tokyu", "desc": "הליכה צפונה או קו Midosuji ל-Hommachi, לפי העייפות ומיקום המסעדה. זמן ההגעה תלוי במסעדה שתיבחר.", "img": "assets/transfers/walk.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚶 / 🚇 ~15 דק׳ ומעלה", "afterIdx": 5, "from": "Dotonbori Osaka"}
   ],
   '24': [
