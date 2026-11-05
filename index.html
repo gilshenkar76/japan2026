@@ -1038,7 +1038,7 @@ const routeMapsByDay = {
   '14': { src: 'assets/maps/day14_walking_map.png', ratio: '338 / 261' },
   '15': { src: 'assets/maps/day15_route_map.png', ratio: '400 / 250', legend: false },
   '16': { src: 'assets/maps/day16_route_map.png', ratio: '390 / 220', legend: false },
-  '17': { src: 'assets/maps/day17_route_map.png', ratio: '900 / 540', legend: false },
+  '17': { src: 'assets/maps/day17_route_map.png?v=large-labels', ratio: '900 / 540', legend: false },
   '24': { src: 'assets/maps/day24_route_map.png', ratio: '254 / 246', legend: false }
 };
 
@@ -3211,7 +3211,12 @@ function showScreen(id,btn){
   }
   // Always open a screen scrolled to the top (header first)
   window.scrollTo(0, 0);
-  requestAnimationFrame(() => window.scrollTo(0, 0));
+  requestAnimationFrame(() => {
+    window.scrollTo(0, 0);
+    if (id === 'route') {
+      document.querySelectorAll('#route .route-textarea.auto-resize').forEach(autoResizeTextarea);
+    }
+  });
 }
 
 function goBackToMain(){
@@ -3222,7 +3227,8 @@ function goBackToMain(){
 function autoResizeTextarea(textarea) {
   if (!textarea) return;
   textarea.style.height = 'auto';
-  textarea.style.height = textarea.scrollHeight + 'px';
+  const borderHeight = textarea.offsetHeight - textarea.clientHeight;
+  textarea.style.height = (textarea.scrollHeight + borderHeight) + 'px';
 }
 
 function handleTextareaResize(event) {

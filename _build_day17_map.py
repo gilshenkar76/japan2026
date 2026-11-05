@@ -100,28 +100,28 @@ draw.line([point("nanzenji"), point("keage"), point("shiyakusho"), point("miyabi
 def marker(key, number, label, offset):
     x, y = point(key)
     color = (30, 41, 79)
-    draw.ellipse((x - 16, y - 16, x + 16, y + 16), fill="white", outline=color, width=4)
-    draw.text((x, y), str(number), font=font(15, True), fill=color, anchor="mm")
+    draw.ellipse((x - 25, y - 25, x + 25, y + 25), fill="white", outline=color, width=5)
+    draw.text((x, y), str(number), font=font(24, True), fill=color, anchor="mm")
     tx, ty = x + offset[0], y + offset[1]
-    text_font = font(17, True)
+    text_font = font(26, True)
     box = draw.textbbox((tx, ty), label, font=text_font, anchor="mm")
-    draw.rounded_rectangle((box[0] - 8, box[1] - 5, box[2] + 8, box[3] + 5), radius=7, fill=(255, 255, 255, 235), outline=(210, 216, 226), width=2)
+    draw.rounded_rectangle((box[0] - 10, box[1] - 7, box[2] + 10, box[3] + 7), radius=8, fill=(255, 255, 255, 242), outline=(190, 200, 216), width=2)
     draw.text((tx, ty), label, font=text_font, fill=(24, 31, 48), anchor="mm")
 
 
-marker("hotel", 1, "Hotel Monterey", (15, 35))
-marker("nijo", 2, "Nijo Castle", (55, -34))
-marker("nishiki", 3, "Nishiki Market", (-48, 35))
-marker("nanzenji", 4, "Nanzen-ji", (-62, -34))
-marker("miyabi", 5, "MIYABI Drum Show", (82, 34))
+marker("hotel", 1, "Hotel Monterey", (-95, -38))
+marker("nijo", 2, "Nijo Castle", (72, -43))
+marker("nishiki", 3, "Nishiki Market", (-72, 45))
+marker("nanzenji", 4, "Nanzen-ji", (-78, -43))
+marker("miyabi", 5, "MIYABI Drum Show", (112, 45))
 
 for key, label, offset in (
     ("shiyakusho", "Kyoto Shiyakusho-mae", (88, -25)),
     ("keage", "Keage", (-35, 26)),
 ):
     x, y = point(key)
-    draw.rectangle((x - 7, y - 7, x + 7, y + 7), fill=metro_color, outline="white", width=2)
-    draw.text((x + offset[0], y + offset[1]), label, font=font(13, True), fill=(20, 67, 110), anchor="mm", stroke_width=3, stroke_fill="white")
+    draw.rectangle((x - 10, y - 10, x + 10, y + 10), fill=metro_color, outline="white", width=3)
+    draw.text((x + offset[0], y + offset[1]), label, font=font(21, True), fill=(20, 67, 110), anchor="mm", stroke_width=4, stroke_fill="white")
 
 legend_y = TITLE_HEIGHT + MAP_HEIGHT
 draw.rectangle((0, legend_y, WIDTH, legend_y + LEGEND_HEIGHT), fill=(248, 250, 252))
@@ -129,7 +129,7 @@ items = ((walk_color, "רגלי"), (metro_color, "קו Tozai"), (evening_color, 
 for index, (color, label) in enumerate(items):
     x = 120 + index * 260
     draw.line((x, legend_y + 29, x + 42, legend_y + 29), fill=color, width=7)
-    draw.text((x + 55, legend_y + 29), he(label) if label != "קו Tozai" else "Tozai " + he("קו"), font=font(16, True), fill=(35, 41, 54), anchor="lm")
+    draw.text((x + 55, legend_y + 29), he(label) if label != "קו Tozai" else "Tozai " + he("קו"), font=font(22, True), fill=(35, 41, 54), anchor="lm")
 draw.text((WIDTH - 10, legend_y + 59), "© OpenStreetMap contributors", font=font(11), fill=(90, 98, 112), anchor="rm")
 
 card.save(OUT, optimize=True)
