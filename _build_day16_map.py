@@ -6,12 +6,9 @@ import urllib.request
 from PIL import Image, ImageDraw, ImageFont
 
 OUT = "assets/maps/day16_route_map.png"
-WIDTH, MAP_HEIGHT = 1000, 470
-TITLE_HEIGHT, LEGEND_HEIGHT, GAP = 62, 70, 14
-LEFT_WIDTH = 610
-RIGHT_WIDTH = WIDTH - LEFT_WIDTH - GAP
-LOCAL_BOUNDS = (138.70, 35.10, 139.14, 35.58)
-REGIONAL_BOUNDS = (135.55, 34.84, 139.05, 35.48)
+WIDTH, MAP_HEIGHT = 1200, 420
+TITLE_HEIGHT, LEGEND_HEIGHT = 64, 70
+BOUNDS = (135.50, 34.75, 139.30, 35.70)
 
 STOPS = {
     "hakone": (35.2273, 139.1042),
@@ -93,8 +90,7 @@ def point(key, bounds, zoom, width, x_offset=0):
 
 
 card = Image.new("RGB", (WIDTH, TITLE_HEIGHT + MAP_HEIGHT + LEGEND_HEIGHT), "white")
-card.paste(build_map(LOCAL_BOUNDS, 10, LEFT_WIDTH), (0, TITLE_HEIGHT))
-card.paste(build_map(REGIONAL_BOUNDS, 7, RIGHT_WIDTH), (LEFT_WIDTH + GAP, TITLE_HEIGHT))
+card.paste(build_map(BOUNDS, 7, WIDTH), (0, TITLE_HEIGHT))
 draw = ImageDraw.Draw(card)
 
 navy = (30, 41, 79)
@@ -102,36 +98,37 @@ drive = (15, 118, 110)
 rail = (49, 80, 190)
 draw.rectangle((0, 0, WIDTH, TITLE_HEIGHT), fill=navy)
 draw.text((WIDTH // 2, TITLE_HEIGHT // 2), he("מהאקונה דרך פוג'י לתחנת קיוטו"), font=font(28, True), fill="white", anchor="mm")
-draw.rectangle((LEFT_WIDTH, TITLE_HEIGHT, LEFT_WIDTH + GAP, TITLE_HEIGHT + MAP_HEIGHT), fill="white")
 
-local_points = [point(key, LOCAL_BOUNDS, 10, LEFT_WIDTH) for key in ("hakone", "chureito", "oshino", "maple", "mishima")]
-regional_points = [
-    point("mishima", REGIONAL_BOUNDS, 7, RIGHT_WIDTH, LEFT_WIDTH + GAP),
-    point("kyoto", REGIONAL_BOUNDS, 7, RIGHT_WIDTH, LEFT_WIDTH + GAP),
-]
-for points, color in ((local_points, drive), (regional_points, rail)):
+anchors = {key: point(key, BOUNDS, 7, WIDTH) for key in STOPS}
+for points, color in (
+    ([anchors[key] for key in ("hakone", "chureito", "oshino", "maple", "mishima")], drive),
+    ([anchors["mishima"], anchors["kyoto"]], rail),
+):
     draw.line(points, fill="white", width=13, joint="curve")
     draw.line(points, fill=color, width=8, joint="curve")
 
 
-def marker(position, number, label, offset, color=navy):
-    x, y = position
+def marker(key, number, label, display_offset, label_offset, color=navy):
+    anchor_x, anchor_y = anchors[key]
+    x, y = anchor_x + display_offset[0], anchor_y + display_offset[1]
+    if (x, y) != (anchor_x, anchor_y):
+        draw.line((anchor_x, anchor_y, x, y), fill="white", width=7)
+        draw.line((anchor_x, anchor_y, x, y), fill=color, width=3)
     draw.ellipse((x - 24, y - 24, x + 24, y + 24), fill="white", outline=color, width=5)
     draw.text((x, y), str(number), font=font(23, True), fill=color, anchor="mm")
-    tx, ty = x + offset[0], y + offset[1]
+    tx, ty = x + label_offset[0], y + label_offset[1]
     label_font = font(22, True)
     box = draw.textbbox((tx, ty), label, font=label_font, anchor="mm")
     draw.rounded_rectangle((box[0] - 8, box[1] - 5, box[2] + 8, box[3] + 5), radius=7, fill="white", outline=(175, 186, 204), width=2)
     draw.text((tx, ty), label, font=label_font, fill=(24, 31, 48), anchor="mm")
 
 
-marker(local_points[0], 1, "Aura Tachibana", (-92, -35))
-marker(local_points[1], 2, "Chureito Pagoda", (112, 0))
-marker(local_points[2], 3, "Oshino Hakkai", (112, 36))
-marker(local_points[3], 4, "Maple Corridor", (100, -28))
-marker(local_points[4], 5, "Mishima Station", (-98, -36), rail)
-marker(regional_points[0], 5, "Mishima", (-58, -35), rail)
-marker(regional_points[1], 6, "Kyoto Station", (78, -36), rail)
+marker("hakone", 1, "Aura Tachibana", (-10, 20), (-60, -60))
+marker("chureito", 2, "Chureito Pagoda", (-145, -5), (-105, -34))
+marker("oshino", 3, "Oshino Hakkai", (-95, 70), (-100, 34))
+marker("maple", 4, "Maple Corridor", (50, -20), (0, -38))
+marker("mishima", 5, "Mishima Station", (-105, 50), (-105, 34), rail)
+marker("kyoto", 6, "Kyoto Station", (20, 0), (100, -34), rail)
 
 legend_y = TITLE_HEIGHT + MAP_HEIGHT
 draw.rectangle((0, legend_y, WIDTH, legend_y + LEGEND_HEIGHT), fill=(248, 250, 252))
