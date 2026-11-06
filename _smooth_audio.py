@@ -16,6 +16,7 @@ import imageio_ffmpeg
 SAMPLE_RATE = 44_100
 SHORT_PAUSE_SECONDS = 0.24
 FULL_PAUSE_SECONDS = 0.48
+SPEECH_RATE = 1.08
 CACHE_DIR = pathlib.Path(os.environ.get("LOCALAPPDATA", tempfile.gettempdir())) / "japan2026-audio-cache"
 
 
@@ -87,7 +88,7 @@ def render_segments(
                 "-i",
                 str(joined_path),
                 "-af",
-                "loudnorm=I=-18:LRA=7:TP=-2,silenceremove=stop_periods=-1:stop_duration=0.55:stop_threshold=-35dB:stop_silence=0.35",
+                f"loudnorm=I=-18:LRA=7:TP=-2,silenceremove=stop_periods=-1:stop_duration=0.55:stop_threshold=-35dB:stop_silence=0.35,atempo={SPEECH_RATE}",
                 "-codec:a",
                 "libmp3lame",
                 "-b:a",
