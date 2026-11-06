@@ -1117,7 +1117,7 @@ const themesByDay = {
 // Public-transport legs shown on the route page per day
 const transitByDay = {
   '12-13': [
-    { from: 'Narita Airport Terminal 1', to: 'Tokyu Kabukicho Tower', note: 'קונים כרטיס בדלפק הכתום Airport Limousine Bus או במכונה בקומת הנחיתות (1F). מספר רציף האוטובוס מופיע על הכרטיס ובלוח היציאות; התחנה נמצאת מחוץ לאולם הנחיתות. יורדים ב-Tokyu Kabukicho Tower והולכים כ-5 דקות ל-Hotel Gracery Shinjuku.', line: 'Airport Limousine Bus', time: '~100–130 דק׳, בהתאם לתנועה', cost: 'כ-¥3,600 לאדם · ¥21,600 לשישה' }
+    { from: 'Narita Airport Terminal 1', to: 'Hotel Gracery Shinjuku', note: 'מיניוואן שהוזמן מראש אוסף אותנו מהטרמינל ומוריד אותנו ישירות ליד המלון, בלי החלפות ובלי הליכה עם המזוודות.', line: 'מיניוואן פרטי (הוזמן מראש)', time: '~90 דק׳, בהתאם לתנועה', cost: '¥26,000 במזומן לנהג (לכל הקבוצה)' }
   ],
   '15': [
     { from: 'Aura Tachibana', to: 'Lake Ashi', note: 'הליכה מהמלון לאגם', line: 'רגלי', time: '~10 דק׳', cost: '—' },
@@ -1196,7 +1196,7 @@ const transitByDay = {
 // Preset Hebrew route notes per day (overview + tips), used to prefill the notes boxes
 const routeNotesPresets = {
   '12-13': {
-    overview: 'יום הטיסה ליפן מתחיל ביציאה מתל אביב בטיסת EY594 בשעה 14:00 ונחיתה באבו דאבי בשעה 19:05. לאחר קונקשן של 3 שעות ו-15 דקות נמשיך בטיסת הלילה EY800, שתצא בשעה 22:20 ותנחת בטרמינל 1 של Narita למחרת בשעה 13:15. לאחר ביקורת הגבולות, איסוף המזוודות והמכס נקנה בקומת הנחיתות כרטיס ל-Airport Limousine Bus לכיוון Tokyu Kabukicho Tower. מספר רציף האוטובוס יופיע על הכרטיס ובלוח היציאות. מהתחנה הסופית נלך כ-5 דקות ל-Hotel Gracery Shinjuku לצ׳ק-אין ומנוחה קצרה. לאחר מכן נצא ברגל לסיבוב קניות קרוב ב-Alpen TOKYO וב-Downbeat RUNNING כדי לבדוק נעלי On ודגמי Cloud, ונחזור לאזור המלון. זהו יום נסיעה ארוך, ולכן חשוב לשמור את מסמכי הטיסה והמלון נגישים ולעקוב אחר השערים והעדכונים בזמן אמת.',
+    overview: 'יום הטיסה ליפן מתחיל ביציאה מתל אביב בטיסת EY594 בשעה 14:00 ונחיתה באבו דאבי בשעה 19:05. לאחר קונקשן של 3 שעות ו-15 דקות נמשיך בטיסת הלילה EY800, שתצא בשעה 22:20 ותנחת בטרמינל 1 של Narita למחרת בשעה 13:15. לאחר ביקורת הגבולות, איסוף המזוודות והמכס ניפגש עם נהג המיניוואן שהזמנו מראש, שיסיע אותנו ישירות מ-Narita ל-Hotel Gracery Shinjuku (¥26,000 במזומן לנהג) לצ׳ק-אין ומנוחה קצרה. לאחר מכן נצא ברגל לסיבוב קניות קרוב ב-Alpen TOKYO וב-Downbeat RUNNING כדי לבדוק נעלי On ודגמי Cloud, ונחזור לאזור המלון. זהו יום נסיעה ארוך, ולכן חשוב לשמור את מסמכי הטיסה והמלון נגישים ולעקוב אחר השערים והעדכונים בזמן אמת.',
     tips: ''
   },
   '14': {
@@ -1445,7 +1445,7 @@ const data = {
     ["19:05","Connection in AUH","קונקשן באבו דאבי: 3:15\nצ'ק-אין לטיסת EY800 החל מ-19:20, וההמראה בשעה 22:20.","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Abu Dhabi International Airport"],
     ["22:20","AUH → NRT","Flight: EY800\nאבו דאבי → טוקיו נאריטה\nמשך טיסה: 9:55\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
     ["13:15 +1","נחיתה ב-Narita Terminal 1","לאחר הנחיתה: ביקורת גבולות, איסוף מזוודות ומכס. מומלץ להקדיש 60–90 דקות עד היציאה לאולם מקבלי הפנים בקומה 1.","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Narita Airport Terminal 1"],
-    ["14:30<br>17:00","Airport Limousine Bus לשינג׳וקו","קניית כרטיס: בדלפק הכתום Airport Limousine Bus או במכונת הכרטיסים באולם הנחיתות של Terminal 1, קומה 1. אפשר גם להזמין מראש באתר הרשמי, אך עדיין צריך לבדוק את שעת היציאה והרציף ביום הנסיעה.\n\nיעד בכרטיס: Tokyu Kabukicho Tower. לאחר הקנייה יוצאים אל תחנות האוטובוס שמחוץ לאולם; מספר הרציף המדויק מודפס על הכרטיס ומוצג בלוח היציאות. אין להסתמך מראש על מספר רציף קבוע.\n\nמחיר משוער: ¥3,600 למבוגר, כ-¥21,600 לשישה. זמן נסיעה: כ-100–130 דקות, תלוי בתנועה. המזוודות נמסרות לצוות לפני העלייה; שומרים את תגי המטען עד הירידה.\n\nבירידה ב-Tokyu Kabukicho Tower הולכים כ-5 דקות ל-Hotel Gracery Shinjuku. אם אין אוטובוס ישיר בזמן סביר, מבקשים בדלפק את היציאה הקרובה ביותר לאזור Shinjuku.","assets/transfers/bus.jpg","Tokyu Kabukicho Tower","🚌 ישיר · כרטיס בקומת הנחיתות T1 · כ-5 דקות הליכה למלון"],
+    ["14:30<br>16:30","מיניוואן פרטי מ-Narita למלון","מיניוואן שהוזמן מראש אוסף אותנו משדה התעופה ומסיע אותנו ישירות ל-Hotel Gracery Shinjuku, בלי החלפות ובלי סחיבת מזוודות.\n\nלאחר ביקורת הגבולות, איסוף המזוודות והמכס יוצאים לאולם מקבלי הפנים ופוגשים את הנהג. כדאי לשמור את פרטי ההזמנה ואת מספר הטלפון של הנהג זמינים.\n\nמחיר: ¥26,000 לכל הקבוצה, לתשלום במזומן לנהג. כדאי להביא מזומן בידיים במהלך ההגעה.","assets/transfers/minivan.jpg","Hotel Gracery Shinjuku","🚐 מיניוואן שהוזמן מראש · ¥26,000 במזומן · ישירות למלון"],
     ["17:00<br>18:00","צ׳ק-אין ב-Hotel Gracery Shinjuku","הליכה קצרה מ-Tokyu Kabukicho Tower למלון, צ׳ק-אין ומנוחה לאחר הטיסות.","assets/attractions/day14/baggage_transportation.jpg","Hotel Gracery Shinjuku","🏨 לילה ראשון בטוקיו"],
     ["18:00<br>18:45","Alpen TOKYO","חנות ספורט גדולה במרחק הליכה של כ-5–8 דקות מהמלון. מומלץ להגיע לכאן כדי לבדוק נעלי On ומבחר דגמי Cloud.\n\nכתובת: 3-23-7 Shinjuku, Unica Building.\nשעות פתיחה ביום חול: 11:00–22:00.","pictures/חנות ספורט  טוקיו.jpg","Alpen TOKYO, 3-23-7 Shinjuku, Shinjuku City, Tokyo","👟 נעלי On · פתוח עד 22:00"],
     ["18:50<br>19:30","Downbeat RUNNING","חנות ריצה מתמחה הסמוכה ל-Alpen TOKYO ומוכרת גם נעלי On. מתאימה להשוואת דגמים והתאמה מקצועית לפני החזרה לאזור המלון.\n\nכתובת: 3-22-11 Shinjuku.\nשעות פתיחה: 12:00–21:00.","assets/attractions/day28/ginza_shopping.jpg","Downbeat RUNNING, 3-22-11 Shinjuku, Shinjuku City, Tokyo","🏃 חנות ריצה · פתוח עד 21:00"]
@@ -3482,7 +3482,7 @@ function render(day){
     const eventDescription = appendLiveFlightInfo(day, e[2]);
     const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
     const solidCardClass = day === '12-13' && e[1] === 'נחיתה ב-Narita Terminal 1' ? ' event-solid' :
-      day === '12-13' && e[1] === 'Airport Limousine Bus לשינג׳וקו' ? ' event-solid event-solid-bus' : '';
+      day === '12-13' && e[1] === 'מיניוואן פרטי מ-Narita למלון' ? ' event-solid event-solid-bus' : '';
     const transitNote = e[5] ? `<div class="event-transit">${e[5]}</div>` : '';
     const eventAction = e[6] ? `<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="${escapeHtml(e[6])}">🌐 אתר רשמי</a></div>` : '';
     const timeDisplay = e[0].replace('<br>',' – ');
