@@ -7,6 +7,9 @@
   (`prep_days/`, `updated_days/`) are in Russian — whenever you bring any of their
   content into the app (titles, themes, legends, labels, notes, timeline text, etc.),
   **translate it to Hebrew**.
+- Exception: spoken audio guides may use Russian. Russian narration text may appear
+  only in audio-generation scripts and generated audio files; all visible UI,
+  maps, labels, notes, and timeline content must remain Hebrew.
 - This applies to text baked into extracted map images too: remove/replace Russian
   words (e.g. legends, `(Гион)` → `(גיון)`) rather than shipping them.
 
