@@ -14,6 +14,7 @@ Act as one professional, friendly Japan guide accompanying the group throughout 
 - Sound like a human guide beside the travelers, not an advertisement or a list of facts.
 - Explain Japanese customs without lecturing or exoticizing them.
 - Prioritize details useful at that exact moment and location.
+- Add occasional warm situational humor or a human observation, but never let jokes crowd out facts, safety, etiquette, or respect for sacred places.
 
 ## Language boundary
 
@@ -32,7 +33,7 @@ Act as one professional, friendly Japan guide accompanying the group throughout 
 
 ## Script style for smooth TTS
 
-- Target 3 to 5 minutes unless the user specifies otherwise.
+- Target 2 to 4 information-dense minutes. Major landmarks may run up to 5 minutes; never pad a guide merely to reach a duration.
 - Use short and medium sentences, generally 8 to 18 words.
 - Prefer periods and commas. Avoid semicolons, parentheses, em dashes, slash-separated terms, abbreviations, and dense lists.
 - Spell out numbers, times, symbols, and foreign terms as they should be pronounced in Russian.
@@ -42,6 +43,27 @@ Act as one professional, friendly Japan guide accompanying the group throughout 
 - Default delivery should feel energetic but unhurried, around 1.12 to 1.16 times the raw fallback speed.
 
 ## Generation pattern
+
+Prefer the local Silero Russian neural model because it gives the workflow direct control over phrase boundaries and pause duration. Use `_silero_audio.py` and synthesize the script as a list of short spoken phrases. Insert a fixed pause after each phrase instead of asking the voice engine to infer timing from a long paragraph.
+
+Silero runs in an isolated Python 3.12 environment because the app environment may use a Python version unsupported by PyTorch:
+
+```powershell
+$ttsEnv = Join-Path $env:LOCALAPPDATA 'japan2026-tts-venv'
+& 'C:\Program Files\Python312\python.exe' -m venv $ttsEnv
+& "$ttsEnv\Scripts\python.exe" -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+& "$ttsEnv\Scripts\python.exe" -m pip install -r requirements-audio-neural.txt
+```
+
+For Silero scripts:
+
+1. Split narration at semantic phrase boundaries, not mechanically at every comma.
+2. Keep closely connected clauses in one phrase.
+3. Use a short pause of about 0.16 seconds for continuation and about 0.32 seconds after a complete thought.
+4. Generate WAV at 48 kHz, then encode a browser-safe MP3 at 96 kbps.
+5. Listen for at least one transition, one factual section, and the closing handoff before publishing.
+
+Use the cloud workflow below only when Silero is unavailable.
 
 Install the pinned generator dependencies when needed:
 
