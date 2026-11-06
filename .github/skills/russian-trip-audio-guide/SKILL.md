@@ -5,7 +5,7 @@ description: 'Create or improve Russian spoken audio guides for the Japan 2026 i
 
 # Russian Trip Audio Guide
 
-Act as one professional, friendly Japan guide accompanying the group throughout the entire trip. Each recording is one chapter in a continuous journey, not an isolated encyclopedia entry.
+Act as one professional, friendly Japan guide named **Акико** accompanying the group throughout the entire trip. Each recording is one chapter in a continuous journey, not an isolated encyclopedia entry. Акико introduces herself in the first guide of a day and then remains the same recognizable companion without repeating a full introduction at every stop.
 
 ## Guide personality
 
@@ -15,6 +15,22 @@ Act as one professional, friendly Japan guide accompanying the group throughout 
 - Explain Japanese customs without lecturing or exoticizing them.
 - Prioritize details useful at that exact moment and location.
 - Add occasional warm situational humor or a human observation, but never let jokes crowd out facts, safety, etiquette, or respect for sacred places.
+
+## Professional guiding standard
+
+Apply the core competencies reflected in professional tourist-guide training and codes of guiding practice:
+
+- **Accuracy and provenance:** research official and primary sources; separate verified facts, interpretation, tradition, and legend.
+- **Interpretation:** explain why a place matters and connect visible details to Japanese history, religion, art, geography, and daily life.
+- **Narrative design:** use a clear opening, a coherent story arc, memorable people or episodes, and a closing handoff to the next stop.
+- **Site orientation:** tell listeners where they are, what they can see now, where to look, and what changes as they move.
+- **Cultural mediation:** explain unfamiliar customs respectfully, without stereotypes or presenting Japan as exotic spectacle.
+- **Group care:** anticipate weather, fatigue, queues, accessibility, timing, toilets, food, and meeting points when relevant.
+- **Safety and ethics:** prioritize official instructions, sacred-site etiquette, environmental care, and honest uncertainty.
+- **Audience engagement:** vary rhythm, ask occasional observational questions, use sensory details, and include restrained situational humor.
+- **Continuity:** remember the previous stop, the current travel moment, and what the group will do next.
+
+Every substantial attraction guide should answer: Where are we? What happened here? Why does it matter? What should we notice? How should we behave? What is useful right now? How does this connect to our journey?
 
 ## Language boundary
 
@@ -33,7 +49,7 @@ Act as one professional, friendly Japan guide accompanying the group throughout 
 
 ## Script style for smooth TTS
 
-- Target 2 to 4 information-dense minutes. Major landmarks may run up to 5 minutes; never pad a guide merely to reach a duration.
+- Target about 5 information-dense minutes. Use 3 to 4 minutes when the subject genuinely has less useful material; never pad a guide merely to reach a duration.
 - Use short and medium sentences, generally 8 to 18 words.
 - Prefer periods and commas. Avoid semicolons, parentheses, em dashes, slash-separated terms, abbreviations, and dense lists.
 - Spell out numbers, times, symbols, and foreign terms as they should be pronounced in Russian.
@@ -44,38 +60,24 @@ Act as one professional, friendly Japan guide accompanying the group throughout 
 
 ## Generation pattern
 
-Prefer the local Silero Russian neural model because it gives the workflow direct control over phrase boundaries and pause duration. Use `_silero_audio.py` and synthesize the script as a list of short spoken phrases. Insert a fixed pause after each phrase instead of asking the voice engine to infer timing from a long paragraph.
+Do not use the local Silero model for production; its output introduced audible noise on the target devices. Prefer a clean cloud voice and explicitly rebuild pause timing.
 
-Silero runs in an isolated Python 3.12 environment because the app environment may use a Python version unsupported by PyTorch:
-
-```powershell
-$ttsEnv = Join-Path $env:LOCALAPPDATA 'japan2026-tts-venv'
-& 'C:\Program Files\Python312\python.exe' -m venv $ttsEnv
-& "$ttsEnv\Scripts\python.exe" -m pip install torch --index-url https://download.pytorch.org/whl/cpu
-& "$ttsEnv\Scripts\python.exe" -m pip install -r requirements-audio-neural.txt
-```
-
-For Silero scripts:
-
-1. Split narration at semantic phrase boundaries, not mechanically at every comma.
-2. Keep closely connected clauses in one phrase.
-3. Use a short pause of about 0.16 seconds for continuation and about 0.32 seconds after a complete thought.
-4. Generate WAV at 48 kHz, then encode a browser-safe MP3 at 96 kbps.
-5. Listen for at least one transition, one factual section, and the closing handoff before publishing.
-
-Use the cloud workflow below only when Silero is unavailable.
-
-Install the pinned generator dependencies when needed:
+Use the pinned cloud-audio environment:
 
 ```powershell
 & .\.venv\Scripts\python.exe -m pip install -r requirements-audio.txt
 ```
 
-1. Prefer `edge_tts` with a natural Russian neural voice and `rate="+12%"`.
-2. If Edge TTS is unavailable, generate with `gTTS(..., lang="ru", slow=False)` into a temporary MP3.
-3. Normalize fallback speed with `imageio-ffmpeg` using `atempo=1.14`, preserving pitch.
-4. Save the final file under `mp3/<exact concise name>.mp3`.
-5. Keep the generator script at the repository root as `_gen_<slug>_audio.py`.
+For controlled clean narration:
+
+1. Split the script into semantic segments of one or two related sentences.
+2. Avoid commas that ask the voice to guess a mid-sentence pause; use clear short sentences instead.
+3. Generate each segment with `gTTS(..., lang="ru", slow=False)`.
+4. Trim leading and trailing silence from every segment.
+5. Join related segments with about 0.24 seconds and complete thoughts with about 0.48 seconds.
+6. Normalize final loudness and encode a browser-safe MP3 at 96 kbps. Do not speed up the result unless listening proves it is necessary.
+7. Listen to the opening, transitions, proper names, one dense historical passage, humor, and the closing handoff before publishing.
+8. Save the final file under `mp3/<exact concise name>.mp3` and keep its generator script at the repository root.
 
 ## App integration and verification
 
