@@ -1107,6 +1107,9 @@ const themesByDay = {
 
 // Public-transport legs shown on the route page per day
 const transitByDay = {
+  '12-13': [
+    { from: 'Narita Airport Terminal 1', to: 'Tokyu Kabukicho Tower', note: 'קונים כרטיס בדלפק הכתום Airport Limousine Bus או במכונה בקומת הנחיתות (1F). מספר רציף האוטובוס מופיע על הכרטיס ובלוח היציאות; התחנה נמצאת מחוץ לאולם הנחיתות. יורדים ב-Tokyu Kabukicho Tower והולכים כ-5 דקות ל-Hotel Gracery Shinjuku.', line: 'Airport Limousine Bus', time: '~100–130 דק׳, בהתאם לתנועה', cost: 'כ-¥3,600 לאדם · ¥21,600 לשישה' }
+  ],
   '15': [
     { from: 'Aura Tachibana', to: 'Lake Ashi', note: 'הליכה מהמלון לאגם', line: 'רגלי', time: '~10 דק׳', cost: '—' },
     { from: 'Togendai', to: 'Hakone-machi', note: 'ספינת פיראטים על האגם', line: 'Hakone Sightseeing Cruise', time: '~35 דק׳', cost: '¥1,200' },
@@ -1184,7 +1187,7 @@ const transitByDay = {
 // Preset Hebrew route notes per day (overview + tips), used to prefill the notes boxes
 const routeNotesPresets = {
   '12-13': {
-    overview: 'יום הטיסה ליפן מתחיל ביציאה מתל אביב בטיסת EY594 בשעה 14:00 ונחיתה באבו דאבי בשעה 19:05. לאחר קונקשן של 3 שעות ו-15 דקות נמשיך בטיסת הלילה EY800, שתצא בשעה 22:20 ותנחת בנמל התעופה Narita למחרת בשעה 13:15. לאחר הליכי הכניסה ואיסוף המזוודות נמשיך לעיר ול-Hotel Gracery Shinjuku להתארגנות ראשונה. זהו יום נסיעה ארוך, ולכן חשוב לשמור את מסמכי הטיסה והמלון נגישים ולעקוב אחר השערים והעדכונים בזמן אמת.',
+    overview: 'יום הטיסה ליפן מתחיל ביציאה מתל אביב בטיסת EY594 בשעה 14:00 ונחיתה באבו דאבי בשעה 19:05. לאחר קונקשן של 3 שעות ו-15 דקות נמשיך בטיסת הלילה EY800, שתצא בשעה 22:20 ותנחת בטרמינל 1 של Narita למחרת בשעה 13:15. לאחר ביקורת הגבולות, איסוף המזוודות והמכס נקנה בקומת הנחיתות כרטיס ל-Airport Limousine Bus לכיוון Tokyu Kabukicho Tower. מספר רציף האוטובוס יופיע על הכרטיס ובלוח היציאות. מהתחנה הסופית נלך כ-5 דקות ל-Hotel Gracery Shinjuku לצ׳ק-אין. זהו יום נסיעה ארוך, ולכן חשוב לשמור את מסמכי הטיסה והמלון נגישים ולעקוב אחר השערים והעדכונים בזמן אמת.',
     tips: ''
   },
   '14': {
@@ -1428,11 +1431,13 @@ function renderCountdownChip(){
 }
 
 const data = {
-  '12-13': { title:"טיסה ליפן", route:"טיסה ארוכה ליפן, נסיעה וצ'ק אין למלון", events:[
+  '12-13': { title:"טיסה ליפן", route:"תל אביב → אבו דאבי → Narita T1 → Airport Limousine Bus → Hotel Gracery Shinjuku", events:[
     ["14:00","TLV → AUH","Flight: EY594\nתל אביב → אבו דאבי\nמשך טיסה: 3:05\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Boeing 787-9","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
     ["19:05","Connection in AUH","קונקשן באבו דאבי: 3:15\nצ'ק-אין לטיסת EY800 החל מ-19:20, וההמראה בשעה 22:20.","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Abu Dhabi International Airport"],
     ["22:20","AUH → NRT","Flight: EY800\nאבו דאבי → טוקיו נאריטה\nמשך טיסה: 9:55\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
-    ["13:15 +1","הגעה לטוקיו","נחיתה בנריטה, איסוף המזוודות והתארגנות לנסיעה לעיר.","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Narita Airport"]
+    ["13:15 +1","נחיתה ב-Narita Terminal 1","לאחר הנחיתה: ביקורת גבולות, איסוף מזוודות ומכס. מומלץ להקדיש 60–90 דקות עד היציאה לאולם מקבלי הפנים בקומה 1.","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Narita Airport Terminal 1"],
+    ["14:30<br>17:00","Airport Limousine Bus לשינג׳וקו","קניית כרטיס: בדלפק הכתום Airport Limousine Bus או במכונת הכרטיסים באולם הנחיתות של Terminal 1, קומה 1. אפשר גם להזמין מראש באתר הרשמי, אך עדיין צריך לבדוק את שעת היציאה והרציף ביום הנסיעה.\n\nיעד בכרטיס: Tokyu Kabukicho Tower. לאחר הקנייה יוצאים אל תחנות האוטובוס שמחוץ לאולם; מספר הרציף המדויק מודפס על הכרטיס ומוצג בלוח היציאות. אין להסתמך מראש על מספר רציף קבוע.\n\nמחיר משוער: ¥3,600 למבוגר, כ-¥21,600 לשישה. זמן נסיעה: כ-100–130 דקות, תלוי בתנועה. המזוודות נמסרות לצוות לפני העלייה; שומרים את תגי המטען עד הירידה.\n\nבירידה ב-Tokyu Kabukicho Tower הולכים כ-5 דקות ל-Hotel Gracery Shinjuku. אם אין אוטובוס ישיר בזמן סביר, מבקשים בדלפק את היציאה הקרובה ביותר לאזור Shinjuku.","assets/transfers/bus.jpg","Tokyu Kabukicho Tower","🚌 ישיר · כרטיס בקומת הנחיתות T1 · כ-5 דקות הליכה למלון"],
+    ["17:00","צ׳ק-אין ב-Hotel Gracery Shinjuku","הליכה קצרה מ-Tokyu Kabukicho Tower למלון, צ׳ק-אין ומנוחה לאחר הטיסות.","assets/attractions/day14/baggage_transportation.jpg","Hotel Gracery Shinjuku","🏨 לילה ראשון בטוקיו"]
   ]},
   '14': { title:"טוקיו --> האקונה", route:"שינג'וקו → Hakone-Yumoto → המלון", events:[
     ["08:00<br>08:45","הפקדת מזוודות במלון","מפקידים את המזוודות במלון לשליחה לקיוטו וממשיכים את היום עם תרמיל קל בלבד.\nהמזוודות יגיעו למלון בקיוטו ב-17.11.","assets/attractions/day14/baggage_transportation.jpg","Hotel Gracery Shinjuku"],
