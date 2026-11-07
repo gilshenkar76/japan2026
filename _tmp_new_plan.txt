@@ -1,0 +1,674 @@
+### SHEET תוכנית מעודכנת 266x7
+תאריך | שעה | אירוע / אטרקציה | הזמנה מראש? | תאריך הזמנה | הערות להזמנה | הערות
+12–13.11 | 22:20 | TLV → DXB | סגור |  |  | 
+12–13.11 | 03:25 +1 | Connection in DXB | סגור |  |  | 
+12–13.11 | 08:20 | DXB → HND | סגור |  |  | 
+12–13.11 | 22:30 | הגעה לטוקיו | סגור |  |  | 
+12–13.11 | 23:30 | מונית למלון Hotel Gracery Shinjuku | סגור |  |  | 
+14.11 | 08:45 | הפקדת מזוודות / יציאה מ־Hotel Gracery Shinjuku | לא |  |  | 
+14.11 | 08:45–09:15 | מעבר ל־Tokyo Metropolitan Government Building | לא |  |  | 
+14.11 | 09:30–10:15 | Tokyo Metropolitan Government Building – Observatory | לא |  |  | נפתח ב־09:30; להגיע מעט לפני ולבדוק עומס/תור
+14.11 | 10:15–10:30 | מעבר ל־Shinjuku Gyoen | לא |  |  | 
+14.11 | 10:30–11:30 | Shinjuku Gyoen | לא |  |  | 
+14.11 | 11:30–11:45 | יציאה לכיוון Shinjuku Station | לא |  |  | 
+14.11 | 11:45–12:30 | RAMEN – ארוחת צהריים | לא |  |  | 
+14.11 | 12:30–13:00 | מעבר ל־Odakyu Shinjuku / רציף | לא |  |  | 
+14.11 | 13:00–13:20 | מרווח ביטחון לפני הרכבת | לא |  |  | 
+14.11 | 13:20–14:48 | Odakyu Romancecar – Shinjuku → Hakone-Yumoto | חובה | 14.10.2026 | תחבורה - כרטיסים לרכבת | 
+14.11 | 14:48–15:10 | שאטל / מעבר ל־Aura Tachibana | לא |  |  | 
+14.11 | מ־15:10 | Aura Tachibana – Check-in | סגור |  |  | 
+14.11 | 15:30 | הזמנה של סאונה ציבורית ( מי שרוצה ) | חובה | 14.11.2026 | להוציא מייל למלון | במקום
+14.11 | במהלך היום | Hakone Freepass | חובה | 14.10.2026 | תחבורה -כרטיס חופשי יומי לכל אחד | 
+15.11 | 08:45 | יציאה מ־Aura Tachibana בשאטל למטה ל־Hakone-Yumoto | לא |  |  | 
+15.11 | ~08:55 | Hakone-Yumoto | לא |  |  | 
+15.11 | 09:15 | אוטובוס לכיוון Hakone-jinja / Moto-Hakone | לא |  |  | 
+15.11 | ~09:50–09:55 | ירידה באזור Hakone-jinja-iriguchi | לא |  |  | 
+15.11 | 09:55–10:35 | Hakone Shrine + Peace Torii – השער המפורסם | לא |  |  | 
+15.11 | 10:35–10:45 | הליכה ל־Moto-Hakone Port | לא |  |  | 
+15.11 | ~10:50 | עלייה ל־Hakone Sightseeing Cruise לכיוון Togendai | לא |  |  | 
+15.11 | ~11:15 | הגעה ל־Togendai | לא |  |  | 
+15.11 | 11:20–11:40 | Ropeway – Togendai → Owakudani | לא |  |  | check conditions 2-3 days before the trip
+15.11 | 11:40–12:40 | Owakudani – תצפיות, אזור געשי, ביצים שחורות | לא |  |  | 
+15.11 | 12:40–13:20 | ארוחת צהריים ב־Owakudani | לא |  |  | 
+15.11 | ~13:25 | Ropeway – Owakudani → Sounzan | לא |  |  | 
+15.11 | ~13:35 | הגעה ל־Sounzan | לא |  |  | 
+15.11 | ~13:40–13:55 | Cable Car – Sounzan → Gora | לא |  |  | 
+15.11 | ~14:00 | Gora | לא |  |  | 
+15.11 | ~14:05–14:10 | Gora → Chokoku-no-Mori | לא |  |  | 
+15.11 | 14:10–16:15 | Hakone Open-Air Museum | חובה | 15.10.2026 | לבדוק באתר  | 
+15.11 | 16:15–16:25 | יציאה מהמוזיאון והליכה ל־Chokoku-no-Mori Station | לא |  |  | 
+15.11 | 16:25 | רכבת Chokoku-no-Mori → Hakone-Yumoto | לא |  |  | 
+15.11 | 17:06 | Hakone-Yumoto | לא |  |  | 
+15.11 | ~17:10 | מתקשרים ל־Aura Tachibana ומבקשים שאטל | לא |  |  | 
+15.11 | ~17:20–17:30 | Aura Tachibana | סגור |  |  | 
+15.11 | 17:30 - 18:30 | זמן ל ביקור ב Onsen שלהם (בריכות חמות) | חובה | 15.10.2026 | להוציא מייל למלון | אולי באותו יום של כניסה למלון
+15.11 | 19:30 - 20:20 | ארוחת ערב במלון Kaiseki dinner | חובה | 15.10.2026 | להוציא מייל למלון | 
+16.11 | 07:30 | ארוחת בוקר מיוחדת של רויקאן (צריך לשריין) | חובה | 31.08.2026 | להוציא מייל למלון | 
+16.11 | 08:30 | יציאה מ־Aura Tachibana במיניוואן הפרטי | סגור |  |  | 
+16.11 | ~09:30 | הגעה ל־Chureito Pagoda / Arakurayama Sengen Park | לא |  |  | 
+16.11 | 09:30–10:50 | Chureito Pagoda – עלייה, תצפית וצילומים | לא |  |  | 
+16.11 | 10:50–11:10 | נסיעה ל־Oshino Hakkai | לא |  |  | 
+16.11 | 11:10–12:25 | Oshino Hakkai | לא |  |  | 
+16.11 | 12:25–13:10 | Lunch באזור Oshino / בדרך לקוואגוצ'יקו | לא |  |  | 
+16.11 | 13:10–13:30 | נסיעה ל־Lake Kawaguchi Maple Corridor | לא |  |  | 
+16.11 | 13:30–14:50 | Lake Kawaguchi Maple Corridor – Momiji Corridor | לא |  |  | 
+16.11 | 14:50 | יציאה לכיוון Mishima Station | לא |  |  | 
+16.11 | ~17:00–17:20 | הגעה ל־Mishima Station | לא |  |  | 
+16.11 | 17:20–17:41 | שירותים / אוכל קטן / איתור רציף / מרווח ביטחון | לא |  |  | 
+16.11 | 17:46–19:01 | Hikari 721– Mishima → Nagoya | חובה | 16.10.2026 | תחבורה -כרטיסים לרכבת | Platform: Platform 5 at Mishima Station
+16.11 | ~19:05–19:20 | מעבר ל־Nagoya JR Gate Tower Hotel | לא |  |  | 
+16.11 | 19:20–20:00 | Check-in / מנוחה קצרה | לא |  |  | 
+16.11 | ~20:15–22:30 | Sakae District – טיול + ארוחת ערב חופשית | לא |  |  | 
+16.11 | ~22:30–23:00 | חזרה למלון | לא |  |  | 
+17.11 | 08:30 | יציאה מ־Nagoya JR Gate Tower Hotel  | חובה | 31.08.2026 | תחבורה -רכב / תחבורה ציבורית? | 
+17.11 | 09:20:00 | הגעה ל־Toyota Kaikan Museum | לא |  |  | 
+17.11 | 09:30–10:45 | Toyota Kaikan Museum | לא |  |  | 
+17.11 | 10:45–11:25 | נסיעה חזרה ל־Nagoya Station | חובה | 31.08.2026 | תחבורה -רכב / תחבורה ציבורית? | 
+17.11 | 11:25–12:00 | התארגנות בתחנה / מרווח ביטחון | לא |  |  | 
+17.11 | 12:10–12:44 | Nozomi 25 – Nagoya → Kyoto | חובה | 17.10.2026 | תחבורה -כרטיסים לרכבת | 
+17.11 | 12:45–13:30 | ארוחת צהריים – Kyoto Station | לא |  |  | 
+17.11 | 13:30–13:50 | הליכה Kyoto Station → To-ji Temple | לא |  |  | 
+17.11 | 13:50–15:00 | To-ji Temple (東寺) | לא |  |  | 
+17.11 | 15:00–15:20 | מונית To-ji → Hotel Monterey Kyoto | לא |  |  | 
+17.11 | 15:20–15:50 | Check-in Hotel Monterey Kyoto | סגור |  |  | 
+17.11 | 15:50–16:05 | הליכה לכיוון Nishiki Market | לא |  |  | 
+17.11 | 16:05–17:05 | Nishiki Market (錦市場) | לא |  |  | 
+17.11 | 17:05–18:30 | Teramachi & Shinkyogoku Arcade | לא |  |  | 
+17.11 | 18:30–19:15 | הליכה רגועה לכיוון Pontocho / שתייה | לא |  |  | 
+17.11 | 19:30–21:00 | Pontocho Alley – ארוחת ערב | חובה | 17.10.2026 | מקומות במסעדה | 
+17.11 | ~21:00–21:30 | חזרה ל־Hotel Monterey Kyoto | לא |  |  | 
+18.11 | 08:00:00 | Hotel Monterey Kyoto → Fushimi Inari | לא |  |  | 
+18.11 | 08:30–08:50 | Fushimi Inari Taisha – המקדש הראשי | לא |  |  | 
+18.11 | 08:50–09:25 | Senbon Torii – אלף שערי הטוריי | לא |  |  | 
+18.11 | 09:25–10:15 | מעבר Fushimi Inari → Arashiyama | לא |  |  | 
+18.11 | 10:15–10:30 | הגעה + פגישה עם המדריכה | סגור |  |  | 
+18.11 | 10:30–11:05 | Arashiyama Bamboo Grove | לא |  |  | 
+18.11 | 11:05–11:50 | Tenryu-ji Temple | לא |  |  | 
+18.11 | 11:50–12:10 | Togetsukyo Bridge + אזור Arashiyama | לא |  |  | 
+18.11 | 12:10–12:50 | ארוחת צהריים | לא |  |  | 
+18.11 | 12:50–13:15 | 🚕 Arashiyama → Kinkaku-ji | לא |  |  | 
+18.11 | 13:15–13:55 | Kinkaku-ji – הפביליון הזהוב | לא |  |  | 
+18.11 | 13:55–14:05 | 🚕 Kinkaku-ji → Ryoan-ji | לא |  |  | 
+18.11 | 14:05–14:45 | Ryoan-ji Temple | לא |  |  | 
+18.11 | 14:45–15:00 | 🚕 Ryoan-ji → Nijo Castle | לא |  |  | 
+18.11 | 15:00–16:50 | Nijo Castle | חובה | 19.10.2026 | לבדוק באתר  | 
+18.11 | 16:50–17:15 | 🚕 Nijo Castle → Gion | לא |  |  | 
+18.11 | 17:15–18:00 | הפסקה / קפה / מנוחה באזור Gion | לא |  |  | 
+18.11 | 18:00–20:00 | סיור Gion | סגור |  |  | 
+18.11 | 20:00-22:00 | ארוחת ערב/בר/קוקטיילים באיזור Gion or Pontocho | חובה | 18.10.2026 | מקומות במסעדה | 
+19.11 | 08:00 | יציאה מ־Hotel Monterey Kyoto → Mimosa | לא |  |  | 
+19.11 | 08:00 - 10:00 | Kimono Rental Mimosa – בחירה, הלבשה והתארגנות | חובה | 31.08.2026 | תחבורה -להזמין מקום ל 6 אנשים | 
+19.11 | 10:00-10:30 | הליכה בקימונו ל־Kiyomizu-dera | לא |  |  | 
+19.11 | 10:30-10:55 | Kiyomizu-dera | לא |  |  | 
+19.11 | 10:55–11:40 | Sannenzaka → Ninenzaka → Yasaka Pagoda – הליכה וצילומים בקימונו | לא |  |  | 
+19.11 | 11:40–12:00 | מעבר ל־Camellia FLOWER + הגעה מוקדמת | לא |  |  | 
+19.11 | 12:00–12:45 | Tea Ceremony Camellia FLOWER | חובה | 31.08.2026 | תחבורה -להזמין מקום ל 6 אנשים | 
+19.11 | 12:45–13:10 | חזרה ל־Mimosa + החזרת הקימונו והחלפת בגדים | לא |  |  | 
+19.11 | 13:10–13:55 | Lunch – Higashiyama | לא |  |  | 
+19.11 | 13:55–14:15 | 🚕 מונית ל־Nanzen-ji | לא |  |  | 
+19.11 | 14:15–15:00 | Nanzen-ji | לא |  |  | 
+19.11 | 15:00–15:10 | הליכה Nanzen-ji → Eikando | לא |  |  | 
+19.11 | 15:10–16:00 | Eikando – Autumn Exhibition | לא |  |  | 
+19.11 | 16:00–16:50 בערך | Philosopher’s Path | לא |  |  | 
+19.11 | 17:00 - 18:30 | חזרה למלון ונמוחה קצרה | לא |  |  | 
+19.11 | 18:30 | 🚕 מונית מהמלון ל־Kodai-ji / Higashiyama | לא |  |  | 
+19.11 | 19:00 - 20:00 | 🌙 Kodai-ji – Autumn Night Illumination | לא |  |  | Eikando evening illumination starts only from 20.11.2026
+20.11 | 08:00 | יציאה מ־Hotel Monterey Kyoto | לא |  |  | 
+20.11 | 08:00–08:10 | Karasuma Oike → Kyoto Station | לא |  |  | 
+20.11 | 08:10–08:35 | מעבר לתחנת Kintetsu + התארגנות | לא |  |  | 
+20.11 | 08:35–09:30 | 🚆 Kintetsu – Kyoto → Kintetsu-Nara (רכבת בוקר מתאימה) | לא |  |  | 
+20.11 | 09:30–09:45 | 🚕 Kintetsu-Nara → Todai-ji | לא |  |  | 
+20.11 | 09:45–10:35 | 🛕 Todai-ji – Great Buddha Hall | לא |  |  | בנובמבר: Great Buddha Hall פתוח 08:00–17:00
+20.11 | 10:35–11:00 | 🛕 Nigatsu-dō | לא |  |  | 
+20.11 | 11:00–11:40 | 🦌 Nara Park – הליכה ואיילים | לא |  |  | 
+20.11 | 11:40–12:30 | ⛩️ Kasuga Taisha | לא |  |  | בנובמבר: Kasuga Taisha פתוח 07:00–17:00
+20.11 | 12:30–13:15 | 🍜 ארוחת צהריים | לא |  |  | 
+20.11 | 13:15–13:30 | הליכה לכיוון Kofuku-ji | לא |  |  | 
+20.11 | 13:30–14:10 | 🛕 Kofuku-ji | לא |  |  | Kofuku-ji פתוח 09:00–17:00 (כניסה אחרונה 16:30)
+20.11 | 14:10–14:50 | 🏘️ Naramachi | לא |  |  | 
+20.11 | 14:50–15:10 | הליכה Naramachi → Kintetsu-Nara | לא |  |  | 
+20.11 | 15:10–15:50 | מרווח ביטחון בתחנה | לא |  |  | מרווח ביטחון לפני AONIYOSHI; להיות ברציף לפני 15:55
+20.11 | 15:55–16:31 | 🚆 AONIYOSHI – Kintetsu-Nara → Kyoto | חובה | 20.10.2026 | תחבורה -כרטיסים לרכבת | 
+20.11 | 16:31–16:50 | Kyoto Station → Hotel Monterey Kyoto | לא |  |  | 
+20.11 | 16:50–18:30 | 🛏️ מנוחה במלון | לא |  |  | 
+20.11 | 18:30–19:00 | יציאה לכיוון Kiyamachi / Pontocho | לא |  |  | 
+20.11 | 19:00–20:30 | 🌙 Kiyamachi & Pontocho – ערב חופשי / אוכל / ברים | חובה | 20.10.2026 | מקומות במסעדה | 
+21.11 | 09:30:00 | הליכה Hotel Monterey Kyoto → Nishiki Market | לא |  |  | 
+21.11 | 09:45–11:00 | Nishiki Market – אוכל, טעימות והסתובבות | לא |  |  | 
+21.11 | 11:00–11:15 | הליכה ל־Karasuma Station | לא |  |  | 
+21.11 | 11:15–11:30 | כניסה לתחנה + מרווח לרכבת | לא |  |  | 
+21.11 | 11:30-12:30 | 🚆 Hankyu Limited Express – Karasuma → Osaka-Umeda | לא |  |  | 
+21.11 | 12:43–13:05 | הליכה Osaka-Umeda → Umeda Sky Building | לא |  |  | 
+21.11 | 13:05–14:20 | Umeda Sky Building – Kuchu Teien Observatory | חובה | 21.10.2026 | לבדוק באתר  | אפשר לקנות Web Ticket מראש
+21.11 | 14:20–15:00 | Osaka-Umeda → Namba | לא |  |  | 
+21.11 | 15:00–17:50 | 🛍️ Namba CITY – קניות | לא |  |  | 
+21.11 | 17:50–18:00 | מעבר בתוך Namba CITY למבשלת | לא |  |  | 
+21.11 | 18:00–20:00 | 🍺 Dotonbori Craft Beer Brewery – Namba CITY | חובה | 21.10.2026 | מקומות במסעדה | 
+21.11 | 20:00–20:30 | נסיעה ל־Osaka Excel Hotel Tokyu | לא |  |  | 
+21.11 | ~20:30 | Check-in – Osaka Excel Hotel Tokyu | סגור |  |  | 
+21.11 | מ־20:30 | מנוחה / להמשיך לשתות באזור המלון | לא |  |  | 
+22.11 | 08:15:00 | נסיעה מ־Osaka Excel Hotel Tokyu לכיוון Osaka Castle | לא |  |  | 
+22.11 | 08:40–09:10 | הליכה במתחם / הגעה לטירה / התארגנות | לא |  |  | 
+22.11 | 09:15–11:00 | 🏯 Osaka Castle | חובה | 21.10.2026 | לבדוק באתר  | אפשר לקנות Web Ticket מראש
+22.11 | 11:00–11:30 | מעבר ל־Kuromon Market | לא |  |  | 
+22.11 | 11:30–12:40 | 🐟 Kuromon Market | לא |  |  | 
+22.11 | 12:40–13:30 | 🍜 ארוחת צהריים באזור Kuromon | לא |  |  | 
+22.11 | 13:30–13:50 | מעבר Kuromon → Shinsekai | לא |  |  | 
+22.11 | 13:50–14:50 | Shinsekai / אזור Tsutenkaku | לא |  |  | 
+22.11 | 14:50–15:10 | מעבר ל־Namba Yasaka Shrine | לא |  |  | 
+22.11 | 15:10–15:40 | 🦁 Namba Yasaka Shrine | לא |  |  | 
+22.11 | 15:40–16:00 | מעבר ל־Hozenji Yokocho | לא |  |  | 
+22.11 | 16:00–16:25 | Hozenji Yokocho | לא |  |  | 
+22.11 | 16:25–17:10 | 🌆 Dotonbori | לא |  |  | 
+22.11 | 17:10–17:25 | הגעה לרציף / Check-in לשיט | לא |  |  | 
+22.11 | 17:30–17:50 | 🚤 Tombori River Cruise | חובה | 21.10.2026 | לבדוק באתר  | אפשר לקנות Web Ticket מראש
+22.11 | 17:50–18:20 | חזרה ל־Osaka Excel Hotel Tokyu | לא |  |  | 
+22.11 | 18:20–20:00 | 🛏️ מנוחה / מקלחת / התארגנות לארוחת הערב | לא |  |  | 
+22.11 | 20:00–20:15 | יציאה לכיוון W Osaka | לא |  |  | 
+22.11 | 20:30-22:30 | 🥩 Teppanyaki MYDO – W Osaka | חובה | 15.10.2026 | מקומות במסעדה | 
+23.11 | 09:00 | יציאה מ־Osaka Excel Hotel Tokyu | לא |  |  | 
+23.11 | 09:00–09:35 | נסיעה ל־Doshomachi / Sukunahikona Shrine | לא |  |  | 
+23.11 | 09:35–10:00 | הגעה, הסתובבות קצרה והתארגנות | לא |  |  | 
+23.11 | 10:00–11:00 | 🐯 Shinno-sai Festival – Sukunahikona Shrine | לא |  |  | שעה מספיקה; עדיף לפני עומסי הצהריים
+23.11 | 11:00–11:40 | 🚇 מעבר ל־Kaiyukan Aquarium | לא |  |  | 
+23.11 | 11:45–14:00 | 🐠 Kaiyukan Aquarium | חובה | 24.10.2026 | לבדוק באתר  | 23.11 הוא חג ביפן; לא לקצר את זמן הביקור
+23.11 | 14:00–14:45 | 🍜 ארוחת צהריים – Tempozan | לא |  |  | 
+23.11 | 14:45–15:15 | 🚕 מונית / Jumbo Taxi ל־Sumiyoshi Taisha | לא |  |  | 
+23.11 | 15:15–16:00 | ⛩️ Sumiyoshi Taisha | לא |  |  | לסיים עד 16:00
+23.11 | 16:00–16:20 | 🚕 מעבר Sumiyoshi Taisha → Nagai Park | לא |  |  | 
+23.11 | 16:20–17:25 | ☕ קפה / מנוחה באזור Nagai | לא |  |  | 
+23.11 | 17:25–17:50 | הליכה + הגעה ל־teamLab | לא |  |  | 
+23.11 | 18:00–19:45 | ✨ teamLab Botanical Garden Osaka | חובה | 24.10.2026 | לבדוק באתר  | 
+23.11 | 19:45–20:15 | 🚇 Nagai → Tennoji / Abeno | לא |  |  | 
+23.11 | 20:15–21:30 | 🌃 Abeno Harukas 300 | חובה | 24.10.2026 | לבדוק באתר  | זמן ביקור 1:15; כניסה לפני שעת הכניסה האחרונה
+23.11 | 21:30–22:00 | חזרה ל־Osaka Excel Hotel Tokyu | לא |  |  | 
+23.11 | ~22:00 | 🏨 הגעה למלון | סגור |  |  | 
+24.11 | 09:00 | יציאה מ־Osaka Excel Hotel Tokyu | לא |  |  | 
+24.11 | 09:00–09:25 | 🚕 מונית ל־Shin-Osaka Station | לא |  |  | 
+24.11 | 09:25–10:00 | קפה / בנטו / התארגנות | לא |  |  | 
+24.11 | 10:09–12:36 | 🚄 Nozomi 350 – Shin-Osaka → Tokyo | חובה | 24.10.2026 | תחבורה -כרטיסים לרכבת | רכבת מהירה Nozomi; להגיע לרציף מראש
+24.11 | 12:36–13:00 | Tokyo Station – Marunouchi Side | לא |  |  | 
+24.11 | 13:00–13:20 | מעבר ל־Tsukishima | לא |  |  | 
+24.11 | 13:20–14:35 | 🍳 Tsukishima Monja Tamatoya | חובה | 24.10.2026 | לבדוק באתר  | מסעדה שחייבים להזמין מקום
+24.11 | 14:35–15:00 | 🚕 מעבר ל־remm PLUS Ginza | לא |  |  | 
+24.11 | 15:00–15:30 | 🏨 צ'ק־אין ב־remm PLUS Ginza | סגור |  |  | 
+24.11 | 15:30–15:45 | הליכה ל־Nissan Crossing | לא |  |  | 
+24.11 | 15:45–16:05 | 🚗 Nissan Crossing | לא |  |  | 
+24.11 | 16:05–16:15 | הליכה ל־GINZA SIX | לא |  |  | 
+24.11 | 16:15–16:50 | 🌇 GINZA SIX Rooftop Garden | לא |  |  | 
+24.11 | 16:50–18:30 | 🛍️ טיול וקניות בגינזה | לא |  |  | 
+24.11 | 18:30–19:15 | מנוחה / התארגנות במלון | לא |  |  | 
+24.11 | 19:15–19:30 | הליכה למסעדה | לא |  |  | 
+24.11 | 19:30–21:00 | 🍲 Akita Dining Namahage | חובה | 24.10.2026 | מקומות במסעדה | 
+24.11 | 21:00–21:10 | הליכה ל־Ginza Music Bar | לא |  |  | 
+24.11 | 21:10–23:00 | 🎵 Ginza Music Bar / Cocktail Bar | חובה | 24.10.2026 | מקומות במסעדה | 
+24.11 | ~23:00 | חזרה למלון | לא |  |  | 
+25.11 | 09:00 | יציאה מ־remm PLUS Ginza | לא |  |  | 
+25.11 | 09:00–09:40 | מעבר ל־Meiji Jingu | לא |  |  | 
+25.11 | 09:40–11:00 | ⛩️ Meiji Jingu | לא |  |  | 
+25.11 | 11:00–11:40 | 🛍️ Takeshita Street | לא |  |  | 
+25.11 | 11:40–13:00 | Omotesando + Cat Street | לא |  |  | 
+25.11 | 13:00–14:15 | 🍜 ארוחת צהריים | לא |  |  | 
+25.11 | 14:15–15:30 | 🎮 Shibuya PARCO | לא |  |  | 
+25.11 | 15:30–15:50 | מעבר ל־Shibuya Sky | לא |  |  | 
+25.11 | 16:00–17:00 | 🌇 SHIBUYA SKY – תצפית + שקיעה | חובה | 24.10.2026 | לבדוק באתר  | 
+25.11 | 17:00–17:50 | 🍸 THE ROOF SHIBUYA SKY – Sofa Seat / Drink | חובה | 24.10.2026 | מקומות במסעדה | 
+25.11 | 17:50–18:05 | ירידה מ־Shibuya Sky | לא |  |  | 
+25.11 | 18:05–18:15 | 🐕 Hachiko Statue | לא |  |  | 
+25.11 | 18:15–18:35 | 🚦 Shibuya Crossing | לא |  |  | 
+25.11 | 18:35–19:00 | שיטוט ערב בשיבויה | לא |  |  | 
+25.11 | 19:00–20:45 | 🍢 Yakitori Tsukada Shibuya | חובה | 24.10.2026 | מקומות במסעדה | 
+25.11 | 20:45–22:30 | 🍸 ברים בשיבויה | לא |  |  | 
+25.11 | ~22:30 | חזרה ל־remm PLUS Ginza | לא |  |  | 
+26.11 | 08:30 | יציאה מ־remm PLUS Ginza | לא |  |  | 
+26.11 | 08:45–09:00 | הליכה ל־Tsukiji Outer Market | לא |  |  | 
+26.11 | 09:00–10:30 | 🐟 Tsukiji Outer Market – אוכל, טעימות ושוק | לא |  |  | 
+26.11 | 10:30–10:45 | חזרה לכיוון Ginza | לא |  |  | מלון נמצא 3 דקות הליכה מהמרכז קניות
+26.11 | 10:45–13:45 | 🛍️ Ginza Shopping – 3 שעות | לא |  |  | 
+26.11 | 13:45–14:00 | 🏨 חזרה למלון והנחת כל השקיות בחדר | לא |  |  | 
+26.11 | 14:00–15:00 | 🍜 ארוחת צהריים בגינזה – שעה מלאה | לא |  |  | 
+26.11 | 15:00–15:30 | 🚕 מעבר Ginza → Azabudai Hills | לא |  |  | 
+26.11 | 15:30–16:00 | קפה / שירותים / מרווח ביטחון | לא |  |  | הכול באותו מתחם
+26.11 | 16:00–18:15 | ✨ teamLab Borderless | חובה | 24.10.2026 | לבדוק באתר  | הכרטיס לשעת כניסה ועלול להימכר (teamLab)
+26.11 | 18:15–18:30 | מעבר ל־Central Green | לא |  |  | 
+26.11 | 18:30–19:45 | 🎄 Azabudai Hills Christmas Market + Lights | לא |  |  | 
+26.11 | 19:45–20:15 | חזרה ל־remm PLUS Ginza | לא |  |  | 
+26.11 | 20:15–21:00 | 🏨 מנוחה / התארגנות | לא |  |  | 
+26.11 | 21:00–22:30 | 🍽️ ארוחת ערב בגינזה | חובה | 24.10.2026 | מקומות במסעדה | 
+26.11 | 22:30–23:30 | 🍸 בר / קוקטייל / ערב חופשי | חובה | 24.10.2026 | מקומות במסעדה | 
+27.11 | 08:30 | יציאה מ־remm PLUS Ginza | לא |  |  | 
+27.11 | 09:00–11:00 | ⛩️ Asakusa – Kaminarimon + Nakamise + Senso-ji | לא |  |  | הכול באותו אזור; אין צורך לרשום כל אחד כאטרקציה נפרדת
+27.11 | 11:00–11:30 | מעבר Asakusa → Akihabara | לא |  |  | 
+27.11 | 11:30–14:00 | 🎮 Akihabara – אלקטרוניקה, אנימה, חנויות | לא |  |  | 
+27.11 | 14:00–15:00 | 🍜 ארוחת צהריים | לא |  |  | באזור Akihabara
+27.11 | 15:00–15:30 | מעבר לכיוון Tokyo Skytree | לא |  |  | 
+27.11 | 15:30–17:30 | 🗼 Tokyo Skytree | חובה | 24.10.2026 | לבדוק באתר  | עדיף לכוון לשעות אחה״צ/שקיעה
+27.11 | 17:30–18:30 | 🛍️ Tokyo Solamachi | לא |  |  | קניות / קפה מתחת ל־Skytree
+27.11 | 18:30–19:00 | חזרה לגינזה | לא |  |  | 
+27.11 | 19:00–20:00 | 🏨 מנוחה במלון | לא |  |  | 
+27.11 | 20:00 ואילך | 🍽️ ארוחת ערב + ערב חופשי בגינזה | חובה | 24.10.2026 | מקומות במסעדה | ערב אחרון מלא בטוקיו
+28.11 | 09:30:00 | יציאה מהמלון | לא |  |  | 
+28.11 | 10:00:00 | מעבר ל־Zojo-ji | לא |  |  | 
+28.11 | 10:30–11:20 | ⛩️ Zojo-ji Temple | לא |  |  | 
+28.11 | 11:20–11:30 | הליכה Zojo-ji → Tokyo Tower | לא |  |  | 
+28.11 | 11:30–12:30 | 🗼 Tokyo Tower – Main Deck | חובה | 24.10.2026 | לבדוק באתר  | 
+28.11 | 12:30–13:20 | 🍜 ארוחת צהריים באזור | לא |  |  | 
+28.11 | 13:20–13:40 | מעבר ל־Roppongi Hills | לא |  |  | 
+28.11 | 13:40–15:20 | Roppongi Hills – מתחם, חנויות והסתובבות | לא |  |  | 
+28.11 | 15:20–15:40 | מעבר ל־Ginza | לא |  |  | 
+28.11 | 15:40–16:30 | 🛍️ קניות אחרונות בגינזה | לא |  |  | 
+28.11 | 16:30–17:00 | חזרה למלון + איסוף המזוודות | לא |  |  | 
+28.11 | 17:00–17:30 | שירותים / התארגנות / מרווח ביטחון | לא |  |  | 
+28.11 | 17:30 | 🚐 יציאה לנמל התעופה Narita – Terminal 2 | סגור |  |  | 
+28.11 | ~19:00–19:30 | הגעה ל־NRT T2 / Check-in / מזוודות / ביטחון | לא |  |  | 
+28.11 | 22:20/22:30 | ✈️ NRT → DXB | סגור |  |  | 
+29.11 | ~05:30 | Connection in Dubai | לא |  |  | 
+29.11 | 10:55 | ✈️ DXB → TLV | סגור |  |  | 
+29.11 | 12:45 | נחיתה בישראל | לא |  |  | 
+### SHEET איך עוברים בפועל 139x9
+תאריך | שלב | נקודת מוצא | שם המוצא ביפנית 🇯🇵 | נקודת יעד | שם היעד ביפנית 🇯🇵 | איך עוברים | מה עושים בפועל | מה לרשום ב־Google Maps
+13.11 | 1 | Haneda Airport Terminal 3 | 羽田空港 第3ターミナル | Hotel Gracery Shinjuku | ホテルグレイスリー新宿 | 🚕 מונית / אפליקציית מוניות | פתחו באפליקציית המוניות/Google Maps את “Hotel Gracery Shinjuku”. הראו לנהג את שם היעד ביפנית: ホテルグレイスリー新宿. לפני היציאה ודאו שהיעד על המפה תואם ל־Hotel Gracery Shinjuku; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Hotel Gracery Shinjuku
+14.11 | 1 | Hotel Gracery | ホテルグレイスリー新宿 | Tokyo Metropolitan Government Building | 東京都庁 展望室 | 🚶 הליכה | פתחו Google Maps וחפשו “Tokyo Metropolitan Government Building”, בחרו מצב הליכה (Walking) וצאו מ־Hotel Gracery לכיוון Tokyo Metropolitan Government Building. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Tokyo Metropolitan Government Building
+14.11 | 2 | Metropolitan Building | 東京都庁 | Shinjuku Gyoen | 新宿御苑 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Shinjuku Gyoen”. הראו לנהג את שם היעד ביפנית: 新宿御苑. לפני היציאה ודאו שהיעד על המפה תואם ל־Shinjuku Gyoen; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Shinjuku Gyoen
+14.11 | 3 | Shinjuku Gyoen | 新宿御苑 | Ramen / Odakyu | 小田急線 新宿駅周辺 / ラーメン | 🚶 הליכה | פתחו Google Maps וחפשו “Ramen / Odakyu”, בחרו מצב הליכה (Walking) וצאו מ־Shinjuku Gyoen לכיוון Ramen / Odakyu. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Ramen / Odakyu
+14.11 | 4 | Shinjuku | 新宿駅 | Hakone-Yumoto | 箱根湯本駅 | 🚆 Romancecar | היכנסו ל־Odakyu Shinjuku Station ועקבו אחר השילוט ל־Romancecar. עברו בשער עם הכרטיס המוזמן, בדקו בלוח את הרציף של רכבת 13:20, ועלו לרכבת ל־Hakone-Yumoto. מומלץ להיות ליד הרציף לפחות 15 דקות לפני היציאה. | Hakone-Yumoto
+14.11 | 5 | Hakone-Yumoto | 箱根湯本駅 | Aura Tachibana | あうら橘 | 🚐 שאטל המלון | פתחו Google Maps ל־“Aura Tachibana” וצאו מ־Hakone-Yumoto לכיוון Aura Tachibana. השתמשו באמצעי התחבורה שמופיע בעמודה G (🚐 שאטל המלון) ובדקו בזמן אמת את הכיוון/התחנה המתאימים. | Aura Tachibana
+15.11 | 1 | Aura Tachibana | あうら橘 | Hakone-Yumoto | 箱根湯本駅 | 🚐 שאטל המלון | פתחו Google Maps ל־“Hakone-Yumoto” וצאו מ־Aura Tachibana לכיוון Hakone-Yumoto. השתמשו באמצעי התחבורה שמופיע בעמודה G (🚐 שאטל המלון) ובדקו בזמן אמת את הכיוון/התחנה המתאימים. | Hakone-Yumoto
+15.11 | 2 | Hakone-Yumoto | 箱根湯本駅 | Hakone Shrine | 箱根神社 | 🚌 Hakone Tozan Bus | מ־Hakone-Yumoto צאו למסוף האוטובוסים ועלו על Hakone Tozan Bus לכיוון Moto-Hakone / Hakone Shrine. הציגו Hakone Freepass אם נדרש. רדו בתחנה Hakone-jinja-iriguchi ומשם המשיכו ברגל למקדש. | Hakone Shrine
+15.11 | 3 | Hakone Shrine | 箱根神社 | Moto-Hakone Port | 元箱根港 | 🚶 הליכה | פתחו Google Maps וחפשו “Moto-Hakone Port”, בחרו מצב הליכה (Walking) וצאו מ־Hakone Shrine לכיוון Moto-Hakone Port. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Moto-Hakone Port
+15.11 | 4 | Moto-Hakone | 元箱根港 | Togendai | 桃源台港 | 🚢 Pirate Ship / Sightseeing Cruise | בנמל Moto-Hakone חפשו את השילוט ל־Hakone Sightseeing Cruise. עלו לספינה לכיוון Togendai; אין צורך להחליף בדרך. בירידה ב־Togendai המשיכו לפי השילוט ל־Ropeway. | Togendai
+15.11 | 5 | Togendai | 桃源台港 | Owakudani | 大涌谷 | 🚡 Hakone Ropeway | מתוך מתחם Togendai עקבו אחר השילוט ל־Hakone Ropeway, עלו לכיוון Owakudani ורדו בתחנת Owakudani. לפני העלייה בדקו שה־Ropeway פועל כרגיל בגלל מזג האוויר. | Owakudani
+15.11 | 6 | Owakudani | 大涌谷 | Sounzan | 早雲山駅 | 🚡 Ropeway | חזרו לתחנת Ropeway ב־Owakudani ועלו בכיוון Sounzan. רדו בתחנה הסופית Sounzan ועקבו מיד אחר השילוט ל־Cable Car. | Sounzan
+15.11 | 7 | Sounzan | 早雲山駅 | Gora | 強羅 | 🚞 Cable Car | ב־Sounzan עברו ל־Hakone Tozan Cable Car. עלו בכיוון Gora ורדו בתחנה הסופית Gora. השילוט באנגלית ברור. | Gora
+15.11 | 8 | Gora | 強羅 | Chokoku-no-Mori | 彫刻の森 | 🚆 Hakone Tozan Train | ב־Gora עברו ל־Hakone Tozan Train. סעו תחנה אחת ל־Chokoku-no-Mori; ביציאה מהתחנה עקבו אחר השילוט למוזיאון הפתוח. | Hakone Open-Air Museum
+15.11 | 9 | Open-Air Museum | 彫刻の森美術館 | Hakone-Yumoto | 箱根湯本駅 | 🚆 Hakone Tozan Train | צאו מהמוזיאון ל־Chokoku-no-Mori Station ועלו על Hakone Tozan Train לכיוון Hakone-Yumoto. בדקו בזמן אמת אם נדרשת החלפה ב־Gora לפי Google Maps/השילוט. | Hakone-Yumoto
+15.11 | 10 | Hakone-Yumoto | 箱根湯本駅 | Aura Tachibana | あうら橘 | 🚐 שאטל המלון | פתחו Google Maps ל־“Aura Tachibana” וצאו מ־Hakone-Yumoto לכיוון Aura Tachibana. השתמשו באמצעי התחבורה שמופיע בעמודה G (🚐 שאטל המלון) ובדקו בזמן אמת את הכיוון/התחנה המתאימים. | Aura Tachibana
+16.11 | 1 | Aura | あうら橘 | Chureito | 新倉山浅間公園 忠霊塔 | 🚐 מיניוואן פרטי עם נהג | פתחו באפליקציית המוניות/Google Maps את “Chureito Pagoda”. הראו לנהג את שם היעד ביפנית: 新倉山浅間公園 忠霊塔. לפני היציאה ודאו שהיעד על המפה תואם ל־Chureito; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Chureito Pagoda
+16.11 | 2 | Chureito | 新倉山浅間公園 忠霊塔 | Oshino | 忍野八海 | 🚐 מיניוואן פרטי עם נהג | פתחו באפליקציית המוניות/Google Maps את “Oshino Hakkai”. הראו לנהג את שם היעד ביפנית: 忍野八海. לפני היציאה ודאו שהיעד על המפה תואם ל־Oshino; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Oshino Hakkai
+16.11 | 3 | Oshino | 忍野八海 | Kawaguchi | 河口湖 | 🚐 מיניוואן פרטי עם נהג | פתחו באפליקציית המוניות/Google Maps את “Lake Kawaguchi Maple Corridor”. הראו לנהג את שם היעד ביפנית: 河口湖. לפני היציאה ודאו שהיעד על המפה תואם ל־Kawaguchi; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Lake Kawaguchi Maple Corridor
+16.11 | 4 | Kawaguchi | 河口湖 | Mishima | 三島駅 | 🚐 מיניוואן פרטי עם נהג | פתחו באפליקציית המוניות/Google Maps את “Mishima”. הראו לנהג את שם היעד ביפנית: 三島駅. לפני היציאה ודאו שהיעד על המפה תואם ל־Mishima; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Mishima
+16.11 | 5 | Mishima | 三島駅 | Nagoya | 名古屋駅 | 🚄 Hikari Shinkansen | ב־Mishima Station היכנסו לאזור Tokaido Shinkansen. בדקו בלוח האלקטרוני את Hikari 721, יציאה 17:46, ואת הרציף העדכני. עלו לקרון/מקומות שהוזמנו ורדו ב־Nagoya בשעה 19:01. | Nagoya Station
+16.11 | 6 | Nagoya Station | 名古屋駅 | JR Gate Tower Hotel | 名古屋JRゲートタワーホテル | 🚶 הליכה | פתחו Google Maps וחפשו “JR Gate Tower Hotel”, בחרו מצב הליכה (Walking) וצאו מ־Nagoya Station לכיוון JR Gate Tower Hotel. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | JR Gate Tower Hotel
+16.11 | 7 | Nagoya JR Gate Tower Hotel | 名古屋JRゲートタワーホテル | Sakae | 栄 | 🚇 Higashiyama Line | פתחו Google Maps ל־“Sakae” רגע לפני היציאה. היכנסו לתחנה הקרובה ל־Nagoya JR Gate Tower Hotel, השתמשו בקו שמופיע בעמודה G (🚇 Higashiyama Line), בדקו כיוון נסיעה ותחנת ירידה על המסך בתחנה, ולאחר הירידה עקבו אחר היציאה שמציע Google Maps אל Sakae. | Sakae
+16.11 | 8 | Sakae | 栄 | Nagoya JR Gate Tower Hotel | 名古屋JRゲートタワーホテル | 🚇 מטרו / 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Nagoya JR Gate Tower Hotel”. הראו לנהג את שם היעד ביפנית: 名古屋JRゲートタワーホテル. לפני היציאה ודאו שהיעד על המפה תואם ל־Nagoya JR Gate Tower Hotel; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Nagoya JR Gate Tower Hotel
+17.11 | 1 | Nagoya JR Gate Tower Hotel | 名古屋JRゲートタワーホテル | Toyota Kaikan | トヨタ会館 | 🚐 מיניוואן/מונית מוזמנת | פתחו באפליקציית המוניות/Google Maps את “Toyota Kaikan”. הראו לנהג את שם היעד ביפנית: トヨタ会館. לפני היציאה ודאו שהיעד על המפה תואם ל־Toyota Kaikan; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Toyota Kaikan
+17.11 | 2 | Toyota Kaikan | トヨタ会館 | Nagoya Station | 名古屋駅 | 🚐 אותו רכב / מונית | פתחו באפליקציית המוניות/Google Maps את “Nagoya Station”. הראו לנהג את שם היעד ביפנית: 名古屋駅. לפני היציאה ודאו שהיעד על המפה תואם ל־Nagoya Station; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Nagoya Station
+17.11 | 3 | Nagoya | 名古屋駅 | Kyoto | 京都駅 | 🚄 Nozomi Shinkansen | ב־Nagoya Station עקבו אחר השילוט Tokaido Shinkansen. מצאו בלוח את Nozomi 25, יציאה 12:10, עברו לרציף המתאים ועלו למקומות שהוזמנו. ירידה Kyoto Station ב־12:44. | Kyoto Station
+17.11 | 4 | Kyoto Station | 京都駅 | To-ji | 東寺 | 🚶 הליכה | פתחו Google Maps וחפשו “To-ji”, בחרו מצב הליכה (Walking) וצאו מ־Kyoto Station לכיוון To-ji. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | To-ji
+17.11 | 5 | To-ji | 東寺 | Hotel Monterey Kyoto | ホテルモントレ京都 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Hotel Monterey Kyoto”. הראו לנהג את שם היעד ביפנית: ホテルモントレ京都. לפני היציאה ודאו שהיעד על המפה תואם ל־Hotel Monterey Kyoto; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Hotel Monterey Kyoto
+17.11 | 6 | Hotel Monterey Kyoto | ホテルモントレ京都 | Nishiki | 錦市場 | 🚶 הליכה | פתחו Google Maps וחפשו “Nishiki Market”, בחרו מצב הליכה (Walking) וצאו מ־Hotel Monterey Kyoto לכיוון Nishiki. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Nishiki Market
+17.11 | 7 | Nishiki | 錦市場 | Teramachi | 寺町通 | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Teramachi”, בחרו מצב הליכה (Walking) וצאו מ־Nishiki לכיוון Teramachi. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Teramachi
+17.11 | 8 | Teramachi | 寺町通 | Shinkyogoku | 新京極通 | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Shinkyogoku”, בחרו מצב הליכה (Walking) וצאו מ־Teramachi לכיוון Shinkyogoku. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Shinkyogoku
+17.11 | 9 | Shinkyogoku | 新京極通 | Pontocho | 先斗町 | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Pontocho”, בחרו מצב הליכה (Walking) וצאו מ־Shinkyogoku לכיוון Pontocho. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Pontocho
+17.11 | 10 | Pontocho | 先斗町 | Hotel Monterey Kyoto | ホテルモントレ京都 | 🚶 / 🚕 | פתחו באפליקציית המוניות/Google Maps את “Hotel Monterey Kyoto”. הראו לנהג את שם היעד ביפנית: ホテルモントレ京都. לפני היציאה ודאו שהיעד על המפה תואם ל־Hotel Monterey Kyoto; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Hotel Monterey Kyoto
+18.11 | 1 | Hotel Monterey Kyoto | ホテルモントレ京都 | Kyoto Station | 京都駅 | 🚇 Subway Karasuma Line | מהמלון לכו לתחנת Karasuma Oike. היכנסו ל־Kyoto Subway Karasuma Line, עלו לכיוון Kyoto Station ורדו ב־Kyoto. משם עוברים ל־JR Nara Line. | Kyoto Station
+18.11 | 2 | Kyoto Station | 京都駅 | Fushimi Inari | 伏見稲荷大社 | 🚆 JR Nara Line | בתוך Kyoto Station עקבו אחר השילוט ל־JR Nara Line. עלו על רכבת שעוצרת ב־Inari Station; רדו ב־Inari. ביציאה המקדש Fushimi Inari נמצא ממש מול התחנה. | Fushimi Inari
+18.11 | 3 | Fushimi Inari | 伏見稲荷大社 | Arashiyama | 嵐山 | 🚆 JR דרך Kyoto Station | מ־Inari Station חזרו ב־JR Nara Line ל־Kyoto Station. שם עברו ל־JR Sagano/San-in Line לכיוון Saga-Arashiyama. רדו ב־Saga-Arashiyama והמשיכו ברגל לאזור הבמבוק. פתחו Google Maps בזמן ההחלפה. | Arashiyama
+18.11 | 4 | Bamboo | 嵐山 竹林の小径 | Tenryu-ji | 天龍寺 | 🚶 הליכה | פתחו Google Maps וחפשו “Tenryu-ji”, בחרו מצב הליכה (Walking) וצאו מ־Bamboo לכיוון Tenryu-ji. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Tenryu-ji
+18.11 | 5 | Tenryu-ji | 天龍寺 | Togetsukyo | 渡月橋 | 🚶 הליכה | פתחו Google Maps וחפשו “Togetsukyo”, בחרו מצב הליכה (Walking) וצאו מ־Tenryu-ji לכיוון Togetsukyo. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Togetsukyo
+18.11 | 6 | Arashiyama | 嵐山 | Kinkaku-ji | 金閣寺（鹿苑寺） | 🚕 מונית – מומלץ מאוד | פתחו באפליקציית המוניות/Google Maps את “Kinkaku-ji”. הראו לנהג את שם היעד ביפנית: 金閣寺（鹿苑寺）. לפני היציאה ודאו שהיעד על המפה תואם ל־Kinkaku-ji; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Kinkaku-ji
+18.11 | 7 | Kinkaku-ji | 金閣寺（鹿苑寺） | Ryoan-ji | 龍安寺 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Ryoan-ji”. הראו לנהג את שם היעד ביפנית: 龍安寺. לפני היציאה ודאו שהיעד על המפה תואם ל־Ryoan-ji; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Ryoan-ji
+18.11 | 8 | Ryoan-ji | 龍安寺 | Nijo Castle | 元離宮二条城 | 🚕 מונית – חובה מבחינתי | פתחו באפליקציית המוניות/Google Maps את “Nijo Castle”. הראו לנהג את שם היעד ביפנית: 元離宮二条城. לפני היציאה ודאו שהיעד על המפה תואם ל־Nijo Castle; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Nijo Castle
+18.11 | 9 | Nijo Castle | 元離宮二条城 | Gion | 祇園 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Gion”. הראו לנהג את שם היעד ביפנית: 祇園. לפני היציאה ודאו שהיעד על המפה תואם ל־Gion; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Gion
+18.11 | 10 | Gion | 祇園 | Hotel Monterey Kyoto | ホテルモントレ京都 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Hotel Monterey Kyoto”. הראו לנהג את שם היעד ביפנית: ホテルモントレ京都. לפני היציאה ודאו שהיעד על המפה תואם ל־Hotel Monterey Kyoto; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Hotel Monterey Kyoto
+19.11 | 1 | Hotel Monterey Kyoto | ホテルモントレ京都 | Kimono Rental Mimosa | 着物レンタル ミモザ | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Kimono Rental Mimosa”. הראו לנהג את שם היעד ביפנית: 着物レンタル ミモザ. לפני היציאה ודאו שהיעד על המפה תואם ל־Kimono Rental Mimosa; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Kimono Rental Mimosa
+19.11 | 2 | Mimosa | 着物レンタル ミモザ | Kiyomizu | 清水寺 | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Kiyomizu-dera”, בחרו מצב הליכה (Walking) וצאו מ־Mimosa לכיוון Kiyomizu. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Kiyomizu-dera
+19.11 | 3 | Kiyomizu | 清水寺 | Sannenzaka | 産寧坂（三年坂） | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Sannenzaka”, בחרו מצב הליכה (Walking) וצאו מ־Kiyomizu לכיוון Sannenzaka. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Sannenzaka
+19.11 | 4 | Sannenzaka | 産寧坂（三年坂） | Ninenzaka | 二寧坂（二年坂） | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Ninenzaka”, בחרו מצב הליכה (Walking) וצאו מ־Sannenzaka לכיוון Ninenzaka. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Ninenzaka
+19.11 | 5 | Ninenzaka | 二寧坂（二年坂） | Yasaka Pagoda | 八坂の塔（法観寺） | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Yasaka Pagoda”, בחרו מצב הליכה (Walking) וצאו מ־Ninenzaka לכיוון Yasaka Pagoda. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Yasaka Pagoda
+19.11 | 6 | Yasaka Pagoda | 八坂の塔（法観寺） | Camellia | 茶道体験カメリア フラワー | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Tea Ceremony Camellia FLOWER”, בחרו מצב הליכה (Walking) וצאו מ־Yasaka Pagoda לכיוון Camellia. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Tea Ceremony Camellia FLOWER
+19.11 | 7 | Camellia | 茶道体験カメリア フラワー | Mimosa | 着物レンタル ミモザ | 🚶 הליכה | פתחו Google Maps וחפשו “Kimono Rental Mimosa”, בחרו מצב הליכה (Walking) וצאו מ־Camellia לכיוון Mimosa. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Kimono Rental Mimosa
+19.11 | 8 | Higashiyama | 東山 | Nanzen-ji | 南禅寺 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Nanzen-ji”. הראו לנהג את שם היעד ביפנית: 南禅寺. לפני היציאה ודאו שהיעד על המפה תואם ל־Nanzen-ji; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Nanzen-ji
+19.11 | 9 | Nanzen-ji | 南禅寺 | Eikando | 永観堂 禅林寺 | 🚶 הליכה | פתחו Google Maps וחפשו “Eikando”, בחרו מצב הליכה (Walking) וצאו מ־Nanzen-ji לכיוון Eikando. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Eikando
+19.11 | 10 | Eikando | 永観堂 禅林寺 | Philosopher’s Path | 哲学の道 | 🚶 הליכה | פתחו Google Maps וחפשו “Philosopher’s Path”, בחרו מצב הליכה (Walking) וצאו מ־Eikando לכיוון Philosopher’s Path. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Philosopher’s Path
+19.11 | 11 | סוף Philosopher’s Path | 哲学の道 北端 | Hotel Monterey Kyoto | ホテルモントレ京都 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Hotel Monterey Kyoto”. הראו לנהג את שם היעד ביפנית: ホテルモントレ京都. לפני היציאה ודאו שהיעד על המפה תואם ל־Hotel Monterey Kyoto; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Hotel Monterey Kyoto
+19.11 | 12 | Hotel Monterey Kyoto | ホテルモントレ京都 | Kodai-ji | 高台寺 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Kodai-ji”. הראו לנהג את שם היעד ביפנית: 高台寺. לפני היציאה ודאו שהיעד על המפה תואם ל־Kodai-ji; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Kodai-ji
+19.11 | 13 | Kodai-ji | 高台寺 | Hotel Monterey Kyoto / ערב ב־Gion | ホテルモントレ京都 / 祇園 | 🚕 / 🚶 | פתחו באפליקציית המוניות/Google Maps את “Hotel Monterey Kyoto”. הראו לנהג את שם היעד ביפנית: ホテルモントレ京都 / 祇園. לפני היציאה ודאו שהיעד על המפה תואם ל־Hotel Monterey Kyoto / ערב ב־Gion; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Hotel Monterey Kyoto
+20.11 | 1 | Hotel Monterey Kyoto | ホテルモントレ京都 | Karasuma Oike | 烏丸御池駅 | 🚶 הליכה | פתחו Google Maps וחפשו “Karasuma Oike”, בחרו מצב הליכה (Walking) וצאו מ־Hotel Monterey Kyoto לכיוון Karasuma Oike. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Karasuma Oike
+20.11 | 2 | Karasuma Oike | 烏丸御池駅 | Kyoto Station | 京都駅 | 🚇 Subway Karasuma Line | ב־Karasuma Oike היכנסו ל־Kyoto Subway Karasuma Line ועלו בכיוון Kyoto Station. רדו ב־Kyoto ועקבו אחר השילוט לתחנת Kintetsu Kyoto. | Kyoto Station
+20.11 | 3 | Kyoto | 京都駅 | Kintetsu-Nara | 近鉄奈良駅 | 🚆 Kintetsu | בתחנת Kintetsu Kyoto בדקו בלוח את הרכבת הבאה ל־Kintetsu-Nara. עלו לרכבת המתאימה ורדו בתחנה הסופית Kintetsu-Nara. אין צורך לנעול מספר רכבת מראש; הגיעו עם מרווח. | Kintetsu-Nara
+20.11 | 4 | Kintetsu-Nara | 近鉄奈良駅 | Todai-ji | 東大寺 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Todai-ji”. הראו לנהג את שם היעד ביפנית: 東大寺. לפני היציאה ודאו שהיעד על המפה תואם ל־Todai-ji; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Todai-ji
+20.11 | 5 | Todai-ji | 東大寺 | Nigatsu-do | 二月堂 | 🚶 הליכה | פתחו Google Maps וחפשו “Nigatsu-do”, בחרו מצב הליכה (Walking) וצאו מ־Todai-ji לכיוון Nigatsu-do. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Nigatsu-do
+20.11 | 6 | Nigatsu-do | 二月堂 | Nara Park | 奈良公園 | 🚶 הליכה | פתחו Google Maps וחפשו “Nara Park”, בחרו מצב הליכה (Walking) וצאו מ־Nigatsu-do לכיוון Nara Park. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Nara Park
+20.11 | 7 | Nara Park | 奈良公園 | Kasuga Taisha | 春日大社 | 🚶 הליכה | פתחו Google Maps וחפשו “Kasuga Taisha”, בחרו מצב הליכה (Walking) וצאו מ־Nara Park לכיוון Kasuga Taisha. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Kasuga Taisha
+20.11 | 8 | Kasuga | 春日大社 | Lunch | 昼食 | 🚶 הליכה | פתחו Google Maps וחפשו “Lunch”, בחרו מצב הליכה (Walking) וצאו מ־Kasuga לכיוון Lunch. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Lunch
+20.11 | 9 | Lunch | 昼食 | Kofuku-ji | 興福寺 | 🚶 הליכה | פתחו Google Maps וחפשו “Kofuku-ji”, בחרו מצב הליכה (Walking) וצאו מ־Lunch לכיוון Kofuku-ji. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Kofuku-ji
+20.11 | 10 | Kofuku-ji | 興福寺 | Naramachi | ならまち | 🚶 הליכה | פתחו Google Maps וחפשו “Naramachi”, בחרו מצב הליכה (Walking) וצאו מ־Kofuku-ji לכיוון Naramachi. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Naramachi
+20.11 | 11 | Naramachi | ならまち | Kintetsu-Nara | 近鉄奈良駅 | 🚶 הליכה | פתחו Google Maps וחפשו “Kintetsu-Nara”, בחרו מצב הליכה (Walking) וצאו מ־Naramachi לכיוון Kintetsu-Nara. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Kintetsu-Nara
+20.11 | 12 | Nara | 近鉄奈良駅 | Kyoto | 京都駅 | 🚆 AONIYOSHI | הגיעו ל־Kintetsu-Nara לפחות 15–20 דקות מראש. חפשו בלוח את AONIYOSHI, יציאה 15:55, ועלו לקרון/מקומות שהוזמנו. ירידה Kyoto Station ב־16:31. | Kyoto Station
+20.11 | 13 | Kyoto Station | 京都駅 | Hotel Monterey Kyoto | ホテルモントレ京都 | 🚇 Subway + 🚶 | פתחו Google Maps ל־“Hotel Monterey Kyoto” רגע לפני היציאה. היכנסו לתחנה הקרובה ל־Kyoto Station, השתמשו בקו שמופיע בעמודה G (🚇 Subway + 🚶), בדקו כיוון נסיעה ותחנת ירידה על המסך בתחנה, ולאחר הירידה עקבו אחר היציאה שמציע Google Maps אל Hotel Monterey Kyoto. | Hotel Monterey Kyoto
+21.11 | 1 | Hotel Monterey Kyoto | ホテルモントレ京都 | Nishiki Market | 錦市場 | 🚶 הליכה | פתחו Google Maps וחפשו “Nishiki Market”, בחרו מצב הליכה (Walking) וצאו מ־Hotel Monterey Kyoto לכיוון Nishiki Market. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Nishiki Market
+21.11 | 2 | Nishiki | 錦市場 | Kyoto Yoshitsugu | 京都吉兆 | 🚶 הליכה | פתחו Google Maps וחפשו “Kyoto Yoshitsugu”, בחרו מצב הליכה (Walking) וצאו מ־Nishiki לכיוון Kyoto Yoshitsugu. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Kyoto Yoshitsugu
+21.11 | 3 | Kyoto Yoshitsugu | 京都吉兆 | Karasuma | 烏丸駅 | 🚶 הליכה | פתחו Google Maps וחפשו “Karasuma”, בחרו מצב הליכה (Walking) וצאו מ־Kyoto Yoshitsugu לכיוון Karasuma. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Karasuma
+21.11 | 4 | Karasuma | 烏丸駅 | Osaka-Umeda | 大阪梅田駅 | 🚆 Hankyu Limited Express | ב־Karasuma Station היכנסו ל־Hankyu Kyoto Line. עלו על Limited Express לכיוון Osaka-Umeda ורדו בתחנה הסופית Osaka-Umeda. בדקו את הרציף בלוח בזמן אמת. | Osaka-Umeda
+21.11 | 5 | Osaka-Umeda | 大阪梅田駅 | Umeda Sky | 梅田スカイビル | 🚶 הליכה | פתחו Google Maps וחפשו “Umeda Sky Building”, בחרו מצב הליכה (Walking) וצאו מ־Osaka-Umeda לכיוון Umeda Sky. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Umeda Sky Building
+21.11 | 6 | Umeda | 梅田 | Namba | なんば | 🚇 Midosuji Line | בתחנת Umeda היכנסו ל־Osaka Metro Midosuji Line. עלו בכיוון Nakamozu ורדו ב־Namba. ביציאה פתחו Google Maps ליעד הבא בתוך אזור Namba. | Namba
+21.11 | 7 | Namba CITY | なんばCITY | Brewery | ブルワリー | 🚶 הליכה | פתחו Google Maps וחפשו “Brewery”, בחרו מצב הליכה (Walking) וצאו מ־Namba CITY לכיוון Brewery. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Brewery
+21.11 | 8 | Namba | なんば | Osaka Excel Hotel Tokyu | 大阪エクセルホテル東急 | 🚇 Midosuji Line → Hommachi | מ־Namba היכנסו ל־Osaka Metro Midosuji Line, עלו בכיוון Shin-Osaka וירדו ב־Hommachi. משם לכו ברגל כ־5–10 דקות ל־Osaka Excel Hotel Tokyu לפי Google Maps. | Osaka Excel Hotel Tokyu
+22.11 | 1 | Osaka Excel Hotel Tokyu | 大阪エクセルホテル東急 | Osaka Castle | 大阪城 | 🚇 Chuo Line → Morinomiya + הליכה | מהמלון לכו לתחנת Hommachi. היכנסו ל־Osaka Metro Chuo Line ועלו לכיוון Morinomiya/Nagata. רדו ב־Morinomiya ומשם לכו ברגל לאזור Osaka Castle לפי Google Maps. | Osaka Castle
+22.11 | 2 | Osaka Castle | 大阪城 | Kuromon | 黒門市場 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Kuromon”. הראו לנהג את שם היעד ביפנית: 黒門市場. לפני היציאה ודאו שהיעד על המפה תואם ל־Kuromon; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Kuromon
+22.11 | 3 | Kuromon | 黒門市場 | Shinsekai | 新世界 | 🚇 Sakaisuji Line | מ־Kuromon לכו לתחנת Nippombashi. עלו על Osaka Metro Sakaisuji Line לכיוון Ebisucho ורדו ב־Ebisucho; משם הולכים כמה דקות ברגל ל־Shinsekai/Tsutenkaku. | Shinsekai
+22.11 | 4 | Shinsekai | 新世界 | Namba Yasaka | 難波八阪神社 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Namba Yasaka Shrine”. הראו לנהג את שם היעד ביפנית: 難波八阪神社. לפני היציאה ודאו שהיעד על המפה תואם ל־Namba Yasaka; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Namba Yasaka Shrine
+22.11 | 5 | Namba Yasaka | 難波八阪神社 | Hozenji | 法善寺 | 🚶 הליכה | פתחו Google Maps וחפשו “Hozenji”, בחרו מצב הליכה (Walking) וצאו מ־Namba Yasaka לכיוון Hozenji. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Hozenji
+22.11 | 6 | Hozenji | 法善寺 | Dotonbori | 道頓堀 | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Dotonbori”, בחרו מצב הליכה (Walking) וצאו מ־Hozenji לכיוון Dotonbori. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Dotonbori
+22.11 | 7 | Dotonbori | 道頓堀 | River Cruise | 道頓堀リバークルーズ | 🚶 הכול ברגל | פתחו Google Maps וחפשו “River Cruise”, בחרו מצב הליכה (Walking) וצאו מ־Dotonbori לכיוון River Cruise. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | River Cruise
+22.11 | 8 | Dotonbori | 道頓堀 | Osaka Excel Hotel Tokyu | 大阪エクセルホテル東急 | 🚇 Metro / 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Osaka Excel Hotel Tokyu”. הראו לנהג את שם היעד ביפנית: 大阪エクセルホテル東急. לפני היציאה ודאו שהיעד על המפה תואם ל־Osaka Excel Hotel Tokyu; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Osaka Excel Hotel Tokyu
+22.11 | 9 | Osaka Excel Hotel Tokyu | 大阪エクセルホテル東急 | MYDO ב־W Osaka | MYDO / W大阪 | 🚶 הליכה | פתחו Google Maps וחפשו “MYDO W Osaka”, בחרו מצב הליכה (Walking) וצאו מ־Osaka Excel Hotel Tokyu לכיוון MYDO ב־W Osaka. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | MYDO W Osaka
+22.11 | 10 | MYDO | MYDO / W大阪 | Osaka Excel Hotel Tokyu | 大阪エクセルホテル東急 | 🚶 הליכה | פתחו Google Maps וחפשו “Osaka Excel Hotel Tokyu”, בחרו מצב הליכה (Walking) וצאו מ־MYDO לכיוון Osaka Excel Hotel Tokyu. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Osaka Excel Hotel Tokyu
+23.11 | 1 | Osaka Excel Hotel Tokyu | 大阪エクセルホテル東急 | Sukunahikona Shrine / Shinno-sai | 少彦名神社 / 神農祭 | 🚇 Midosuji Line + 🚶 | מהמלון לכו לתחנת Hommachi. סעו ב־Midosuji Line תחנה אחת ל־Yodoyabashi, צאו לכיוון Kitahama/Doshomachi והמשיכו ברגל ל־Sukunahikona Shrine. פתחו Google Maps לפני היציאה מהתחנה כדי לבחור יציאה נוחה. יעד: להגיע לפני 10:00. | Sukunahikona Shrine
+23.11 | 2 | Sukunahikona Shrine | 少彦名神社 | Kaiyukan Aquarium | 海遊館 | 🚇 Osaka Metro | אחרי הפסטיבל פתחו Google Maps ל־Kaiyukan ובחרו מסלול Metro ל־Osakako Station. בדרך כלל חוזרים לכיוון Hommachi ועוברים ל־Chuo Line. רדו ב־Osakako ומשם הליכה של כ־5–10 דקות ל־Kaiyukan. | Kaiyukan
+23.11 | 3 | Kaiyukan / Tempozan | 海遊館 / 天保山 | Sumiyoshi Taisha | 住吉大社 | 🚕 מונית / Jumbo Taxi | פתחו באפליקציית המוניות/Google Maps את “Sumiyoshi Taisha”. הראו לנהג את שם היעד ביפנית: 住吉大社. לפני היציאה ודאו שהיעד על המפה תואם ל־Sumiyoshi Taisha; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Sumiyoshi Taisha
+23.11 | 4 | Sumiyoshi Taisha | 住吉大社 | Nagai Park | 長居公園 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Nagai Park”. הראו לנהג את שם היעד ביפנית: 長居公園. לפני היציאה ודאו שהיעד על המפה תואם ל־Nagai Park; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Nagai Park
+23.11 | 5 | Nagai Park | 長居公園 | teamLab Botanical Garden Osaka | チームラボ ボタニカルガーデン 大阪 | 🚶 הליכה | פתחו Google Maps וחפשו “teamLab Botanical Garden Osaka”, בחרו מצב הליכה (Walking) וצאו מ־Nagai Park לכיוון teamLab Botanical Garden Osaka. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | teamLab Botanical Garden Osaka
+23.11 | 6 | teamLab Botanical Garden Osaka | チームラボ ボタニカルガーデン 大阪 | Abeno Harukas 300 | あべのハルカス300 | 🚇 Midosuji Line | בסיום teamLab לכו ל־Nagai Station. עלו על Osaka Metro Midosuji Line בכיוון Esaka/Shin-Osaka ורדו ב־Tennoji. עקבו בתוך התחנה אחר השילוט Abeno Harukas / Kintetsu; הכניסה למגדל מחוברת לאזור התחנה. | Abeno Harukas 300
+23.11 | 7 | Abeno Harukas 300 | あべのハルカス300 | Osaka Excel Hotel Tokyu | 大阪エクセルホテル東急 | 🚇 Midosuji Line | חזרו ל־Tennoji Station, עלו על Midosuji Line בכיוון Shin-Osaka ורדו ב־Hommachi. צאו לפי Google Maps והמשיכו ברגל למלון. | Osaka Excel Hotel Tokyu
+24.11 | 1 | Osaka Excel Hotel Tokyu | 大阪エクセルホテル東急 | Shin-Osaka | 新大阪駅 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Shin-Osaka”. הראו לנהג את שם היעד ביפנית: 新大阪駅. לפני היציאה ודאו שהיעד על המפה תואם ל־Shin-Osaka; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Shin-Osaka
+24.11 | 2 | Shin-Osaka | 新大阪駅 | Tokyo | 東京駅 | 🚄 Nozomi 350 – 10:09 | ב־Shin-Osaka עקבו אחר השילוט Tokaido Shinkansen. מצאו בלוח את Nozomi 350, יציאה 10:09, בדקו את הרציף ועלו לקרון/מקומות שהוזמנו. הנסיעה ישירה ל־Tokyo Station, הגעה 12:36. היו ליד הרציף לפחות 15 דקות מראש. | Tokyo Station
+24.11 | 3 | Tokyo Station | 東京駅 | Marunouchi | 丸の内 | 🚶 הליכה | פתחו Google Maps וחפשו “Marunouchi”, בחרו מצב הליכה (Walking) וצאו מ־Tokyo Station לכיוון Marunouchi. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Marunouchi
+24.11 | 4 | Marunouchi | 丸の内 | Tsukishima | 月島 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Tsukishima”. הראו לנהג את שם היעד ביפנית: 月島. לפני היציאה ודאו שהיעד על המפה תואם ל־Tsukishima; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Tsukishima
+24.11 | 5 | Tsukishima | 月島 | remm PLUS Ginza | レムプラス銀座 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “remm PLUS Ginza”. הראו לנהג את שם היעד ביפנית: レムプラス銀座. לפני היציאה ודאו שהיעד על המפה תואם ל־remm PLUS Ginza; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | remm PLUS Ginza
+24.11 | 6 | remm PLUS Ginza | レムプラス銀座 | Nissan | NISSAN CROSSING | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Nissan”, בחרו מצב הליכה (Walking) וצאו מ־remm PLUS Ginza לכיוון Nissan. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Nissan
+24.11 | 7 | Nissan | NISSAN CROSSING | GINZA SIX | GINZA SIX | 🚶 הכול ברגל | פתחו Google Maps וחפשו “GINZA SIX”, בחרו מצב הליכה (Walking) וצאו מ־Nissan לכיוון GINZA SIX. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | GINZA SIX
+24.11 | 8 | GINZA SIX | GINZA SIX | Shopping | ショッピング | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Shopping”, בחרו מצב הליכה (Walking) וצאו מ־GINZA SIX לכיוון Shopping. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Shopping
+24.11 | 9 | remm PLUS Ginza | レムプラス銀座 | Namahage | なまはげ銀座店 | 🚶 הליכה | פתחו Google Maps וחפשו “Namahage”, בחרו מצב הליכה (Walking) וצאו מ־remm PLUS Ginza לכיוון Namahage. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Namahage
+24.11 | 10 | Namahage | なまはげ銀座店 | Ginza Music Bar | GINZA MUSIC BAR | 🚶 הליכה | פתחו Google Maps וחפשו “Ginza Music Bar”, בחרו מצב הליכה (Walking) וצאו מ־Namahage לכיוון Ginza Music Bar. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Ginza Music Bar
+25.11 | 1 | remm PLUS Ginza | レムプラス銀座 | Meiji Jingu / Harajuku | 明治神宮 / 原宿 | 🚆 JR Yamanote Line | מהמלון לכו ל־Shimbashi Station. עלו על JR Yamanote Line בכיוון Shibuya/Shinjuku ורדו ב־Harajuku. ביציאה עקבו אחר השילוט Meiji Jingu; פתחו Google Maps רק לקטע האחרון. | Meiji Jingu / Harajuku
+25.11 | 2 | Meiji Jingu | 明治神宮 | Takeshita | 竹下通り | 🚶 הליכה | פתחו Google Maps וחפשו “Takeshita”, בחרו מצב הליכה (Walking) וצאו מ־Meiji Jingu לכיוון Takeshita. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Takeshita
+25.11 | 3 | Takeshita | 竹下通り | Omotesando | 表参道 | 🚶 הליכה | פתחו Google Maps וחפשו “Omotesando”, בחרו מצב הליכה (Walking) וצאו מ־Takeshita לכיוון Omotesando. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Omotesando
+25.11 | 4 | Omotesando | 表参道 | Cat Street | キャットストリート | 🚶 הליכה | פתחו Google Maps וחפשו “Cat Street”, בחרו מצב הליכה (Walking) וצאו מ־Omotesando לכיוון Cat Street. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Cat Street
+25.11 | 5 | Cat Street | キャットストリート | Shibuya PARCO | 渋谷PARCO | 🚶 הליכה | פתחו Google Maps וחפשו “Shibuya PARCO”, בחרו מצב הליכה (Walking) וצאו מ־Cat Street לכיוון Shibuya PARCO. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Shibuya PARCO
+25.11 | 6 | PARCO | 渋谷PARCO | Shibuya Sky | SHIBUYA SKY | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Shibuya Sky”, בחרו מצב הליכה (Walking) וצאו מ־PARCO לכיוון Shibuya Sky. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Shibuya Sky
+25.11 | 7 | Shibuya Sky | SHIBUYA SKY | Hachiko | 忠犬ハチ公像 | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Hachiko”, בחרו מצב הליכה (Walking) וצאו מ־Shibuya Sky לכיוון Hachiko. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Hachiko
+25.11 | 8 | Hachiko | 忠犬ハチ公像 | Crossing | 渋谷スクランブル交差点 | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Crossing”, בחרו מצב הליכה (Walking) וצאו מ־Hachiko לכיוון Crossing. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Crossing
+25.11 | 9 | Crossing | 渋谷スクランブル交差点 | Dinner | 夕食 | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Dinner”, בחרו מצב הליכה (Walking) וצאו מ־Crossing לכיוון Dinner. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Dinner
+25.11 | 10 | Dinner | 夕食 | Bars | バー | 🚶 הכול ברגל | פתחו Google Maps וחפשו “Bars”, בחרו מצב הליכה (Walking) וצאו מ־Dinner לכיוון Bars. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Bars
+25.11 | 11 | Shibuya | 渋谷 | remm PLUS Ginza | レムプラス銀座 | 🚆 JR Yamanote → Shimbashi | מ־Shibuya Station עלו על JR Yamanote Line בכיוון Shinagawa/Tokyo ורדו ב־Shimbashi. משם הליכה קצרה ל־remm PLUS Ginza לפי Google Maps. | remm PLUS Ginza
+26.11 | 1 | remm PLUS Ginza | レムプラス銀座 | Tsukiji | 築地場外市場 | 🚶 הליכה | פתחו Google Maps וחפשו “Tsukiji”, בחרו מצב הליכה (Walking) וצאו מ־remm PLUS Ginza לכיוון Tsukiji. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Tsukiji
+26.11 | 2 | Tsukiji | 築地場外市場 | Ginza Shopping | 銀座ショッピング | 🚶 הליכה | פתחו Google Maps וחפשו “Ginza Shopping”, בחרו מצב הליכה (Walking) וצאו מ־Tsukiji לכיוון Ginza Shopping. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Ginza Shopping
+26.11 | 3 | Ginza Shopping | 銀座ショッピング | remm PLUS Ginza | レムプラス銀座 | 🚶 הליכה | פתחו Google Maps וחפשו “remm PLUS Ginza”, בחרו מצב הליכה (Walking) וצאו מ־Ginza Shopping לכיוון remm PLUS Ginza. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | remm PLUS Ginza
+26.11 | 4 | remm PLUS Ginza | レムプラス銀座 | Lunch in Ginza | 銀座で昼食 | 🚶 הליכה | פתחו Google Maps וחפשו “Lunch in Ginza”, בחרו מצב הליכה (Walking) וצאו מ־remm PLUS Ginza לכיוון Lunch in Ginza. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Lunch in Ginza
+26.11 | 5 | Ginza | 銀座 | teamLab Borderless / Azabudai Hills | 森ビル デジタルアート ミュージアム：エプソン チームラボボーダレス / 麻布台ヒルズ | 🚇 Hibiya Line → Kamiyacho | לכו לתחנת Ginza והיכנסו ל־Tokyo Metro Hibiya Line. עלו בכיוון Naka-meguro ורדו ב־Kamiyacho. ביציאה עקבו אחר השילוט Azabudai Hills / teamLab Borderless והמשיכו ברגל לפי Google Maps. | teamLab Borderless Tokyo
+26.11 | 6 | teamLab | チームラボボーダレス | Central Green / Christmas Market | 麻布台ヒルズ 中央広場 / クリスマスマーケット | 🚶 הליכה | פתחו Google Maps וחפשו “Azabudai Hills Central Green”, בחרו מצב הליכה (Walking) וצאו מ־teamLab לכיוון Central Green / Christmas Market. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Azabudai Hills Central Green
+26.11 | 7 | Azabudai Hills | 麻布台ヒルズ | remm PLUS Ginza | レムプラス銀座 | 🚇 Hibiya Line – Kamiyacho → Ginza | מ־Azabudai Hills חזרו לתחנת Kamiyacho. עלו על Hibiya Line בכיוון Kita-senju ורדו ב־Ginza. משם הליכה קצרה למלון לפי Google Maps. | remm PLUS Ginza
+26.11 | 8 | remm PLUS Ginza | レムプラス銀座 | Dinner / Bar | 夕食 / バー | 🚶 ברגל | פתחו Google Maps וחפשו “Dinner / Bar”, בחרו מצב הליכה (Walking) וצאו מ־remm PLUS Ginza לכיוון Dinner / Bar. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Dinner / Bar
+27.11 | 1 | remm PLUS Ginza | レムプラス銀座 | Asakusa / Kaminarimon | 浅草 / 雷門 | 🚇 Ginza Line | לכו לתחנת Ginza. עלו על Tokyo Metro Ginza Line בכיוון Asakusa ורדו בתחנה הסופית Asakusa. ביציאה פתחו Google Maps ל־Kaminarimon ובחרו את היציאה הקרובה. | Kaminarimon
+27.11 | 2 | Kaminarimon | 雷門 | Nakamise | 仲見世通り | 🚶 הליכה | פתחו Google Maps וחפשו “Nakamise Shopping Street”, בחרו מצב הליכה (Walking) וצאו מ־Kaminarimon לכיוון Nakamise. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Nakamise Shopping Street
+27.11 | 3 | Nakamise | 仲見世通り | Senso-ji | 浅草寺 | 🚶 הליכה | פתחו Google Maps וחפשו “Senso-ji”, בחרו מצב הליכה (Walking) וצאו מ־Nakamise לכיוון Senso-ji. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Senso-ji
+27.11 | 4 | Asakusa | 浅草 | Akihabara | 秋葉原 | 🚆 Tsukuba Express | מאזור Senso-ji לכו לתחנת Asakusa של Tsukuba Express (שימו לב: זו תחנה שונה מתחנת Ginza Line). עלו על Tsukuba Express לכיוון Akihabara ורדו בתחנה הסופית Akihabara. | Akihabara Station
+27.11 | 5 | Akihabara | 秋葉原 | Tokyo Skytree | 東京スカイツリー | 🚇 / 🚆 לפי Google Maps | בסביבות 15:00 פתחו Google Maps ל־Tokyo Skytree ובחרו את המסלול המהיר באותו רגע. אל תנעלו קו מראש: בדרך כלל יש החלפה אחת. יעד: להגיע לאזור Skytree סביב 15:30. | Tokyo Skytree
+27.11 | 6 | Tokyo Skytree | 東京スカイツリー | Tokyo Solamachi | 東京ソラマチ | 🚶 הליכה | פתחו Google Maps וחפשו “Tokyo Solamachi”, בחרו מצב הליכה (Walking) וצאו מ־Tokyo Skytree לכיוון Tokyo Solamachi. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Tokyo Solamachi
+27.11 | 7 | Tokyo Solamachi | 東京ソラマチ | remm PLUS Ginza | レムプラス銀座 | 🚇 / 🚆 לפי Google Maps | פתחו Google Maps ל־“remm PLUS Ginza” רגע לפני היציאה. היכנסו לתחנה הקרובה ל־Tokyo Solamachi, השתמשו בקו שמופיע בעמודה G (🚇 / 🚆 לפי Google Maps), בדקו כיוון נסיעה ותחנת ירידה על המסך בתחנה, ולאחר הירידה עקבו אחר היציאה שמציע Google Maps אל remm PLUS Ginza. | remm PLUS Ginza
+27.11 | 8 | remm PLUS Ginza | レムプラス銀座 | Dinner in Ginza | 銀座で夕食 | 🚶 / 🚕 | פתחו באפליקציית המוניות/Google Maps את “Dinner Ginza”. הראו לנהג את שם היעד ביפנית: 銀座で夕食. לפני היציאה ודאו שהיעד על המפה תואם ל־Dinner in Ginza; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Dinner Ginza
+28.11 | 1 | remm PLUS Ginza | レムプラス銀座 | Zojo-ji | 増上寺 | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Zojo-ji”. הראו לנהג את שם היעד ביפנית: 増上寺. לפני היציאה ודאו שהיעד על המפה תואם ל־Zojo-ji; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Zojo-ji
+28.11 | 2 | Zojo-ji | 増上寺 | Tokyo Tower | 東京タワー | 🚶 הליכה | פתחו Google Maps וחפשו “Tokyo Tower”, בחרו מצב הליכה (Walking) וצאו מ־Zojo-ji לכיוון Tokyo Tower. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | Tokyo Tower
+28.11 | 3 | Tokyo Tower | 東京タワー | Roppongi Hills | 六本木ヒルズ | 🚕 מונית | פתחו באפליקציית המוניות/Google Maps את “Roppongi Hills”. הראו לנהג את שם היעד ביפנית: 六本木ヒルズ. לפני היציאה ודאו שהיעד על המפה תואם ל־Roppongi Hills; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Roppongi Hills
+28.11 | 4 | Roppongi Hills | 六本木ヒルズ | Ginza | 銀座 | 🚇 Hibiya Line | מאזור Roppongi Hills לכו לתחנת Roppongi. עלו על Tokyo Metro Hibiya Line בכיוון Kita-senju ורדו ב־Ginza. משם המשיכו לפי Google Maps ליעד המדויק בגינזה. | Ginza
+28.11 | 5 | Ginza | 銀座 | remm PLUS Ginza | レムプラス銀座 | 🚶 הליכה | פתחו Google Maps וחפשו “remm PLUS Ginza”, בחרו מצב הליכה (Walking) וצאו מ־Ginza לכיוון remm PLUS Ginza. עקבו אחרי המסלול עד הכניסה/הנקודה המדויקת; אם יש כמה כניסות, בחרו בזו שמופיעה במפה. | remm PLUS Ginza
+28.11 | 6 | remm PLUS Ginza | レムプラス銀座 | Narita Airport | 成田国際空港 | 🚐 הסעה פרטית / מיניוואן מוזמן | פתחו באפליקציית המוניות/Google Maps את “Narita Airport”. הראו לנהג את שם היעד ביפנית: 成田国際空港. לפני היציאה ודאו שהיעד על המפה תואם ל־Narita Airport; בסיום הנסיעה רדו בדיוק בנקודה שמופיעה במפה. | Narita Airport
+### SHEET אתר של כל מקום 266x8
+שורה מקורית | תאריך | שעה | אירוע / אטרקציה | אתר / קישור | סוג קישור | הזמנה מראש? | תאריך הזמנה
+2 | 12–13.11 | 22:20 | TLV → DXB | https://www.emirates.com/ | אתר תחבורה / מפעיל | סגור | 
+3 | 12–13.11 | 03:25 +1 | Connection in DXB | https://www.emirates.com/ | אתר תחבורה / מפעיל | סגור | 
+4 | 12–13.11 | 08:20 | DXB → HND | https://www.emirates.com/ | אתר תחבורה / מפעיל | סגור | 
+5 | 12–13.11 | 22:30 | הגעה לטוקיו | לא רלוונטי | לוגיסטיקה / ללא אתר | סגור | 
+6 | 12–13.11 | 23:30 | מונית למלון Hotel Gracery Shinjuku | https://gracery.com/shinjuku/ | אתר רשמי | סגור | 
+7 | 14.11 | 08:45 | הפקדת מזוודות / יציאה מ־Hotel Gracery Shinjuku | https://gracery.com/shinjuku/ | אתר רשמי | לא | 
+8 | 14.11 | 08:45–09:15 | מעבר ל־Tokyo Metropolitan Government Building | https://www.english.metro.tokyo.lg.jp/w/000-101-000542 | אתר רשמי | לא | 
+9 | 14.11 | 09:30–10:15 | Tokyo Metropolitan Government Building – Observatory | https://www.english.metro.tokyo.lg.jp/w/000-101-000542 | אתר רשמי | לא | 
+10 | 14.11 | 10:15–10:30 | מעבר ל־Shinjuku Gyoen | https://www.env.go.jp/garden/shinjukugyoen/english/ | אתר רשמי ממשלתי | לא | 
+11 | 14.11 | 10:30–11:30 | Shinjuku Gyoen | https://www.env.go.jp/garden/shinjukugyoen/english/ | אתר רשמי ממשלתי | לא | 
+12 | 14.11 | 11:30–11:45 | יציאה לכיוון Shinjuku Station | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+13 | 14.11 | 11:45–12:30 | RAMEN – ארוחת צהריים | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+14 | 14.11 | 12:30–13:00 | מעבר ל־Odakyu Shinjuku / רציף | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+15 | 14.11 | 13:00–13:20 | מרווח ביטחון לפני הרכבת | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+16 | 14.11 | 13:20–14:48 | Odakyu Romancecar – Shinjuku → Hakone-Yumoto | https://www.hakonenavi.jp/international/en/ | אתר תחבורה / מפעיל | חובה | 14.10.2026
+17 | 14.11 | 14:48–15:10 | שאטל / מעבר ל־Aura Tachibana | https://www.aura-tachibana.com/ | אתר רשמי | לא | 
+18 | 14.11 | מ־15:10 | Aura Tachibana – Check-in | https://www.aura-tachibana.com/ | אתר רשמי | סגור | 
+19 | 14.11 | 15:30 | הזמנה של סאונה ציבורית ( מי שרוצה ) | https://www.google.com/maps/search/?api=1&query=%D7%94%D7%96%D7%9E%D7%A0%D7%94+%D7%A9%D7%9C+%D7%A1%D7%90%D7%95%D7%A0%D7%94+%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%AA+%28+%D7%9E%D7%99+%D7%A9%D7%A8%D7%95%D7%A6%D7%94+%29 | Google Maps – קישור חיפוש | חובה | 14.11.2026
+20 | 14.11 | במהלך היום | Hakone Freepass | https://www.hakonenavi.jp/international/en/discount_passes/free_pass2 | אתר רשמי | חובה | 14.10.2026
+21 | 15.11 | 08:45 | יציאה מ־Aura Tachibana בשאטל למטה ל־Hakone-Yumoto | https://www.aura-tachibana.com/ | אתר רשמי | לא | 
+22 | 15.11 | ~08:55 | Hakone-Yumoto | https://www.hakonenavi.jp/international/en/ | אתר תחבורה / מפעיל | לא | 
+23 | 15.11 | 09:15 | אוטובוס לכיוון Hakone-jinja / Moto-Hakone | https://www.google.com/maps/search/?api=1&query=%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1+%D7%9C%D7%9B%D7%99%D7%95%D7%95%D7%9F+Hakone-jinja+%2F+Moto-Hakone | Google Maps – קישור חיפוש | לא | 
+24 | 15.11 | ~09:50–09:55 | ירידה באזור Hakone-jinja-iriguchi | https://www.google.com/maps/search/?api=1&query=%D7%99%D7%A8%D7%99%D7%93%D7%94+%D7%91%D7%90%D7%96%D7%95%D7%A8+Hakone-jinja-iriguchi | Google Maps – קישור חיפוש | לא | 
+25 | 15.11 | 09:55–10:35 | Hakone Shrine + Peace Torii – השער המפורסם | https://hakonejinja.or.jp/ | אתר רשמי | לא | 
+26 | 15.11 | 10:35–10:45 | הליכה ל־Moto-Hakone Port | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+27 | 15.11 | ~10:50 | עלייה ל־Hakone Sightseeing Cruise לכיוון Togendai | https://www.hakonenavi.jp/international/en/transportation/hakone-kankosen | אתר רשמי | לא | 
+28 | 15.11 | ~11:15 | הגעה ל־Togendai | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+29 | 15.11 | 11:20–11:40 | Ropeway – Togendai → Owakudani | https://www.hakonenavi.jp/international/en/transportation/hakone-ropeway | אתר רשמי | לא | 
+30 | 15.11 | 11:40–12:40 | Owakudani – תצפיות, אזור געשי, ביצים שחורות | https://www.hakonenavi.jp/international/en/spot/121 | Hakone Navi | לא | 
+31 | 15.11 | 12:40–13:20 | ארוחת צהריים ב־Owakudani | https://www.hakonenavi.jp/international/en/spot/121 | Hakone Navi | לא | 
+32 | 15.11 | ~13:25 | Ropeway – Owakudani → Sounzan | https://www.hakonenavi.jp/international/en/transportation/hakone-ropeway | אתר רשמי | לא | 
+33 | 15.11 | ~13:35 | הגעה ל־Sounzan | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+34 | 15.11 | ~13:40–13:55 | Cable Car – Sounzan → Gora | https://www.hakonenavi.jp/international/en/ | אתר תחבורה / מפעיל | לא | 
+35 | 15.11 | ~14:00 | Gora | https://www.hakonenavi.jp/international/en/ | אתר תחבורה / מפעיל | לא | 
+36 | 15.11 | ~14:05–14:10 | Gora → Chokoku-no-Mori | https://www.hakonenavi.jp/international/en/ | אתר תחבורה / מפעיל | לא | 
+37 | 15.11 | 14:10–16:15 | Hakone Open-Air Museum | https://www.hakone-oam.or.jp/en/ | אתר רשמי | חובה | 15.10.2026
+38 | 15.11 | 16:15–16:25 | יציאה מהמוזיאון והליכה ל־Chokoku-no-Mori Station | https://www.hakonenavi.jp/international/en/ | אתר תחבורה / מפעיל | לא | 
+39 | 15.11 | 16:25 | רכבת Chokoku-no-Mori → Hakone-Yumoto | https://www.hakonenavi.jp/international/en/ | אתר תחבורה / מפעיל | לא | 
+40 | 15.11 | 17:06 | Hakone-Yumoto | https://www.hakonenavi.jp/international/en/ | אתר תחבורה / מפעיל | לא | 
+41 | 15.11 | ~17:10 | מתקשרים ל־Aura Tachibana ומבקשים שאטל | https://www.aura-tachibana.com/ | אתר רשמי | לא | 
+42 | 15.11 | ~17:20–17:30 | Aura Tachibana | https://www.aura-tachibana.com/ | אתר רשמי | סגור | 
+43 | 15.11 | 17:30 - 18:30 | זמן ל ביקור ב Onsen שלהם (בריכות חמות) | https://www.google.com/maps/search/?api=1&query=%D7%96%D7%9E%D7%9F+%D7%9C+%D7%91%D7%99%D7%A7%D7%95%D7%A8+%D7%91+Onsen+%D7%A9%D7%9C%D7%94%D7%9D+%28%D7%91%D7%A8%D7%99%D7%9B%D7%95%D7%AA+%D7%97%D7%9E%D7%95%D7%AA%29 | Google Maps – קישור חיפוש | חובה | 15.10.2026
+44 | 15.11 | 19:30 - 20:20 | ארוחת ערב במלון Kaiseki dinner | לא רלוונטי | לוגיסטיקה / ללא אתר | חובה | 15.10.2026
+45 | 16.11 | 07:30 | ארוחת בוקר מיוחדת של רויקאן (צריך לשריין) | https://www.google.com/maps/search/?api=1&query=%D7%90%D7%A8%D7%95%D7%97%D7%AA+%D7%91%D7%95%D7%A7%D7%A8+%D7%9E%D7%99%D7%95%D7%97%D7%93%D7%AA+%D7%A9%D7%9C+%D7%A8%D7%95%D7%99%D7%A7%D7%90%D7%9F+%28%D7%A6%D7%A8%D7%99%D7%9A+%D7%9C%D7%A9%D7%A8%D7%99%D7%99%D7%9F%29 | Google Maps – קישור חיפוש | חובה | 31.08.2026
+46 | 16.11 | 08:30 | יציאה מ־Aura Tachibana במיניוואן הפרטי | https://www.aura-tachibana.com/ | אתר רשמי | סגור | 
+47 | 16.11 | ~09:30 | הגעה ל־Chureito Pagoda / Arakurayama Sengen Park | https://www.yamanashi-kankou.jp/english/explore-by-area/fujiyoshida/chureito-pagoda.html | אתר תיירות רשמי | לא | 
+48 | 16.11 | 09:30–10:50 | Chureito Pagoda – עלייה, תצפית וצילומים | https://www.yamanashi-kankou.jp/english/explore-by-area/fujiyoshida/chureito-pagoda.html | אתר תיירות רשמי | לא | 
+49 | 16.11 | 10:50–11:10 | נסיעה ל־Oshino Hakkai | https://www.vill.oshino.lg.jp/site/kanko-en/ | אתר רשמי | לא | 
+50 | 16.11 | 11:10–12:25 | Oshino Hakkai | https://www.vill.oshino.lg.jp/site/kanko-en/ | אתר רשמי | לא | 
+51 | 16.11 | 12:25–13:10 | Lunch באזור Oshino / בדרך לקוואגוצ'יקו | https://www.google.com/maps/search/?api=1&query=Lunch+%D7%91%D7%90%D7%96%D7%95%D7%A8+Oshino+%2F+%D7%91%D7%93%D7%A8%D7%9A+%D7%9C%D7%A7%D7%95%D7%95%D7%90%D7%92%D7%95%D7%A6%27%D7%99%D7%A7%D7%95 | Google Maps – קישור חיפוש | לא | 
+52 | 16.11 | 13:10–13:30 | נסיעה ל־Lake Kawaguchi Maple Corridor | https://fujisan.ne.jp/en/ | אתר תיירות רשמי | לא | 
+53 | 16.11 | 13:30–14:50 | Lake Kawaguchi Maple Corridor – Momiji Corridor | https://fujisan.ne.jp/en/ | אתר תיירות רשמי | לא | 
+54 | 16.11 | 14:50 | יציאה לכיוון Mishima Station | https://global.jr-central.co.jp/en/ | אתר תחבורה / מפעיל | לא | 
+55 | 16.11 | ~17:00–17:20 | הגעה ל־Mishima Station | https://global.jr-central.co.jp/en/ | אתר תחבורה / מפעיל | לא | 
+56 | 16.11 | 17:20–17:41 | שירותים / אוכל קטן / איתור רציף / מרווח ביטחון | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+57 | 16.11 | 17:46–19:01 | Hikari 721– Mishima → Nagoya | https://global.jr-central.co.jp/en/ | אתר תחבורה / מפעיל | חובה | 16.10.2026
+58 | 16.11 | ~19:05–19:20 | מעבר ל־Nagoya JR Gate Tower Hotel | https://www.associa.com/ngh/ | אתר רשמי | לא | 
+59 | 16.11 | 19:20–20:00 | Check-in / מנוחה קצרה | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+60 | 16.11 | ~20:15–22:30 | Sakae District – טיול + ארוחת ערב חופשית | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+61 | 16.11 | ~22:30–23:00 | חזרה למלון | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+62 | 17.11 | 08:30 | יציאה מ־Nagoya JR Gate Tower Hotel | https://www.associa.com/ngh/ | אתר רשמי | חובה | 31.08.2026
+63 | 17.11 | 0.3888888888888889 | הגעה ל־Toyota Kaikan Museum | https://www.toyota.co.jp/en/about_toyota/facility/toyota_kaikan/ | אתר רשמי | לא | 
+64 | 17.11 | 09:30–10:45 | Toyota Kaikan Museum | https://www.toyota.co.jp/en/about_toyota/facility/toyota_kaikan/ | אתר רשמי | לא | 
+65 | 17.11 | 10:45–11:25 | נסיעה חזרה ל־Nagoya Station | https://global.jr-central.co.jp/en/ | אתר תחבורה / מפעיל | חובה | 31.08.2026
+66 | 17.11 | 11:25–12:00 | התארגנות בתחנה / מרווח ביטחון | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+67 | 17.11 | 12:10–12:44 | Nozomi 25 – Nagoya → Kyoto | https://global.jr-central.co.jp/en/ | אתר תחבורה / מפעיל | חובה | 17.10.2026
+68 | 17.11 | 12:45–13:30 | ארוחת צהריים – Kyoto Station | https://www.westjr.co.jp/global/en/ | אתר תחבורה / מפעיל | לא | 
+69 | 17.11 | 13:30–13:50 | הליכה Kyoto Station → To-ji Temple | https://toji.or.jp/en/ | אתר רשמי | לא | 
+70 | 17.11 | 13:50–15:00 | To-ji Temple (東寺) | https://toji.or.jp/en/ | אתר רשמי | לא | 
+71 | 17.11 | 15:00–15:20 | מונית To-ji → Hotel Monterey Kyoto | https://www.hotelmonterey.co.jp/en/kyoto/ | אתר רשמי | לא | 
+72 | 17.11 | 15:20–15:50 | Check-in Hotel Monterey Kyoto | https://www.hotelmonterey.co.jp/en/kyoto/ | אתר רשמי | סגור | 
+73 | 17.11 | 15:50–16:05 | הליכה לכיוון Nishiki Market | https://www.kyoto-nishiki.or.jp/en/ | אתר רשמי | לא | 
+74 | 17.11 | 16:05–17:05 | Nishiki Market (錦市場) | https://www.kyoto-nishiki.or.jp/en/ | אתר רשמי | לא | 
+75 | 17.11 | 17:05–18:30 | Teramachi & Shinkyogoku Arcade | https://www.google.com/maps/search/?api=1&query=Teramachi+%26+Shinkyogoku+Arcade | Google Maps – קישור חיפוש | לא | 
+76 | 17.11 | 18:30–19:15 | הליכה רגועה לכיוון Pontocho / שתייה | https://www.kyoto.travel/en/ | Kyoto City Tourism | לא | 
+77 | 17.11 | 19:30–21:00 | Pontocho Alley – ארוחת ערב | https://www.kyoto.travel/en/ | Kyoto City Tourism | חובה | 17.10.2026
+78 | 17.11 | ~21:00–21:30 | חזרה ל־Hotel Monterey Kyoto | https://www.hotelmonterey.co.jp/en/kyoto/ | אתר רשמי | לא | 
+79 | 18.11 | 0.3333333333333333 | Hotel Monterey Kyoto → Fushimi Inari | https://www.hotelmonterey.co.jp/en/kyoto/ | אתר רשמי | לא | 
+80 | 18.11 | 08:30–08:50 | Fushimi Inari Taisha – המקדש הראשי | https://inari.jp/en/ | אתר רשמי | לא | 
+81 | 18.11 | 08:50–09:25 | Senbon Torii – אלף שערי הטוריי | https://inari.jp/en/ | אתר רשמי | לא | 
+82 | 18.11 | 09:25–10:15 | מעבר Fushimi Inari → Arashiyama | https://inari.jp/en/ | אתר רשמי | לא | 
+83 | 18.11 | 10:15–10:30 | הגעה + פגישה עם המדריכה | לא רלוונטי | לוגיסטיקה / ללא אתר | סגור | 
+84 | 18.11 | 10:30–11:05 | Arashiyama Bamboo Grove | https://www.kyoto.travel/en/ | Kyoto City Tourism | לא | 
+85 | 18.11 | 11:05–11:50 | Tenryu-ji Temple | https://www.tenryuji.com/en/ | אתר רשמי | לא | 
+86 | 18.11 | 11:50–12:10 | Togetsukyo Bridge + אזור Arashiyama | https://www.kyoto.travel/en/ | Kyoto City Tourism | לא | 
+87 | 18.11 | 12:10–12:50 | ארוחת צהריים | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+88 | 18.11 | 12:50–13:15 | 🚕 Arashiyama → Kinkaku-ji | https://www.shokoku-ji.jp/en/kinkakuji/ | אתר רשמי | לא | 
+89 | 18.11 | 13:15–13:55 | Kinkaku-ji – הפביליון הזהוב | https://www.shokoku-ji.jp/en/kinkakuji/ | אתר רשמי | לא | 
+90 | 18.11 | 13:55–14:05 | 🚕 Kinkaku-ji → Ryoan-ji | https://www.shokoku-ji.jp/en/kinkakuji/ | אתר רשמי | לא | 
+91 | 18.11 | 14:05–14:45 | Ryoan-ji Temple | https://www.ryoanji.jp/smph/eng/ | אתר רשמי | לא | 
+92 | 18.11 | 14:45–15:00 | 🚕 Ryoan-ji → Nijo Castle | https://www.ryoanji.jp/smph/eng/ | אתר רשמי | לא | 
+93 | 18.11 | 15:00–16:50 | Nijo Castle | https://nijo-jocastle.city.kyoto.lg.jp/?lang=en | אתר רשמי | חובה | 19.10.2026
+94 | 18.11 | 16:50–17:15 | 🚕 Nijo Castle → Gion | https://nijo-jocastle.city.kyoto.lg.jp/?lang=en | אתר רשמי | לא | 
+95 | 18.11 | 17:15–18:00 | הפסקה / קפה / מנוחה באזור Gion | https://www.kyoto.travel/en/ | Kyoto City Tourism | לא | 
+96 | 18.11 | 18:00–20:00 | סיור Gion | https://www.kyoto.travel/en/ | Kyoto City Tourism | סגור | 
+97 | 18.11 | 20:00-22:00 | ארוחת ערב/בר/קוקטיילים באיזור Gion or Pontocho | https://www.kyoto.travel/en/ | Kyoto City Tourism | חובה | 18.10.2026
+98 | 19.11 | 08:00 | יציאה מ־Hotel Monterey Kyoto → Mimosa | https://www.hotelmonterey.co.jp/en/kyoto/ | אתר רשמי | לא | 
+99 | 19.11 | 08:00 - 10:00 | Kimono Rental Mimosa – בחירה, הלבשה והתארגנות | https://www.kyoto-mimosa.com/ | אתר רשמי | חובה | 31.08.2026
+100 | 19.11 | 09:30-10:15 | הליכה בקימונו ל־Kiyomizu-dera | https://www.kiyomizudera.or.jp/en/ | אתר רשמי | לא | 
+101 | 19.11 | 10:15-10:55 | Kiyomizu-dera | https://www.kiyomizudera.or.jp/en/ | אתר רשמי | לא | 
+102 | 19.11 | 10:55–11:40 | Sannenzaka → Ninenzaka → Yasaka Pagoda – הליכה וצילומים בקימונו | https://www.kyoto.travel/en/ | Kyoto City Tourism | לא | 
+103 | 19.11 | 11:40–12:00 | מעבר ל־Camellia FLOWER + הגעה מוקדמת | https://tea-kyoto.com/ | אתר רשמי | לא | 
+104 | 19.11 | 12:00–12:45 | Tea Ceremony Camellia FLOWER | https://tea-kyoto.com/ | אתר רשמי | חובה | 31.08.2026
+105 | 19.11 | 12:45–13:10 | חזרה ל־Mimosa + החזרת הקימונו והחלפת בגדים | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+106 | 19.11 | 13:10–13:55 | Lunch – Higashiyama | https://www.google.com/maps/search/?api=1&query=Lunch+%E2%80%93+Higashiyama | Google Maps – קישור חיפוש | לא | 
+107 | 19.11 | 13:55–14:15 | 🚕 מונית ל־Nanzen-ji | https://www.nanzenji.or.jp/english/ | אתר רשמי | לא | 
+108 | 19.11 | 14:15–15:00 | Nanzen-ji | https://www.nanzenji.or.jp/english/ | אתר רשמי | לא | 
+109 | 19.11 | 15:00–15:10 | הליכה Nanzen-ji → Eikando | https://www.nanzenji.or.jp/english/ | אתר רשמי | לא | 
+110 | 19.11 | 15:10–16:00 | Eikando – Autumn Exhibition | https://www.eikando.or.jp/English/index_eng.html | אתר רשמי | לא | 
+111 | 19.11 | 16:00–16:50 בערך | Philosopher’s Path | https://www.kyoto.travel/en/ | Kyoto City Tourism | לא | 
+112 | 19.11 | 17:00 - 18:30 | חזרה למלון ונמוחה קצרה | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+113 | 19.11 | 18:30 | 🚕 מונית מהמלון ל־Kodai-ji / Higashiyama | https://www.kodaiji.com/e_index.html | אתר רשמי | לא | 
+114 | 19.11 | 19:00 - 20:00 | 🌙 Kodai-ji – Autumn Night Illumination | https://www.kodaiji.com/e_index.html | אתר רשמי | לא | 
+115 | 20.11 | 08:00 | יציאה מ־Hotel Monterey Kyoto | https://www.hotelmonterey.co.jp/en/kyoto/ | אתר רשמי | לא | 
+116 | 20.11 | 08:00–08:10 | Karasuma Oike → Kyoto Station | https://www.westjr.co.jp/global/en/ | אתר תחבורה / מפעיל | לא | 
+117 | 20.11 | 08:10–08:35 | מעבר לתחנת Kintetsu + התארגנות | https://www.kintetsu.co.jp/foreign/english/ | אתר תחבורה / מפעיל | לא | 
+118 | 20.11 | 08:35–09:30 | 🚆 Kintetsu – Kyoto → Kintetsu-Nara (רכבת בוקר מתאימה) | https://www.kintetsu.co.jp/foreign/english/ | אתר תחבורה / מפעיל | לא | 
+119 | 20.11 | 09:30–09:45 | 🚕 Kintetsu-Nara → Todai-ji | https://www.todaiji.or.jp/en/ | אתר רשמי | לא | 
+120 | 20.11 | 09:45–10:35 | 🛕 Todai-ji – Great Buddha Hall | https://www.todaiji.or.jp/en/ | אתר רשמי | לא | 
+121 | 20.11 | 10:35–11:00 | 🛕 Nigatsu-dō | https://www.todaiji.or.jp/en/ | אתר רשמי | לא | 
+122 | 20.11 | 11:00–11:40 | 🦌 Nara Park – הליכה ואיילים | https://www3.pref.nara.jp/park/ | אתר רשמי | לא | 
+123 | 20.11 | 11:40–12:30 | ⛩️ Kasuga Taisha | https://www.kasugataisha.or.jp/en/about_en/ | אתר רשמי | לא | 
+124 | 20.11 | 12:30–13:15 | 🍜 ארוחת צהריים | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+125 | 20.11 | 13:15–13:30 | הליכה לכיוון Kofuku-ji | https://www.kohfukuji.com/english/ | אתר רשמי | לא | 
+126 | 20.11 | 13:30–14:10 | 🛕 Kofuku-ji | https://www.kohfukuji.com/english/ | אתר רשמי | לא | 
+127 | 20.11 | 14:10–14:50 | 🏘️ Naramachi | https://www.visitnara.jp/ | אתר תיירות רשמי | לא | 
+128 | 20.11 | 14:50–15:10 | הליכה Naramachi → Kintetsu-Nara | https://www.visitnara.jp/ | אתר תיירות רשמי | לא | 
+129 | 20.11 | 15:10–15:50 | מרווח ביטחון בתחנה | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+130 | 20.11 | 15:55–16:31 | 🚆 AONIYOSHI – Kintetsu-Nara → Kyoto | https://www.kintetsu.co.jp/foreign/english/aoniyoshi/ | אתר רשמי | חובה | 20.10.2026
+131 | 20.11 | 16:31–16:50 | Kyoto Station → Hotel Monterey Kyoto | https://www.hotelmonterey.co.jp/en/kyoto/ | אתר רשמי | לא | 
+132 | 20.11 | 16:50–18:30 | 🛏️ מנוחה במלון | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+133 | 20.11 | 18:30–19:00 | יציאה לכיוון Kiyamachi / Pontocho | https://www.kyoto.travel/en/ | Kyoto City Tourism | לא | 
+134 | 20.11 | 19:00–20:30 | 🌙 Kiyamachi & Pontocho – ערב חופשי / אוכל / ברים | https://www.kyoto.travel/en/ | Kyoto City Tourism | חובה | 20.10.2026
+135 | 21.11 | 0.3958333333333333 | הליכה Hotel Monterey Kyoto → Nishiki Market | https://www.hotelmonterey.co.jp/en/kyoto/ | אתר רשמי | לא | 
+136 | 21.11 | 09:45–11:00 | Nishiki Market – אוכל, טעימות והסתובבות | https://www.kyoto-nishiki.or.jp/en/ | אתר רשמי | לא | 
+137 | 21.11 | 11:00–11:15 | הליכה ל־Karasuma Station | https://www.hankyu.co.jp/global/en/ | אתר תחבורה / מפעיל | לא | 
+138 | 21.11 | 11:15–11:30 | כניסה לתחנה + מרווח לרכבת | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+139 | 21.11 | 11:30-12:30 | 🚆 Hankyu Limited Express – Karasuma → Osaka-Umeda | https://www.hankyu.co.jp/global/en/ | אתר תחבורה / מפעיל | לא | 
+140 | 21.11 | 12:43–13:05 | הליכה Osaka-Umeda → Umeda Sky Building | https://www.skybldg.co.jp/en/ | אתר רשמי | לא | 
+141 | 21.11 | 13:05–14:20 | Umeda Sky Building – Kuchu Teien Observatory | https://www.skybldg.co.jp/en/ | אתר רשמי | חובה | 21.10.2026
+142 | 21.11 | 14:20–15:00 | Osaka-Umeda → Namba | https://www.hankyu.co.jp/global/en/ | אתר תחבורה / מפעיל | לא | 
+143 | 21.11 | 15:00–17:50 | 🛍️ Namba CITY – קניות | https://nambacity.com/ | אתר רשמי | לא | 
+144 | 21.11 | 17:50–18:00 | מעבר בתוך Namba CITY למבשלת | https://nambacity.com/ | אתר רשמי | לא | 
+145 | 21.11 | 18:00–20:00 | 🍺 Dotonbori Craft Beer Brewery – Namba CITY | https://nambacity.com/ | אתר רשמי | חובה | 21.10.2026
+146 | 21.11 | 20:00–20:30 | נסיעה ל־Osaka Excel Hotel Tokyu | https://www.tokyuhotels.co.jp/en/osaka-e/ | אתר רשמי | לא | 
+147 | 21.11 | ~20:30 | Check-in – Osaka Excel Hotel Tokyu | https://www.tokyuhotels.co.jp/en/osaka-e/ | אתר רשמי | סגור | 
+148 | 21.11 | מ־20:30 | מנוחה / להמשיך לשתות באזור המלון | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+149 | 22.11 | 0.34375 | נסיעה מ־Osaka Excel Hotel Tokyu לכיוון Osaka Castle | https://www.tokyuhotels.co.jp/en/osaka-e/ | אתר רשמי | לא | 
+150 | 22.11 | 08:40–09:10 | הליכה במתחם / הגעה לטירה / התארגנות | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+151 | 22.11 | 09:15–11:00 | 🏯 Osaka Castle | https://www.osakacastle.net/ | אתר רשמי | חובה | 21.10.2026
+152 | 22.11 | 11:00–11:30 | מעבר ל־Kuromon Market | https://kuromon.com/en/ | אתר רשמי | לא | 
+153 | 22.11 | 11:30–12:40 | 🐟 Kuromon Market | https://kuromon.com/en/ | אתר רשמי | לא | 
+154 | 22.11 | 12:40–13:30 | 🍜 ארוחת צהריים באזור Kuromon | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+155 | 22.11 | 13:30–13:50 | מעבר Kuromon → Shinsekai | https://osaka-info.jp/en/spot/shinsekai/ | Osaka Info | לא | 
+156 | 22.11 | 13:50–14:50 | Shinsekai / אזור Tsutenkaku | https://osaka-info.jp/en/spot/shinsekai/ | Osaka Info | לא | 
+157 | 22.11 | 14:50–15:10 | מעבר ל־Namba Yasaka Shrine | https://nambayasaka.jp/ | אתר רשמי | לא | 
+158 | 22.11 | 15:10–15:40 | 🦁 Namba Yasaka Shrine | https://nambayasaka.jp/ | אתר רשמי | לא | 
+159 | 22.11 | 15:40–16:00 | מעבר ל־Hozenji Yokocho | https://houzenji.jp/ | אתר רשמי | לא | 
+160 | 22.11 | 16:00–16:25 | Hozenji Yokocho | https://houzenji.jp/ | אתר רשמי | לא | 
+161 | 22.11 | 16:25–17:10 | 🌆 Dotonbori | https://osaka-info.jp/en/spot/dotonbori/ | Osaka Info | לא | 
+162 | 22.11 | 17:10–17:25 | הגעה לרציף / Check-in לשיט | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+163 | 22.11 | 17:30–17:50 | 🚤 Tombori River Cruise | https://osaka-info.jp/experience/en/osaka/spot/393 | Osaka Info | חובה | 21.10.2026
+164 | 22.11 | 17:50–18:20 | חזרה ל־Osaka Excel Hotel Tokyu | https://www.tokyuhotels.co.jp/en/osaka-e/ | אתר רשמי | לא | 
+165 | 22.11 | 18:20–20:00 | 🛏️ מנוחה / מקלחת / התארגנות לארוחת הערב | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+166 | 22.11 | 20:00–20:15 | יציאה לכיוון W Osaka | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+167 | 22.11 | 20:30-22:30 | 🥩 Teppanyaki MYDO – W Osaka | https://www.marriott.com/en-us/hotels/osaow-w-osaka/dining/ | אתר המלון | חובה | 15.10.2026
+168 | 23.11 | 09:00 | יציאה מ־Osaka Excel Hotel Tokyu | https://www.tokyuhotels.co.jp/en/osaka-e/ | אתר רשמי | לא | 
+169 | 23.11 | 09:00–09:35 | נסיעה ל־Doshomachi / Sukunahikona Shrine | https://www.sinnosan.jp/ | אתר רשמי | לא | 
+170 | 23.11 | 09:35–10:00 | הגעה, הסתובבות קצרה והתארגנות | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+171 | 23.11 | 10:00–11:00 | 🐯 Shinno-sai Festival – Sukunahikona Shrine | https://www.sinnosan.jp/ | אתר רשמי | לא | 
+172 | 23.11 | 11:00–11:40 | 🚇 מעבר ל־Kaiyukan Aquarium | https://www.kaiyukan.com/language/eng/ | אתר רשמי | לא | 
+173 | 23.11 | 11:45–14:00 | 🐠 Kaiyukan Aquarium | https://www.kaiyukan.com/language/eng/ | אתר רשמי | חובה | 24.10.2026
+174 | 23.11 | 14:00–14:45 | 🍜 ארוחת צהריים – Tempozan | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+175 | 23.11 | 14:45–15:15 | 🚕 מונית / Jumbo Taxi ל־Sumiyoshi Taisha | https://www.sumiyoshitaisha.net/en/ | אתר רשמי | לא | 
+176 | 23.11 | 15:15–16:00 | ⛩️ Sumiyoshi Taisha | https://www.sumiyoshitaisha.net/en/ | אתר רשמי | לא | 
+177 | 23.11 | 16:00–16:20 | 🚕 מעבר Sumiyoshi Taisha → Nagai Park | https://www.sumiyoshitaisha.net/en/ | אתר רשמי | לא | 
+178 | 23.11 | 16:20–17:25 | ☕ קפה / מנוחה באזור Nagai | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+179 | 23.11 | 17:25–17:50 | הליכה + הגעה ל־teamLab | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+180 | 23.11 | 18:00–19:45 | ✨ teamLab Botanical Garden Osaka | https://www.teamlab.art/e/botanicalgarden/ | אתר רשמי | חובה | 24.10.2026
+181 | 23.11 | 19:45–20:15 | 🚇 Nagai → Tennoji / Abeno | https://www.google.com/maps/search/?api=1&query=%F0%9F%9A%87+Nagai+%E2%86%92+Tennoji+%2F+Abeno | Google Maps – קישור חיפוש | לא | 
+182 | 23.11 | 20:15–21:30 | 🌃 Abeno Harukas 300 | https://www.abenoharukas-300.jp/en/observatory/ | אתר רשמי | חובה | 24.10.2026
+183 | 23.11 | 21:30–22:00 | חזרה ל־Osaka Excel Hotel Tokyu | https://www.tokyuhotels.co.jp/en/osaka-e/ | אתר רשמי | לא | 
+184 | 23.11 | ~22:00 | 🏨 הגעה למלון | לא רלוונטי | לוגיסטיקה / ללא אתר | סגור | 
+185 | 24.11 | 09:00 | יציאה מ־Osaka Excel Hotel Tokyu | https://www.tokyuhotels.co.jp/en/osaka-e/ | אתר רשמי | לא | 
+186 | 24.11 | 09:00–09:25 | 🚕 מונית ל־Shin-Osaka Station | https://www.westjr.co.jp/global/en/ | אתר תחבורה / מפעיל | לא | 
+187 | 24.11 | 09:25–10:00 | קפה / בנטו / התארגנות | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+188 | 24.11 | 10:09–12:36 | 🚄 Nozomi 350 – Shin-Osaka → Tokyo | https://global.jr-central.co.jp/en/ | אתר תחבורה / מפעיל | חובה | 24.10.2026
+189 | 24.11 | 12:36–13:00 | Tokyo Station – Marunouchi Side | https://www.jreast.co.jp/multi/en/ | אתר תחבורה / מפעיל | לא | 
+190 | 24.11 | 13:00–13:20 | מעבר ל־Tsukishima | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+191 | 24.11 | 13:20–14:35 | 🍳 Tsukishima Monja Tamatoya | https://kano-corp.tokyo/shop/ | אתר רשמי | חובה | 24.10.2026
+192 | 24.11 | 14:35–15:00 | 🚕 מעבר ל־remm PLUS Ginza | https://www.hankyu-hotel.com/hotel/remm/ginza | אתר רשמי | לא | 
+193 | 24.11 | 15:00–15:30 | 🏨 צ'ק־אין ב־remm PLUS Ginza | https://www.hankyu-hotel.com/hotel/remm/ginza | אתר רשמי | סגור | 
+194 | 24.11 | 15:30–15:45 | הליכה ל־Nissan Crossing | https://www.nissan.co.jp/CROSSING/EN/ | אתר רשמי | לא | 
+195 | 24.11 | 15:45–16:05 | 🚗 Nissan Crossing | https://www.nissan.co.jp/CROSSING/EN/ | אתר רשמי | לא | 
+196 | 24.11 | 16:05–16:15 | הליכה ל־GINZA SIX | https://ginza6.tokyo/ | אתר רשמי | לא | 
+197 | 24.11 | 16:15–16:50 | 🌇 GINZA SIX Rooftop Garden | https://ginza6.tokyo/ | אתר רשמי | לא | 
+198 | 24.11 | 16:50–18:30 | 🛍️ טיול וקניות בגינזה | https://www.google.com/maps/search/?api=1&query=%F0%9F%9B%8D%EF%B8%8F+%D7%98%D7%99%D7%95%D7%9C+%D7%95%D7%A7%D7%A0%D7%99%D7%95%D7%AA+%D7%91%D7%92%D7%99%D7%A0%D7%96%D7%94 | Google Maps – קישור חיפוש | לא | 
+199 | 24.11 | 18:30–19:15 | מנוחה / התארגנות במלון | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+200 | 24.11 | 19:15–19:30 | הליכה למסעדה | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+201 | 24.11 | 19:30–21:00 | 🍲 Akita Dining Namahage | https://namahage-ginza.com/ | אתר רשמי | חובה | 24.10.2026
+202 | 24.11 | 21:00–21:10 | הליכה ל־Ginza Music Bar | https://ginzamusicbar.com/ | אתר רשמי | לא | 
+203 | 24.11 | 21:10–23:00 | 🎵 Ginza Music Bar / Cocktail Bar | https://ginzamusicbar.com/ | אתר רשמי | חובה | 24.10.2026
+204 | 24.11 | ~23:00 | חזרה למלון | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+205 | 25.11 | 09:00 | יציאה מ־remm PLUS Ginza | https://www.hankyu-hotel.com/hotel/remm/ginza | אתר רשמי | לא | 
+206 | 25.11 | 09:00–09:40 | מעבר ל־Meiji Jingu | https://www.meijijingu.or.jp/en/ | אתר רשמי | לא | 
+207 | 25.11 | 09:40–11:00 | ⛩️ Meiji Jingu | https://www.meijijingu.or.jp/en/ | אתר רשמי | לא | 
+208 | 25.11 | 11:00–11:40 | 🛍️ Takeshita Street | https://www.gotokyo.org/en/destinations/western-tokyo/harajuku/index.html | Tokyo Official | לא | 
+209 | 25.11 | 11:40–13:00 | Omotesando + Cat Street | https://www.gotokyo.org/en/destinations/western-tokyo/harajuku/index.html | Tokyo Official | לא | 
+210 | 25.11 | 13:00–14:15 | 🍜 ארוחת צהריים | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+211 | 25.11 | 14:15–15:30 | 🎮 Shibuya PARCO | https://shibuya.parco.jp/?wovn=en | אתר רשמי | לא | 
+212 | 25.11 | 15:30–15:50 | מעבר ל־Shibuya Sky | https://www.shibuya-scramble-square.com/sky/ticket/ | אתר רשמי | לא | 
+213 | 25.11 | 16:00–17:00 | 🌇 SHIBUYA SKY – תצפית + שקיעה | https://www.shibuya-scramble-square.com/sky/ticket/ | אתר רשמי | חובה | 24.10.2026
+214 | 25.11 | 17:00–17:50 | 🍸 THE ROOF SHIBUYA SKY – Sofa Seat / Drink | https://www.shibuya-scramble-square.com/sky/ticket/ | אתר רשמי | חובה | 24.10.2026
+215 | 25.11 | 17:50–18:05 | ירידה מ־Shibuya Sky | https://www.shibuya-scramble-square.com/sky/ticket/ | אתר רשמי | לא | 
+216 | 25.11 | 18:05–18:15 | 🐕 Hachiko Statue | https://www.gotokyo.org/en/spot/86/index.html | Tokyo Official | לא | 
+217 | 25.11 | 18:15–18:35 | 🚦 Shibuya Crossing | https://www.gotokyo.org/en/spot/78/index.html | Tokyo Official | לא | 
+218 | 25.11 | 18:35–19:00 | שיטוט ערב בשיבויה | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+219 | 25.11 | 19:00–20:45 | 🍢 Yakitori Tsukada Shibuya | https://www.google.com/maps/search/?api=1&query=%F0%9F%8D%A2+Yakitori+Tsukada+Shibuya | Google Maps – קישור חיפוש | חובה | 24.10.2026
+220 | 25.11 | 20:45–22:30 | 🍸 ברים בשיבויה | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+221 | 25.11 | ~22:30 | חזרה ל־remm PLUS Ginza | https://www.hankyu-hotel.com/hotel/remm/ginza | אתר רשמי | לא | 
+222 | 26.11 | 08:30 | יציאה מ־remm PLUS Ginza | https://www.hankyu-hotel.com/hotel/remm/ginza | אתר רשמי | לא | 
+223 | 26.11 | 08:45–09:00 | הליכה ל־Tsukiji Outer Market | https://www.tsukiji.or.jp/english/ | אתר רשמי | לא | 
+224 | 26.11 | 09:00–10:30 | 🐟 Tsukiji Outer Market – אוכל, טעימות ושוק | https://www.tsukiji.or.jp/english/ | אתר רשמי | לא | 
+225 | 26.11 | 10:30–10:45 | חזרה לכיוון Ginza | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+226 | 26.11 | 10:45–13:45 | 🛍️ Ginza Shopping – 3 שעות | https://www.google.com/maps/search/?api=1&query=%F0%9F%9B%8D%EF%B8%8F+Ginza+Shopping+%E2%80%93+3+%D7%A9%D7%A2%D7%95%D7%AA | Google Maps – קישור חיפוש | לא | 
+227 | 26.11 | 13:45–14:00 | 🏨 חזרה למלון והנחת כל השקיות בחדר | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+228 | 26.11 | 14:00–15:00 | 🍜 ארוחת צהריים בגינזה – שעה מלאה | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+229 | 26.11 | 15:00–15:30 | 🚕 מעבר Ginza → Azabudai Hills | https://www.azabudai-hills.com/en/ | אתר רשמי | לא | 
+230 | 26.11 | 15:30–16:00 | קפה / שירותים / מרווח ביטחון | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+231 | 26.11 | 16:00–18:15 | ✨ teamLab Borderless | https://www.teamlab.art/e/tokyo/ | אתר רשמי | חובה | 24.10.2026
+232 | 26.11 | 18:15–18:30 | מעבר ל־Central Green | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+233 | 26.11 | 18:30–19:45 | 🎄 Azabudai Hills Christmas Market + Lights | https://www.azabudai-hills.com/en/ | אתר רשמי | לא | 
+234 | 26.11 | 19:45–20:15 | חזרה ל־remm PLUS Ginza | https://www.hankyu-hotel.com/hotel/remm/ginza | אתר רשמי | לא | 
+235 | 26.11 | 20:15–21:00 | 🏨 מנוחה / התארגנות | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+236 | 26.11 | 21:00–22:30 | 🍽️ ארוחת ערב בגינזה | לא רלוונטי | לוגיסטיקה / ללא אתר | חובה | 24.10.2026
+237 | 26.11 | 22:30–23:30 | 🍸 בר / קוקטייל / ערב חופשי | לא רלוונטי | לוגיסטיקה / ללא אתר | חובה | 24.10.2026
+238 | 27.11 | 08:30 | יציאה מ־remm PLUS Ginza | https://www.hankyu-hotel.com/hotel/remm/ginza | אתר רשמי | לא | 
+239 | 27.11 | 09:00–11:00 | ⛩️ Asakusa – Kaminarimon + Nakamise + Senso-ji | https://www.senso-ji.jp/english/ | Senso-ji / אתר רשמי | לא | 
+240 | 27.11 | 11:00–11:30 | מעבר Asakusa → Akihabara | https://www.senso-ji.jp/english/ | Senso-ji / אתר רשמי | לא | 
+241 | 27.11 | 11:30–14:00 | 🎮 Akihabara – אלקטרוניקה, אנימה, חנויות | https://www.gotokyo.org/en/destinations/central-tokyo/akihabara/index.html | Tokyo Official | לא | 
+242 | 27.11 | 14:00–15:00 | 🍜 ארוחת צהריים | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+243 | 27.11 | 15:00–15:30 | מעבר לכיוון Tokyo Skytree | https://www.tokyo-skytree.jp/en/ | אתר רשמי | לא | 
+244 | 27.11 | 15:30–17:30 | 🗼 Tokyo Skytree | https://www.tokyo-skytree.jp/en/ | אתר רשמי | חובה | 24.10.2026
+245 | 27.11 | 17:30–18:30 | 🛍️ Tokyo Solamachi | https://www.tokyo-solamachi.jp/en/ | אתר רשמי | לא | 
+246 | 27.11 | 18:30–19:00 | חזרה לגינזה | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+247 | 27.11 | 19:00–20:00 | 🏨 מנוחה במלון | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+248 | 27.11 | 20:00 ואילך | 🍽️ ארוחת ערב + ערב חופשי בגינזה | לא רלוונטי | לוגיסטיקה / ללא אתר | חובה | 24.10.2026
+249 | 28.11 | 0.3958333333333333 | יציאה מהמלון | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+250 | 28.11 | 0.4166666666666667 | מעבר ל־Zojo-ji | https://www.zojoji.or.jp/en/ | אתר רשמי | לא | 
+251 | 28.11 | 10:30–11:20 | ⛩️ Zojo-ji Temple | https://www.zojoji.or.jp/en/ | אתר רשמי | לא | 
+252 | 28.11 | 11:20–11:30 | הליכה Zojo-ji → Tokyo Tower | https://www.zojoji.or.jp/en/ | אתר רשמי | לא | 
+253 | 28.11 | 11:30–12:30 | 🗼 Tokyo Tower – Main Deck | https://en.tokyotower.co.jp/ | אתר רשמי | חובה | 24.10.2026
+254 | 28.11 | 12:30–13:20 | 🍜 ארוחת צהריים באזור | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+255 | 28.11 | 13:20–13:40 | מעבר ל־Roppongi Hills | https://www.roppongihills.com/en/ | אתר רשמי | לא | 
+256 | 28.11 | 13:40–15:20 | Roppongi Hills – מתחם, חנויות והסתובבות | https://www.roppongihills.com/en/ | אתר רשמי | לא | 
+257 | 28.11 | 15:20–15:40 | מעבר ל־Ginza | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+258 | 28.11 | 15:40–16:30 | 🛍️ קניות אחרונות בגינזה | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+259 | 28.11 | 16:30–17:00 | חזרה למלון + איסוף המזוודות | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+260 | 28.11 | 17:00–17:30 | שירותים / התארגנות / מרווח ביטחון | לא רלוונטי | לוגיסטיקה / ללא אתר | לא | 
+261 | 28.11 | 17:30 | 🚐 יציאה לנמל התעופה Narita – Terminal 2 | https://www.narita-airport.jp/en/ | אתר רשמי | סגור | 
+262 | 28.11 | ~19:00–19:30 | הגעה ל־NRT T2 / Check-in / מזוודות / ביטחון | https://www.emirates.com/ | אתר תחבורה / מפעיל | לא | 
+263 | 28.11 | 22:20/22:30 | ✈️ NRT → DXB | https://www.emirates.com/ | אתר תחבורה / מפעיל | סגור | 
+264 | 29.11 | ~05:30 | Connection in Dubai | https://www.google.com/maps/search/?api=1&query=Connection+in+Dubai | Google Maps – קישור חיפוש | לא | 
+265 | 29.11 | 10:55 | ✈️ DXB → TLV | https://www.emirates.com/ | אתר תחבורה / מפעיל | סגור | 
+266 | 29.11 | 12:45 | נחיתה בישראל | https://www.google.com/maps/search/?api=1&query=%D7%A0%D7%97%D7%99%D7%AA%D7%94+%D7%91%D7%99%D7%A9%D7%A8%D7%90%D7%9C | Google Maps – קישור חיפוש | לא | 
