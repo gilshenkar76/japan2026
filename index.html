@@ -633,6 +633,20 @@
     <div class="content">
       <div class="section-title" style="font-size:24px">הוצאות משותפות</div>
       <div class="upload-panel">
+        <div class="section-title" style="margin:0 0 10px;font-size:18px">מחשבון ין ↔ שקל</div>
+        <div class="expense-row">
+          <label class="small" style="flex:1">ין (¥)
+            <input id="fxYen" class="input" type="number" inputmode="decimal" min="0" step="any" placeholder="0" oninput="fxCalc('yen')" />
+          </label>
+          <label class="small" style="flex:1">שקל (₪)
+            <input id="fxIls" class="input" type="number" inputmode="decimal" min="0" step="any" placeholder="0" oninput="fxCalc('ils')" />
+          </label>
+          <label class="small" style="flex:1">שקל ל-100 ין
+            <input id="fxRate" class="input" type="number" inputmode="decimal" min="0" step="any" oninput="fxCalc('yen')" />
+          </label>
+        </div>
+      </div>
+      <div class="upload-panel">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
           <div class="section-title" style="margin:0;font-size:18px">ניהול הוצאות</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1030,6 +1044,20 @@ const FX_TO_ILS = {
   DOLLAR: 3.6,
   SHEKEL: 1
 };
+function fxCalc(source){
+  const yenEl = document.getElementById('fxYen');
+  const ilsEl = document.getElementById('fxIls');
+  const rate = parseFloat(document.getElementById('fxRate').value) / 100;
+  if (!(rate > 0)) { (source === 'yen' ? ilsEl : yenEl).value = ''; return; }
+  if (source === 'yen') {
+    const yen = parseFloat(yenEl.value);
+    ilsEl.value = isNaN(yen) ? '' : (yen * rate).toFixed(2);
+  } else {
+    const ils = parseFloat(ilsEl.value);
+    yenEl.value = isNaN(ils) ? '' : Math.round(ils / rate);
+  }
+}
+document.getElementById('fxRate').value = (FX_TO_ILS.JPY * 100).toFixed(2);
 const quickLinksConfig = [
   {
     title: '✈️ Emirates - ניהול הזמנה',
