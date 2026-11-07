@@ -1134,7 +1134,7 @@ const themesByDay = {
   '18': 'יום קימונו בהיגשיאמה – Kiyomizu-dera, מקדשי זן, סמטאות Gion וערב ב-Pontocho',
   '19': 'אראשיאמה וצפון קיוטו – יער הבמבוק, Tenryu-ji, Ryoan-ji, Kinkaku-ji ותאורת שלכת אופציונלית',
   '20': 'פרידה מקיוטו – Fushimi Inari, נארה ומעבר למלון באוסקה',
-  '21': 'אוסקה מצפון לדרום – Umeda, שוק Kuromon, Shinsekai, Dotonbori ומעבר מלון',
+  '21': 'אוסקה מצפון לדרום – Umeda, שוק Kuromon, Shinsekai ו-Dotonbori',
   '22': 'אוסקה ההיסטורית והמודרנית – Osaka Castle, Shitennoji, גן יפני, Harukas בשקיעה ו-teamLab',
   '23': 'יום חג באוסקה – Shinno-sai, מקדש Sumiyoshi Taisha, קניות וארוחת פרידה',
   '24': "שינקנסן לטוקיו, טיול במרונוצ'י ובגינזה וערב עם ארוחת Akita Dining",
@@ -1191,10 +1191,10 @@ const transitByDay = {
     { from: 'Kintetsu-Nara', to: 'Osaka Excel Hotel Tokyu', note: 'רכבת ל-Osaka-Namba, קו Midosuji ל-Hommachi והליכה מיציאה 13', line: 'Kintetsu + Midosuji', time: '~75 דק׳', cost: '—' }
   ],
   '21': [
-    { from: 'Villa Fontaine Grand Osaka Umeda', to: 'Umeda Sky Building', note: 'צ׳ק-אאוט והליכה עם תיקי היום', line: 'רגלי', time: '~16 דק׳', cost: '—' },
+    { from: 'Osaka Excel Hotel Tokyu', to: 'Umeda Sky Building', note: 'הליכה ל-Hommachi, קו Midosuji ל-Umeda והליכה לתצפית', line: 'Midosuji Line + רגלי', time: '~35 דק׳ (הערכה)', cost: '¥190' },
     { from: 'Umeda Sky Building', to: 'Namba Station', note: 'הליכה לתחנה ואז קו Midosuji ישיר, ללא החלפות', line: 'Midosuji Line + רגלי', time: '~40 דק׳ (הערכה)', cost: '¥240' },
     { from: 'Namba Station', to: 'Kuromon Ichiba Market', note: 'הליכה מהתחנה לשוק', line: 'רגלי', time: '~10–15 דק׳', cost: '—' },
-    { from: 'Kuromon Ichiba Market', to: 'Shinsekai', note: 'מונית נוחה יותר עם התיקים הקטנים', line: 'מונית', time: '~10–15 דק׳ (הערכה)', cost: '—' },
+    { from: 'Kuromon Ichiba Market', to: 'Shinsekai', note: 'מונית קצרה ונוחה יותר', line: 'מונית', time: '~10–15 דק׳ (הערכה)', cost: '—' },
     { from: 'Shinsekai', to: 'Namba Yasaka Shrine', note: 'מעבר קצר במונית', line: 'מונית', time: '~10–15 דק׳ (הערכה)', cost: '—' },
     { from: 'Namba Yasaka Shrine', to: 'Dotonbori', note: 'קפה ומנוחה ב-Namba ואז הליכה ל-Dotonbori', line: 'רגלי', time: '~1:05 שעות כולל הפסקה', cost: '—' },
     { from: 'Dotonbori Craft Beer Brewery', to: 'Osaka Excel Hotel Tokyu', note: 'הליכה ל-Namba, קו Midosuji ל-Hommachi והליכה מיציאה 13', line: 'Midosuji Line + רגלי', time: '~30 דק׳', cost: '¥190' }
@@ -1257,7 +1257,7 @@ const routeNotesPresets = {
     tips: 'יש להשלים אריזה לפני ארוחת הבוקר ולסדר את המזוודות כך שלא נדרשת חזרה לקיוטו. Fushimi Inari ו-Todai-ji מוגנים; Kasuga Taisha יורד אם עייפים או מתעכבים. יש להזמין ארוחות לשישה, לבדוק את רכבת JR מ-Inari ולאשר עם Osaka Excel Hotel Tokyu את קבלת המזוודות ואת הצ׳ק-אין בערב.'
   },
   '21': {
-    overview: 'אחרי ארוחת הבוקר נצא מ-Villa Fontaine Grand Osaka Umeda עם תיקים קטנים בלבד ונעלה לתצפית Umeda Sky Building. משם נמשיך לטעימות בשוק Kuromon, לאווירת הרטרו של Shinsekai ולמקדש Namba Yasaka, ולאחר מנוחה ב-Namba נגיע ל-Dotonbori בשעת בין ערביים, ל-Hozenji Yokocho ולארוחת ערב. בסוף הערב נעבור ל-Osaka Excel Hotel Tokyu, שם המזוודות הראשיות כבר מחכות. חשוב: לבדוק יום קודם את זמני הנסיעה המשוערים; אם היום מתארך, Namba Yasaka היא העצירה הראשונה שמוותרים עליה.',
+    overview: 'אחרי ארוחת הבוקר ב-Osaka Excel Hotel Tokyu ניסע בקו Midosuji ל-Umeda ונעלה לתצפית Umeda Sky Building. משם נמשיך לטעימות בשוק Kuromon, לאווירת הרטרו של Shinsekai ולמקדש Namba Yasaka, ולאחר מנוחה ב-Namba נגיע ל-Dotonbori בשעת בין ערביים, ל-Hozenji Yokocho ולארוחת ערב. בסוף הערב נחזור ל-Osaka Excel Hotel Tokyu, ממנו יצאנו בבוקר. חשוב: לבדוק יום קודם את זמני הנסיעה המשוערים; אם היום מתארך, Namba Yasaka היא העצירה הראשונה שמוותרים עליה.',
     tips: ''
   },
   '22': {
@@ -1562,17 +1562,17 @@ const data = {
     ["18:25<br>19:15","צ׳ק-אין ב-Osaka Excel Hotel Tokyu","הגעה למלון ב-Hommachi, צ׳ק-אין והתארגנות אחרי יום המעבר המלא.","pictures/Osaka Excel Hotel Tokyu.jpg","Osaka Excel Hotel Tokyu","🏨 לינה באוסקה"],
     ["19:15<br>20:45","ארוחת ערב ליד המלון","ארוחת ערב שהוזמנה מראש לשישה במרחק הליכה מהמלון. לא מוסיפים אטרקציה גדולה אחרי יום המעבר המלא.","assets/attractions/day19/dinner.jpg","Osaka Excel Hotel Tokyu restaurants","🍽️ חשוב להזמין לשישה"],
   ]},
-  '21': { title:"אוסקה – Umeda, Kuromon, Shinsekai ו-Dotonbori", route:"Villa Fontaine Umeda → Umeda Sky → Kuromon → Shinsekai → Namba Yasaka → Dotonbori → Hozenji Yokocho → Osaka Excel Hotel Tokyu", events:[
-    ["08:00<br>09:00","ארוחת בוקר ב-Villa Fontaine Grand Osaka Umeda","פתיחה רגועה של היום לפני הצ׳ק-אאוט והמעבר בין המלונות.","pictures/Breakfast.jpg","Villa Fontaine Grand Osaka Umeda","🧳 נוסעים עם תיקים קטנים בלבד"],
+  '21': { title:"אוסקה – Umeda, Kuromon, Shinsekai ו-Dotonbori", route:"Osaka Excel Hotel Tokyu → Umeda Sky → Kuromon → Shinsekai → Namba Yasaka → Dotonbori → Hozenji Yokocho → Osaka Excel Hotel Tokyu", events:[
+    ["08:00<br>08:45","ארוחת בוקר ב-Osaka Excel Hotel Tokyu","פתיחה רגועה של היום במלון לפני היציאה לצפון אוסקה.","pictures/Breakfast.jpg","Osaka Excel Hotel Tokyu","🍽️ היום מתחיל מהמלון"],
     ["09:30<br>10:45","Umeda Sky Building","שני מגדלים המחוברים במרפסת Floating Garden Observatory, עם גג פתוח ונוף של 360 מעלות. נפתח ב-09:30; בבוקר התורים בדרך כלל קצרים יותר.","pictures/Umeda Sky Building.jpg","Umeda Sky Building Osaka","🎟️ כרטיס ¥2,000 · כ-75 דקות"],
     ["11:40<br>13:00","Kuromon Ichiba Market – ארוחת טעימות","המטבח של אוסקה: פירות ים, גריל, פירות ואוכל רחוב. טועמים תוך כדי הליכה ולכן אין צורך בארוחת צהריים נפרדת.","pictures/kuromon market.jpg","Kuromon Ichiba Market Osaka","🍢 80 דקות לטעימות ושיטוט"],
     ["13:25<br>14:35","Shinsekai ואזור Tsutenkaku","אוסקה רטרו בסגנון תחילת המאה ה-20, עם שלטי ניאון צבעוניים, מגדל Tsutenkaku ודוכני kushikatsu.","pictures/shinsekai.jpg","Shinsekai Osaka","🏮 כ-70 דקות"],
     ["14:55<br>15:25","Namba Yasaka Shrine","מקדש קטן וזכיר עם במה ענקית בצורת ראש אריה. אפשר לוותר על העצירה אם היום מתארך.","pictures/namba yasaka.jpg","Namba Yasaka Shrine Osaka","🦁 אופציונלי · 30 דקות"],
-    ["15:25<br>16:30","קפה ומנוחה ב-Namba","הפסקה אמיתית עם התיקים הקטנים לפני חלק הערב של היום.","pictures/lunch.jpg","Namba Osaka cafes","☕ 65 דקות מנוחה"],
+    ["15:25<br>16:30","קפה ומנוחה ב-Namba","הפסקה אמיתית לפני חלק הערב של היום.","pictures/lunch.jpg","Namba Osaka cafes","☕ 65 דקות מנוחה"],
     ["16:30<br>17:30","Dotonbori בשעת בין ערביים","הליכה לאורך התעלה, Ebisu Bridge ושלט Glico המפורסם בזמן שהאורות מתחילים להידלק.","pictures/dotonbori.jpg","Dotonbori Osaka","🌆 60 דקות"],
     ["17:30<br>17:55","Hozenji Yokocho","סמטה צרה וישנה ליד מקדש Hozenji, עם אווירת ערב נעימה במיוחד ובדרך הטבעית לארוחת הערב.","pictures/hozenji.jpg","Hozenji Yokocho Osaka","🏮 25 דקות · לפני ארוחת הערב"],
     ["18:00<br>20:00","בירה בוטיק וארוחת ערב ב-Dotonbori","שעתיים במבשלת הבירה מהתוכנית המקורית, לארוחת ערב ובירה מקומית.","pictures/dotonbori.jpg","Dotonbori Craft Beer Brewery","🍺 ארוחת ערב · שעתיים"],
-    ["20:30<br>21:00","צ׳ק-אין ב-Osaka Excel Hotel Tokyu","המזוודות הראשיות כבר מחכות במלון. משלימים צ׳ק-אין ומתארגנים בחדרים.","pictures/baggage_transportation.jpg","Osaka Excel Hotel Tokyu","🏨 השלמת צ׳ק-אין"],
+    ["20:30 ואילך","חזרה ל-Osaka Excel Hotel Tokyu","סוף יום בחדרים, מנוחה ואריזה קלה לקראת Osaka Castle ו-teamLab מחר.","pictures/Osaka Excel Hotel Tokyu.jpg","Osaka Excel Hotel Tokyu","🏨 ערב חופשי במלון"],
   ]},
 '22': { title:"אוסקה – Osaka Castle, Tennoji, Harukas ו-teamLab", route:"Osaka Excel Hotel Tokyu → Osaka Castle → Shitennoji → Keitakuen → Kintetsu → Harukas 300 → teamLab → Namba → Midosuji Illumination", events:[
   ["07:30<br>08:30","ארוחת בוקר ב-Osaka Excel Hotel Tokyu","ארוחת בוקר רגועה במלון לפני היציאה. היום מתנהל בלי מזוודות או תיקים גדולים.","pictures/Breakfast.jpg","Osaka Excel Hotel Tokyu","🧳 ללא תיקים היום"],
@@ -1704,9 +1704,9 @@ const transfersByDay = {
     {"t": "17:10<br>18:25", "title": "נארה → Osaka Excel Hotel Tokyu", "desc": "Kintetsu-Nara ל-Osaka-Namba, קו Midosuji ל-Hommachi והליכה קצרה מיציאה 13 למלון.", "img": "assets/transfers/train.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚆 + 🚇 + 🚶 ~75 דק׳", "afterIdx": 7, "from": "Kintetsu-Nara Station"}
   ],
   '21': [
-    {"t": "09:00<br>09:30", "title": "צ׳ק-אאוט והליכה ל-Umeda Sky Building", "desc": "צ׳ק-אאוט מ-Villa Fontaine והליכה של כ-16 דקות דרך רובע Umeda.", "img": "assets/transfers/walk.jpg", "to": "Umeda Sky Building Osaka", "tag": "🚶 ~16 דק׳", "afterIdx": 0, "from": "Villa Fontaine Grand Osaka Umeda"},
+    {"t": "08:50<br>09:25", "title": "Osaka Excel Hotel Tokyu → Umeda Sky Building", "desc": "הליכה קצרה ל-Hommachi, קו Midosuji צפונה ל-Umeda והליכה של כ-15 דקות אל המגדל.", "img": "assets/transfers/train.jpg", "to": "Umeda Sky Building Osaka", "tag": "🚶 + 🚇 + 🚶 ~35 דק׳ (הערכה)", "afterIdx": 0, "from": "Osaka Excel Hotel Tokyu"},
     {"t": "10:45<br>11:40", "title": "Umeda Sky Building → Kuromon Market", "desc": "הליכה של כ-15 דקות לתחנת Umeda, קו Midosuji ישיר ל-Namba ללא החלפות, ואז הליכה של כ-10–15 דקות לשוק Kuromon.", "img": "assets/transfers/train.jpg", "to": "Kuromon Ichiba Market Osaka", "tag": "🚶 + 🚇 + 🚶 ~55 דק׳ (הערכה)", "afterIdx": 1, "from": "Umeda Sky Building Osaka"},
-    {"t": "13:00<br>13:25", "title": "מונית ל-Shinsekai", "desc": "מונית קצרה ונוחה יותר עם התיקים הקטנים.", "img": "assets/transfers/taxi.jpg", "to": "Shinsekai Osaka", "tag": "🚕 ~10–15 דק׳ (הערכה)", "afterIdx": 2, "from": "Kuromon Ichiba Market Osaka"},
+    {"t": "13:00<br>13:25", "title": "מונית ל-Shinsekai", "desc": "מונית קצרה ונוחה יותר.", "img": "assets/transfers/taxi.jpg", "to": "Shinsekai Osaka", "tag": "🚕 ~10–15 דק׳ (הערכה)", "afterIdx": 2, "from": "Kuromon Ichiba Market Osaka"},
     {"t": "14:35<br>14:55", "title": "מונית ל-Namba Yasaka Shrine", "desc": "מעבר קצר מ-Shinsekai למקדש ראש האריה.", "img": "assets/transfers/taxi.jpg", "to": "Namba Yasaka Shrine Osaka", "tag": "🚕 ~10–15 דק׳ (הערכה)", "afterIdx": 3, "from": "Shinsekai Osaka"},
     {"t": "17:55<br>18:00", "title": "הליכה למבשלת הבירה", "desc": "הליכה קצרה מ-Hozenji Yokocho לארוחת הערב.", "img": "assets/transfers/walk.jpg", "to": "Dotonbori Craft Beer Brewery", "tag": "🚶 ~5 דק׳", "afterIdx": 7, "from": "Hozenji Yokocho Osaka"},
     {"t": "20:00<br>20:30", "title": "נסיעה ל-Osaka Excel Hotel Tokyu", "desc": "הליכה לתחנת Namba, קו Midosuji ל-Hommachi, ואז הליכה קצרה מיציאה 13 למלון.", "img": "assets/transfers/train.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚶 + 🚇 + 🚶 ~30 דק׳", "afterIdx": 8, "from": "Dotonbori Craft Beer Brewery"}
