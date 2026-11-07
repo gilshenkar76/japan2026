@@ -584,11 +584,12 @@
       <div class="section-title">המלון הערב</div>
       <div class="event hotel">
         <div class="event-row">
-          <img class="thumb" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80">
+          <img class="thumb" id="hotelThumb" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80">
           <div>
             <h3 id="hotelName">Aura Tachibana</h3>
             <p id="hotelMeta">Hakone Yumoto · ספא ואונסן</p>
-            <p id="hotelExtra" class="small" style="color:#374151;margin-top:6px;opacity:1"></p>
+            <p id="hotelExtra" class="small" style="color:#374151;margin-top:6px;opacity:1;white-space:pre-line"></p>
+            <p id="hotelPhotoCredit" class="small" style="margin-top:4px;font-size:10px"></p>
           </div>
         </div>
         <div class="actions">
@@ -1725,10 +1726,26 @@ const transfersByDay = {
   ]
 };
 
+const hotelPhotos = {
+  'Hotel Gracery Shinjuku': { src: 'pictures/hotel gracery shinjuku tokyo.jpg', credit: '' },
+  'Aura Tachibana': { src: 'assets/hotels/aura_tachibana.jpg', credit: '' },
+  'Hotel Monterey Kyoto': { src: 'pictures/Hotel Monterey Kyoto.jpg', credit: '' },
+  'Osaka Excel Hotel Tokyu': { src: 'pictures/Osaka Excel Hotel Tokyu.jpg', credit: '' },
+  'remm PLUS Ginza': { src: 'pictures/remm plus ginza hotel tokyo.jpg', credit: '' }
+};
+
+const hotelInfo = {
+  'Hotel Gracery Shinjuku': { nameJa: 'ホテルグレイスリー新宿', addressEn: '1-19-1 Kabukicho, Shinjuku-ku, Tokyo 160-8466', addressJa: '〒160-8466 東京都新宿区歌舞伎町1-19-1' },
+  'Aura Tachibana': { nameJa: '旅館あうら橘', addressEn: '574 Yumoto, Hakone-machi, Ashigarashimo-gun, Kanagawa 250-0311', addressJa: '〒250-0311 神奈川県足柄下郡箱根町湯本574' },
+  'Hotel Monterey Kyoto': { nameJa: 'ホテルモントレ京都', addressEn: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8161', addressJa: '〒604-8161 京都府京都市中京区烏丸通三条下ル饅頭屋町604' },
+  'Villa Fontaine Grand Osaka Umeda': { nameJa: 'ヴィラフォンテーヌグランド大阪梅田', addressEn: '2-15-9 Sonezaki, Kita-ku, Osaka 530-0057', addressJa: '〒530-0057 大阪府大阪市北区曽根崎2-15-9' },
+  'Osaka Excel Hotel Tokyu': { nameJa: '大阪エクセルホテル東急', addressEn: '4-1-15 Kyutaro-cho, Chuo-ku, Osaka 541-0056', addressJa: '〒541-0056 大阪府大阪市中央区久太郎町4-1-15' },
+  'remm PLUS Ginza': { nameJa: 'レムプラス銀座', addressEn: '8-11-11 Ginza, Chuo-ku, Tokyo 104-0061', addressJa: '〒104-0061 東京都中央区銀座八丁目11番11号' }
+};
+
 const hotelsByDay = {
   '12-13': {
     name: 'Hotel Gracery Shinjuku',
-    meta: "טוקיו · שינג'וקו",
     mapQuery: 'Hotel Gracery Shinjuku Tokyo',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
@@ -1736,7 +1753,6 @@ const hotelsByDay = {
   },
   '14': {
     name: 'Aura Tachibana',
-    meta: 'Hakone Yumoto · ספא ואונסן',
     mapQuery: 'Aura Tachibana Hakone',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
@@ -1744,7 +1760,6 @@ const hotelsByDay = {
   },
   '15': {
     name: 'Aura Tachibana',
-    meta: 'Hakone Yumoto · ספא ואונסן',
     mapQuery: 'Aura Tachibana Hakone',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
@@ -1752,71 +1767,62 @@ const hotelsByDay = {
   },
   '16': {
     name: 'Hotel Monterey Kyoto',
-    meta: 'קיוטו · Karasuma-dori, Nakagyo-ku',
     mapQuery: 'Hotel Monterey Kyoto',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
-    extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
+    extra: ''
   },
   '17': {
     name: 'Hotel Monterey Kyoto',
-    meta: 'קיוטו · Karasuma-dori, Nakagyo-ku',
     mapQuery: 'Hotel Monterey Kyoto',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
-    extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
+    extra: ''
   },
   '18': {
     name: 'Hotel Monterey Kyoto',
-    meta: 'קיוטו · Karasuma-dori, Nakagyo-ku',
     mapQuery: 'Hotel Monterey Kyoto',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
-    extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
+    extra: ''
   },
   '19': {
     name: 'Hotel Monterey Kyoto',
-    meta: 'קיוטו · Karasuma-dori, Nakagyo-ku',
     mapQuery: 'Hotel Monterey Kyoto',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
-    extra: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8151, Japan'
+    extra: ''
   },
   '20': {
     name: 'Villa Fontaine Grand Osaka Umeda',
-    meta: 'אוסקה · Umeda, Kita Ward',
     mapQuery: 'Villa Fontaine Grand Osaka Umeda',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
-    extra: '2-15-9 Sonezaki, Kita-ku, Osaka 530-0057, Japan'
+    extra: ''
   },
   '21': {
     name: 'Osaka Excel Hotel Tokyu',
-    meta: 'אוסקה · Honmachi, Chuo Ward',
     mapQuery: 'Osaka Excel Hotel Tokyu',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
-    extra: '4-1-15 Kutaro-cho, Chuo-ku, Osaka 541-0056, Japan'
+    extra: ''
   },
   '22': {
     name: 'Osaka Excel Hotel Tokyu',
-    meta: 'אוסקה · Honmachi, Chuo Ward',
     mapQuery: 'Osaka Excel Hotel Tokyu',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
-    extra: '4-1-15 Kutaro-cho, Chuo-ku, Osaka 541-0056, Japan'
+    extra: ''
   },
   '23': {
     name: 'Osaka Excel Hotel Tokyu',
-    meta: 'אוסקה · Honmachi, Chuo Ward',
     mapQuery: 'Osaka Excel Hotel Tokyu',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
-    extra: '4-1-15 Kutaro-cho, Chuo-ku, Osaka 541-0056, Japan'
+    extra: ''
   },
   '24': {
     name: 'remm PLUS Ginza',
-    meta: "טוקיו · גינזה",
     mapQuery: 'remm PLUS Ginza Tokyo',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
@@ -1824,7 +1830,6 @@ const hotelsByDay = {
   },
   '25': {
     name: 'remm PLUS Ginza',
-    meta: "טוקיו · גינזה",
     mapQuery: 'remm PLUS Ginza Tokyo',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
@@ -1832,7 +1837,6 @@ const hotelsByDay = {
   },
   '26': {
     name: 'remm PLUS Ginza',
-    meta: "טוקיו · גינזה",
     mapQuery: 'remm PLUS Ginza Tokyo',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
@@ -1840,7 +1844,6 @@ const hotelsByDay = {
   },
   '27': {
     name: 'remm PLUS Ginza',
-    meta: "טוקיו · גינזה",
     mapQuery: 'remm PLUS Ginza Tokyo',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
@@ -3419,8 +3422,17 @@ function render(day){
   const hotelNavNode = document.getElementById('hotelNavLink');
   const hotelBookingNode = document.getElementById('hotelBookingLink');
   if (hotelNameNode) hotelNameNode.textContent = hotel.name;
-  if (hotelMetaNode) hotelMetaNode.textContent = hotel.meta;
-  if (hotelExtraNode) hotelExtraNode.textContent = hotel.extra || '';
+  const hotelDetails = hotelInfo[hotel.name];
+  if (hotelMetaNode) hotelMetaNode.textContent = hotelDetails ? hotelDetails.nameJa : hotel.meta;
+  if (hotelExtraNode) hotelExtraNode.textContent = [hotelDetails && hotelDetails.addressEn, hotelDetails && hotelDetails.addressJa, hotel.extra].filter(Boolean).join('\n');
+  const hotelThumbNode = document.getElementById('hotelThumb');
+  const hotelCreditNode = document.getElementById('hotelPhotoCredit');
+  const hotelPhoto = hotelPhotos[hotel.name];
+  if (hotelThumbNode) {
+    hotelThumbNode.classList.toggle('hidden', !hotelPhoto);
+    if (hotelPhoto) { hotelThumbNode.src = hotelPhoto.src; hotelThumbNode.alt = hotel.name; }
+  }
+  if (hotelCreditNode) hotelCreditNode.textContent = hotelPhoto && hotelPhoto.credit ? 'צילום: ' + hotelPhoto.credit : '';
   if (hotelNavNode) hotelNavNode.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel.mapQuery)}`;
   if (hotelBookingNode) {
     hotelBookingNode.classList.toggle('hidden', !hotel.bookingUrl);
