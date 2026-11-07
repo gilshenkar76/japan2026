@@ -1188,7 +1188,7 @@ const transitByDay = {
     { from: 'Fushimi Inari', to: 'JR Nara Station', note: 'רכבת ישירה דרומה; לבדוק יציאה מדויקת סמוך לנסיעה', line: 'JR Nara Line', time: '~75 דק׳ כולל המתנה', cost: '—' },
     { from: 'JR Nara Station', to: 'אזור הפארק', note: 'אוטובוס מקומי כדי לחסוך הליכה', line: 'אוטובוס + רגלי', time: '~25 דק׳', cost: '—' },
     { from: 'Kasuga Taisha', to: 'Kintetsu-Nara Station', note: 'חזרה מועדפת אחרי יום ההליכה', line: 'אוטובוס + רגלי', time: '~45 דק׳', cost: '—' },
-    { from: 'Kintetsu-Nara', to: 'Villa Fontaine Grand Osaka Umeda', note: 'רכבת ל-Osaka-Namba, קו Midosuji ל-Umeda והליכה', line: 'Kintetsu + Midosuji', time: '~75 דק׳', cost: '—' }
+    { from: 'Kintetsu-Nara', to: 'Osaka Excel Hotel Tokyu', note: 'רכבת ל-Osaka-Namba, קו Midosuji ל-Hommachi והליכה מיציאה 13', line: 'Kintetsu + Midosuji', time: '~75 דק׳', cost: '—' }
   ],
   '21': [
     { from: 'Villa Fontaine Grand Osaka Umeda', to: 'Umeda Sky Building', note: 'צ׳ק-אאוט והליכה עם תיקי היום', line: 'רגלי', time: '~16 דק׳', cost: '—' },
@@ -1253,8 +1253,8 @@ const routeNotesPresets = {
     tips: 'Hogon-in הוא הקיצור הראשון במקרה של עיכוב ו-Ryoan-ji הוא השני; Bamboo Grove, Tenryu-ji, Togetsukyo ו-Kinkaku-ji מוגנים. יש לאשר את פתיחת הסתיו של Hogon-in ואת מועדי התאורה ב-Kitano Tenmangu, להזמין ארוחות לשישה וללבוש שכבות חמות לערב.'
   },
   '20': {
-    overview: 'יום מעבר מלא: צ׳ק-אאוט מקיוטו, ביקור ב-Fushimi Inari בלי עלייה לפסגה, רכבת ישירה לנארה, ארוחת צהריים ליד הפארק, איילי Nara Park, Todai-ji ו-Kasuga Taisha האופציונלי, ואז מעבר ישיר למלון באוסקה.',
-    tips: 'יש להשלים אריזה לפני ארוחת הבוקר ולסדר את המזוודות כך שלא נדרשת חזרה לקיוטו. Fushimi Inari ו-Todai-ji מוגנים; Kasuga Taisha יורד אם עייפים או מתעכבים. יש להזמין ארוחות לשישה, לבדוק את רכבת JR מ-Inari ולאשר את מסירת המזוודות עם המלון באוסקה.'
+    overview: 'יום מעבר מלא: צ׳ק-אאוט מקיוטו, ביקור ב-Fushimi Inari בלי עלייה לפסגה, רכבת ישירה לנארה, ארוחת צהריים ליד הפארק, איילי Nara Park, Todai-ji ו-Kasuga Taisha האופציונלי, ואז מעבר ישיר ל-Osaka Excel Hotel Tokyu באוסקה.',
+    tips: 'יש להשלים אריזה לפני ארוחת הבוקר ולסדר את המזוודות כך שלא נדרשת חזרה לקיוטו. Fushimi Inari ו-Todai-ji מוגנים; Kasuga Taisha יורד אם עייפים או מתעכבים. יש להזמין ארוחות לשישה, לבדוק את רכבת JR מ-Inari ולאשר עם Osaka Excel Hotel Tokyu את קבלת המזוודות ואת הצ׳ק-אין בערב.'
   },
   '21': {
     overview: 'אחרי ארוחת הבוקר נצא מ-Villa Fontaine Grand Osaka Umeda עם תיקים קטנים בלבד ונעלה לתצפית Umeda Sky Building. משם נמשיך לטעימות בשוק Kuromon, לאווירת הרטרו של Shinsekai ולמקדש Namba Yasaka, ולאחר מנוחה ב-Namba נגיע ל-Dotonbori בשעת בין ערביים, ל-Hozenji Yokocho ולארוחת ערב. בסוף הערב נעבור ל-Osaka Excel Hotel Tokyu, שם המזוודות הראשיות כבר מחכות. חשוב: לבדוק יום קודם את זמני הנסיעה המשוערים; אם היום מתארך, Namba Yasaka היא העצירה הראשונה שמוותרים עליה.',
@@ -1550,7 +1550,7 @@ const data = {
     ["17:10<br>18:10","תאורת השלכת ב-Kitano Tenmangu","גן מייפל עונתי מואר סביב הסוללה והנחל. זה אינו מופע והמסלול כולל שינויי גובה; יש לאשר מועדים ושעות רשמיים ל-2026.","assets/attractions/day19/eikando_new.jpg","Kitano Tenmangu Shrine Kyoto","🍁 אופציונלי · יש לאשר פתיחה"],
     ["19:30<br>21:00","ארוחת ערב יפנית ליד המלון","ארוחת ערב שהוזמנה מראש לשישה באזור Hotel Monterey Kyoto. אין חזרה נפרדת למלון אחר הצהריים.","assets/attractions/day19/dinner.jpg","Hotel Monterey Kyoto restaurants","🍽️ חשוב להזמין לשישה"],
   ]},
-  '20': { title:"קיוטו → נארה → אוסקה – Fushimi Inari, פארק נארה ו-Todai-ji", route:"Hotel Monterey → Fushimi Inari → JR Nara → Nara Park → Todai-ji → Kasuga Taisha → Kintetsu-Nara → Villa Fontaine Grand Osaka Umeda", events:[
+  '20': { title:"קיוטו → נארה → אוסקה – Fushimi Inari, פארק נארה ו-Todai-ji", route:"Hotel Monterey → Fushimi Inari → JR Nara → Nara Park → Todai-ji → Kasuga Taisha → Kintetsu-Nara → Osaka Excel Hotel Tokyu", events:[
     ["07:00<br>07:45","ארוחת בוקר ב-Hotel Monterey Kyoto","ארוחת בוקר רגילה לאחר השלמת האריזה, כדי שהצ׳ק-אאוט והיציאה לא יתעכבו.","assets/attractions/day19/breakfast.jpg","Hotel Monterey Kyoto","🧳 להשלים אריזה מראש"],
     ["07:45<br>08:00","צ׳ק-אאוט וסידור מזוודות","סגירת החשבון ואישור סידור המזוודות. אין להשאיר תיקים שיחייבו חזרה לקיוטו.","assets/attractions/day19/hotel.jpg","Hotel Monterey Kyoto","🧳 מעבר ישיר לאוסקה בסוף היום"],
     ["08:50<br>10:20","Fushimi Inari Taisha","המקדש הראשי, מנהרות שערי הטוריי ועלייה קצרה בלבד. לא עולים לפסגה כדי לשמור זמן ואנרגיה לנארה.","assets/attractions/day18/fushimi.jpg","Fushimi Inari Taisha","⛩️ אתר חובה · ללא עלייה לפסגה"],
@@ -1559,8 +1559,8 @@ const data = {
     ["13:30<br>14:45","Todai-ji – השער הדרומי והבודהה הגדול","האתר התרבותי המרכזי בנארה: שער Nandaimon והבודהה הגדול בתוך Daibutsuden, אחד מאולמות העץ הגדולים בעולם.","assets/attractions/day20/todaiji.jpg","Todai-ji Nara","🏯 אתר חובה · 75 דקות"],
     ["15:20<br>16:00","Kasuga Taisha","התמקדות בדרך הגישה ובאזור התפילה הכללי. הביקור אופציונלי; לא מסתמכים על הכניסה הפנימית בתשלום שנסגרת ב-16:00.","assets/attractions/day20/kasuga.jpg","Kasuga Taisha Nara","🏮 אופציונלי · לבטל אם עייפים או מתעכבים"],
     ["16:45<br>17:10","שירותים, כרטיסים ומרווח עלייה לרכבת","מרווח מכוון בתחנת Kintetsu-Nara ולא שעת יציאה קשיחה. אפשר לקנות שתייה או חטיף לפני העלייה.","assets/attractions/day20/train.jpg","Kintetsu-Nara Station","🎫 מרווח תפעולי מכוון"],
-    ["18:25<br>19:15","צ׳ק-אין ב-Villa Fontaine Grand Osaka Umeda","הגעה למלון באומדה, התרעננות והתארגנות אחרי יום המעבר המלא.","assets/attractions/day21/hotel.jpg","Villa Fontaine Grand Osaka Umeda","🏨 לינה באומדה"],
-    ["19:15<br>20:45","ארוחת ערב ליד המלון","ארוחת ערב שהוזמנה מראש לשישה במרחק הליכה מהמלון. לא מוסיפים אטרקציה גדולה אחרי יום המעבר המלא.","assets/attractions/day19/dinner.jpg","Villa Fontaine Grand Osaka Umeda restaurants","🍽️ חשוב להזמין לשישה"],
+    ["18:25<br>19:15","צ׳ק-אין ב-Osaka Excel Hotel Tokyu","הגעה למלון ב-Hommachi, צ׳ק-אין והתארגנות אחרי יום המעבר המלא.","pictures/Osaka Excel Hotel Tokyu.jpg","Osaka Excel Hotel Tokyu","🏨 לינה באוסקה"],
+    ["19:15<br>20:45","ארוחת ערב ליד המלון","ארוחת ערב שהוזמנה מראש לשישה במרחק הליכה מהמלון. לא מוסיפים אטרקציה גדולה אחרי יום המעבר המלא.","assets/attractions/day19/dinner.jpg","Osaka Excel Hotel Tokyu restaurants","🍽️ חשוב להזמין לשישה"],
   ]},
   '21': { title:"אוסקה – Umeda, Kuromon, Shinsekai ו-Dotonbori", route:"Villa Fontaine Umeda → Umeda Sky → Kuromon → Shinsekai → Namba Yasaka → Dotonbori → Hozenji Yokocho → Osaka Excel Hotel Tokyu", events:[
     ["08:00<br>09:00","ארוחת בוקר ב-Villa Fontaine Grand Osaka Umeda","פתיחה רגועה של היום לפני הצ׳ק-אאוט והמעבר בין המלונות.","pictures/Breakfast.jpg","Villa Fontaine Grand Osaka Umeda","🧳 נוסעים עם תיקים קטנים בלבד"],
@@ -1701,7 +1701,7 @@ const transfersByDay = {
     {"t": "11:35<br>12:00", "title": "אוטובוס לאזור הפארק", "desc": "אוטובוס מקומי והליכה קצרה לאזור ארוחת הצהריים כדי לחסוך צעדים.", "img": "assets/transfers/bus.jpg", "to": "Todai-ji Nara restaurants", "tag": "🚌 + 🚶 ~25 דק׳", "afterIdx": 2, "from": "JR Nara Station"},
     {"t": "14:45<br>15:20", "title": "הליכה דרך הפארק ל-Kasuga Taisha", "desc": "הליכה נופית שממשיכים בה רק אם הקבוצה מרגישה בנוח; זהו מוקד הגמישות של אחר הצהריים.", "img": "assets/transfers/walk.jpg", "to": "Kasuga Taisha Nara", "tag": "🚶 ~35 דק׳", "afterIdx": 5, "from": "Todai-ji Nara"},
     {"t": "16:00<br>16:45", "title": "חזרה ל-Kintetsu-Nara Station", "desc": "הליכה ואוטובוס מקומי, כולל זמן המתנה, אחרי יום ההליכה.", "img": "assets/transfers/bus.jpg", "to": "Kintetsu-Nara Station", "tag": "🚶 + 🚌 ~45 דק׳", "afterIdx": 6, "from": "Kasuga Taisha Nara"},
-    {"t": "17:10<br>18:25", "title": "נארה → Villa Fontaine Umeda", "desc": "Kintetsu-Nara ל-Osaka-Namba, קו Midosuji ל-Umeda והליכה למלון.", "img": "assets/transfers/train.jpg", "to": "Villa Fontaine Grand Osaka Umeda", "tag": "🚆 + 🚇 + 🚶 ~75 דק׳", "afterIdx": 7, "from": "Kintetsu-Nara Station"}
+    {"t": "17:10<br>18:25", "title": "נארה → Osaka Excel Hotel Tokyu", "desc": "Kintetsu-Nara ל-Osaka-Namba, קו Midosuji ל-Hommachi והליכה קצרה מיציאה 13 למלון.", "img": "assets/transfers/train.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚆 + 🚇 + 🚶 ~75 דק׳", "afterIdx": 7, "from": "Kintetsu-Nara Station"}
   ],
   '21': [
     {"t": "09:00<br>09:30", "title": "צ׳ק-אאוט והליכה ל-Umeda Sky Building", "desc": "צ׳ק-אאוט מ-Villa Fontaine והליכה של כ-16 דקות דרך רובע Umeda.", "img": "assets/transfers/walk.jpg", "to": "Umeda Sky Building Osaka", "tag": "🚶 ~16 דק׳", "afterIdx": 0, "from": "Villa Fontaine Grand Osaka Umeda"},
@@ -1766,7 +1766,6 @@ const hotelInfo = {
   'Hotel Gracery Shinjuku': { nameJa: 'ホテルグレイスリー新宿', addressEn: '1-19-1 Kabukicho, Shinjuku-ku, Tokyo 160-8466', addressJa: '〒160-8466 東京都新宿区歌舞伎町1-19-1' },
   'Aura Tachibana': { nameJa: '旅館あうら橘', addressEn: '574 Yumoto, Hakone-machi, Ashigarashimo-gun, Kanagawa 250-0311', addressJa: '〒250-0311 神奈川県足柄下郡箱根町湯本574' },
   'Hotel Monterey Kyoto': { nameJa: 'ホテルモントレ京都', addressEn: '604 Manjuya-cho, Sanjo-sagaru, Karasuma-dori, Nakagyo-ku, Kyoto 604-8161', addressJa: '〒604-8161 京都府京都市中京区烏丸通三条下ル饅頭屋町604' },
-  'Villa Fontaine Grand Osaka Umeda': { nameJa: 'ヴィラフォンテーヌグランド大阪梅田', addressEn: '2-15-9 Sonezaki, Kita-ku, Osaka 530-0057', addressJa: '〒530-0057 大阪府大阪市北区曽根崎2-15-9' },
   'Osaka Excel Hotel Tokyu': { nameJa: '大阪エクセルホテル東急', addressEn: '4-1-15 Kyutaro-cho, Chuo-ku, Osaka 541-0056', addressJa: '〒541-0056 大阪府大阪市中央区久太郎町4-1-15' },
   'remm PLUS Ginza': { nameJa: 'レムプラス銀座', addressEn: '8-11-11 Ginza, Chuo-ku, Tokyo 104-0061', addressJa: '〒104-0061 東京都中央区銀座八丁目11番11号' }
 };
@@ -1822,8 +1821,8 @@ const hotelsByDay = {
     extra: ''
   },
   '20': {
-    name: 'Villa Fontaine Grand Osaka Umeda',
-    mapQuery: 'Villa Fontaine Grand Osaka Umeda',
+    name: 'Osaka Excel Hotel Tokyu',
+    mapQuery: 'Osaka Excel Hotel Tokyu',
     bookingUrl: 'https://www.booking.com/',
     bookingAppUrl: 'booking://',
     extra: ''
