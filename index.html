@@ -125,7 +125,8 @@
     .transit-note{font-size:12px;color:var(--muted);margin-bottom:8px}
     .transit-meta{display:flex;flex-wrap:wrap;gap:8px}
     .transit-meta span{background:#eef2f7;border:1px solid #d8e0ea;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;color:#475569}
-    .transfer-chip{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;justify-self:center;max-width:100%;margin:0;padding:6px 14px;border:1px dashed #94a3b8;border-radius:999px;background:#f8fafc;color:#475569;font-size:12px;font-weight:700;cursor:pointer}
+    .transfer-chip{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;justify-self:center;width:min(100%,360px);min-height:42px;box-sizing:border-box;margin:2px 0;padding:9px 18px;border:2px solid #464feb;border-radius:999px;background:#f3f4ff;color:#2932b8;font-size:13px;font-weight:800;box-shadow:0 2px 8px rgba(70,79,235,.12);cursor:pointer;transition:background .18s ease,box-shadow .18s ease,transform .18s ease}
+    .transfer-chip:hover{background:#e8eaff;box-shadow:0 4px 12px rgba(70,79,235,.2);transform:translateY(-1px)}
     .transfer-chip .tc-time{color:#e53935;font-weight:900;direction:ltr;unicode-bidi:isolate}
     .transfer-chip:focus-visible,.tleg:focus-visible{outline:3px solid rgba(70,79,235,.35);outline-offset:3px}
     .transfer-chip.nav-target,.tleg.nav-target{border-color:#464feb;box-shadow:0 0 0 4px rgba(70,79,235,.16),var(--shadow)}
