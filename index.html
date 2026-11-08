@@ -1582,7 +1582,6 @@ const data = {
     ["11:10<br>12:25","Oshino Hakkai","ביקור בכפר מסורתי ושקט עם שמונה בריכות מי שלגים צלולות, גשרים קטנים, בתי עץ ודוכנים מקומיים. עצירה מצוינת לצילומים ולאווירת פוג'י כפרית.","assets/attractions/day16/oshino.jpg","Oshino Hakkai"],
     ["12:25<br>13:10","ארוחת צהריים","עצירה לארוחת צהריים בדרך, באזור Oshino, עם אפשרות למנות מקומיות כמו הוטו, אודון או סובה לפני ההליכה במסדרון המייפל.","assets/attractions/lunch.jpg","Oshino Hakkai area"],
     ["13:30<br>14:50","Lake Kawaguchi – מסדרון המייפל","הליכה נעימה ובלי לחץ לאורך מסדרון המייפל (Momiji Corridor) של Lake Kawaguchi, עם צבעי שלכת, שביל מסודר ונקודות מבט יפות לעבר האגם וההר כשמזג האוויר פתוח.","assets/attractions/day16/maple.jpg","Lake Kawaguchi Maple Corridor"],
-    ["17:46<br>19:37","Hikari 721 – Mishima→Kyoto","שינקנסן Hikari 721 בקו Tokaido Shinkansen (JR) ישירות מתחנת Mishima לתחנת Kyoto, בלי החלפה.\nיציאה: Mishima 17:46 · רציף 5\nהגעה: Kyoto 19:37\nמשך הנסיעה: כ-1:51 שעות\nהגעה במיניוואן לתחנת Mishima בין 17:00 ל-17:20 – נשאר זמן קצר לשירותים, אוכל ומציאת הרציף.\nנדרשת הזמנת מושבים מראש (Mishima → Kyoto).","assets/transfers/train.jpg","Mishima Station"],
     ["20:15<br>21:00","צ'ק-אין – Hotel Monterey Kyoto","הגעה ל-Hotel Monterey Kyoto – אותו מלון שבו ממשיכים גם בימים הבאים. מתחנת Kyoto: מטרו Karasuma Line עד Karasuma Oike (כ-10 דק') והליכה קצרה, או מונית של כ-10–15 דקות.","assets/attractions/day17/hotel.jpg","Hotel Monterey Kyoto"],
   ]},
   '17': { title:"קיוטו – Nijo, Nishiki, Nanzen-ji ומופע MIYABI", route:"Hotel Monterey → Nijo Castle → Nishiki Market → Nanzen-ji → מרכז קיוטו → Hulic Hall → ארוחת ערב", events:[
@@ -1763,6 +1762,17 @@ const transfersByDay = {
     {"t": "14:10", "title": "🚶 הליכה למוזיאון", "desc": "הליכה של כ-2 דקות מהתחנה אל Hakone Open-Air Museum", "img": "assets/transfers/walk.jpg", "to": "Hakone Open-Air Museum", "tag": "🚶 ~2 דק׳", "afterIdx": 7, "from": "Chokoku-no-Mori"},
     {"t": "16:20<br>16:30", "title": "🚂 רכבת חזרה ל-Hakone-Yumoto", "desc": "רכבת טוזאן מ-Chokoku-no-Mori בחזרה לתחנת Hakone-Yumoto", "img": "assets/transfers/train.jpg", "to": "Hakone-Yumoto", "tag": "🚂 ~10 דק׳", "afterIdx": 8, "from": "Hakone Open-Air Museum"},
     {"t": "17:05", "title": "🚕 שאטל/מונית למלון", "desc": "התקשרות למלון ואיסוף בשאטל או מונית בחזרה ל-Aura Tachibana", "img": "assets/transfers/taxi.jpg", "to": "Aura Tachibana Hakone Yumoto", "tag": "🚕 שאטל/מונית", "afterIdx": 8, "from": "Hakone Open-Air Museum"}
+  ],
+  '16': [
+    {"t": "17:46<br>19:37", "title": "Hikari 721 מ-Mishima לקיוטו", "label": "🚅 Hikari 721 · Mishima → Kyoto", "desc": "נוסעים ישירות מתחנת Mishima לתחנת Kyoto בשינקנסן Hikari 721 של JR, ללא החלפה. הרכבת יוצאת בשעה 17:46 מרציף 5 ומגיעה לקיוטו בשעה 19:37. נדרשת הזמנת מושבים מראש.", "img": "assets/transfers/train.jpg", "to": "Kyoto Station", "tag": "🚅 ישיר · 1:51 שעות · רציף 5 · להזמין מושבים", "afterIdx": 5, "from": "Mishima Station", "details": {"title": "פרטי הנסיעה ב-Hikari 721", "steps": [
+      {"time": "17:00–17:20", "title": "הגעה לתחנת Mishima", "desc": "המיניוואן מוריד אותנו בתחנה. משתמשים בזמן שנותר לשירותים, קניית אוכל ומציאת רציף 5."},
+      {"time": "17:46", "title": "יציאה מ-Mishima", "desc": "עולים ל-Hikari 721 בקו Tokaido Shinkansen ומתיישבים במושבים שהוזמנו מראש.", "navigation": {"from": "Mishima Station", "to": "Kyoto Station", "mode": "transit", "label": "🚅 מסלול רכבת ב-Google Maps"}},
+      {"time": "19:37", "title": "הגעה ל-Kyoto Station", "desc": "יורדים בקיוטו וממשיכים ל-Hotel Monterey Kyoto במטרו Karasuma Line או במונית."}
+    ], "recommendations": [
+      "להזמין מראש שישה מושבים ל-Hikari 721 מ-Mishima ל-Kyoto.",
+      "לשמור את הכרטיסים זמינים לפני ההגעה לרציף 5.",
+      "לקנות אוכל ושתייה בתחנה רק אם נשאר מספיק זמן לעלייה מסודרת."
+    ]}}
   ],
   '17': [
     {"t": "08:10<br>08:45", "title": "הליכה ל-Nijo Castle", "desc": "הליכת בוקר מהמלון עם מרווח קצר לכניסה ולכרטיסים.", "img": "assets/transfers/walk.jpg", "to": "Nijo Castle Kyoto", "tag": "🚶 ~25 דק׳", "afterIdx": 0, "from": "Hotel Monterey Kyoto"},
