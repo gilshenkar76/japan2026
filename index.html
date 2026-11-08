@@ -1447,29 +1447,16 @@ function renderTransferLegs(day){
   }
   panel.innerHTML = '<div class="section-title" style="margin:0;font-size:18px">מעברים בין האטרקציות</div>' + legs.map((t, transferIndex) => {
     const route = t.from ? `${t.from} → ${t.to}` : `→ ${t.to}`;
-    if (t.layout === 'banner') {
-      return `<div class="tleg tleg-banner" role="button" tabindex="0" data-transfer-index="${transferIndex}" onclick="showRouteTransfer('${day}', ${transferIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showRouteTransfer('${day}', ${transferIndex})}">
-        <div class="tleg-banner-header" style="background-image:url('${t.img}')">
-          <div class="tleg-time">${t.t.replace('<br>', ' – ')}</div>
-          <div class="tleg-title">${t.labelHtml || t.label || t.title}</div>
-        </div>
-        <div class="tleg-body">
-          <div class="tleg-route">${route}</div>
-          <div class="tleg-desc">${t.descHtml || t.desc}</div>
-          ${transferDetailsHtml(t)}
-          <div class="transit-meta" style="margin-top:6px">${t.tag ? `<span>${t.tagHtml || t.tag}</span>` : ''}<a class="btn ghost" style="padding:3px 12px;font-size:12px" target="_blank" rel="noopener" href="${transferDirectionsUrl(t)}" onclick="event.stopPropagation()">🧭 ניווט</a></div>
-        </div>
-      </div>`;
-    }
-    return `<div class="tleg" role="button" tabindex="0" data-transfer-index="${transferIndex}" onclick="showRouteTransfer('${day}', ${transferIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showRouteTransfer('${day}', ${transferIndex})}">
-      <img src="${t.img}" alt="" loading="lazy">
-      <div class="tleg-body">
+    return `<div class="tleg tleg-banner" role="button" tabindex="0" data-transfer-index="${transferIndex}" onclick="showRouteTransfer('${day}', ${transferIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showRouteTransfer('${day}', ${transferIndex})}">
+      <div class="tleg-banner-header" style="background-image:url('${t.img}')">
         <div class="tleg-time">${t.t.replace('<br>', ' – ')}</div>
-        <div class="tleg-title">${t.label || t.title}</div>
+        <div class="tleg-title" dir="auto">${t.labelHtml || t.label || t.title}</div>
+      </div>
+      <div class="tleg-body">
         <div class="tleg-route">${route}</div>
-        <div class="tleg-desc">${t.desc}</div>
+        <div class="tleg-desc" dir="auto">${t.descHtml || t.desc}</div>
         ${transferDetailsHtml(t)}
-        <div class="transit-meta" style="margin-top:6px">${t.tag ? `<span>${t.tag}</span>` : ''}<a class="btn ghost" style="padding:3px 12px;font-size:12px" target="_blank" rel="noopener" href="${transferDirectionsUrl(t)}" onclick="event.stopPropagation()">🧭 ניווט</a></div>
+        <div class="transit-meta" style="margin-top:6px">${t.tag ? `<span dir="auto">${t.tagHtml || t.tag}</span>` : ''}<a class="btn ghost" style="padding:3px 12px;font-size:12px" target="_blank" rel="noopener" href="${transferDirectionsUrl(t)}" onclick="event.stopPropagation()">🧭 ניווט</a></div>
       </div>
     </div>`;
   }).join('');
