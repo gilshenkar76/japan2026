@@ -1109,7 +1109,6 @@ const routeMapsByDay = {
   '15': { src: 'assets/maps/day15_route_map.png', ratio: '400 / 250', legend: false },
   '16': { src: 'assets/maps/day16_route_map.png?v=one-map', ratio: '1200 / 554', legend: false },
   '17': { src: 'assets/maps/day17_route_map.png?v=large-labels', ratio: '900 / 540', legend: false },
-  '24': { src: 'assets/maps/day24_route_map.png', ratio: '254 / 246', legend: false }
 };
 
 // Short Hebrew theme shown as the banner subtitle per day (fallback: route text)
@@ -1123,7 +1122,7 @@ const themesByDay = {
   '21': 'אוסקה מצפון לדרום – Umeda, שוק Kuromon, Shinsekai ו-Dotonbori',
   '22': 'אוסקה ההיסטורית והמודרנית – Osaka Castle, Shitennoji, גן יפני, Harukas בשקיעה ו-teamLab',
   '23': 'יום חג באוסקה – Shinno-sai, מקדש Sumiyoshi Taisha, קניות וארוחת פרידה',
-  '24': "שינקנסן לטוקיו, טיול במרונוצ'י ובגינזה וערב עם ארוחת Akita Dining",
+  '24': "מעבר מאוסקה לטוקיו – Tokyo Station, הארמון הקיסרי, גינזה וערב Akita Dining",
   '25': "הראג'וקו, אומוטסנדו ושיבויה — Shibuya Sky ואווירת ערב תוססת",
   '26': "שוק צוקיג'י, teamLab Borderless באזאבודאי הילס וקניות בגינזה",
   '27': "אסאקוסה, אקיהברה ואמייוקו — תאורת השלכת ב-Rikugien וארוחת פרידה"
@@ -1203,8 +1202,12 @@ const transitByDay = {
     { from: 'Dotonbori / Namba', to: 'Osaka Excel Hotel Tokyu', note: 'הליכה צפונה לאורך Midosuji Winter Illumination או קו Midosuji ל-Hommachi; חוזרים לאריזה לקראת המעבר לטוקיו', line: 'רגלי / Midosuji Line', time: 'לפי הקצב', cost: '¥0–¥190' }
   ],
   '24': [
-    { from: 'Shin-Osaka Station', to: 'Tokyo Station', note: 'שינקנסן Nozomi מאוסקה לטוקיו', line: 'שינקנסן JR Tokaido', time: '~2:30 שעות', cost: '¥14,720' },
-    { from: 'Tokyo Station', to: 'remm PLUS Ginza', note: 'הליכה קצרה/מטרו לגינזה', line: 'JR Yamanote / הליכה', time: '~10 דק׳', cost: '¥0–¥200' }
+    { from: 'Osaka Excel Hotel Tokyu', to: 'Shin-Osaka Station', note: 'הליכה קצרה ל-Hommachi וקו Midosuji ישיר ללא החלפות', line: 'רגלי + Midosuji Line', time: '~25 דק׳', cost: 'כרטיס IC' },
+    { from: 'Shin-Osaka Station', to: 'Tokyo Station', note: 'שינקנסן Nozomi עם מושבים שמורים; במזג אוויר בהיר מושב E עשוי להציע נוף להר פוג׳י', line: 'שינקנסן JR Tokaido', time: '~2:30 שעות', cost: 'נרכש מראש' },
+    { from: 'Tokyo Station', to: 'Kokyo Gaien', note: 'יציאה מ-Marunouchi Central Exit והליכה ישר לאורך Gyoko-dori', line: 'רגלי', time: '~15 דק׳', cost: '—' },
+    { from: 'Kokyo Gaien', to: 'Ginza', note: 'הליכה דרומה לאורך התעלה, דרך אזור Hibiya ולתוך גינזה', line: 'רגלי', time: '~30 דק׳', cost: '—' },
+    { from: 'Ginza', to: 'remm PLUS Ginza', note: 'הליכה קצרה מהשיטוט בגינזה אל המלון', line: 'רגלי', time: '~5–10 דק׳', cost: '—' },
+    { from: 'remm PLUS Ginza', to: 'Akita Dining Namahage', note: 'יציאה מהמלון בזמן להזמנה של 19:30', line: 'רגלי / מטרו קצר', time: '~15 דק׳', cost: 'לפי המסלול' }
   ]
 };
 
@@ -1255,8 +1258,8 @@ const routeNotesPresets = {
     tips: ''
   },
   '24': {
-    overview: "יום המעבר לטוקיו מתחיל בארוחת בוקר ב-Osaka Excel Hotel Tokyu. בשעה 09:00 נלך 3–5 דקות לתחנת Hommachi, ניסע ישירות בקו Midosuji ל-Shin-Osaka ונקדיש 10–15 דקות להגעה לרציף השינקנסן. לאחר קניית בנטו נעלה על רכבת Nozomi המהירה לטוקיו. לאחר ההגעה נבקר בצד Marunouchi של Tokyo Station, נאכל מונג'איאקי ב-Tsukishima Monja Tamatoya ונשוב לטייל ב-Marunouchi. אחר הצהריים נמשיך ל-Nissan Crossing, לגן הגג של Ginza Six ולטיול בגינזה, נעשה צ'ק-אין ב-remm PLUS Ginza, ונסיים בארוחת ערב ב-Akita Dining Namahage ובבר מוזיקה או קוקטיילים.",
-    tips: "המזוודות הגדולות נשלחות ישירות למלון בטוקיו יום קודם (Takkyubin/Ta-Q-Bin), כך שנוסעים היום עם תיקי יום בלבד. כדאי להזמין מקום מראש במסעדת Tsukishima Monja Tamatoya ו-Akita Dining Namahage לקבוצה."
+    overview: "בלילה שלפני המעבר נשלח את המזוודות הגדולות מ-Osaka Excel Hotel Tokyu אל remm PLUS Ginza, וניסע עם תיקים קטנים בלבד. לאחר ארוחת בוקר וצ׳ק-אאוט נלך ל-Hommachi וניסע בקו Midosuji הישיר ל-Shin-Osaka. נקנה משקאות ונשנוש קל, ובשעה 10:00 נעלה על Nozomi עם מושבים שמורים לטוקיו. לאחר ההגעה נאכל ארוחת צהריים חמה בתוך Tokyo Station, נצלם את בניין הלבנים האדומות בצד Marunouchi ונלך לאורך Gyoko-dori אל Kokyo Gaien, גשר Nijubashi וחומות Edo Castle. משם נמשיך דרך Hibiya לגינזה, נבקר ב-Nissan Crossing וב-Ginza Six, נטייל ב-Chuo-dori ונגיע סביב 17:15 ל-remm PLUS Ginza לקבלת המזוודות ולמנוחה. בשעה 19:30 נאכל ב-Akita Dining Namahage, ולאחר מכן אפשר לסיים במשקה רגוע ליד המלון.",
+    tips: "יש לאשר עם המלון באוסקה שהמזוודות יגיעו ל-remm PLUS Ginza ב-24 בנובמבר. מושבי ה-Nozomi נרכשים מראש; במזג אוויר בהיר מושב E בצד ימין עשוי להציע נוף להר פוג׳י. בגני הארמון המזרחיים לא מבקרים ביום זה בגלל סגירת החג של 23 בנובמבר. יש להזמין מראש שולחן ב-Akita Dining Namahage לשישה בשעה 19:30."
   },
   '25': {
     overview: "בשעה 09:00 נצא מ-remm PLUS Ginza אל Meiji Jingu דרך Ginza Station, קו Ginza והחלפה ב-Omotesando לקו Chiyoda עד Meiji-jingumae. נמשיך ברגל אל Takeshita Street, שדרת Omotesando ו-Cat Street, ונאכל ליד הקצה הדרומי של Cat Street כדי לשמור מעבר קצר ל-Shibuya PARCO. בשעה 14:00 נצא ברגל ל-PARCO, וב-15:30 נמשיך ל-Shibuya Sky לקראת השקיעה ונישאר על הגג עד 18:00. בערב נעצור בפסל Hachiko, נחצה את Shibuya Crossing, נאכל ב-Yakitori Tsukada ונסיים ב-Nonbei Yokocho. סביב 22:30 נחזור למלון בקו Ginza מ-Shibuya ל-Ginza.",
@@ -1628,18 +1631,19 @@ const data = {
     ["21:15<br>21:50","Midosuji Winter Illumination","הליכת ערב אחרונה באוסקה לאורך שדרת Midosuji המוארת בעונת החורף: שדרת עצים עטורה באורות הנמתחת מ-Namba צפונה דרך Shinsaibashi ועד אזור Hommachi. כדאי לבדוק באתר הרשמי את תאריך תחילת העונה ואת שעות ההדלקה.","pictures/dotonbori.jpg","Midosuji Illumination Osaka","✨ חינם · הליכה של כ-35 דקות"],
     ["22:10 ואילך","אריזה במלון","ב-Osaka Excel Hotel Tokyu בודקים שיש מקום במזוודות לכל הקניות ומשלימים אריזה לקראת המעבר לטוקיו.","pictures/baggage_transportation.jpg","Osaka Excel Hotel Tokyu","🧳 אריזה לקראת מחר"]
   ]},
-  '24': { title:"אוסקה → טוקיו – יום ההגעה", route:"Shin-Osaka → Shinkansen Nozomi → Tokyo Station → Ginza", events:[
-    ["08:15<br>08:45","ארוחת בוקר ב-Osaka Excel Hotel Tokyu","ארוחת בוקר במלון לפני המעבר לטוקיו. יוצאים עם תיקי יום בלבד; המזוודות כבר בדרך לטוקיו.","pictures/Breakfast.jpg","Osaka Excel Hotel Tokyu"],
-    ["09:35<br>10:00","קפה / בנטו / התארגנות","קונים אוכל לרכבת ומגיעים לרציף בזמן לעלייה מסודרת","assets/attractions/day24/lunch_bento.jpg","Shin-Osaka Station"],
-    ["12:30<br>13:00","Tokyo Station (Marunouchi Side)","תחנת טוקיו היא אחד המבנים ההיסטוריים המרשימים ביותר בעיר, עם חזית לבנים אדומות בסגנון מערבי מתחילת המאה ה-20 ששוחזרה בקפידה לאחר מלחמת העולם השנייה. צד מרונוצ'י שקט ואלגנטי במיוחד, עם רחובות רחבים ובנייני משרדים מרשימים. זהו רגע נעים לעצור, לצלם את הבניין ההיסטורי ולהרגיש את המעבר מהקצב של אוסקה לאווירה המסודרת של טוקיו.","assets/attractions/day24/hotel_tokyo.jpg","Tokyo Station"],
-    ["13:15<br>14:30","Tsukishima Monja Tamatoya","צוקישימה היא שכונה קטנה על גדות נהר סומידה שמפורסמת בעיקר במאכל מונג'איאקי — גרסה נוזלית ואינטראקטיבית של אוקונומיאקי שמבשלים בעצמכם על פלטה חמה במרכז השולחן. מסעדת Tamatoya היא אחת הוותיקות והאהובות ברחוב, עם אווירה מקומית וחווייתית שמתאימה מצוין לקבוצה. זו ארוחת צהריים כיפית ומעט יוצאת דופן, ומומלץ להזמין כמה סוגים שונים ולחלוק בין כולם.","assets/attractions/lunch.jpg","Tsukishima Monja Tamatoya"],
-    ["14:30<br>15:15","Marunouchi Area","מרונוצ'י הוא אזור העסקים היוקרתי שנמצא ממש ליד תחנת טוקיו, עם רחובות רחבים, גורדי שחקים מרשימים ובוטיקים יוקרתיים. השדרה המרכזית, Marunouchi Naka-dori, מעוטרת עצים ופסלים ומהווה מקום נעים להליכה רגועה. באזור אפשר למצוא גם בתי קפה אלגנטיים וחנויות דגל של מותגים בינלאומיים, המהווים ניגוד מעניין לרחובות התוססים והססגוניים יותר של גינזה הסמוכה.","assets/attractions/day24/hotel_tokyo.jpg","Marunouchi Tokyo"],
-    ["15:15<br>15:30","Nissan Crossing","Nissan Crossing הוא שואו-רום פתוח וחינמי בלב גינזה, הממוקם בקומת הקרקע של בניין ניסאן הראשי. בפנים מוצגים דגמים חדשים ורכבי קונספט עתידניים, לצד תצוגות אינטראקטיביות על טכנולוגיית נהיגה אוטונומית וחשמל. יש גם מסך ענק ופינת קפה נעימה לישיבה קצרה. זו עצירה מהירה ומהנה בדרך, גם למי שלא חובב רכבים במיוחד.","assets/attractions/day24/nissan.jpg","Nissan Crossing Ginza"],
-    ["15:30<br>16:15","Ginza Six Rooftop Garden","הגן על גג קניון היוקרה Ginza Six משתרע על פני כל שטח הגג ומציע נוף פתוח ומרשים אל רחובות גינזה ומגדליה. הכניסה חופשית ופתוחה עד השעה 23:00, מה שהופך אותו לנקודת עצירה נוחה בכל שעה ביום. יש שם ספסלים, צמחייה ירוקה ופינות ישיבה שקטות יחסית לרעש העיר שמתחתיו. זהו מקום נעים לנוח בו רגע לפני או אחרי קניות בקניון עצמו.","assets/attractions/day24/ginza_six.jpg","Ginza Six Rooftop Garden"],
-    ["16:15<br>18:00","טיול בגינזה","גינזה היא אחד מרובעי הקניות והיוקרה המפורסמים בעולם, עם חנויות דגל של מותגי אופנה בינלאומיים לצד בתי כלבו יפניים ותיקים כמו Mitsukoshi ו-Wako. הרחוב הראשי, Chuo-dori, הופך בסופי שבוע למדרחוב שקט מרכבים ומאפשר להתהלך בנחת בין החלונות המעוצבים. לצד הקניות אפשר למצוא גם בתי קפה אלגנטיים, גלריות אמנות קטנות וארכיטקטורה מודרנית מרשימה. זו הזדמנות נעימה סתם להתרשם מהאווירה המהוקצעת של גינזה בשעות אחר הצהריים.","assets/attractions/day24/ginza_six.jpg","Ginza Tokyo"],
-    ["18:00<br>18:45","צ'ק-אין ב-remm PLUS Ginza","מנוחה, מקלחת והחלפת בגדים לפני ערב ארוך","assets/attractions/day24/hotel_tokyo.jpg","remm PLUS Ginza Tokyo"],
-    ["19:30<br>21:00","Akita Dining Namahage","Akita Dining Namahage היא מסעדה תימטית המביאה לגינזה את המטבח והמסורת של מחוז אקיטה שבצפון יפן. השם לקוח מדמויות ה'נמהגה' — רוחות מפחידות שמסורתית מבקרות בבתים בערב השנה החדשה כדי להרחיק עצלנות. התפריט כולל מנות אזוריות ייחודיות, ולעיתים מתלווה גם הופעה קצרה של המלצרים המחופשים לדמויות הנמהגה. זו חוויה קולינרית ותרבותית שונה מהמסעדות היפניות הרגילות, ומומלצת לקבוצה שמחפשת גיוון.","assets/attractions/day24/lunch_bento.jpg","Akita Dining Namahage Ginza"],
-    ["21:00<br>23:00","Ginza Music Bar / Cocktail Bar","גינזה מלאה בברי קוקטייל ומוזיקה אינטימיים, רבים מהם ממוקמים בקומות עליונות של בניינים ולא נראים כלל מהרחוב. האווירה בדרך כלל שקטה ומסוגננת, עם ברמנים מקצועיים שמכינים קוקטיילים ברמת אמנות. זהו סיום נעים ורגוע ליום הראשון בטוקיו, אחרי יום ארוך של נסיעות וסיורים. אפשר לבחור בר עם מוזיקה חיה קלה או בר ג'אז שקט יותר, לפי מצב הרוח.","assets/attractions/day24/ginza_six.jpg","Ginza Tokyo"],
+  '24': { title:"אוסקה → טוקיו – Tokyo Station, הארמון הקיסרי וגינזה", route:"Osaka → Shin-Osaka → Tokyo Station → Kokyo Gaien → Hibiya → Ginza", events:[
+    ["לילה קודם","משלוח המזוודות לטוקיו","שולחים את המזוודות הגדולות מ-Osaka Excel Hotel Tokyu אל remm PLUS Ginza. מוודאים בקבלה שהן צפויות להגיע ב-24 בנובמבר ונוסעים עם תיקים קטנים בלבד.","pictures/baggage_transportation.jpg","Osaka Excel Hotel Tokyu","🧳 לאשר יעד ותאריך הגעה"],
+    ["08:00<br>08:50","ארוחת בוקר ואריזה","ארוחת בוקר קלה ובדיקה אחרונה של התיקים הקטנים, הדרכונים וכרטיסי השינקנסן.","pictures/Breakfast.jpg","Osaka Excel Hotel Tokyu","☕ יציאה מסודרת ללא מזוודות גדולות"],
+    ["09:00","צ׳ק-אאוט מ-Osaka Excel Hotel Tokyu","מסיימים את הצ׳ק-אאוט ויוצאים לתחנת Hommachi עם תיקי היום בלבד.","assets/attractions/day24/hotel_tokyo.jpg","Osaka Excel Hotel Tokyu","🏨 כ-5 דקות הליכה ל-Hommachi Station"],
+    ["09:30<br>09:55","קפה / בנטו / התארגנות ב-Shin-Osaka","קונים משקאות ונשנוש קל לרכבת. אפשר לקנות ekiben אחד לחלוקה ולטעימה, אך לא לאכול כאן ארוחת צהריים מלאה.","pictures/קפה בנטו התארגנות.jpg","Shin-Osaka Station","🛍️ כ-¥300–1,500 לאדם"],
+    ["12:30<br>13:30","ארוחת צהריים ב-Tokyo Station","ארוחה חמה בישיבה בתוך התחנה. אפשר לבחור ב-Tokyo Ramen Street, במסעדות התחנה או באזור Gransta; אם התור ארוך מ-20 דקות, עוברים למקום אחר.","pictures/lunch.jpg","Tokyo Station restaurants","🍜 כ-¥1,200–2,500 לאדם"],
+    ["13:30<br>13:45","בניין Tokyo Station בצד Marunouchi","יוצאים דרך Marunouchi Central Exit, מסתובבים לאחור ומצלמים את בניין התחנה ההיסטורי מלבנים אדומות.","assets/attractions/day24/hotel_tokyo.jpg","Tokyo Station Marunouchi Central Exit","📸 צילום קלאסי · חינם"],
+    ["14:00<br>15:00","הרחבה החיצונית של הארמון הקיסרי – Kokyo Gaien","מטיילים ברחבה עם עצי האורן, מצלמים את גשר Nijubashi והארמון מאחוריו, ורואים את התעלות וחומות האבן העצומות של Edo Castle. ממשיכים לאורך התעלה לכיוון Otemon Gate.","assets/attractions/day24/hotel_tokyo.jpg","Kokyo Gaien National Garden","🏯 חינם · הגנים המזרחיים סגורים ביום זה"],
+    ["15:30<br>16:15","Nissan Crossing ו-Ginza Six","מבקרים בשואו-רום Nissan Crossing בצומת המרכזי של גינזה, ממשיכים למיצב האמנות באטריום של Ginza Six ועולים לגן הגג החינמי לתצפית עירונית.","assets/attractions/day24/nissan.jpg","Nissan Crossing Ginza","🚗 שתי עצירות קרובות · חינם"],
+    ["16:15<br>17:15","טיול ערב בגינזה","הולכים לאורך Chuo-dori, רואים את מגדל השעון Wako ואת אורות הרחוב הנדלקים. משאירים את הקניות קלות בלבד, משום שבלוק הקניות הגדול מתוכנן ל-26 בנובמבר.","assets/attractions/day24/ginza_six.jpg","Ginza Chuo-dori","🌃 שיטוט קל · חינם"],
+    ["17:15<br>19:15","צ׳ק-אין ומנוחה ב-remm PLUS Ginza","מקבלים את המזוודות שנשלחו מאוסקה, פורקים, מתקלחים ונחים כשעתיים לפני ארוחת הערב.","assets/attractions/day24/hotel_tokyo.jpg","remm PLUS Ginza Tokyo","🏨 כשעתיים מנוחה"],
+    ["19:30<br>21:00","Akita Dining Namahage","ארוחת ערב ממחוז אקיטה עם מופע Namahage חי, שבו מבצעים במסכות עוברים בין האורחים. חוויה קבוצתית מהנה ויפנית במיוחד.","assets/attractions/day24/lunch_bento.jpg","Akita Dining Namahage Ginza","🍶 להזמין מראש שולחן ל-6"],
+    ["21:00 ואילך","בר אופציונלי בגינזה","מי שעדיין עם אנרגיה יכול לשתות משקה רגוע ליד המלון; האחרים חוזרים ישירות למנוחה.","assets/attractions/day24/ginza_six.jpg","Ginza bars near remm PLUS Ginza","🍸 אופציונלי"],
   ]},
   '25': { title:"טוקיו – הראג'וקו ושיבויה", route:"Meiji Jingu → Harajuku → Omotesando → Shibuya", events:[
     ["09:40<br>11:00","Meiji Jingu","מקדש מייג'י נבנה לזכר הקיסר מייג'י ואשתו ומוקף ביער עירוני ענק בן כ-100,000 עצים שנתרמו מכל רחבי יפן. הדרך למקדש עוברת דרך שערי טוריי ענקיים ושבילי חצץ שקטים, ומעניקה תחושת ניתוק מוחלט מהעיר הסואנת. במקדש עצמו אפשר לראות טקסי שינטו, לכתוב משאלה על לוחית עץ (אמה) ואף להיתקל בטקס חתונה מסורתי בסוף השבוע. זהו אחד המקומות הרגועים והמכובדים ביותר לביקור בבוקר טוקיו.","assets/attractions/day25/meiji_jingu.jpg","Meiji Jingu"],
@@ -1777,10 +1781,13 @@ const transfersByDay = {
     {"t": "21:50<br>22:10", "title": "חזרה ל-Osaka Excel Hotel Tokyu", "desc": "המשך ההליכה צפונה או קו Midosuji ל-Hommachi, לפי העייפות.", "img": "assets/transfers/walk.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚶 / 🚇 ~15 דק׳ ומעלה", "afterIdx": 6, "from": "Midosuji Illumination Osaka"}
   ],
   '24': [
-    {"t": "09:00<br>09:35", "title": "Osaka Excel Hotel Tokyu → Hommachi Station → Shin-Osaka", "desc": "הליכה של כ-3–5 דקות מהמלון לתחנת Hommachi, נסיעה ישירה של כ-12–15 דקות בקו Osaka Metro Midosuji ל-Shin-Osaka, ועוד כ-10–15 דקות להגעה לרציף השינקנסן.", "img": "assets/transfers/train.jpg", "to": "Shin-Osaka Station", "tag": "🚶 + 🚇 Midosuji · כ-35 דקות", "afterIdx": 0, "from": "Osaka Excel Hotel Tokyu"},
-    {"t": "10:00<br>12:30", "title": "רכבת מהירה Shinkansen Nozomi → Tokyo", "desc": "נסיעה ישירה ב-Nozomi מ-Shin-Osaka ל-Tokyo Station, הדרך המהירה ביותר בין אוסקה לטוקיו.", "img": "assets/transfers/train.jpg", "to": "Tokyo Station", "tag": "🚄 Nozomi · כ-2:30 שעות", "afterIdx": 1, "from": "Shin-Osaka Station"},
-    {"t": "19:15<br>19:30", "title": "הליכה למסעדה", "desc": "הכול במרחק הליכה מהמלון", "img": "assets/transfers/walk.jpg", "to": "Ginza Tokyo", "tag": "", "afterIdx": 8, "from": "remm PLUS Ginza Tokyo"},
-    {"t": "23:00", "title": "חזרה למלון", "desc": "הליכה קצרה חזרה ל-remm PLUS Ginza", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": 10, "from": "Ginza Tokyo"}
+    {"t": "09:05<br>09:30", "title": "Osaka Excel Hotel Tokyu → Shin-Osaka", "label": "🚇 המלון → Shin-Osaka", "desc": "הליכה של כ-5 דקות לתחנת Hommachi וקו Midosuji ישיר ל-Shin-Osaka, ללא החלפות.", "img": "assets/transfers/train.jpg", "to": "Shin-Osaka Station", "tag": "🚶 + 🚇 Midosuji · כ-25 דקות · כרטיס IC", "afterIdx": 2, "from": "Osaka Excel Hotel Tokyu"},
+    {"t": "10:00<br>12:30", "title": "Shinkansen Nozomi → Tokyo", "label": "🚄 Shin-Osaka → Tokyo Station", "desc": "נסיעה ישירה של כשעתיים וחצי במושבים שמורים. במזג אוויר בהיר מושב E בצד ימין עשוי להציע נוף להר פוג׳י כ-90 דקות לאחר היציאה.", "img": "assets/transfers/train.jpg", "to": "Tokyo Station", "tag": "🚄 Nozomi · מושבים נרכשו מראש", "afterIdx": 3, "from": "Shin-Osaka Station"},
+    {"t": "13:45<br>14:00", "title": "Tokyo Station → Kokyo Gaien", "label": "🚶 Tokyo Station → הארמון הקיסרי", "desc": "יוצאים דרך Marunouchi Central Exit והולכים ישר לאורך שדרת Gyoko-dori הרחבה עד לרחבה החיצונית של הארמון.", "img": "assets/transfers/walk.jpg", "to": "Kokyo Gaien National Garden", "tag": "🚶 כ-10–15 דקות", "afterIdx": 5, "from": "Tokyo Station Marunouchi Central Exit"},
+    {"t": "15:00<br>15:30", "title": "Kokyo Gaien → Hibiya → Ginza", "label": "🚶 הארמון הקיסרי → גינזה", "desc": "הולכים דרומה לאורך התעלה, חולפים ליד Hibiya Park ונכנסים לגינזה. אפשר לעצור לקפה קצר ב-Hibiya רק אם עומדים בזמנים.", "img": "assets/transfers/walk.jpg", "to": "Nissan Crossing Ginza", "tag": "🚶 כ-20–25 דקות", "afterIdx": 6, "from": "Kokyo Gaien National Garden"},
+    {"t": "17:15<br>17:25", "title": "גינזה → remm PLUS Ginza", "label": "🚶 גינזה → המלון", "desc": "הליכה קצרה מסיום השיטוט ב-Chuo-dori אל המלון לצ׳ק-אין ולקבלת המזוודות.", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "🚶 כ-5–10 דקות", "afterIdx": 8, "from": "Ginza Chuo-dori"},
+    {"t": "19:15<br>19:30", "title": "remm PLUS Ginza → Akita Dining Namahage", "label": "🚶 המלון → Akita Dining Namahage", "desc": "יוצאים בזמן מהמלון והולכים למסעדה; אם הכתובת הסופית רחוקה יותר, משתמשים במטרו לנסיעה קצרה.", "img": "assets/transfers/walk.jpg", "to": "Akita Dining Namahage Ginza", "tag": "🚶 / 🚇 קצר · הזמנה ב-19:30", "afterIdx": 9, "from": "remm PLUS Ginza Tokyo"},
+    {"t": "21:00 ואילך", "title": "חזרה ל-remm PLUS Ginza", "label": "🚶 ערב בגינזה → המלון", "desc": "הליכה קצרה חזרה למלון אחרי הארוחה או אחרי משקה אופציונלי באזור.", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "🚶 לפי מקום הסיום", "afterIdx": 11, "from": "Ginza Tokyo"}
   ],
   '25': [
     {"t": "09:00<br>09:40", "title": "remm PLUS Ginza → Meiji Jingu", "label": "🚇 remm PLUS Ginza → Meiji Jingu", "desc": "הליכה ל-Ginza Station, קו Ginza ל-Omotesando, החלפה לקו Chiyoda וירידה ב-Meiji-jingumae 'Harajuku'.", "img": "assets/transfers/train.jpg", "to": "Meiji Jingu First Torii", "tag": "🚶 + 🚇 Ginza + 🚇 Chiyoda · כ-40 דקות", "afterIdx": -1, "from": "remm PLUS Ginza Tokyo", "details": {"title": "פירוט מלא מהמלון ל-Meiji Jingu · 4 שלבים", "steps": [
