@@ -1463,8 +1463,7 @@ function transferInfo(t){
 }
 
 function transferDirectionsUrl(t){
-  const origin = t.from ? `&origin=${encodeURIComponent(t.from)}` : '';
-  return `https://www.google.com/maps/dir/?api=1${origin}&destination=${encodeURIComponent(t.to)}&travelmode=${transferInfo(t).travel}`;
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(t.to)}&travelmode=${transferInfo(t).travel}`;
 }
 
 const japanesePlaceNames = {
@@ -1614,7 +1613,7 @@ window.addEventListener('resize', () => {
 });
 
 function stepDirectionsUrl(navigation){
-  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(navigation.from)}&destination=${encodeURIComponent(navigation.to)}&travelmode=${navigation.mode}`;
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(navigation.to)}&travelmode=${navigation.mode}`;
 }
 
 // Compact link shown in the route tab between two stops
