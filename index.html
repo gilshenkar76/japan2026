@@ -170,11 +170,12 @@
     .shopping-group summary::before{content:'＋';display:inline-block;margin-left:8px}
     .shopping-group[open] summary::before{content:'−'}
     .shopping-group-list{border-top:1px solid #dfe2ff;padding:0 14px;color:#334155}
-    .shopping-stop{display:grid;grid-template-columns:58px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid #e2e8f0;text-align:right}
+    .shopping-stop{padding:11px 0;border-bottom:1px solid #e2e8f0;text-align:right}
     .shopping-stop:last-child{border-bottom:0}
-    .shopping-stop-time{direction:ltr;unicode-bidi:isolate;color:#e53935;font-size:12px;font-weight:900}
     .shopping-stop strong{display:block;color:#172554;font-size:13px;margin-bottom:3px}
     .shopping-stop span{font-size:12px;line-height:1.45}
+    .shopping-stop-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .shopping-stop-row .btn{flex:0 0 auto;padding:5px 10px;font-size:12px;text-shadow:none}
     .event{background:var(--card);border-radius:20px;box-shadow:var(--shadow);border:1px solid var(--line);display:flex;overflow:hidden;padding:0;min-height:110px}
     .event-img-nav{width:110px;min-height:110px;flex-shrink:0;display:block;text-decoration:none;background:#e8edf5;overflow:hidden;position:relative;
       box-shadow:inset 0 0 0 9999px rgba(0,0,0,0);transition:transform .15s ease,box-shadow .15s ease;transform:translateZ(0)}
@@ -1241,7 +1242,7 @@ const transitByDay = {
 // Preset Hebrew route notes per day (overview + tips), used to prefill the notes boxes
 const routeNotesPresets = {
   '12-13': {
-    overview: 'יום הטיסה ליפן מתחיל ביציאה מתל אביב בטיסת EY594 בשעה 14:00 ונחיתה באבו דאבי בשעה 19:05. לאחר קונקשן של 3 שעות ו-15 דקות נמשיך בטיסת הלילה EY800, שתצא בשעה 22:20 ותנחת בטרמינל 1 של Narita למחרת בשעה 13:15. לאחר ביקורת הגבולות, איסוף המזוודות והמכס ניפגש עם נהג המיניוואן שהזמנו מראש, שיסיע אותנו ישירות מ-Narita ל-Hotel Gracery Shinjuku (¥26,000 במזומן לנהג) לצ׳ק-אין ומנוחה קצרה. לאחר מכן נצא ברגל לסיבוב קניות קרוב ב-Alpen TOKYO וב-Downbeat RUNNING כדי לבדוק נעלי On ודגמי Cloud, ואם יש כוח נמשיך ל-UNIQLO Shinjuku HONTEN ול-GU Seibu Shinjuku PePe (אופציונלי) ונחזור לאזור המלון. זהו יום נסיעה ארוך, ולכן חשוב לשמור את מסמכי הטיסה והמלון נגישים ולעקוב אחר השערים והעדכונים בזמן אמת.',
+    overview: 'יום הטיסה ליפן מתחיל ביציאה מתל אביב בטיסת EY594 בשעה 14:00 ונחיתה באבו דאבי בשעה 19:05. לאחר קונקשן של 3 שעות ו-15 דקות נמשיך בטיסת הלילה EY800, שתצא בשעה 22:20 ותנחת בטרמינל 1 של Narita למחרת בשעה 13:15. לאחר ביקורת הגבולות, איסוף המזוודות והמכס ניפגש עם נהג המיניוואן שהזמנו מראש, שיסיע אותנו ישירות מ-Narita ל-Hotel Gracery Shinjuku (¥26,000 במזומן לנהג). אחרי צ׳ק-אין קצר נקדיש את 17:30–20:00 לסבב קניות מרוכז שמתחיל ב-UNIQLO וב-GU וממשיך, אם הזמן והאנרגיה מאפשרים, ל-Alpen TOKYO ול-Downbeat RUNNING. בשעה 20:15 נאכל ונחווה את האווירה ב-Omoide Yokocho, נמשיך להליכה בין אורות הניאון ואזור Godzilla ב-Kabukicho, ואם עדיין נשאר כוח נסיים ב-Golden Gai בהליכה קצרה או במשקה אחד.',
     tips: ''
   },
   '14': {
@@ -1487,14 +1488,14 @@ function transferDetailsHtml(transfer){
 
 function shoppingGroupHtml(){
   const stops = [
-    ['18:00–18:45', 'Alpen TOKYO', 'נעלי On ודגמי Cloud · פתוח עד 22:00'],
-    ['18:50–19:30', 'Downbeat RUNNING', 'חנות ריצה מתמחה והתאמה מקצועית · פתוח עד 21:00'],
-    ['19:40–20:30', 'UNIQLO Shinjuku HONTEN', 'חנות הדגל לביגוד בסיסי ושכבות · פתוח עד 22:00'],
-    ['20:50–21:30', 'GU Seibu Shinjuku PePe', 'ביגוד בסיסי במחירים זולים · פתוח עד 21:30']
+    ['UNIQLO Shinjuku HONTEN', 'חנות הדגל לביגוד בסיסי ושכבות · פתוח עד 22:00', 'UNIQLO Shinjuku Honten, 3-29-1 Shinjuku, Shinjuku City, Tokyo'],
+    ['GU Seibu Shinjuku PePe', 'ביגוד בסיסי במחירים זולים · פתוח עד 21:30', 'GU Seibu Shinjuku PePe, 1-30-1 Kabukicho, Shinjuku City, Tokyo'],
+    ['Alpen TOKYO', 'נעלי On ודגמי Cloud · פתוח עד 22:00', 'Alpen TOKYO, 3-23-7 Shinjuku, Shinjuku City, Tokyo'],
+    ['Downbeat RUNNING', 'חנות ריצה מתמחה והתאמה מקצועית · פתוח עד 21:00', 'Downbeat RUNNING, 3-22-11 Shinjuku, Shinjuku City, Tokyo']
   ];
   return `<details class="shopping-group" onclick="event.stopPropagation()">
     <summary>פירוט 4 חנויות</summary>
-    <div class="shopping-group-list">${stops.map(([time, name, note]) => `<div class="shopping-stop"><div class="shopping-stop-time">${time}</div><div><strong>${name}</strong><span>${note}</span></div></div>`).join('')}</div>
+    <div class="shopping-group-list">${stops.map(([name, note, destination]) => `<div class="shopping-stop"><strong>${name}</strong><div class="shopping-stop-row"><span>${note}</span><a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}&travelmode=walking" onclick="event.stopPropagation()">🧭 ניווט</a></div></div>`).join('')}</div>
   </details>`;
 }
 
@@ -1543,14 +1544,17 @@ function renderCountdownChip(){
 }
 
 const data = {
-  '12-13': { title:"טיסה ליפן", route:"תל אביב → אבו דאבי → Narita T1 → Hotel Gracery Shinjuku → קניות בשינג׳וקו", events:[
+  '12-13': { title:"טיסה ליפן", route:"תל אביב → אבו דאבי → Narita T1 → Hotel Gracery Shinjuku → קניות → Omoide Yokocho → Kabukicho → Golden Gai", events:[
     ["14:00","TLV → AUH","Flight: EY594\nתל אביב → אבו דאבי\nמשך טיסה: 3:05\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Boeing 787-9","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
     ["19:05","Connection in AUH","קונקשן באבו דאבי: 3:15\nצ'ק-אין לטיסת EY800 החל מ-19:20, וההמראה בשעה 22:20.","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Abu Dhabi International Airport"],
     ["22:20","AUH → NRT","Flight: EY800\nאבו דאבי → טוקיו נאריטה\nמשך טיסה: 9:55\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
     ["13:15 +1","נחיתה ב-Narita Terminal 1","לאחר הנחיתה: ביקורת גבולות, איסוף מזוודות ומכס. מומלץ להקדיש 60–90 דקות עד היציאה לאולם מקבלי הפנים בקומה 1.","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Narita Airport Terminal 1"],
     ["14:30<br>16:30","מיניוואן פרטי מ-Narita למלון","מיניוואן שהוזמן מראש אוסף אותנו משדה התעופה ומסיע אותנו ישירות ל-Hotel Gracery Shinjuku, בלי החלפות ובלי סחיבת מזוודות.\n\nלאחר ביקורת הגבולות, איסוף המזוודות והמכס יוצאים לאולם מקבלי הפנים ופוגשים את הנהג. כדאי לשמור את פרטי ההזמנה ואת מספר הטלפון של הנהג זמינים.\n\nמחיר: ¥26,000 לכל הקבוצה, לתשלום במזומן לנהג. כדאי להביא מזומן בידיים במהלך ההגעה.","assets/transfers/minivan.jpg","Hotel Gracery Shinjuku","🚐 מיניוואן שהוזמן מראש · ¥26,000 במזומן · ישירות למלון"],
     ["17:00<br>18:00","צ׳ק-אין ב-Hotel Gracery Shinjuku","הליכה קצרה מ-Tokyu Kabukicho Tower למלון, צ׳ק-אין ומנוחה לאחר הטיסות.","assets/attractions/day14/baggage_transportation.jpg","Hotel Gracery Shinjuku","🏨 לילה ראשון בטוקיו"],
-    ["18:00<br>21:30","קניות בשינג׳וקו","סבב קניות מרוכז ליד המלון: מתחילים בחנויות הריצה והספורט, ממשיכים ל-UNIQLO ומסיימים ב-GU לפי הזמן והאנרגיה.","pictures/חנות ספורט  טוקיו.jpg","Shinjuku shopping","🛍️ 4 חנויות · לחצו לפתיחת הפירוט"]
+    ["17:30<br>20:00","קניות בשינג׳וקו","סבב קניות מרוכז ליד המלון: מתחילים ב-UNIQLO וב-GU, ולאחר מכן ממשיכים ל-Alpen TOKYO ול-Downbeat RUNNING לפי הזמן והאנרגיה.","pictures/חנות ספורט  טוקיו.jpg","Shinjuku shopping","🛍️ 4 חנויות · לחצו לפתיחת הפירוט"],
+    ["20:15<br>21:15","ארוחת ערב ואווירה ב-Omoide Yokocho","אוכלים yakitori או מנות איזקאיה קטנות בין הסמטאות הצרות והפנסים של Omoide Yokocho. בוחרים מקום עם מקומות פנויים ושומרים על ארוחה פשוטה אחרי יום הטיסות.","assets/attractions/day24/omoide.jpg","Omoide Yokocho Shinjuku","🍢 ארוחת ערב ואווירה · שעה"],
+    ["21:15<br>21:45","טיול ערב ב-Kabukicho","הולכים בין רחובות הניאון של Kabukicho, עוברים באזור Godzilla וצופים באווירת הערב ובאנשים. זהו סיבוב הליכה בלבד.","assets/attractions/day24/kabukicho.jpg","Godzilla Head Shinjuku Kabukicho","🌃 ניאון, Godzilla וצפייה ברחוב"],
+    ["21:45<br>22:15","Golden Gai – אופציונלי","ממשיכים ל-Golden Gai רק אם עדיין נשאר כוח. אפשר לעבור בין הסמטאות הצרות או לעצור למשקה אחד לפני החזרה למלון.","assets/attractions/day24/golden_gai.jpg","Shinjuku Golden Gai","🍶 הליכה קצרה או משקה אחד"]
   ]},
   '14': { title:"טוקיו --> האקונה", route:"שינג'וקו → Hakone-Yumoto → המלון", events:[
     ["08:00<br>08:45","הפקדת מזוודות במלון","מפקידים את המזוודות במלון לשליחה לקיוטו וממשיכים את היום עם תרמיל קל בלבד.\nהמזוודות יגיעו למלון בקיוטו ב-17.11.","assets/attractions/day14/baggage_transportation.jpg","Hotel Gracery Shinjuku"],
