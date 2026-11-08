@@ -905,34 +905,6 @@
 
       <div class="upload-panel hidden" id="transportTransitPanel"></div>
 
-      <div class="upload-panel" id="transportRouteFinder">
-        <div class="section-title" style="margin:0;font-size:18px">אפשרויות ניווט</div>
-        <div style="display:grid;gap:10px;margin-top:10px">
-          <select id="transportFrom" class="input">
-            <option value="Tokyo Station">Tokyo Station</option>
-            <option value="Shinjuku Station">Shinjuku Station</option>
-            <option value="Shibuya Station">Shibuya Station</option>
-            <option value="Kyoto Station">Kyoto Station</option>
-            <option value="Osaka Station">Osaka Station</option>
-            <option value="Narita Airport">Narita Airport</option>
-            <option value="Haneda Airport">Haneda Airport</option>
-          </select>
-          <select id="transportTo" class="input">
-            <option value="Kyoto Station">Kyoto Station</option>
-            <option value="Tokyo Station">Tokyo Station</option>
-            <option value="Shinjuku Station">Shinjuku Station</option>
-            <option value="Shibuya Station">Shibuya Station</option>
-            <option value="Osaka Station">Osaka Station</option>
-            <option value="Narita Airport">Narita Airport</option>
-            <option value="Haneda Airport">Haneda Airport</option>
-          </select>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn primary" type="button" onclick="openTransitRoute()">🚆 חיפוש מסלול</button>
-            <button class="btn ghost" type="button" onclick="swapTransportPoints()">החלפת כיוון</button>
-          </div>
-        </div>
-      </div>
-
       <div class="upload-panel">
         <div class="section-title" style="margin:0;font-size:18px">קישורים שימושיים</div>
         <div class="actions" style="flex-wrap:wrap">
@@ -1095,7 +1067,7 @@ const quickLinksConfig = [
 const flightStatusDefaults = [
   { id: 'ey594', label: '12.11 TLV → AUH', flight: 'EY594', queryFlight: 'EY594', status: 'unknown', gate: '', originalDepartureTime: '12.11 14:00', originalArrivalTime: '12.11 19:05', originalDepartureTerminal: 'TLV', originalArrivalTerminal: 'AUH' },
   { id: 'ey800', label: '12.11 AUH → NRT', flight: 'EY800', queryFlight: 'EY800', status: 'unknown', gate: '', originalDepartureTime: '12.11 22:20', originalArrivalTime: '13.11 13:15', originalDepartureTerminal: 'AUH', originalArrivalTerminal: 'NRT' },
-  { id: 'ey801', label: '28.11 NRT → AUH', flight: 'EY801', queryFlight: 'EY801', status: 'unknown', gate: '', originalDepartureTime: '28.11 17:20', originalArrivalTime: '29.11 00:40', originalDepartureTerminal: 'NRT', originalArrivalTerminal: 'AUH' },
+  { id: 'ey801', label: '28.11 NRT → AUH', flight: 'EY801', queryFlight: 'EY801', status: 'unknown', gate: '', originalDepartureTime: '28.11 14:00', originalArrivalTime: '28.11 21:20', originalDepartureTerminal: 'NRT', originalArrivalTerminal: 'AUH' },
   { id: 'ey609', label: '29.11 AUH → TLV', flight: 'EY609', queryFlight: 'EY609', status: 'unknown', gate: '', originalDepartureTime: '29.11 02:45', originalArrivalTime: '29.11 04:30', originalDepartureTerminal: 'AUH', originalArrivalTerminal: 'TLV' }
 ];
 const FLIGHT_STATUS_STORAGE_KEY = 'japan2026.flightStatus';
@@ -1154,7 +1126,7 @@ const themesByDay = {
   '24': "שינקנסן לטוקיו, טיול במרונוצ'י ובגינזה וערב עם ארוחת Akita Dining",
   '25': "הראג'וקו, אומוטסנדו ושיבויה — Shibuya Sky ואווירת ערב תוססת",
   '26': "שוק צוקיג'י, teamLab Borderless באזאבודאי הילס וקניות בגינזה",
-  '27': "אסאקוסה, סנסו-ג'י, אקיהברה, אואנו ואמייוקו — וארוחת פרידה חגיגית"
+  '27': "אסאקוסה, אקיהברה ואמייוקו — תאורת השלכת ב-Rikugien וארוחת פרידה"
 };
 
 // Public-transport legs shown on the route page per day
@@ -1291,16 +1263,16 @@ const routeNotesPresets = {
     tips: "לכל ששת המטיילים מומלץ להשתמש בכרטיסי Suica, PASMO או ICOCA ולוודא מראש שיש בהם יתרה חיובית. יש להזמין מראש את Shibuya Sky ואת Yakitori Tsukada."
   },
   '26': {
-    overview: "יום של אוכל, אמנות וקניות נפתח בסיור טעימות ב-Tsukiji Outer Market וממשיך לחוויה הדיגיטלית של teamLab Borderless ולשיטוט קצר ב-Azabudai Hills. אחר הצהריים מוקדש לבלוק קניות ארוך בגינזה, כולל Uniqlo, Loft, Itoya, Ginza Six ו-Onitsuka Tiger. לאחר מנוחה במלון נאכל ארוחת ערב רגועה בגינזה, ובסיום נבחר בין קוקטייל, בר נוסף או חזרה מוקדמת למלון.",
-    tips: "כדאי להגיע לצוקיג'י מוקדם כדי להימנע מעומס. יש להזמין כרטיסים מראש ל-teamLab Borderless."
+    overview: "בשעה 08:40 נצא ברגל מ-remm PLUS Ginza אל Tsukiji Outer Market לסיור טעימות של כשעה ורבע. ב-10:15 ניסע בקו Hibiya הישיר ל-Kamiyacho ונעבור דרך Azabudai Hills אל הכניסה של teamLab Borderless לשעת הכניסה 11:00. לאחר שעתיים במוזיאון נעצור לארוחה קלה וקפה, נלך כ-20 דקות ל-Zojo-ji ונמשיך ברגל אל Tokyo Tower לצילום חיצוני קצר. ב-14:55 נחזור במטרו לגינזה ונקדיש יותר מארבע שעות לקניות ב-Uniqlo, Loft, Itoya, Ginza Six ו-Onitsuka Tiger. סביב 19:30 נניח את הקניות במלון, ננוח מעט ונצא לארוחת ערב ולמשקה אופציונלי בגינזה.",
+    tips: "יש להזמין מראש כניסה ל-teamLab Borderless בשעה 11:00. צאו מצוקיג'י לכל המאוחר ב-10:15; אם יש עיכוב, קחו מונית ישירות ל-Azabudai Hills."
   },
   '27': {
-    overview: "היום מתחיל באסאקוסה עם שער Kaminarimon, רחוב Nakamise ומקדש Senso-ji, ולאחר מכן ארוחת צהריים מסורתית באזור. משם נמשיך לאלקטרוניקה, משחקים ואנימה ב-Akihabara, נעבור ל-Ueno Park ונסיים את חלק היום בשוק Ameyoko. נחזור למלון למנוחה ולהחלפת בגדים, ובערב נצא לארוחת פרידה חגיגית של Omakase, Teppanyaki או Wagyu בגינזה.",
-    tips: "כדאי להזמין מראש מקום לארוחת הפרידה (Omakase Sushi / Teppanyaki / Wagyu)."
+    overview: "בשעה 08:40 נצא מ-remm PLUS Ginza לאסאקוסה ונבקר בנפרד בשער Kaminarimon, ברחוב Nakamise ובמקדש Senso-ji. לאחר ארוחת צהריים פשוטה באזור נמשיך ל-90 דקות באקיהברה ונלך צפונה לשעתיים של קניות בשוק Ameyoko. ב-16:40 ניסע ל-Komagome, נעצור לחצי שעה של קפה ומנוחה ונלך אל השער הראשי של Rikugien. בין 18:00 ל-19:25 נבקר בתאורת השלכת העונתית, ולאחר מכן נחזור לגינזה לארוחת פרידה שהוזמנה לשעה 20:30. בסיום אפשר לחזור ישירות למלון או לשתות משקה אחרון בגינזה.",
+    tips: "חובה להזמין מראש שישה כרטיסים לתאורת הלילה של Rikugien בתאריך 27.11: הכרטיס המוקדם עולה ¥1,000 לאדם, המכירה מוגבלת והכניסה בערב היא דרך השער הראשי בלבד. בנוסף יש להזמין מראש שולחן לשישה לארוחת הפרידה בגינזה בשעה 20:30."
   },
   '28': {
-    overview: 'היום האחרון מתחיל בארוחת בוקר, צ׳ק-אאוט והשארת המזוודות ב-remm PLUS Ginza. נבקר ב-Zojo-ji Temple וב-Tokyo Tower, נאכל ארוחת צהריים קלה ונחזור למלון לאיסוף המזוודות. משם נצא ל-Narita לקראת טיסת EY801 לאבו דאבי בשעה 17:20, נמשיך בקונקשן לטיסת EY609 לתל אביב וננחת בישראל למחרת בשעה 04:30. חשוב להשאיר מרווח נדיב לנסיעה לנמל התעופה ולעקוב אחר עדכוני הטיסות והשערים.',
-    tips: ''
+    overview: 'היום האחרון מוקדש להתארגנות ולטיסה בלבד. נאכל ארוחת בוקר מוקדמת, נשלים אריזה ונבצע צ׳ק-אאוט מ-remm PLUS Ginza עד 09:30. מיד לאחר מכן נצא עם המזוודות ל-Narita, במטרה להגיע סביב 11:00 ולהשאיר כשלוש שעות לבידוק, מסירת כבודה וביקורת גבולות לפני טיסת EY801 לאבו דאבי בשעה 14:00. לאחר הנחיתה המשוערת באבו דאבי בשעה 21:20 נמתין לטיסת EY609 לתל אביב בשעה 02:45 וננחת בישראל בשעה 04:30.',
+    tips: 'יש לסיים אריזה בערב הקודם ולבדוק יום לפני הטיסה את הטרמינל ואת מסלול הרכבת המדויק לנריטה. אין לתכנן קניות או ארוחת צהריים בטוקיו בבוקר הטיסה.'
   }
 };
 
@@ -1378,8 +1350,6 @@ function showTransportationDetails(day, transferIndex){
   if (!data[day]) return;
   document.getElementById('transportationDayTitle').textContent = `${data[day].title}`;
   document.getElementById('transportationRoute').textContent = data[day].route;
-  const routeFinder = document.getElementById('transportRouteFinder');
-  if (routeFinder) routeFinder.classList.toggle('hidden', ['14', '25'].includes(day));
   // Show live flight status panel only on flight days (outbound 12-13, return 28)
   const flightPanel = document.getElementById('transportFlightPanel');
   if (flightPanel) flightPanel.classList.toggle('hidden', !(day === '12-13' || day === '28'));
@@ -1685,32 +1655,34 @@ const data = {
     ["19:00<br>20:45","Yakitori Tsukada Shibuya","Yakitori Tsukada היא רשת יאקיטורי איכותית ואהובה, שמגישה שיפודי עוף על גריל פחמים בסגנון המסורתי. התפריט מגוון ומכיל כמעט כל חלק אפשרי של העוף, לצד ירקות על האש ומנות צד יפניות קלאסיות. האווירה תוססת וחמה, טיפוסית למסעדות איזאקאיה יפניות, ומתאימה מצוין לארוחה קבוצתית עם המון טעימות. השירות מהיר ויעיל, גם כשהמקום מלא.","assets/attractions/day25/yakitori_tsukada.jpg","Yakitori Tsukada Shibuya"],
     ["21:00<br>22:30","ברים בשיבויה","Nonbei Yokocho, המכונה גם 'סמטת השיכורים', היא סמטה צרה ואטמוספרית עם עשרות ברים זעירים שמכילים לרוב רק כמה כיסאות. כל בר כזה הוא עולם קטן משלו, עם בעל בית וקהל קבוע, ומעניק הצצה לחיי הלילה האמיתיים של תושבי טוקיו. מי שמעדיף אווירה מסוגננת יותר יכול לבחור בקוקטייל בר מודרני בסביבה. כך או כך, זהו סיום מושלם לערב תוסס בשיבויה.","assets/attractions/day25/shibuya_crossing.jpg","Nonbei Yokocho"],
   ]},
-  '26': { title:"טוקיו – צוקיג'י, teamLab וגינזה", route:"Tsukiji → Azabudai Hills → teamLab Borderless → Ginza", events:[
-    ["09:00<br>10:30","Tsukiji Outer Market","שוק האוכל המפורסם של טוקיו — Food Tour של סושי טרי, טונה, צדפות, וואגיו על שיפוד, טמאגויאקי וקינוחים","assets/attractions/day26/tsukiji_outer_market.jpg","Tsukiji Outer Market"],
-    ["11:00<br>13:15","teamLab Borderless","אחד ההיילייטים של הטיול — מוזיאון אמנות דיגיטלית ללא מסלול מוגדר","assets/attractions/day26/teamlab_borderless.jpg","teamLab Borderless Azabudai Hills"],
-    ["13:15<br>14:00","Azabudai Hills","אזאבודאי הילס הוא אחד הפרויקטים העירוניים החדשים והשאפתניים ביותר בטוקיו, שנפתח ב-2023 ומשלב מגדלי משרדים, מגורים, מסעדות וחללי אמנות ציבורית. העיצוב האדריכלי המודרני משלב שטחים ירוקים פתוחים בין הבניינים, ויוצר תחושה עירונית ונעימה יחסית לגודל הפרויקט. במתחם יש גם קונספט חנויות אוכל, בתי קפה איכותיים וגלריות קטנות. זהו מקום נחמד לנוח, לשתות קפה ולהסתובב מעט לפני או אחרי teamLab.","assets/attractions/day26/azabudai_hills.jpg","Azabudai Hills"],
-    ["14:30<br>19:00","Ginza Shopping Block","בלוק הקניות הגדול של הטיול: Uniqlo Ginza, Loft, Itoya, Ginza Six, Onitsuka Tiger","assets/attractions/day26/ginza_shopping_block.jpg","Ginza Six"],
-    ["19:00<br>20:00","מלון ומנוחה","להניח שקיות, להתקלח ולהתרענן","assets/attractions/day26/hotel.jpg","remm PLUS Ginza Tokyo"],
+  '26': { title:"טוקיו – צוקיג'י, teamLab, Zojo-ji וגינזה", route:"Ginza → Tsukiji → Azabudai Hills → teamLab Borderless → Zojo-ji → Tokyo Tower → Ginza", events:[
+    ["09:00<br>10:15","Tsukiji Outer Market","סיור טעימות בוקר בשוק החיצוני של צוקיג'י: סושי טרי, טונה, צדפות, וואגיו על שיפוד, טמאגויאקי וקינוחים. מסיימים בזמן כדי להגן על שעת הכניסה ל-teamLab.","assets/attractions/day26/tsukiji_outer_market.jpg","Tsukiji Outer Market"],
+    ["11:00<br>13:00","teamLab Borderless","אחד ההיילייטים של הטיול: מוזיאון אמנות דיגיטלית ללא מסלול מוגדר. הכרטיסים הם לשעה 11:00 ואין כניסה חוזרת לאחר היציאה.","assets/attractions/day26/teamlab_borderless.jpg","teamLab Borderless Azabudai Hills"],
+    ["13:00<br>13:35","ארוחת צהריים קלה וקפה","ארוחה מהירה או קפה ב-Azabudai Hills לפני ההליכה ל-Zojo-ji. שומרים על עצירה קצרה כדי לא לפגוע בבלוק הקניות בגינזה.","assets/attractions/day26/azabudai_hills.jpg","Azabudai Hills restaurants"],
+    ["13:55<br>14:25","Zojo-ji Temple","ביקור ממוקד במקדש המשפחתי של שוגוני Tokugawa, כולל השער ההיסטורי והצילום האייקוני של המקדש עם Tokyo Tower ברקע.","assets/attractions/day28/zojoji_temple.jpg","Zojo-ji Temple"],
+    ["14:35<br>14:55","Tokyo Tower – ביקור חיצוני","הליכה סביב בסיס המגדל וצילום חיצוני. לא עולים לתצפית כדי לשמור יותר מארבע שעות לקניות בגינזה.","assets/attractions/day28/tokyo_tower.jpg","Tokyo Tower"],
+    ["15:25<br>19:30","Ginza Shopping Block","יותר מארבע שעות לקניות ב-Uniqlo Ginza, Loft, Itoya, Ginza Six ו-Onitsuka Tiger. המסלול מסתיים בכיוון המלון כדי להקל על הנחת השקיות.","assets/attractions/day26/ginza_shopping_block.jpg","Ginza Six"],
+    ["19:30<br>20:00","הנחת קניות ומנוחה קצרה במלון","חוזרים ברגל ל-remm PLUS Ginza, מניחים את השקיות ומתרעננים לפני ארוחת הערב.","assets/attractions/day26/hotel.jpg","remm PLUS Ginza Tokyo"],
     ["20:00<br>21:30","ארוחת ערב בגינזה","אחרי יום עמוס של שוק, אמנות דיגיטלית וקניות, זהו הזמן לארוחת ערב רגועה במסעדה בגינזה. האזור מציע מגוון עצום של אפשרויות, ממסעדות זולות ועד מסעדות קייסקי או וואגיו יוקרתיות. כדאי לבחור לפי מצב הרוח והרעב — אין כבר צורך למהר לעוד אטרקציה. זהו רגע טוב לשבת בנחת ולסכם את היום.","assets/attractions/day26/ginza_shopping_block.jpg","Ginza Tokyo"],
     ["21:30","בר / קוקטייל / חופשי","גינזה מציעה מגוון ברים לכל טעם, מברי קוקטייל יוקרתיים בקומות עליונות ועד פאבים קטנים ואינטימיים. זהו זמן פתוח וגמיש — אפשר להמשיך לבר, לחזור למלון למנוחה, או פשוט לטייל עוד קצת ברחובות המוארים. הכול תלוי במצב הרוח והאנרגיה שנותרה אחרי יום ארוך. אין תוכנית קבועה לשעה הזו, וזה בדיוק היופי שבה.","assets/attractions/day26/hotel.jpg","Ginza Tokyo"]
   ]},
-  '27': { title:"טוקיו – אסאקוסה ואקיהברה", route:"Asakusa → Akihabara → Ueno → Ameyoko", events:[
-    ["09:30<br>12:00","Asakusa + Senso-ji","מקדש בודהיסטי מהמאה ה-7, שער Kaminarimon, רחוב Nakamise וסמטאות מסורתיות","assets/attractions/day27/asakusa_sensoji.jpg","Senso-ji Asakusa"],
-    ["12:00<br>13:00","ארוחת צהריים באסאקוסה","סביבת אסאקוסה מלאה במסעדות מסורתיות ותיקות, חלקן פועלות באותה משפחה כבר עשרות שנים. האזור מפורסם בעיקר בטמפורה פריכה ובסובה קרה או חמה, שתי מנות קלאסיות שמתאימות מצוין לארוחת צהריים. יש גם מסעדות אונאגי (צלופח) ו-Tempura-don ותיקות שכדאי לנסות. זו הזדמנות טובה לטעום מטבח יפני מסורתי בסביבה אותנטית.","assets/attractions/lunch.jpg","Asakusa Tokyo"],
-    ["13:15<br>14:45","Akihabara","בירת האלקטרוניקה והגיק-קאלצ'ר של יפן — גאדג'טים, משחקים, מצלמות וטכנולוגיה","assets/attractions/day27/akihabara.jpg","Akihabara"],
-    ["15:00<br>16:00","Ueno Park","פארק גדול ונעים עם מקדשים, מוזיאונים ואווירה רגועה","assets/attractions/day27/ueno_park.jpg","Ueno Park"],
-    ["16:00<br>18:00","Ameyoko Market","שוק רחוב צפוף וחי מתחת למסילת רכבת — אוכל רחוב, דוכנים ואווירה אותנטית","assets/attractions/day27/ameyoko_market.jpg","Ameyoko Market"],
-    ["18:00<br>19:00","חזרה למלון / מנוחה","מנוחה קצרה לפני ערב הסיום","assets/transfers/train.jpg","remm PLUS Ginza Tokyo"],
-    ["20:00<br>22:30","ארוחת פרידה חגיגית","ארוחת סיום חגיגית של הטיול — Omakase Sushi, Teppanyaki או Wagyu ברמה גבוהה","assets/attractions/day27/lunch.jpg","Ginza Tokyo"],
+  '27': { title:"טוקיו – אסאקוסה, אקיהברה ותאורת השלכת", route:"Ginza → Asakusa → Akihabara → Ameyoko → Komagome → Rikugien → Ginza", events:[
+    ["09:15<br>09:30","Kaminarimon Gate","שער הרעם האייקוני והפנס האדום הענק בכניסה לאזור Senso-ji. עצירת צילום קצרה לפני הכניסה לרחוב Nakamise.","assets/attractions/day27/asakusa_sensoji.jpg","Kaminarimon Gate"],
+    ["09:30<br>10:15","Nakamise-dori","רחוב הקניות המסורתי המוביל אל המקדש, עם ממתקים יפניים, קרקרים, מניפות, מקלות אכילה, עבודות יד ומזכרות קטנות.","assets/attractions/day27/card2_nakamise.jpg","Nakamise Shopping Street"],
+    ["10:15<br>11:30","Senso-ji","עוברים בשער Hozomon, באזור הקטורת ובאולם הראשי, ורואים את הפגודה בת חמש הקומות ואת שטחי המקדש העתיק ביותר בטוקיו.","assets/attractions/day27/asakusa_sensoji.jpg","Senso-ji Asakusa"],
+    ["11:30<br>12:30","ארוחת צהריים באסאקוסה","ארוחה פשוטה ולא ארוכה של טמפורה או Tendon, סובה, טונקאטסו, אונאגי או סושי, כדי לצאת בזמן לאקיהברה.","assets/attractions/lunch.jpg","Asakusa Tokyo restaurants"],
+    ["12:50<br>14:20","Akihabara","תשעים דקות לאלקטרוניקה, אנימה ומנגה, משחקים, ארקיידים, חנויות אספנות, מצלמות והבניינים המסחריים המוארים של השכונה.","assets/attractions/day27/akihabara.jpg","Akihabara Electric Town"],
+    ["14:35<br>16:40","Ameyoko Market","כשעתיים בשוק העמוס והזול שבין Okachimachi ל-Ueno: נעליים, בגדים, קוסמטיקה, בתי מרקחת, תה, חטיפים, תיקים ומזכרות.","assets/attractions/day27/ameyoko_market.jpg","Ameyoko Shopping District"],
+    ["17:15<br>17:45","קפה ומנוחה ליד Komagome","חצי שעה ישיבה לקפה או תה, חטיף ושירותים לפני הביקור הלילי בגן.","pictures/cafe coffee break.jpg","Komagome Station cafes"],
+    ["18:00<br>19:25","Rikugien Garden Autumn Illumination","תאורת שלכת עונתית בגן נוף יפני היסטורי: עצי מייפל אדומים וכתומים, השתקפויות בבריכה, גשרים, במבוק ומיצגי אור. הכניסה בערב היא דרך השער הראשי בלבד. חובה להזמין מראש שישה כרטיסים לתאריך 27.11; מחיר מוקדם ¥1,000 לאדם והמכירה מוגבלת.","pictures/Rikugien Garden Autumn Illumination.jpg","Rikugien Gardens Main Gate","🎟️ להזמין מראש 6 כרטיסים · 27.11 · ¥1,000 לאדם"],
+    ["20:30<br>22:15","ארוחת פרידה חגיגית בגינזה","ארוחת הערב האחרונה המלאה ביפן: סושי איכותי, Wagyu, איזאקאיה, טמפורה או יאקיטורי ליד המלון. חובה להזמין מראש שולחן לשישה לשעה 20:30.","pictures/אחוחת פרידה חגיגיו.jpg","Ginza Tokyo restaurants","🍣 להזמין מראש שולחן ל-6 · 20:30"],
+    ["22:15+","משקה אחרון או חזרה למלון","מי שעייף חוזר ישירות ל-remm PLUS Ginza; מי שרוצה יכול לסיים במשקה אחרון במרחק הליכה מהמלון.","assets/attractions/day27/hotel.jpg","remm PLUS Ginza Tokyo"],
   ]},
-  '28': { title:"טוקיו – יום אחרון וטיסה הביתה", route:"Zojo-ji → Tokyo Tower → NRT → AUH → TLV", events:[
-    ["09:00<br>10:00","ארוחת בוקר + צ'ק-אאוט","השארת מזוודות במלון","assets/attractions/day28/checkout.jpg","remm PLUS Ginza Tokyo"],
-    ["10:30<br>11:30","Zojo-ji Temple","מקדש זוג'ו-ג'י הוא אחד המקדשים הבודהיסטים החשובים בטוקיו, ששימש לדורות רבים כמקדש המשפחתי של שושלת טוקוגאווה השלטת. השער הראשי, Sangedatsumon, הוא מבנה עץ עתיק ומרשים ששרד את מלחמת העולם השנייה. הצילום האייקוני של המקדש עם מגדל טוקיו טאוור המודרני ברקע יוצר ניגוד יפה בין יפן העתיקה לחדשה. בשטח המקדש אפשר גם לראות שורות של פסלוני ג'יזו קטנים לזכר תינוקות שלא נולדו.","assets/attractions/day28/zojoji_temple.jpg","Zojo-ji Temple"],
-    ["11:30<br>12:30","Tokyo Tower","מגדל טוקיו טאוור נבנה ב-1958 בהשראת מגדל אייפל ושימש עשרות שנים כסמל ההיסטורי המובהק ביותר של העיר. בגובה 333 מטר, הוא עדיין משמש כאנטנת שידור פעילה לצד היותו אטרקציית תיירות מרכזית. מתצפית האמצע (Main Deck) אפשר לראות את פריסת טוקיו, ובימים בהירים אפילו להבחין בהר פוג'י באופק. הצבע הכתום-לבן האייקוני שלו הפך לאחד הסמלים המזוהים ביותר עם העיר כולה.","assets/attractions/day28/tokyo_tower.jpg","Tokyo Tower"],
-    ["11:30<br>12:15","ארוחת צהריים מוקדמת","ארוחה קלה ומהירה ליד Tokyo Tower לפני החזרה למלון ואיסוף המזוודות.","assets/attractions/lunch.jpg","Tokyo Tower"],
-    ["12:15<br>12:45","חזרה למלון ואיסוף מזוודות","לחזור ישירות ל-remm PLUS Ginza ולאסוף את המזוודות שהושארו לאחר הצ'ק-אאוט.","assets/attractions/day28/ginza_shopping.jpg","remm PLUS Ginza Tokyo"],
-    ["17:20","NRT → AUH","Flight: EY801\nטוקיו נאריטה → אבו דאבי\nמשך טיסה: 12:20\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
-    ["00:40 +1","Connection in AUH","קונקשן באבו דאבי: 2:05\nהמשך באותו נמל תעופה לטיסת EY609","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Abu Dhabi International Airport"],
+  '28': { title:"טוקיו – יום אחרון וטיסה הביתה", route:"remm PLUS Ginza → NRT → AUH → TLV", events:[
+    ["07:30<br>09:15","ארוחת בוקר, אריזה והתארגנות","ארוחת בוקר מוקדמת והשלמת האריזה בחדר. אין קניות או תוכניות נוספות בבוקר הטיסה.","assets/attractions/day28/checkout.jpg","remm PLUS Ginza Tokyo"],
+    ["09:15<br>09:30","צ'ק-אאוט ויציאה מהמלון","מבצעים צ'ק-אאוט, אוספים את כל המזוודות ויוצאים לנריטה לא יאוחר מ-09:30.","assets/attractions/day28/checkout.jpg","remm PLUS Ginza Tokyo"],
+    ["14:00","NRT → AUH","Flight: EY801\nטוקיו נאריטה → אבו דאבי\nמשך טיסה: 12:20\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
+    ["21:20","Connection in AUH","קונקשן באבו דאבי: 5:25\nהמשך באותו נמל תעופה לטיסת EY609","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Abu Dhabi International Airport"],
     ["02:45 +1","AUH → TLV","Flight: EY609\nאבו דאבי → תל אביב\nמשך טיסה: 3:45\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Airbus A321","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
     ["04:30 +1","נחיתה בתל אביב","הגעה לישראל וסיום הטיול","https://images.unsplash.com/photo-1540339832862-fde94ed5d7de?auto=format&fit=crop&w=300&q=80","Ben Gurion Airport"]
   ]}
@@ -1839,17 +1811,37 @@ const transfersByDay = {
     ]}}
   ],
   '26': [
-    {"t": "08:45", "title": "יציאה מהמלון", "desc": "נוסעים לצוקיג'י לפני שהמקום נהיה עמוס", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": -1, "from": null},
-    {"t": "10:30<br>10:50", "title": "מעבר ל-Azabudai Hills", "desc": "נסיעה קצרה ל-teamLab", "img": "assets/transfers/taxi.jpg", "to": "Azabudai Hills", "tag": "", "afterIdx": 0, "from": "Tsukiji Outer Market"},
-    {"t": "14:00<br>14:30", "title": "מעבר לגינזה", "desc": "רכבת קצרה חזרה לאזור המלון", "img": "assets/transfers/train.jpg", "to": "Ginza Tokyo", "tag": "", "afterIdx": 2, "from": "Azabudai Hills"}
+    {"t": "08:40<br>09:00", "title": "remm PLUS Ginza → Tsukiji Outer Market", "label": "🚶 המלון → Tsukiji Outer Market", "desc": "הליכת בוקר ישירה מהמלון לשוק דרך Ginza ו-Tsukiji; יוצאים בזמן כדי להתחיל את הטעימות ב-09:00.", "img": "assets/transfers/walk.jpg", "to": "Tsukiji Outer Market", "tag": "🚶 כ-20 דקות", "afterIdx": -1, "from": "remm PLUS Ginza Tokyo"},
+    {"t": "10:15<br>10:40", "title": "Tsukiji → Azabudai Hills", "label": "🚇 Tsukiji → Azabudai Hills", "desc": "קו Hibiya ישיר מתחנת Tsukiji ל-Kamiyacho, יציאה 5 והמשך רגלי מקורה אל Garden Plaza B.", "img": "assets/transfers/train.jpg", "to": "teamLab Borderless Azabudai Hills", "tag": "🚶 + 🚇 Hibiya + 🚶 · כ-25 דקות · כ-¥180", "afterIdx": 0, "from": "Tsukiji Outer Market", "details": {"title": "פירוט מלא מצוקיג'י ל-teamLab · 3 שלבים", "steps": [
+      {"time": "10:15–10:20", "title": "הליכה ל-Tsukiji Station", "desc": "יוצאים מהשוק לכיוון תחנת Tsukiji של קו Hibiya.", "navigation": {"from": "Tsukiji Outer Market", "to": "Tsukiji Station Tokyo", "mode": "walking", "label": "🚶 ניווט לתחנה"}},
+      {"time": "10:20–10:32", "title": "Hibiya Line ל-Kamiyacho", "desc": "עולים על הקו האפור בכיוון Naka-meguro ויורדים ב-Kamiyacho, ללא החלפה.", "navigation": {"from": "Tsukiji Station Tokyo", "to": "Kamiyacho Station Tokyo", "mode": "transit", "label": "🚇 מסלול מטרו"}},
+      {"time": "10:32–10:40", "title": "יציאה 5 והליכה ל-Azabudai Hills", "desc": "עוקבים אחרי השילוט המקורה ל-Garden Plaza B ול-teamLab Borderless.", "navigation": {"from": "Kamiyacho Station Exit 5", "to": "teamLab Borderless Azabudai Hills", "mode": "walking", "label": "🚶 ניווט ל-teamLab"}}
+    ], "recommendations": [
+      "צאו מהשוק לכל המאוחר ב-10:15 כדי לשמור על שעת הכניסה 11:00.",
+      "אם נוצר עיכוב משמעותי, קחו מונית ישירות ל-teamLab Borderless."
+    ]}},
+    {"t": "13:35<br>13:55", "title": "Azabudai Hills → Zojo-ji", "label": "🚶 Azabudai Hills → Zojo-ji", "desc": "הליכה של כ-1.2 ק״מ דרך Tokyo Tower-dori אל שער המקדש.", "img": "assets/transfers/walk.jpg", "to": "Zojo-ji Temple", "tag": "🚶 כ-18–20 דקות", "afterIdx": 2, "from": "Azabudai Hills"},
+    {"t": "14:25<br>14:35", "title": "Zojo-ji → Tokyo Tower", "label": "🚶 Zojo-ji → Tokyo Tower", "desc": "יוצאים מצדו הצפוני של המקדש והולכים דרך Shiba Park אל בסיס המגדל.", "img": "assets/transfers/walk.jpg", "to": "Tokyo Tower", "tag": "🚶 כ-10 דקות", "afterIdx": 3, "from": "Zojo-ji Temple"},
+    {"t": "14:55<br>15:25", "title": "Tokyo Tower → Ginza", "label": "🚇 Tokyo Tower → Ginza", "desc": "הליכה ל-Kamiyacho, קו Hibiya הישיר ל-Ginza והליכה לתחילת בלוק הקניות.", "img": "assets/transfers/train.jpg", "to": "Ginza Six", "tag": "🚶 + 🚇 Hibiya + 🚶 · כ-30 דקות · כ-¥180", "afterIdx": 4, "from": "Tokyo Tower", "details": {"title": "פירוט מלא מ-Tokyo Tower לגינזה · 3 שלבים", "steps": [
+      {"time": "14:55–15:08", "title": "הליכה ל-Kamiyacho Station", "desc": "הולכים מבסיס Tokyo Tower לתחנת Kamiyacho.", "navigation": {"from": "Tokyo Tower", "to": "Kamiyacho Station Tokyo", "mode": "walking", "label": "🚶 ניווט לתחנה"}},
+      {"time": "15:08–15:18", "title": "Hibiya Line ל-Ginza", "desc": "נוסעים בקו Hibiya בכיוון Kita-senju ויורדים ב-Ginza Station.", "navigation": {"from": "Kamiyacho Station Tokyo", "to": "Ginza Station Tokyo", "mode": "transit", "label": "🚇 מסלול מטרו"}},
+      {"time": "15:18–15:25", "title": "הליכה ל-GINZA SIX", "desc": "יוצאים לכיוון Chuo-dori ומתחילים את בלוק הקניות ב-GINZA SIX.", "navigation": {"from": "Ginza Station Tokyo", "to": "GINZA SIX", "mode": "walking", "label": "🚶 ניווט ל-GINZA SIX"}}
+    ], "recommendations": [
+      "הביקור ב-Tokyo Tower הוא חיצוני בלבד; אין זמן לעלות לתצפית.",
+      "אם ההליכה ל-Kamiyacho מתעכבת, מונית ישירה לגינזה תשמור על זמן הקניות."
+    ]}},
+    {"t": "19:30", "title": "Ginza Shopping → remm PLUS Ginza", "label": "🚶 קניות בגינזה → המלון", "desc": "מסיימים את מסלול החנויות בכיוון המלון וחוזרים ברגל להניח את השקיות.", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "🚶 כ-5–15 דקות, לפי החנות האחרונה", "afterIdx": 5, "from": "Ginza Six"}
   ],
   '27': [
-    {"t": "09:00", "title": "יציאה מהמלון", "desc": "נוסעים לכיוון אסאקוסה", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": -1, "from": null},
-    {"t": "22:30", "title": "חזרה למלון", "desc": "הלילה האחרון המלא ביפן", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": 6, "from": "Ginza Tokyo"}
+    {"t": "08:40<br>09:15", "title": "remm PLUS Ginza → Kaminarimon", "label": "🚇 המלון → Kaminarimon", "desc": "הליכה ל-Shimbashi Station, קו Ginza הישיר ל-Asakusa והליכה קצרה לשער Kaminarimon.", "img": "assets/transfers/train.jpg", "to": "Kaminarimon Gate", "tag": "🚶 + 🚇 Ginza Line + 🚶 · כ-30–35 דקות · כ-¥210", "afterIdx": -1, "from": "remm PLUS Ginza Tokyo"},
+    {"t": "12:30<br>12:50", "title": "Asakusa → Akihabara", "label": "🚇 Asakusa → Akihabara", "desc": "מעבר קצר בתחבורה ציבורית מאסאקוסה ל-Akihabara, כולל הליכה והמתנה.", "img": "assets/transfers/train.jpg", "to": "Akihabara Electric Town", "tag": "🚇 + 🚶 כ-20 דקות", "afterIdx": 3, "from": "Asakusa Tokyo restaurants"},
+    {"t": "14:20<br>14:35", "title": "Akihabara → Ameyoko", "label": "🚶 Akihabara → Ameyoko", "desc": "ממשיכים צפונה ברגל לכיוון Okachimachi והקצה הדרומי של שוק Ameyoko, בלי להמתין לרכבת.", "img": "assets/transfers/walk.jpg", "to": "Ameyoko Shopping District", "tag": "🚶 כ-15 דקות", "afterIdx": 4, "from": "Akihabara Electric Town"},
+    {"t": "16:40<br>17:15", "title": "Ameyoko → Komagome", "label": "🚆 Ameyoko → Komagome", "desc": "הליכה לתחנת Ueno או Okachimachi, קו JR Yamanote צפונה ל-Komagome והליכה לבית קפה ליד התחנה.", "img": "assets/transfers/train.jpg", "to": "Komagome Station", "tag": "🚶 + 🚆 Yamanote + 🚶 · עד 35 דקות · כ-¥200", "afterIdx": 5, "from": "Ameyoko Shopping District"},
+    {"t": "17:45<br>18:00", "title": "Komagome → Rikugien Main Gate", "label": "🚶 Komagome → Rikugien", "desc": "הליכה מהיציאה הדרומית של Komagome אל השער הראשי; הכניסה הלילית אינה דרך Somei Gate.", "img": "assets/transfers/walk.jpg", "to": "Rikugien Gardens Main Gate", "tag": "🚶 כ-7–15 דקות", "afterIdx": 6, "from": "Komagome Station"},
+    {"t": "19:25<br>20:15", "title": "Rikugien → Ginza", "label": "🚆 Rikugien → Ginza", "desc": "הליכה חזרה ל-Komagome, קו JR Yamanote לכיוון Shimbashi והליכה למסעדה בגינזה. נשאר מרווח של כ-15 דקות לפני ההזמנה.", "img": "assets/transfers/train.jpg", "to": "Ginza Tokyo restaurants", "tag": "🚶 + 🚆 Yamanote + 🚶 · כ-40–50 דקות · כ-¥260", "afterIdx": 7, "from": "Rikugien Gardens Main Gate"}
   ],
   '28': [
-    {"t": "12:15<br>12:45", "title": "חזרה למלון", "desc": "איסוף מזוודות אחרי ארוחת הצהריים", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": 3, "from": "Tokyo Tower"},
-    {"t": "12:45", "title": "יציאה לנריטה", "desc": "יעד הגעה סביב 14:20, שלוש שעות לפני טיסת EY801", "img": "assets/transfers/train.jpg", "to": "Narita Airport", "tag": "", "afterIdx": 4, "from": "remm PLUS Ginza Tokyo"}
+    {"t": "09:30<br>11:00", "title": "remm PLUS Ginza → Narita Airport", "label": "🚆 המלון → Narita Airport", "desc": "יציאה עם המזוודות מיד לאחר הצ'ק-אאוט. בוחרים ביום הנסיעה את המסלול המהיר והאמין ביותר לנריטה ושואפים להגיע סביב 11:00, כשלוש שעות לפני הטיסה.", "img": "assets/transfers/train.jpg", "to": "Narita Airport", "tag": "🚆 כ-90 דקות · יעד הגעה 11:00", "afterIdx": 1, "from": "remm PLUS Ginza Tokyo"}
   ]
 };
 
@@ -3725,26 +3717,6 @@ function initNavigation(){
       showScreen(button.dataset.screen, button);
     });
   });
-}
-
-function openTransitRoute(){
-  const from = document.getElementById('transportFrom')?.value;
-  const to = document.getElementById('transportTo')?.value;
-  if (!from || !to) {
-    alert('בחרו נקודת יציאה ויעד.');
-    return;
-  }
-  const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(from)}&destination=${encodeURIComponent(to)}&travelmode=transit`;
-  window.open(url, '_blank', 'noopener');
-}
-
-function swapTransportPoints(){
-  const fromNode = document.getElementById('transportFrom');
-  const toNode = document.getElementById('transportTo');
-  if (!fromNode || !toNode) return;
-  const temp = fromNode.value;
-  fromNode.value = toNode.value;
-  toNode.value = temp;
 }
 
 function applyViewMode(mode){
