@@ -149,6 +149,23 @@
     .tleg-step-time{direction:ltr;unicode-bidi:isolate;color:#e53935;white-space:nowrap}
     .tleg-step-desc{font-size:12px;line-height:1.55;color:#64748b;margin-top:3px}
     .tleg-recommendations{margin-top:10px;padding:10px 12px;background:#fff8e1;border:1px solid #ffe082;border-radius:10px;font-size:12px;line-height:1.6;color:#6b4f00}
+    .tleg.tleg-banner{display:block;padding:0;overflow:hidden}
+    .tleg-banner-header{position:relative;min-height:112px;padding:16px;background-position:center;background-size:cover;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
+    .tleg-banner-header::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,23,42,.2),rgba(15,23,42,.9))}
+    .tleg-banner-header .tleg-time,.tleg-banner-header .tleg-title{color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.8)}
+    .tleg-banner-header .tleg-title{font-size:17px}
+    .tleg-banner .tleg-body{width:100%;box-sizing:border-box;padding:14px}
+    .shopping-group{margin-top:12px;border:1px solid #b8c0ff;border-radius:14px;background:rgba(255,255,255,.92);overflow:hidden;pointer-events:auto;text-shadow:none}
+    .shopping-group summary{cursor:pointer;list-style:none;padding:12px 14px;color:#2932b8;font-size:14px;font-weight:900}
+    .shopping-group summary::-webkit-details-marker{display:none}
+    .shopping-group summary::before{content:'＋';display:inline-block;margin-left:8px}
+    .shopping-group[open] summary::before{content:'−'}
+    .shopping-group-list{border-top:1px solid #dfe2ff;padding:0 14px;color:#334155}
+    .shopping-stop{display:grid;grid-template-columns:58px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid #e2e8f0;text-align:right}
+    .shopping-stop:last-child{border-bottom:0}
+    .shopping-stop-time{direction:ltr;unicode-bidi:isolate;color:#e53935;font-size:12px;font-weight:900}
+    .shopping-stop strong{display:block;color:#172554;font-size:13px;margin-bottom:3px}
+    .shopping-stop span{font-size:12px;line-height:1.45}
     .event{background:var(--card);border-radius:20px;box-shadow:var(--shadow);border:1px solid var(--line);display:flex;overflow:hidden;padding:0;min-height:110px}
     .event-img-nav{width:110px;min-height:110px;flex-shrink:0;display:block;text-decoration:none;background:#e8edf5;overflow:hidden;position:relative;
       box-shadow:inset 0 0 0 9999px rgba(0,0,0,0);transition:transform .15s ease,box-shadow .15s ease;transform:translateZ(0)}
@@ -1421,6 +1438,20 @@ function renderTransferLegs(day){
   }
   panel.innerHTML = '<div class="section-title" style="margin:0;font-size:18px">מעברים בין האטרקציות</div>' + legs.map((t, transferIndex) => {
     const route = t.from ? `${t.from} → ${t.to}` : `→ ${t.to}`;
+    if (t.layout === 'banner') {
+      return `<div class="tleg tleg-banner" role="button" tabindex="0" data-transfer-index="${transferIndex}" onclick="showRouteTransfer('${day}', ${transferIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showRouteTransfer('${day}', ${transferIndex})}">
+        <div class="tleg-banner-header" style="background-image:url('${t.img}')">
+          <div class="tleg-time">${t.t.replace('<br>', ' – ')}</div>
+          <div class="tleg-title">${t.label || t.title}</div>
+        </div>
+        <div class="tleg-body">
+          <div class="tleg-route">${route}</div>
+          <div class="tleg-desc">${t.desc}</div>
+          ${transferDetailsHtml(t)}
+          <div class="transit-meta" style="margin-top:6px">${t.tag ? `<span>${t.tag}</span>` : ''}<a class="btn ghost" style="padding:3px 12px;font-size:12px" target="_blank" rel="noopener" href="${transferDirectionsUrl(t)}" onclick="event.stopPropagation()">🧭 ניווט</a></div>
+        </div>
+      </div>`;
+    }
     return `<div class="tleg" role="button" tabindex="0" data-transfer-index="${transferIndex}" onclick="showRouteTransfer('${day}', ${transferIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showRouteTransfer('${day}', ${transferIndex})}">
       <img src="${t.img}" alt="" loading="lazy">
       <div class="tleg-body">
@@ -1455,6 +1486,19 @@ function transferDetailsHtml(transfer){
   return `<details class="tleg-details" onclick="event.stopPropagation()">
     <summary>${transfer.details.title || 'פירוט מלא'}</summary>
     <div class="tleg-details-body">${steps}${recommendations}</div>
+  </details>`;
+}
+
+function shoppingGroupHtml(){
+  const stops = [
+    ['18:00–18:45', 'Alpen TOKYO', 'נעלי On ודגמי Cloud · פתוח עד 22:00'],
+    ['18:50–19:30', 'Downbeat RUNNING', 'חנות ריצה מתמחה והתאמה מקצועית · פתוח עד 21:00'],
+    ['19:40–20:30', 'UNIQLO Shinjuku HONTEN', 'חנות הדגל לביגוד בסיסי ושכבות · פתוח עד 22:00'],
+    ['20:50–21:30', 'GU Seibu Shinjuku PePe', 'ביגוד בסיסי במחירים זולים · פתוח עד 21:30']
+  ];
+  return `<details class="shopping-group" onclick="event.stopPropagation()">
+    <summary>פירוט 4 חנויות</summary>
+    <div class="shopping-group-list">${stops.map(([time, name, note]) => `<div class="shopping-stop"><div class="shopping-stop-time">${time}</div><div><strong>${name}</strong><span>${note}</span></div></div>`).join('')}</div>
   </details>`;
 }
 
@@ -1503,17 +1547,14 @@ function renderCountdownChip(){
 }
 
 const data = {
-  '12-13': { title:"טיסה ליפן", route:"תל אביב → אבו דאבי → Narita T1 → Hotel Gracery Shinjuku → Alpen TOKYO → Downbeat RUNNING → UNIQLO Shinjuku HONTEN → GU Seibu Shinjuku PePe", events:[
+  '12-13': { title:"טיסה ליפן", route:"תל אביב → אבו דאבי → Narita T1 → Hotel Gracery Shinjuku → קניות בשינג׳וקו", events:[
     ["14:00","TLV → AUH","Flight: EY594\nתל אביב → אבו דאבי\nמשך טיסה: 3:05\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Boeing 787-9","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Ben Gurion Airport"],
     ["19:05","Connection in AUH","קונקשן באבו דאבי: 3:15\nצ'ק-אין לטיסת EY800 החל מ-19:20, וההמראה בשעה 22:20.","https://fly2.ekstatic.net/Images/manage_booking/connection_2@2x.png","Abu Dhabi International Airport"],
     ["22:20","AUH → NRT","Flight: EY800\nאבו דאבי → טוקיו נאריטה\nמשך טיסה: 9:55\nClass: Economy\nStatus: Confirmed\nOperated by Etihad Airways\nAircraft: Airbus A380-800","https://fly2.ekstatic.net/Images/manage_booking/icons/flight@2x.png","Narita Airport"],
     ["13:15 +1","נחיתה ב-Narita Terminal 1","לאחר הנחיתה: ביקורת גבולות, איסוף מזוודות ומכס. מומלץ להקדיש 60–90 דקות עד היציאה לאולם מקבלי הפנים בקומה 1.","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Narita Airport Terminal 1"],
     ["14:30<br>16:30","מיניוואן פרטי מ-Narita למלון","מיניוואן שהוזמן מראש אוסף אותנו משדה התעופה ומסיע אותנו ישירות ל-Hotel Gracery Shinjuku, בלי החלפות ובלי סחיבת מזוודות.\n\nלאחר ביקורת הגבולות, איסוף המזוודות והמכס יוצאים לאולם מקבלי הפנים ופוגשים את הנהג. כדאי לשמור את פרטי ההזמנה ואת מספר הטלפון של הנהג זמינים.\n\nמחיר: ¥26,000 לכל הקבוצה, לתשלום במזומן לנהג. כדאי להביא מזומן בידיים במהלך ההגעה.","assets/transfers/minivan.jpg","Hotel Gracery Shinjuku","🚐 מיניוואן שהוזמן מראש · ¥26,000 במזומן · ישירות למלון"],
     ["17:00<br>18:00","צ׳ק-אין ב-Hotel Gracery Shinjuku","הליכה קצרה מ-Tokyu Kabukicho Tower למלון, צ׳ק-אין ומנוחה לאחר הטיסות.","assets/attractions/day14/baggage_transportation.jpg","Hotel Gracery Shinjuku","🏨 לילה ראשון בטוקיו"],
-    ["18:00<br>18:45","Alpen TOKYO","חנות ספורט גדולה במרחק הליכה של כ-5–8 דקות מהמלון. מומלץ להגיע לכאן כדי לבדוק נעלי On ומבחר דגמי Cloud.\n\nכתובת: 3-23-7 Shinjuku, Unica Building.\nשעות פתיחה ביום חול: 11:00–22:00.","pictures/חנות ספורט  טוקיו.jpg","Alpen TOKYO, 3-23-7 Shinjuku, Shinjuku City, Tokyo","👟 נעלי On · פתוח עד 22:00"],
-    ["18:50<br>19:30","Downbeat RUNNING","חנות ריצה מתמחה הסמוכה ל-Alpen TOKYO ומוכרת גם נעלי On. מתאימה להשוואת דגמים והתאמה מקצועית לפני החזרה לאזור המלון.\n\nכתובת: 3-22-11 Shinjuku.\nשעות פתיחה: 12:00–21:00.","assets/attractions/day28/ginza_shopping.jpg","Downbeat RUNNING, 3-22-11 Shinjuku, Shinjuku City, Tokyo","🏃 חנות ריצה · פתוח עד 21:00"],
-    ["19:40<br>20:30","UNIQLO Shinjuku HONTEN","חנות הדגל הגדולה של UNIQLO בשינג׳וקו, שנפתחה באוקטובר 2024. מבחר רחב של ביגוד בסיסי, שכבות וקווי מוצרים שכדאי להשוות למחירים בישראל.\n\nאיך מגיעים מהמלון: הליכה של כ-15–20 דקות מ-Hotel Gracery Shinjuku דרומה דרך קביקוביצ׳ו ובהמשך ברחוב Yasukuni-dori מזרחה לכיוון תחנת Shinjuku-sanchome, או נסיעה קצרה במטרו לאותה תחנה. בתוכנית הערב נגיע אליו ישירות מ-Alpen TOKYO ו-Downbeat RUNNING, במרחק של כמה דקות הליכה (הזמנים משוערים; כדאי לבדוק ב-Google Maps).\n\nכתובת: 3-29-1 Shinjuku.\nשעות פתיחה: 10:00–22:00.","assets/attractions/day26/ginza_shopping_block.jpg","UNIQLO Shinjuku Honten, 3-29-1 Shinjuku, Shinjuku City, Tokyo","🛍️ מומלץ · פתוח עד 22:00"],
-    ["20:50<br>21:30","GU Seibu Shinjuku PePe","סניף GU – מותג האופנה הזול של UNIQLO – בקניון התחנה Seibu Shinjuku PePe. מתאים לעצירה קצרה בדרך החזרה למלון לביגוד בסיסי במחירים זולים.\n\nאיך מגיעים מהמלון: הליכה של כ-5 דקות מ-Hotel Gracery Shinjuku בקביקוביצ׳ו אל תחנת Seibu-Shinjuku; קניון PePe צמוד לתחנה. מ-UNIQLO חוזרים בהליכה של כ-20 דקות אל רובע Kabukicho (הזמנים משוערים).\n\nכתובת: 1-30-1 Kabukicho, Shinjuku.\nשעות פתיחה: 11:00–21:30.","assets/attractions/day26/ginza_shopping_block.jpg","GU Seibu Shinjuku PePe, 1-30-1 Kabukicho, Shinjuku City, Tokyo","🛍️ מומלץ · פתוח עד 21:30"]
+    ["18:00<br>21:30","קניות בשינג׳וקו","סבב קניות מרוכז ליד המלון: מתחילים בחנויות הריצה והספורט, ממשיכים ל-UNIQLO ומסיימים ב-GU לפי הזמן והאנרגיה.","pictures/חנות ספורט  טוקיו.jpg","Shinjuku shopping","🛍️ 4 חנויות · לחצו לפתיחת הפירוט"]
   ]},
   '14': { title:"טוקיו --> האקונה", route:"שינג'וקו → Hakone-Yumoto → המלון", events:[
     ["08:00<br>08:45","הפקדת מזוודות במלון","מפקידים את המזוודות במלון לשליחה לקיוטו וממשיכים את היום עם תרמיל קל בלבד.\nהמזוודות יגיעו למלון בקיוטו ב-17.11.","assets/attractions/day14/baggage_transportation.jpg","Hotel Gracery Shinjuku"],
@@ -1697,7 +1738,7 @@ const data = {
 // afterIdx = index in data[day].events of the stop the leg follows (-1 = before the first stop)
 const transfersByDay = {
   '14': [
-    {"t": "13:15<br>14:30", "title": "Odakyu Romancecar להאקונה", "label": "🚆 Odakyu Romancecar להאקונה", "desc": "Hakone 21 (GSE) ישירה מ-Shinjuku ל-Hakone-Yumoto. יציאה מאושרת ב-13:20 והגעה ב-14:48. ההזמנה לשישה מבוגרים שולמה במלואה (¥6,900). מושבים שמורים בקרון 6: 2A, 2B, 2C, 2D, 3A ו-3B.", "img": "assets/transfers/train.jpg", "to": "Hakone-Yumoto Station", "tag": "🎟️ מאושר ושולם · Car 6 · Seats 2A–2D, 3A–3B", "afterIdx": 3, "from": "Ichiran Ramen Shinjuku", "details": {"title": "פירוט מלא מ-Ichiran ל-Aura Tachibana · 9 שלבים", "steps": [
+    {"t": "13:15<br>14:30", "title": "Odakyu Romancecar להאקונה", "label": "🚆 Odakyu Romancecar להאקונה", "layout": "banner", "desc": "Hakone 21 (GSE) ישירה מ-Shinjuku ל-Hakone-Yumoto. יציאה מאושרת ב-13:20 והגעה ב-14:48. ההזמנה לשישה מבוגרים שולמה במלואה (¥6,900). מושבים שמורים בקרון 6: 2A, 2B, 2C, 2D, 3A ו-3B.", "img": "assets/transfers/train.jpg", "to": "Hakone-Yumoto Station", "tag": "🎟️ מאושר ושולם · Car 6 · Seats 2A–2D, 3A–3B", "afterIdx": 3, "from": "Ichiran Ramen Shinjuku", "details": {"title": "פירוט מלא מ-Ichiran ל-Aura Tachibana · 9 שלבים", "steps": [
       {"time": "12:35", "title": "יציאה מ-Ichiran Ramen Shinjuku", "desc": "יוצאים לכיוון תחנת Shinjuku. ההליכה עם תיקי הלילה אורכת כ-15 דקות.", "navigation": {"from": "Ichiran Ramen Shinjuku Kabukicho", "to": "Odakyu Shinjuku Station West Ground Gate", "mode": "walking", "label": "🚶 ניווט הליכה ל-Odakyu"}},
       {"time": "12:50", "title": "הגעה לכניסת Odakyu", "desc": "מקדישים 5–10 דקות להתמצאות בתחנה ועוקבים אחרי Odakyu Line / Romancecar."},
       {"time": "13:00", "title": "מעבר בשערי Odakyu", "desc": "עוברים עם Hakone Free Pass ומקצים כחמש דקות למעבר מסודר של ששת המטיילים."},
@@ -3622,7 +3663,7 @@ function render(day){
     const link='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e[4]);
     const solidCardClass = day === '12-13' && e[1] === 'נחיתה ב-Narita Terminal 1' ? ' event-solid' :
       day === '12-13' && e[1] === 'מיניוואן פרטי מ-Narita למלון' ? ' event-solid event-solid-bus' :
-      day === '12-13' && ['Alpen TOKYO','Downbeat RUNNING','UNIQLO Shinjuku HONTEN','GU Seibu Shinjuku PePe'].includes(e[1]) ? ' event-solid' : '';
+      day === '12-13' && e[1] === 'קניות בשינג׳וקו' ? ' event-solid' : '';
     const transitNote = e[5] ? `<div class="event-transit">${e[5]}</div>` : '';
     const eventAction = e[6] ? `<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="${escapeHtml(e[6])}">🌐 אתר רשמי</a></div>` : '';
     const timeDisplay = e[0].replace('<br>',' – ');
@@ -3634,6 +3675,7 @@ function render(day){
       <div class="event-content">
         <h3 class="${titleAlignClass}">${titleHtml}</h3>
         <div class="event-desc">${eventDescription}</div>
+        ${day === '12-13' && e[1] === 'קניות בשינג׳וקו' ? shoppingGroupHtml() : ''}
         ${transitNote}
         ${eventAction}
         ${audioMap[e[1]] ? apPlayerHtml(e[1]) : ''}
