@@ -153,8 +153,17 @@
     .tleg-banner-header{position:relative;min-height:112px;padding:16px;background-position:center;background-size:cover;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
     .tleg-banner-header::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,23,42,.2),rgba(15,23,42,.9))}
     .tleg-banner-header .tleg-time,.tleg-banner-header .tleg-title{color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.8)}
-    .tleg-banner-header .tleg-title{font-size:17px}
+    .tleg-banner-header .tleg-time{font-size:14px}
+    .tleg-banner-header .tleg-title{font-size:19px;line-height:1.35;unicode-bidi:plaintext}
     .tleg-banner .tleg-body{width:100%;box-sizing:border-box;padding:14px}
+    .tleg-banner .tleg-route{font-size:13px;line-height:1.5;direction:ltr;unicode-bidi:isolate;text-align:left}
+    .tleg-banner .tleg-desc{font-size:14px;line-height:1.7;direction:rtl;unicode-bidi:plaintext;text-align:right}
+    .tleg-banner .tleg-details summary{font-size:14px;line-height:1.5}
+    .tleg-banner .tleg-step-head{font-size:14px;line-height:1.45;flex-wrap:wrap}
+    .tleg-banner .tleg-step-head span:last-child{unicode-bidi:plaintext}
+    .tleg-banner .tleg-step-desc{font-size:13.5px;line-height:1.7;unicode-bidi:plaintext}
+    .tleg-banner .transit-meta span,.tleg-banner .transit-meta .btn{font-size:13px!important;line-height:1.45;unicode-bidi:plaintext}
+    .tleg-ltr-line{display:block;margin-top:5px;direction:ltr;unicode-bidi:isolate;text-align:left;font-weight:800;color:#475569}
     .shopping-group{margin-top:12px;border:1px solid #b8c0ff;border-radius:14px;background:rgba(255,255,255,.92);overflow:hidden;pointer-events:auto;text-shadow:none}
     .shopping-group summary{cursor:pointer;list-style:none;padding:12px 14px;color:#2932b8;font-size:14px;font-weight:900}
     .shopping-group summary::-webkit-details-marker{display:none}
@@ -1442,13 +1451,13 @@ function renderTransferLegs(day){
       return `<div class="tleg tleg-banner" role="button" tabindex="0" data-transfer-index="${transferIndex}" onclick="showRouteTransfer('${day}', ${transferIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showRouteTransfer('${day}', ${transferIndex})}">
         <div class="tleg-banner-header" style="background-image:url('${t.img}')">
           <div class="tleg-time">${t.t.replace('<br>', ' – ')}</div>
-          <div class="tleg-title">${t.label || t.title}</div>
+          <div class="tleg-title">${t.labelHtml || t.label || t.title}</div>
         </div>
         <div class="tleg-body">
           <div class="tleg-route">${route}</div>
-          <div class="tleg-desc">${t.desc}</div>
+          <div class="tleg-desc">${t.descHtml || t.desc}</div>
           ${transferDetailsHtml(t)}
-          <div class="transit-meta" style="margin-top:6px">${t.tag ? `<span>${t.tag}</span>` : ''}<a class="btn ghost" style="padding:3px 12px;font-size:12px" target="_blank" rel="noopener" href="${transferDirectionsUrl(t)}" onclick="event.stopPropagation()">🧭 ניווט</a></div>
+          <div class="transit-meta" style="margin-top:6px">${t.tag ? `<span>${t.tagHtml || t.tag}</span>` : ''}<a class="btn ghost" style="padding:3px 12px;font-size:12px" target="_blank" rel="noopener" href="${transferDirectionsUrl(t)}" onclick="event.stopPropagation()">🧭 ניווט</a></div>
         </div>
       </div>`;
     }
@@ -1738,7 +1747,7 @@ const data = {
 // afterIdx = index in data[day].events of the stop the leg follows (-1 = before the first stop)
 const transfersByDay = {
   '14': [
-    {"t": "13:15<br>14:30", "title": "Odakyu Romancecar להאקונה", "label": "🚆 Odakyu Romancecar להאקונה", "layout": "banner", "desc": "Hakone 21 (GSE) ישירה מ-Shinjuku ל-Hakone-Yumoto. יציאה מאושרת ב-13:20 והגעה ב-14:48. ההזמנה לשישה מבוגרים שולמה במלואה (¥6,900). מושבים שמורים בקרון 6: 2A, 2B, 2C, 2D, 3A ו-3B.", "img": "assets/transfers/train.jpg", "to": "Hakone-Yumoto Station", "tag": "🎟️ מאושר ושולם · Car 6 · Seats 2A–2D, 3A–3B", "afterIdx": 3, "from": "Ichiran Ramen Shinjuku", "details": {"title": "פירוט מלא מ-Ichiran ל-Aura Tachibana · 9 שלבים", "steps": [
+    {"t": "13:15<br>14:30", "title": "Odakyu Romancecar להאקונה", "label": "🚆 Odakyu Romancecar להאקונה", "labelHtml": "🚆 <bdi dir=\"ltr\">Odakyu Romancecar</bdi> להאקונה", "layout": "banner", "desc": "נוסעים ישירות ברכבת Hakone 21 (GSE) מ-Shinjuku אל Hakone-Yumoto. היציאה מאושרת בשעה 13:20 וההגעה בשעה 14:48. ההזמנה לשישה מבוגרים שולמה במלואה (¥6,900). המושבים השמורים נמצאים בקרון 6: 2A, 2B, 2C, 2D, 3A ו-3B.", "descHtml": "נוסעים ישירות ברכבת <bdi dir=\"ltr\">Hakone 21 (GSE)</bdi> מתחנת <bdi dir=\"ltr\">Shinjuku</bdi> לתחנת <bdi dir=\"ltr\">Hakone-Yumoto</bdi>. היציאה מאושרת בשעה <bdi dir=\"ltr\">13:20</bdi> וההגעה בשעה <bdi dir=\"ltr\">14:48</bdi>. ההזמנה לשישה מבוגרים שולמה במלואה (<bdi dir=\"ltr\">¥6,900</bdi>).<span class=\"tleg-ltr-line\">Car 6 · Seats: 2A, 2B, 2C, 2D, 3A, 3B</span>", "img": "assets/transfers/train.jpg", "to": "Hakone-Yumoto Station", "tag": "🎟️ מאושר ושולם · Car 6 · Seats 2A–2D, 3A–3B", "tagHtml": "🎟️ מאושר ושולם · <bdi dir=\"ltr\">Car 6 · Seats 2A–2D, 3A–3B</bdi>", "afterIdx": 3, "from": "Ichiran Ramen Shinjuku", "details": {"title": "פירוט מלא: <bdi dir=\"ltr\">Ichiran</bdi> עד <bdi dir=\"ltr\">Aura Tachibana</bdi> · 9 שלבים", "steps": [
       {"time": "12:35", "title": "יציאה מ-Ichiran Ramen Shinjuku", "desc": "יוצאים לכיוון תחנת Shinjuku. ההליכה עם תיקי הלילה אורכת כ-15 דקות.", "navigation": {"from": "Ichiran Ramen Shinjuku Kabukicho", "to": "Odakyu Shinjuku Station West Ground Gate", "mode": "walking", "label": "🚶 ניווט הליכה ל-Odakyu"}},
       {"time": "12:50", "title": "הגעה לכניסת Odakyu", "desc": "מקדישים 5–10 דקות להתמצאות בתחנה ועוקבים אחרי Odakyu Line / Romancecar."},
       {"time": "13:00", "title": "מעבר בשערי Odakyu", "desc": "עוברים עם Hakone Free Pass ומקצים כחמש דקות למעבר מסודר של ששת המטיילים."},
