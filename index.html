@@ -3666,6 +3666,13 @@ function render(day){
       day === '12-13' && e[1] === 'קניות בשינג׳וקו' ? ' event-solid' : '';
     const transitNote = e[5] ? `<div class="event-transit">${e[5]}</div>` : '';
     const eventAction = e[6] ? `<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="${escapeHtml(e[6])}">🌐 אתר רשמי</a></div>` : '';
+    const eveningNavigation = day === '12-13' && [
+      'ארוחת ערב ואווירה ב-Omoide Yokocho',
+      'טיול ערב ב-Kabukicho',
+      'Golden Gai – אופציונלי'
+    ].includes(e[1])
+      ? `<div class="actions"><a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(e[4])}&travelmode=walking">🧭 ניווט</a></div>`
+      : '';
     const timeDisplay = e[0].replace('<br>',' – ');
     const titleHtml = formatTimelineTitle(e[1]);
     const altTitle = escapeHtml(e[1]);
@@ -3678,6 +3685,7 @@ function render(day){
         ${day === '12-13' && e[1] === 'קניות בשינג׳וקו' ? shoppingGroupHtml() : ''}
         ${transitNote}
         ${eventAction}
+        ${eveningNavigation}
         ${audioMap[e[1]] ? apPlayerHtml(e[1]) : ''}
       </div>
     </div></div>`;
