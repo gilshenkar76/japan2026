@@ -135,7 +135,6 @@
     .tleg-body{min-width:0;flex:1}
     .tleg-time{font-size:12px;font-weight:900;color:#e53935;direction:ltr;unicode-bidi:isolate}
     .tleg-title{font-weight:800;font-size:14px;color:#1e293b;margin:2px 0}
-    .tleg-route{font-size:12px;color:var(--muted);direction:ltr;text-align:right;margin-bottom:4px}
     .tleg-desc{font-size:12px;color:var(--muted);white-space:pre-line}
     .tleg-details{margin-top:10px;border:1px solid #d8e0ea;border-radius:12px;background:#f8fafc;overflow:hidden}
     .tleg-details summary{cursor:pointer;padding:10px 12px;font-size:13px;font-weight:900;color:#1e293b;list-style:none}
@@ -154,9 +153,10 @@
     .tleg-banner-header::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,23,42,.2),rgba(15,23,42,.9))}
     .tleg-banner-header .tleg-time,.tleg-banner-header .tleg-title{color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.8)}
     .tleg-banner-header .tleg-time{font-size:14px}
-    .tleg-banner-header .tleg-title{font-size:19px;line-height:1.35;unicode-bidi:plaintext}
+    .tleg-banner-header .tleg-title{width:100%;min-width:0;font-size:19px;line-height:1.25;direction:ltr;unicode-bidi:isolate;text-align:left;white-space:nowrap}
+    .tleg-banner-header .tleg-title-ja{width:100%;min-width:0;font-weight:800;font-size:17px;line-height:1.25;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.8);direction:ltr;unicode-bidi:isolate;text-align:left;white-space:nowrap}
+    .tleg-banner-header .split-after-arrow .route-origin,.tleg-banner-header .split-after-arrow .route-to{display:block;white-space:nowrap}
     .tleg-banner .tleg-body{width:100%;box-sizing:border-box;padding:14px}
-    .tleg-banner .tleg-route{font-size:13px;line-height:1.5;direction:ltr;unicode-bidi:isolate;text-align:left}
     .tleg-banner .tleg-desc{font-size:14px;line-height:1.7;direction:rtl;unicode-bidi:plaintext;text-align:right}
     .tleg-banner .tleg-details summary{font-size:14px;line-height:1.5}
     .tleg-banner .tleg-step-head{font-size:14px;line-height:1.45;flex-wrap:wrap}
@@ -1186,7 +1186,7 @@ const transitByDay = {
     { from: 'Kiyomizu-dera', to: 'Mimosa Higashiyama', note: 'חזרה בירידה דרך הרחובות ההיסטוריים', line: 'רגלי', time: '~25–30 דק׳', cost: '—' },
     { from: 'Kodai-ji', to: 'Kennin-ji', note: 'דרך Nene-no-Michi ו-Ishibei-koji', line: 'רגלי', time: '~30 דק׳', cost: '—' },
     { from: 'Kennin-ji', to: 'Pontocho', note: 'Hanamikoji, Yasaka, Gion Shirakawa, Shijo Bridge ונהר Kamo', line: 'רגלי', time: '~1:55 שעות עם עצירות', cost: '—' },
-    { from: 'Pontocho', to: 'Hotel Monterey Kyoto', note: 'מוניות מומלצות אחרי יום הליכה ארוך', line: '2 מוניות / רגלי', time: '~10 / 20–25 דק׳', cost: '—' }
+    { from: 'Pontocho', to: 'Hotel Monterey Kyoto', note: 'הליכה ישירה חזרה למלון', line: 'רגלי', time: '~20 דק׳ · 1.4 ק״מ', cost: '—' }
   ],
   '19': [
     { from: 'Hotel Monterey Kyoto', to: 'Arashiyama Bamboo Grove', note: 'תחבורה ציבורית מ-07:30 או שתי מוניות סביב 07:55', line: 'Tozai + Randen / 2 מוניות', time: '~70 / 45 דק׳', cost: '—' },
@@ -1207,8 +1207,8 @@ const transitByDay = {
     { from: 'Osaka Excel Hotel Tokyu', to: 'Umeda Sky Building', note: 'הליכה ל-Hommachi, קו Midosuji ל-Umeda והליכה לתצפית', line: 'Midosuji Line + רגלי', time: '~35 דק׳ (הערכה)', cost: '¥190' },
     { from: 'Umeda Sky Building', to: 'Namba Station', note: 'הליכה לתחנה ואז קו Midosuji ישיר, ללא החלפות', line: 'Midosuji Line + רגלי', time: '~40 דק׳ (הערכה)', cost: '¥240' },
     { from: 'Namba Station', to: 'Kuromon Ichiba Market', note: 'הליכה מהתחנה לשוק', line: 'רגלי', time: '~10–15 דק׳', cost: '—' },
-    { from: 'Kuromon Ichiba Market', to: 'Shinsekai', note: 'מונית קצרה ונוחה יותר', line: 'מונית', time: '~10–15 דק׳ (הערכה)', cost: '—' },
-    { from: 'Shinsekai', to: 'Namba Yasaka Shrine', note: 'מעבר קצר במונית', line: 'מונית', time: '~10–15 דק׳ (הערכה)', cost: '—' },
+    { from: 'Kuromon Ichiba Market', to: 'Shinsekai', note: 'הליכה ישירה דרומה לאורך Sakaisuji', line: 'רגלי', time: '~21 דק׳ · 1.5 ק״מ', cost: '—' },
+    { from: 'Shinsekai', to: 'Namba Yasaka Shrine', note: 'הליכה ישירה למקדש ראש האריה', line: 'רגלי', time: '~25 דק׳ · 1.7 ק״מ', cost: '—' },
     { from: 'Namba Yasaka Shrine', to: 'Dotonbori', note: 'קפה ומנוחה ב-Namba ואז הליכה ל-Dotonbori', line: 'רגלי', time: '~1:05 שעות כולל הפסקה', cost: '—' },
     { from: 'Dotonbori Craft Beer Brewery', to: 'Osaka Excel Hotel Tokyu', note: 'הליכה ל-Namba, קו Midosuji ל-Hommachi והליכה מיציאה 13', line: 'Midosuji Line + רגלי', time: '~30 דק׳', cost: '¥190' }
   ],
@@ -1223,7 +1223,7 @@ const transitByDay = {
     { from: 'Namba', to: 'Osaka Excel Hotel Tokyu', note: 'הליכה צפונה לאורך Midosuji Illumination בדרך הישירה למלון', line: 'רגלי / Midosuji Line', time: 'לפי הקצב', cost: '—' }
   ],
   '23': [
-    { from: 'Osaka Excel Hotel Tokyu', to: 'Doshomachi', note: 'מונית בבוקר לפני תחילת הגבלות התנועה ב-Midosuji; הזמן משוער', line: 'מונית', time: '~10–20 דק׳ (הערכה)', cost: '—' },
+    { from: 'Osaka Excel Hotel Tokyu', to: 'Doshomachi', note: 'הליכת בוקר ישירה למקדש Sukunahikona', line: 'רגלי', time: '~20 דק׳ · 1.4 ק״מ', cost: '—' },
     { from: 'Doshomachi', to: 'Nankai Namba', note: 'מטרו והליכה לתחנת Nankai; עדיף על מונית בגלל הגבלות התנועה ב-Midosuji', line: 'Osaka Metro + רגלי', time: '~40 דק׳ (הערכה)', cost: '¥240' },
     { from: 'Nankai Namba', to: 'Sumiyoshitaisha', note: 'רכבת מקומית בלבד; רכבות אקספרס אינן עוצרות בתחנה, ולאחריה הליכה של כ-3 דקות', line: 'Nankai Main Line · רכבת מקומית + רגלי', time: '~30 דק׳', cost: '¥240' },
     { from: 'Sumiyoshitaisha', to: 'Namba', note: 'רכבת Nankai מקומית בחזרה ל-Namba לקראת ארוחת צהריים מאוחרת', line: 'Nankai Main Line · רכבת מקומית', time: '~30 דק׳', cost: '¥240' },
@@ -1282,7 +1282,7 @@ const routeNotesPresets = {
     tips: ''
   },
   '23': {
-    overview: 'אחרי ארוחת הבוקר נצא במונית ל-Doshomachi ונפתח את היום בפסטיבל Shinno-sai במקדש Sukunahikona, כולל נשנוש קל מדוכני האוכל. אחרי 11:30 נמשיך במטרו ובהליכה לתחנת Nankai Namba בגלל הגבלות התנועה ב-Midosuji, ונעלה על רכבת Nankai מקומית בלבד אל Sumiyoshi Taisha. אחר הצהריים נחזור ל-Namba לארוחת צהריים מאוחרת, נמשיך לקניות ב-Shinsaibashi וב-Amerikamura, נסיים בארוחת פרידה באזור Dotonbori, נשלים בהליכה קצרה לאורך Midosuji Winter Illumination ונחזור למלון לאריזה. חשוב: לבדוק יום קודם את זמני הנסיעה המשוערים ולהזמין מראש מקום לארוחת הפרידה.',
+    overview: 'אחרי ארוחת הבוקר נלך כ-20 דקות ל-Doshomachi ונפתח את היום בפסטיבל Shinno-sai במקדש Sukunahikona, כולל נשנוש קל מדוכני האוכל. אחרי 11:30 נמשיך במטרו ובהליכה לתחנת Nankai Namba בגלל הגבלות התנועה ב-Midosuji, ונעלה על רכבת Nankai מקומית בלבד אל Sumiyoshi Taisha. אחר הצהריים נחזור ל-Namba לארוחת צהריים מאוחרת, נמשיך לקניות ב-Shinsaibashi וב-Amerikamura, נסיים בארוחת פרידה באזור Dotonbori, נשלים בהליכה קצרה לאורך Midosuji Winter Illumination ונחזור למלון לאריזה. חשוב: לבדוק יום קודם את זמני הנסיעה המשוערים ולהזמין מראש מקום לארוחת הפרידה.',
     tips: ''
   },
   '24': {
@@ -1424,6 +1424,152 @@ function transferDirectionsUrl(t){
   return `https://www.google.com/maps/dir/?api=1${origin}&destination=${encodeURIComponent(t.to)}&travelmode=${transferInfo(t).travel}`;
 }
 
+const japanesePlaceNames = {
+  'Abeno Harukas': 'あべのハルカス',
+  'Abeno Harukas 300 Osaka': 'ハルカス300',
+  'Akihabara Electric Town': '秋葉原電気街',
+  'Akita Dining Namahage Ginza': '秋田ダイニング なまはげ銀座',
+  'Ameyoko Shopping District': 'アメ横商店街',
+  'Arashiyama Bamboo Grove': '嵐山 竹林の小径',
+  'Asakusa Tokyo restaurants': '浅草のレストラン',
+  'Aura Tachibana Hakone': 'あうら橘',
+  'Aura Tachibana Hakone Yumoto': 'あうら橘',
+  'Azabudai Hills': '麻布台ヒルズ',
+  'Cat Street Shibuya': 'キャットストリート',
+  'Cat Street Shibuya restaurants': 'キャットストリートのレストラン',
+  'Chokoku-no-Mori': '彫刻の森駅',
+  'Doshomachi': '道修町',
+  'Dotonbori Craft Beer Brewery': '道頓堀クラフトビア醸造所',
+  'Fushimi Inari Taisha': '伏見稲荷大社',
+  'Ginza Chuo-dori': '銀座中央通り',
+  'Ginza Six': 'GINZA SIX',
+  'Ginza Station Tokyo': '銀座駅',
+  'Ginza Tokyo': '銀座',
+  'Ginza Tokyo restaurants': '銀座のレストラン',
+  'Hachiko Statue Shibuya': '忠犬ハチ公像',
+  'Hakone Open-Air Museum': '箱根彫刻の森美術館',
+  'Hakone-jinja-iriguchi': '箱根神社入口',
+  'Hakone-Yumoto': '箱根湯本',
+  'Hakone-Yumoto Station': '箱根湯本駅',
+  'Hakone-Yumoto Station Bus Stop': '箱根湯本駅バス停',
+  'Heiwa no Torii': '平和の鳥居',
+  'Hogon-in Temple Kyoto': '宝厳院',
+  'Hotel Monterey Kyoto': 'ホテルモントレ京都',
+  'Hotel Monterey Kyoto restaurants': 'ホテルモントレ京都周辺のレストラン',
+  'Hozenji Yokocho Osaka': '法善寺横丁',
+  'Hulic Hall Kyoto': 'ヒューリックホール京都',
+  'Ichiran Ramen Shinjuku': '一蘭 新宿',
+  'Ichiran Ramen Shinjuku Kabukicho': '一蘭 新宿歌舞伎町店',
+  'Ishibei-koji Lane Kyoto': '石塀小路',
+  'JR Nara Station': 'JR奈良駅',
+  'Kaminarimon Gate': '雷門',
+  'Kamiyacho Station Exit 5': '神谷町駅 5番出口',
+  'Kamiyacho Station Tokyo': '神谷町駅',
+  'Karasuma Oike Station': '烏丸御池駅',
+  'Karasuma Oike Station Exit 6': '烏丸御池駅 6番出口',
+  'Kasuga Taisha Nara': '春日大社',
+  'Kawaramachi Kyoto restaurants': '京都河原町のレストラン',
+  'Kennin-ji Temple Kyoto': '建仁寺',
+  'Kinkaku-ji Golden Pavilion': '金閣寺',
+  'Kintetsu Department Store Abeno Harukas': 'あべのハルカス近鉄本店',
+  'Kintetsu-Nara Station': '近鉄奈良駅',
+  'Kitano Tenmangu Shrine Kyoto': '北野天満宮',
+  'Kiyomizu-dera': '清水寺',
+  'Kokyo Gaien National Garden': '皇居外苑',
+  'Komagome Station': '駒込駅',
+  'Kuromon Ichiba Market Osaka': '黒門市場',
+  'Kyoto Shiyakusho-mae': '京都市役所前駅',
+  'Kyoto Station': '京都駅',
+  'Meiji Jingu First Torii': '明治神宮 第一鳥居',
+  'Meiji-jingumae Harajuku Station': '明治神宮前〈原宿〉駅',
+  'Midosuji Illumination Osaka': '御堂筋イルミネーション',
+  'Mimosa Higashiyama Kyoto': '京都着物レンタルMimosa',
+  'Mishima Station': '三島駅',
+  'Morinomiya Station': '森ノ宮駅',
+  'Moto-Hakone Port': '元箱根港',
+  'Namba Station Osaka': 'なんば駅',
+  'Namba Yasaka Shrine Osaka': '難波八阪神社',
+  'Nankai Namba Station': '南海なんば駅',
+  'Nankai Namba Station restaurants': '南海なんば駅周辺のレストラン',
+  'Nanzen-ji Temple Kyoto': '南禅寺',
+  'Narita Airport': '成田国際空港',
+  'Nijo Castle Kyoto': '元離宮二条城',
+  'Nishiki Market Kyoto': '錦市場',
+  'Nissan Crossing Ginza': 'NISSAN CROSSING',
+  'Nonbei Yokocho Shibuya': 'のんべい横丁',
+  'Odakyu Shinjuku Station': '小田急新宿駅',
+  'Odakyu Shinjuku Station West Ground Gate': '小田急新宿駅 西口地上改札',
+  'Omote-Sando Avenue and Cat Street': '表参道・キャットストリート',
+  'Omotesando Station Tokyo': '表参道駅',
+  'Osaka Castle Main Tower': '大阪城天守閣',
+  'Osaka Excel Hotel Tokyu': '大阪エクセルホテル東急',
+  'Pontocho Kyoto': '先斗町',
+  'Randen Arashiyama Station': '嵐電嵐山駅',
+  'remm PLUS Ginza Tokyo': 'レムプラス銀座',
+  'Rikugien Gardens Main Gate': '六義園 正門',
+  'Ryoan-ji Temple Kyoto': '龍安寺',
+  'Shibuya Crossing': '渋谷スクランブル交差点',
+  'Shibuya PARCO': '渋谷PARCO',
+  'Shibuya Sky': 'SHIBUYA SKY',
+  'Shibuya Station': '渋谷駅',
+  'Shibuya Station Ginza Line': '渋谷駅 銀座線',
+  'Shin-Osaka Station': '新大阪駅',
+  'Shinsekai Osaka': '新世界',
+  'Shitennoji Temple Osaka': '四天王寺',
+  'Sukunahikona Shrine Osaka': '少彦名神社',
+  'Sumiyoshi Taisha Osaka': '住吉大社',
+  'Sumiyoshitaisha Station': '住吉大社駅',
+  'Takeshita Street Entrance Harajuku': '竹下通り入口',
+  'Takeshita Street Harajuku': '竹下通り',
+  'teamLab Borderless Azabudai Hills': '森ビル デジタルアート ミュージアム',
+  'teamLab Botanical Garden Osaka': 'チームラボ ボタニカルガーデン 大阪',
+  'Tennoji Park Abeno restaurants': '天王寺公園・阿倍野のレストラン',
+  'Tennoji Station': '天王寺駅',
+  'Tenryu-ji Temple': '天龍寺',
+  'Todai-ji Nara': '東大寺',
+  'Todai-ji Nara restaurants': '東大寺周辺のレストラン',
+  'Togetsukyo Bridge Arashiyama': '渡月橋',
+  'Tokyo Station': '東京駅',
+  'Tokyo Station Marunouchi Central Exit': '東京駅 丸の内中央口',
+  'Tokyo Tower': '東京タワー',
+  'Tsukiji Outer Market': '築地場外市場',
+  'Tsukiji Station Tokyo': '築地駅',
+  'Umeda Sky Building Osaka': '梅田スカイビル',
+  'Yakitori Tsukada Shibuya': 'やきとりつかだ 渋谷',
+  'Zojo-ji Temple': '増上寺'
+};
+
+function japanesePlaceName(name){
+  return japanesePlaceNames[name] || name || '';
+}
+
+function layoutTransferHeaders(panel){
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      panel.querySelectorAll('.tleg-title, .tleg-title-ja').forEach(element => {
+        const preferredSize = element.classList.contains('tleg-title-ja') ? 17 : 19;
+        element.style.fontSize = `${preferredSize}px`;
+        element.classList.remove('split-after-arrow');
+        if (element.scrollWidth <= element.clientWidth) return;
+
+        element.classList.add('split-after-arrow');
+        const origin = element.querySelector('.route-origin');
+        const destination = element.querySelector('.route-to');
+        const longestSide = Math.max(origin.scrollWidth, destination.scrollWidth);
+        if (longestSide > element.clientWidth) {
+          const fittedSize = preferredSize * element.clientWidth / longestSide * 0.98;
+          element.style.fontSize = `${fittedSize.toFixed(2)}px`;
+        }
+      });
+    });
+  });
+}
+
+window.addEventListener('resize', () => {
+  const panel = document.getElementById('transportLegsPanel');
+  if (panel && !panel.classList.contains('hidden')) layoutTransferHeaders(panel);
+});
+
 function stepDirectionsUrl(navigation){
   return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(navigation.from)}&destination=${encodeURIComponent(navigation.to)}&travelmode=${navigation.mode}`;
 }
@@ -1447,14 +1593,15 @@ function renderTransferLegs(day){
     return;
   }
   panel.innerHTML = '<div class="section-title" style="margin:0;font-size:18px">מעברים בין האטרקציות</div>' + legs.map((t, transferIndex) => {
-    const route = t.from ? `${t.from} → ${t.to}` : `→ ${t.to}`;
+    const routeHeader = t.from ? `<span class="route-origin"><span class="route-from">${t.from}</span>&nbsp;<span class="route-arrow">→</span></span> <span class="route-to">${t.to}</span>` : `<span class="route-origin"><span class="route-arrow">→</span></span> <span class="route-to">${t.to}</span>`;
+    const routeJaHeader = t.from ? `<span class="route-origin"><span class="route-from">${japanesePlaceName(t.from)}</span>&nbsp;<span class="route-arrow">→</span></span> <span class="route-to">${japanesePlaceName(t.to)}</span>` : `<span class="route-origin"><span class="route-arrow">→</span></span> <span class="route-to">${japanesePlaceName(t.to)}</span>`;
     return `<div class="tleg tleg-banner" role="button" tabindex="0" data-transfer-index="${transferIndex}" onclick="showRouteTransfer('${day}', ${transferIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showRouteTransfer('${day}', ${transferIndex})}">
       <div class="tleg-banner-header" style="background-image:url('${t.img}')">
         <div class="tleg-time">${t.t.replace('<br>', ' – ')}</div>
-        <div class="tleg-title" dir="auto">${t.labelHtml || t.label || t.title}</div>
+        <div class="tleg-title">${routeHeader}</div>
+        <div class="tleg-title-ja" lang="ja">${routeJaHeader}</div>
       </div>
       <div class="tleg-body">
-        <div class="tleg-route">${route}</div>
         <div class="tleg-desc" dir="auto">${t.descHtml || t.desc}</div>
         ${transferDetailsHtml(t)}
         <div class="transit-meta" style="margin-top:6px">${t.tag ? `<span dir="auto">${t.tagHtml || t.tag}</span>` : ''}<a class="btn ghost" style="padding:3px 12px;font-size:12px" target="_blank" rel="noopener" href="${transferDirectionsUrl(t)}" onclick="event.stopPropagation()">🧭 ניווט</a></div>
@@ -1462,6 +1609,7 @@ function renderTransferLegs(day){
     </div>`;
   }).join('');
   panel.classList.remove('hidden');
+  layoutTransferHeaders(panel);
 }
 
 function transferDetailsHtml(transfer){
@@ -1641,8 +1789,8 @@ const data = {
     ["09:30<br>10:45","Umeda Sky Building","שני מגדלים המחוברים במרפסת Floating Garden Observatory, עם גג פתוח ונוף של 360 מעלות. נפתח ב-09:30; בבוקר התורים בדרך כלל קצרים יותר.","pictures/Umeda Sky Building.jpg","Umeda Sky Building Osaka","🎟️ כרטיס ¥2,000 · כ-75 דקות"],
     ["11:40<br>13:00","Kuromon Ichiba Market – ארוחת טעימות","המטבח של אוסקה: פירות ים, גריל, פירות ואוכל רחוב. טועמים תוך כדי הליכה ולכן אין צורך בארוחת צהריים נפרדת.","pictures/kuromon market.jpg","Kuromon Ichiba Market Osaka","🍢 80 דקות לטעימות ושיטוט"],
     ["13:25<br>14:35","Shinsekai ואזור Tsutenkaku","אוסקה רטרו בסגנון תחילת המאה ה-20, עם שלטי ניאון צבעוניים, מגדל Tsutenkaku ודוכני kushikatsu.","pictures/shinsekai.jpg","Shinsekai Osaka","🏮 כ-70 דקות"],
-    ["14:55<br>15:25","Namba Yasaka Shrine","מקדש קטן וזכיר עם במה ענקית בצורת ראש אריה. אפשר לוותר על העצירה אם היום מתארך.","pictures/namba yasaka.jpg","Namba Yasaka Shrine Osaka","🦁 אופציונלי · 30 דקות"],
-    ["15:25<br>16:30","קפה ומנוחה ב-Namba","הפסקה אמיתית לפני חלק הערב של היום.","pictures/lunch.jpg","Namba Osaka cafes","☕ 65 דקות מנוחה"],
+    ["15:00<br>15:30","Namba Yasaka Shrine","מקדש קטן וזכיר עם במה ענקית בצורת ראש אריה. אפשר לוותר על העצירה אם היום מתארך.","pictures/namba yasaka.jpg","Namba Yasaka Shrine Osaka","🦁 אופציונלי · 30 דקות"],
+    ["15:30<br>16:30","קפה ומנוחה ב-Namba","הפסקה אמיתית לפני חלק הערב של היום.","pictures/lunch.jpg","Namba Osaka cafes","☕ 60 דקות מנוחה"],
     ["16:30<br>17:30","Dotonbori בשעת בין ערביים","הליכה לאורך התעלה, Ebisu Bridge ושלט Glico המפורסם בזמן שהאורות מתחילים להידלק.","pictures/dotonbori.jpg","Dotonbori Osaka","🌆 60 דקות"],
     ["17:30<br>17:55","Hozenji Yokocho","סמטה צרה וישנה ליד מקדש Hozenji, עם אווירת ערב נעימה במיוחד ובדרך הטבעית לארוחת הערב.","pictures/hozenji.jpg","Hozenji Yokocho Osaka","🏮 25 דקות · לפני ארוחת הערב"],
     ["18:00<br>20:00","בירה בוטיק וארוחת ערב ב-Dotonbori","שעתיים במבשלת הבירה מהתוכנית המקורית, לארוחת ערב ובירה מקומית.","pictures/dotonbori.jpg","Dotonbori Craft Beer Brewery","🍺 ארוחת ערב · שעתיים"],
@@ -1756,9 +1904,9 @@ const transfersByDay = {
   '15': [
     {"t": "08:30", "title": "🚐 שאטל מהמלון", "desc": "שאטל של Aura Tachibana לתחנת Hakone-Yumoto", "img": "assets/transfers/bus.jpg", "to": "Hakone-Yumoto", "tag": "🚐 שאטל מלון", "afterIdx": -1, "from": null},
     {"t": "08:45", "title": "🚌 אוטובוס H/K", "desc": "קו אוטובוס מקומי לכיוון Hakone-jinja-iriguchi", "img": "assets/transfers/bus.jpg", "to": "Hakone-jinja-iriguchi", "tag": "🚌 אוטובוס H/K", "afterIdx": -1, "from": null},
-    {"t": "09:25", "title": "🚶 הליכה לשער השלום", "desc": "הליכה של כ-10 דקות מהתחנה אל Heiwa no Torii", "img": "assets/transfers/walk.jpg", "to": "Heiwa no Torii", "tag": "🚶 ~10 דק׳", "afterIdx": -1, "from": null},
-    {"t": "10:10", "title": "🚶 הליכה לנמל", "desc": "הליכה מהשער אל Moto-Hakone Port לקראת השייט", "img": "assets/transfers/walk.jpg", "to": "Moto-Hakone Port", "tag": "🚶 הליכה לנמל", "afterIdx": 0, "from": "Heiwa no Torii"},
-    {"t": "14:10", "title": "🚶 הליכה למוזיאון", "desc": "הליכה של כ-2 דקות מהתחנה אל Hakone Open-Air Museum", "img": "assets/transfers/walk.jpg", "to": "Hakone Open-Air Museum", "tag": "🚶 ~2 דק׳", "afterIdx": 7, "from": "Chokoku-no-Mori"},
+    {"t": "09:25", "title": "🚶 הליכה לשער השלום", "desc": "הליכה של כ-10 דקות מהתחנה אל Heiwa no Torii", "img": "assets/transfers/walk.jpg", "to": "Heiwa no Torii", "tag": "🚶 ~10 דק׳ · כ-0.7 ק״מ", "afterIdx": -1, "from": null},
+    {"t": "10:10", "title": "🚶 הליכה לנמל", "desc": "הליכה מהשער אל Moto-Hakone Port לקראת השייט", "img": "assets/transfers/walk.jpg", "to": "Moto-Hakone Port", "tag": "🚶 כ-10 דק׳ · כ-0.6 ק״מ", "afterIdx": 0, "from": "Heiwa no Torii"},
+    {"t": "14:10", "title": "🚶 הליכה למוזיאון", "desc": "הליכה של כ-2 דקות מהתחנה אל Hakone Open-Air Museum", "img": "assets/transfers/walk.jpg", "to": "Hakone Open-Air Museum", "tag": "🚶 ~2 דק׳ · כ-0.2 ק״מ", "afterIdx": 7, "from": "Chokoku-no-Mori"},
     {"t": "16:20<br>16:30", "title": "🚂 רכבת חזרה ל-Hakone-Yumoto", "desc": "רכבת טוזאן מ-Chokoku-no-Mori בחזרה לתחנת Hakone-Yumoto", "img": "assets/transfers/train.jpg", "to": "Hakone-Yumoto", "tag": "🚂 ~10 דק׳", "afterIdx": 8, "from": "Hakone Open-Air Museum"},
     {"t": "17:05", "title": "🚕 שאטל/מונית למלון", "desc": "התקשרות למלון ואיסוף בשאטל או מונית בחזרה ל-Aura Tachibana", "img": "assets/transfers/taxi.jpg", "to": "Aura Tachibana Hakone Yumoto", "tag": "🚕 שאטל/מונית", "afterIdx": 8, "from": "Hakone Open-Air Museum"}
   ],
@@ -1785,72 +1933,72 @@ const transfersByDay = {
     ]}}
   ],
   '17': [
-    {"t": "08:10<br>08:45", "title": "הליכה ל-Nijo Castle", "desc": "הליכת בוקר מהמלון עם מרווח קצר לכניסה ולכרטיסים.", "img": "assets/transfers/walk.jpg", "to": "Nijo Castle Kyoto", "tag": "🚶 ~25 דק׳", "afterIdx": 0, "from": "Hotel Monterey Kyoto"},
-    {"t": "10:45<br>11:20", "title": "הליכה ל-Nishiki Market", "label": "🚶 Nijo Castle → Nishiki Market", "desc": "הולכים מהטירה אל הצד המערבי של Nishiki Market, כך שהשיטוט בשוק יתקדם באופן טבעי מזרחה.", "img": "assets/transfers/walk.jpg", "to": "Nishiki Market Kyoto", "tag": "🚶 כ-35 דק׳", "afterIdx": 1, "from": "Nijo Castle Kyoto"},
+    {"t": "08:10<br>08:45", "title": "הליכה ל-Nijo Castle", "desc": "הליכת בוקר מהמלון עם מרווח קצר לכניסה ולכרטיסים.", "img": "assets/transfers/walk.jpg", "to": "Nijo Castle Kyoto", "tag": "🚶 ~25 דק׳ · כ-1.7 ק״מ", "afterIdx": 0, "from": "Hotel Monterey Kyoto"},
+    {"t": "10:45<br>11:20", "title": "הליכה ל-Nishiki Market", "label": "🚶 Nijo Castle → Nishiki Market", "desc": "הולכים מהטירה אל הצד המערבי של Nishiki Market, כך שהשיטוט בשוק יתקדם באופן טבעי מזרחה.", "img": "assets/transfers/walk.jpg", "to": "Nishiki Market Kyoto", "tag": "🚶 כ-35 דק׳ · כ-2.2 ק״מ", "afterIdx": 1, "from": "Nijo Castle Kyoto"},
     {"t": "13:00<br>13:50", "title": "מעבר ל-Nanzen-ji", "desc": "הליכה ל-Kyoto Shiyakusho-mae, נסיעה בקו Tozai עד Keage והליכה קצרה למקדש.", "img": "assets/transfers/train.jpg", "to": "Nanzen-ji Temple Kyoto", "tag": "🚇 + 🚶 ~50 דק׳", "afterIdx": 2, "from": "Nishiki Market Kyoto"},
     {"t": "15:05<br>16:00", "title": "חזרה למרכז קיוטו", "desc": "חזרה דרך Keage ו-Tozai Line עם זמן נדיב להחלפות ולהליכה.", "img": "assets/transfers/train.jpg", "to": "Kyoto Shiyakusho-mae", "tag": "🚇 + 🚶 ~55 דק׳", "afterIdx": 3, "from": "Nanzen-ji Temple Kyoto"},
-    {"t": "17:00<br>17:30", "title": "הליכה ל-Hulic Hall Kyoto", "desc": "יציאה מהאזור המרכזי לכיוון האולם, כולל זמן למציאת הכניסה.", "img": "assets/transfers/walk.jpg", "to": "Hulic Hall Kyoto", "tag": "🚶 עד 30 דק׳", "afterIdx": 4, "from": "Kyoto Shiyakusho-mae"},
-    {"t": "18:45<br>19:15", "title": "יציאה והליכה לארוחת ערב", "desc": "זמן ליציאה מהאולם ולהגעה רגועה למסעדה שהוזמנה מראש.", "img": "assets/transfers/walk.jpg", "to": "Kawaramachi Kyoto restaurants", "tag": "🚶 עד 30 דק׳", "afterIdx": 6, "from": "Hulic Hall Kyoto"},
-    {"t": "20:45", "title": "חזרה למלון", "desc": "הליכה של כ-15–25 דקות, בהתאם למסעדה שנבחרה.", "img": "assets/attractions/day17/return.jpg", "to": "Hotel Monterey Kyoto", "tag": "🚶 ~15–25 דק׳", "afterIdx": 7, "from": "Kawaramachi Kyoto restaurants"}
+    {"t": "17:00<br>17:30", "title": "הליכה ל-Hulic Hall Kyoto", "desc": "יציאה מהאזור המרכזי לכיוון האולם, כולל זמן למציאת הכניסה.", "img": "assets/transfers/walk.jpg", "to": "Hulic Hall Kyoto", "tag": "🚶 עד 30 דק׳ · כ-0.8 ק״מ", "afterIdx": 4, "from": "Kyoto Shiyakusho-mae"},
+    {"t": "18:45<br>19:15", "title": "יציאה והליכה לארוחת ערב", "desc": "זמן ליציאה מהאולם ולהגעה רגועה למסעדה שהוזמנה מראש.", "img": "assets/transfers/walk.jpg", "to": "Kawaramachi Kyoto restaurants", "tag": "🚶 עד 30 דק׳ · עד כ-2 ק״מ", "afterIdx": 6, "from": "Hulic Hall Kyoto"},
+    {"t": "20:45", "title": "חזרה למלון", "desc": "הליכה של כ-15–25 דקות, בהתאם למסעדה שנבחרה.", "img": "assets/attractions/day17/return.jpg", "to": "Hotel Monterey Kyoto", "tag": "🚶 ~15–25 דק׳ · כ-1–2 ק״מ", "afterIdx": 7, "from": "Kawaramachi Kyoto restaurants"}
   ],
   '18': [
     {"t": "08:30<br>08:50", "title": "2 מוניות ל-Mimosa Higashiyama", "desc": "העברה ישירה ויעילה לשישה אנשים מחוץ לשעות העומס של התחבורה הציבורית.", "img": "assets/transfers/taxi.jpg", "to": "Mimosa Higashiyama Kyoto", "tag": "🚕 2 מוניות · ~15–20 דק׳", "afterIdx": 0, "from": "Hotel Monterey Kyoto"},
-    {"t": "12:00<br>12:30", "title": "חזרה ל-Mimosa", "desc": "ירידה דרך הרחובות ההיסטוריים; הדרך עצמה ממשיכה את חוויית הקימונו והצילום.", "img": "assets/transfers/walk.jpg", "to": "Mimosa Higashiyama Kyoto", "tag": "🚶 ~25–30 דק׳", "afterIdx": 3, "from": "Kiyomizu-dera"},
-    {"t": "15:15<br>15:30", "title": "הליכה ל-Kennin-ji", "desc": "ממשיכים ישירות למקדש כדי להגן על שעת הכניסה האחרונה.", "img": "assets/transfers/walk.jpg", "to": "Kennin-ji Temple Kyoto", "tag": "🚶 ~15 דק׳", "afterIdx": 7, "from": "Ishibei-koji Lane Kyoto"},
-    {"t": "21:15", "title": "חזרה ל-Hotel Monterey Kyoto", "desc": "אחרי יום הליכה ארוך מומלץ לקחת שתי מוניות; הליכה אפשרית אם עדיין יש אנרגיה.", "img": "assets/transfers/taxi.jpg", "to": "Hotel Monterey Kyoto", "tag": "🚕 ~10 דק׳ / 🚶 ~20–25 דק׳", "afterIdx": 15, "from": "Pontocho Kyoto"}
+    {"t": "12:00<br>12:30", "title": "חזרה ל-Mimosa", "desc": "ירידה דרך הרחובות ההיסטוריים; הדרך עצמה ממשיכה את חוויית הקימונו והצילום.", "img": "assets/transfers/walk.jpg", "to": "Mimosa Higashiyama Kyoto", "tag": "🚶 ~25–30 דק׳ · כ-1.4 ק״מ", "afterIdx": 3, "from": "Kiyomizu-dera"},
+    {"t": "15:15<br>15:30", "title": "הליכה ל-Kennin-ji", "desc": "ממשיכים ישירות למקדש כדי להגן על שעת הכניסה האחרונה.", "img": "assets/transfers/walk.jpg", "to": "Kennin-ji Temple Kyoto", "tag": "🚶 ~15 דק׳ · כ-1 ק״מ", "afterIdx": 7, "from": "Ishibei-koji Lane Kyoto"},
+    {"t": "21:15<br>21:35", "title": "הליכה חזרה ל-Hotel Monterey Kyoto", "desc": "הליכה ישירה מ-Pontocho חזרה למלון דרך הרחובות המרכזיים של קיוטו.", "img": "assets/transfers/walk.jpg", "to": "Hotel Monterey Kyoto", "tag": "🚶 כ-20 דקות · 1.4 ק״מ", "afterIdx": 15, "from": "Pontocho Kyoto"}
   ],
   '19': [
     {"t": "07:30<br>08:40", "title": "מעבר לאראשיאמה", "desc": "יציאה ב-07:30 בתחבורה ציבורית דרך Tozai ו-Randen, או שתי מוניות סביב 07:55. שתי האפשרויות מכוונות להתחלת הביקור ב-08:40.", "img": "assets/transfers/train.jpg", "to": "Arashiyama Bamboo Grove", "tag": "🚇/🚋 ~70 דק׳ · 🚕 ~45 דק׳", "afterIdx": 0, "from": "Hotel Monterey Kyoto"},
-    {"t": "09:20<br>09:35", "title": "הליכה ל-Tenryu-ji", "desc": "הליכה אל הכניסה הצפונית של המקדש.", "img": "assets/transfers/walk.jpg", "to": "Tenryu-ji Temple", "tag": "🚶 ~15 דק׳", "afterIdx": 1, "from": "Arashiyama Bamboo Grove"},
-    {"t": "10:35<br>10:50", "title": "הליכה לגדת הנהר", "desc": "יציאה מהכניסה הראשית והמשך לכיוון Togetsukyo ונהר Katsura.", "img": "assets/transfers/walk.jpg", "to": "Togetsukyo Bridge Arashiyama", "tag": "🚶 ~15 דק׳", "afterIdx": 2, "from": "Tenryu-ji Temple"},
-    {"t": "12:00<br>12:15", "title": "הליכה לארוחת צהריים", "desc": "בחירת מסעדה ליד תחנת Randen Arashiyama כדי לפשט את ההמשך.", "img": "assets/transfers/walk.jpg", "to": "Randen Arashiyama Station", "tag": "🚶 עד 15 דק׳", "afterIdx": 4, "from": "Hogon-in Temple Kyoto"},
+    {"t": "09:20<br>09:35", "title": "הליכה ל-Tenryu-ji", "desc": "הליכה אל הכניסה הצפונית של המקדש.", "img": "assets/transfers/walk.jpg", "to": "Tenryu-ji Temple", "tag": "🚶 ~15 דק׳ · כ-0.8 ק״מ", "afterIdx": 1, "from": "Arashiyama Bamboo Grove"},
+    {"t": "10:35<br>10:50", "title": "הליכה לגדת הנהר", "desc": "יציאה מהכניסה הראשית והמשך לכיוון Togetsukyo ונהר Katsura.", "img": "assets/transfers/walk.jpg", "to": "Togetsukyo Bridge Arashiyama", "tag": "🚶 ~15 דק׳ · כ-0.8 ק״מ", "afterIdx": 2, "from": "Tenryu-ji Temple"},
+    {"t": "12:00<br>12:15", "title": "הליכה לארוחת צהריים", "desc": "בחירת מסעדה ליד תחנת Randen Arashiyama כדי לפשט את ההמשך.", "img": "assets/transfers/walk.jpg", "to": "Randen Arashiyama Station", "tag": "🚶 עד 15 דק׳ · כ-0.7 ק״מ", "afterIdx": 4, "from": "Hogon-in Temple Kyoto"},
     {"t": "13:15<br>14:10", "title": "מעבר ל-Ryoan-ji", "desc": "Randen דרך Katabiranotsuji והליכה למקדש היא האפשרות המועדפת; שתי מוניות הן חלופה פשוטה יותר.", "img": "assets/transfers/train.jpg", "to": "Ryoan-ji Temple Kyoto", "tag": "🚋 + 🚶 ~55 דק׳ / 🚕 ~45 דק׳", "afterIdx": 5, "from": "Randen Arashiyama Station"},
-    {"t": "14:55<br>15:30", "title": "הליכה ל-Kinkaku-ji", "desc": "הליכה לא לחוצה; לוקחים מוניות רק אם יש עיכוב או צורך במנוחה.", "img": "assets/transfers/walk.jpg", "to": "Kinkaku-ji Golden Pavilion", "tag": "🚶 ~35 דק׳", "afterIdx": 6, "from": "Ryoan-ji Temple Kyoto"},
-    {"t": "16:30<br>17:10", "title": "מעבר ל-Kitano Tenmangu", "desc": "הליכה אם לכולם נשאר כוח, או שתי מוניות כדי לשמור את זמן התאורה.", "img": "assets/transfers/walk.jpg", "to": "Kitano Tenmangu Shrine Kyoto", "tag": "🚶 ~40 דק׳ / 🚕 לפי צורך", "afterIdx": 7, "from": "Kinkaku-ji Golden Pavilion"},
+    {"t": "14:55<br>15:30", "title": "הליכה ל-Kinkaku-ji", "desc": "הליכה לא לחוצה; לוקחים מוניות רק אם יש עיכוב או צורך במנוחה.", "img": "assets/transfers/walk.jpg", "to": "Kinkaku-ji Golden Pavilion", "tag": "🚶 ~35 דק׳ · כ-2.4 ק״מ", "afterIdx": 6, "from": "Ryoan-ji Temple Kyoto"},
+    {"t": "16:30<br>17:10", "title": "מעבר ל-Kitano Tenmangu", "desc": "הליכה אם לכולם נשאר כוח, או שתי מוניות כדי לשמור את זמן התאורה.", "img": "assets/transfers/walk.jpg", "to": "Kitano Tenmangu Shrine Kyoto", "tag": "🚶 ~40 דק׳ · כ-2.7 ק״מ / 🚕 לפי צורך", "afterIdx": 7, "from": "Kinkaku-ji Golden Pavilion"},
     {"t": "18:10<br>19:10", "title": "נסיעה לכיוון ארוחת הערב", "desc": "Bus 55 לכיוון Shijo Karasuma והליכה, או שתי מוניות. המסעדה צריכה להיות ליד המלון.", "img": "assets/transfers/bus.jpg", "to": "Hotel Monterey Kyoto restaurants", "tag": "🚌 ~60 דק׳ / 🚕 ~45 דק׳", "afterIdx": 8, "from": "Kitano Tenmangu Shrine Kyoto"},
-    {"t": "אחרי 21:00", "title": "חזרה למלון", "desc": "בדרך כלל הליכה קצרה בלבד משום שהמסעדה נבחרת ליד Hotel Monterey Kyoto.", "img": "assets/transfers/walk.jpg", "to": "Hotel Monterey Kyoto", "tag": "🚶 לפי מיקום המסעדה", "afterIdx": 9, "from": "Hotel Monterey Kyoto restaurants"}
+    {"t": "אחרי 21:00", "title": "חזרה למלון", "desc": "בדרך כלל הליכה קצרה בלבד משום שהמסעדה נבחרת ליד Hotel Monterey Kyoto.", "img": "assets/transfers/walk.jpg", "to": "Hotel Monterey Kyoto", "tag": "🚶 לפי מיקום המסעדה · עד כ-1.5 ק״מ", "afterIdx": 9, "from": "Hotel Monterey Kyoto restaurants"}
   ],
   '20': [
     {"t": "08:00<br>08:50", "title": "נסיעה ל-Fushimi Inari", "desc": "הליכה, מטרו מ-Karasuma Oike ל-Kyoto Station ורכבת JR Nara Line ל-Inari. שומרים את הקבוצה יחד במעבר בתחנה.", "img": "assets/transfers/train.jpg", "to": "Fushimi Inari Taisha", "tag": "🚇 + 🚆 + 🚶 ~50 דק׳", "afterIdx": 1, "from": "Hotel Monterey Kyoto"},
     {"t": "10:20<br>11:35", "title": "Fushimi Inari → JR Nara Station", "desc": "הליכה לתחנה ורכבת JR ישירה דרומה, כולל זמן המתנה. יש לבדוק יציאה מדויקת סמוך לטיול.", "img": "assets/attractions/day20/train.jpg", "to": "JR Nara Station", "tag": "🚆 JR Nara Line · ~75 דק׳", "afterIdx": 2, "from": "Fushimi Inari Taisha"},
     {"t": "11:35<br>12:00", "title": "אוטובוס לאזור הפארק", "desc": "אוטובוס מקומי והליכה קצרה לאזור ארוחת הצהריים כדי לחסוך צעדים.", "img": "assets/transfers/bus.jpg", "to": "Todai-ji Nara restaurants", "tag": "🚌 + 🚶 ~25 דק׳", "afterIdx": 2, "from": "JR Nara Station"},
-    {"t": "14:45<br>15:20", "title": "הליכה דרך הפארק ל-Kasuga Taisha", "desc": "הליכה נופית שממשיכים בה רק אם הקבוצה מרגישה בנוח; זהו מוקד הגמישות של אחר הצהריים.", "img": "assets/transfers/walk.jpg", "to": "Kasuga Taisha Nara", "tag": "🚶 ~35 דק׳", "afterIdx": 5, "from": "Todai-ji Nara"},
+    {"t": "14:45<br>15:20", "title": "הליכה דרך הפארק ל-Kasuga Taisha", "desc": "הליכה נופית שממשיכים בה רק אם הקבוצה מרגישה בנוח; זהו מוקד הגמישות של אחר הצהריים.", "img": "assets/transfers/walk.jpg", "to": "Kasuga Taisha Nara", "tag": "🚶 ~35 דק׳ · כ-2.2 ק״מ", "afterIdx": 5, "from": "Todai-ji Nara"},
     {"t": "16:00<br>16:45", "title": "חזרה ל-Kintetsu-Nara Station", "desc": "הליכה ואוטובוס מקומי, כולל זמן המתנה, אחרי יום ההליכה.", "img": "assets/transfers/bus.jpg", "to": "Kintetsu-Nara Station", "tag": "🚶 + 🚌 ~45 דק׳", "afterIdx": 6, "from": "Kasuga Taisha Nara"},
     {"t": "17:10<br>18:25", "title": "נארה → Osaka Excel Hotel Tokyu", "desc": "Kintetsu-Nara ל-Osaka-Namba, קו Midosuji ל-Hommachi והליכה קצרה מיציאה 13 למלון.", "img": "assets/transfers/train.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚆 + 🚇 + 🚶 ~75 דק׳", "afterIdx": 7, "from": "Kintetsu-Nara Station"}
   ],
   '21': [
     {"t": "08:50<br>09:25", "title": "Osaka Excel Hotel Tokyu → Umeda Sky Building", "desc": "הליכה קצרה ל-Hommachi, קו Midosuji צפונה ל-Umeda והליכה של כ-15 דקות אל המגדל.", "img": "assets/transfers/train.jpg", "to": "Umeda Sky Building Osaka", "tag": "🚶 + 🚇 + 🚶 ~35 דק׳ (הערכה)", "afterIdx": 0, "from": "Osaka Excel Hotel Tokyu"},
     {"t": "10:45<br>11:40", "title": "Umeda Sky Building → Kuromon Market", "desc": "הליכה של כ-15 דקות לתחנת Umeda, קו Midosuji ישיר ל-Namba ללא החלפות, ואז הליכה של כ-10–15 דקות לשוק Kuromon.", "img": "assets/transfers/train.jpg", "to": "Kuromon Ichiba Market Osaka", "tag": "🚶 + 🚇 + 🚶 ~55 דק׳ (הערכה)", "afterIdx": 1, "from": "Umeda Sky Building Osaka"},
-    {"t": "13:00<br>13:25", "title": "מונית ל-Shinsekai", "desc": "מונית קצרה ונוחה יותר.", "img": "assets/transfers/taxi.jpg", "to": "Shinsekai Osaka", "tag": "🚕 ~10–15 דק׳ (הערכה)", "afterIdx": 2, "from": "Kuromon Ichiba Market Osaka"},
-    {"t": "14:35<br>14:55", "title": "מונית ל-Namba Yasaka Shrine", "desc": "מעבר קצר מ-Shinsekai למקדש ראש האריה.", "img": "assets/transfers/taxi.jpg", "to": "Namba Yasaka Shrine Osaka", "tag": "🚕 ~10–15 דק׳ (הערכה)", "afterIdx": 3, "from": "Shinsekai Osaka"},
-    {"t": "17:55<br>18:00", "title": "הליכה למבשלת הבירה", "desc": "הליכה קצרה מ-Hozenji Yokocho לארוחת הערב.", "img": "assets/transfers/walk.jpg", "to": "Dotonbori Craft Beer Brewery", "tag": "🚶 ~5 דק׳", "afterIdx": 7, "from": "Hozenji Yokocho Osaka"},
+    {"t": "13:00<br>13:21", "title": "הליכה ל-Shinsekai", "desc": "הולכים דרומה משוק Kuromon לאורך Sakaisuji אל אזור Shinsekai.", "img": "assets/transfers/walk.jpg", "to": "Shinsekai Osaka", "tag": "🚶 כ-21 דקות · 1.5 ק״מ", "afterIdx": 2, "from": "Kuromon Ichiba Market Osaka"},
+    {"t": "14:35<br>15:00", "title": "הליכה ל-Namba Yasaka Shrine", "desc": "הולכים מ-Shinsekai אל מקדש ראש האריה דרך רחובות Naniwa.", "img": "assets/transfers/walk.jpg", "to": "Namba Yasaka Shrine Osaka", "tag": "🚶 כ-25 דקות · 1.7 ק״מ", "afterIdx": 3, "from": "Shinsekai Osaka"},
+    {"t": "17:55<br>18:00", "title": "הליכה למבשלת הבירה", "desc": "הליכה קצרה מ-Hozenji Yokocho לארוחת הערב.", "img": "assets/transfers/walk.jpg", "to": "Dotonbori Craft Beer Brewery", "tag": "🚶 ~5 דק׳ · כ-0.4 ק״מ", "afterIdx": 7, "from": "Hozenji Yokocho Osaka"},
     {"t": "20:00<br>20:30", "title": "נסיעה ל-Osaka Excel Hotel Tokyu", "desc": "הליכה לתחנת Namba, קו Midosuji ל-Hommachi, ואז הליכה קצרה מיציאה 13 למלון.", "img": "assets/transfers/train.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚶 + 🚇 + 🚶 ~30 דק׳", "afterIdx": 8, "from": "Dotonbori Craft Beer Brewery"}
   ],
   '22': [
     {"t": "08:30<br>09:00", "title": "נסיעה ל-Osaka Castle", "desc": "הליכה של כ-2 דקות ל-Hommachi, שתי תחנות בקו Chuo ל-Tanimachi 4-chome, יציאה 9 והליכה דרך Otemon Gate.", "img": "assets/transfers/train.jpg", "to": "Osaka Castle Main Tower", "tag": "🚶 + 🚇 + 🚶 ~30 דק׳", "afterIdx": 0, "from": "Osaka Excel Hotel Tokyu"},
-    {"t": "10:30<br>10:50", "title": "הליכה ל-Morinomiya", "desc": "הליכת צילום לאורך התעלות וחומות האבן של פארק הטירה לכיוון תחנת Morinomiya.", "img": "assets/transfers/walk.jpg", "to": "Morinomiya Station", "tag": "🚶 ~20 דק׳", "afterIdx": 1, "from": "Osaka Castle Main Tower"},
+    {"t": "10:30<br>10:50", "title": "הליכה ל-Morinomiya", "desc": "הליכת צילום לאורך התעלות וחומות האבן של פארק הטירה לכיוון תחנת Morinomiya.", "img": "assets/transfers/walk.jpg", "to": "Morinomiya Station", "tag": "🚶 ~20 דק׳ · כ-1.4 ק״מ", "afterIdx": 1, "from": "Osaka Castle Main Tower"},
     {"t": "10:50<br>11:10", "title": "Morinomiya → Tennoji", "desc": "רכבת ישירה בקו JR Osaka Loop Line, ללא החלפות.", "img": "assets/transfers/train.jpg", "to": "Tennoji Station", "tag": "🚆 JR Loop Line ~20 דק׳", "afterIdx": 1, "from": "Morinomiya Station"},
-    {"t": "11:10<br>11:25", "title": "הליכה ל-Shitennoji", "desc": "הליכה ישירה של כ-10–15 דקות מתחנת Tennoji אל מתחם המקדש.", "img": "assets/transfers/walk.jpg", "to": "Shitennoji Temple Osaka", "tag": "🚶 ~10–15 דק׳", "afterIdx": 1, "from": "Tennoji Station"},
+    {"t": "11:10<br>11:25", "title": "הליכה ל-Shitennoji", "desc": "הליכה ישירה של כ-10–15 דקות מתחנת Tennoji אל מתחם המקדש.", "img": "assets/transfers/walk.jpg", "to": "Shitennoji Temple Osaka", "tag": "🚶 ~10–15 דק׳ · כ-1 ק״מ", "afterIdx": 1, "from": "Tennoji Station"},
     {"t": "13:15<br>13:40", "title": "מעבר לארוחת צהריים ב-Abeno", "desc": "מונית קצרה של כ-7 דקות או הליכה של כ-20 דקות אל אזור Tennoji Park / Abeno; הזמנים משוערים.", "img": "assets/transfers/taxi.jpg", "to": "Tennoji Park Abeno restaurants", "tag": "🚕 ~7 דק׳ / 🚶 ~20 דק׳ (הערכה)", "afterIdx": 2, "from": "Shitennoji Temple Osaka"},
-    {"t": "16:30<br>16:40", "title": "עלייה ל-Harukas 300", "desc": "עולים בתוך Abeno Harukas אל קופת התצפית בקומה 16.", "img": "assets/transfers/walk.jpg", "to": "Abeno Harukas 300 Osaka", "tag": "🏢 בתוך הבניין · ~10 דק׳", "afterIdx": 5, "from": "Kintetsu Department Store Abeno Harukas"},
+    {"t": "16:30<br>16:40", "title": "עלייה ל-Harukas 300", "desc": "עולים בתוך Abeno Harukas אל קופת התצפית בקומה 16.", "img": "assets/transfers/walk.jpg", "to": "Abeno Harukas 300 Osaka", "tag": "🏢 בתוך הבניין · ~10 דק׳ · פחות מ-0.1 ק״מ", "afterIdx": 5, "from": "Kintetsu Department Store Abeno Harukas"},
     {"t": "18:20<br>18:50", "title": "Tennoji → teamLab", "desc": "קו Midosuji ל-Nagai, יציאה 3 והליכה של כ-10 דקות אל הגן. הזמן הכולל משוער.", "img": "assets/transfers/train.jpg", "to": "teamLab Botanical Garden Osaka", "tag": "🚇 + 🚶 ~30 דק׳ (הערכה)", "afterIdx": 7, "from": "Abeno Harukas"},
     {"t": "20:30<br>21:20", "title": "Nagai → Namba", "desc": "הליכה לתחנת Nagai וקו Midosuji ישיר ל-Namba. הזמן הכולל כולל יציאה מהגן ומשוער.", "img": "assets/transfers/train.jpg", "to": "Namba Station Osaka", "tag": "🚶 + 🚇 ~50 דק׳ (הערכה)", "afterIdx": 8, "from": "teamLab Botanical Garden Osaka"}
   ],
   '23': [
-    {"t": "09:30<br>09:50", "title": "מונית ל-Doshomachi", "desc": "נסיעת בוקר לפני תחילת הגבלות התנועה ב-Midosuji סביב 11:30. זמן הנסיעה משוער.", "img": "assets/transfers/taxi.jpg", "to": "Sukunahikona Shrine Osaka", "tag": "🚕 ~10–20 דק׳ (הערכה)", "afterIdx": 0, "from": "Osaka Excel Hotel Tokyu"},
+    {"t": "09:30<br>09:50", "title": "הליכה ל-Sukunahikona Shrine", "desc": "הליכת בוקר ישירה מהמלון אל רובע התרופות ההיסטורי Doshomachi והמקדש.", "img": "assets/transfers/walk.jpg", "to": "Sukunahikona Shrine Osaka", "tag": "🚶 כ-20 דקות · 1.4 ק״מ", "afterIdx": 0, "from": "Osaka Excel Hotel Tokyu"},
     {"t": "11:30<br>12:10", "title": "Doshomachi → Nankai Namba", "desc": "נוסעים במטרו ולא במונית בגלל הגבלות התנועה ב-Midosuji, וממשיכים ברגל לתחנת Nankai Namba. זמן הנסיעה הכולל משוער.", "img": "assets/transfers/train.jpg", "to": "Nankai Namba Station", "tag": "🚇 + 🚶 ~40 דק׳ (הערכה)", "afterIdx": 1, "from": "Sukunahikona Shrine Osaka"},
     {"t": "12:10<br>12:40", "title": "Nankai Namba → Sumiyoshitaisha", "desc": "עולים על רכבת Nankai מקומית בלבד, משום שרכבות האקספרס אינן עוצרות ב-Sumiyoshitaisha, ואז הולכים כ-3 דקות למקדש.", "img": "assets/transfers/train.jpg", "to": "Sumiyoshi Taisha Osaka", "tag": "🚆 רכבת מקומית + 🚶 ~30 דק׳", "afterIdx": 1, "from": "Nankai Namba Station"},
     {"t": "14:10<br>14:40", "title": "Sumiyoshitaisha → Namba", "desc": "חוזרים ברכבת Nankai מקומית ל-Namba לקראת ארוחת הצהריים המאוחרת.", "img": "assets/transfers/train.jpg", "to": "Nankai Namba Station restaurants", "tag": "🚆 רכבת מקומית ~30 דק׳", "afterIdx": 2, "from": "Sumiyoshitaisha Station"},
-    {"t": "21:50<br>22:10", "title": "חזרה ל-Osaka Excel Hotel Tokyu", "desc": "המשך ההליכה צפונה או קו Midosuji ל-Hommachi, לפי העייפות.", "img": "assets/transfers/walk.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚶 / 🚇 ~15 דק׳ ומעלה", "afterIdx": 6, "from": "Midosuji Illumination Osaka"}
+    {"t": "21:50<br>22:10", "title": "חזרה ל-Osaka Excel Hotel Tokyu", "desc": "המשך ההליכה צפונה או קו Midosuji ל-Hommachi, לפי העייפות.", "img": "assets/transfers/walk.jpg", "to": "Osaka Excel Hotel Tokyu", "tag": "🚶 / 🚇 ~15 דק׳ ומעלה · כ-1 ק״מ ומעלה", "afterIdx": 6, "from": "Midosuji Illumination Osaka"}
   ],
   '24': [
     {"t": "09:05<br>09:30", "title": "Osaka Excel Hotel Tokyu → Shin-Osaka", "label": "🚇 המלון → Shin-Osaka", "desc": "הליכה של כ-5 דקות לתחנת Hommachi וקו Midosuji ישיר ל-Shin-Osaka, ללא החלפות.", "img": "assets/transfers/train.jpg", "to": "Shin-Osaka Station", "tag": "🚶 + 🚇 Midosuji · כ-25 דקות · כרטיס IC", "afterIdx": 2, "from": "Osaka Excel Hotel Tokyu"},
     {"t": "10:00<br>12:30", "title": "Shinkansen Nozomi → Tokyo", "label": "🚄 Shin-Osaka → Tokyo Station", "desc": "נסיעה ישירה של כשעתיים וחצי במושבים שמורים. במזג אוויר בהיר מושב E בצד ימין עשוי להציע נוף להר פוג׳י כ-90 דקות לאחר היציאה.", "img": "assets/transfers/train.jpg", "to": "Tokyo Station", "tag": "🚄 Nozomi · מושבים נרכשו מראש", "afterIdx": 3, "from": "Shin-Osaka Station"},
-    {"t": "13:45<br>14:00", "title": "Tokyo Station → Kokyo Gaien", "label": "🚶 Tokyo Station → הארמון הקיסרי", "desc": "יוצאים דרך Marunouchi Central Exit והולכים ישר לאורך שדרת Gyoko-dori הרחבה עד לרחבה החיצונית של הארמון.", "img": "assets/transfers/walk.jpg", "to": "Kokyo Gaien National Garden", "tag": "🚶 כ-10–15 דקות", "afterIdx": 5, "from": "Tokyo Station Marunouchi Central Exit"},
-    {"t": "15:00<br>15:30", "title": "Kokyo Gaien → Hibiya → Ginza", "label": "🚶 הארמון הקיסרי → גינזה", "desc": "הולכים דרומה לאורך התעלה, חולפים ליד Hibiya Park ונכנסים לגינזה. אפשר לעצור לקפה קצר ב-Hibiya רק אם עומדים בזמנים.", "img": "assets/transfers/walk.jpg", "to": "Nissan Crossing Ginza", "tag": "🚶 כ-20–25 דקות", "afterIdx": 6, "from": "Kokyo Gaien National Garden"},
-    {"t": "17:15<br>17:25", "title": "גינזה → remm PLUS Ginza", "label": "🚶 גינזה → המלון", "desc": "הליכה קצרה מסיום השיטוט ב-Chuo-dori אל המלון לצ׳ק-אין ולקבלת המזוודות.", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "🚶 כ-5–10 דקות", "afterIdx": 8, "from": "Ginza Chuo-dori"},
-    {"t": "19:15<br>19:30", "title": "remm PLUS Ginza → Akita Dining Namahage", "label": "🚶 המלון → Akita Dining Namahage", "desc": "יוצאים בזמן מהמלון והולכים למסעדה; אם הכתובת הסופית רחוקה יותר, משתמשים במטרו לנסיעה קצרה.", "img": "assets/transfers/walk.jpg", "to": "Akita Dining Namahage Ginza", "tag": "🚶 / 🚇 קצר · הזמנה ב-19:30", "afterIdx": 9, "from": "remm PLUS Ginza Tokyo"},
-    {"t": "21:00 ואילך", "title": "חזרה ל-remm PLUS Ginza", "label": "🚶 ערב בגינזה → המלון", "desc": "הליכה קצרה חזרה למלון אחרי הארוחה או אחרי משקה אופציונלי באזור.", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "🚶 לפי מקום הסיום", "afterIdx": 11, "from": "Ginza Tokyo"}
+    {"t": "13:45<br>14:00", "title": "Tokyo Station → Kokyo Gaien", "label": "🚶 Tokyo Station → הארמון הקיסרי", "desc": "יוצאים דרך Marunouchi Central Exit והולכים ישר לאורך שדרת Gyoko-dori הרחבה עד לרחבה החיצונית של הארמון.", "img": "assets/transfers/walk.jpg", "to": "Kokyo Gaien National Garden", "tag": "🚶 כ-10–15 דקות · כ-1 ק״מ", "afterIdx": 5, "from": "Tokyo Station Marunouchi Central Exit"},
+    {"t": "15:00<br>15:30", "title": "Kokyo Gaien → Hibiya → Ginza", "label": "🚶 הארמון הקיסרי → גינזה", "desc": "הולכים דרומה לאורך התעלה, חולפים ליד Hibiya Park ונכנסים לגינזה. אפשר לעצור לקפה קצר ב-Hibiya רק אם עומדים בזמנים.", "img": "assets/transfers/walk.jpg", "to": "Nissan Crossing Ginza", "tag": "🚶 כ-20–25 דקות · כ-1.8 ק״מ", "afterIdx": 6, "from": "Kokyo Gaien National Garden"},
+    {"t": "17:15<br>17:25", "title": "גינזה → remm PLUS Ginza", "label": "🚶 גינזה → המלון", "desc": "הליכה קצרה מסיום השיטוט ב-Chuo-dori אל המלון לצ׳ק-אין ולקבלת המזוודות.", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "🚶 כ-5–10 דקות · כ-0.7 ק״מ", "afterIdx": 8, "from": "Ginza Chuo-dori"},
+    {"t": "19:15<br>19:30", "title": "remm PLUS Ginza → Akita Dining Namahage", "label": "🚶 המלון → Akita Dining Namahage", "desc": "יוצאים בזמן מהמלון והולכים למסעדה; אם הכתובת הסופית רחוקה יותר, משתמשים במטרו לנסיעה קצרה.", "img": "assets/transfers/walk.jpg", "to": "Akita Dining Namahage Ginza", "tag": "🚶 / 🚇 קצר · כ-0.8 ק״מ · הזמנה ב-19:30", "afterIdx": 9, "from": "remm PLUS Ginza Tokyo"},
+    {"t": "21:00 ואילך", "title": "חזרה ל-remm PLUS Ginza", "label": "🚶 ערב בגינזה → המלון", "desc": "הליכה קצרה חזרה למלון אחרי הארוחה או אחרי משקה אופציונלי באזור.", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "🚶 לפי מקום הסיום · כ-0.5–1.5 ק״מ", "afterIdx": 11, "from": "Ginza Tokyo"}
   ],
   '25': [
     {"t": "09:00<br>09:40", "title": "remm PLUS Ginza → Meiji Jingu", "label": "🚇 remm PLUS Ginza → Meiji Jingu", "desc": "הליכה ל-Ginza Station, קו Ginza ל-Omotesando, החלפה לקו Chiyoda וירידה ב-Meiji-jingumae 'Harajuku'.", "img": "assets/transfers/train.jpg", "to": "Meiji Jingu First Torii", "tag": "🚶 + 🚇 Ginza + 🚇 Chiyoda · כ-40 דקות", "afterIdx": -1, "from": "remm PLUS Ginza Tokyo", "details": {"title": "פירוט מלא מהמלון ל-Meiji Jingu · 4 שלבים", "steps": [
@@ -1862,15 +2010,15 @@ const transfersByDay = {
       "לכל מטייל צריך להיות כרטיס Suica, PASMO או ICOCA משלו; אי אפשר להעביר שישה אנשים בשער עם כרטיס אחד.",
       "בדקו יתרה חיובית בכל הכרטיסים לפני היציאה כדי שהקבוצה תעבור יחד בשערים."
     ]}},
-    {"t": "11:00<br>11:05", "title": "Meiji Jingu → Takeshita Street", "label": "🚶 Meiji Jingu → Takeshita Street", "desc": "חוזרים אל היציאה ליד Harajuku Station; הכניסה ל-Takeshita Street נמצאת מול התחנה.", "img": "assets/transfers/walk.jpg", "to": "Takeshita Street Entrance Harajuku", "tag": "🚶 כ-5 דקות", "afterIdx": 0, "from": "Meiji Jingu First Torii"},
-    {"t": "11:40<br>11:50", "title": "Takeshita Street → Omotesando ו-Cat Street", "label": "🚶 Takeshita Street → Omotesando ו-Cat Street", "desc": "ממשיכים עד סוף Takeshita Street, חוצים את Meiji-dori ומגיעים ל-Omotesando ולכניסה ל-Cat Street.", "img": "assets/transfers/walk.jpg", "to": "Omote-Sando Avenue and Cat Street", "tag": "🚶 כ-10 דקות", "afterIdx": 1, "from": "Takeshita Street Harajuku"},
-    {"t": "13:00", "title": "Cat Street → ארוחת צהריים", "label": "🚶 Cat Street → ארוחת צהריים", "desc": "בוחרים מסעדה ליד הקצה הדרומי של Cat Street כדי להישאר בכיוון Shibuya PARCO.", "img": "assets/transfers/walk.jpg", "to": "Cat Street Shibuya restaurants", "tag": "🚶 בתוך האזור", "afterIdx": 2, "from": "Cat Street Shibuya"},
-    {"t": "14:00<br>14:15", "title": "ארוחת צהריים → Shibuya PARCO", "label": "🚶 ארוחת צהריים → Shibuya PARCO", "desc": "ממשיכים דרומה מהקצה של Cat Street אל PARCO בלי לחזור לכיוון Omotesando.", "img": "assets/transfers/walk.jpg", "to": "Shibuya PARCO", "tag": "🚶 כ-15 דקות", "afterIdx": 3, "from": "Cat Street Shibuya restaurants"},
-    {"t": "15:30<br>15:50", "title": "Shibuya PARCO → Shibuya Sky", "label": "🚶 Shibuya PARCO → Shibuya Sky", "desc": "הולכים אל Shibuya Scramble Square. חלון של 20 דקות כולל מרווח נוח לכניסה של 16:00.", "img": "assets/transfers/walk.jpg", "to": "Shibuya Sky", "tag": "🚶 כ-10 דקות + מרווח כניסה", "afterIdx": 4, "from": "Shibuya PARCO"},
-    {"t": "18:00<br>18:10", "title": "Shibuya Sky → Hachiko", "label": "🚶 Shibuya Sky → Hachiko", "desc": "יורדים אל מפלס הרחוב וחוצים לצד המערבי של תחנת Shibuya לכיוון Hachiko Exit.", "img": "assets/transfers/walk.jpg", "to": "Hachiko Statue Shibuya", "tag": "🚶 כ-10 דקות", "afterIdx": 6, "from": "Shibuya Sky"},
-    {"t": "18:20", "title": "Hachiko → Shibuya Crossing", "label": "🚶 Hachiko → Shibuya Crossing", "desc": "הצומת נמצא צמוד לרחבת Hachiko; ממשיכים ישירות למעבר החצייה.", "img": "assets/transfers/walk.jpg", "to": "Shibuya Crossing", "tag": "🚶 כ-2 דקות", "afterIdx": 7, "from": "Hachiko Statue Shibuya"},
-    {"t": "18:50<br>19:00", "title": "שיבויה → Yakitori Tsukada", "label": "🚶 שיבויה → Yakitori Tsukada", "desc": "מסיימים את השיטוט בצד Dogenzaka והולכים למסעדה בזמן להזמנה של 19:00.", "img": "assets/transfers/walk.jpg", "to": "Yakitori Tsukada Shibuya", "tag": "🚶 כ-10 דקות", "afterIdx": 9, "from": "Shibuya Crossing"},
-    {"t": "20:45<br>21:00", "title": "Yakitori Tsukada → Nonbei Yokocho", "label": "🚶 Yakitori Tsukada → Nonbei Yokocho", "desc": "חוצים את אזור תחנת Shibuya מ-Dogenzaka אל הסמטה שנמצאת בצד המזרחי של המסילות.", "img": "assets/transfers/walk.jpg", "to": "Nonbei Yokocho Shibuya", "tag": "🚶 כ-15 דקות", "afterIdx": 10, "from": "Yakitori Tsukada Shibuya"},
+    {"t": "11:00<br>11:05", "title": "Meiji Jingu → Takeshita Street", "label": "🚶 Meiji Jingu → Takeshita Street", "desc": "חוזרים אל היציאה ליד Harajuku Station; הכניסה ל-Takeshita Street נמצאת מול התחנה.", "img": "assets/transfers/walk.jpg", "to": "Takeshita Street Entrance Harajuku", "tag": "🚶 כ-5 דקות · כ-0.4 ק״מ", "afterIdx": 0, "from": "Meiji Jingu First Torii"},
+    {"t": "11:40<br>11:50", "title": "Takeshita Street → Omotesando ו-Cat Street", "label": "🚶 Takeshita Street → Omotesando ו-Cat Street", "desc": "ממשיכים עד סוף Takeshita Street, חוצים את Meiji-dori ומגיעים ל-Omotesando ולכניסה ל-Cat Street.", "img": "assets/transfers/walk.jpg", "to": "Omote-Sando Avenue and Cat Street", "tag": "🚶 כ-10 דקות · כ-0.8 ק״מ", "afterIdx": 1, "from": "Takeshita Street Harajuku"},
+    {"t": "13:00", "title": "Cat Street → ארוחת צהריים", "label": "🚶 Cat Street → ארוחת צהריים", "desc": "בוחרים מסעדה ליד הקצה הדרומי של Cat Street כדי להישאר בכיוון Shibuya PARCO.", "img": "assets/transfers/walk.jpg", "to": "Cat Street Shibuya restaurants", "tag": "🚶 בתוך האזור · כ-0.5 ק״מ", "afterIdx": 2, "from": "Cat Street Shibuya"},
+    {"t": "14:00<br>14:15", "title": "ארוחת צהריים → Shibuya PARCO", "label": "🚶 ארוחת צהריים → Shibuya PARCO", "desc": "ממשיכים דרומה מהקצה של Cat Street אל PARCO בלי לחזור לכיוון Omotesando.", "img": "assets/transfers/walk.jpg", "to": "Shibuya PARCO", "tag": "🚶 כ-15 דקות · כ-1 ק״מ", "afterIdx": 3, "from": "Cat Street Shibuya restaurants"},
+    {"t": "15:30<br>15:50", "title": "Shibuya PARCO → Shibuya Sky", "label": "🚶 Shibuya PARCO → Shibuya Sky", "desc": "הולכים אל Shibuya Scramble Square. חלון של 20 דקות כולל מרווח נוח לכניסה של 16:00.", "img": "assets/transfers/walk.jpg", "to": "Shibuya Sky", "tag": "🚶 כ-10 דקות · כ-0.8 ק״מ + מרווח כניסה", "afterIdx": 4, "from": "Shibuya PARCO"},
+    {"t": "18:00<br>18:10", "title": "Shibuya Sky → Hachiko", "label": "🚶 Shibuya Sky → Hachiko", "desc": "יורדים אל מפלס הרחוב וחוצים לצד המערבי של תחנת Shibuya לכיוון Hachiko Exit.", "img": "assets/transfers/walk.jpg", "to": "Hachiko Statue Shibuya", "tag": "🚶 כ-10 דקות · כ-0.5 ק״מ", "afterIdx": 6, "from": "Shibuya Sky"},
+    {"t": "18:20", "title": "Hachiko → Shibuya Crossing", "label": "🚶 Hachiko → Shibuya Crossing", "desc": "הצומת נמצא צמוד לרחבת Hachiko; ממשיכים ישירות למעבר החצייה.", "img": "assets/transfers/walk.jpg", "to": "Shibuya Crossing", "tag": "🚶 כ-2 דקות · כ-0.1 ק״מ", "afterIdx": 7, "from": "Hachiko Statue Shibuya"},
+    {"t": "18:50<br>19:00", "title": "שיבויה → Yakitori Tsukada", "label": "🚶 שיבויה → Yakitori Tsukada", "desc": "מסיימים את השיטוט בצד Dogenzaka והולכים למסעדה בזמן להזמנה של 19:00.", "img": "assets/transfers/walk.jpg", "to": "Yakitori Tsukada Shibuya", "tag": "🚶 כ-10 דקות · כ-0.8 ק״מ", "afterIdx": 9, "from": "Shibuya Crossing"},
+    {"t": "20:45<br>21:00", "title": "Yakitori Tsukada → Nonbei Yokocho", "label": "🚶 Yakitori Tsukada → Nonbei Yokocho", "desc": "חוצים את אזור תחנת Shibuya מ-Dogenzaka אל הסמטה שנמצאת בצד המזרחי של המסילות.", "img": "assets/transfers/walk.jpg", "to": "Nonbei Yokocho Shibuya", "tag": "🚶 כ-15 דקות · כ-1 ק״מ", "afterIdx": 10, "from": "Yakitori Tsukada Shibuya"},
     {"t": "22:30<br>23:10", "title": "Nonbei Yokocho → remm PLUS Ginza", "label": "🚇 Nonbei Yokocho → remm PLUS Ginza", "desc": "הליכה ל-Shibuya Station, קו Ginza בכיוון Asakusa עד Ginza Station והליכה למלון.", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "🚶 + 🚇 Ginza + 🚶 · כ-40 דקות · כ-¥180", "afterIdx": 11, "from": "Nonbei Yokocho Shibuya", "details": {"title": "פירוט מלא מ-Nonbei Yokocho למלון · 3 שלבים", "steps": [
       {"time": "22:30–22:35", "title": "הליכה ל-Shibuya Station", "desc": "יוצאים מהסמטה ועוקבים אחרי השילוט לכניסה של קו Ginza.", "navigation": {"from": "Nonbei Yokocho Shibuya", "to": "Shibuya Station Ginza Line", "mode": "walking", "label": "🚶 ניווט לתחנה"}},
       {"time": "22:35–23:00", "title": "Ginza Line ל-Ginza Station", "desc": "עולים על הקו הכתום בכיוון Asakusa ויורדים בתחנת Ginza.", "navigation": {"from": "Shibuya Station", "to": "Ginza Station Tokyo", "mode": "transit", "label": "🚇 מסלול מטרו ל-Ginza"}},
@@ -1881,7 +2029,7 @@ const transfersByDay = {
     ]}}
   ],
   '26': [
-    {"t": "08:40<br>09:00", "title": "remm PLUS Ginza → Tsukiji Outer Market", "label": "🚶 המלון → Tsukiji Outer Market", "desc": "הליכת בוקר ישירה מהמלון לשוק דרך Ginza ו-Tsukiji; יוצאים בזמן כדי להתחיל את הטעימות ב-09:00.", "img": "assets/transfers/walk.jpg", "to": "Tsukiji Outer Market", "tag": "🚶 כ-20 דקות", "afterIdx": -1, "from": "remm PLUS Ginza Tokyo"},
+    {"t": "08:40<br>09:00", "title": "remm PLUS Ginza → Tsukiji Outer Market", "label": "🚶 המלון → Tsukiji Outer Market", "desc": "הליכת בוקר ישירה מהמלון לשוק דרך Ginza ו-Tsukiji; יוצאים בזמן כדי להתחיל את הטעימות ב-09:00.", "img": "assets/transfers/walk.jpg", "to": "Tsukiji Outer Market", "tag": "🚶 כ-20 דקות · כ-1.4 ק״מ", "afterIdx": -1, "from": "remm PLUS Ginza Tokyo"},
     {"t": "10:15<br>10:40", "title": "Tsukiji → Azabudai Hills", "label": "🚇 Tsukiji → Azabudai Hills", "desc": "קו Hibiya ישיר מתחנת Tsukiji ל-Kamiyacho, יציאה 5 והמשך רגלי מקורה אל Garden Plaza B.", "img": "assets/transfers/train.jpg", "to": "teamLab Borderless Azabudai Hills", "tag": "🚶 + 🚇 Hibiya + 🚶 · כ-25 דקות · כ-¥180", "afterIdx": 0, "from": "Tsukiji Outer Market", "details": {"title": "פירוט מלא מצוקיג'י ל-teamLab · 3 שלבים", "steps": [
       {"time": "10:15–10:20", "title": "הליכה ל-Tsukiji Station", "desc": "יוצאים מהשוק לכיוון תחנת Tsukiji של קו Hibiya.", "navigation": {"from": "Tsukiji Outer Market", "to": "Tsukiji Station Tokyo", "mode": "walking", "label": "🚶 ניווט לתחנה"}},
       {"time": "10:20–10:32", "title": "Hibiya Line ל-Kamiyacho", "desc": "עולים על הקו האפור בכיוון Naka-meguro ויורדים ב-Kamiyacho, ללא החלפה.", "navigation": {"from": "Tsukiji Station Tokyo", "to": "Kamiyacho Station Tokyo", "mode": "transit", "label": "🚇 מסלול מטרו"}},
@@ -1890,8 +2038,8 @@ const transfersByDay = {
       "צאו מהשוק לכל המאוחר ב-10:15 כדי לשמור על שעת הכניסה 11:00.",
       "אם נוצר עיכוב משמעותי, קחו מונית ישירות ל-teamLab Borderless."
     ]}},
-    {"t": "13:35<br>13:55", "title": "Azabudai Hills → Zojo-ji", "label": "🚶 Azabudai Hills → Zojo-ji", "desc": "הליכה של כ-1.2 ק״מ דרך Tokyo Tower-dori אל שער המקדש.", "img": "assets/transfers/walk.jpg", "to": "Zojo-ji Temple", "tag": "🚶 כ-18–20 דקות", "afterIdx": 2, "from": "Azabudai Hills"},
-    {"t": "14:25<br>14:35", "title": "Zojo-ji → Tokyo Tower", "label": "🚶 Zojo-ji → Tokyo Tower", "desc": "יוצאים מצדו הצפוני של המקדש והולכים דרך Shiba Park אל בסיס המגדל.", "img": "assets/transfers/walk.jpg", "to": "Tokyo Tower", "tag": "🚶 כ-10 דקות", "afterIdx": 3, "from": "Zojo-ji Temple"},
+    {"t": "13:35<br>13:55", "title": "Azabudai Hills → Zojo-ji", "label": "🚶 Azabudai Hills → Zojo-ji", "desc": "הליכה של כ-1.2 ק״מ דרך Tokyo Tower-dori אל שער המקדש.", "img": "assets/transfers/walk.jpg", "to": "Zojo-ji Temple", "tag": "🚶 כ-18–20 דקות · כ-1.2 ק״מ", "afterIdx": 2, "from": "Azabudai Hills"},
+    {"t": "14:25<br>14:35", "title": "Zojo-ji → Tokyo Tower", "label": "🚶 Zojo-ji → Tokyo Tower", "desc": "יוצאים מצדו הצפוני של המקדש והולכים דרך Shiba Park אל בסיס המגדל.", "img": "assets/transfers/walk.jpg", "to": "Tokyo Tower", "tag": "🚶 כ-10 דקות · כ-0.7 ק״מ", "afterIdx": 3, "from": "Zojo-ji Temple"},
     {"t": "14:55<br>15:25", "title": "Tokyo Tower → Ginza", "label": "🚇 Tokyo Tower → Ginza", "desc": "הליכה ל-Kamiyacho, קו Hibiya הישיר ל-Ginza והליכה לתחילת בלוק הקניות.", "img": "assets/transfers/train.jpg", "to": "Ginza Six", "tag": "🚶 + 🚇 Hibiya + 🚶 · כ-30 דקות · כ-¥180", "afterIdx": 4, "from": "Tokyo Tower", "details": {"title": "פירוט מלא מ-Tokyo Tower לגינזה · 3 שלבים", "steps": [
       {"time": "14:55–15:08", "title": "הליכה ל-Kamiyacho Station", "desc": "הולכים מבסיס Tokyo Tower לתחנת Kamiyacho.", "navigation": {"from": "Tokyo Tower", "to": "Kamiyacho Station Tokyo", "mode": "walking", "label": "🚶 ניווט לתחנה"}},
       {"time": "15:08–15:18", "title": "Hibiya Line ל-Ginza", "desc": "נוסעים בקו Hibiya בכיוון Kita-senju ויורדים ב-Ginza Station.", "navigation": {"from": "Kamiyacho Station Tokyo", "to": "Ginza Station Tokyo", "mode": "transit", "label": "🚇 מסלול מטרו"}},
@@ -1900,14 +2048,14 @@ const transfersByDay = {
       "הביקור ב-Tokyo Tower הוא חיצוני בלבד; אין זמן לעלות לתצפית.",
       "אם ההליכה ל-Kamiyacho מתעכבת, מונית ישירה לגינזה תשמור על זמן הקניות."
     ]}},
-    {"t": "19:30", "title": "Ginza Shopping → remm PLUS Ginza", "label": "🚶 קניות בגינזה → המלון", "desc": "מסיימים את מסלול החנויות בכיוון המלון וחוזרים ברגל להניח את השקיות.", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "🚶 כ-5–15 דקות, לפי החנות האחרונה", "afterIdx": 5, "from": "Ginza Six"}
+    {"t": "19:30", "title": "Ginza Shopping → remm PLUS Ginza", "label": "🚶 קניות בגינזה → המלון", "desc": "מסיימים את מסלול החנויות בכיוון המלון וחוזרים ברגל להניח את השקיות.", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "🚶 כ-5–15 דקות · כ-0.5–1.2 ק״מ", "afterIdx": 5, "from": "Ginza Six"}
   ],
   '27': [
     {"t": "08:40<br>09:15", "title": "remm PLUS Ginza → Kaminarimon", "label": "🚇 המלון → Kaminarimon", "desc": "הליכה ל-Shimbashi Station, קו Ginza הישיר ל-Asakusa והליכה קצרה לשער Kaminarimon.", "img": "assets/transfers/train.jpg", "to": "Kaminarimon Gate", "tag": "🚶 + 🚇 Ginza Line + 🚶 · כ-30–35 דקות · כ-¥210", "afterIdx": -1, "from": "remm PLUS Ginza Tokyo"},
     {"t": "12:30<br>12:50", "title": "Asakusa → Akihabara", "label": "🚇 Asakusa → Akihabara", "desc": "מעבר קצר בתחבורה ציבורית מאסאקוסה ל-Akihabara, כולל הליכה והמתנה.", "img": "assets/transfers/train.jpg", "to": "Akihabara Electric Town", "tag": "🚇 + 🚶 כ-20 דקות", "afterIdx": 3, "from": "Asakusa Tokyo restaurants"},
-    {"t": "14:20<br>14:35", "title": "Akihabara → Ameyoko", "label": "🚶 Akihabara → Ameyoko", "desc": "ממשיכים צפונה ברגל לכיוון Okachimachi והקצה הדרומי של שוק Ameyoko, בלי להמתין לרכבת.", "img": "assets/transfers/walk.jpg", "to": "Ameyoko Shopping District", "tag": "🚶 כ-15 דקות", "afterIdx": 4, "from": "Akihabara Electric Town"},
+    {"t": "14:20<br>14:35", "title": "Akihabara → Ameyoko", "label": "🚶 Akihabara → Ameyoko", "desc": "ממשיכים צפונה ברגל לכיוון Okachimachi והקצה הדרומי של שוק Ameyoko, בלי להמתין לרכבת.", "img": "assets/transfers/walk.jpg", "to": "Ameyoko Shopping District", "tag": "🚶 כ-15 דקות · כ-1.2 ק״מ", "afterIdx": 4, "from": "Akihabara Electric Town"},
     {"t": "16:40<br>17:15", "title": "Ameyoko → Komagome", "label": "🚆 Ameyoko → Komagome", "desc": "הליכה לתחנת Ueno או Okachimachi, קו JR Yamanote צפונה ל-Komagome והליכה לבית קפה ליד התחנה.", "img": "assets/transfers/train.jpg", "to": "Komagome Station", "tag": "🚶 + 🚆 Yamanote + 🚶 · עד 35 דקות · כ-¥200", "afterIdx": 5, "from": "Ameyoko Shopping District"},
-    {"t": "17:45<br>18:00", "title": "Komagome → Rikugien Main Gate", "label": "🚶 Komagome → Rikugien", "desc": "הליכה מהיציאה הדרומית של Komagome אל השער הראשי; הכניסה הלילית אינה דרך Somei Gate.", "img": "assets/transfers/walk.jpg", "to": "Rikugien Gardens Main Gate", "tag": "🚶 כ-7–15 דקות", "afterIdx": 6, "from": "Komagome Station"},
+    {"t": "17:45<br>18:00", "title": "Komagome → Rikugien Main Gate", "label": "🚶 Komagome → Rikugien", "desc": "הליכה מהיציאה הדרומית של Komagome אל השער הראשי; הכניסה הלילית אינה דרך Somei Gate.", "img": "assets/transfers/walk.jpg", "to": "Rikugien Gardens Main Gate", "tag": "🚶 כ-7–15 דקות · כ-0.8 ק״מ", "afterIdx": 6, "from": "Komagome Station"},
     {"t": "19:25<br>20:15", "title": "Rikugien → Ginza", "label": "🚆 Rikugien → Ginza", "desc": "הליכה חזרה ל-Komagome, קו JR Yamanote לכיוון Shimbashi והליכה למסעדה בגינזה. נשאר מרווח של כ-15 דקות לפני ההזמנה.", "img": "assets/transfers/train.jpg", "to": "Ginza Tokyo restaurants", "tag": "🚶 + 🚆 Yamanote + 🚶 · כ-40–50 דקות · כ-¥260", "afterIdx": 7, "from": "Rikugien Gardens Main Gate"}
   ],
   '28': [
