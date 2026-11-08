@@ -142,7 +142,7 @@ async function deletePhoto(request: Request, token: string) {
 Deno.serve(async request => {
   if (request.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   const githubToken = Deno.env.get("GITHUB_TOKEN")?.replace(/\s/g, "").replace(/^["']|["']$/g, "");
-  if (!githubToken || !/^(?:github_pat_|ghp_)[A-Za-z0-9_-]{20,}$/.test(githubToken)) {
+  if (!githubToken || !/^(?:github_pat_|gh[op]_)[A-Za-z0-9_-]{20,}$/.test(githubToken)) {
     return json({ error: "Photo repository token is invalid" }, 503);
   }
 
