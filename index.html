@@ -126,14 +126,28 @@
     .transit-meta{display:flex;flex-wrap:wrap;gap:8px}
     .transit-meta span{background:#eef2f7;border:1px solid #d8e0ea;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;color:#475569}
     .transfer-chip{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;justify-self:center;max-width:100%;margin:0;padding:6px 14px;border:1px dashed #94a3b8;border-radius:999px;background:#f8fafc;color:#475569;font-size:12px;font-weight:700;cursor:pointer}
-    .transfer-chip .tc-time{color:#e53935;font-weight:900}
-    .tleg{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow);margin-top:10px}
+    .transfer-chip .tc-time{color:#e53935;font-weight:900;direction:ltr;unicode-bidi:isolate}
+    .transfer-chip:focus-visible,.tleg:focus-visible{outline:3px solid rgba(70,79,235,.35);outline-offset:3px}
+    .transfer-chip.nav-target,.tleg.nav-target{border-color:#464feb;box-shadow:0 0 0 4px rgba(70,79,235,.16),var(--shadow)}
+    .tleg{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow);margin-top:10px;cursor:pointer}
     .tleg img{width:84px;height:84px;object-fit:cover;border-radius:12px;flex:0 0 auto}
     .tleg-body{min-width:0;flex:1}
-    .tleg-time{font-size:12px;font-weight:900;color:#e53935}
+    .tleg-time{font-size:12px;font-weight:900;color:#e53935;direction:ltr;unicode-bidi:isolate}
     .tleg-title{font-weight:800;font-size:14px;color:#1e293b;margin:2px 0}
     .tleg-route{font-size:12px;color:var(--muted);direction:ltr;text-align:right;margin-bottom:4px}
     .tleg-desc{font-size:12px;color:var(--muted);white-space:pre-line}
+    .tleg-details{margin-top:10px;border:1px solid #d8e0ea;border-radius:12px;background:#f8fafc;overflow:hidden}
+    .tleg-details summary{cursor:pointer;padding:10px 12px;font-size:13px;font-weight:900;color:#1e293b;list-style:none}
+    .tleg-details summary::-webkit-details-marker{display:none}
+    .tleg-details summary::before{content:'＋';display:inline-block;margin-left:7px;color:#464feb;font-weight:900}
+    .tleg-details[open] summary::before{content:'−'}
+    .tleg-details-body{padding:0 12px 12px;border-top:1px solid #e2e8f0}
+    .tleg-step{padding:10px 0;border-bottom:1px solid #e2e8f0}
+    .tleg-step:last-of-type{border-bottom:0}
+    .tleg-step-head{display:flex;gap:8px;align-items:baseline;font-size:12px;font-weight:900;color:#1e293b}
+    .tleg-step-time{direction:ltr;unicode-bidi:isolate;color:#e53935;white-space:nowrap}
+    .tleg-step-desc{font-size:12px;line-height:1.55;color:#64748b;margin-top:3px}
+    .tleg-recommendations{margin-top:10px;padding:10px 12px;background:#fff8e1;border:1px solid #ffe082;border-radius:10px;font-size:12px;line-height:1.6;color:#6b4f00}
     .event{background:var(--card);border-radius:20px;box-shadow:var(--shadow);border:1px solid var(--line);display:flex;overflow:hidden;padding:0;min-height:110px}
     .event-img-nav{width:110px;min-height:110px;flex-shrink:0;display:block;text-decoration:none;background:#e8edf5;overflow:hidden;position:relative;
       box-shadow:inset 0 0 0 9999px rgba(0,0,0,0);transition:transform .15s ease,box-shadow .15s ease;transform:translateZ(0)}
@@ -891,7 +905,7 @@
 
       <div class="upload-panel hidden" id="transportTransitPanel"></div>
 
-      <div class="upload-panel">
+      <div class="upload-panel" id="transportRouteFinder">
         <div class="section-title" style="margin:0;font-size:18px">אפשרויות ניווט</div>
         <div style="display:grid;gap:10px;margin-top:10px">
           <select id="transportFrom" class="input">
@@ -1229,7 +1243,7 @@ const routeNotesPresets = {
     tips: ''
   },
   '14': {
-    overview: 'לאחר ארוחת הבוקר נפקיד במלון את המזוודות למשלוח לקיוטו ונצא עם תיק יום בלבד. נעלה לתצפית החינמית ב-Tokyo Metropolitan Government Building, נטייל ב-Shinjuku Gyoen ונאכל רמן בשינג׳וקו. בשעה 13:20 נצא מתחנת Shinjuku ברכבת Romancecar Hakone 21 (GSE), עם שישה מושבים שמורים בקרון 6, ונגיע ל-Hakone-Yumoto בשעה 14:48. משם נמשיך ל-Aura Tachibana לערב רגוע של צ׳ק-אין, אונסן וארוחת קייסקי בריוקן.',
+    overview: 'לאחר ארוחת הבוקר נפקיד במלון את המזוודות למשלוח לקיוטו ונצא עם תיק יום בלבד. נעלה לתצפית החינמית ב-Tokyo Metropolitan Government Building, נטייל ב-Shinjuku Gyoen ונאכל רמן בשינג׳וקו. בשעה 12:35 נצא מ-Ichiran לכיוון כניסת Odakyu בתחנת Shinjuku, נעבור בשערים עם Hakone Free Pass ונעלה לקרון 6. בשעה 13:20 נצא ברכבת Romancecar Hakone 21 (GSE), עם שישה מושבים שמורים, ונגיע ל-Hakone-Yumoto בשעה 14:48. משם נמשיך דרך Bus Stop B בשאטל המלון או באוטובוס ל-Aura Tachibana, עם הגעה משוערת סביב 15:05, לצ׳ק-אין, אונסן וארוחת קייסקי בריוקן.',
     tips: ''
   },
   '15': {
@@ -1273,8 +1287,8 @@ const routeNotesPresets = {
     tips: "המזוודות הגדולות נשלחות ישירות למלון בטוקיו יום קודם (Takkyubin/Ta-Q-Bin), כך שנוסעים היום עם תיקי יום בלבד. כדאי להזמין מקום מראש במסעדת Tsukishima Monja Tamatoya ו-Akita Dining Namahage לקבוצה."
   },
   '25': {
-    overview: "יום הראג'וקו ושיבויה מתחיל ביער ובמקדש Meiji Jingu, ממשיך אל Takeshita Street, שדרת Omotesando ו-Cat Street וכולל ארוחת צהריים באזור. אחר הצהריים נעבור ל-Shibuya PARCO ולחנויות הפופ-קאלצ'ר, נעלה ל-Shibuya Sky לקראת השקיעה ונישאר לזמן חופשי על הגג. בערב נעצור בפסל Hachiko, נחצה את Shibuya Crossing, נטייל בין אורות שיבויה, נאכל יאקיטורי ב-Yakitori Tsukada ונסיים בברים או ב-Nonbei Yokocho.",
-    tips: "כדאי להזמין מראש כרטיסים ל-Shibuya Sky כדי להימנע מתור. יום נוח להליכה — נעליים נוחות חובה."
+    overview: "בשעה 09:00 נצא מ-remm PLUS Ginza אל Meiji Jingu דרך Ginza Station, קו Ginza והחלפה ב-Omotesando לקו Chiyoda עד Meiji-jingumae. נמשיך ברגל אל Takeshita Street, שדרת Omotesando ו-Cat Street, ונאכל ליד הקצה הדרומי של Cat Street כדי לשמור מעבר קצר ל-Shibuya PARCO. בשעה 14:00 נצא ברגל ל-PARCO, וב-15:30 נמשיך ל-Shibuya Sky לקראת השקיעה ונישאר על הגג עד 18:00. בערב נעצור בפסל Hachiko, נחצה את Shibuya Crossing, נאכל ב-Yakitori Tsukada ונסיים ב-Nonbei Yokocho. סביב 22:30 נחזור למלון בקו Ginza מ-Shibuya ל-Ginza.",
+    tips: "לכל ששת המטיילים מומלץ להשתמש בכרטיסי Suica, PASMO או ICOCA ולוודא מראש שיש בהם יתרה חיובית. יש להזמין מראש את Shibuya Sky ואת Yakitori Tsukada."
   },
   '26': {
     overview: "יום של אוכל, אמנות וקניות נפתח בסיור טעימות ב-Tsukiji Outer Market וממשיך לחוויה הדיגיטלית של teamLab Borderless ולשיטוט קצר ב-Azabudai Hills. אחר הצהריים מוקדש לבלוק קניות ארוך בגינזה, כולל Uniqlo, Loft, Itoya, Ginza Six ו-Onitsuka Tiger. לאחר מנוחה במלון נאכל ארוחת ערב רגועה בגינזה, ובסיום נבחר בין קוקטייל, בר נוסף או חזרה מוקדמת למלון.",
@@ -1347,9 +1361,8 @@ function renderTransportationDays(){
     return Number(a) - Number(b);
   });
   grid.innerHTML = orderedDays.map(([day, info]) => {
-    const isGuideDay = day === '14';
     const onclick = `showTransportationDetails('${day}')`;
-    const extra = isGuideDay ? ` · 18 שלבים` : '';
+    const extra = '';
     return `
     <button class="day-card" type="button" onclick="${onclick}">
       <div class="day-card-bg" style="background-image:url('${info.image}')"></div>
@@ -1361,10 +1374,12 @@ function renderTransportationDays(){
   }).join('');
 }
 
-function showTransportationDetails(day){
+function showTransportationDetails(day, transferIndex){
   if (!data[day]) return;
   document.getElementById('transportationDayTitle').textContent = `${data[day].title}`;
   document.getElementById('transportationRoute').textContent = data[day].route;
+  const routeFinder = document.getElementById('transportRouteFinder');
+  if (routeFinder) routeFinder.classList.toggle('hidden', ['14', '25'].includes(day));
   // Show live flight status panel only on flight days (outbound 12-13, return 28)
   const flightPanel = document.getElementById('transportFlightPanel');
   if (flightPanel) flightPanel.classList.toggle('hidden', !(day === '12-13' || day === '28'));
@@ -1387,6 +1402,9 @@ function showTransportationDetails(day){
     }
   }
   showScreen('transportation-details', document.querySelector('.nav button[data-screen="transportation"]'));
+  if (Number.isInteger(transferIndex)) {
+    scrollToNavigationTarget(`#transportLegsPanel [data-transfer-index="${transferIndex}"]`);
+  }
 }
 
 function transferInfo(t){
@@ -1405,12 +1423,16 @@ function transferDirectionsUrl(t){
   return `https://www.google.com/maps/dir/?api=1${origin}&destination=${encodeURIComponent(t.to)}&travelmode=${transferInfo(t).travel}`;
 }
 
+function stepDirectionsUrl(navigation){
+  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(navigation.from)}&destination=${encodeURIComponent(navigation.to)}&travelmode=${navigation.mode}`;
+}
+
 // Compact link shown in the route tab between two stops
 function transferChipsHtml(day, idx){
-  return (transfersByDay[day] || []).filter(t => t.afterIdx === idx).map(t => {
+  return (transfersByDay[day] || []).map((t, transferIndex) => ({ t, transferIndex })).filter(({ t }) => t.afterIdx === idx).map(({ t, transferIndex }) => {
     const time = t.t.replace('<br>', ' – ');
-    const label = t.tag || `${transferInfo(t).icon} ${t.title}`;
-    return `<div class="transfer-chip" onclick="showTransportationDetails('${day}')"><span class="tc-time">${time}</span><span>${label}</span></div>`;
+    const label = t.label || t.tag || `${transferInfo(t).icon} ${t.title}`;
+    return `<div class="transfer-chip" role="button" tabindex="0" data-transfer-index="${transferIndex}" onclick="showTransportationDetails('${day}', ${transferIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showTransportationDetails('${day}', ${transferIndex})}"><span class="tc-time">${time}</span><span>${label}</span></div>`;
   }).join('');
 }
 
@@ -1418,28 +1440,66 @@ function renderTransferLegs(day){
   const panel = document.getElementById('transportLegsPanel');
   if (!panel) return;
   const legs = transfersByDay[day] || [];
-  const guideBtn = day === '14'
-    ? '<div class="actions" style="margin-top:10px"><button class="btn primary" type="button" onclick="openNavGuide()">📖 מדריך ניווט מלא · 18 שלבים</button></div>'
-    : '';
-  if (!legs.length && !guideBtn) {
+  if (!legs.length) {
     panel.innerHTML = '';
     panel.classList.add('hidden');
     return;
   }
-  panel.innerHTML = '<div class="section-title" style="margin:0;font-size:18px">מעברים בין האטרקציות</div>' + guideBtn + legs.map(t => {
+  panel.innerHTML = '<div class="section-title" style="margin:0;font-size:18px">מעברים בין האטרקציות</div>' + legs.map((t, transferIndex) => {
     const route = t.from ? `${t.from} → ${t.to}` : `→ ${t.to}`;
-    return `<div class="tleg">
+    return `<div class="tleg" role="button" tabindex="0" data-transfer-index="${transferIndex}" onclick="showRouteTransfer('${day}', ${transferIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showRouteTransfer('${day}', ${transferIndex})}">
       <img src="${t.img}" alt="" loading="lazy">
       <div class="tleg-body">
         <div class="tleg-time">${t.t.replace('<br>', ' – ')}</div>
-        <div class="tleg-title">${t.title}</div>
+        <div class="tleg-title">${t.label || t.title}</div>
         <div class="tleg-route">${route}</div>
         <div class="tleg-desc">${t.desc}</div>
-        <div class="transit-meta" style="margin-top:6px">${t.tag ? `<span>${t.tag}</span>` : ''}<a class="btn ghost" style="padding:3px 12px;font-size:12px" target="_blank" rel="noopener" href="${transferDirectionsUrl(t)}">🧭 ניווט</a></div>
+        ${transferDetailsHtml(t)}
+        <div class="transit-meta" style="margin-top:6px">${t.tag ? `<span>${t.tag}</span>` : ''}<a class="btn ghost" style="padding:3px 12px;font-size:12px" target="_blank" rel="noopener" href="${transferDirectionsUrl(t)}" onclick="event.stopPropagation()">🧭 ניווט</a></div>
       </div>
     </div>`;
   }).join('');
   panel.classList.remove('hidden');
+}
+
+function transferDetailsHtml(transfer){
+  if (!transfer.details?.steps?.length) return '';
+  const steps = transfer.details.steps.map((step, index) => {
+    const navigation = step.navigation
+      ? `<a class="btn ghost" style="padding:3px 10px;font-size:12px;margin-top:6px" target="_blank" rel="noopener" href="${stepDirectionsUrl(step.navigation)}" onclick="event.stopPropagation()">${step.navigation.label}</a>`
+      : '';
+    return `
+    <div class="tleg-step">
+      <div class="tleg-step-head"><span>${index + 1}.</span><span class="tleg-step-time">${step.time}</span><span>${step.title}</span></div>
+      <div class="tleg-step-desc">${step.desc}</div>
+      ${navigation}
+    </div>`;
+  }).join('');
+  const recommendations = transfer.details.recommendations?.length
+    ? `<div class="tleg-recommendations"><strong>המלצות חשובות</strong><br>${transfer.details.recommendations.map(item => `• ${item}`).join('<br>')}</div>`
+    : '';
+  return `<details class="tleg-details" onclick="event.stopPropagation()">
+    <summary>${transfer.details.title || 'פירוט מלא'}</summary>
+    <div class="tleg-details-body">${steps}${recommendations}</div>
+  </details>`;
+}
+
+function scrollToNavigationTarget(selector){
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const target = document.querySelector(selector);
+    if (!target) return;
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    target.focus({ preventScroll: true });
+    target.classList.add('nav-target');
+    window.setTimeout(() => target.classList.remove('nav-target'), 1800);
+  }));
+}
+
+function showRouteTransfer(day, transferIndex){
+  if (!data[day] || !(transfersByDay[day] || [])[transferIndex]) return;
+  render(day);
+  showScreen('route', document.querySelector('.nav button[data-screen="route"]'));
+  scrollToNavigationTarget(`#timeline [data-transfer-index="${transferIndex}"]`);
 }
 
 function backToTransportation(){
@@ -1486,7 +1546,6 @@ const data = {
     ["09:00<br>10:00","Tokyo Metropolitan Government Building","תצפית חינמית על טוקיו מקומה 45, נוף מרהיב מגובה 202 מ' וראייה של הר פוג'י במזג אוויר בהיר.\nכניסה חינם, מומלץ להגיע מוקדם בבוקר.","assets/attractions/day14/tokyo_metro_gov.jpg","Tokyo Metropolitan Government Building"],
     ["10:15<br>11:30","Shinjuku Gyoen","גן יפני, צרפתי ואנגלי משולב, בריכות ועצים פורחים.\nכניסה ¥500, טיול בוקר רגוע לפני ההמשך לרכבת.","assets/attractions/day14/shinjuku_gyoen.jpg","Shinjuku Gyoen National Garden, Tokyo"],
     ["12:00<br>13:00","RAMEN - ארוחת צהריים","ארוחת רמן יפני אותנטי ליד הפארק לפני היציאה להאקונה.\nמומלץ: Ichiran Ramen, Menya Musashi, Afuri Shinjuku.","assets/attractions/day14/ramen_lunch.jpg","Ichiran Ramen Shinjuku"],
-    ["13:20<br>14:48","Romancecar Hakone 21 (GSE)","רכבת ישירה מ-Shinjuku ל-Hakone-Yumoto לשישה מבוגרים.\nהמושבים השמורים נמצאים בקרון 6: 2A, 2B, 2C, 2D, 3A ו-3B. ההזמנה שולמה במלואה (¥6,900).","assets/transfers/train.jpg","Hakone-Yumoto Station","🚆 מאושר ושולם · Car 6"],
     ["15:00<br>22:00","Aura Tachibana - ריוקן בהאקונה","הגעה לריוקן מסורתי עם אונסן. ערב של צ'ק-אין, אונסן וארוחת קייסקי.\nבאונסן הציבורי נכנסים ללא בגד ים; מתרחצים היטב לפני הכניסה למים.","assets/attractions/day14/aura_tachibana.jpg","Aura Tachibana Hakone Yumoto"]
   ]},
   '15': { title:"יום האקונה", route:"Heiwa no Torii → Pirate Ship → Owakudani → Sounzan → Gora → Open-Air Museum", events:[
@@ -1614,17 +1673,17 @@ const data = {
   ]},
   '25': { title:"טוקיו – הראג'וקו ושיבויה", route:"Meiji Jingu → Harajuku → Omotesando → Shibuya", events:[
     ["09:40<br>11:00","Meiji Jingu","מקדש מייג'י נבנה לזכר הקיסר מייג'י ואשתו ומוקף ביער עירוני ענק בן כ-100,000 עצים שנתרמו מכל רחבי יפן. הדרך למקדש עוברת דרך שערי טוריי ענקיים ושבילי חצץ שקטים, ומעניקה תחושת ניתוק מוחלט מהעיר הסואנת. במקדש עצמו אפשר לראות טקסי שינטו, לכתוב משאלה על לוחית עץ (אמה) ואף להיתקל בטקס חתונה מסורתי בסוף השבוע. זהו אחד המקומות הרגועים והמכובדים ביותר לביקור בבוקר טוקיו.","assets/attractions/day25/meiji_jingu.jpg","Meiji Jingu"],
-    ["11:00<br>11:40","Takeshita Street","טאקשיטה סטריט הוא הרחוב הססגוני והתוסס ביותר בהראג'וקו, מוקד תרבות הרחוב והאופנה הצעירה של טוקיו. לאורך הרחוב הקצר מצטופפות חנויות אופנה מטורללות, בוטיקי קרפ-פס צבעוניים ודוכני חטיפים מתוקים כמו כותנת סוכר ענקית. זהו המקום המושלם לצפות בטרנדים העדכניים ביותר של נוער יפני ולצלם תמונות צבעוניות. בסופי שבוע הרחוב הופך צפוף מאוד, ולכן מומלץ להגיע בשעות הבוקר המוקדמות.","assets/attractions/day25/takeshita_street.jpg","Takeshita Street"],
-    ["11:40<br>13:00","Omotesando + Cat Street","אומוטסנדו נחשב לשדרת השאנז-אליזה של טוקיו, עם עצי זלקובה מרשימים ובנייני בוטיק מעוצבים על ידי אדריכלים עולמיים כמו Herzog & de Meuron ו-Tadao Ando. קאט סטריט המקבילה, שמסתעפת ממנו, מציעה אווירה עצמאית ואינדי יותר עם חנויות וינטג', סטריטסטייל ובתי קפה קטנים. השילוב בין השניים יוצר ניגוד מעניין בין יוקרה מהוקצעת לתרבות רחוב חופשית. זהו אזור מצוין להליכה איטית, צילום ואפילו כמה קניות בדרך.","assets/attractions/day25/omotesando_cat_street.jpg","Omotesando"],
-    ["13:00<br>14:15","ארוחת צהריים","אומוטסנדו והרחובות הסמוכים מציעים מגוון רחב של מסעדות ובתי קפה מעוצבים, מבתי קפה קלים ועד מסעדות שף. זו הזדמנות טובה לעצור, לנוח קצת מההליכה ולהתרענן לקראת המשך היום בשיבויה. אפשר לבחור מטבח יפני מסורתי או משהו בינלאומי יותר, לפי החשק.","assets/attractions/lunch.jpg","Omotesando"],
+    ["11:05<br>11:40","Takeshita Street","טאקשיטה סטריט הוא הרחוב הססגוני והתוסס ביותר בהראג'וקו, מוקד תרבות הרחוב והאופנה הצעירה של טוקיו. לאורך הרחוב הקצר מצטופפות חנויות אופנה מטורללות, בוטיקי קרפ-פס צבעוניים ודוכני חטיפים מתוקים כמו כותנת סוכר ענקית. זהו המקום המושלם לצפות בטרנדים העדכניים ביותר של נוער יפני ולצלם תמונות צבעוניות. בסופי שבוע הרחוב הופך צפוף מאוד, ולכן מומלץ להגיע בשעות הבוקר המוקדמות.","assets/attractions/day25/takeshita_street.jpg","Takeshita Street"],
+    ["11:50<br>13:00","Omotesando + Cat Street","אומוטסנדו נחשב לשדרת השאנז-אליזה של טוקיו, עם עצי זלקובה מרשימים ובנייני בוטיק מעוצבים על ידי אדריכלים עולמיים כמו Herzog & de Meuron ו-Tadao Ando. קאט סטריט המקבילה, שמסתעפת ממנו, מציעה אווירה עצמאית ואינדי יותר עם חנויות וינטג', סטריטסטייל ובתי קפה קטנים. השילוב בין השניים יוצר ניגוד מעניין בין יוקרה מהוקצעת לתרבות רחוב חופשית. זהו אזור מצוין להליכה איטית, צילום ואפילו כמה קניות בדרך.","assets/attractions/day25/omotesando_cat_street.jpg","Omotesando"],
+    ["13:00<br>14:00","ארוחת צהריים","עוצרים לארוחה ליד הקצה הדרומי של Cat Street, בכיוון שיבויה, כדי לנוח מההליכה ולהישאר במרחק מעבר קצר מ-Shibuya PARCO. מומלץ לבחור מראש מקום שמתאים לקבוצה של שישה.","assets/attractions/lunch.jpg","Cat Street Shibuya restaurants"],
     ["14:15<br>15:30","Shibuya PARCO","קניון Shibuya PARCO עבר שיפוץ ענק והפך לאחד ממוקדי הקניות הפופולריים ביותר בקרב חובבי פופ-קלצ'ר יפני. בקומות הקניון פזורות חנויות רשמיות כמו Nintendo TOKYO, Pokémon Center Shibuya, Capcom Store ו-Jump Shop, כולן עמוסות מוצרים ייחודיים שלא ניתן למצוא בגינזה. יש גם קומת אוכל תוססת עם דוכני סטריט-פוד וחנויות קונספט של מעצבים מקומיים. זהו עצירת קניות מושלמת לחובבי משחקים, מנגה ואנימה.","assets/attractions/day25/shibuya_crossing.jpg","Shibuya PARCO"],
     ["16:00<br>17:15","Shibuya Sky","Shibuya Sky היא תצפית פתוחה ומרשימה על גג בניין Shibuya Scramble Square, בגובה 230 מטר מעל הרחובות. הטיימינג כאן מכוון בכוונה תחילה — מגיעים עוד ביום, נשארים לצפות בשקיעה, ורואים את העיר הופכת לים של אורות ניאון עם רדת החשיכה. אין שם רשתות הגנה שמפריעות לתמונות, מה שהופך אותה לאחת מתצפיות הגג היפות ביותר בעולם. זהו אחד ההיילייטים הגדולים של הטיול כולו, ומומלץ מאוד להזמין כרטיסים מראש.","assets/attractions/day25/shibuya_sky.jpg","Shibuya Sky"],
     ["17:15<br>18:00","The Roof / זמן חופשי","בקומת The Roof, החלק הפתוח ביותר של Shibuya Sky, אפשר לשבת על ספות נוחות, לשתות קוקטייל בבר הקטן ופשוט ליהנות מהנוף בלי למהר לשום מקום. זהו הזמן להירגע קצת אחרי יום קניות והליכה אינטנסיבי, ולצפות במעבר האיטי בין אור יום לאורות הלילה. יש גם פינות ישיבה מוצלות ומרפסות תלייה שמומלץ לנסות. מקום נעים במיוחד לזוגות או לקבוצה שרוצה לשבת בשקט רגע.","assets/attractions/day25/shibuya_sky.jpg","Shibuya Sky"],
-    ["18:00<br>18:10","Hachiko Statue","פסל האצ'יקו מנציח את סיפורו המרגש של כלב האקיטה שהמשיך להמתין לבעליו המנוח מדי יום בתחנת שיבויה במשך תשע שנים, עד מותו שלו. הסיפור הפך לסמל לנאמנות ביפן ומשך אליו סרט הוליוודי ואינספור מבקרים מכל העולם. הפסל ממוקם ממש ליד יציאת שיבויה של תחנת הרכבת, והפך לנקודת מפגש פופולרית לתושבי טוקיו. זוהי עצירה קצרה וחביבה לתמונה, לפני שממשיכים לצומת המפורסמת.","assets/attractions/day25/shibuya_crossing.jpg","Hachiko Statue Shibuya"],
-    ["18:10<br>18:30","Shibuya Crossing","צומת שיבויה הוא הצומת ההולכי-רגל העמוס ביותר בעולם, שבו חוצים בו-זמנית עד כ-3,000 איש בכל שינוי רמזור. הצומת מוקף במסכי ענק ושלטי ניאון שהפכו אותו לאחד מסמלי הפופ-קלצ'ר של טוקיו והופיע בסרטים רבים. הדרך הכי טובה לחוות אותו היא פשוט לחצות אותו כמה פעמים, או לצפות בו מלמעלה מבית קפה סטארבקס סמוך. זהו רגע איקוני שאסור לפספס בביקור בטוקיו.","assets/attractions/day25/shibuya_crossing.jpg","Shibuya Crossing"],
-    ["18:30<br>19:00","שיטוט ערב בשיבויה","אחרי החשיכה שיבויה הופכת לעולם אחר לגמרי — שלטי הניאון והמסכים הענקיים מוארים במלוא עוצמתם, והרחובות מתמלאים באנשים, מוזיקה ואור. זה הזמן המושלם סתם להסתובב בלי יעד, להיכנס לחנויות קטנות ולהרגיש את האנרגיה הצעירה של השכונה. אפשר גם לגלות סמטאות צדדיות עם ברים ומסעדות קטנות שלא בולטות ביום. זו הכנה נעימה לפני ארוחת הערב.","assets/attractions/day25/shibuya_crossing.jpg","Shibuya Tokyo"],
+    ["18:10<br>18:20","Hachiko Statue","פסל האצ'יקו מנציח את סיפורו המרגש של כלב האקיטה שהמשיך להמתין לבעליו המנוח מדי יום בתחנת שיבויה במשך תשע שנים, עד מותו שלו. הסיפור הפך לסמל לנאמנות ביפן ומשך אליו סרט הוליוודי ואינספור מבקרים מכל העולם. הפסל ממוקם ממש ליד יציאת שיבויה של תחנת הרכבת, והפך לנקודת מפגש פופולרית לתושבי טוקיו. זוהי עצירה קצרה וחביבה לתמונה, לפני שממשיכים לצומת המפורסמת.","assets/attractions/day25/shibuya_crossing.jpg","Hachiko Statue Shibuya"],
+    ["18:20<br>18:40","Shibuya Crossing","צומת שיבויה הוא הצומת ההולכי-רגל העמוס ביותר בעולם, שבו חוצים בו-זמנית עד כ-3,000 איש בכל שינוי רמזור. הצומת מוקף במסכי ענק ושלטי ניאון שהפכו אותו לאחד מסמלי הפופ-קלצ'ר של טוקיו והופיע בסרטים רבים. הדרך הכי טובה לחוות אותו היא פשוט לחצות אותו כמה פעמים, או לצפות בו מלמעלה מבית קפה סטארבקס סמוך. זהו רגע איקוני שאסור לפספס בביקור בטוקיו.","assets/attractions/day25/shibuya_crossing.jpg","Shibuya Crossing"],
+    ["18:40<br>18:50","שיטוט ערב בשיבויה","אחרי החשיכה שיבויה הופכת לעולם אחר לגמרי — שלטי הניאון והמסכים הענקיים מוארים במלוא עוצמתם, והרחובות מתמלאים באנשים, מוזיקה ואור. זה הזמן המושלם סתם להסתובב בלי יעד, להיכנס לחנויות קטנות ולהרגיש את האנרגיה הצעירה של השכונה. אפשר גם לגלות סמטאות צדדיות עם ברים ומסעדות קטנות שלא בולטות ביום. זו הכנה נעימה לפני ארוחת הערב.","assets/attractions/day25/shibuya_crossing.jpg","Shibuya Tokyo"],
     ["19:00<br>20:45","Yakitori Tsukada Shibuya","Yakitori Tsukada היא רשת יאקיטורי איכותית ואהובה, שמגישה שיפודי עוף על גריל פחמים בסגנון המסורתי. התפריט מגוון ומכיל כמעט כל חלק אפשרי של העוף, לצד ירקות על האש ומנות צד יפניות קלאסיות. האווירה תוססת וחמה, טיפוסית למסעדות איזאקאיה יפניות, ומתאימה מצוין לארוחה קבוצתית עם המון טעימות. השירות מהיר ויעיל, גם כשהמקום מלא.","assets/attractions/day25/yakitori_tsukada.jpg","Yakitori Tsukada Shibuya"],
-    ["20:45<br>22:30","ברים בשיבויה","Nonbei Yokocho, המכונה גם 'סמטת השיכורים', היא סמטה צרה ואטמוספרית עם עשרות ברים זעירים שמכילים לרוב רק כמה כיסאות. כל בר כזה הוא עולם קטן משלו, עם בעל בית וקהל קבוע, ומעניק הצצה לחיי הלילה האמיתיים של תושבי טוקיו. מי שמעדיף אווירה מסוגננת יותר יכול לבחור בקוקטייל בר מודרני בסביבה. כך או כך, זהו סיום מושלם לערב תוסס בשיבויה.","assets/attractions/day25/shibuya_crossing.jpg","Nonbei Yokocho"],
+    ["21:00<br>22:30","ברים בשיבויה","Nonbei Yokocho, המכונה גם 'סמטת השיכורים', היא סמטה צרה ואטמוספרית עם עשרות ברים זעירים שמכילים לרוב רק כמה כיסאות. כל בר כזה הוא עולם קטן משלו, עם בעל בית וקהל קבוע, ומעניק הצצה לחיי הלילה האמיתיים של תושבי טוקיו. מי שמעדיף אווירה מסוגננת יותר יכול לבחור בקוקטייל בר מודרני בסביבה. כך או כך, זהו סיום מושלם לערב תוסס בשיבויה.","assets/attractions/day25/shibuya_crossing.jpg","Nonbei Yokocho"],
   ]},
   '26': { title:"טוקיו – צוקיג'י, teamLab וגינזה", route:"Tsukiji → Azabudai Hills → teamLab Borderless → Ginza", events:[
     ["09:00<br>10:30","Tsukiji Outer Market","שוק האוכל המפורסם של טוקיו — Food Tour של סושי טרי, טונה, צדפות, וואגיו על שיפוד, טמאגויאקי וקינוחים","assets/attractions/day26/tsukiji_outer_market.jpg","Tsukiji Outer Market"],
@@ -1661,7 +1720,22 @@ const data = {
 // afterIdx = index in data[day].events of the stop the leg follows (-1 = before the first stop)
 const transfersByDay = {
   '14': [
-    {"t": "13:15<br>14:30", "title": "Odakyu Romancecar להאקונה", "desc": "רכבת מהירה ונוחה משינג'וקו להאקונה-יומוטו, נסיעה של כ-85 דקות עם נוף אפשרי להר פוג'י.\nמומלץ להזמין מושבים מראש.", "img": "assets/transfers/train.jpg", "to": "Odakyu Romancecar Shinjuku Station", "tag": "", "afterIdx": 3, "from": "Ichiran Ramen Shinjuku"}
+    {"t": "13:15<br>14:30", "title": "Odakyu Romancecar להאקונה", "label": "🚆 Odakyu Romancecar להאקונה", "desc": "Hakone 21 (GSE) ישירה מ-Shinjuku ל-Hakone-Yumoto. יציאה מאושרת ב-13:20 והגעה ב-14:48. ההזמנה לשישה מבוגרים שולמה במלואה (¥6,900). מושבים שמורים בקרון 6: 2A, 2B, 2C, 2D, 3A ו-3B.", "img": "assets/transfers/train.jpg", "to": "Hakone-Yumoto Station", "tag": "🎟️ מאושר ושולם · Car 6 · Seats 2A–2D, 3A–3B", "afterIdx": 3, "from": "Ichiran Ramen Shinjuku", "details": {"title": "פירוט מלא מ-Ichiran ל-Aura Tachibana · 9 שלבים", "steps": [
+      {"time": "12:35", "title": "יציאה מ-Ichiran Ramen Shinjuku", "desc": "יוצאים לכיוון תחנת Shinjuku. ההליכה עם תיקי הלילה אורכת כ-15 דקות.", "navigation": {"from": "Ichiran Ramen Shinjuku Kabukicho", "to": "Odakyu Shinjuku Station West Ground Gate", "mode": "walking", "label": "🚶 ניווט הליכה ל-Odakyu"}},
+      {"time": "12:50", "title": "הגעה לכניסת Odakyu", "desc": "מקדישים 5–10 דקות להתמצאות בתחנה ועוקבים אחרי Odakyu Line / Romancecar."},
+      {"time": "13:00", "title": "מעבר בשערי Odakyu", "desc": "עוברים עם Hakone Free Pass ומקצים כחמש דקות למעבר מסודר של ששת המטיילים."},
+      {"time": "13:05–13:20", "title": "הגעה לרציף ועלייה לקרון 6", "desc": "עולים ל-Hakone 21 ומתיישבים במושבים 2A, 2B, 2C, 2D, 3A ו-3B."},
+      {"time": "13:20", "title": "יציאת Romancecar", "desc": "הרכבת יוצאת מ-Shinjuku בזמן; ההזמנה מאושרת ושולמה במלואה.", "navigation": {"from": "Odakyu Shinjuku Station", "to": "Hakone-Yumoto Station", "mode": "transit", "label": "🚆 מסלול רכבת ב-Google Maps"}},
+      {"time": "14:48", "title": "הגעה ל-Hakone-Yumoto", "desc": "אוספים את התיקים ויורדים לאחר נסיעה ישירה של כ-88 דקות."},
+      {"time": "14:48–14:53", "title": "יציאה אל Bus Stop B", "desc": "יוצאים מהתחנה לאזור האוטובוסים ושומרים את הקבוצה יחד.", "navigation": {"from": "Hakone-Yumoto Station", "to": "Hakone-Yumoto Station Bus Stop", "mode": "walking", "label": "🚶 ניווט ל-Bus Stop"}},
+      {"time": "14:53–15:05", "title": "שאטל או אוטובוס לריוקן", "desc": "עולים לשאטל המלון, אם הוא זמין, או לאוטובוס המקומי לכיוון Aura Tachibana.", "navigation": {"from": "Hakone-Yumoto Station", "to": "Aura Tachibana Hakone", "mode": "transit", "label": "🚌 ניווט בתחבורה ציבורית"}},
+      {"time": "סביב 15:05", "title": "הגעה וצ׳ק-אין", "desc": "מגיעים ל-Aura Tachibana בתחילת חלון הצ׳ק-אין שמתחיל בשעה 15:00."}
+    ], "recommendations": [
+      "לקבוצה של 6 אנשים חשוב לצאת מ-Ichiran לא יאוחר מ-12:35–12:40.",
+      "הכינו מראש את ה-Hakone Free Pass של כל משתתף לפני שערי Odakyu.",
+      "לתיקים קטנים יש מדפים מעל המושבים; ציוד גדול מניחים באזורי המטען הייעודיים.",
+      "ב-Bus Stop B חפשו שלט Aura Tachibana או בקשו עזרה מאיש הצוות."
+    ]}}
   ],
   '15': [
     {"t": "08:30", "title": "🚐 שאטל מהמלון", "desc": "שאטל של Aura Tachibana לתחנת Hakone-Yumoto", "img": "assets/transfers/bus.jpg", "to": "Hakone-Yumoto", "tag": "🚐 שאטל מלון", "afterIdx": -1, "from": null},
@@ -1737,9 +1811,32 @@ const transfersByDay = {
     {"t": "23:00", "title": "חזרה למלון", "desc": "הליכה קצרה חזרה ל-remm PLUS Ginza", "img": "assets/transfers/walk.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": 10, "from": "Ginza Tokyo"}
   ],
   '25': [
-    {"t": "09:00", "title": "יציאה מ-remm PLUS Ginza", "desc": "נסיעה לכיוון הראג'וקו", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": -1, "from": null},
-    {"t": "15:30<br>15:50", "title": "מעבר ל-Shibuya Sky", "desc": "להגיע רגוע לפני התור", "img": "assets/transfers/walk.jpg", "to": "Shibuya Sky", "tag": "", "afterIdx": 4, "from": "Shibuya PARCO"},
-    {"t": "22:30", "title": "חזרה למלון", "desc": "סוף יום", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": 11, "from": "Nonbei Yokocho"}
+    {"t": "09:00<br>09:40", "title": "remm PLUS Ginza → Meiji Jingu", "label": "🚇 remm PLUS Ginza → Meiji Jingu", "desc": "הליכה ל-Ginza Station, קו Ginza ל-Omotesando, החלפה לקו Chiyoda וירידה ב-Meiji-jingumae 'Harajuku'.", "img": "assets/transfers/train.jpg", "to": "Meiji Jingu First Torii", "tag": "🚶 + 🚇 Ginza + 🚇 Chiyoda · כ-40 דקות", "afterIdx": -1, "from": "remm PLUS Ginza Tokyo", "details": {"title": "פירוט מלא מהמלון ל-Meiji Jingu · 4 שלבים", "steps": [
+      {"time": "09:00–09:07", "title": "הליכה מהמלון ל-Ginza Station", "desc": "יוצאים מ-remm PLUS Ginza והולכים כ-5–7 דקות לתחנת Ginza.", "navigation": {"from": "remm PLUS Ginza Tokyo", "to": "Ginza Station Tokyo", "mode": "walking", "label": "🚶 ניווט הליכה לתחנה"}},
+      {"time": "09:07–09:28", "title": "Ginza Line ל-Omotesando", "desc": "עולים על קו Ginza הכתום בכיוון Shibuya ויורדים בתחנת Omotesando.", "navigation": {"from": "Ginza Station Tokyo", "to": "Omotesando Station Tokyo", "mode": "transit", "label": "🚇 מסלול מטרו ל-Omotesando"}},
+      {"time": "09:28–09:35", "title": "החלפה לקו Chiyoda", "desc": "עוברים לקו Chiyoda הירוק בכיוון Yoyogi-Uehara ונוסעים תחנה אחת אל Meiji-jingumae 'Harajuku'."},
+      {"time": "09:35–09:40", "title": "הליכה לכניסה של Meiji Jingu", "desc": "יוצאים מהתחנה והולכים כחמש דקות אל שער הכניסה לפארק.", "navigation": {"from": "Meiji-jingumae Harajuku Station", "to": "Meiji Jingu First Torii", "mode": "walking", "label": "🚶 ניווט ל-Meiji Jingu"}}
+    ], "recommendations": [
+      "לכל מטייל צריך להיות כרטיס Suica, PASMO או ICOCA משלו; אי אפשר להעביר שישה אנשים בשער עם כרטיס אחד.",
+      "בדקו יתרה חיובית בכל הכרטיסים לפני היציאה כדי שהקבוצה תעבור יחד בשערים."
+    ]}},
+    {"t": "11:00<br>11:05", "title": "Meiji Jingu → Takeshita Street", "label": "🚶 Meiji Jingu → Takeshita Street", "desc": "חוזרים אל היציאה ליד Harajuku Station; הכניסה ל-Takeshita Street נמצאת מול התחנה.", "img": "assets/transfers/walk.jpg", "to": "Takeshita Street Entrance Harajuku", "tag": "🚶 כ-5 דקות", "afterIdx": 0, "from": "Meiji Jingu First Torii"},
+    {"t": "11:40<br>11:50", "title": "Takeshita Street → Omotesando ו-Cat Street", "label": "🚶 Takeshita Street → Omotesando ו-Cat Street", "desc": "ממשיכים עד סוף Takeshita Street, חוצים את Meiji-dori ומגיעים ל-Omotesando ולכניסה ל-Cat Street.", "img": "assets/transfers/walk.jpg", "to": "Omote-Sando Avenue and Cat Street", "tag": "🚶 כ-10 דקות", "afterIdx": 1, "from": "Takeshita Street Harajuku"},
+    {"t": "13:00", "title": "Cat Street → ארוחת צהריים", "label": "🚶 Cat Street → ארוחת צהריים", "desc": "בוחרים מסעדה ליד הקצה הדרומי של Cat Street כדי להישאר בכיוון Shibuya PARCO.", "img": "assets/transfers/walk.jpg", "to": "Cat Street Shibuya restaurants", "tag": "🚶 בתוך האזור", "afterIdx": 2, "from": "Cat Street Shibuya"},
+    {"t": "14:00<br>14:15", "title": "ארוחת צהריים → Shibuya PARCO", "label": "🚶 ארוחת צהריים → Shibuya PARCO", "desc": "ממשיכים דרומה מהקצה של Cat Street אל PARCO בלי לחזור לכיוון Omotesando.", "img": "assets/transfers/walk.jpg", "to": "Shibuya PARCO", "tag": "🚶 כ-15 דקות", "afterIdx": 3, "from": "Cat Street Shibuya restaurants"},
+    {"t": "15:30<br>15:50", "title": "Shibuya PARCO → Shibuya Sky", "label": "🚶 Shibuya PARCO → Shibuya Sky", "desc": "הולכים אל Shibuya Scramble Square. חלון של 20 דקות כולל מרווח נוח לכניסה של 16:00.", "img": "assets/transfers/walk.jpg", "to": "Shibuya Sky", "tag": "🚶 כ-10 דקות + מרווח כניסה", "afterIdx": 4, "from": "Shibuya PARCO"},
+    {"t": "18:00<br>18:10", "title": "Shibuya Sky → Hachiko", "label": "🚶 Shibuya Sky → Hachiko", "desc": "יורדים אל מפלס הרחוב וחוצים לצד המערבי של תחנת Shibuya לכיוון Hachiko Exit.", "img": "assets/transfers/walk.jpg", "to": "Hachiko Statue Shibuya", "tag": "🚶 כ-10 דקות", "afterIdx": 6, "from": "Shibuya Sky"},
+    {"t": "18:20", "title": "Hachiko → Shibuya Crossing", "label": "🚶 Hachiko → Shibuya Crossing", "desc": "הצומת נמצא צמוד לרחבת Hachiko; ממשיכים ישירות למעבר החצייה.", "img": "assets/transfers/walk.jpg", "to": "Shibuya Crossing", "tag": "🚶 כ-2 דקות", "afterIdx": 7, "from": "Hachiko Statue Shibuya"},
+    {"t": "18:50<br>19:00", "title": "שיבויה → Yakitori Tsukada", "label": "🚶 שיבויה → Yakitori Tsukada", "desc": "מסיימים את השיטוט בצד Dogenzaka והולכים למסעדה בזמן להזמנה של 19:00.", "img": "assets/transfers/walk.jpg", "to": "Yakitori Tsukada Shibuya", "tag": "🚶 כ-10 דקות", "afterIdx": 9, "from": "Shibuya Crossing"},
+    {"t": "20:45<br>21:00", "title": "Yakitori Tsukada → Nonbei Yokocho", "label": "🚶 Yakitori Tsukada → Nonbei Yokocho", "desc": "חוצים את אזור תחנת Shibuya מ-Dogenzaka אל הסמטה שנמצאת בצד המזרחי של המסילות.", "img": "assets/transfers/walk.jpg", "to": "Nonbei Yokocho Shibuya", "tag": "🚶 כ-15 דקות", "afterIdx": 10, "from": "Yakitori Tsukada Shibuya"},
+    {"t": "22:30<br>23:10", "title": "Nonbei Yokocho → remm PLUS Ginza", "label": "🚇 Nonbei Yokocho → remm PLUS Ginza", "desc": "הליכה ל-Shibuya Station, קו Ginza בכיוון Asakusa עד Ginza Station והליכה למלון.", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "🚶 + 🚇 Ginza + 🚶 · כ-40 דקות · כ-¥180", "afterIdx": 11, "from": "Nonbei Yokocho Shibuya", "details": {"title": "פירוט מלא מ-Nonbei Yokocho למלון · 3 שלבים", "steps": [
+      {"time": "22:30–22:35", "title": "הליכה ל-Shibuya Station", "desc": "יוצאים מהסמטה ועוקבים אחרי השילוט לכניסה של קו Ginza.", "navigation": {"from": "Nonbei Yokocho Shibuya", "to": "Shibuya Station Ginza Line", "mode": "walking", "label": "🚶 ניווט לתחנה"}},
+      {"time": "22:35–23:00", "title": "Ginza Line ל-Ginza Station", "desc": "עולים על הקו הכתום בכיוון Asakusa ויורדים בתחנת Ginza.", "navigation": {"from": "Shibuya Station", "to": "Ginza Station Tokyo", "mode": "transit", "label": "🚇 מסלול מטרו ל-Ginza"}},
+      {"time": "23:00–23:10", "title": "הליכה למלון", "desc": "יוצאים מהתחנה והולכים ל-remm PLUS Ginza.", "navigation": {"from": "Ginza Station Tokyo", "to": "remm PLUS Ginza Tokyo", "mode": "walking", "label": "🚶 ניווט למלון"}}
+    ], "recommendations": [
+      "שמרו יתרה חיובית בכרטיסי ה-IC לפני היציאה מ-Shibuya.",
+      "בתחנת Shibuya שמרו את הקבוצה יחד ועקבו אחרי השילוט לקו Ginza."
+    ]}}
   ],
   '26': [
     {"t": "08:45", "title": "יציאה מהמלון", "desc": "נוסעים לצוקיג'י לפני שהמקום נהיה עמוס", "img": "assets/transfers/train.jpg", "to": "remm PLUS Ginza Tokyo", "tag": "", "afterIdx": -1, "from": null},
@@ -3866,7 +3963,7 @@ if ('caches' in window) {
 
 /* ============================================================
    NAVIGATION GUIDE - Day 14: Tokyo -> Hakone
-   Step-by-step interactive travel guide (3 sections, 18 steps).
+  Step-by-step interactive travel guide (3 sections, 9 steps).
    ============================================================ */
 (function(){
   // ---- Color system (matches spec) ----
@@ -3879,7 +3976,7 @@ if ('caches' in window) {
   // ---- Data model ----
   // NOTE: image URLs use existing project assets where available; the rest are
   // stock photos as placeholders. Replace with real infographic crops later.
-  const SECTIONS = [
+  const LEGACY_SECTIONS = [
     {
       id: 'walk_to_station',
       kind: 'walk',
@@ -4005,8 +4102,89 @@ if ('caches' in window) {
     }
   ];
 
+  const SECTIONS = [
+    {
+      id: 'walk_to_station_v2',
+      kind: 'walk',
+      icon: '🚶',
+      title: 'מ-Ichiran לכניסת Odakyu',
+      titleEn: 'Ichiran Ramen to Odakyu Shinjuku',
+      meta: '12:35–13:00 · 2 שלבים',
+      preview: 'יציאה בזמן → כניסת Odakyu',
+      steps: [
+        { title: 'יציאה מ-Ichiran Ramen Shinjuku',
+          desc: 'יוצאים בשעה 12:35 לכיוון תחנת Shinjuku. ההליכה עם תיקי הלילה והציוד שנלקח להאקונה אורכת כ-15 דקות.',
+          tip: 'לקבוצה של 6 אנשים חשוב לצאת לא יאוחר מ-12:35–12:40.',
+          distance: 'כ-15 דקות', duration: '12:35–12:50', transport: 'הליכה',
+          image: 'assets/attractions/day14/ramen_lunch.jpg' },
+        { title: 'הגעה לאזור Odakyu בתחנת Shinjuku',
+          desc: 'מגיעים סביב 12:50 ומקדישים 5–10 דקות להתמצאות ולמציאת הכניסה הנכונה של Odakyu.',
+          tip: 'תחנת Shinjuku עמוסה מאוד. עקבו רק אחרי השילוט Odakyu Line / Romancecar.',
+          distance: 'בתוך התחנה', duration: '12:50–13:00', transport: 'התמצאות',
+          image: 'assets/transfers/train.jpg' }
+      ]
+    },
+    {
+      id: 'romancecar_v2',
+      kind: 'train',
+      icon: '🚄',
+      title: 'Romancecar Hakone 21',
+      titleEn: 'Odakyu Shinjuku to Hakone-Yumoto',
+      meta: '13:00–14:48 · 4 שלבים',
+      preview: 'שערים → רציף → רכבת → Hakone-Yumoto',
+      steps: [
+        { title: 'מעבר בשערי Odakyu',
+          desc: 'בשעה 13:00 עוברים בשערים באמצעות Hakone Free Pass. לקבוצה של שישה אנשים מוקצות כחמש דקות למעבר מסודר.',
+          tip: 'ודאו שלכל ששת המשתתפים ה-Hakone Free Pass מוכן ביד לפני ההגעה לשערים.',
+          distance: 'שערי Odakyu', duration: '13:00–13:05', transport: 'הליכה',
+          image: 'assets/transfers/train.jpg' },
+        { title: 'הגעה לרציף ועלייה לקרון 6',
+          desc: 'ממשיכים לרציף ועולים ל-Romancecar. המושבים השמורים הם 2A, 2B, 2C, 2D, 3A ו-3B בקרון 6.',
+          tip: 'לתיקים קטנים יש מדפים מעל המושבים. לציוד גדול השתמשו באזורי המטען הייעודיים ואל תחסמו את המעבר.',
+          distance: 'בתוך התחנה', duration: '13:05–13:20', transport: 'הליכה ועלייה',
+          image: 'assets/transfers/train.jpg' },
+        { title: 'יציאת Romancecar Hakone 21',
+          desc: 'הרכבת יוצאת מתחנת Shinjuku בדיוק בשעה 13:20. ההזמנה לשישה נוסעים מאושרת ושולמה במלואה.',
+          tip: 'היו בתוך קרון 6 לפני שעת היציאה; הרכבת אינה ממתינה למאחרים.',
+          distance: 'Shinjuku → Hakone-Yumoto', duration: '13:20', transport: 'Romancecar',
+          image: 'assets/transfers/train.jpg' },
+        { title: 'הגעה ל-Hakone-Yumoto',
+          desc: 'הגעה מאושרת בשעה 14:48 לאחר נסיעה ישירה של כ-88 דקות. אוספים את כל התיקים לפני הירידה.',
+          tip: 'בדקו את אזור המושבים והמדפים לפני היציאה מהקרון.',
+          distance: 'כ-82 ק״מ', duration: '14:48', transport: 'רכבת',
+          image: 'assets/transfers/train.jpg' }
+      ]
+    },
+    {
+      id: 'reach_hotel_v2',
+      kind: 'dest',
+      icon: '♨️',
+      title: 'מ-Hakone-Yumoto לריוקן',
+      titleEn: 'Hakone-Yumoto to Aura Tachibana',
+      meta: '14:48–15:05 · 3 שלבים',
+      preview: 'Bus Stop B → שאטל/אוטובוס → צ׳ק-אין',
+      steps: [
+        { title: 'יציאה מהתחנה אל Bus Stop B',
+          desc: 'יוצאים מתחנת Hakone-Yumoto ופונים לאזור תחנות האוטובוס. היעד הוא Bus Stop B.',
+          tip: 'שמרו את הקבוצה יחד ביציאה מהתחנה כדי לא להתפצל עם התיקים.',
+          distance: 'כ-5 דקות', duration: '14:48–14:53', transport: 'הליכה',
+          image: 'assets/transfers/bus.jpg' },
+        { title: 'שאטל המלון או אוטובוס ל-Aura Tachibana',
+          desc: 'עולים לשאטל המלון, אם הוא זמין, או לאוטובוס המקומי לכיוון Aura Tachibana. העלייה וההתארגנות אורכות כ-5–10 דקות.',
+          tip: 'חפשו שלט Aura Tachibana או בקשו עזרה מאיש הצוות באזור Bus Stop B.',
+          distance: 'נסיעה קצרה', duration: '14:53–15:05', transport: 'שאטל / אוטובוס',
+          image: 'assets/transfers/bus.jpg' },
+        { title: 'הגעה וצ׳ק-אין ב-Aura Tachibana',
+          desc: 'הגעה משוערת סביב 15:05 וצ׳ק-אין בריוקן. קבלת החדרים מתחילה בשעה 15:00, כך שהמסלול מכוון לתחילת חלון הרישום.',
+          tip: 'הכינו את אישור ההזמנה והדרכונים של הקבוצה לפני הכניסה לקבלה.',
+          distance: 'Aura Tachibana', duration: 'סביב 15:05', transport: 'הגעה',
+          image: 'assets/attractions/day14/aura_tachibana.jpg' }
+      ]
+    }
+  ];
+
   // ---- State ----
-  const STORAGE_KEY = 'navGuide_day14_v1';
+  const STORAGE_KEY = 'navGuide_day14_v2';
   let state = loadState();
   let currentSectionIdx = null;   // null = home view
   let expandedStepIdx = null;
@@ -4090,8 +4268,8 @@ if ('caches' in window) {
     document.documentElement.style.setProperty('--ng-accent', SECTION_COLORS.walk);
 
     const parts = [];
-    parts.push('<h1 class="ng-home-title">שלוש תחנות עד המלון</h1>');
-    parts.push('<p class="ng-home-sub">בחרו את השלב הבא במסלול. כל תחנה כוללת ניווט צעד-אחר-צעד עם תמונות.</p>');
+    parts.push('<h1 class="ng-home-title">9 שלבים מ-Ichiran לריוקן</h1>');
+    parts.push('<p class="ng-home-sub">מסלול מדויק לקבוצה של 6 אנשים: כניסת Odakyu, רכבת Romancecar והמשך ל-Aura Tachibana.</p>');
     parts.push('<div class="ng-section-list">');
     SECTIONS.forEach((sec, idx) => {
       const total = sec.steps.length;

@@ -12,6 +12,7 @@ A day goes from generic Unsplash-stock timeline events to:
 3. Hotel card data (`hotelsByDay`)
 4. Timeline events rendered with the **already-global** shared card component — flexible height with a min-height floor, full-height clickable photo with overlaid time badge, 3D hover-lift, pin-icon hint. **Keep the shared CSS/JS behavior exactly as defined below** so all days look identical.
 5. Optional extras: theme subtitle, public-transport legs, curated Hebrew route notes.
+6. When a day has meaningful transfers, Route and Transportation use the shared indexed-transfer pattern: a compact Route chip opens the exact Transportation card, and that card returns to the same Route slot.
 
 Days 19, 21, 23 are the reference implementations. Day 14 also uses the shared card but was sourced from the older `prep_days` PNG format (see Prerequisites).
 
@@ -135,6 +136,40 @@ Reload `index.html` and navigate to the day. Element refs go stale after a reloa
 document.querySelector(`[onclick="showDayPlanFromMain('DD')"]`)?.click()
 ```
 Check: photos load correctly, **no Russian text anywhere**, card heights flex with content but share a consistent ~90px+ floor, the route map renders with the correct aspect ratio and translated legend, and the hotel card shows correct info.
+
+### Transportation interaction pattern
+Use this pattern when a day contains an important train, bus, shuttle, taxi, or walking transfer that needs more than a short timeline note.
+
+1. Store each physical movement once in `transfersByDay[day]`; do not duplicate it as a full `data[day].events` card. Create a separate indexed record for every meaningful A→B boundary in the timeline. Do not combine unrelated morning, afternoon, and return journeys into one all-day transportation cluster. Day 14 has one card because it has one major multi-stage transfer; a day such as day 25 requires separate cards between its attractions.
+2. Set `afterIdx` to the event index after which the compact Route chip belongs. `transferChipsHtml(day, idx)` and `renderTransferLegs(day)` must preserve the same array index as `data-transfer-index`.
+3. Keep reciprocal navigation intact:
+    - Route chip calls `showTransportationDetails(day, transferIndex)`.
+    - Transportation card calls `showRouteTransfer(day, transferIndex)`.
+    - `scrollToNavigationTarget(...)` scrolls, focuses, and briefly highlights the exact matching element.
+    - Map links and `<details>` controls call `event.stopPropagation()` so they do not trigger the card's return navigation.
+4. Put the concise summary, booking state, car/seat details, and primary navigation link directly on each Transportation card. Add a `details` object with `title`, `steps`, and optional `recommendations` only when that single A→B leg has multiple operational stages, such as walk → metro → interchange → walk. Simple walking legs should remain compact cards with their direct Google Maps link. Render expanded instructions through the shared `transferDetailsHtml(transfer)` block.
+5. Add an optional `navigation` object only to steps where opening a map is genuinely useful:
+    ```javascript
+    navigation: {
+      from: 'Exact origin query',
+      to: 'Exact destination query',
+      mode: 'walking', // walking, transit, or driving
+      label: '🚶 ניווט הליכה'
+    }
+    ```
+    Build Google Maps URLs with `encodeURIComponent` for both endpoints. Typical useful links are the walk to the station entrance, the main rail leg, the station exit/bus stop walk, and the final public-transport leg.
+6. A generic route finder must not compete with a complete day-specific flow. Give the panel a stable id such as `transportRouteFinder` and hide it for configured days while restoring it for every other day. Prefer a data/config flag when this expands beyond an isolated day.
+7. Keep all displayed clock ranges visually chronological inside the Hebrew RTL UI. Dedicated time elements (`.time-badge`, `.tc-time`, `.tleg-time`, `.tleg-step-time`) require `direction:ltr; unicode-bidi:isolate`. Store ranges as start then end, for example `"13:15<br>14:30"`, and audit source values for reversed pairs.
+
+Transportation browser checks:
+- Route chip opens the exact indexed Transportation card.
+- Card returns to the same day and Route slot.
+- Every transfer card describes only its own origin and destination; no card silently includes later unrelated movements.
+- Time range reads start-to-end from left to right in both tabs.
+- Expanded instructions show the expected number of steps and navigation links.
+- Walking/transit links contain the expected endpoints and `travelmode`.
+- A day-specific flow hides irrelevant generic controls, while another day still restores them.
+- Test from a fresh or cache-busted `file:///.../index.html?...` URL when an already-open local tab shows stale DOM.
 
 ### 6. Commit & push
 This repo commits straight to `master` (no feature-branch workflow) — `git add`, a descriptive commit message, `git push`.
