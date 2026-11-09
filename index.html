@@ -1714,7 +1714,7 @@ function backToTransportation(){
 function renderCountdownChip(){
   const chip = document.getElementById('countdownChip');
   if (!chip) return;
-  const startDate = new Date('2026-11-14T00:00:00');
+  const startDate = new Date('2026-11-12T00:00:00');
   const today = new Date();
   const diffMs = startDate - today;
   const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
