@@ -1285,7 +1285,7 @@ const transitByDay = {
 // Preset Hebrew route notes per day (overview + tips), used to prefill the notes boxes
 const routeNotesPresets = {
   '12-13': {
-    overview: 'יום הטיסה ליפן מתחיל ביציאה מתל אביב בטיסת EY594 בשעה 14:00 ונחיתה באבו דאבי בשעה 19:05. לאחר קונקשן של 3 שעות ו-15 דקות נמשיך בטיסת הלילה EY800, שתצא בשעה 22:20 ותנחת בטרמינל 1 של Narita למחרת בשעה 13:15. לאחר ביקורת הגבולות, איסוף המזוודות והמכס ניפגש עם נהג המיניוואן שהזמנו מראש, שיסיע אותנו ישירות מ-Narita ל-Hotel Gracery Shinjuku (¥26,000 במזומן לנהג). אחרי צ׳ק-אין קצר נקדיש את 17:30–20:00 לסבב קניות מרוכז שמתחיל ב-UNIQLO וב-GU וממשיך, אם הזמן והאנרגיה מאפשרים, ל-Alpen TOKYO ול-Downbeat RUNNING. בשעה 20:15 נאכל ונחווה את האווירה ב-Omoide Yokocho, נמשיך להליכה בין אורות הניאון ואזור Godzilla ב-Kabukicho, ואם עדיין נשאר כוח נסיים ב-Golden Gai בהליכה קצרה או במשקה אחד.',
+    overview: 'יום הטיסה ליפן מתחיל ביציאה מתל אביב בטיסת EY594 בשעה 14:00 ונחיתה באבו דאבי בשעה 19:05. לאחר קונקשן של 3 שעות ו-15 דקות נמשיך בטיסת הלילה EY800, שתצא בשעה 22:20 ותנחת בטרמינל 1 של Narita למחרת בשעה 13:15. לאחר ביקורת הגבולות, איסוף המזוודות והמכס ניפגש עם נהג המיניוואן שהזמנו מראש, שיסיע אותנו ישירות מ-Narita ל-Hotel Gracery Shinjuku (¥26,000 במזומן לנהג). אחרי צ׳ק-אין קצר נוכל לבחור ארוחה מוקדמת ליד המלון או בדרך לקניות מתוך ארבע אפשרויות: Sushiro, Ramen Hayashida, Gindaco או Ichiran. לאחר מכן נקדיש את 17:30–20:00 לסבב קניות מרוכז שמתחיל ב-UNIQLO וב-GU וממשיך, אם הזמן והאנרגיה מאפשרים, ל-Alpen TOKYO ול-Downbeat RUNNING. בשעה 20:15 נבקר ב-Omoide Yokocho לארוחה או לנשנוש ואווירה, נמשיך להליכה בין אורות הניאון ואזור Godzilla ב-Kabukicho, ואם עדיין נשאר כוח נסיים ב-Golden Gai בהליכה קצרה או במשקה אחד.',
     tips: ''
   },
   '14': {
@@ -1689,6 +1689,19 @@ function shoppingGroupHtml(){
   </details>`;
 }
 
+function dinnerOptionsGroupHtml(){
+  const options = [
+    ['Sushiro Shinjuku 3-chome', 'סושי מסוע · האפשרות הנוחה ביותר לקבוצה של 6 · ¥1,000–2,000 · פתוח עד 23:00', 'Sushiro Shinjuku 3-chome, 3-13-3 Shinjuku, Shinjuku City, Tokyo'],
+    ['Ramen Hayashida Shinjuku', 'ראמן איכותי ליד UNIQLO · ייתכן שנצטרך להתפצל בין מקומות ישיבה · פתוח עד 23:00', 'Ramen Hayashida Shinjuku, 3-31-5 Shinjuku, Shinjuku City, Tokyo'],
+    ['Gindaco Shinjuku Toho Building', 'טאקויאקי ומנות איזקאיה קלות · באותו בניין של המלון · מתאים לארוחה מהירה', 'Gindaco Highball Tavern Shinjuku Toho Building, 1-19-1 Kabukicho, Shinjuku City, Tokyo'],
+    ['Ichiran Shinjuku', 'ראמן טונקוטסו · פתוח 24 שעות · תאי ישיבה נפרדים ופחות מתאים לארוחה קבוצתית', 'Ichiran Shinjuku, 3-34-11 Shinjuku, Shinjuku City, Tokyo']
+  ];
+  return `<details class="shopping-group" onclick="event.stopPropagation()">
+    <summary>פירוט 4 אפשרויות אוכל</summary>
+    <div class="shopping-group-list">${options.map(([name, note, destination]) => `<div class="shopping-stop"><strong>${name}</strong><div class="shopping-stop-row"><span>${note}</span><a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}&travelmode=walking" onclick="event.stopPropagation()">🧭 ניווט</a></div></div>`).join('')}</div>
+  </details>`;
+}
+
 function scrollToNavigationTarget(selector){
   requestAnimationFrame(() => requestAnimationFrame(() => {
     const target = document.querySelector(selector);
@@ -1741,6 +1754,7 @@ const data = {
     ["13:15 +1","נחיתה ב-Narita Terminal 1","לאחר הנחיתה: ביקורת גבולות, איסוף מזוודות ומכס. מומלץ להקדיש 60–90 דקות עד היציאה לאולם מקבלי הפנים בקומה 1.","https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80","Narita Airport Terminal 1"],
     ["14:30<br>16:30","מיניוואן פרטי מ-Narita למלון","מיניוואן שהוזמן מראש אוסף אותנו משדה התעופה ומסיע אותנו ישירות ל-Hotel Gracery Shinjuku, בלי החלפות ובלי סחיבת מזוודות.\n\nלאחר ביקורת הגבולות, איסוף המזוודות והמכס יוצאים לאולם מקבלי הפנים ופוגשים את הנהג. כדאי לשמור את פרטי ההזמנה ואת מספר הטלפון של הנהג זמינים.\n\nמחיר: ¥26,000 לכל הקבוצה, לתשלום במזומן לנהג. כדאי להביא מזומן בידיים במהלך ההגעה.","assets/transfers/minivan.jpg","Hotel Gracery Shinjuku","🚐 מיניוואן שהוזמן מראש · ¥26,000 במזומן · ישירות למלון"],
     ["17:00<br>18:00","צ׳ק-אין ב-Hotel Gracery Shinjuku","הליכה קצרה מ-Tokyu Kabukicho Tower למלון, צ׳ק-אין ומנוחה לאחר הטיסות.","assets/attractions/day14/baggage_transportation.jpg","Hotel Gracery Shinjuku","🏨 לילה ראשון בטוקיו"],
+    ["לבחירה","4 אפשרויות אוכל לפני הקניות","בוחרים לפי הרעב והאנרגיה: ארוחה מלאה ב-Sushiro או Ramen Hayashida, טאקויאקי מהיר ב-Gindaco ליד המלון, או Ichiran למי שמעדיף ראמן. אם אוכלים כאן ארוחה מלאה, משאירים את Omoide Yokocho לנשנוש ולאווירה.","assets/attractions/day14/ramen_lunch.jpg","Shinjuku restaurants","🍜 סושי, ראמן או טאקויאקי · לחצו לפתיחת האפשרויות"],
     ["17:30<br>20:00","קניות בשינג׳וקו","סבב קניות מרוכז ליד המלון: מתחילים ב-UNIQLO וב-GU, ולאחר מכן ממשיכים ל-Alpen TOKYO ול-Downbeat RUNNING לפי הזמן והאנרגיה.","pictures/חנות ספורט  טוקיו.jpg","Shinjuku shopping","🛍️ 4 חנויות · לחצו לפתיחת הפירוט"],
     ["20:15<br>21:15","ארוחת ערב ואווירה ב-Omoide Yokocho","אוכלים yakitori או מנות איזקאיה קטנות בין הסמטאות הצרות והפנסים של Omoide Yokocho. בוחרים מקום עם מקומות פנויים ושומרים על ארוחה פשוטה אחרי יום הטיסות.","assets/attractions/day24/omoide.jpg","Omoide Yokocho Shinjuku","🍢 ארוחת ערב ואווירה · שעה"],
     ["21:15<br>21:45","טיול ערב ב-Kabukicho","הולכים בין רחובות הניאון של Kabukicho, עוברים באזור Godzilla וצופים באווירת הערב ובאנשים. זהו סיבוב הליכה בלבד.","assets/attractions/day24/kabukicho.jpg","Godzilla Head Shinjuku Kabukicho","🌃 ניאון, Godzilla וצפייה ברחוב"],
@@ -3894,6 +3908,7 @@ function render(day){
       <div class="event-content">
         <h3 class="${titleAlignClass}">${titleHtml}</h3>
         <div class="event-desc">${eventDescription}</div>
+        ${day === '12-13' && e[1] === '4 אפשרויות אוכל לפני הקניות' ? dinnerOptionsGroupHtml() : ''}
         ${day === '12-13' && e[1] === 'קניות בשינג׳וקו' ? shoppingGroupHtml() : ''}
         ${transitNote}
         ${eventAction}
