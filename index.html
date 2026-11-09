@@ -1297,7 +1297,7 @@ const routeNotesPresets = {
     tips: 'מזג האוויר בהאקונה יכול להשתנות במהירות – קחו בגדים חמים ומטריה. הביצה השחורה (קורו טמאגו) היא מעדן מקומי של אווקודאני. במוזיאון הפתוח יש בית קפה ואזורי מנוחה. בערב המלון מציע ארוחות מסורתיות ואונסן.'
   },
   '16': {
-    overview: 'יום מעבר מהר פוג\'י לקיוטו: פגודת צ\'וריאיטו עם הנוף האייקוני של הר פוג\'י, כפר אושינו הקאיי עם בריכות המים הצלולות, מסדרון המייפל באגם קוואגוצ\'י, ואז מיניוואן למישימה ושינקנסן Hikari ישיר לקיוטו וצ\'ק-אין ב-Hotel Monterey Kyoto.',
+    overview: 'יום מעבר מהר פוג\'י לקיוטו: פגודת צ\'וריאיטו עם הנוף האייקוני של הר פוג\'י, כפר אושינו הקאיי עם בריכות המים הצלולות, מסדרון המייפל באגם קוואגוצ\'י, ואז מיניוואן למישימה ושינקנסן Hikari ישיר לקיוטו. לאחר ההגעה ב-19:37 בוחרים ארוחת ערב לפי מצב הרכבת והאנרגיה: Katsukura, Kyoto Tower Sando או Ippudo ליד Kyoto Station לפני הנסיעה למלון, או Kushikura ליד Hotel Monterey Kyoto לאחר ההגעה לאזור המלון ובהזמנה מראש. לאחר מכן משלימים צ\'ק-אין ב-Hotel Monterey Kyoto.',
     tips: 'מזג האוויר בפוג\'י בנובמבר קריר – קחו בגדים חמים ונעליים נוחות. בפגודת צ\'וריאיטו יש כ-400 מדרגות לנקודת התצפית. הזמן הטוב ביותר לתמונות: בוקר בפגודה, יום באושינו הקאיי. חשוב להזמין מראש מושבים ל-Hikari 721 (Mishima → Kyoto).'
   },
   '17': {
@@ -1702,6 +1702,19 @@ function dinnerOptionsGroupHtml(){
   </details>`;
 }
 
+function kyotoDinnerOptionsGroupHtml(){
+  const options = [
+    ['Katsukura Kyoto Porta', 'טונקאטסו קיוטואי · ¥2,000–3,000 · פתוח עד 22:00 · מ-Kyoto Station: כ-190 מ׳, 4 דקות הליכה', 'Katsukura Kyoto Porta, 901 Higashishiokojicho, Shimogyo Ward, Kyoto'],
+    ['Kyoto Tower Sando Food Hall', 'כ-18 דוכנים ומקומות ישיבה משותפים · מתאים לקבוצה וללא הזמנה · פתוח בדרך כלל עד 23:00 · מ-Kyoto Station: כ-94 מ׳, דקת הליכה', 'Kyoto Tower Sando Food Hall, 721-1 Higashishiokojicho, Shimogyo Ward, Kyoto'],
+    ['Ippudo Kyoto Porta', 'ראמן טונקוטסו מהיר · ¥1,000–2,000 · פתוח עד 22:00, הזמנה אחרונה סביב 21:30 · מ-Kyoto Station: כ-88 מ׳, דקת הליכה', 'Ippudo Kyoto Porta, 902 Higashishiokojicho, Shimogyo Ward, Kyoto'],
+    ['Yakitori Kushikura Honten', 'יאקיטורי בבית מאצ׳יה מסורתי · מטבח עד 21:00 · מומלץ להזמין לשישה סביב 20:30 · מ-Hotel Monterey Kyoto: כ-650 מ׳, 10 דקות הליכה', 'Yakitori Kushikura Honten, 584 Hiiragicho, Nakagyo Ward, Kyoto']
+  ];
+  return `<details class="shopping-group" onclick="event.stopPropagation()">
+    <summary>פירוט 4 אפשרויות לארוחת ערב</summary>
+    <div class="shopping-group-list">${options.map(([name, note, destination]) => `<div class="shopping-stop"><strong>${name}</strong><div class="shopping-stop-row"><span>${note}</span><a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}&travelmode=walking" onclick="event.stopPropagation()">🧭 ניווט</a></div></div>`).join('')}</div>
+  </details>`;
+}
+
 function scrollToNavigationTarget(selector){
   requestAnimationFrame(() => requestAnimationFrame(() => {
     const target = document.querySelector(selector);
@@ -1786,6 +1799,7 @@ const data = {
     ["11:10<br>12:25","Oshino Hakkai","ביקור בכפר מסורתי ושקט עם שמונה בריכות מי שלגים צלולות, גשרים קטנים, בתי עץ ודוכנים מקומיים. עצירה מצוינת לצילומים ולאווירת פוג'י כפרית.","assets/attractions/day16/oshino.jpg","Oshino Hakkai"],
     ["12:25<br>13:10","ארוחת צהריים","עצירה לארוחת צהריים בדרך, באזור Oshino, עם אפשרות למנות מקומיות כמו הוטו, אודון או סובה לפני ההליכה במסדרון המייפל.","assets/attractions/lunch.jpg","Oshino Hakkai area"],
     ["13:30<br>14:50","Lake Kawaguchi – מסדרון המייפל","הליכה נעימה ובלי לחץ לאורך מסדרון המייפל (Momiji Corridor) של Lake Kawaguchi, עם צבעי שלכת, שביל מסודר ונקודות מבט יפות לעבר האגם וההר כשמזג האוויר פתוח.","assets/attractions/day16/maple.jpg","Lake Kawaguchi Maple Corridor"],
+    ["לבחירה","4 אפשרויות לארוחת ערב בקיוטו","בוחרים לפי שעת ההגעה והאנרגיה: Katsukura, Kyoto Tower Sando או Ippudo צמודים ל-Kyoto Station ומתאימים לארוחה לפני הנסיעה למלון; Kushikura נמצאת ליד המלון ומתאימה לארוחה לאחר ההגעה לאזור, בהזמנה מראש לשישה.","assets/attractions/day19/dinner.jpg","Kyoto Station restaurants","🍽️ 3 אפשרויות ליד התחנה · אפשרות אחת ליד המלון · לחצו לפתיחה"],
     ["20:15<br>21:00","צ'ק-אין – Hotel Monterey Kyoto","הגעה ל-Hotel Monterey Kyoto – אותו מלון שבו ממשיכים גם בימים הבאים. מתחנת Kyoto: מטרו Karasuma Line עד Karasuma Oike (כ-10 דק') והליכה קצרה, או מונית של כ-10–15 דקות.","assets/attractions/day17/hotel.jpg","Hotel Monterey Kyoto"],
   ]},
   '17': { title:"קיוטו – Nijo, Nishiki, Nanzen-ji ומופע MIYABI", route:"Hotel Monterey → Nijo Castle → Nishiki Market → Nanzen-ji → מרכז קיוטו → Hulic Hall → ארוחת ערב", events:[
@@ -3909,6 +3923,7 @@ function render(day){
         <h3 class="${titleAlignClass}">${titleHtml}</h3>
         <div class="event-desc">${eventDescription}</div>
         ${day === '12-13' && e[1] === '4 אפשרויות אוכל לפני הקניות' ? dinnerOptionsGroupHtml() : ''}
+        ${day === '16' && e[1] === '4 אפשרויות לארוחת ערב בקיוטו' ? kyotoDinnerOptionsGroupHtml() : ''}
         ${day === '12-13' && e[1] === 'קניות בשינג׳וקו' ? shoppingGroupHtml() : ''}
         ${transitNote}
         ${eventAction}
