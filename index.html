@@ -1232,12 +1232,12 @@ const transitByDay = {
     { from: 'Pontocho', to: 'Hotel Monterey Kyoto', note: 'הליכה ישירה חזרה למלון', line: 'רגלי', time: '~20 דק׳ · 1.4 ק״מ', cost: '—' }
   ],
   '19': [
-    { from: 'Hotel Monterey Kyoto', to: 'Arashiyama Bamboo Grove', note: 'תחבורה ציבורית מ-07:30 או שתי מוניות סביב 07:55', line: 'Tozai + Randen / 2 מוניות', time: '~70 / 45 דק׳', cost: '—' },
-    { from: 'Bamboo Grove', to: 'Tenryu-ji', note: 'הליכה לכניסה הצפונית', line: 'רגלי', time: '~15 דק׳', cost: '—' },
-    { from: 'Arashiyama', to: 'Ryoan-ji', note: 'Randen דרך Katabiranotsuji או שתי מוניות', line: 'Randen / 2 מוניות', time: '~55 / 45 דק׳', cost: '~¥250 לאדם' },
-    { from: 'Ryoan-ji', to: 'Kinkaku-ji', note: 'הליכה רגועה; מונית רק במקרה של עיכוב', line: 'רגלי / מונית', time: '~35 דק׳', cost: '—' },
-    { from: 'Kinkaku-ji', to: 'Kitano Tenmangu', note: 'הליכה אם יש כוח או שתי מוניות לשמירת זמן', line: 'רגלי / 2 מוניות', time: '~40 דק׳', cost: '—' },
-    { from: 'Kitano Tenmangu', to: 'מסעדה ליד המלון', note: 'Bus 55 לכיוון Shijo Karasuma או שתי מוניות', line: 'Bus 55 / 2 מוניות', time: '~60 / 45 דק׳', cost: '—' }
+    { from: 'Hotel Monterey Kyoto', to: 'Arashiyama Bamboo Grove', note: 'Karasuma Oike → Uzumasa Tenjingawa בקו Tozai, מעבר רגלי קצר ל-Randen והמשך ל-Arashiyama', line: 'Tozai + Randen + רגלי', time: '~60–70 דק׳ כולל המתנה', cost: '~¥510 לאדם' },
+    { from: 'Bamboo Grove', to: 'Tenryu-ji', note: 'סיום שביל הבמבוק וכניסה דרך השער הצפוני', line: 'רגלי', time: '~5–10 דק׳', cost: '—' },
+    { from: 'Arashiyama', to: 'Ryoan-ji', note: 'Randen Arashiyama → Katabiranotsuji, החלפה לקו Kitano וירידה ב-Ryoanji', line: 'Randen + רגלי', time: '~35–45 דק׳ כולל המתנה', cost: '¥250 לאדם' },
+    { from: 'Ryoan-ji', to: 'Kinkaku-ji', note: 'הליכה ישירה לאורך Kinukake-no-michi', line: 'רגלי', time: '~20–25 דק׳ · 1.4 ק״מ', cost: '—' },
+    { from: 'Kinkaku-ji', to: 'Kitano Tenmangu', note: 'הליכה ישירה; אין צורך במונית בתנאים רגילים', line: 'רגלי', time: '~15–20 דק׳ · 1.1 ק״מ', cost: '—' },
+    { from: 'Kitano Tenmangu', to: 'מסעדה ליד המלון', note: 'Bus 55 מ-Kitano Tenmangu-mae עד Shijo Karasuma והליכה צפונה לכיוון המלון', line: 'Bus 55 + רגלי', time: '~35–45 דק׳ כולל המתנה', cost: '¥230 לאדם' }
   ],
   '20': [
     { from: 'Hotel Monterey Kyoto', to: 'Fushimi Inari', note: 'Karasuma Oike ל-Kyoto Station ומשם JR Nara Line ל-Inari', line: 'מטרו + JR + רגלי', time: '~50 דק׳', cost: '—' },
@@ -1309,8 +1309,8 @@ const routeNotesPresets = {
     tips: 'יש להזמין מראש קימונו לשישה ולאשר שהחנות יכולה לטפל בכולם יחד, כולל עיצוב שיער אופציונלי. יש להזמין גם ארוחת צהריים באזור Kodai-ji וארוחת ערב ב-Pontocho. חשוב להגן על שעת Kennin-ji; אם מתעכבים, מקצרים את זמן הצילום או את הזמן החופשי בערב.'
   },
   '19': {
-    overview: 'יום שמתחיל מוקדם ב-Arashiyama Bamboo Grove, ממשיך ל-Tenryu-ji, נהר Katsura וגן Hogon-in, ואחר הצהריים עובר דרך Ryoan-ji אל Kinkaku-ji. אם הקבוצה והזמן מאפשרים, מסיימים בתאורת השלכת של Kitano Tenmangu ובארוחת ערב ליד המלון.',
-    tips: 'Hogon-in הוא הקיצור הראשון במקרה של עיכוב ו-Ryoan-ji הוא השני; Bamboo Grove, Tenryu-ji, Togetsukyo ו-Kinkaku-ji מוגנים. יש לאשר את פתיחת הסתיו של Hogon-in ואת מועדי התאורה ב-Kitano Tenmangu, להזמין ארוחות לשישה וללבוש שכבות חמות לערב.'
+    overview: 'יוצאים ב-07:30 מ-Hotel Monterey Kyoto דרך Karasuma Oike, קו Tozai ו-Randen ומגיעים לאראשיאמה עם מרווח לפני תחילת הביקור ב-08:40. המסלול הרגלי היעיל עובר דרך Bamboo Grove, הכניסה הצפונית של Tenryu-ji, גן Hogon-in, גשר Togetsukyo וארוחת צהריים ליד תחנת Randen Arashiyama. אחר הצהריים נוסעים ב-Randen דרך Katabiranotsuji ל-Ryoan-ji, הולכים כ-20–25 דקות ל-Kinkaku-ji ועוד כ-15–20 דקות ל-Kitano Tenmangu. מגיעים מוקדם להתארגנות לפני תאורת השלכת, וב-18:00 חוזרים ב-Bus 55 לכיוון Shijo Karasuma והולכים למסעדה ליד המלון.',
+    tips: 'Hogon-in הוא הקיצור הראשון במקרה של עיכוב ו-Ryoan-ji הוא השני; Bamboo Grove, Tenryu-ji, Togetsukyo ו-Kinkaku-ji מוגנים. יש לאשר את פתיחת הסתיו של Hogon-in ואת מועדי התאורה ב-Kitano Tenmangu, להזמין ארוחות לשישה וללבוש שכבות חמות לערב. מכינים כרטיס IC טעון; במעבר ב-Katabiranotsuji עוקבים אחרי השילוט ל-Kitano Line לכיוון Kitano-Hakubaicho.'
   },
   '20': {
     overview: 'יום מעבר מלא: צ׳ק-אאוט מקיוטו, ביקור ב-Fushimi Inari בלי עלייה לפסגה, רכבת ישירה לנארה, ארוחת צהריים ליד הפארק, איילי Nara Park, Todai-ji ו-Kasuga Taisha האופציונלי, ואז מעבר ישיר ל-Osaka Excel Hotel Tokyu באוסקה.',
@@ -1830,16 +1830,16 @@ const data = {
     ["18:20<br>19:30","Pontocho / זמן חופשי","מרווח מכוון לקפה, משקה, סאקה או שיטוט לאורך הנהר. הזמן גם סופג עיכובים מוקדמים בלי לפגוע בארוחת הערב.","assets/attractions/day17/pontocho.jpg","Pontocho Alley Kyoto","☕ זמן חופשי ומרווח ביטחון"],
     ["19:30<br>21:15","ארוחת ערב ב-Pontocho","סיום מצוין ליום במסעדה יפנית טובה בסמטת Pontocho. יש להזמין מקום מראש לשישה.","assets/attractions/day19/dinner.jpg","Pontocho Kyoto restaurants","🍽️ חשוב להזמין לשישה"],
   ]},
-    '19': { title:"קיוטו – אראשיאמה, Ryoan-ji, Kinkaku-ji ותאורת שלכת", route:"Hotel Monterey → Arashiyama Bamboo Grove → Tenryu-ji → Togetsukyo → Hogon-in → Ryoan-ji → Kinkaku-ji → Kitano Tenmangu", events:[
+    '19': { title:"קיוטו – אראשיאמה, Ryoan-ji, Kinkaku-ji ותאורת שלכת", route:"Hotel Monterey → Arashiyama Bamboo Grove → Tenryu-ji → Hogon-in → Togetsukyo → Ryoan-ji → Kinkaku-ji → Kitano Tenmangu", events:[
     ["07:00<br>07:30","ארוחת בוקר ב-Hotel Monterey Kyoto","ארוחת בוקר מוקדמת לפני היציאה. נוסעי התחבורה הציבורית יוצאים ב-07:30; למשתמשים במוניות יש מעט יותר זמן.","assets/attractions/day19/breakfast.jpg","Hotel Monterey Kyoto","🍽️ להשלים התארגנות לפני הארוחה"],
     ["08:40<br>09:20","Arashiyama Bamboo Grove","הליכה בין שבילי הבמבוק וצילומים בשעת בוקר מוקדמת, בלי להניח שהשבילים יהיו ריקים.","assets/attractions/day18/bamboo.jpg","Arashiyama Bamboo Grove","🎋 אתר חובה · 40 דקות"],
-    ["09:35<br>10:35","Tenryu-ji","גן נוף, בריכה ומבנים מסורתיים. נכנסים מהכניסה הצפונית ויוצאים מהכניסה הראשית לכיוון מרכז אראשיאמה.","assets/attractions/day18/tenryuji.jpg","Tenryu-ji Temple","🏯 אתר חובה · 60 דקות"],
-    ["10:50<br>11:20","Togetsukyo Bridge וגדת הנהר","נוף פתוח אל נהר Katsura וההרים, בניגוד ליער הבמבוק הסגור ולגני המקדש.","assets/attractions/day18/togetsukyo.jpg","Togetsukyo Bridge Arashiyama","🌉 אתר חובה · 30 דקות"],
-    ["11:20<br>12:00","גן Hogon-in","גן נוף קומפקטי של טחב וסלעים. זהו האתר הראשון שמקצרים או מבטלים אם הבוקר מתעכב; יש לאשר את פתיחת הסתיו של 2026.","assets/attractions/day19/eikando_new.jpg","Hogon-in Temple Kyoto","🍁 אופציונלי · 40 דקות"],
-    ["12:15<br>13:15","ארוחת צהריים יפנית באראשיאמה","הפסקת הישיבה העיקרית של היום, ליד תחנת Randen Arashiyama כדי לפשט את המעבר אחר הצהריים. יש להזמין לשישה.","assets/attractions/day19/lunch_higashiyama.jpg","Randen Arashiyama Station restaurants","🍽️ חשוב להזמין לשישה"],
-    ["14:10<br>14:55","Ryoan-ji","ביקור בגן האבנים המינימליסטי ובשטח המקדש. זהו הקיצור האופציונלי השני אם יש עיכוב משמעותי.","assets/attractions/day18/ryoanji.jpg","Ryoan-ji Temple Kyoto","🪨 אופציונלי · להגן על Kinkaku-ji"],
-    ["15:30<br>16:30","Kinkaku-ji – הפביליון הזהוב","תצפיות אל הפביליון והשתקפותו באגם, צילומים ומסלול הגן. זהו ביקור מוגן ויש להגיע לפני שעות הסגירה המאוחרות.","assets/attractions/day18/kinkakuji.jpg","Kinkaku-ji Golden Pavilion","✨ אתר חובה · 60 דקות"],
-    ["17:10<br>18:10","תאורת השלכת ב-Kitano Tenmangu","גן מייפל עונתי מואר סביב הסוללה והנחל. זה אינו מופע והמסלול כולל שינויי גובה; יש לאשר מועדים ושעות רשמיים ל-2026.","assets/attractions/day19/eikando_new.jpg","Kitano Tenmangu Shrine Kyoto","🍁 אופציונלי · יש לאשר פתיחה"],
+    ["09:30<br>10:30","Tenryu-ji","גן נוף, בריכה ומבנים מסורתיים. נכנסים מהכניסה הצפונית ויוצאים לכיוון Hogon-in כדי להימנע מחזרה מיותרת.","assets/attractions/day18/tenryuji.jpg","Tenryu-ji Temple","🏯 אתר חובה · 60 דקות"],
+    ["10:35<br>11:15","גן Hogon-in","גן נוף קומפקטי של טחב וסלעים, הנמצא בדרך הטבעית מ-Tenryu-ji אל הנהר. זהו האתר הראשון שמקצרים או מבטלים אם הבוקר מתעכב; יש לאשר את פתיחת הסתיו של 2026.","assets/attractions/day19/eikando_new.jpg","Hogon-in Temple Kyoto","🍁 אופציונלי · 40 דקות"],
+    ["11:25<br>11:55","Togetsukyo Bridge וגדת הנהר","נוף פתוח אל נהר Katsura וההרים, בניגוד ליער הבמבוק הסגור ולגני המקדש.","assets/attractions/day18/togetsukyo.jpg","Togetsukyo Bridge Arashiyama","🌉 אתר חובה · 30 דקות"],
+    ["12:05<br>13:05","ארוחת צהריים יפנית באראשיאמה","הפסקת הישיבה העיקרית של היום, ליד תחנת Randen Arashiyama כדי לפשט את המעבר אחר הצהריים. יש להזמין לשישה.","assets/attractions/day19/lunch_higashiyama.jpg","Randen Arashiyama Station restaurants","🍽️ חשוב להזמין לשישה"],
+    ["13:50<br>14:40","Ryoan-ji","ביקור בגן האבנים המינימליסטי ובשטח המקדש. זהו הקיצור האופציונלי השני אם יש עיכוב משמעותי.","assets/attractions/day18/ryoanji.jpg","Ryoan-ji Temple Kyoto","🪨 אופציונלי · להגן על Kinkaku-ji"],
+    ["15:05<br>16:05","Kinkaku-ji – הפביליון הזהוב","תצפיות אל הפביליון והשתקפותו באגם, צילומים ומסלול הגן. זהו ביקור מוגן ויש להגיע לפני שעות הסגירה המאוחרות.","assets/attractions/day18/kinkakuji.jpg","Kinkaku-ji Golden Pavilion","✨ אתר חובה · 60 דקות"],
+    ["17:00<br>18:00","תאורת השלכת ב-Kitano Tenmangu","ההליכה מ-Kinkaku-ji מסתיימת סביב 16:25; הזמן שנותר מיועד למנוחה, שירותים, כרטיסים ותור לפני פתיחת התאורה. גן המייפל כולל שינויי גובה ויש לאשר מועדים ושעות רשמיים ל-2026.","assets/attractions/day19/eikando_new.jpg","Kitano Tenmangu Shrine Kyoto","🍁 אופציונלי · יש לאשר פתיחה"],
     ["19:30<br>21:00","ארוחת ערב יפנית ליד המלון","ארוחת ערב שהוזמנה מראש לשישה באזור Hotel Monterey Kyoto. אין חזרה נפרדת למלון אחר הצהריים.","assets/attractions/day19/dinner.jpg","Hotel Monterey Kyoto restaurants","🍽️ חשוב להזמין לשישה"],
   ]},
   '20': { title:"קיוטו → נארה → אוסקה – Fushimi Inari, פארק נארה ו-Todai-ji", route:"Hotel Monterey → Fushimi Inari → JR Nara → Nara Park → Todai-ji → Kasuga Taisha → Kintetsu-Nara → Osaka Excel Hotel Tokyu", events:[
@@ -2018,14 +2018,42 @@ const transfersByDay = {
     {"t": "21:15<br>21:35", "title": "הליכה חזרה ל-Hotel Monterey Kyoto", "desc": "הליכה ישירה מ-Pontocho חזרה למלון דרך הרחובות המרכזיים של קיוטו.", "img": "assets/transfers/walk.jpg", "to": "Hotel Monterey Kyoto", "tag": "🚶 כ-20 דקות · 1.4 ק״מ", "afterIdx": 15, "from": "Pontocho Kyoto"}
   ],
   '19': [
-    {"t": "07:30<br>08:40", "title": "מעבר לאראשיאמה", "desc": "יציאה ב-07:30 בתחבורה ציבורית דרך Tozai ו-Randen, או שתי מוניות סביב 07:55. שתי האפשרויות מכוונות להתחלת הביקור ב-08:40.", "img": "assets/transfers/train.jpg", "to": "Arashiyama Bamboo Grove", "tag": "🚇/🚋 ~70 דק׳ · 🚕 ~45 דק׳", "afterIdx": 0, "from": "Hotel Monterey Kyoto"},
-    {"t": "09:20<br>09:35", "title": "הליכה ל-Tenryu-ji", "desc": "הליכה אל הכניסה הצפונית של המקדש.", "img": "assets/transfers/walk.jpg", "to": "Tenryu-ji Temple", "tag": "🚶 ~15 דק׳ · כ-0.8 ק״מ", "afterIdx": 1, "from": "Arashiyama Bamboo Grove"},
-    {"t": "10:35<br>10:50", "title": "הליכה לגדת הנהר", "desc": "יציאה מהכניסה הראשית והמשך לכיוון Togetsukyo ונהר Katsura.", "img": "assets/transfers/walk.jpg", "to": "Togetsukyo Bridge Arashiyama", "tag": "🚶 ~15 דק׳ · כ-0.8 ק״מ", "afterIdx": 2, "from": "Tenryu-ji Temple"},
-    {"t": "12:00<br>12:15", "title": "הליכה לארוחת צהריים", "desc": "בחירת מסעדה ליד תחנת Randen Arashiyama כדי לפשט את ההמשך.", "img": "assets/transfers/walk.jpg", "to": "Randen Arashiyama Station", "tag": "🚶 עד 15 דק׳ · כ-0.7 ק״מ", "afterIdx": 4, "from": "Hogon-in Temple Kyoto"},
-    {"t": "13:15<br>14:10", "title": "מעבר ל-Ryoan-ji", "desc": "Randen דרך Katabiranotsuji והליכה למקדש היא האפשרות המועדפת; שתי מוניות הן חלופה פשוטה יותר.", "img": "assets/transfers/train.jpg", "to": "Ryoan-ji Temple Kyoto", "tag": "🚋 + 🚶 ~55 דק׳ / 🚕 ~45 דק׳", "afterIdx": 5, "from": "Randen Arashiyama Station"},
-    {"t": "14:55<br>15:30", "title": "הליכה ל-Kinkaku-ji", "desc": "הליכה לא לחוצה; לוקחים מוניות רק אם יש עיכוב או צורך במנוחה.", "img": "assets/transfers/walk.jpg", "to": "Kinkaku-ji Golden Pavilion", "tag": "🚶 ~35 דק׳ · כ-2.4 ק״מ", "afterIdx": 6, "from": "Ryoan-ji Temple Kyoto"},
-    {"t": "16:30<br>17:10", "title": "מעבר ל-Kitano Tenmangu", "desc": "הליכה אם לכולם נשאר כוח, או שתי מוניות כדי לשמור את זמן התאורה.", "img": "assets/transfers/walk.jpg", "to": "Kitano Tenmangu Shrine Kyoto", "tag": "🚶 ~40 דק׳ · כ-2.7 ק״מ / 🚕 לפי צורך", "afterIdx": 7, "from": "Kinkaku-ji Golden Pavilion"},
-    {"t": "18:10<br>19:10", "title": "נסיעה לכיוון ארוחת הערב", "desc": "Bus 55 לכיוון Shijo Karasuma והליכה, או שתי מוניות. המסעדה צריכה להיות ליד המלון.", "img": "assets/transfers/bus.jpg", "to": "Hotel Monterey Kyoto restaurants", "tag": "🚌 ~60 דק׳ / 🚕 ~45 דק׳", "afterIdx": 8, "from": "Kitano Tenmangu Shrine Kyoto"},
+    {"t": "07:30<br>08:30", "title": "תחבורה ציבורית לאראשיאמה", "desc": "יוצאים מהמלון ב-07:30, נוסעים בקו Tozai מ-Karasuma Oike ל-Uzumasa Tenjingawa, עוברים ברגל ל-Randen Tenjingawa וממשיכים ברכבת Randen ל-Arashiyama. ההגעה המתוכננת סביב 08:30 משאירה כ-10 דקות להתמצאות לפני הביקור.", "img": "assets/transfers/train.jpg", "to": "Arashiyama Bamboo Grove", "tag": "🚇 + 🚋 + 🚶 ~60–70 דק׳ · כ-¥510", "afterIdx": 0, "from": "Hotel Monterey Kyoto", "details": {"title": "פירוט מלא: Hotel Monterey Kyoto עד Bamboo Grove · 5 שלבים", "steps": [
+      {"time": "07:30", "title": "הליכה ל-Karasuma Oike", "desc": "יוצאים מהמלון והולכים כ-3–5 דקות לכניסה של תחנת Karasuma Oike.", "navigation": {"from": "Hotel Monterey Kyoto", "to": "Karasuma Oike Station", "mode": "walking", "label": "🚶 ניווט לתחנת Karasuma Oike"}},
+      {"time": "סביב 07:35", "title": "Tozai Line מערבה", "desc": "עולים על קו Tozai בכיוון Uzumasa Tenjingawa ונוסעים ארבע תחנות עד התחנה הסופית Uzumasa Tenjingawa.", "navigation": {"from": "Karasuma Oike Station", "to": "Uzumasa Tenjingawa Station", "mode": "transit", "label": "🚇 מסלול המטרו ב-Google Maps"}},
+      {"time": "לאחר הירידה", "title": "מעבר ל-Randen Tenjingawa", "desc": "עוקבים אחרי השילוט ל-Randen והולכים כ-2–4 דקות לתחנת הרחוב Randen Tenjingawa."},
+      {"time": "סביב 08:00", "title": "Randen ל-Arashiyama", "desc": "עולים על רכבת Randen לכיוון Arashiyama ונשארים עד התחנה הסופית. אין החלפה נוספת.", "navigation": {"from": "Randen Tenjingawa Station", "to": "Randen Arashiyama Station", "mode": "transit", "label": "🚋 מסלול Randen ב-Google Maps"}},
+      {"time": "עד 08:30", "title": "הליכה ל-Bamboo Grove", "desc": "יוצאים מתחנת Arashiyama והולכים כ-10–12 דקות אל הכניסה ליער הבמבוק.", "navigation": {"from": "Randen Arashiyama Station", "to": "Arashiyama Bamboo Grove", "mode": "walking", "label": "🚶 ניווט ליער הבמבוק"}}
+    ], "recommendations": [
+      "טוענים מראש לפחות ¥600 בכל כרטיס IC כדי לא להתעכב במכונות הכרטיסים.",
+      "ב-Uzumasa Tenjingawa המעבר ל-Randen הוא הליכה קצרה מחוץ למטרו; שומרים את הקבוצה יחד.",
+      "זמני הרכבות המדויקים ייבדקו שוב בערב שלפני הנסיעה."
+    ]}},
+    {"t": "09:20<br>09:30", "title": "הליכה ל-Tenryu-ji", "desc": "מסיימים את שביל הבמבוק ונכנסים דרך השער הצפוני של Tenryu-ji הסמוך.", "img": "assets/transfers/walk.jpg", "to": "Tenryu-ji North Gate", "tag": "🚶 ~5–10 דק׳ כולל כניסה", "afterIdx": 1, "from": "Arashiyama Bamboo Grove"},
+    {"t": "10:30<br>10:35", "title": "הליכה ל-Hogon-in", "desc": "יוצאים מ-Tenryu-ji לכיוון דרום והולכים אל גן Hogon-in הסמוך, לפני שממשיכים לנהר.", "img": "assets/transfers/walk.jpg", "to": "Hogon-in Temple Kyoto", "tag": "🚶 ~5 דק׳ · כ-0.2 ק״מ", "afterIdx": 2, "from": "Tenryu-ji Temple"},
+    {"t": "11:15<br>11:25", "title": "הליכה ל-Togetsukyo", "desc": "ממשיכים מ-Hogon-in מזרחה אל גשר Togetsukyo וגדת נהר Katsura.", "img": "assets/transfers/walk.jpg", "to": "Togetsukyo Bridge Arashiyama", "tag": "🚶 ~7–10 דק׳ · כ-0.6 ק״מ", "afterIdx": 3, "from": "Hogon-in Temple Kyoto"},
+    {"t": "11:55<br>12:05", "title": "הליכה לארוחת צהריים", "desc": "הולכים מהגשר למסעדה שנבחרה ליד תחנת Randen Arashiyama.", "img": "assets/transfers/walk.jpg", "to": "Randen Arashiyama Station", "tag": "🚶 ~5–10 דק׳ · כ-0.5 ק״מ", "afterIdx": 4, "from": "Togetsukyo Bridge Arashiyama"},
+    {"t": "13:05<br>13:50", "title": "Randen ל-Ryoan-ji", "desc": "נוסעים מ-Arashiyama ל-Katabiranotsuji, עוברים לקו Kitano לכיוון Kitano-Hakubaicho, יורדים בתחנת Ryoanji והולכים למקדש.", "img": "assets/transfers/train.jpg", "to": "Ryoan-ji Temple Kyoto", "tag": "🚋 + 🚶 ~35–45 דק׳ · ¥250", "afterIdx": 5, "from": "Randen Arashiyama Station", "details": {"title": "פירוט מלא: Arashiyama עד Ryoan-ji · 4 שלבים", "steps": [
+      {"time": "13:05", "title": "עלייה בתחנת Randen Arashiyama", "desc": "נכנסים לתחנה ועולים על רכבת Randen בכיוון Shijo-Omiya."},
+      {"time": "כ-7 דקות", "title": "ירידה ב-Katabiranotsuji", "desc": "יורדים בתחנת Katabiranotsuji ועוקבים בתוך התחנה אחרי השילוט ל-Kitano Line."},
+      {"time": "לאחר ההחלפה", "title": "Kitano Line ל-Ryoanji", "desc": "עולים על הרכבת בכיוון Kitano-Hakubaicho ויורדים בתחנת Ryoanji.", "navigation": {"from": "Randen Arashiyama Station", "to": "Ryoanji Station Kyoto", "mode": "transit", "label": "🚋 מסלול Randen ב-Google Maps"}},
+      {"time": "עד 13:50", "title": "הליכה למקדש", "desc": "מתחנת Ryoanji הולכים כ-7–10 דקות צפונה אל הכניסה של Ryoan-ji.", "navigation": {"from": "Ryoanji Station Kyoto", "to": "Ryoan-ji Temple Kyoto", "mode": "walking", "label": "🚶 ניווט הליכה ל-Ryoan-ji"}}
+    ], "recommendations": [
+      "ההחלפה ב-Katabiranotsuji פשוטה ונעשית באותה תחנה; אין צורך לצאת לרחוב.",
+      "משלמים ¥250 לכל מסלול Randen באמצעות כרטיס IC או במזומן.",
+      "אם ההמתנה ארוכה מהצפוי, עדיין נשמר מרווח לפני Kinkaku-ji."
+    ]}},
+    {"t": "14:40<br>15:05", "title": "הליכה ל-Kinkaku-ji", "desc": "הליכה ישירה לאורך Kinukake-no-michi; מונית אינה נדרשת בתנאים רגילים.", "img": "assets/transfers/walk.jpg", "to": "Kinkaku-ji Golden Pavilion", "tag": "🚶 ~20–25 דק׳ · 1.4 ק״מ", "afterIdx": 6, "from": "Ryoan-ji Temple Kyoto"},
+    {"t": "16:05<br>16:25", "title": "הליכה ל-Kitano Tenmangu", "desc": "הליכה ישירה וקצרה יחסית. מגיעים סביב 16:25 ומשתמשים בזמן שנותר למנוחה, שירותים, כרטיסים ותור לפני התאורה.", "img": "assets/transfers/walk.jpg", "to": "Kitano Tenmangu Shrine Kyoto", "tag": "🚶 ~15–20 דק׳ · 1.1 ק״מ", "afterIdx": 7, "from": "Kinkaku-ji Golden Pavilion"},
+    {"t": "18:00<br>18:45", "title": "Bus 55 לכיוון המלון", "desc": "יוצאים לתחנת Kitano Tenmangu-mae, עולים על Bus 55 לכיוון Shijo Karasuma ומשם הולכים צפונה למסעדה ליד Hotel Monterey Kyoto.", "img": "assets/transfers/bus.jpg", "to": "Hotel Monterey Kyoto restaurants", "tag": "🚌 + 🚶 ~35–45 דק׳ · ¥230", "afterIdx": 8, "from": "Kitano Tenmangu Shrine Kyoto", "details": {"title": "פירוט מלא: Kitano Tenmangu עד אזור המלון · 3 שלבים", "steps": [
+      {"time": "18:00", "title": "הליכה ל-Kitano Tenmangu-mae", "desc": "יוצאים מהשער הראשי והולכים לתחנת האוטובוס Kitano Tenmangu-mae בכיוון מרכז העיר.", "navigation": {"from": "Kitano Tenmangu Shrine Kyoto", "to": "Kitano Tenmangu-mae Bus Stop", "mode": "walking", "label": "🚶 ניווט לתחנת האוטובוס"}},
+      {"time": "לאחר ההגעה לתחנה", "title": "Bus 55 ל-Shijo Karasuma", "desc": "עולים על Kyoto City Bus 55 בכיוון Shijo Karasuma ויורדים בתחנה הסופית. התשלום הוא ¥230 לאדם.", "navigation": {"from": "Kitano Tenmangu-mae Bus Stop", "to": "Shijo Karasuma Kyoto", "mode": "transit", "label": "🚌 מסלול Bus 55 ב-Google Maps"}},
+      {"time": "עד 18:45", "title": "הליכה למסעדה", "desc": "מ-Shijo Karasuma הולכים צפונה לאורך Karasuma-dori לכיוון Hotel Monterey Kyoto והמסעדה שהוזמנה.", "navigation": {"from": "Shijo Karasuma Kyoto", "to": "Hotel Monterey Kyoto", "mode": "walking", "label": "🚶 ניווט לכיוון המלון"}}
+    ], "recommendations": [
+      "עולים מהדלת האחורית ויורדים מהדלת הקדמית, לפי הנוהל הרגיל באוטובוסים העירוניים של קיוטו.",
+      "מכינים את כרטיס ה-IC לפני הירידה כדי שששת המטיילים יוכלו לצאת במהירות.",
+      "חלון 18:45–19:30 נשאר כמרווח לעיכוב, מנוחה או הגעה מוקדמת למסעדה."
+    ]}},
     {"t": "אחרי 21:00", "title": "חזרה למלון", "desc": "בדרך כלל הליכה קצרה בלבד משום שהמסעדה נבחרת ליד Hotel Monterey Kyoto.", "img": "assets/transfers/walk.jpg", "to": "Hotel Monterey Kyoto", "tag": "🚶 לפי מיקום המסעדה · עד כ-1.5 ק״מ", "afterIdx": 9, "from": "Hotel Monterey Kyoto restaurants"}
   ],
   '20': [
