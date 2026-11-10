@@ -1176,10 +1176,16 @@ const citiesByDay = {
 
 // Dedicated clean route maps per day (src + aspect-ratio of the image)
 const routeMapsByDay = {
-  '14': { src: 'assets/maps/day14_walking_map.png', ratio: '338 / 261' },
-  '15': { src: 'assets/maps/day15_route_map.png', ratio: '400 / 250', legend: false },
-  '16': { src: 'assets/maps/day16_route_map.png?v=one-map', ratio: '1200 / 554', legend: false },
-  '17': { src: 'assets/maps/day17_route_map.png?v=large-labels', ratio: '900 / 540', legend: false },
+  '12-13': { src: 'days_top_map/nov13.jpeg', ratio: '1672 / 941', legend: false },
+  '14': { src: 'days_top_map/nov14.jpeg', ratio: '1672 / 941', legend: false },
+  '15': { src: 'days_top_map/nov15.jpeg', ratio: '1672 / 941', legend: false },
+  '16': { src: 'days_top_map/nov16.jpeg', ratio: '1672 / 941', legend: false },
+  '17': { src: 'days_top_map/nov17.jpeg', ratio: '1672 / 941', legend: false },
+  '18': { src: 'days_top_map/nov18.jpeg', ratio: '1672 / 941', legend: false },
+  '19': { src: 'days_top_map/nov19.jpeg', ratio: '1672 / 941', legend: false },
+  '20': { src: 'days_top_map/nov20.jpeg', ratio: '1672 / 941', legend: false },
+  '21': { src: 'days_top_map/nov21.jpeg', ratio: '1672 / 941', legend: false },
+  '22': { src: 'days_top_map/nov22.jpeg', ratio: '1672 / 941', legend: false },
 };
 
 // Short Hebrew theme shown as the banner subtitle per day (fallback: route text)
@@ -1273,12 +1279,13 @@ const transitByDay = {
     { from: 'Dotonbori / Namba', to: 'Osaka Excel Hotel Tokyu', note: 'הליכה צפונה לאורך Midosuji Winter Illumination או קו Midosuji ל-Hommachi; חוזרים לאריזה לקראת המעבר לטוקיו', line: 'רגלי / Midosuji Line', time: 'לפי הקצב', cost: '¥0–¥190' }
   ],
   '24': [
-    { from: 'Osaka Excel Hotel Tokyu', to: 'Shin-Osaka Station', note: 'הליכה קצרה ל-Hommachi וקו Midosuji ישיר ללא החלפות', line: 'רגלי + Midosuji Line', time: '~25 דק׳', cost: 'כרטיס IC' },
-    { from: 'Shin-Osaka Station', to: 'Tokyo Station', note: 'שינקנסן Nozomi עם מושבים שמורים; במזג אוויר בהיר מושב E עשוי להציע נוף להר פוג׳י', line: 'שינקנסן JR Tokaido', time: '~2:30 שעות', cost: 'נרכש מראש' },
-    { from: 'Tokyo Station', to: 'Kokyo Gaien', note: 'יציאה מ-Marunouchi Central Exit והליכה ישר לאורך Gyoko-dori', line: 'רגלי', time: '~15 דק׳', cost: '—' },
-    { from: 'Kokyo Gaien', to: 'Ginza', note: 'הליכה דרומה לאורך התעלה, דרך אזור Hibiya ולתוך גינזה', line: 'רגלי', time: '~30 דק׳', cost: '—' },
-    { from: 'Ginza', to: 'remm PLUS Ginza', note: 'הליכה קצרה מהשיטוט בגינזה אל המלון', line: 'רגלי', time: '~5–10 דק׳', cost: '—' },
-    { from: 'remm PLUS Ginza', to: 'Akita Dining Namahage', note: 'יציאה מהמלון בזמן להזמנה של 19:30', line: 'רגלי / מטרו קצר', time: '~15 דק׳', cost: 'לפי המסלול' }
+    { from: 'Osaka Excel Hotel Tokyu', to: 'Shin-Osaka Station', note: 'הליכה קצרה ל-Hommachi, ואז קו Midosuji ישיר ל-Shin-Osaka; אם יש מזוודות גדולות הן אמורות להיות כבר במעבר ללילה הקודם', line: 'רגלי + Midosuji Line', time: '~25 דק׳', cost: 'כרטיס IC' },
+    { from: 'Shin-Osaka Station', to: 'Tokyo Station', note: 'שינקנסן Nozomi בשעה 10:00 עם מושבים שמורים; מסלול היעיל ביותר לטוקיו, ללא החלפות', line: 'שינקנסן JR Tokaido', time: '~2:30 שעות', cost: 'נרכש מראש' },
+    { from: 'Tokyo Station', to: 'Kokyo Gaien', note: 'יציאה מ-Marunouchi Central Exit ואז הליכה ישרה לאורך Gyoko-dori אל הכניסה לאזור הארמון', line: 'רגלי', time: '~15 דק׳', cost: '—' },
+    { from: 'Kokyo Gaien', to: 'Hibiya Park', note: 'נועלים את המסלול דרך הפארק ואזור Hibiya לפני כניסה לגינזה', line: 'רגלי', time: '~20 דק׳', cost: '—' },
+    { from: 'Hibiya Park', to: 'Ginza', note: 'הליכה דרומה לאורך השדרה המרכזית, דרך Ginza Six ו-Nissan Crossing', line: 'רגלי', time: '~20–25 דק׳', cost: '—' },
+    { from: 'Ginza', to: 'remm PLUS Ginza', note: 'הגעה ישירה למלון אחרי השיטוט בגינזה ולפני מנוחה קצרה', line: 'רגלי', time: '~5–10 דק׳', cost: '—' },
+    { from: 'remm PLUS Ginza', to: 'Akita Dining Namahage', note: 'יציאה מהמלון בזמן להזמנה של 19:30; המסלול הראשי הוא הליכה רגועה בגינזה', line: 'רגלי / מטרו קצר', time: '~15 דק׳', cost: 'לפי המסלול' }
   ]
 };
 
@@ -1330,7 +1337,7 @@ const routeNotesPresets = {
   },
   '24': {
     overview: "בלילה שלפני המעבר נשלח את המזוודות הגדולות מ-Osaka Excel Hotel Tokyu אל remm PLUS Ginza, וניסע עם תיקים קטנים בלבד. לאחר ארוחת בוקר וצ׳ק-אאוט נלך ל-Hommachi וניסע בקו Midosuji הישיר ל-Shin-Osaka. נקנה משקאות ונשנוש קל, ובשעה 10:00 נעלה על Nozomi עם מושבים שמורים לטוקיו. לאחר ההגעה נאכל ארוחת צהריים חמה בתוך Tokyo Station, נצלם את בניין הלבנים האדומות בצד Marunouchi ונלך לאורך Gyoko-dori אל Kokyo Gaien, גשר Nijubashi וחומות Edo Castle. משם נמשיך דרך Hibiya לגינזה, נבקר ב-Nissan Crossing וב-Ginza Six, נטייל ב-Chuo-dori ונגיע סביב 17:15 ל-remm PLUS Ginza לקבלת המזוודות ולמנוחה. בשעה 19:30 נאכל ב-Akita Dining Namahage, ולאחר מכן אפשר לסיים במשקה רגוע ליד המלון.",
-    tips: "יש לאשר עם המלון באוסקה שהמזוודות יגיעו ל-remm PLUS Ginza ב-24 בנובמבר. מושבי ה-Nozomi נרכשים מראש; במזג אוויר בהיר מושב E בצד ימין עשוי להציע נוף להר פוג׳י. בגני הארמון המזרחיים לא מבקרים ביום זה בגלל סגירת החג של 23 בנובמבר. יש להזמין מראש שולחן ב-Akita Dining Namahage לשישה בשעה 19:30."
+    tips: "יש לאשר עם המלון באוסקה שהמזוודות הגיעו ל-remm PLUS Ginza לפני הצ׳ק-אין. Nozomi נרכשת מראש; במזג אוויר בהיר מושב E בצד ימין עשוי להציע נוף להר פוג׳י. ביום זה שומרים את הזמן להליכה בגינזה ולא להעמיס על קניות נוספות. אם יש עיכוב, מקצרים את הביקור סביב הארמון ומעדיפים את Ginza/המלון. יש להזמין מראש שולחן ב-Akita Dining Namahage לשישה בשעה 19:30."
   },
   '25': {
     overview: "בשעה 09:00 נצא מ-remm PLUS Ginza אל Meiji Jingu דרך Ginza Station, קו Ginza והחלפה ב-Omotesando לקו Chiyoda עד Meiji-jingumae. נמשיך ברגל אל Takeshita Street, שדרת Omotesando ו-Cat Street, ונאכל ליד הקצה הדרומי של Cat Street כדי לשמור מעבר קצר ל-Shibuya PARCO. בשעה 14:00 נצא ברגל ל-PARCO, וב-15:30 נמשיך ל-Shibuya Sky לקראת השקיעה ונישאר על הגג עד 18:00. בערב נעצור בפסל Hachiko, נחצה את Shibuya Crossing, נאכל ב-Yakitori Tsukada ונסיים ב-Nonbei Yokocho. סביב 22:30 נחזור למלון בקו Ginza מ-Shibuya ל-Ginza.",
